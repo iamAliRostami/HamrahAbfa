@@ -1,13 +1,9 @@
 package com.leon.hamrah_abfa.helpers;
 
-import static com.leon.hamrah_abfa.helpers.XmlHelper.setRString;
-
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.leon.hamrah_abfa.BuildConfig;
-import com.leon.hamrah_abfa.R;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
@@ -20,9 +16,6 @@ public class MyApplication extends Application {
         appContext = getApplicationContext();
         if (!BuildConfig.BUILD_TYPE.equals("release"))
             setupYandex();
-        setCustomXml();
-        Log.e("app name", getString(R.string.app_name));
-        Log.e("app name 1", getString(R.string.app_name_1));
 //        throw new RuntimeException("Test Exception");
     }
 
@@ -32,10 +25,6 @@ public class MyApplication extends Application {
                 .withLogs().withAppVersion(BuildConfig.VERSION_NAME).build();
         YandexMetrica.activate(appContext, config);
         YandexMetrica.enableActivityAutoTracking(this);
-    }
-
-    private void setCustomXml() {
-        setRString(R.class, "app_name", R.string.app_name_1);
     }
 
     public static Context getAppContext() {
