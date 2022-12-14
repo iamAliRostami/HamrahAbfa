@@ -52,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
         slogan.setAnimation(bottomAnimation);
         //Splash Screen Code to call new Activity after some time
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, Splash2Activity.class);
             startActivity(intent);
             finish();
         }, SPLASH_TIME_OUT);

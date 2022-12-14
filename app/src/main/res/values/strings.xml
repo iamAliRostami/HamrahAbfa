@@ -1,3 +1,9 @@
 <resources>
     <!--    <string name="app_name">همراه آبفا</string>-->
+
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">خانه</string>
+    <string name="title_dashboard">داشبورد</string>
+    <string name="title_notifications">اعلان\u200cها</string>
+    <string name="exit_by_press_again">لطفا جهت خروج، دکمه ی بازگشت را مجدد کلیک کنید</string>
 </resources>
