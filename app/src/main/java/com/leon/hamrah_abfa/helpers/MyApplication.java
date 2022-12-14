@@ -1,11 +1,16 @@
 package com.leon.hamrah_abfa.helpers;
 
+import static com.leon.hamrah_abfa.helpers.Constants.FONT_NAME;
+
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 
 import com.leon.hamrah_abfa.BuildConfig;
+import com.leon.hamrah_abfa.utils.toast.RTLToast;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
+
 
 public class MyApplication extends Application {
     private static Context appContext;
@@ -14,6 +19,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appContext = getApplicationContext();
+        RTLToast.Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(),
+                FONT_NAME)).apply();
         if (!BuildConfig.BUILD_TYPE.equals("release"))
             setupYandex();
 //        throw new RuntimeException("Test Exception");
