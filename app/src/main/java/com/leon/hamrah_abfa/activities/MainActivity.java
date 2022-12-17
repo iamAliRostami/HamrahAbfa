@@ -14,7 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
-import com.leon.hamrah_abfa.utils.toast.RTLToast;
+import com.leon.hamrah_abfa.utils.toast.CustomToast;
 
 
 public class MainActivity extends AppCompatActivity implements MotionLayout.TransitionListener {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     @Override
     public void onBackPressed() {
         if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        RTLToast.info(this,getString(R.string.exit_by_press_again)).show();
+        CustomToast.info(this,getString(R.string.exit_by_press_again)).show();
         lastClickTime = SystemClock.elapsedRealtime();
     }
 }

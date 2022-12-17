@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.utils.toast;
 
+import static com.leon.hamrah_abfa.utils.toast.RTLToastUtils.getDrawable;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
@@ -20,7 +22,7 @@ import androidx.annotation.StringRes;
 
 import com.leon.hamrah_abfa.R;
 
-public class RTLToast {
+public class CustomToast {
     @ColorInt
     private static int DEFAULT_TEXT_COLOR = Color.parseColor("#FFFFFF");
     @ColorInt
@@ -40,7 +42,7 @@ public class RTLToast {
 
     private static boolean tintIcon = true;
 
-    private RTLToast() {
+    private CustomToast() {
     }
 
     @CheckResult
@@ -115,12 +117,12 @@ public class RTLToast {
 
     @CheckResult
     public static Toast warning(@NonNull Context context, @StringRes int message, int duration, boolean withIcon) {
-        return custom(context, context.getString(message), RTLToastUtils.getDrawable(context, R.drawable.ic_error_outline_white_48dp), WARNING_COLOR, duration, withIcon, true);
+        return custom(context, context.getString(message), getDrawable(context, R.drawable.ic_error_outline_white_48dp), WARNING_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
     public static Toast warning(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        return custom(context, message, RTLToastUtils.getDrawable(context, R.drawable.ic_error_outline_white_48dp), WARNING_COLOR, duration, withIcon, true);
+        return custom(context, message, getDrawable(context, R.drawable.ic_error_outline_white_48dp), WARNING_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
@@ -145,12 +147,12 @@ public class RTLToast {
 
     @CheckResult
     public static Toast info(@NonNull Context context, @StringRes int message, int duration, boolean withIcon) {
-        return custom(context, context.getString(message), RTLToastUtils.getDrawable(context, R.drawable.ic_info_outline_white_48dp), INFO_COLOR, duration, withIcon, true);
+        return custom(context, context.getString(message), getDrawable(context, R.drawable.ic_info_outline_white_48dp), INFO_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
     public static Toast info(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        return custom(context, message, RTLToastUtils.getDrawable(context, R.drawable.ic_info_outline_white_48dp), INFO_COLOR, duration, withIcon, true);
+        return custom(context, message, getDrawable(context, R.drawable.ic_info_outline_white_48dp), INFO_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
@@ -175,12 +177,12 @@ public class RTLToast {
 
     @CheckResult
     public static Toast success(@NonNull Context context, @StringRes int message, int duration, boolean withIcon) {
-        return custom(context, context.getString(message), RTLToastUtils.getDrawable(context, R.drawable.ic_check_white_48dp), SUCCESS_COLOR, duration, withIcon, true);
+        return custom(context, context.getString(message), getDrawable(context, R.drawable.ic_check_white_48dp), SUCCESS_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
     public static Toast success(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        return custom(context, message, RTLToastUtils.getDrawable(context, R.drawable.ic_check_white_48dp), SUCCESS_COLOR, duration, withIcon, true);
+        return custom(context, message, getDrawable(context, R.drawable.ic_check_white_48dp), SUCCESS_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
@@ -205,12 +207,12 @@ public class RTLToast {
 
     @CheckResult
     public static Toast error(@NonNull Context context, @StringRes int message, int duration, boolean withIcon) {
-        return custom(context, context.getString(message), RTLToastUtils.getDrawable(context, R.drawable.ic_clear_white_48dp), ERROR_COLOR, duration, withIcon, true);
+        return custom(context, context.getString(message), getDrawable(context, R.drawable.ic_clear_white_48dp), ERROR_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
     public static Toast error(@NonNull Context context, @NonNull CharSequence message, int duration, boolean withIcon) {
-        return custom(context, message, RTLToastUtils.getDrawable(context, R.drawable.ic_clear_white_48dp), ERROR_COLOR, duration, withIcon, true);
+        return custom(context, message, getDrawable(context, R.drawable.ic_clear_white_48dp), ERROR_COLOR, duration, withIcon, true);
     }
 
     @CheckResult
@@ -225,12 +227,12 @@ public class RTLToast {
 
     @CheckResult
     public static Toast custom(@NonNull Context context, @StringRes int message, @DrawableRes int iconRes, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
-        return custom(context, context.getString(message), RTLToastUtils.getDrawable(context, iconRes), tintColor, duration, withIcon, shouldTint);
+        return custom(context, context.getString(message), getDrawable(context, iconRes), tintColor, duration, withIcon, shouldTint);
     }
 
     @CheckResult
     public static Toast custom(@NonNull Context context, @NonNull CharSequence message, @DrawableRes int iconRes, @ColorInt int tintColor, int duration, boolean withIcon, boolean shouldTint) {
-        return custom(context, message, RTLToastUtils.getDrawable(context, iconRes), tintColor, duration, withIcon, shouldTint);
+        return custom(context, message, getDrawable(context, iconRes), tintColor, duration, withIcon, shouldTint);
     }
 
     @CheckResult
@@ -250,7 +252,7 @@ public class RTLToast {
         if (shouldTint) {
             drawableFrame = RTLToastUtils.tint9PatchDrawableFrame(context, tintColor);
         } else {
-            drawableFrame = RTLToastUtils.getDrawable(context, R.drawable.toast_frame);
+            drawableFrame = getDrawable(context, R.drawable.toast_frame);
         }
         RTLToastUtils.setBackground(toastLayout, drawableFrame);
 
@@ -279,18 +281,18 @@ public class RTLToast {
 
     public static class Config {
         @ColorInt
-        private int DEFAULT_TEXT_COLOR = RTLToast.DEFAULT_TEXT_COLOR;
+        private int DEFAULT_TEXT_COLOR = CustomToast.DEFAULT_TEXT_COLOR;
         @ColorInt
-        private int ERROR_COLOR = RTLToast.ERROR_COLOR;
+        private int ERROR_COLOR = CustomToast.ERROR_COLOR;
         @ColorInt
-        private int INFO_COLOR = RTLToast.INFO_COLOR;
+        private int INFO_COLOR = CustomToast.INFO_COLOR;
         @ColorInt
-        private int SUCCESS_COLOR = RTLToast.SUCCESS_COLOR;
+        private int SUCCESS_COLOR = CustomToast.SUCCESS_COLOR;
         @ColorInt
-        private int WARNING_COLOR = RTLToast.WARNING_COLOR;
-        private Typeface typeface = RTLToast.currentTypeface;
-        private int textSize = RTLToast.textSize;
-        private boolean tintIcon = RTLToast.tintIcon;
+        private int WARNING_COLOR = CustomToast.WARNING_COLOR;
+        private Typeface typeface = CustomToast.currentTypeface;
+        private int textSize = CustomToast.textSize;
+        private boolean tintIcon = CustomToast.tintIcon;
 
         private Config() {
         }
@@ -302,14 +304,14 @@ public class RTLToast {
         }
 
         public static void reset() {
-            RTLToast.DEFAULT_TEXT_COLOR = Color.parseColor("#FFFFFF");
-            RTLToast.ERROR_COLOR = Color.parseColor("#D50000");
-            RTLToast.INFO_COLOR = Color.parseColor("#3F51B5");
-            RTLToast.SUCCESS_COLOR = Color.parseColor("#388E3C");
-            RTLToast.WARNING_COLOR = Color.parseColor("#FFA900");
-            RTLToast.currentTypeface = LOADED_TOAST_TYPEFACE;
-            RTLToast.textSize = 16;
-            RTLToast.tintIcon = true;
+            CustomToast.DEFAULT_TEXT_COLOR = Color.parseColor("#FFFFFF");
+            CustomToast.ERROR_COLOR = Color.parseColor("#D50000");
+            CustomToast.INFO_COLOR = Color.parseColor("#3F51B5");
+            CustomToast.SUCCESS_COLOR = Color.parseColor("#388E3C");
+            CustomToast.WARNING_COLOR = Color.parseColor("#FFA900");
+            CustomToast.currentTypeface = LOADED_TOAST_TYPEFACE;
+            CustomToast.textSize = 16;
+            CustomToast.tintIcon = true;
         }
 
         @CheckResult
@@ -361,14 +363,14 @@ public class RTLToast {
         }
 
         public void apply() {
-            RTLToast.DEFAULT_TEXT_COLOR = DEFAULT_TEXT_COLOR;
-            RTLToast.ERROR_COLOR = ERROR_COLOR;
-            RTLToast.INFO_COLOR = INFO_COLOR;
-            RTLToast.SUCCESS_COLOR = SUCCESS_COLOR;
-            RTLToast.WARNING_COLOR = WARNING_COLOR;
-            RTLToast.currentTypeface = typeface;
-            RTLToast.textSize = textSize;
-            RTLToast.tintIcon = tintIcon;
+            CustomToast.DEFAULT_TEXT_COLOR = DEFAULT_TEXT_COLOR;
+            CustomToast.ERROR_COLOR = ERROR_COLOR;
+            CustomToast.INFO_COLOR = INFO_COLOR;
+            CustomToast.SUCCESS_COLOR = SUCCESS_COLOR;
+            CustomToast.WARNING_COLOR = WARNING_COLOR;
+            CustomToast.currentTypeface = typeface;
+            CustomToast.textSize = textSize;
+            CustomToast.tintIcon = tintIcon;
         }
     }
 }
