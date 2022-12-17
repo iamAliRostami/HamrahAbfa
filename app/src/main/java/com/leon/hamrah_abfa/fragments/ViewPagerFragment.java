@@ -1,7 +1,10 @@
 package com.leon.hamrah_abfa.fragments;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BACKGROUND_COLOR;
+import static com.leon.hamrah_abfa.enums.BundleEnum.CONTENT;
+import static com.leon.hamrah_abfa.enums.BundleEnum.LOGO;
 import static com.leon.hamrah_abfa.enums.BundleEnum.POSITION;
+import static com.leon.hamrah_abfa.enums.BundleEnum.TITLE;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,22 +14,26 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentViewPagerBinding;
+import com.leon.hamrah_abfa.di.view_model.WelcomeViewModel;
 
 public class ViewPagerFragment extends Fragment {
-    private FragmentViewPagerBinding binding;
-    private int position, bgColor;
+    private final WelcomeViewModel viewModel = new WelcomeViewModel();
 
     public ViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(int position, int bgColor) {
+    public static ViewPagerFragment newInstance(int position, int bgColor, int logo, String title,
+                                                String content) {
         ViewPagerFragment fragment = new ViewPagerFragment();
         Bundle args = new Bundle();
+        args.putInt(LOGO.getValue(), logo);
+        args.putString(TITLE.getValue(), title);
         args.putInt(POSITION.getValue(), position);
+        args.putString(CONTENT.getValue(), content);
         args.putInt(BACKGROUND_COLOR.getValue(), bgColor);
         fragment.setArguments(args);
         return fragment;
@@ -36,15 +43,20 @@ public class ViewPagerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            position = getArguments().getInt(POSITION.getValue());
-            bgColor = getArguments().getInt(BACKGROUND_COLOR.getValue());
+            viewModel.setLogo(getArguments().getInt(LOGO.getValue()));
+            viewModel.setLogoDrawable(ContextCompat.getDrawable(requireContext(), getArguments().getInt(LOGO.getValue())));
+            viewModel.setTitle(getArguments().getString(TITLE.getValue()));
+            viewModel.setPosition(getArguments().getInt(POSITION.getValue()));
+            viewModel.setContent(getArguments().getString(CONTENT.getValue()));
+            viewModel.setBgColor(getArguments().getInt(BACKGROUND_COLOR.getValue()));
         }
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentViewPagerBinding.inflate(inflater, container, false);
+        final FragmentViewPagerBinding binding = FragmentViewPagerBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
         return binding.getRoot();
     }
 
@@ -52,10 +64,5 @@ public class ViewPagerFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.imageViewLogo.setImageResource(R.mipmap.ic_launcher_round);
-        binding.relativeLayoutContainer.setBackgroundColor(bgColor);
-        binding.textViewTitle.setText("Welcome, this is Page: " + position + 1);
-        binding.textViewContent.setText("This is Page: " + position + 1);
-
     }
 }

@@ -1,38 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relative_layout_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark"
-    tools:context=".fragments.ViewPagerFragment">
+<layout>
 
-    <ImageView
-        android:id="@+id/image_view_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerInParent="true"
-        android:contentDescription="@string/app_name" />
+    <data>
 
-    <TextView
-        android:id="@+id/text_view_title"
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.di.view_model.WelcomeViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/relative_layout_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_large" />
+        android:layout_height="match_parent"
+        android:rotationY="180"
+        android:background="@{viewModel.bgColor}"
+        tools:context=".fragments.ViewPagerFragment">
 
-    <TextView
-        android:id="@+id/text_view_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/text_size_small"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/image_view_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/app_name"
+            android:src="@{viewModel.logoDrawable}" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/text_view_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:text="@{viewModel.title}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:id="@+id/text_view_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:text="@{viewModel.content}"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</layout>

@@ -1,5 +1,9 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initialize();
@@ -63,6 +68,10 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
 
     @Override
     public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+        if (getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+            final Intent intent = new Intent(this, WelcomeActivity.class);
+            startActivity(intent);
+        }
         binding.container.setVisibility(View.VISIBLE);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (getSupportActionBar() != null) {
@@ -78,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     @Override
     public void onBackPressed() {
         if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        CustomToast.info(this,getString(R.string.exit_by_press_again)).show();
+        CustomToast.info(this, getString(R.string.exit_by_press_again)).show();
         lastClickTime = SystemClock.elapsedRealtime();
     }
 }
