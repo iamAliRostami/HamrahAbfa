@@ -6,8 +6,8 @@ import static com.leon.hamrah_abfa.enums.ProgressType.SHOW_CANCELABLE;
 import static com.leon.hamrah_abfa.enums.ProgressType.SHOW_CANCELABLE_REDIRECT;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
-import static com.leon.hamrah_abfa.utils.toast.CustomToast.error;
-import static com.leon.hamrah_abfa.utils.toast.CustomToast.warning;
+import static com.leon.toast.RTLToast.error;
+import static com.leon.toast.RTLToast.warning;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

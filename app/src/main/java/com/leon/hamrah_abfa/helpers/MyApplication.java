@@ -14,9 +14,10 @@ import com.leon.hamrah_abfa.di.module.MyDatabaseModule;
 import com.leon.hamrah_abfa.di.module.NetworkModule;
 import com.leon.hamrah_abfa.di.module.SharedPreferenceModule;
 import com.leon.hamrah_abfa.enums.SharedReferenceNames;
-import com.leon.hamrah_abfa.utils.toast.CustomToast;
+import com.leon.toast.RTLToast;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
+
 
 
 public class MyApplication extends Application {
@@ -27,7 +28,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         appContext = getApplicationContext();
-        CustomToast.Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(),
+        RTLToast.Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(),
                 FONT_NAME)).apply();
         applicationComponent = DaggerApplicationComponent
                 .builder().networkModule(new NetworkModule())

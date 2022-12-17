@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.utils.toast.CustomToast;
+import com.leon.toast.RTLToast;
 
 
 public final class CustomProgressModel {
@@ -33,12 +33,12 @@ public final class CustomProgressModel {
 
     public Dialog show(Context context, CharSequence title, boolean cancelable) {
         return show(context, title, cancelable, dialog ->
-                CustomToast.warning(context,R.string.canceled, Toast.LENGTH_LONG));
+                RTLToast.warning(context,R.string.canceled, Toast.LENGTH_LONG));
     }
 
     public void show(Context context, boolean cancelable) {
         show(context, context.getString(R.string.waiting), cancelable, dialog ->
-                CustomToast.warning(context,R.string.canceled, Toast.LENGTH_LONG));
+                RTLToast.warning(context,R.string.canceled, Toast.LENGTH_LONG));
     }
 
     public Dialog show(Context context, CharSequence title, DialogInterface.OnCancelListener cancelListener) {
