@@ -23,11 +23,9 @@ public class NotificationsFragment extends Fragment {
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+        notificationsViewModel.getText().observe(getViewLifecycleOwner(), binding.textNotifications::setText);
+        return binding.getRoot();
     }
 
     @Override

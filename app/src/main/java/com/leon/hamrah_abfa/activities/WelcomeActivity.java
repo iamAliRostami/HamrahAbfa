@@ -50,7 +50,9 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
+//        adapter.registerAdapterDataObserver(binding.indicator.getAdapterDataObserver());
         binding.indicator.attachTo(binding.viewPagerWelcome);
+//        binding.indicator.setViewPager2(binding.viewPagerWelcome);
         binding.buttonSkip.setOnClickListener(this);
         binding.buttonDone.setOnClickListener(this);
     }

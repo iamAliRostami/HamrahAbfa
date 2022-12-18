@@ -51,12 +51,6 @@ android {
         dataBinding = true
         viewBinding true
     }
-
-    dexOptions {
-        javaMaxHeapSize "4g"
-        preDexLibraries true
-        dexInProcess = true
-    }
 }
 
 dependencies {
@@ -92,7 +86,14 @@ dependencies {
 
     implementation 'com.yandex.android:mobmetricalib:5.2.0'
 
+
     implementation 'com.tbuonomo:dotsindicator:4.3'
+//    implementation 'me.relex:circleindicator:2.1.6'
+//    implementation 'com.romandanylyk:pageindicatorview:1.0.3@aar'
+//    implementation 'com.romandanylyk:pageindicatorview:1.0.3'
+//    implementation 'com.shizhefei:ViewPagerIndicator:1.1.9'
+
+
 
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.persistence.room:runtime:1.1.1'

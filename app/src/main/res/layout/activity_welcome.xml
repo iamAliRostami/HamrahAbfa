@@ -29,7 +29,7 @@
             android:textColor="@android:color/white"
             android:textStyle="bold" />
 
-        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
             android:id="@+id/indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
