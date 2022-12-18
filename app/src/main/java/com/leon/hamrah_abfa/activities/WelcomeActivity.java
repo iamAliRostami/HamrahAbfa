@@ -50,9 +50,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         });
-//        adapter.registerAdapterDataObserver(binding.indicator.getAdapterDataObserver());
         binding.indicator.attachTo(binding.viewPagerWelcome);
-//        binding.indicator.setViewPager2(binding.viewPagerWelcome);
         binding.buttonSkip.setOnClickListener(this);
         binding.buttonDone.setOnClickListener(this);
     }
@@ -61,7 +59,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_skip) {
-            binding.viewPagerWelcome.setCurrentItem(binding.viewPagerWelcome.getCurrentItem()+1);
+            binding.viewPagerWelcome.setCurrentItem(binding.viewPagerWelcome.getCurrentItem() + 1);
         } else if (id == R.id.button_done) {
             getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
             finish();
