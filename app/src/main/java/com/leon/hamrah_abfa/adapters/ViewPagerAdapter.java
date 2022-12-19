@@ -12,13 +12,18 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.ViewPagerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
-    private final int[] bgColors = {ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
+    private final int[] bgColors = {
+            ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
             ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
             ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
             ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark)
     };
-    private final int[] logos = {R.drawable.img_splash, R.mipmap.ic_launcher_round,
-            R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
+    private final int[] logos = {
+            R.drawable.img_splash,
+            R.mipmap.ic_launcher_round,
+            R.mipmap.ic_launcher_round,
+            R.mipmap.ic_launcher_round
+    };
 
     private final String[] title = new String[bgColors.length];
     private final String[] content = new String[bgColors.length];
