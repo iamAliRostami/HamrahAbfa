@@ -15,7 +15,7 @@ import com.leon.hamrah_abfa.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 5000;
+    private static final int SPLASH_TIME_OUT = 5000;
     //Hooks
     View first, second, third, fourth, fifth, sixth;
     TextView a, slogan;

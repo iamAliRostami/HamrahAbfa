@@ -1,6 +1,8 @@
 package com.leon.hamrah_abfa.helpers;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceNames.ACCOUNT;
 import static com.leon.hamrah_abfa.helpers.Constants.FONT_NAME;
+import static com.leon.hamrah_abfa.helpers.Constants.TOAST_TEXT_SIZE;
 
 import android.app.Application;
 import android.content.Context;
@@ -13,12 +15,9 @@ import com.leon.hamrah_abfa.di.module.CustomProgressModule;
 import com.leon.hamrah_abfa.di.module.MyDatabaseModule;
 import com.leon.hamrah_abfa.di.module.NetworkModule;
 import com.leon.hamrah_abfa.di.module.SharedPreferenceModule;
-import com.leon.hamrah_abfa.enums.SharedReferenceNames;
 import com.leon.toast.RTLToast;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
-
-
 
 public class MyApplication extends Application {
     private static Context appContext;
@@ -29,12 +28,12 @@ public class MyApplication extends Application {
         super.onCreate();
         appContext = getApplicationContext();
         RTLToast.Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(),
-                FONT_NAME)).apply();
+                FONT_NAME)).setTextSize(TOAST_TEXT_SIZE).apply();
         applicationComponent = DaggerApplicationComponent
                 .builder().networkModule(new NetworkModule())
                 .customProgressModule(new CustomProgressModule())
                 .myDatabaseModule(new MyDatabaseModule(appContext))
-                .sharedPreferenceModule(new SharedPreferenceModule(appContext, SharedReferenceNames.ACCOUNT)).build();
+                .sharedPreferenceModule(new SharedPreferenceModule(appContext, ACCOUNT)).build();
         applicationComponent.inject(this);
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
 //        throw new RuntimeException("Test Exception");
@@ -42,8 +41,8 @@ public class MyApplication extends Application {
 
     protected void setupYandex() {
         final String YANDEX_API_KEY = "0f22d2c8-1621-4448-b0db-267ab4131561";
-        final YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(YANDEX_API_KEY).withLogs()
-                .withAppVersion(BuildConfig.VERSION_NAME).build();
+        final YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(YANDEX_API_KEY)
+                .withLogs().withAppVersion(BuildConfig.VERSION_NAME).build();
         YandexMetrica.activate(appContext, config);
         YandexMetrica.enableActivityAutoTracking(this);
     }
