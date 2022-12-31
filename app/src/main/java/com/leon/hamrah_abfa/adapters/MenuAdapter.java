@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,12 @@ public class MenuAdapter extends BaseAdapter {
         final MenuHolder holder = new MenuHolder(view);
         holder.imageViewLogo.setImageResource(logos.get(position));
         holder.textViewTitle.setText(titles.get(position));
+//        holder.cardView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("here", String.valueOf(position));
+//            }
+//        });
         return view;
     }
 }

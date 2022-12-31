@@ -34,6 +34,7 @@ public class DifferentCompanyManager {
             case KSH:
                 return "آبفا استان کرمانشاه";
             case ESF:
+            case DEBUG:
             default:
                 return "آبفا استان اصفهان";
         }
@@ -42,7 +43,6 @@ public class DifferentCompanyManager {
     public static String getBaseUrl() {
         switch (getActiveCompanyName()) {
             case ESF:
-//                return "https://37.191.92.157/";//Internet
                 return "http://172.18.12.36/";
             case ZONE1:
                 return "http://217.146.220.33:50011/";
@@ -62,16 +62,13 @@ public class DifferentCompanyManager {
                 return "http://185.120.137.254";
             case TSE:
                 return "http://172.28.5.40/";
-//            return "http://46.209.181.2:9098/";
-//                return "http://5.160.85.228:9098/";
             case TW:
                 return "http://217.66.195.75/";
             case KSH:
                 return "http://46.225.241.211:25123/";
             case DEBUG:
-                return "http://192.168.43.185:45458/";
             default:
-                throw new UnsupportedOperationException();
+                return "http://192.168.43.185:45458/";
         }
     }
 }

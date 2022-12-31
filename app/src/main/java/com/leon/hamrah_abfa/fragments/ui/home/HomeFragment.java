@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
+import com.leon.hamrah_abfa.fragments.ItemListDialogFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,17 +37,15 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        ItemListDialogFragment.newInstance(position).show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override

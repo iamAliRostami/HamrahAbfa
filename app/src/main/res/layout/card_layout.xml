@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/contributeCard"
+    android:id="@+id/contribute_card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/low_dp"
     android:layout_marginEnd="@dimen/medium_dp"
-    android:clickable="true"
     android:elevation="12dp"
-    android:focusable="true"
+    android:clickable="false"
+    android:descendantFocusability="blocksDescendants"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="8dp">
 
