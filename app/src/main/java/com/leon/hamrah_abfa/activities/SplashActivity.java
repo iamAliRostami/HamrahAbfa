@@ -42,7 +42,8 @@ public class SplashActivity extends AppCompatActivity {
         bottomAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
         middleAnimation = AnimationUtils.loadAnimation(this, R.anim.middle_animation);
         //-----------Setting Animations to the elements of Splash
-//        Screen-------- - first.setAnimation(topAnimantion);
+//        Screen-------- -
+        first.setAnimation(topAnimantion);
         second.setAnimation(topAnimantion);
         third.setAnimation(topAnimantion);
         fourth.setAnimation(topAnimantion);
@@ -52,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
         slogan.setAnimation(bottomAnimation);
         //Splash Screen Code to call new Activity after some time
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, Splash2Activity.class);
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }, SPLASH_TIME_OUT);
