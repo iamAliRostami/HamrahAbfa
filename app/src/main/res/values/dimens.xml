@@ -14,6 +14,7 @@
     <dimen name="text_size_medium">20sp</dimen>
     <dimen name="text_size_large">28sp</dimen>
     <dimen name="text_size_huge">35sp</dimen>
+
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
 </resources>

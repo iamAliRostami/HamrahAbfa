@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context=".fragments.PhoneSubmitFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linear_layout_form"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/abfa_logo_simple" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_form"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Title"
+            android:layout_margin="@dimen/low_dp"
+            android:text="@string/welcome_to_abfa" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/HelpTitle"
+            android:layout_marginBottom="@dimen/huge_dp"
+            android:text="@string/enter_account" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/InputTitle"
+            android:text="@string/phone_number" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/TextInput"
+            android:hint="@string/mobile_hint"
+            android:maxLength="11" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonSubmit"
+            android:layout_marginTop="@dimen/huge_dp"
+            android:text="@string/sign_in_up" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>
