@@ -30,7 +30,7 @@
     </style>
 
     <style name="InputTitle" parent="Title">
-        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textStyle">normal</item>
     </style>
 
@@ -39,20 +39,48 @@
         <item name="android:paddingEnd">@dimen/medium_dp</item>
         <item name="android:paddingTop">@dimen/small_dp</item>
         <item name="android:paddingBottom">@dimen/small_dp</item>
-        <item name="background">@drawable/border_input</item>
-        <item name="android:background">@drawable/border_input</item>
+        <item name="android:background">@drawable/rectangle_white</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_large</item>
     </style>
 
-    <style name="Button" parent="ThemeOverlay.Material3.Button">
+    <style name="Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="ButtonSubmit" parent="Button">
-        <item name="android:background">@drawable/border_button_submit</item>
-        <item name="android:textColor">@color/teal_2001</item>
+        <item name="android:background">@drawable/rectangle_blue_button</item>
+        <item name="android:backgroundTint">@color/teal_2001</item>
+        <item name="backgroundTint">@color/teal_2001</item>
+        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="VerificationStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:letterSpacing">1</item>
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
+    <style name="ClockCounterStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:letterSpacing">0.1</item>
+<!--        <item name="android:gravity">start|top</item>-->
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+    <style name="RefreshStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/white</item>
+
     </style>
 </resources>

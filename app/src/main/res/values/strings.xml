@@ -15,4 +15,6 @@
     <string name="phone_number">شماره تلفن همراه</string>
     <string name="mobile_hint">09*********</string>
     <string name="sign_in_up">ورود / ثبت نام</string>
+    <string name="_6_dashes">------</string>
+    <string name="try_again">تلاش مجدد</string>
 </resources>

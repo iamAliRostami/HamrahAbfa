@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context=".fragments.VerificationCodeFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smartphone" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_phone_number"
+            style="@style/Title"
+            android:layout_marginTop="@dimen/small_dp"
+            android:text="09134588220"
+            android:textSize="@dimen/text_size_medium" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_verification_coed"
+            style="@style/VerificationStyle"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/huge_dp"
+            android:text="@string/_6_dashes" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_dp"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_counter"
+                style="@style/ClockCounterStyle"
+                android:text="1:30" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/clock" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/huge_dp"
+            android:src="@drawable/refresh" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_refresh"
+            style="@style/RefreshStyle"
+            android:text="@string/try_again" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/ButtonSubmit"
+            android:layout_marginTop="@dimen/huge_dp"
+            android:text="@string/sign_in_up" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>
