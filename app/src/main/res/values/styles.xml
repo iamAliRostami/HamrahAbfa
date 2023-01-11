@@ -14,8 +14,9 @@
     </style>
 
     <style name="Title">
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:textSize">@dimen/text_size_large</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
@@ -39,10 +40,19 @@
         <item name="android:paddingEnd">@dimen/medium_dp</item>
         <item name="android:paddingTop">@dimen/small_dp</item>
         <item name="android:paddingBottom">@dimen/small_dp</item>
-        <item name="android:background">@drawable/rectangle_white</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/medium_dp</item>
+        <item name="android:background">@drawable/rectangle_white_gray_border</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="LoginTextInput" parent="TextInput">
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/rectangle_white_blue_border</item>
     </style>
 
     <style name="Button">
@@ -51,6 +61,15 @@
     </style>
 
     <style name="ButtonSubmit" parent="Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@drawable/rectangle_blue</item>
+        <item name="android:backgroundTint">@color/purple_7001</item>
+        <item name="backgroundTint">@color/purple_7001</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="LoginButtonSubmit" parent="Button">
         <item name="android:background">@drawable/rectangle_blue_button</item>
         <item name="android:backgroundTint">@color/teal_2001</item>
         <item name="backgroundTint">@color/teal_2001</item>
@@ -59,28 +78,53 @@
     </style>
 
     <style name="VerificationStyle">
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:letterSpacing">1</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@android:color/white</item>
 
     </style>
 
     <style name="ClockCounterStyle">
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:letterSpacing">0.1</item>
-<!--        <item name="android:gravity">start|top</item>-->
-        <item name="android:textColor">@color/white</item>
+        <!--        <item name="android:gravity">start|top</item>-->
+        <item name="android:textColor">@android:color/white</item>
 
     </style>
+
     <style name="RefreshStyle">
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 
+    <style name="CustomImageView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Linearlayout">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="TextButtonStyle">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 </resources>

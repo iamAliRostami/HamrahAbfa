@@ -7,18 +7,15 @@
     tools:context=".fragments.PhoneSubmitFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/CustomImageView"
         android:layout_above="@id/linear_layout_form"
         android:layout_centerHorizontal="true"
         android:src="@drawable/abfa_logo_simple" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_form"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Linearlayout"
         android:layout_centerInParent="true"
-        android:gravity="center"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -36,12 +33,13 @@
             android:text="@string/phone_number" />
 
         <com.google.android.material.textfield.TextInputEditText
-            style="@style/TextInput"
+            style="@style/LoginTextInput"
+            android:layout_marginBottom="500dp"
             android:hint="@string/mobile_hint"
             android:maxLength="11" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonSubmit"
+            style="@style/LoginButtonSubmit"
             android:layout_marginTop="@dimen/huge_dp"
             android:text="@string/sign_in_up" />
     </androidx.appcompat.widget.LinearLayoutCompat>

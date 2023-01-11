@@ -17,4 +17,7 @@
     <string name="sign_in_up">ورود / ثبت نام</string>
     <string name="_6_dashes">------</string>
     <string name="try_again">تلاش مجدد</string>
+    <string name="account_info_submit">ثبت اطلاعات انشعاب</string>
+    <string name="account_title">عنوان انشعاب</string>
+    <string name="enter_bill_id">شناسه قبض را وارد کنید…</string>
 </resources>

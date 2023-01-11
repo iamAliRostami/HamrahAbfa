@@ -7,15 +7,11 @@
     tools:context=".fragments.VerificationCodeFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
+        style="@style/Linearlayout"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CustomImageView"
             android:src="@drawable/smartphone" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -28,15 +24,12 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_verification_coed"
             style="@style/VerificationStyle"
-            android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/huge_dp"
             android:text="@string/_6_dashes" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_dp"
-            android:gravity="center">
+            style="@style/Linearlayout"
+            android:layout_marginTop="@dimen/small_dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_counter"
@@ -44,16 +37,14 @@
                 android:text="1:30" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/CustomImageView"
                 android:src="@drawable/clock" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/CustomImageView"
             android:layout_marginTop="@dimen/huge_dp"
             android:src="@drawable/refresh" />
 
@@ -63,7 +54,7 @@
             android:text="@string/try_again" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/ButtonSubmit"
+            style="@style/LoginButtonSubmit"
             android:layout_marginTop="@dimen/huge_dp"
             android:text="@string/sign_in_up" />
     </androidx.appcompat.widget.LinearLayoutCompat>

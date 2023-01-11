@@ -36,7 +36,7 @@
         android:gravity="center_horizontal"
         android:letterSpacing="0.025"
         android:text="GEEKSFORGEEKS"
-        android:textColor="@color/white"
+        android:textColor="@android:color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/backB"

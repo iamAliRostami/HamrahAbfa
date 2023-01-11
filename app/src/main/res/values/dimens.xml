@@ -8,7 +8,7 @@
     <dimen name="low_dp">6dp</dimen>
     <dimen name="medium_dp">10dp</dimen>
     <dimen name="large_dp">20dp</dimen>
-    <dimen name="huge_dp">30dp</dimen>
+    <dimen name="huge_dp">40dp</dimen>
 
     <dimen name="text_size_small">14sp</dimen>
     <dimen name="text_size_medium">20sp</dimen>
