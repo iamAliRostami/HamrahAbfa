@@ -7,31 +7,31 @@
     tools:context=".fragments.SubmitInfoFragment">
 
     <TextView
+        android:id="@+id/text_view_title"
         style="@style/Title"
-        android:layout_above="@id/text_view_title"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/huge_dp"
         android:text="@string/account_info_submit"
         android:textColor="@color/purple_7001" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/text_view_title"
+        android:id="@+id/text_view_title_account"
         style="@style/TextInput"
-        android:layout_above="@id/text_view_bill_id"
+        android:layout_below="@id/text_view_title"
+        android:layout_centerInParent="true"
         android:hint="@string/account_title" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/text_view_bill_id"
         style="@style/TextInput"
-        android:layout_above="@id/linear_layout_phone_number"
+        android:layout_below="@id/text_view_title_account"
         android:hint="@string/enter_bill_id" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_phone_number"
         style="@style/Linearlayout"
         android:layout_width="match_parent"
-        android:layout_above="@+id/button_submit"
-        android:layout_marginBottom="@dimen/huge_dp"
+        android:layout_below="@id/text_view_bill_id"
         android:background="@drawable/rectangle_blue">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -50,65 +50,4 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/huge_dp"
         android:text="@string/sign_in_up" />
-
-    <!--    <androidx.appcompat.widget.LinearLayoutCompat-->
-    <!--        style="@style/Linearlayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_gravity="center_horizontal|bottom"-->
-    <!--        android:layout_marginBottom="@dimen/huge_dp"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
-</RelativeLayout><!--<?xml version="1.0" encoding="utf-8"?>-->
-    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    xmlns:tools="http://schemas.android.com/tools"-->
-    <!--    android:layout_width="match_parent"-->
-    <!--    android:layout_height="match_parent"-->
-    <!--    tools:context=".fragments.SubmitInfoFragment">-->
-
-    <!--    <androidx.appcompat.widget.LinearLayoutCompat-->
-    <!--        style="@style/Linearlayout"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_gravity="center_horizontal|bottom"-->
-    <!--        android:layout_marginBottom="@dimen/huge_dp"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <TextView-->
-    <!--            style="@style/Title"-->
-    <!--            android:layout_marginBottom="@dimen/huge_dp"-->
-    <!--            android:text="@string/account_info_submit"-->
-    <!--            android:textColor="@color/purple_7001" />-->
-
-    <!--        <com.google.android.material.textfield.TextInputEditText-->
-    <!--            android:id="@+id/text_view_title"-->
-    <!--            style="@style/TextInput"-->
-    <!--            android:hint="@string/account_title" />-->
-
-    <!--        <com.google.android.material.textfield.TextInputEditText-->
-    <!--            android:id="@+id/text_view_bill_id"-->
-    <!--            style="@style/TextInput"-->
-    <!--            android:hint="@string/enter_bill_id" />-->
-
-    <!--        <androidx.appcompat.widget.LinearLayoutCompat-->
-    <!--            style="@style/Linearlayout"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_marginStart="@dimen/huge_dp"-->
-    <!--            android:layout_marginEnd="@dimen/huge_dp"-->
-    <!--            android:background="@drawable/rectangle_blue">-->
-
-    <!--            <androidx.appcompat.widget.AppCompatTextView-->
-    <!--                style="@style/TextButtonStyle"-->
-    <!--                android:text="09134588220" />-->
-
-    <!--            <androidx.appcompat.widget.AppCompatImageView-->
-    <!--                style="@style/CustomImageView"-->
-    <!--                android:src="@drawable/smartphone" />-->
-    <!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
-
-    <!--        <com.google.android.material.button.MaterialButton-->
-    <!--            android:id="@+id/button_submit"-->
-    <!--            style="@style/LoginButtonSubmit"-->
-    <!--            android:layout_marginTop="@dimen/huge_dp"-->
-    <!--            android:text="@string/sign_in_up" />-->
-    <!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
-    <!--</FrameLayout>-->
+</RelativeLayout>
