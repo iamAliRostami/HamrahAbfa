@@ -14,7 +14,7 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <!--                <item name="background">@drawable/background</item>-->
-        <item name="android:background">@drawable/background</item>
+<!--        <item name="android:background">@drawable/background</item>-->
         <item name="android:layoutDirection">rtl</item>.
         <item name="fontFamily">@font/font_1</item>
         <item name="font">@font/font_1</item>
