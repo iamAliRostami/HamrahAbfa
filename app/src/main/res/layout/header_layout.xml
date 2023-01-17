@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/black"
     android:padding="@dimen/large_dp"
     android:paddingStart="@dimen/huge_dp"
     android:paddingEnd="@dimen/huge_dp">
 
+<!--    android:background="@android:color/black"-->
     <ImageView
         android:id="@+id/image_view_setting"
         android:layout_width="wrap_content"

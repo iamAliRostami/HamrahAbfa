@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
 import android.os.Bundle;
 
@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentItemListDialogListDialogBinding;
 import com.leon.hamrah_abfa.databinding.FragmentItemListDialogListDialogItemBinding;
 
