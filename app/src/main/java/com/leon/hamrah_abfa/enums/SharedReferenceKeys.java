@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.enums;
 
 public enum SharedReferenceKeys {
     ACCOUNT("account"),
-    IS_FIRST("is_first_11111111111111111111111");
+    IS_FIRST("is_first_11111111111111111111");
 
     private final String value;
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Splash2Activity">
+    tools:context=".activities.MainActivity">
 
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motion_layout"
@@ -19,12 +19,24 @@
             android:src="@drawable/img_splash" />
     </androidx.constraintlayout.motion.widget.MotionLayout>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/image_view_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/splash_screen_animation" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="?attr/actionBarSize">
+        android:layout_height="match_parent">
 
+        <!--        android:paddingTop="?attr/actionBarSize"-->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_view"
             android:layout_width="0dp"
@@ -38,7 +50,7 @@
             app:menu="@menu/bottom_nav_menu" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/nav_host_fragment_activity_bottom_navigation"
+            android:id="@+id/nav_host_fragment_activity_main"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

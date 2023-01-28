@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/huge_dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    tools:context=".fragments.bottom_sheets.VoiceRecorderFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_down" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/huge_dp"
+        android:layout_marginBottom="@dimen/huge_dp"
+        android:text="@string/record_voice"
+        android:textSize="@dimen/text_size_medium" />
+
+    <com.imn.iivisu.RecorderVisualizer
+        android:id="@+id/visualizer"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_below="@id/text_view_title"
+        android:layout_margin="@dimen/large_dp"
+        android:background="@drawable/background_recorder"
+        app:approximateBarDuration="75"
+        app:backgroundBarPrimeColor="@color/gray"
+        app:barWidth="3dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:loadedBarPrimeColor="@color/purple_7001"
+        app:maxAmp="100"
+        app:spaceBetweenBar="2dp" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mic_border"
+        android:padding="@dimen/medium_dp"
+        android:src="@drawable/mic" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_recorder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative_layout"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/huge_dp"
+        android:text="@string/tap" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

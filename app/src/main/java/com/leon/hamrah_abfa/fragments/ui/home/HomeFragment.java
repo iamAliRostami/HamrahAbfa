@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
+import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ItemListDialogFragment;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.VoiceRecorderFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +39,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ItemListDialogFragment.newInstance(position).show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
+//        ItemListDialogFragment.newInstance(position).show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
+        VoiceRecorderFragment.newInstance().show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
+        SubmitInfoFragment.newInstance().show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
     }
 
     @Override

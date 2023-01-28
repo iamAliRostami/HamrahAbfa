@@ -1,10 +1,11 @@
 package com.leon.hamrah_abfa.fragments.ui.notifications;
 
+import android.animation.Animator;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -19,13 +20,40 @@ public class NotificationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
 
+        NotificationsViewModel notificationsViewModel =
+                new ViewModelProvider(this).get(NotificationsViewModel.class);
         notificationsViewModel.getText().observe(getViewLifecycleOwner(), binding.textNotifications::setText);
+
+        initialize();
         return binding.getRoot();
+    }
+
+    private void initialize() {
+        binding.imageViewAnimation.playAnimation();
+        binding.imageViewAnimation.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(@NonNull Animator animation) {
+                Log.e("here","onAnimationStart");
+            }
+
+            @Override
+            public void onAnimationEnd(@NonNull Animator animation) {
+                Log.e("here","onAnimationEnd");
+            }
+
+            @Override
+            public void onAnimationCancel(@NonNull Animator animation) {
+                Log.e("here","onAnimationCancel");
+            }
+
+            @Override
+            public void onAnimationRepeat(@NonNull Animator animation) {
+                Log.e("here","onAnimationRepeat");
+            }
+        });
     }
 
     @Override

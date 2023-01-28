@@ -3,12 +3,15 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.navigation.NavController;
@@ -29,10 +32,9 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initialize();
@@ -41,24 +43,60 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     private void initialize() {
         binding.motionLayout.setTransitionListener(this);
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.nav_host_fragment_activity_bottom_navigation);
+        initializeBottomSheet();
+    }
+
+    private void initializeBottomSheet() {
+        final AppBarConfiguration appBar = new AppBarConfiguration.Builder(R.id.navigation_home,
+                R.id.navigation_dashboard, R.id.navigation_notifications).build();
+        final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_activity_main);
         if (navHostFragment != null) {
             NavController navController = navHostFragment.getNavController();
-            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+            NavigationUI.setupActionBarWithNavController(this, navController, appBar);
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
     }
 
+    private void initializeSplash() {
+        binding.imageViewAnimation.setVisibility(View.VISIBLE);
+        binding.imageViewAnimation.playAnimation();
+        binding.imageViewAnimation.addAnimatorListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(@NonNull Animator animation) {
+                Log.e("here", "onAnimationStart");
+            }
+
+            @Override
+            public void onAnimationEnd(@NonNull Animator animation) {
+                Log.e("here", "onAnimationEnd");
+
+                binding.imageViewAnimation.setVisibility(View.GONE);
+                if (getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+                    final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                    startActivity(intent);
+                }
+                binding.container.setVisibility(View.VISIBLE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            }
+
+            @Override
+            public void onAnimationCancel(@NonNull Animator animation) {
+                Log.e("here", "onAnimationCancel");
+            }
+
+            @Override
+            public void onAnimationRepeat(@NonNull Animator animation) {
+                Log.e("here", "onAnimationRepeat");
+            }
+        });
+    }
+
     @Override
     public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding.container.setVisibility(View.GONE);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
     }
 
     @Override
@@ -68,15 +106,13 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
 
     @Override
     public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-        if (getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
-            final Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
-        }
-        binding.container.setVisibility(View.VISIBLE);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().show();
-        }
+        initializeSplash();
+//        if (getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+//            final Intent intent = new Intent(this, WelcomeActivity.class);
+//            startActivity(intent);
+//        }
+//        binding.container.setVisibility(View.VISIBLE);
+//        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override

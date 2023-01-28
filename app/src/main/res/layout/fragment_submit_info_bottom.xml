@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     android:padding="@dimen/huge_dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.bottom_sheets.SubmitInfoFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_arrow_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/text_view_title"
-        android:layout_centerInParent="true"
         android:src="@drawable/arrow_down" />
 
     <TextView
         android:id="@+id/text_view_title"
         style="@style/Title"
-        android:layout_above="@id/text_view_title_account"
-        android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/huge_dp"
         android:layout_marginBottom="@dimen/huge_dp"
         android:text="@string/account_info_submit"
@@ -27,21 +27,17 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/text_view_title_account"
         style="@style/TextInput"
-        android:layout_above="@id/text_view_bill_id"
-        android:layout_centerInParent="true"
         android:hint="@string/account_title" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/text_view_bill_id"
         style="@style/TextInput"
-        android:layout_above="@id/linear_layout_phone_number"
         android:hint="@string/enter_bill_id" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_phone_number"
         style="@style/Linearlayout"
         android:layout_width="match_parent"
-        android:layout_above="@id/button_submit"
         android:layout_marginBottom="@dimen/huge_dp"
         android:background="@drawable/rectangle_blue">
 
@@ -57,9 +53,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_submit"
         style="@style/LoginButtonSubmit"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/huge_dp"
         android:layout_marginBottom="@dimen/huge_dp"
         android:text="@string/sign_in_up" />
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

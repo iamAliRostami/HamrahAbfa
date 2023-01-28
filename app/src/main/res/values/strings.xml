@@ -20,4 +20,7 @@
     <string name="account_info_submit">ثبت اطلاعات انشعاب</string>
     <string name="account_title">عنوان انشعاب</string>
     <string name="enter_bill_id">شناسه قبض را وارد کنید…</string>
+    <string name="tap">ضربه بزنید</string>
+    <string name="record_voice">ضبط صوت</string>
+    <string name="title_activity_main2">MainActivity2</string>
 </resources>

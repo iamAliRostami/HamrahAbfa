@@ -23,9 +23,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initialize();

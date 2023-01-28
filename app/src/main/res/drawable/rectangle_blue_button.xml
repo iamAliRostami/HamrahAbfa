@@ -3,15 +3,10 @@
     android:height="35dp"
     android:viewportWidth="118"
     android:viewportHeight="35">
-
     <group>
-
         <clip-path android:pathData="M8 0H110C114.418 0 118 3.58172 118 8V27C118 31.4183 114.418 35 110 35H8C3.58172 35 0 31.4183 0 27V8C0 3.58172 3.58172 0 8 0Z" />
-
         <path
             android:fillColor="@color/teal_2001"
             android:pathData="M0 0V35H118V0" />
-
     </group>
-
 </vector>

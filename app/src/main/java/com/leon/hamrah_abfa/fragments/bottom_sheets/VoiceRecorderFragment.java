@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
+import com.leon.hamrah_abfa.databinding.FragmentVoiceRecorderBinding;
 
-public class SubmitInfoFragment extends BottomSheetDialogFragment {
-    private FragmentSubmitInfoBottomBinding binding;
+public class VoiceRecorderFragment extends BottomSheetDialogFragment {
+    private FragmentVoiceRecorderBinding binding;
 
-    public SubmitInfoFragment() {
+    public VoiceRecorderFragment() {
     }
 
-    public static SubmitInfoFragment newInstance() {
-        return new SubmitInfoFragment();
+    public static VoiceRecorderFragment newInstance() {
+        return new VoiceRecorderFragment();
     }
 
     @Override
@@ -28,7 +28,8 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSubmitInfoBottomBinding.inflate(inflater, container, false);
+        // Inflate the layout for this fragment
+        binding = FragmentVoiceRecorderBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 }
