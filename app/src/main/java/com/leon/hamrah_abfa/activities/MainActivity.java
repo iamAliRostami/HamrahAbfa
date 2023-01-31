@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     }
 
     private void initializeSplash() {
-        binding.imageViewAnimation.setVisibility(View.VISIBLE);
-        binding.imageViewAnimation.playAnimation();
-        binding.imageViewAnimation.addAnimatorListener(new Animator.AnimatorListener() {
+        binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        binding.lottieAnimationView.playAnimation();
+        binding.lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(@NonNull Animator animation) {
                 Log.e("here", "onAnimationStart");
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
             public void onAnimationEnd(@NonNull Animator animation) {
                 Log.e("here", "onAnimationEnd");
 
-                binding.imageViewAnimation.setVisibility(View.GONE);
-                if (true||getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+                binding.lottieAnimationView.setVisibility(View.GONE);
+                if (/*true || */getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
                     final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                     startActivity(intent);
                 }
@@ -89,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
             public void onAnimationRepeat(@NonNull Animator animation) {
                 Log.e("here", "onAnimationRepeat");
             }
+        });
+        binding.lottieAnimationView.addAnimatorUpdateListener(animation -> {
+            Log.e("update", String.valueOf(animation.getAnimatedValue()));
         });
     }
 

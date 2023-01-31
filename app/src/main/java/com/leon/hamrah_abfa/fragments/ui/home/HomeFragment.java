@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //        ItemListDialogFragment.newInstance(position).show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
         VoiceRecorderFragment.newInstance().show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
-        SubmitInfoFragment.newInstance().show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
+//        SubmitInfoFragment.newInstance().show(requireActivity().getSupportFragmentManager(), "bottomFragment test");
     }
 
     @Override

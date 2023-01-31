@@ -13,14 +13,14 @@
         app:layoutDescription="@xml/activity_main_scene">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
+            android:id="@+id/image_view_logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/img_splash" />
     </androidx.constraintlayout.motion.widget.MotionLayout>
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/image_view_animation"
+        android:id="@+id/lottie_animation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -29,7 +29,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/splash_screen_animation" />
+        app:lottie_rawRes="@raw/splash_screen_animation">
+
+    </com.airbnb.lottie.LottieAnimationView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"

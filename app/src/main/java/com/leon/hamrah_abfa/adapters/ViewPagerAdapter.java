@@ -16,14 +16,10 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
             ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
             ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
             ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
-            ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark)
+            ContextCompat.getColor(getAppContext(), android.R.color.holo_blue_dark)
     };
-    private final int[] logos = {
-            R.drawable.img_splash,
-            R.mipmap.ic_launcher_round,
-            R.mipmap.ic_launcher_round,
-            R.mipmap.ic_launcher_round
-    };
+    private final int[] logos = {R.drawable.img_splash, R.mipmap.ic_launcher_round,
+            R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
 
     private final String[] title = new String[bgColors.length];
     private final String[] content = new String[bgColors.length];

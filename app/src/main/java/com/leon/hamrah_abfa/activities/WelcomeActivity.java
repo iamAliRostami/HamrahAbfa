@@ -16,7 +16,6 @@ import com.leon.hamrah_abfa.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityWelcomeBinding binding;
-    private ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initialize() {
-        adapter = new ViewPagerAdapter(this);
+        final ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         binding.viewPagerWelcome.setAdapter(adapter);
         binding.viewPagerWelcome.setRotationY(180);
         binding.viewPagerWelcome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
