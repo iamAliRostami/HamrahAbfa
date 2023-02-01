@@ -41,7 +41,7 @@
         <item name="android:paddingTop">@dimen/small_dp</item>
         <item name="android:paddingBottom">@dimen/small_dp</item>
         <item name="android:layout_marginBottom">@dimen/medium_dp</item>
-        <item name="android:background">@drawable/rectangle_white_gray_border</item>
+        <item name="android:background">@drawable/border_white_gray</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_small</item>
@@ -52,7 +52,7 @@
     <style name="LoginTextInput" parent="TextInput">
         <item name="android:layout_margin">@dimen/medium_dp</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:background">@drawable/rectangle_white_blue_border</item>
+        <item name="android:background">@drawable/background_white_blue</item>
     </style>
 
     <style name="Button">
@@ -62,7 +62,7 @@
 
     <style name="ButtonSubmit" parent="Button">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:background">@drawable/rectangle_blue</item>
+        <item name="android:background">@drawable/background_blue</item>
         <item name="android:backgroundTint">@color/purple_7001</item>
         <item name="backgroundTint">@color/purple_7001</item>
         <item name="android:textColor">@android:color/white</item>
@@ -70,7 +70,7 @@
     </style>
 
     <style name="LoginButtonSubmit" parent="Button">
-        <item name="android:background">@drawable/rectangle_blue_button</item>
+        <item name="android:background">@drawable/background_blue_button</item>
         <item name="android:backgroundTint">@color/teal_2001</item>
         <item name="backgroundTint">@color/teal_2001</item>
         <item name="android:textColor">@color/purple_7001</item>

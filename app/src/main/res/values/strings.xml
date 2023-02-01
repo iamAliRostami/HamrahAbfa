@@ -9,10 +9,9 @@
     <string name="turn_internet_on">اینترنت وصل نیست، اینترنت بی\u200cسیم یا همراه خود را روشن کنید.</string>
     <string name="canceled">عملیات متوقف شد.</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="welcome_to_abfa">به همراه آبفا خوش آمدید</string>
     <string name="enter_account">برای دسترسی بهتر خدمات، حساب کاربری ایجاد کنید.</string>
-    <string name="phone_number">شماره تلفن همراه</string>
+    <string name="phone_number">شماره همراه</string>
     <string name="mobile_hint">09*********</string>
     <string name="sign_in_up">ورود / ثبت نام</string>
     <string name="_6_dashes">------</string>
@@ -21,6 +20,10 @@
     <string name="account_title">عنوان انشعاب</string>
     <string name="enter_bill_id">شناسه قبض را وارد کنید…</string>
     <string name="tap">ضربه بزنید</string>
-    <string name="record_voice">ضبط صوت</string>
-    <string name="title_activity_main2">MainActivity2</string>
+    <string name="record_voice">ضبط صدا</string>
+    <string name="incident_description">توضیح حوادث.</string>
+    <string name="incident_type">انتخاب نوع حادثه</string>
+    <string name="upload_image">بارگذاری عکس</string>
+    <string name="submit">ثبت</string>
+
 </resources>

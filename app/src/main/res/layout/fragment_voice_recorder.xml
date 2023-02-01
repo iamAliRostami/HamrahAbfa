@@ -25,28 +25,33 @@
         android:text="@string/record_voice"
         android:textSize="@dimen/text_size_medium" />
 
-    <com.visualizer.amplitude.AudioRecordView
-        android:id="@+id/audio_record_view"
-        android:layout_width="256dp"
-        android:layout_height="64dp"
-        android:layoutDirection="rtl"
-        app:chunkAlignTo="center"
-        app:chunkColor="#2196F3"
-        app:chunkMaxHeight="48dp"
-        app:chunkMinHeight="2dp"
-        app:chunkRoundedCorners="true"
-        app:chunkSoftTransition="true"
-        app:chunkSpace="1dp"
-        app:chunkWidth="1dp" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/background_recorder">
 
+        <com.visualizer.amplitude.AudioRecordView
+            android:id="@+id/audio_record_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="rtl"
+            app:chunkAlignTo="center"
+            app:chunkColor="@color/purple_7001"
+            app:chunkMinHeight="0dp"
+            app:chunkRoundedCorners="true"
+            app:chunkSoftTransition="true"
+            app:chunkSpace="1dp"
+            app:chunkWidth="1dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <!--    app:chunkMaxHeight="48dp"-->
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/image_view_mic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/mic_border"
+        android:background="@drawable/background_mic"
         android:contentDescription="@string/record_voice"
         android:padding="@dimen/medium_dp"
-        android:src="@drawable/mic" />
+        android:src="@drawable/mic_blue" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_recorder"

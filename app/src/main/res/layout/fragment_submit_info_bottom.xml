@@ -39,7 +39,7 @@
         style="@style/Linearlayout"
         android:layout_width="match_parent"
         android:layout_marginBottom="@dimen/huge_dp"
-        android:background="@drawable/rectangle_blue">
+        android:background="@drawable/background_blue">
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/TextButtonStyle"

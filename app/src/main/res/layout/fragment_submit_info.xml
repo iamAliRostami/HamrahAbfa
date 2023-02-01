@@ -33,7 +33,7 @@
         style="@style/Linearlayout"
         android:layout_width="match_parent"
         android:layout_below="@id/text_view_bill_id"
-        android:background="@drawable/rectangle_blue">
+        android:background="@drawable/background_blue">
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/TextButtonStyle"

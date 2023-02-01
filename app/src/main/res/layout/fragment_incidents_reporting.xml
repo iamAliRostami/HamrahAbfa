@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/large_dp"
+    tools:context=".fragments.IncidentsReportingFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/low_dp"
+        android:src="@drawable/info" />
+
+    <TextView
+        android:id="@+id/text_view_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/low_dp"
+        android:layout_toEndOf="@id/image_view_info"
+        android:text="@string/incident_description" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/text_view_mobile"
+        style="@style/TextInput"
+        android:layout_below="@id/text_view_description"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/low_dp"
+        android:hint="@string/phone_number"
+        android:padding="@dimen/medium_dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/text_view_incident_type"
+        style="@style/TextInput"
+        android:layout_below="@id/text_view_mobile"
+        android:layout_margin="@dimen/low_dp"
+        android:hint="@string/incident_type"
+        android:padding="@dimen/medium_dp" />
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linear_layout_multimedia"
+        android:layout_below="@id/text_view_incident_type"
+        android:layout_margin="@dimen/low_dp"
+        android:background="@drawable/border_white_gray">
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_multimedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_submit">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/low_dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_dotted_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mic_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/record_voice" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/low_dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_dotted_gray"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/medium_dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/gallery_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/upload_image" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_submit"
+        style="@style/ButtonSubmit"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/low_dp"
+        android:text="@string/submit" />
+</RelativeLayout>
