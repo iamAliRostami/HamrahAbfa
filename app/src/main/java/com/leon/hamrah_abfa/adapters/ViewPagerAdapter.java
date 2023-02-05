@@ -13,10 +13,10 @@ import com.leon.hamrah_abfa.fragments.ViewPagerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     private final int[] bgColors = {
-            ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
-            ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
-            ContextCompat.getColor(getAppContext(), android.R.color.holo_green_dark),
-            ContextCompat.getColor(getAppContext(), android.R.color.holo_blue_dark)
+            ContextCompat.getColor(getAppContext(), R.color.purple_7001),
+            ContextCompat.getColor(getAppContext(), R.color.purple_7001),
+            ContextCompat.getColor(getAppContext(), R.color.purple_7001),
+            ContextCompat.getColor(getAppContext(), R.color.purple_7001)
     };
     private final int[] logos = {R.drawable.img_splash, R.mipmap.ic_launcher_round,
             R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};

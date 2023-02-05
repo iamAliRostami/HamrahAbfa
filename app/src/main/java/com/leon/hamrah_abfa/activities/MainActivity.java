@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
                 Log.e("here", "onAnimationEnd");
 
                 binding.lottieAnimationView.setVisibility(View.GONE);
-                if (/*true || */getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+                if (true || getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
                     final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                     startActivity(intent);
                 }

@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.ItemListDialogFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.VoiceRecorderFragment;
 
 import java.util.ArrayList;

@@ -13,43 +13,52 @@
         android:id="@+id/relative_layout_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@{viewModel.bgColor}"
+        android:background="@color/purple_7001"
         android:rotationY="180"
         tools:context=".fragments.ViewPagerFragment">
 
+        <!--        android:background="@{viewModel.bgColor}"-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="250dp"
+            android:background="@drawable/background_welcome_bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_view_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/text_view_content"
+                android:layout_marginTop="@dimen/huge_dp"
+                android:gravity="center"
+                android:text="@{viewModel.title}"
+                android:textColor="@color/purple_7001"
+                android:textSize="@dimen/text_size_medium" />
+
+            <TextView
+                android:id="@+id/text_view_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="@dimen/large_dp"
+                android:gravity="center"
+                android:text="@{viewModel.content}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
         <ImageView
             android:id="@+id/image_view_logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
+            android:layout_margin="@dimen/large_dp"
             android:contentDescription="@string/app_name"
             android:src="@{viewModel.logoDrawable}" />
-
-        <TextView
-            android:id="@+id/text_view_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_view_logo"
-            android:layout_marginTop="@dimen/large_dp"
-            android:gravity="center"
-            android:text="@{viewModel.title}"
-            android:textColor="@color/purple_7001"
-            android:textSize="@dimen/text_size_medium" />
-
-        <TextView
-
-            android:id="@+id/text_view_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_title"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"
-            android:gravity="center"
-            android:text="@{viewModel.content}"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_size_small"
-            android:textStyle="bold" />
-
     </RelativeLayout>
 </layout>
