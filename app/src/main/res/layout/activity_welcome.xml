@@ -51,5 +51,13 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:visibility="gone" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/large_dp"
+            android:background="@drawable/background_blue_button"
+            android:text="@string/start_now" />
     </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
