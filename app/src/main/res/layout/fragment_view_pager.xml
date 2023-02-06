@@ -14,16 +14,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:rotationY="180"
-        android:background="@{viewModel.bgColor}"
         tools:context=".fragments.ViewPagerFragment">
 
-<!--        android:background="@color/purple_7001"-->
-
+        <!--        android:background="@{viewModel.bgColor}"-->
+        <!--        android:background="@color/purple_7001"-->
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/background_welcome_bottom">
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/background_welcome_bottom"
             android:orientation="vertical">
 
@@ -32,24 +39,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/text_view_content"
+                android:layout_alignParentTop="true"
                 android:layout_marginTop="@dimen/huge_dp"
                 android:gravity="center"
                 android:text="@{viewModel.title}"
-                android:textColor="@color/purple_7001"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_medium" />
 
             <TextView
                 android:id="@+id/text_view_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/large_dp"
                 android:gravity="center"
                 android:text="@{viewModel.content}"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
-        </RelativeLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <ImageView
             android:id="@+id/image_view_logo"

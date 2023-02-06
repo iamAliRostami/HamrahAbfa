@@ -21,7 +21,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     private final int[] logos = {R.drawable.img_splash, R.mipmap.ic_launcher_round,
             R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
 
-    private final String[] title = new String[bgColors.length];
+    private final String[] title = {"خدمات", "خدمات پرداخت", "داشبورد", "حوادث"};
     private final String[] content = new String[bgColors.length];
 
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -31,7 +31,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        title[position] = "Welcome, this is Page: " + position + 1;
+//        title[position] = "Welcome, this is Page: " + position + 1;
         content[position] = "This is Page: " + position + 1;
         return ViewPagerFragment.newInstance(position, bgColors[position], logos[position],
                 title[position], content[position]);

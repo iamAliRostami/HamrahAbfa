@@ -43,11 +43,12 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                     binding.buttonSkip.setVisibility(View.VISIBLE);
                 }
                 //TODO
-//                binding.layoutSkip.setBackgroundColor(adapter.getBgColors()[position]);
+                binding.layoutSkip.setBackgroundColor(adapter.getBgColors()[position]);
 
             }
         });
-        binding.indicator.attachTo(binding.viewPagerWelcome);
+//        binding.indicator.attachTo(binding.viewPagerWelcome);
+        binding.indicator.setupWithViewPager(binding.viewPagerWelcome);
         binding.buttonSkip.setOnClickListener(this);
         binding.buttonDone.setOnClickListener(this);
     }

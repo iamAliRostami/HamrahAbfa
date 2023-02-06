@@ -9,13 +9,5 @@
         android:left="@dimen/small_dp"
         android:right="@dimen/small_dp"
         android:top="@dimen/small_dp" />
-    <solid android:color="@android:color/white" />
-</shape><!--<vector xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    android:width="200dp"-->
-    <!--    android:height="262.5641dp"-->
-    <!--    android:viewportWidth="390"-->
-    <!--    android:viewportHeight="512">-->
-    <!--  <path-->
-    <!--      android:pathData="M0,24C0,10.75 10.75,0 24,0H366C379.26,0 390,10.75 390,24V512H0V24Z"-->
-    <!--      android:fillColor="#ffffff"/>-->
-    <!--</vector>-->
+    <solid android:color="@color/purple_7001" />
+</shape>
