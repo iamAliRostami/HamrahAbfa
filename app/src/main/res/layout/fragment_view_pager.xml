@@ -23,6 +23,7 @@
             android:id="@+id/image_view_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@id/linear_layout_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/large_dp"
@@ -30,6 +31,7 @@
             android:src="@{viewModel.logoDrawable}" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -53,8 +55,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/large_dp"
-                android:gravity="center"
+                android:gravity="start"
                 android:text="@{viewModel.content}"
+                android:textAlignment="gravity"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/text_size_small"
                 android:textStyle="bold" />
