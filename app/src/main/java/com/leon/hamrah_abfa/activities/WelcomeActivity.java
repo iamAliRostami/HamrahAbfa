@@ -31,7 +31,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     private void initialize() {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         binding.viewPagerWelcome.setAdapter(adapter);
-        binding.viewPagerWelcome.setRotationY(180);
+//        binding.viewPagerWelcome.setRotationY(180);
         binding.viewPagerWelcome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
