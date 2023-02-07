@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
@@ -35,13 +36,19 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                final ConstraintSet constraintSet = new ConstraintSet();
                 if (position == adapter.getItemCount() - 1) {
                     binding.buttonDone.setVisibility(View.VISIBLE);
                     binding.buttonSkip.setVisibility(View.GONE);
+                    constraintSet.clone(binding.layoutSkip);
+                    constraintSet.connect(R.id.view, ConstraintSet.TOP, R.id.button_done, ConstraintSet.TOP, 0);
                 } else {
-                    binding.buttonDone.setVisibility(View.GONE);
                     binding.buttonSkip.setVisibility(View.VISIBLE);
+                    binding.buttonDone.setVisibility(View.GONE);
+                    constraintSet.clone(binding.layoutSkip);
+                    constraintSet.connect(R.id.view, ConstraintSet.TOP, R.id.button_skip, ConstraintSet.TOP, 0);
                 }
+                constraintSet.applyTo(binding.layoutSkip);
                 //TODO
                 binding.layoutSkip.setBackgroundColor(adapter.getBgColors()[position]);
 

@@ -19,13 +19,15 @@
         <!--        android:background="@{viewModel.bgColor}"-->
         <!--        android:background="@color/purple_7001"-->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/image_view_logo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/background_welcome_bottom">
-
-        </RelativeLayout>
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="@dimen/large_dp"
+            android:contentDescription="@string/app_name"
+            android:src="@{viewModel.logoDrawable}" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -58,14 +60,5 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <ImageView
-            android:id="@+id/image_view_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:layout_margin="@dimen/large_dp"
-            android:contentDescription="@string/app_name"
-            android:src="@{viewModel.logoDrawable}" />
     </RelativeLayout>
 </layout>
