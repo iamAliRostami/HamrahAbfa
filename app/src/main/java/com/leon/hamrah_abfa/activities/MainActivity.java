@@ -7,13 +7,11 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,7 +22,7 @@ import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.toast.RTLToast;
 
 
-public class MainActivity extends AppCompatActivity implements MotionLayout.TransitionListener {
+public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
 
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
@@ -41,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     }
 
     private void initialize() {
-        binding.motionLayout.setTransitionListener(this);
-
+        initializeSplash();
         initializeBottomSheet();
     }
 
@@ -59,67 +56,40 @@ public class MainActivity extends AppCompatActivity implements MotionLayout.Tran
     }
 
     private void initializeSplash() {
-        binding.lottieAnimationView.setVisibility(View.VISIBLE);
-        binding.lottieAnimationView.playAnimation();
-        binding.lottieAnimationView.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(@NonNull Animator animation) {
-                Log.e("here", "onAnimationStart");
-            }
-
-            @Override
-            public void onAnimationEnd(@NonNull Animator animation) {
-                Log.e("here", "onAnimationEnd");
-
-                binding.lottieAnimationView.setVisibility(View.GONE);
-                if (true || getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
-                    final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-                    startActivity(intent);
-                }
-                binding.container.setVisibility(View.VISIBLE);
-                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            }
-
-            @Override
-            public void onAnimationCancel(@NonNull Animator animation) {
-                Log.e("here", "onAnimationCancel");
-            }
-
-            @Override
-            public void onAnimationRepeat(@NonNull Animator animation) {
-                Log.e("here", "onAnimationRepeat");
-            }
-        });
-        binding.lottieAnimationView.addAnimatorUpdateListener(animation -> {
-            Log.e("update", String.valueOf(animation.getAnimatedValue()));
-        });
-    }
-
-    @Override
-    public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding.container.setVisibility(View.GONE);
+        binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        binding.lottieAnimationView.playAnimation();
+        binding.lottieAnimationView.addAnimatorListener(this);
+        binding.lottieAnimationView.addAnimatorUpdateListener(animation -> {
+        });
+    }
+
+
+    @Override
+    public void onAnimationStart(@NonNull Animator animation) {
+
     }
 
     @Override
-    public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+    public void onAnimationEnd(@NonNull Animator animation) {
+        binding.lottieAnimationView.setVisibility(View.GONE);
+        if (true || getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+            final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+            startActivity(intent);
+        }
+        binding.container.setVisibility(View.VISIBLE);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    @Override
+    public void onAnimationCancel(@NonNull Animator animation) {
 
     }
 
     @Override
-    public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-        initializeSplash();
-//        if (getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
-//            final Intent intent = new Intent(this, WelcomeActivity.class);
-//            startActivity(intent);
-//        }
-//        binding.container.setVisibility(View.VISIBLE);
-//        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
-    @Override
-    public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+    public void onAnimationRepeat(@NonNull Animator animation) {
 
     }
 

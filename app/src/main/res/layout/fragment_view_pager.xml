@@ -16,9 +16,6 @@
         android:rotationY="180"
         tools:context=".fragments.ViewPagerFragment">
 
-        <!--        android:background="@{viewModel.bgColor}"-->
-        <!--        android:background="@color/purple_7001"-->
-
         <ImageView
             android:id="@+id/image_view_logo"
             android:layout_width="wrap_content"

@@ -87,7 +87,7 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.44.2'
 
     implementation 'com.yandex.android:mobmetricalib:5.2.0'
-    implementation 'com.tbuonomo:dotsindicator:4.3'
+//    implementation 'com.tbuonomo:dotsindicator:4.3'
     implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
 
 

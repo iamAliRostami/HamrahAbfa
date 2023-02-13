@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motion_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutDescription="@xml/activity_main_scene">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/img_splash" />
-    </androidx.constraintlayout.motion.widget.MotionLayout>
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_view"
         android:layout_width="match_parent"
