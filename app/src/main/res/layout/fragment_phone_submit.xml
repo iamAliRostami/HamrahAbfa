@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_login"
     tools:context=".fragments.PhoneSubmitFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -25,6 +24,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/HelpTitle"
+            android:id="@+id/text_view_tip"
             android:layout_marginBottom="@dimen/huge_dp"
             android:text="@string/enter_account" />
 
