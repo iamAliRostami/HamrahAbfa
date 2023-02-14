@@ -12,9 +12,9 @@
         android:id="@+id/view_pager_welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:rotationY="180" />
+        android:layout_weight="1" />
 
+<!--    android:rotationY="180"-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_skip"
         android:layout_width="match_parent"
