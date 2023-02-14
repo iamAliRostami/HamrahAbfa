@@ -20,6 +20,8 @@ android {
         versionName "2.01.06.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resValue("string", "app_name", "همراه آبفا")
+        buildConfigField 'com.leon.hamrah_abfa.enums.CompanyNames', 'COMPANY_NAME',
+                "com.leon.hamrah_abfa.enums.CompanyNames.ESF"
     }
     buildTypes {
         release {
@@ -27,9 +29,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable true
             signingConfig signingConfigs.config
-            buildConfigField 'com.leon.hamrah_abfa.enums.CompanyNames', 'COMPANY_NAME',
-                    "com.leon.hamrah_abfa.enums.CompanyNames.ESF"
             multiDexEnabled true
+            crunchPngs false
         }
 
         esf {
@@ -41,6 +42,7 @@ android {
             buildConfigField 'com.leon.hamrah_abfa.enums.CompanyNames', 'COMPANY_NAME',
                     "com.leon.hamrah_abfa.enums.CompanyNames.ESF"
             resValue("string", "app_name", "همراه آبفا استان اصفهان")
+            crunchPngs false
         }
     }
     compileOptions {
@@ -95,10 +97,10 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
     androidTestImplementation "android.arch.persistence.room:testing:$arch_version"
 
-    implementation 'com.yandex.android:mobmetricalib:5.2.0'
-    implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
     implementation "com.airbnb.android:lottie:5.2.0"
+    implementation 'com.yandex.android:mobmetricalib:5.2.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
+    implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
 
     implementation project(':toast')
 }

@@ -12,7 +12,7 @@ public class DifferentCompanyManager {
     public static String getCompanyName(CompanyNames companyName) {
         switch (companyName) {
             case ZONE1:
-                return "آبقا منطقه یک";
+                return "آبفا منطقه یک";
             case ZONE2:
                 return "آبفا منطقه دو";
             case ZONE3:
@@ -22,7 +22,7 @@ public class DifferentCompanyManager {
             case ZONE5:
                 return "آبفا منطقه پنج";
             case ZONE6:
-                return "آبقا منطقه شش";
+                return "آبفا منطقه شش";
             case TE:
                 return "آبفا شرق";
             case TSW:
