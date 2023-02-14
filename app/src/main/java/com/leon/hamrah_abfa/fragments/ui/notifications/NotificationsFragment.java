@@ -36,22 +36,22 @@ public class NotificationsFragment extends Fragment {
         binding.imageViewAnimation.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(@NonNull Animator animation) {
-                Log.e("here","onAnimationStart");
+                Log.e("here", "onAnimationStart");
             }
 
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
-                Log.e("here","onAnimationEnd");
+                Log.e("here", "onAnimationEnd");
             }
 
             @Override
             public void onAnimationCancel(@NonNull Animator animation) {
-                Log.e("here","onAnimationCancel");
+                Log.e("here", "onAnimationCancel");
             }
 
             @Override
             public void onAnimationRepeat(@NonNull Animator animation) {
-                Log.e("here","onAnimationRepeat");
+                Log.e("here", "onAnimationRepeat");
             }
         });
     }

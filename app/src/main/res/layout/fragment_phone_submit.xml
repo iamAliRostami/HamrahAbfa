@@ -23,8 +23,8 @@
             android:text="@string/welcome_to_abfa" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            style="@style/HelpTitle"
             android:id="@+id/text_view_tip"
+            style="@style/HelpTitle"
             android:layout_marginBottom="@dimen/huge_dp"
             android:text="@string/enter_account" />
 

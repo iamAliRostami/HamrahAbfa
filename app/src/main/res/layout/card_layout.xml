@@ -48,9 +48,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        style="?android:attr/buttonBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/buttonBarStyle"
         android:orientation="horizontal">
 
         <Button

@@ -15,11 +15,10 @@ import java.util.concurrent.Executors;
 import javax.inject.Inject;
 
 public class MyDatabaseClientModel {
-    private static MyDatabaseClientModel instance;
-    private final MyDatabase myDatabase;
-
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    private static MyDatabaseClientModel instance;
+    private final MyDatabase myDatabase;
 
 
     @Inject

@@ -17,18 +17,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public final class NetworkHelperModel {
+    private static final TimeUnit TIME_UNIT = TimeUnit.SECONDS;
+    private static final boolean RETRY_ENABLED = false;
+    private static final long READ_TIMEOUT = 120;
+    private static final long WRITE_TIMEOUT = 60;
+    private static final long CONNECT_TIMEOUT = 10;
     @Inject
     OkHttpClient okHttpClient;
     @Inject
     Gson gson;
     @Inject
     Retrofit retrofit;
-    private static final TimeUnit TIME_UNIT = TimeUnit.SECONDS;
-    private static final boolean RETRY_ENABLED = false;
-    private static final long READ_TIMEOUT = 120;
-    private static final long WRITE_TIMEOUT = 60;
-    private static final long CONNECT_TIMEOUT = 10;
-
 
     @Inject
     public OkHttpClient getHttpClient() {

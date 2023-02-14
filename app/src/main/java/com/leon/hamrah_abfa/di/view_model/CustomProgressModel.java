@@ -33,12 +33,12 @@ public final class CustomProgressModel {
 
     public Dialog show(Context context, CharSequence title, boolean cancelable) {
         return show(context, title, cancelable, dialog ->
-                RTLToast.warning(context,R.string.canceled, Toast.LENGTH_LONG));
+                RTLToast.warning(context, R.string.canceled, Toast.LENGTH_LONG));
     }
 
     public void show(Context context, boolean cancelable) {
         show(context, context.getString(R.string.waiting), cancelable, dialog ->
-                RTLToast.warning(context,R.string.canceled, Toast.LENGTH_LONG));
+                RTLToast.warning(context, R.string.canceled, Toast.LENGTH_LONG));
     }
 
     public Dialog show(Context context, CharSequence title, DialogInterface.OnCancelListener cancelListener) {

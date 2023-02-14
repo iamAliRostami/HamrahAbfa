@@ -23,6 +23,14 @@ public class MyApplication extends Application {
     private static Context appContext;
     private static ApplicationComponent applicationComponent;
 
+    public static Context getAppContext() {
+        return appContext;
+    }
+
+    public static ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -45,13 +53,5 @@ public class MyApplication extends Application {
                 .withLogs().withAppVersion(BuildConfig.VERSION_NAME).build();
         YandexMetrica.activate(appContext, config);
         YandexMetrica.enableActivityAutoTracking(this);
-    }
-
-    public static Context getAppContext() {
-        return appContext;
-    }
-
-    public static ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
     }
 }
