@@ -155,7 +155,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLength">1</item>
-        <item name="android:background">@drawable/background_blue</item>
+        <item name="android:background">@drawable/background_input_verification</item>
         <item name="android:paddingStart">@dimen/large_dp</item>
         <item name="android:paddingEnd">@dimen/large_dp</item>
         <item name="android:paddingTop">@dimen/low_dp</item>
