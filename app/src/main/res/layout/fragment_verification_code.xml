@@ -1,60 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.VerificationCodeFragment">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        style="@style/Linearlayout"
-        android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:background="@drawable/background_submit_top"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            style="@style/CustomImageView"
-            android:src="@drawable/smartphone" />
+    <ImageView
+        android:id="@+id/image_view_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/huge_dp"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/huge_dp"
+        android:src="@drawable/confirm_code"
+        app:layout_constraintBottom_toTopOf="@id/card_view_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_phone_number"
-            style="@style/Title"
-            android:layout_marginTop="@dimen/small_dp"
-            android:text="09134588220"
-            android:textSize="@dimen/text_size_medium" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CustomCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/huge_dp"
+        android:layout_marginEnd="@dimen/huge_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        card_view:cardElevation="@dimen/medium_dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_verification_coed"
-            style="@style/VerificationStyle"
-            android:layout_marginTop="@dimen/huge_dp"
-            android:text="@string/_6_dashes" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            style="@style/Linearlayout"
-            android:layout_marginTop="@dimen/small_dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/huge_dp"
+            android:orientation="vertical"
+            android:padding="@dimen/large_dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_view_counter"
-                style="@style/ClockCounterStyle"
-                android:text="1:30" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_title"
+                style="@style/Title"
+                android:labelFor="@id/edit_text_mobile"
+                android:text="@string/confirmation_code" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/huge_dp"
+                android:layout_marginBottom="@dimen/huge_dp"
+                android:text="@string/enter_code" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/huge_dp"
+                android:hint="@string/phone_number" />
+
 
             <androidx.appcompat.widget.AppCompatImageView
-                style="@style/CustomImageView"
-                android:src="@drawable/clock" />
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/huge_dp"
+                android:background="@drawable/circular"
+                android:padding="@dimen/large_dp"
+                android:src="@drawable/arrow_left" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_refresh"
-            style="@style/CustomImageView"
-            android:layout_marginTop="@dimen/huge_dp"
-            android:src="@drawable/refresh" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/text_view_refresh"
-            style="@style/RefreshStyle"
-            android:text="@string/try_again" />
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/LoginButtonSubmit"
-            android:layout_marginTop="@dimen/huge_dp"
-            android:text="@string/sign_in_up" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

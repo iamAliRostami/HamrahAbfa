@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.PhoneSubmitFragment;
+import com.leon.hamrah_abfa.fragments.VerificationCodeFragment;
 import com.leon.hamrah_abfa.fragments.ViewPagerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
@@ -40,6 +41,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 //        return ViewPagerFragment.newInstance(position, bgColors[position], logos[position],
 //                title[position], content[position]);
         return PhoneSubmitFragment.newInstance();
+//        return VerificationCodeFragment.newInstance();
     }
 
     @Override

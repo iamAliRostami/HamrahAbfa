@@ -10,7 +10,7 @@
     <string name="canceled">عملیات متوقف شد.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="welcome_to_abfa">به همراه آبفا خوش آمدید</string>
-    <string name="enter_account"><p>با وارد نمودن شماره همراه، یک <strong>کد تایید</strong> برای شما ارسال خواهد شد</p></string>
+    <string name="enter_account">با وارد نمودن شماره همراه، یک کد تایید برای شما ارسال خواهد شد</string>
     <string name="phone_number">شماره همراه</string>
     <string name="mobile_hint">09*********</string>
     <string name="sign_in_up">ورود / ثبت نام</string>
@@ -27,5 +27,7 @@
     <string name="submit">ثبت</string>
     <string name="start_now">همین الان شروع کن</string>
     <string name="enter_mobile">ورود شماره تلفن</string>
+    <string name="confirmation_code">کد تایید 4 رقمی</string>
+    <string name="enter_code">کد ارسال شده را وارد نمایید.</string>
 
 </resources>

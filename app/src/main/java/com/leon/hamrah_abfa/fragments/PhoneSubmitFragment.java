@@ -37,11 +37,11 @@ public class PhoneSubmitFragment extends Fragment {
     }
 
     private void initialize() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            binding.textViewTip.setText(Html.fromHtml("<p>با وارد نمودن شماره همراه، یک <b>کد تایید</b> برای شما ارسال خواهد شد</p>", Html.FROM_HTML_MODE_COMPACT));
-//            binding.textViewTip.setText(Html.fromHtml("<p><font color=#666666>I agree سلام</font><font color=#0173B7>  <b><u fontWeight=600 style=\"fontWeight:600\">سلام</u></b></font><font color=#666666> and the <u></font><b><font color=#0173B7>Privacy Policy</font></u></b></font></p>", Html.FROM_HTML_MODE_COMPACT));
-        } else {
-            binding.textViewTip.setText(Html.fromHtml(getString(R.string.enter_account)));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            binding.textViewTip.setText(Html.fromHtml("<p>با وارد نمودن شماره همراه، یک <b>کد تایید</b> برای شما ارسال خواهد شد</p>", Html.FROM_HTML_MODE_COMPACT));
+////            binding.textViewTip.setText(Html.fromHtml("<p><font color=#666666>I agree سلام</font><font color=#0173B7>  <b><u fontWeight=600 style=\"fontWeight:600\">سلام</u></b></font><font color=#666666> and the <u></font><b><font color=#0173B7>Privacy Policy</font></u></b></font></p>", Html.FROM_HTML_MODE_COMPACT));
+//        } else {
+//            binding.textViewTip.setText(Html.fromHtml("<p>با وارد نمودن شماره همراه، یک <b>کد تایید</b> برای شما ارسال خواهد شد</p>"));
+//        }
     }
 }
