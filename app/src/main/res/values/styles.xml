@@ -24,7 +24,6 @@
 
     <style name="HelpTitle" parent="Title">
         <item name="android:textSize">@dimen/text_size_small</item>
-        <item name="android:textColor">@color/teal_2001</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -66,7 +65,7 @@
         <item name="android:backgroundTint">@color/purple_7001</item>
         <item name="backgroundTint">@color/purple_7001</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
     <style name="LoginButtonSubmit" parent="Button">
@@ -150,5 +149,17 @@
 
     <style name="TextHelper" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="InputVerificationCode">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:background">@drawable/background_blue</item>
+        <item name="android:paddingStart">@dimen/large_dp</item>
+        <item name="android:paddingEnd">@dimen/large_dp</item>
+        <item name="android:paddingTop">@dimen/low_dp</item>
+        <item name="android:paddingBottom">@dimen/low_dp</item>
+        <item name="android:layout_margin">@dimen/medium_dp</item>
     </style>
 </resources>

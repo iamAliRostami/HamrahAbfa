@@ -50,45 +50,56 @@
                 style="@style/Title"
                 android:layout_alignParentTop="true"
                 android:labelFor="@id/edit_text_mobile"
-                android:text="@string/enter_mobile" />
+                android:text="@string/confirmation_code" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_layout_mobile"
-                style="?attr/textInputOutlinedStyle"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_tip"
+                style="@style/HelpTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_title"
                 android:layout_marginTop="@dimen/huge_dp"
-                android:layout_marginBottom="@dimen/huge_dp"
-                android:hint="@string/phone_number"
-                app:boxStrokeColor="@color/purple_7001"
-                app:counterEnabled="false"
-                app:counterMaxLength="11"
-                app:errorEnabled="true"
-                app:helperText="@string/enter_account"
-                app:helperTextEnabled="true"
-                app:helperTextTextAppearance="@style/TextHelper"
-                app:hintTextColor="@color/purple_7001"
-                app:placeholderText="@string/mobile_hint">
+                android:text="@string/enter_code" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:maxLength="11" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_submit"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_mobile"
+                style="@style/Title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text_layout_mobile"
-                android:layout_centerHorizontal="true"
+                android:layout_below="@id/text_view_tip"
+                android:text="@string/mobile_hint" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_1"
+                style="@style/InputVerificationCode"
+                android:layout_below="@id/text_view_mobile" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_2"
+                style="@style/InputVerificationCode"
+                android:layout_below="@id/text_view_mobile"
+                android:layout_toEndOf="@id/edit_text_1" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_3"
+                style="@style/InputVerificationCode"
+                android:layout_below="@id/text_view_mobile"
+                android:layout_toEndOf="@id/edit_text_2" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text_4"
+                style="@style/InputVerificationCode"
+                android:layout_below="@id/text_view_mobile"
+                android:layout_toEndOf="@id/edit_text_3" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/image_view_submit"
+                style="@style/ButtonSubmit"
+                android:layout_width="match_parent"
+                android:layout_below="@id/edit_text_1"
                 android:layout_marginTop="@dimen/huge_dp"
-                android:background="@drawable/circular"
-                android:padding="@dimen/large_dp"
-                android:src="@drawable/arrow_left" />
+                android:text="@string/submit" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 

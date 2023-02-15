@@ -20,7 +20,7 @@
         android:layout_margin="@dimen/huge_dp"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/huge_dp"
-        android:src="@drawable/confirm_code"
+        android:src="@drawable/insert_mobile"
         app:layout_constraintBottom_toTopOf="@id/card_view_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
