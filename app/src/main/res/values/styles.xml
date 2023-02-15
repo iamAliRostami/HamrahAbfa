@@ -140,4 +140,15 @@
         <item name="cornerSizeBottomRight">0dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
+
+    <style name="TextInputLayoutTheme" parent="Widget.Design.TextInputLayout">
+        <item name="colorOnSurface">@android:color/holo_blue_bright</item>
+        <item name="hintTextColor">@color/purple_7001</item>
+        <item name="helperTextTextColor">@android:color/holo_green_dark</item>
+        <item name="android:strokeColor">@android:color/holo_orange_dark</item>
+    </style>
+
+    <style name="TextHelper" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
 </resources>

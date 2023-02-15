@@ -40,8 +40,8 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
 //        content[position] = "This is Page: " + position + 1;
 //        return ViewPagerFragment.newInstance(position, bgColors[position], logos[position],
 //                title[position], content[position]);
-        return PhoneSubmitFragment.newInstance();
-//        return VerificationCodeFragment.newInstance();
+//        return PhoneSubmitFragment.newInstance();
+        return VerificationCodeFragment.newInstance();
     }
 
     @Override
