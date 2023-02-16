@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.VERIFICATION_FRAGMENT;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,8 @@ public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivitySubmitBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initialize();
