@@ -8,15 +8,15 @@
     tools:context=".fragments.ui.notifications.NotificationsFragment">
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/image_view_animation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_rawRes="@raw/splash_screen_animation" />
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/image_view_animation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:lottie_rawRes="@raw/splash_screen_animation" />-->
 
     <TextView
         android:id="@+id/text_notifications"

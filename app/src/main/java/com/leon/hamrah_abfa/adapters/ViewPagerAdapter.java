@@ -9,17 +9,13 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.fragments.PhoneSubmitFragment;
-import com.leon.hamrah_abfa.fragments.VerificationCodeFragment;
 import com.leon.hamrah_abfa.fragments.ViewPagerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
-    private final int[] bgColors = {
+    private final int[] bgColors = {ContextCompat.getColor(getAppContext(), R.color.purple_7001),
             ContextCompat.getColor(getAppContext(), R.color.purple_7001),
             ContextCompat.getColor(getAppContext(), R.color.purple_7001),
-            ContextCompat.getColor(getAppContext(), R.color.purple_7001),
-            ContextCompat.getColor(getAppContext(), R.color.purple_7001)
-    };
+            ContextCompat.getColor(getAppContext(), R.color.purple_7001)};
     private final int[] logos = {R.drawable.help_service, R.drawable.help_dashboard,
             R.drawable.help_payment, R.drawable.help_accidents};
 
@@ -38,10 +34,10 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
 //        title[position] = "Welcome, this is Page: " + position + 1;
 //        content[position] = "This is Page: " + position + 1;
-//        return ViewPagerFragment.newInstance(position, bgColors[position], logos[position],
-//                title[position], content[position]);
+        return ViewPagerFragment.newInstance(position, bgColors[position], logos[position],
+                title[position], content[position]);
 //        return PhoneSubmitFragment.newInstance();
-        return VerificationCodeFragment.newInstance();
+//        return VerificationCodeFragment.newInstance();
     }
 
     @Override

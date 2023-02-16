@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -31,7 +32,6 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     private void initialize() {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         binding.viewPagerWelcome.setAdapter(adapter);
-//        binding.viewPagerWelcome.setRotationY(180);
         binding.viewPagerWelcome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -67,6 +67,10 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             binding.viewPagerWelcome.setCurrentItem(binding.viewPagerWelcome.getCurrentItem() + 1);
         } else if (id == R.id.button_done) {
             getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
+            //TODO permanent redirect
+            final Intent intent = new Intent(getApplicationContext(), SubmitActivity.class);
+            startActivity(intent);
+            //TODO
             finish();
         }
     }

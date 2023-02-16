@@ -52,6 +52,14 @@
                 android:labelFor="@id/edit_text_mobile"
                 android:text="@string/enter_mobile" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_toEndOf="@id/text_view_title"
+                android:padding="@dimen/low_dp"
+                android:layout_marginStart="@dimen/medium_dp"
+                android:src="@drawable/arrow_left"
+                android:layout_height="wrap_content" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_layout_mobile"
                 style="?attr/textInputOutlinedStyle"
@@ -88,7 +96,7 @@
                 android:layout_marginTop="@dimen/huge_dp"
                 android:background="@drawable/circular"
                 android:padding="@dimen/large_dp"
-                android:src="@drawable/arrow_left" />
+                android:src="@drawable/arrow_left_button" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 

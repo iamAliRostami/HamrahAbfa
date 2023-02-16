@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     private void initialize() {
-        initializeSplash();
+//        initializeSplash();
         initializeBottomSheet();
     }
 
