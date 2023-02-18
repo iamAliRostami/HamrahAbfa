@@ -13,7 +13,7 @@
         android:background="@drawable/background_submit_top"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,15 +50,15 @@
                 style="@style/Title"
                 android:layout_alignParentTop="true"
                 android:labelFor="@id/edit_text_mobile"
-                android:text="@string/enter_mobile" />
+                android:text="@string/enter_mobile_title" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_dp"
                 android:layout_toEndOf="@id/text_view_title"
                 android:padding="@dimen/low_dp"
-                android:layout_marginStart="@dimen/medium_dp"
-                android:src="@drawable/arrow_left"
-                android:layout_height="wrap_content" />
+                android:src="@drawable/arrow_left" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_layout_mobile"
@@ -84,7 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:maxLength="11" />
+                    android:maxLength="11"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatImageView

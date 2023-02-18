@@ -26,10 +26,13 @@
     <string name="upload_image">بارگذاری عکس</string>
     <string name="submit">ثبت</string>
     <string name="start_now">همین الان شروع کن</string>
-    <string name="enter_mobile">ورود شماره تلفن</string>
+    <string name="enter_mobile_title">ورود شماره تلفن</string>
     <string name="confirmation_code">کد تایید 4 رقمی</string>
     <string name="enter_code">کد ارسال شده را وارد نمایید.</string>
     <string name="one_minute">00:60</string>
     <string name="send_again">ارسال مجدد</string>
+    <string name="enter_mobile">شماره موبایل را وارد کنید</string>
+    <string name="mobile_error">شماره موبایل به درستی وارد نشده است</string>
+    <string name="mobile">"شماره همراه "</string>
 
 </resources>

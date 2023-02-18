@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments;
 
+import static com.leon.hamrah_abfa.helpers.Constants.MOBILE_REGEX;
 import static com.leon.hamrah_abfa.helpers.Constants.VERIFICATION_FRAGMENT;
 
 import android.app.Activity;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentPhoneSubmitBinding;
+import com.leon.toast.RTLToast;
 
 public class PhoneSubmitFragment extends Fragment implements View.OnClickListener {
     private FragmentPhoneSubmitBinding binding;
@@ -42,9 +44,9 @@ public class PhoneSubmitFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
+        binding.editTextMobile.setText(submitActivity.getMobile());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.textLayoutMobile.setHelperText(Html.fromHtml("<p>با وارد نمودن شماره همراه، یک <b>کد تایید</b> برای شما ارسال خواهد شد</p>", Html.FROM_HTML_MODE_COMPACT));
-//            binding.textViewTip.setText(Html.fromHtml("<p><font color=#666666>I agree سلام</font><font color=#0173B7>  <b><u fontWeight=600 style=\"fontWeight:600\">سلام</u></b></font><font color=#666666> and the <u></font><b><font color=#0173B7>Privacy Policy</font></u></b></font></p>", Html.FROM_HTML_MODE_COMPACT));
         } else {
             binding.textLayoutMobile.setHelperText(Html.fromHtml("<p>با وارد نمودن شماره همراه، یک <b>کد تایید</b> برای شما ارسال خواهد شد</p>"));
         }
@@ -55,7 +57,24 @@ public class PhoneSubmitFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.image_view_submit) {
+            mobileValidation();
+        }
+    }
+
+    private void mobileValidation() {
+        String mobile;
+        if (!binding.editTextMobile.getText().toString().isEmpty()) {
+            mobile = binding.editTextMobile.getText().toString().trim();
+        } else {
+            RTLToast.warning(requireContext(), getString(R.string.enter_mobile)).show();
+            return;
+        }
+//        if (android.util.Patterns.PHONE.matcher(mobile).matches()) {
+        if (MOBILE_REGEX.matcher(mobile).matches()) {
+            submitActivity.setMobile(mobile);
             submitActivity.displayView(VERIFICATION_FRAGMENT);
+        } else {
+            RTLToast.warning(requireContext(), getString(R.string.mobile_error)).show();
         }
     }
 
@@ -68,5 +87,9 @@ public class PhoneSubmitFragment extends Fragment implements View.OnClickListene
 
     public interface Callback {
         void displayView(int position);
+
+        void setMobile(String mobile);
+
+        String getMobile();
     }
 }

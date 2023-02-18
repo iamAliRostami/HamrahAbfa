@@ -15,7 +15,9 @@ import com.leon.hamrah_abfa.databinding.ActivitySubmitBinding;
 import com.leon.hamrah_abfa.fragments.PhoneSubmitFragment;
 import com.leon.hamrah_abfa.fragments.VerificationCodeFragment;
 
-public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFragment.Callback {
+public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFragment.Callback,
+        VerificationCodeFragment.Callback {
+    private String mobile;
     private ActivitySubmitBinding binding;
 
     @Override
@@ -49,6 +51,16 @@ public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFrag
         fragmentTransaction.commitAllowingStateLoss();
         runOnUiThread(() -> getFragmentManager().executePendingTransactions());
 //        getFragmentManager().executePendingTransactions();
+    }
+
+    @Override
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    @Override
+    public String getMobile() {
+        return mobile;
     }
 
     private Fragment getFragment(int position) {

@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.enums;
 
 public enum BundleEnum {
+    MOBILE("mobile"),
     POSITION("position"),
     TITLE("title"),
     CONTENT("content"),

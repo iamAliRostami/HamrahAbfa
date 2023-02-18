@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.helpers;
 
+import java.util.regex.Pattern;
+
 public class Constants {
     public static final String DBName = "MyDatabase_1";
     public static final String FONT_NAME = "fonts/font_1.ttf";
@@ -9,4 +11,5 @@ public class Constants {
 
     public static final int SUBMIT_PHONE_FRAGMENT = 0;
     public static final int VERIFICATION_FRAGMENT = 1;
+    public static final Pattern MOBILE_REGEX = Pattern.compile("^((\\+98|0)9\\d{9})$");
 }
