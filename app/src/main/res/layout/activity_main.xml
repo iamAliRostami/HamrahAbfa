@@ -52,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@drawable/background_nav_curved"
             android:padding="@dimen/medium_dp"
             app:fabCradleMargin="10dp"
             app:fabCradleRoundedCornerRadius="50dp">
