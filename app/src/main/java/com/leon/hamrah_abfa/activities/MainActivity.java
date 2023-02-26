@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         binding.lottieAnimationView.setVisibility(View.VISIBLE);
         binding.lottieAnimationView.playAnimation();
         binding.lottieAnimationView.addAnimatorListener(this);
-//        binding.lottieAnimationView.addAnimatorUpdateListener(animation -> {
-//        });
     }
 
 
