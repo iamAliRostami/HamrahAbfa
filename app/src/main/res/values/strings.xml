@@ -21,6 +21,8 @@
     <string name="enter_bill_id">شناسه قبض را وارد کنید…</string>
     <string name="tap">ضربه بزنید</string>
     <string name="record_voice">ضبط صدا</string>
+    <string name="services">خدمات</string>
+    <string name="incident">حوادث</string>
     <string name="incident_description">توضیح حوادث.</string>
     <string name="incident_type">انتخاب نوع حادثه</string>
     <string name="upload_image">بارگذاری عکس</string>
@@ -34,5 +36,7 @@
     <string name="enter_mobile">شماره موبایل را وارد کنید</string>
     <string name="mobile_error">شماره موبایل به درستی وارد نشده است</string>
     <string name="mobile">"شماره همراه "</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

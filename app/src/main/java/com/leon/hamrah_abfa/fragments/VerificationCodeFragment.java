@@ -113,8 +113,10 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
             startCounter();
         } else if (id == R.id.button_submit) {
             if (checkInputs()) {
-                final Intent intent = new Intent(requireContext(), MainActivity.class);
-                startActivity(intent);
+//                final Intent intent = new Intent(requireContext(), MainActivity.class);
+//                startActivity(intent);
+                //TODO
+                requireActivity().finish();
             }
         } else if (id == R.id.image_view_edit) {
             submitActivity.displayView(SUBMIT_PHONE_FRAGMENT);

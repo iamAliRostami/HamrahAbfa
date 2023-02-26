@@ -164,4 +164,11 @@
 <!--        <item name="android:paddingBottom">@dimen/low_dp</item>-->
         <item name="android:layout_margin">@dimen/medium_dp</item>
     </style>
+
+<!--    <style name="Theme.Fab_Bottom_app_bar" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        <item name="colorPrimary">#0F9D58</item>-->
+<!--        <item name="colorPrimaryVariant">#0F9D58</item>-->
+<!--        <item name="colorOnPrimary">#000</item>-->
+<!--        <item name="android:background">@drawable/background_nav_curved</item>-->
+<!--    </style>-->
 </resources>

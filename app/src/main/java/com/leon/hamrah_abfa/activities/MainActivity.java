@@ -17,6 +17,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.RelativeCornerSize;
+import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.toast.RTLToast;
@@ -39,13 +42,13 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     private void initialize() {
-//        initializeSplash();
+        initializeSplash();
         initializeBottomSheet();
     }
 
     private void initializeBottomSheet() {
         final AppBarConfiguration appBar = new AppBarConfiguration.Builder(R.id.navigation_home,
-                R.id.navigation_dashboard, R.id.navigation_notifications).build();
+                R.id.navigation_dashboard, R.id.navigation_incident).build();
         final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment_activity_main);
         if (navHostFragment != null) {
@@ -53,6 +56,15 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             NavigationUI.setupActionBarWithNavController(this, navController, appBar);
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
+
+        final MaterialShapeDrawable bottomBarBackground = (MaterialShapeDrawable) binding.bottomAppBar.getBackground();
+        bottomBarBackground.setShapeAppearanceModel(
+                bottomBarBackground.getShapeAppearanceModel()
+                        .toBuilder()
+//                        .setAllCorners(new RoundedCornerTreatment()).setAllCornerSizes(new RelativeCornerSize(0.5f))
+                        .setTopLeftCorner(new RoundedCornerTreatment()).setTopLeftCornerSize(new RelativeCornerSize(0.5f))
+                        .setTopRightCorner(new RoundedCornerTreatment()).setTopRightCornerSize(new RelativeCornerSize(0.5f))
+                        .build());
     }
 
     private void initializeSplash() {
@@ -62,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         binding.lottieAnimationView.setVisibility(View.VISIBLE);
         binding.lottieAnimationView.playAnimation();
         binding.lottieAnimationView.addAnimatorListener(this);
-        binding.lottieAnimationView.addAnimatorUpdateListener(animation -> {
-        });
+//        binding.lottieAnimationView.addAnimatorUpdateListener(animation -> {
+//        });
     }
 
 
@@ -75,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     @Override
     public void onAnimationEnd(@NonNull Animator animation) {
         binding.lottieAnimationView.setVisibility(View.GONE);
-        if (true || getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+        if (/* TODO true ||*/ getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         }

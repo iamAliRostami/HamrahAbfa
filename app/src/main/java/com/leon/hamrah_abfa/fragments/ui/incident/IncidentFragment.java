@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.ui.incident;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.leon.hamrah_abfa.databinding.FragmentIncidentsReportingBinding;
+import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
 
-public class IncidentsReportingFragment extends Fragment {
-    private FragmentIncidentsReportingBinding binding;
+public class IncidentFragment extends Fragment {
+    private FragmentIncidentBinding binding;
 
-    public IncidentsReportingFragment() {
+    public IncidentFragment() {
     }
 
-    public static IncidentsReportingFragment newInstance() {
-        IncidentsReportingFragment fragment = new IncidentsReportingFragment();
+    public static IncidentFragment newInstance() {
+        IncidentFragment fragment = new IncidentFragment();
         return fragment;
     }
 
@@ -29,7 +29,7 @@ public class IncidentsReportingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentIncidentsReportingBinding.inflate(inflater, container, false);
+        binding = FragmentIncidentBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
