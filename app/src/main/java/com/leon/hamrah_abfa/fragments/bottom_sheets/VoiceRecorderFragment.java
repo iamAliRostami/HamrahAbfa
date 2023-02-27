@@ -38,7 +38,7 @@ public class VoiceRecorderFragment extends BottomSheetDialogFragment implements 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentVoiceRecorderBinding.inflate(inflater, container, false);
-        initialize();
+//        initialize();
         return binding.getRoot();
     }
 

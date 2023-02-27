@@ -12,24 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_margin="@dimen/huge_dp"
-        android:text="@string/services"
-        android:textSize="@dimen/text_size_huge" />
-    <!--    <GridView-->
-    <!--        android:id="@+id/grid_view_menu"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_below="@id/layout"-->
-    <!--        android:horizontalSpacing="@dimen/low_dp"-->
-    <!--        android:nestedScrollingEnabled="true"-->
-    <!--        android:numColumns="2"-->
-    <!--        android:padding="@dimen/low_dp"-->
-    <!--        android:verticalSpacing="@dimen/low_dp"-->
-    <!--        tools:listitem="@layout/card_layout" />-->
+        <GridView
+            android:id="@+id/grid_view_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout"
+            android:horizontalSpacing="@dimen/low_dp"
+            android:nestedScrollingEnabled="true"
+            android:numColumns="2"
+            android:padding="@dimen/low_dp"
+            android:verticalSpacing="@dimen/low_dp"
+            tools:listitem="@layout/card_layout" />
 
 </RelativeLayout>

@@ -30,9 +30,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private void initialize() {
         final MenuAdapter adapter = new MenuAdapter(requireContext(), new ArrayList<>(Arrays.asList("Buenos Aires", "Córdoba", "La Plata", "lksdlk"))
                 , new ArrayList<>(Arrays.asList(R.drawable.help, R.drawable.write, R.drawable.abfa_logo_simple, R.drawable.ic_dashboard_black_24dp)));
-//        binding.gridViewMenu.setAdapter(adapter);
+        binding.gridViewMenu.setAdapter(adapter);
 //        binding.gridViewMenu.setOnItemSelectedListener(this);
-//        binding.gridViewMenu.setOnItemClickListener(this);
+        binding.gridViewMenu.setOnItemClickListener(this);
     }
 
     @Override
