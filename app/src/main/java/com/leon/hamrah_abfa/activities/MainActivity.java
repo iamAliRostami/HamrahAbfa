@@ -26,7 +26,6 @@ import com.leon.toast.RTLToast;
 
 
 public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
-
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
 
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         binding.lottieAnimationView.addAnimatorListener(this);
     }
 
-
     @Override
     public void onAnimationStart(@NonNull Animator animation) {
 
@@ -95,12 +93,10 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
 
     @Override
     public void onAnimationCancel(@NonNull Animator animation) {
-
     }
 
     @Override
     public void onAnimationRepeat(@NonNull Animator animation) {
-
     }
 
     @Override

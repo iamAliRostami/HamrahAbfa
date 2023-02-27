@@ -12,10 +12,6 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:lottie_rawRes="@raw/splash_screen_animation">
 
     </com.airbnb.lottie.LottieAnimationView>
@@ -23,17 +19,15 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.MainActivity">
+        android:layout_height="match_parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment_activity_main"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="?attr/actionBarSize"
             app:defaultNavHost="true"
-            app:layout_anchor="@id/float_button"
-            app:layout_anchorGravity="bottom"
             app:navGraph="@navigation/mobile_navigation" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
@@ -42,8 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:padding="@dimen/medium_dp"
-            app:fabCradleMargin="10dp"
-            app:fabCradleRoundedCornerRadius="50dp">
+            app:fabCradleMargin="@dimen/medium_dp"
+            app:fabCradleRoundedCornerRadius="@dimen/huge_dp">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav_view"
