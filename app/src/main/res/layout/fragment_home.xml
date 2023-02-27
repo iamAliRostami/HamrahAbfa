@@ -6,22 +6,32 @@
     tools:context=".fragments.ui.home.HomeFragment">
 
     <include
-        android:id="@+id/layout"
+        android:id="@+id/header"
+        android:visibility="gone"
         layout="@layout/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
-        <GridView
-            android:id="@+id/grid_view_menu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/layout"
-            android:horizontalSpacing="@dimen/low_dp"
-            android:nestedScrollingEnabled="true"
-            android:numColumns="2"
-            android:padding="@dimen/low_dp"
-            android:verticalSpacing="@dimen/low_dp"
-            tools:listitem="@layout/card_layout" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_card"
+        android:layout_margin="@dimen/large_dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:src="@drawable/background_card" />
+
+    <GridView
+        android:layout_margin="@dimen/large_dp"
+        android:id="@+id/grid_view_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/image_view_card"
+        android:horizontalSpacing="@dimen/medium_dp"
+        android:nestedScrollingEnabled="true"
+        android:numColumns="3"
+        android:padding="@dimen/low_dp"
+        android:verticalSpacing="@dimen/medium_dp"
+        tools:listitem="@layout/item_card_layout" />
 
 </RelativeLayout>

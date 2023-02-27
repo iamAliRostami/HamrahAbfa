@@ -14,21 +14,15 @@ import java.util.ArrayList;
 
 public class MenuAdapter extends BaseAdapter {
     private final ArrayList<String> titles = new ArrayList<>();
-    private final ArrayList<Integer> logos = new ArrayList<>();
+    private final TypedArray drawable;
     private final LayoutInflater inflater;
-    private final Context context;
 
-    public MenuAdapter(Context context, ArrayList<String> titles, ArrayList<Integer> logos) {
+    public MenuAdapter(Context context, ArrayList<String> titles, TypedArray drawable) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.titles.addAll(titles);
-        this.logos.addAll(logos);
-        this.context = context;
+        this.drawable = drawable;
     }
-    public MenuAdapter(Context context, ArrayList<String> titles) {
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.titles.addAll(titles);
-        this.context = context;
-    }
+
     @Override
     public int getCount() {
         return titles.size();
@@ -47,18 +41,10 @@ public class MenuAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-//TODO
-//        if (view == null) view = inflater.inflate(R.layout.card_layout, null);
         if (view == null) view = inflater.inflate(R.layout.item_card_layout, parent, false);
         final MenuHolder holder = new MenuHolder(view);
-        holder.imageViewLogo.setImageResource(logos.get(position));
+        holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
-//        holder.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Log.e("here", String.valueOf(position));
-//            }
-//        });
         return view;
     }
 }
