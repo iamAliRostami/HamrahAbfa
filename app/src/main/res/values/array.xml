@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menu_home">
+        <item>@string/pay_bill</item>
+        <item>@string/counter_number_submit</item>
+        <item>@string/history_usage</item>
+        <item>@string/protest_submit</item>
+        <item>@string/cart</item>
+        <item>@string/requests</item>
+        <item>@string/last_bills</item>
+        <item>@string/change_number</item>
+        <item>@string/contact_us</item>
+    </string-array>
+
+    <array name="icons_home">
+        <item>@drawable/payment</item>
+        <item>@drawable/meter</item>
+        <item>@drawable/usage_history</item>
+        <item>@drawable/last_bills</item>
+        <item>@drawable/cart</item>
+        <item>@drawable/request</item>
+        <item>@drawable/protest</item>
+        <item>@drawable/change_number</item>
+        <item>@drawable/contact_us</item>
+    </array>
+</resources>

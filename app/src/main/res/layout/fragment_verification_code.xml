@@ -86,7 +86,7 @@
                 android:layout_marginStart="@dimen/medium_dp"
                 android:layout_toEndOf="@id/text_view_mobile"
                 android:padding="@dimen/low_dp"
-                android:src="@drawable/edit_icon" />
+                android:src="@drawable/edit_blue" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linear_layout_code"

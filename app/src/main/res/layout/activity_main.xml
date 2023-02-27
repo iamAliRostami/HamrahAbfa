@@ -51,11 +51,11 @@
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_button"
+            android:id="@+id/float_button_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/tick"
+            android:src="@drawable/plus"
             app:layout_anchor="@id/bottom_app_bar"
             app:tint="@android:color/white" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

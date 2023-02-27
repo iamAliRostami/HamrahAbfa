@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
@@ -22,10 +23,12 @@ import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
+import com.leon.hamrah_abfa.enums.FragmentTags;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.toast.RTLToast;
 
 
-public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
+public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener, View.OnClickListener {
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
 
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     private void initialize() {
         initializeSplash();
         initializeBottomSheet();
+        binding.floatButtonAdd.setOnClickListener(this);
     }
 
     private void initializeBottomSheet() {
@@ -100,9 +104,18 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.float_button_add) {
+            SubmitInfoFragment.newInstance().show(getSupportFragmentManager(), SUBMIT_INFO.getValue());
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
         RTLToast.info(this, getString(R.string.exit_by_press_again)).show();
         lastClickTime = SystemClock.elapsedRealtime();
     }
+
 }
