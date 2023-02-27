@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        RTLToast.info(requireContext(), String.valueOf(position)).show();
+//        RTLToast.info(requireContext(), String.valueOf(position)).show();
         Log.e("item", String.valueOf(position));
 
     }
