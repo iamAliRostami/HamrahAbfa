@@ -8,6 +8,8 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import androidx.multidex.MultiDex;
+
 import com.leon.hamrah_abfa.BuildConfig;
 import com.leon.hamrah_abfa.di.component.ApplicationComponent;
 import com.leon.hamrah_abfa.di.component.DaggerApplicationComponent;
@@ -45,6 +47,12 @@ public class MyApplication extends Application {
         applicationComponent.inject(this);
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
 //        throw new RuntimeException("Test Exception");
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     protected void setupYandex() {

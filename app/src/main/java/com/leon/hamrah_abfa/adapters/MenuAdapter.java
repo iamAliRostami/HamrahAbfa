@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.adapters;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,11 @@ public class MenuAdapter extends BaseAdapter {
         this.logos.addAll(logos);
         this.context = context;
     }
-
+    public MenuAdapter(Context context, ArrayList<String> titles) {
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.titles.addAll(titles);
+        this.context = context;
+    }
     @Override
     public int getCount() {
         return titles.size();
@@ -44,7 +49,7 @@ public class MenuAdapter extends BaseAdapter {
         View view = convertView;
 //TODO
 //        if (view == null) view = inflater.inflate(R.layout.card_layout, null);
-        if (view == null) view = inflater.inflate(R.layout.card_layout, parent, false);
+        if (view == null) view = inflater.inflate(R.layout.item_card_layout, parent, false);
         final MenuHolder holder = new MenuHolder(view);
         holder.imageViewLogo.setImageResource(logos.get(position));
         holder.textViewTitle.setText(titles.get(position));

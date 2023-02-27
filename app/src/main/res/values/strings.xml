@@ -39,4 +39,15 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+
+    <string name="pay_bill">پرداخت قبض</string>
+    <string name="counter_number_submit">اعلام کارکرد کنتور</string>
+    <string name="history_usage">سوابق کارکرد</string>
+    <string name="protest_submit">اعلام اعتراض</string>
+    <string name="cart">صورت\u200cحساب</string>
+    <string name="requests">درخواست\u200cها</string>
+    <string name="last_bills">ده قبض آخر</string>
+    <string name="change_number">تغییر شماره همراه</string>
+    <string name="contact_us">ارتباط با آبفا</string>
 </resources>
