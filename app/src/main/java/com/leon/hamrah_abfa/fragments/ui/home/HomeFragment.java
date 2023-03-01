@@ -16,7 +16,7 @@ import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,14 +37,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
     }
 
     @Override
