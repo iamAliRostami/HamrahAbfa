@@ -62,30 +62,20 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_layout_mobile"
-                style="?attr/textInputOutlinedStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/TextInputLayout"
                 android:layout_below="@id/text_view_title"
                 android:layout_marginTop="@dimen/huge_dp"
                 android:layout_marginBottom="@dimen/huge_dp"
                 android:hint="@string/phone_number"
-                app:boxStrokeColor="@color/purple_7001"
-                app:counterEnabled="false"
                 app:counterMaxLength="11"
-                app:errorEnabled="true"
                 app:helperText="@string/enter_account"
-                app:helperTextEnabled="true"
-                app:helperTextTextAppearance="@style/TextHelper"
-                app:hintTextColor="@color/purple_7001"
                 app:placeholderText="@string/mobile_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextInput"
                     android:inputType="phone"
-                    android:maxLength="11"
-                    android:maxLines="1" />
+                    android:maxLength="11" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatImageView

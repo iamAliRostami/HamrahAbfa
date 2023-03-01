@@ -40,57 +40,32 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_layout_account_title"
-        style="?attr/textInputOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextInputLayout"
         android:layout_below="@id/text_view_title"
-        android:hint="@string/account_title"
-        app:boxStrokeColor="@color/purple_7001"
-        app:counterEnabled="false"
-        app:counterMaxLength="11"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
-        app:helperTextTextAppearance="@style/TextHelper"
-        app:hintTextColor="@color/purple_7001">
+        android:hint="@string/account_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_account_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLines="1" />
+            style="@style/TextInput"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_layout_bill_id"
-        style="?attr/textInputOutlinedStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextInputLayout"
         android:layout_below="@id/text_layout_account_title"
         android:hint="@string/bill_id"
-        app:boxStrokeColor="@color/purple_7001"
-        app:counterEnabled="false"
-        app:counterMaxLength="11"
-        app:errorEnabled="true"
-        app:helperTextEnabled="true"
-        app:helperTextTextAppearance="@style/TextHelper"
-        app:hintTextColor="@color/purple_7001">
+        app:counterMaxLength="11">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_bill_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLines="1" />
+            style="@style/TextInput"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_submit"
         style="@style/ButtonSubmit"
-        android:layout_width="match_parent"
         android:layout_below="@id/text_layout_bill_id"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="@dimen/large_dp"
-        android:text="@string/sign_account"
-        android:textStyle="bold" />
+        android:text="@string/sign_account" />
 </RelativeLayout>
