@@ -16,10 +16,10 @@
         <item>@drawable/payment</item>
         <item>@drawable/meter</item>
         <item>@drawable/usage_history</item>
-        <item>@drawable/last_bills</item>
+        <item>@drawable/protest</item>
         <item>@drawable/cart</item>
         <item>@drawable/request</item>
-        <item>@drawable/protest</item>
+        <item>@drawable/last_bills</item>
         <item>@drawable/change_number</item>
         <item>@drawable/contact_us</item>
     </array>

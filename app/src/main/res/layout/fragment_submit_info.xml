@@ -12,7 +12,7 @@
         style="@style/Title"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/huge_dp"
-        android:text="@string/account_info_submit"
+        android:text="@string/account_submit"
         android:textColor="@color/purple_7001" />
 
     <com.google.android.material.textfield.TextInputEditText

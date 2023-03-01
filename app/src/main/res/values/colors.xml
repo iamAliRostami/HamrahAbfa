@@ -19,9 +19,15 @@
     <color name="green_700">#006d2d</color>
 
     <color name="gray_200">#939393</color>
-    <color name="gray_light_1">#08000000</color>
-    <color name="gray_light_2">#09000000</color>
+
+    <color name="gray_light_1">#f1f1f1</color>
+    <color name="gray_light_2">#dddddd</color>
+
+<!--    <color name="gray_light_1">#08000000</color>-->
+<!--    <color name="gray_light_2">#09000000</color>-->
     <color name="gray_light_3">#10000000</color>
     <color name="gray_light_4">#11000000</color>
     <color name="gray_light_5">#12000000</color>
+
+
 </resources>

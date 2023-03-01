@@ -69,10 +69,8 @@
     </style>
 
     <style name="LoginButtonSubmit" parent="Button">
-        <item name="android:background">@drawable/background_blue_button</item>
-        <item name="android:backgroundTint">@color/teal_2001</item>
-        <item name="backgroundTint">@color/teal_2001</item>
-        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:background">@drawable/background_button_submit</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
@@ -158,17 +156,7 @@
         <item name="android:inputType">number</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/background_input_verification</item>
-<!--        <item name="android:paddingStart">@dimen/large_dp</item>-->
-<!--        <item name="android:paddingEnd">@dimen/large_dp</item>-->
-<!--        <item name="android:paddingTop">@dimen/low_dp</item>-->
-<!--        <item name="android:paddingBottom">@dimen/low_dp</item>-->
         <item name="android:layout_margin">@dimen/medium_dp</item>
     </style>
 
-<!--    <style name="Theme.Fab_Bottom_app_bar" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
-<!--        <item name="colorPrimary">#0F9D58</item>-->
-<!--        <item name="colorPrimaryVariant">#0F9D58</item>-->
-<!--        <item name="colorOnPrimary">#000</item>-->
-<!--        <item name="android:background">@drawable/background_nav_curved</item>-->
-<!--    </style>-->
 </resources>

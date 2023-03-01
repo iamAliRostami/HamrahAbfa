@@ -23,7 +23,6 @@ import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
-import com.leon.hamrah_abfa.enums.FragmentTags;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.toast.RTLToast;
 
@@ -44,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     private void initialize() {
-        initializeSplash();
+        //TODO
+        // initializeSplash();
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
     }

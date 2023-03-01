@@ -22,7 +22,6 @@
         android:horizontalSpacing="@dimen/medium_dp"
         android:nestedScrollingEnabled="true"
         android:numColumns="3"
-        android:padding="@dimen/low_dp"
         android:verticalSpacing="@dimen/medium_dp"
         tools:listitem="@layout/item_card_layout" />
 

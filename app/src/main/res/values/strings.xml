@@ -16,7 +16,7 @@
     <string name="sign_in_up">ورود / ثبت نام</string>
     <string name="_6_dashes">------</string>
     <string name="try_again">تلاش مجدد</string>
-    <string name="account_info_submit">ثبت اطلاعات انشعاب</string>
+    <string name="account_submit">ثبت انشعاب</string>
     <string name="account_title">عنوان انشعاب</string>
     <string name="enter_bill_id">شناسه قبض را وارد کنید…</string>
     <string name="tap">ضربه بزنید</string>
@@ -50,4 +50,6 @@
     <string name="last_bills">ده قبض آخر</string>
     <string name="change_number">تغییر شماره همراه</string>
     <string name="contact_us">ارتباط با آبفا</string>
+    <string name="sign_account">ثبت انشعاب</string>
+    <string name="bill_id">شناسه قبض</string>
 </resources>

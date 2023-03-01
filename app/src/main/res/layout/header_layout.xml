@@ -3,25 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/medium_dp"
-    android:paddingStart="@dimen/huge_dp"
-    android:paddingEnd="@dimen/huge_dp">
+    android:padding="@dimen/large_dp">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_setting"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
         android:src="@drawable/setting"
         tools:ignore="ContentDescription" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
         android:src="@drawable/abfa_logo_simple_black"
         tools:ignore="ContentDescription" />
 

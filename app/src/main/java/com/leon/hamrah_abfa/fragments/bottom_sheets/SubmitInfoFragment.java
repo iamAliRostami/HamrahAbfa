@@ -29,6 +29,10 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentSubmitInfoBottomBinding.inflate(inflater, container, false);
+        initialize();
         return binding.getRoot();
+    }
+    private void initialize(){
+
     }
 }
