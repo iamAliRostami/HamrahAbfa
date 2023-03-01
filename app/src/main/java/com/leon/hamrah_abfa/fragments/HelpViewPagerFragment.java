@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments;
 
+import static android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BACKGROUND_COLOR;
 import static com.leon.hamrah_abfa.enums.BundleEnum.CONTENT;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LOGO;
@@ -7,6 +8,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.POSITION;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TITLE;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,18 +19,18 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.leon.hamrah_abfa.databinding.FragmentViewPagerBinding;
+import com.leon.hamrah_abfa.databinding.FragmentHelpViewPagerBinding;
 import com.leon.hamrah_abfa.di.view_model.WelcomeViewModel;
 
-public class ViewPagerFragment extends Fragment {
+public class HelpViewPagerFragment extends Fragment {
     private final WelcomeViewModel viewModel = new WelcomeViewModel();
-
-    public ViewPagerFragment() {
+    private FragmentHelpViewPagerBinding binding;
+    public HelpViewPagerFragment() {
     }
 
-    public static ViewPagerFragment newInstance(int position, int bgColor, int logo, String title,
-                                                String content) {
-        ViewPagerFragment fragment = new ViewPagerFragment();
+    public static HelpViewPagerFragment newInstance(int position, int bgColor, int logo, String title,
+                                                    String content) {
+        HelpViewPagerFragment fragment = new HelpViewPagerFragment();
         Bundle args = new Bundle();
         args.putInt(LOGO.getValue(), logo);
         args.putString(TITLE.getValue(), title);
@@ -55,9 +57,16 @@ public class ViewPagerFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final FragmentViewPagerBinding binding = FragmentViewPagerBinding.inflate(inflater, container, false);
+        binding = FragmentHelpViewPagerBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
+        initialize();
         return binding.getRoot();
+    }
+
+    private void initialize() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            binding.textViewContent.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        }
     }
 
     @SuppressLint("SetTextI18n")

@@ -14,9 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:rotationY="180"
-        tools:context=".fragments.ViewPagerFragment">
+        tools:context=".fragments.HelpViewPagerFragment">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:background="@drawable/background_welcome_bottom"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,19 +45,19 @@
                 android:gravity="center"
                 android:text="@{viewModel.title}"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/large_dp"
-                android:gravity="start"
+                android:lineSpacingExtra="@dimen/low_dp"
                 android:text="@{viewModel.content}"
                 android:textAlignment="gravity"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size_small"
-                android:textStyle="bold" />
+                android:textSize="@dimen/text_size_small" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </RelativeLayout>

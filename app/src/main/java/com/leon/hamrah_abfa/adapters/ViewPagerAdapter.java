@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.fragments.ViewPagerFragment;
+import com.leon.hamrah_abfa.fragments.HelpViewPagerFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     private final int[] bgColors = {ContextCompat.getColor(getAppContext(), R.color.purple_7001),
@@ -34,7 +34,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
 //        title[position] = "Welcome, this is Page: " + position + 1;
 //        content[position] = "This is Page: " + position + 1;
-        return ViewPagerFragment.newInstance(position, bgColors[position], logos[position],
+        return HelpViewPagerFragment.newInstance(position, bgColors[position], logos[position],
                 title[position], content[position]);
 //        return PhoneSubmitFragment.newInstance();
 //        return VerificationCodeFragment.newInstance();
