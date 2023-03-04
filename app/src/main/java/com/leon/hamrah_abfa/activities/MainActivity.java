@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
 
     private void initialize() {
         //TODO
-        // initializeSplash();
+         initializeSplash();
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
     }
