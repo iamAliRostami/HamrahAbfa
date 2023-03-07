@@ -48,14 +48,8 @@
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/BottomNavigationView"
                 android:layout_marginEnd="@dimen/medium_dp"
-                android:background="@android:color/transparent"
-                app:elevation="0dp"
-                app:itemIconTint="@drawable/bnv_tab_item_foreground"
-                app:itemTextColor="@drawable/bnv_tab_item_foreground"
-                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_nav_menu" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -65,6 +59,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
             android:src="@drawable/plus"
+            app:elevation="@dimen/medium_dp"
             app:layout_anchor="@id/bottom_app_bar"
             app:tint="@android:color/white" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
