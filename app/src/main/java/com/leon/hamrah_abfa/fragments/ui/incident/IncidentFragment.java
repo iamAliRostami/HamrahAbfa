@@ -1,8 +1,15 @@
 package com.leon.hamrah_abfa.fragments.ui.incident;
 
+import static com.leon.hamrah_abfa.utils.PermissionManager.checkRecorderPermission;
+import static com.leon.toast.RTLToast.error;
+import static com.leon.toast.RTLToast.success;
+
+import android.Manifest;
 import android.graphics.drawable.InsetDrawable;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,6 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -18,9 +27,17 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
+import com.leon.toast.RTLToast;
+
+import java.io.IOException;
 
 public class IncidentFragment extends Fragment implements View.OnClickListener {
     private FragmentIncidentBinding binding;
+
+    private MediaRecorder mediaRecorder;
+
+    private MediaPlayer mediaPlayer;
+    private boolean recording;
 
     public IncidentFragment() {
     }
@@ -44,7 +61,15 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
 
     private void initialize() {
 //        binding.menu.setOnClickListener(this);
+//        binding.audioRecordView.recreate();
+//        mediaRecorder = new MediaRecorder();
+//        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+//        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+//        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+//        mediaRecorder.setOutputFile(requireContext().getExternalFilesDir(null).getAbsolutePath() +
+//                "/voice.ogg");
         binding.textViewIncidentType.setOnClickListener(this);
+        binding.imageViewMic.setOnClickListener(this);
     }
 
     private void showMenu(View v, @MenuRes int menuRes) {
@@ -82,8 +107,51 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         final int id = v.getId();
         if (/*id == R.id.menu || */id == R.id.text_view_incident_type) {
-            Log.e("here", "menu");
             showMenu(binding.textViewIncidentType, R.menu.incident_menu);
+        } else if (id == R.id.image_view_mic) {
+            if (checkRecorderPermission(requireContext())) {
+                setupMediaRecorder();
+            } else {
+                requestPermissionLauncher.launch(
+                        Manifest.permission.RECORD_AUDIO);
+            }
         }
     }
+
+    private void setupMediaRecorder() {
+//TODO
+        binding.audioRecordView.recreate();
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setOutputFile(requireContext().getExternalFilesDir(null).getAbsolutePath() +
+                "/voice.ogg");
+
+        try {
+            mediaRecorder.prepare();
+            mediaRecorder.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+            mediaRecorder.stop();
+        }
+        final Handler myHandler = new Handler();
+        final Runnable UpdateSongTime = new Runnable() {
+            public void run() {
+                binding.audioRecordView.update(mediaRecorder.getMaxAmplitude());
+                myHandler.postDelayed(this, 200);
+            }
+        };
+        myHandler.postDelayed(UpdateSongTime, 200);
+
+    }
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.voice_recorder_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.voice_recorder_permission_unavailable)).show();
+                }
+            });
 }

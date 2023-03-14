@@ -52,4 +52,11 @@
     <string name="contact_us">ارتباط با آبفا</string>
     <string name="sign_account">ثبت انشعاب</string>
     <string name="bill_id">شناسه قبض</string>
+    <string name="go_continue">ادامه</string>
+    <string name="description">توضیحات</string>
+    <string name="enter_incident_description">شرح حادثه را ارائه نمایید</string>
+
+
+    <string name="voice_recorder_permission_granted">دسترسی لازم جهت ضبط صدا داده شد</string>
+    <string name="voice_recorder_permission_unavailable">دسترسی ضبط صوت اعطا نشده است</string>
 </resources>

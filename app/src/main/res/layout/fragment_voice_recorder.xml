@@ -47,12 +47,12 @@
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/image_view_mic"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:background="@drawable/background_mic"
         android:contentDescription="@string/record_voice"
         android:padding="@dimen/medium_dp"
         android:src="@drawable/mic_blue" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_recorder"
         android:layout_width="wrap_content"
