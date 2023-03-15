@@ -1,19 +1,100 @@
 package com.leon.hamrah_abfa.fragments.ui.incident;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.media.MediaRecorder;
+import android.os.SystemClock;
 
-public class IncidentViewModel extends ViewModel {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
 
-    private final MutableLiveData<String> mText;
+import com.leon.hamrah_abfa.BR;
+import com.leon.hamrah_abfa.R;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+public class IncidentViewModel extends BaseObservable {
+    private long startTime;
+    private long currentTime;
+    private String length;
+    private MediaRecorder mediaRecorder;
+    private MediaPlayer mediaPlayer = new MediaPlayer();
 
     public IncidentViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is incident fragment");
+        setStartTime(SystemClock.uptimeMillis());
+        setLength();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    @Bindable
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+        notifyPropertyChanged(BR.startTime);
+    }
+
+    @Bindable
+    public long getCurrentTime() {
+        return currentTime;
+    }
+
+    public void setCurrentTime(long currentTime) {
+        this.currentTime = currentTime;
+        notifyPropertyChanged(BR.currentTime);
+    }
+
+    @Bindable
+    public String getLength() {
+        return length;
+    }
+
+    public void setLength(String length) {
+        this.length = length;
+        notifyPropertyChanged(BR.length);
+    }
+
+    @SuppressLint("DefaultLocale")
+    public void setLength() {
+        setCurrentTime(SystemClock.uptimeMillis());
+        final long length = getCurrentTime() - getStartTime();
+        setLength(String.format("%02d:%02d",
+                TimeUnit.MILLISECONDS.toMinutes(length), TimeUnit.MILLISECONDS.toSeconds(length) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(length))));
+    }
+
+    public void prepareRecorder(Context context) throws IOException {
+
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setOutputFile(context.getExternalFilesDir(null).getAbsolutePath() +
+                context.getString(R.string.voice_file_name));
+
+        mediaRecorder.prepare();
+        mediaRecorder.start();
+    }
+
+    public void stopRecorder() {
+        mediaRecorder.stop();
+    }
+
+    public int getMaxAmplitudeRecorder() {
+        return mediaRecorder.getMaxAmplitude();
+    }
+
+    public void preparePlayer(Context context) throws IOException {
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setDataSource(context.getExternalFilesDir(null).getAbsolutePath() +
+                context.getString(R.string.voice_file_name));
+        mediaPlayer.prepare();
+    }
+    public int getAudioSessionId() {
+        return mediaPlayer.getAudioSessionId();
     }
 }

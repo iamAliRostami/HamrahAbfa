@@ -5,11 +5,11 @@ import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.graphics.drawable.InsetDrawable;
-import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -27,17 +27,14 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
-import com.leon.toast.RTLToast;
 
 import java.io.IOException;
 
 public class IncidentFragment extends Fragment implements View.OnClickListener {
+    private final IncidentViewModel viewModel = new IncidentViewModel();
     private FragmentIncidentBinding binding;
-
-    private MediaRecorder mediaRecorder;
-
-    private MediaPlayer mediaPlayer;
     private boolean recording;
+    private boolean playing;
 
     public IncidentFragment() {
     }
@@ -55,22 +52,109 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentIncidentBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
-//        binding.menu.setOnClickListener(this);
-//        binding.audioRecordView.recreate();
-//        mediaRecorder = new MediaRecorder();
-//        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-//        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-//        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-//        mediaRecorder.setOutputFile(requireContext().getExternalFilesDir(null).getAbsolutePath() +
-//                "/voice.ogg");
         binding.textViewIncidentType.setOnClickListener(this);
         binding.imageViewMic.setOnClickListener(this);
+        binding.lottieAnimationView.setOnClickListener(this);
+        binding.imageViewPlayPause.setOnClickListener(this);
     }
+
+
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.text_view_incident_type) {
+            showMenu(binding.textViewIncidentType, R.menu.incident_menu);
+        } else if (id == R.id.image_view_mic) {
+            if (checkRecorderPermission(requireContext())) {
+                setupMediaRecorder();
+                binding.imageViewMic.setVisibility(View.GONE);
+                binding.lottieAnimationView.setVisibility(View.VISIBLE);
+                binding.lottieAnimationView.setAnimation(R.raw.recorder_animation);
+                binding.lottieAnimationView.playAnimation();
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
+            }
+        } else if (id == R.id.image_view_play_pause) {
+            setupMediaPlayer();
+
+            binding.imageViewPlayPause.setVisibility(View.GONE);
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setAnimation(R.raw.player_animation_1);
+            binding.lottieAnimationView.playAnimation();
+        } else if (id == R.id.lottie_animation_view) {
+            handler.removeCallbacks(runnable);
+            binding.lottieAnimationView.pauseAnimation();
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            if (recording) {
+                viewModel.stopRecorder();
+                binding.imageViewPlayPause.setVisibility(View.VISIBLE);
+                recording = false;
+            } else if (playing) {
+                //TODO
+            }
+        }
+    }
+
+    private void setupMediaPlayer() {
+        binding.audioRecordView.recreate();
+        handler.removeCallbacks(runnable);
+        try {
+            viewModel.preparePlayer(requireContext());
+            playing = true;
+            handler.postDelayed(runnable, 200);
+        } catch (IOException e) {
+            playing = false;
+            error(requireContext(), e.toString()).show();
+            binding.lottieAnimationView.pauseAnimation();
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.imageViewPlayPause.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setupMediaRecorder() {
+        binding.audioRecordView.recreate();
+        handler.removeCallbacks(runnable);
+        try {
+            viewModel.prepareRecorder(requireContext());
+            viewModel.setStartTime(SystemClock.uptimeMillis());
+            recording = true;
+            handler.postDelayed(runnable, 200);
+        } catch (IOException e) {
+            recording = false;
+            error(requireContext(), e.toString()).show();
+            viewModel.stopRecorder();
+            binding.lottieAnimationView.pauseAnimation();
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.imageViewMic.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private final Handler handler = new Handler();
+    private final Runnable runnable = new Runnable() {
+        @SuppressLint("DefaultLocale")
+        public void run() {
+            if (recording)
+                binding.audioRecordView.update(viewModel.getMaxAmplitudeRecorder());
+            else if (playing)
+                binding.audioRecordView.update(viewModel.getAudioSessionId());
+            viewModel.setLength();
+            handler.postDelayed(this, 200);
+        }
+    };
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.voice_recorder_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.voice_recorder_permission_unavailable)).show();
+                }
+            });
 
     private void showMenu(View v, @MenuRes int menuRes) {
         final PopupMenu popup = new PopupMenu(requireActivity(), v, Gravity.TOP);
@@ -103,55 +187,4 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         popup.show();
     }
 
-    @Override
-    public void onClick(View v) {
-        final int id = v.getId();
-        if (/*id == R.id.menu || */id == R.id.text_view_incident_type) {
-            showMenu(binding.textViewIncidentType, R.menu.incident_menu);
-        } else if (id == R.id.image_view_mic) {
-            if (checkRecorderPermission(requireContext())) {
-                setupMediaRecorder();
-            } else {
-                requestPermissionLauncher.launch(
-                        Manifest.permission.RECORD_AUDIO);
-            }
-        }
-    }
-
-    private void setupMediaRecorder() {
-//TODO
-        binding.audioRecordView.recreate();
-        mediaRecorder = new MediaRecorder();
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        mediaRecorder.setOutputFile(requireContext().getExternalFilesDir(null).getAbsolutePath() +
-                "/voice.ogg");
-
-        try {
-            mediaRecorder.prepare();
-            mediaRecorder.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-            mediaRecorder.stop();
-        }
-        final Handler myHandler = new Handler();
-        final Runnable UpdateSongTime = new Runnable() {
-            public void run() {
-                binding.audioRecordView.update(mediaRecorder.getMaxAmplitude());
-                myHandler.postDelayed(this, 200);
-            }
-        };
-        myHandler.postDelayed(UpdateSongTime, 200);
-
-    }
-
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.voice_recorder_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.voice_recorder_permission_unavailable)).show();
-                }
-            });
 }

@@ -1,156 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_light_1"
-    android:padding="@dimen/large_dp"
     tools:context=".fragments.ui.incident.IncidentFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/low_dp"
-        android:src="@drawable/info" />
+    <data>
 
-    <TextView
-        android:id="@+id/text_view_description"
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.ui.incident.IncidentViewModel" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/low_dp"
-        android:layout_toEndOf="@id/image_view_info"
-        android:text="@string/incident_description" />
+        android:layout_height="match_parent"
+        android:background="@color/gray_light_1"
+        android:padding="@dimen/large_dp">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/low_dp"
+            android:src="@drawable/info" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu"
-        style="@style/MenuLayout"
-        android:layout_below="@id/text_view_description"
-        android:hint="@string/incident_type"
-        app:boxStrokeColor="@color/purple_7001"
-        app:hintTextColor="@color/purple_7001">
-
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-            android:id="@+id/text_view_incident_type"
+        <TextView
+            android:id="@+id/text_view_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_margin="@dimen/low_dp"
+            android:layout_toEndOf="@id/image_view_info"
+            android:text="@string/incident_description" />
 
-    <!--    <com.google.android.material.textfield.TextInputEditText-->
-    <!--        android:id="@+id/text_view_incident_type"-->
-    <!--        style="@style/TextInput"-->
-    <!--        android:layout_below="@id/menu"-->
-    <!--        android:layout_margin="@dimen/low_dp"-->
-    <!--        android:hint="@string/incident_type"-->
-    <!--        android:padding="@dimen/medium_dp" />-->
 
-    <!--    <RelativeLayout-->
-    <!--        android:id="@+id/relative_layout_map"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_margin="@dimen/low_dp"-->
-    <!--        android:background="@drawable/border_white_gray">-->
-    <!--    </RelativeLayout>-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/menu"
+            style="@style/MenuLayout"
+            android:layout_below="@id/text_view_description"
+            android:hint="@string/incident_type"
+            app:boxStrokeColor="@color/purple_7001"
+            app:hintTextColor="@color/purple_7001">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_layout_description"
-        style="@style/TextInputLayout"
-        android:layout_below="@id/menu"
-        android:layout_marginTop="@dimen/huge_dp"
-        android:layout_marginBottom="@dimen/huge_dp"
-        android:hint="@string/description"
-        app:counterEnabled="true"
-        app:counterMaxLength="1000"
-        app:helperText="@string/enter_incident_description">
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/text_view_incident_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_description"
-            style="@style/TextInput"
-            android:inputType="textMultiLine"
-            android:maxLength="1000" />
-    </com.google.android.material.textfield.TextInputLayout>
+        <!--    <com.google.android.material.textfield.TextInputEditText-->
+        <!--        android:id="@+id/text_view_incident_type"-->
+        <!--        style="@style/TextInput"-->
+        <!--        android:layout_below="@id/menu"-->
+        <!--        android:layout_margin="@dimen/low_dp"-->
+        <!--        android:hint="@string/incident_type"-->
+        <!--        android:padding="@dimen/medium_dp" />-->
 
-    <com.visualizer.amplitude.AudioRecordView
-        android:id="@+id/audio_record_view"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_below="@id/text_layout_description"
-        android:background="@drawable/background_recorder"
-        android:layoutDirection="rtl"
-        android:padding="@dimen/small_dp"
-        app:chunkAlignTo="center"
-        app:chunkColor="@color/purple_7001"
-        app:chunkMinHeight="0dp"
-        app:chunkRoundedCorners="true"
-        app:chunkSoftTransition="true"
-        app:chunkSpace="1dp"
-        app:chunkWidth="1dp" />
+        <!--    <RelativeLayout-->
+        <!--        android:id="@+id/relative_layout_map"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_margin="@dimen/low_dp"-->
+        <!--        android:background="@drawable/border_white_gray">-->
+        <!--    </RelativeLayout>-->
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/audio_record_view"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_description"
+            style="@style/TextInputLayout"
+            android:layout_below="@id/menu"
+            android:layout_marginTop="@dimen/huge_dp"
+            android:layout_marginBottom="@dimen/huge_dp"
+            android:hint="@string/description"
+            app:counterEnabled="true"
+            app:counterMaxLength="1000"
+            app:helperText="@string/enter_incident_description">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/image_view_delete"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_description"
+                style="@style/TextInput"
+                android:inputType="textMultiLine"
+                android:maxLength="1000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_recording"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/text_layout_description"
+            android:background="@drawable/background_recorder"
+            android:orientation="horizontal"
+            android:padding="@dimen/small_dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation_view"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:lottie_loop="true"
+                app:lottie_repeatMode="restart" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/image_view_play_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/background_mic"
+                android:contentDescription="@string/record_voice"
+                android:padding="@dimen/low_dp"
+                android:visibility="gone"
+                android:src="@drawable/play" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/image_view_mic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/background_mic"
+                android:contentDescription="@string/record_voice"
+                android:padding="@dimen/low_dp"
+                android:src="@drawable/mic_blue" />
+
+            <TextView
+                android:id="@+id/text_view_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/medium_dp"
+                android:text="@{viewModel.length}" />
+
+            <com.visualizer.amplitude.AudioRecordView
+                android:id="@+id/audio_record_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layoutDirection="rtl"
+                app:chunkAlignTo="center"
+                app:chunkColor="@color/purple_7001"
+                app:chunkMinHeight="0dp"
+                app:chunkRoundedCorners="true"
+                app:chunkSoftTransition="true"
+                app:chunkSpace="@dimen/small_dp"
+                app:chunkWidth="@dimen/small_dp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/image_view_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/background_mic"
+                android:contentDescription="@string/record_voice"
+                android:padding="@dimen/low_dp"
+                android:src="@drawable/delete" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_continue"
+            style="@style/Title"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/image_view_arrow_left"
+            android:labelFor="@id/edit_text_mobile"
+            android:text="@string/go_continue" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_arrow_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_dp"
-            android:background="@drawable/background_mic"
-            android:contentDescription="@string/record_voice"
-            android:padding="@dimen/large_dp"
-            android:src="@drawable/delete" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottie_animation_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/mic_blue"
-            android:scaleType="centerCrop"
-            app:lottie_rawRes="@raw/splash_screen_animation" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/image_view_mic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_dp"
-            android:background="@drawable/background_mic"
-            android:contentDescription="@string/record_voice"
-            android:padding="@dimen/large_dp"
-            android:src="@drawable/mic_blue" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/image_view_play_pause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/large_dp"
-            android:background="@drawable/background_mic"
-            android:contentDescription="@string/record_voice"
-            android:padding="@dimen/large_dp"
-            android:src="@drawable/pause" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_continue"
-        style="@style/Title"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@id/image_view_arrow_left"
-        android:labelFor="@id/edit_text_mobile"
-        android:text="@string/go_continue" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_arrow_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/medium_dp"
-        android:padding="@dimen/low_dp"
-        android:src="@drawable/arrow_left" />
-</RelativeLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:padding="@dimen/low_dp"
+            android:src="@drawable/arrow_left" />
+    </RelativeLayout>
+</layout>
