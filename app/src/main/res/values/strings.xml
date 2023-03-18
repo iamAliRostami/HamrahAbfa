@@ -57,6 +57,9 @@
     <string name="enter_incident_description">شرح حادثه را ارائه نمایید</string>
 
 
+    <string name="voice_storage_permission_granted">دسترسی لازم جهت پخش صدا داده شد</string>
+    <string name="voice_storage_permission_unavailable">دسترسی پخش صوت اعطا نشده است</string>
+
     <string name="voice_recorder_permission_granted">دسترسی لازم جهت ضبط صدا داده شد</string>
     <string name="voice_recorder_permission_unavailable">دسترسی ضبط صوت اعطا نشده است</string>
     <string name="timer_zero">00:00</string>

@@ -10,6 +10,7 @@ import android.graphics.drawable.InsetDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.MenuRes;
@@ -29,6 +31,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class IncidentFragment extends Fragment implements View.OnClickListener {
     private final IncidentViewModel viewModel = new IncidentViewModel();
@@ -78,25 +81,38 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                 binding.lottieAnimationView.setAnimation(R.raw.recorder_animation);
                 binding.lottieAnimationView.playAnimation();
             } else {
-                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
+                requestRecordPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
             }
         } else if (id == R.id.image_view_play_pause) {
+//            if (checkStoragePermission(requireContext())) {
             setupMediaPlayer();
-
             binding.imageViewPlayPause.setVisibility(View.GONE);
             binding.lottieAnimationView.setVisibility(View.VISIBLE);
             binding.lottieAnimationView.setAnimation(R.raw.player_animation_1);
             binding.lottieAnimationView.playAnimation();
+//            } else {
+//                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
+//                        Manifest.permission.WRITE_EXTERNAL_STORAGE,};
+//
+//                requestStoragePermissionLauncher.launch(permissions);
+//
+////                requestStoragePermissionLauncher.launch(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+////                        Manifest.permission.READ_EXTERNAL_STORAGE});
+////                requestStoragePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+////                        Manifest.permission.READ_EXTERNAL_STORAGE);
+//            }
         } else if (id == R.id.lottie_animation_view) {
             handler.removeCallbacks(runnable);
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.imageViewPlayPause.setVisibility(View.VISIBLE);
             if (recording) {
-                viewModel.stopRecorder();
-                binding.imageViewPlayPause.setVisibility(View.VISIBLE);
                 recording = false;
+                viewModel.stopRecorder();
             } else if (playing) {
                 //TODO
+                playing = false;
+                viewModel.stopPlaying();
             }
         }
     }
@@ -105,8 +121,9 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         binding.audioRecordView.recreate();
         handler.removeCallbacks(runnable);
         try {
-            viewModel.preparePlayer(requireContext());
             playing = true;
+            viewModel.preparePlayer(requireContext());
+            viewModel.setStartTime(SystemClock.uptimeMillis());
             handler.postDelayed(runnable, 200);
         } catch (IOException e) {
             playing = false;
@@ -121,9 +138,10 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         binding.audioRecordView.recreate();
         handler.removeCallbacks(runnable);
         try {
+            recording = true;
+            viewModel.setPosition(0);
             viewModel.prepareRecorder(requireContext());
             viewModel.setStartTime(SystemClock.uptimeMillis());
-            recording = true;
             handler.postDelayed(runnable, 200);
         } catch (IOException e) {
             recording = false;
@@ -139,15 +157,28 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
     private final Runnable runnable = new Runnable() {
         @SuppressLint("DefaultLocale")
         public void run() {
-            if (recording)
+            if (recording) {
+                viewModel.setAmplitude(viewModel.getMaxAmplitudeRecorder());
                 binding.audioRecordView.update(viewModel.getMaxAmplitudeRecorder());
-            else if (playing)
-                binding.audioRecordView.update(viewModel.getAudioSessionId());
+            } else if (playing) {
+                binding.audioRecordView.update(viewModel.getAmplitudes(viewModel.getPosition()));
+                viewModel.setPosition(viewModel.getPosition() + 1);
+                if (viewModel.getCurrentPosition() == viewModel.getDuration()) {
+                    playing = false;
+                    handler.removeCallbacks(runnable);
+                    binding.imageViewPlayPause.setVisibility(View.VISIBLE);
+                    binding.lottieAnimationView.setVisibility(View.GONE);
+                    binding.audioRecordView.recreate();
+                    viewModel.stopPlaying();
+                    viewModel.setStartTime(SystemClock.uptimeMillis());
+                }
+            }
             viewModel.setLength();
-            handler.postDelayed(this, 200);
+            if (recording || playing)
+                handler.postDelayed(this, 200);
         }
     };
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
+    private final ActivityResultLauncher<String> requestRecordPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
                     success(requireContext(), getString(R.string.voice_recorder_permission_granted)).show();
@@ -155,6 +186,25 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                     error(requireContext(), getString(R.string.voice_recorder_permission_unavailable)).show();
                 }
             });
+
+    //    private final ActivityResultLauncher<String> requestStoragePermissionLauncher =
+//            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+//                if (isGranted) {
+//                    success(requireContext(), getString(R.string.voice_storage_permission_granted)).show();
+//                } else {
+//                    error(requireContext(), getString(R.string.voice_storage_permission_unavailable)).show();
+//                }
+//            });
+    private final ActivityResultLauncher<String[]> requestStoragePermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
+                    new ActivityResultCallback<Map<String, Boolean>>() {
+                        @Override
+                        public void onActivityResult(Map<String, Boolean> result) {
+                            Log.e("here", "onActivityResult");
+                            Log.e("here", result.toString());
+                        }
+                    });
+
 
     private void showMenu(View v, @MenuRes int menuRes) {
         final PopupMenu popup = new PopupMenu(requireActivity(), v, Gravity.TOP);
@@ -186,5 +236,4 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                 });
         popup.show();
     }
-
 }

@@ -12,14 +12,16 @@ import androidx.databinding.Bindable;
 import com.leon.hamrah_abfa.BR;
 import com.leon.hamrah_abfa.R;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class IncidentViewModel extends BaseObservable {
+    private final ArrayList<Integer> amplitudes = new ArrayList<>();
     private long startTime;
     private long currentTime;
     private String length;
+    private int position;
     private MediaRecorder mediaRecorder;
     private MediaPlayer mediaPlayer = new MediaPlayer();
 
@@ -68,14 +70,12 @@ public class IncidentViewModel extends BaseObservable {
     }
 
     public void prepareRecorder(Context context) throws IOException {
-
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
         mediaRecorder.setOutputFile(context.getExternalFilesDir(null).getAbsolutePath() +
                 context.getString(R.string.voice_file_name));
-
         mediaRecorder.prepare();
         mediaRecorder.start();
     }
@@ -93,8 +93,35 @@ public class IncidentViewModel extends BaseObservable {
         mediaPlayer.setDataSource(context.getExternalFilesDir(null).getAbsolutePath() +
                 context.getString(R.string.voice_file_name));
         mediaPlayer.prepare();
+        mediaPlayer.start();
     }
-    public int getAudioSessionId() {
-        return mediaPlayer.getAudioSessionId();
+
+    public void stopPlaying() {
+        mediaPlayer.stop();
+        mediaPlayer.release();
+    }
+
+    public int getAmplitudes(int position) {
+        return amplitudes.get(position);
+    }
+
+    public void setAmplitude(int amplitude) {
+        amplitudes.add(amplitude);
+    }
+
+    public int getDuration() {
+        return mediaPlayer.getDuration();
+    }
+
+    public int getCurrentPosition() {
+        return mediaPlayer.getCurrentPosition();
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }
