@@ -159,16 +159,19 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         public void run() {
             if (recording) {
                 viewModel.setAmplitude(viewModel.getMaxAmplitudeRecorder());
-                binding.audioRecordView.update(viewModel.getMaxAmplitudeRecorder());
+                binding.audioRecordView.update(viewModel.getAmplitudes(viewModel.getAmplitudes().size() - 1));
             } else if (playing) {
-                binding.audioRecordView.update(viewModel.getAmplitudes(viewModel.getPosition()));
-                viewModel.setPosition(viewModel.getPosition() + 1);
+                if (viewModel.getPosition() < viewModel.getAmplitudes().size()) {
+                    binding.audioRecordView.update(viewModel.getAmplitudes(viewModel.getPosition()));
+                    viewModel.setPosition(viewModel.getPosition() + 1);
+                }
                 if (viewModel.getCurrentPosition() == viewModel.getDuration()) {
                     playing = false;
                     handler.removeCallbacks(runnable);
                     binding.imageViewPlayPause.setVisibility(View.VISIBLE);
                     binding.lottieAnimationView.setVisibility(View.GONE);
                     binding.audioRecordView.recreate();
+                    viewModel.setPosition(0);
                     viewModel.stopPlaying();
                     viewModel.setStartTime(SystemClock.uptimeMillis());
                 }
@@ -187,14 +190,6 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                 }
             });
 
-    //    private final ActivityResultLauncher<String> requestStoragePermissionLauncher =
-//            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-//                if (isGranted) {
-//                    success(requireContext(), getString(R.string.voice_storage_permission_granted)).show();
-//                } else {
-//                    error(requireContext(), getString(R.string.voice_storage_permission_unavailable)).show();
-//                }
-//            });
     private final ActivityResultLauncher<String[]> requestStoragePermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(),
                     new ActivityResultCallback<Map<String, Boolean>>() {

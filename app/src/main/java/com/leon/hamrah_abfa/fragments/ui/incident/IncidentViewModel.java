@@ -101,6 +101,10 @@ public class IncidentViewModel extends BaseObservable {
         mediaPlayer.release();
     }
 
+    public ArrayList<Integer> getAmplitudes() {
+        return amplitudes;
+    }
+
     public int getAmplitudes(int position) {
         return amplitudes.get(position);
     }
