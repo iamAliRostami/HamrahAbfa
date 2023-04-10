@@ -31,5 +31,4 @@
         android:layout_alignParentEnd="true"
         android:src="@drawable/setting" />
 
-
 </RelativeLayout>
