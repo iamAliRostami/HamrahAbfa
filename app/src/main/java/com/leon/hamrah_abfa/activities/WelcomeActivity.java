@@ -9,12 +9,11 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.ViewPagerAdapter;
+import com.leon.hamrah_abfa.adapters.WelcomePagerAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityWelcomeBinding;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -31,7 +30,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initialize() {
-        final ViewPagerAdapter adapter = new ViewPagerAdapter(this);
+        final WelcomePagerAdapter adapter = new WelcomePagerAdapter(this);
         binding.viewPagerWelcome.setAdapter(adapter);
         binding.viewPagerWelcome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
