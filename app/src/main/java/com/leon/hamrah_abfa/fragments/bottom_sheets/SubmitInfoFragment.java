@@ -80,6 +80,15 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
         getApplicationComponent().SharedPreferenceModel().putData(NICKNAME.getValue(), nickname);
         getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), card.getDebt());
         getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
+
+//        FragmentManager fm = getFragmentManager();
+//        MainFragment fragm = (MainFragment)fm.findFragmentById(R.id.main_fragment);
+//        fragm.otherList();
+
         dismiss();
+    }
+
+    interface ICallback{
+        void updateCard();
     }
 }
