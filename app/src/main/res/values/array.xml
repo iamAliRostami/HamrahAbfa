@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="menu_home">
+    <string-array name="home_menu">
         <item>@string/pay_bill</item>
         <item>@string/counter_number_submit</item>
         <item>@string/history_usage</item>
@@ -12,7 +12,7 @@
         <item>@string/contact_us</item>
     </string-array>
 
-    <array name="icons_home">
+    <array name="home_icons">
         <item>@drawable/payment</item>
         <item>@drawable/meter</item>
         <item>@drawable/usage_history</item>
@@ -23,4 +23,33 @@
         <item>@drawable/change_number</item>
         <item>@drawable/contact_us</item>
     </array>
+
+    <string-array name="welcome_item_titles">
+        <item>@string/services</item>
+        <item>@string/payment_services</item>
+        <item>@string/dashboard</item>
+        <item>@string/incident</item>
+    </string-array>
+
+    <string-array name="welcome_item_contents">
+        <item>@string/services_help_content</item>
+        <item>@string/payment_services_help_content</item>
+        <item>@string/dashboard_help_content</item>
+        <item>@string/incident_help_content</item>
+    </string-array>
+
+    <integer-array name="welcome_icons">
+        <item>@drawable/help_service</item>
+        <item>@drawable/help_dashboard</item>
+        <item>@drawable/help_payment</item>
+        <item>@drawable/help_accidents</item>
+    </integer-array>
+
+
+    <integer-array name="welcome_bg_colors">
+        <item>@color/purple_7001</item>
+        <item>@color/purple_7001</item>
+        <item>@color/purple_7001</item>
+        <item>@color/purple_7001</item>
+    </integer-array>
 </resources>

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 
@@ -27,10 +28,11 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initialize() {
+        final CardPagerAdapter cardPagerAdapter = new CardPagerAdapter(requireActivity());
+        binding.viewPagerCard.setAdapter(cardPagerAdapter);
 
-
-        final MenuAdapter adapter = new MenuAdapter(requireContext(), new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.menu_home)))
-                , getResources().obtainTypedArray(R.array.icons_home));
+        final MenuAdapter adapter = new MenuAdapter(requireContext(), new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.home_menu)))
+                , getResources().obtainTypedArray(R.array.home_icons));
         binding.gridViewMenu.setAdapter(adapter);
         binding.gridViewMenu.setOnItemClickListener(this);
     }

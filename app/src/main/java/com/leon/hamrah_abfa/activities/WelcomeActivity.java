@@ -50,7 +50,7 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 constraintSet.applyTo(binding.layoutSkip);
                 //TODO
-                binding.layoutSkip.setBackgroundColor(adapter.getBgColors()[position]);
+                binding.layoutSkip.setBackgroundColor(adapter.getBgColors(position));
 
             }
         });

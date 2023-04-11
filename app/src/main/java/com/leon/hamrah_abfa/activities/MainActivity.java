@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     @Override
     public void onAnimationEnd(@NonNull Animator animation) {
         binding.lottieAnimationView.setVisibility(View.GONE);
-        if (/* TODO true || */getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+        if (/*  TODO true ||*/getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         }

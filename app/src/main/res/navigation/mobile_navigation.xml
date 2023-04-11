@@ -12,7 +12,7 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/dashboard"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/navigation_incident"
