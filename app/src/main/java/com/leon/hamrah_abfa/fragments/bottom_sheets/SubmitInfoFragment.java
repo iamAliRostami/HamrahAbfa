@@ -12,15 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
 import com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel;
+import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.toast.RTLToast;
 
 public class SubmitInfoFragment extends BottomSheetDialogFragment implements View.OnClickListener {
     private FragmentSubmitInfoBottomBinding binding;
+    private final CardViewModel viewModel = new CardViewModel();
 
     public SubmitInfoFragment() {
     }
@@ -50,19 +53,18 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (binding.editTextBillId.getText().toString().isEmpty()) {
-
+            if (viewModel.getBillId().isEmpty()) {
                 RTLToast.warning(requireContext(), getString(R.string.enter_bill_id)).show();
             } else {
                 //TODO
                 CardViewModel card = new CardViewModel();
-                if (!binding.editTextAccountTitle.getText().toString().isEmpty())
-                    card.setNickname(binding.editTextAccountTitle.getText().toString());
+                if (!viewModel.getNickname().isEmpty())
+                    card.setNickname(viewModel.getNickname());
                 else
-                    card.setNickname(binding.editTextBillId.getText().toString());
-                card.setBillId(binding.editTextBillId.getText().toString());
-                card.setDebt(Integer.parseInt(binding.editTextBillId.getText().toString()));
-                card.setOwner(binding.editTextBillId.getText().toString());
+                    card.setNickname(viewModel.getBillId());
+                card.setBillId(viewModel.getBillId());
+                card.setDebt(Integer.parseInt(viewModel.getBillId()));
+                card.setOwner(viewModel.getBillId());
 
                 insertData(card);
 
@@ -81,14 +83,12 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
         getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), card.getDebt());
         getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
 
-//        FragmentManager fm = getFragmentManager();
-//        MainFragment fragm = (MainFragment)fm.findFragmentById(R.id.main_fragment);
-//        fragm.otherList();
+        ((HomeFragment) getParentFragment()).updateCard();
 
         dismiss();
     }
 
-    interface ICallback{
+    interface ICallback {
         void updateCard();
     }
 }

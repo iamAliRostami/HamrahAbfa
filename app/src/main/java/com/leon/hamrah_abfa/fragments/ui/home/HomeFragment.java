@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     }
 
-    private void updateCard(){
+    public void updateCard(){
         cardPagerAdapter.update();
     }
     @Override
