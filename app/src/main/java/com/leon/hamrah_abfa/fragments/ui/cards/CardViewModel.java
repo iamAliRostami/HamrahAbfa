@@ -20,6 +20,9 @@ public class CardViewModel extends BaseObservable {
         setDebtString(String.valueOf(getDebt()));
     }
 
+    public CardViewModel() {
+    }
+
     @Bindable
     public String getNickname() {
         return nickname;

@@ -1,8 +1,11 @@
 package com.leon.hamrah_abfa.adapters;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.OWNER;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+
+import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,25 +19,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CardPagerAdapter extends FragmentStateAdapter {
-    //    StringBuilder sb = new StringBuilder();
-//for (int i = 0; i < playlists.length; i++) {
-//        sb.append(playlists[i]).append(",");
-//    }
-//prefsEditor.putString(PLAYLISTS, sb.toString());
     private final ArrayList<String> billIds = new ArrayList<>();
     private final ArrayList<String> nicknames = new ArrayList<>();
     private final ArrayList<String> owners = new ArrayList<>();
 
     public CardPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-        final String billId = getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-        final String nickname = getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue());
-        final String owner = getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue());
-        if (!(billId.isEmpty() || nickname.isEmpty() || owner.isEmpty())) {
-            billIds.addAll(Arrays.asList(billId.split(",")));
-            nicknames.addAll(Arrays.asList(nickname.split(",")));
-            owners.addAll(Arrays.asList(owner.split(",")));
-        }
+        update();
     }
 
     @NonNull
@@ -48,5 +39,18 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     @Override
     public int getItemCount() {
         return Math.min(Math.min(billIds.size(), nicknames.size()), owners.size()) + 1;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void update() {
+        final String billId = getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
+        final String nickname = getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue());
+        final String owner = getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue());
+        if (!(billId.isEmpty() || nickname.isEmpty() || owner.isEmpty())) {
+            billIds.addAll(Arrays.asList(billId.split(",")));
+            nicknames.addAll(Arrays.asList(nickname.split(",")));
+            owners.addAll(Arrays.asList(owner.split(",")));
+        }
+        notifyDataSetChanged();
     }
 }
