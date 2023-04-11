@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.fragments.HelpViewPagerFragment;
+import com.leon.hamrah_abfa.fragments.ui.help.HelpViewPagerFragment;
 
 public class WelcomePagerAdapter extends FragmentStateAdapter {
     private final TypedArray bgColors;

@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.ui.help;
 
 import static android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BACKGROUND_COLOR;
@@ -10,7 +10,6 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.TITLE;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +20,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.databinding.FragmentHelpViewPagerBinding;
-import com.leon.hamrah_abfa.di.view_model.WelcomeViewModel;
 
 public class HelpViewPagerFragment extends Fragment {
-    private final WelcomeViewModel viewModel = new WelcomeViewModel();
+    private final HelpViewModel viewModel = new HelpViewModel();
     private FragmentHelpViewPagerBinding binding;
     public HelpViewPagerFragment() {
     }

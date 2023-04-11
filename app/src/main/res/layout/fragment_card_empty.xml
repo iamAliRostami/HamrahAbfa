@@ -7,7 +7,7 @@
     android:background="@drawable/background_card_empty"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".fragments.CardEmptyFragment">
+    tools:context=".fragments.ui.cards.CardEmptyFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_add"

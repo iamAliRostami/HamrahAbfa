@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.ui.cards;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

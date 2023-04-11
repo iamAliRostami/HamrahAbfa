@@ -1,4 +1,9 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.ui.cards;
+
+import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.DEBT;
+import static com.leon.hamrah_abfa.enums.BundleEnum.NICKNAME;
+import static com.leon.hamrah_abfa.enums.BundleEnum.OWNER;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,22 +18,19 @@ import com.leon.hamrah_abfa.databinding.FragmentCardBinding;
 
 public class CardFragment extends Fragment {
     private FragmentCardBinding binding;
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private CardViewModel viewModel;
 
     public CardFragment() {
-        // Required empty public constructor
     }
 
-    public static CardFragment newInstance(String param1, String param2) {
+    public static CardFragment newInstance(String billId, String nickname, String owner) {
         CardFragment fragment = new CardFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(BILL_ID.getValue(), billId);
+        args.putString(NICKNAME.getValue(), nickname);
+        args.putString(OWNER.getValue(), owner);
+        //TODO
+        args.putInt(DEBT.getValue(), 987654);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,8 +39,10 @@ public class CardFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            viewModel = new CardViewModel(getArguments().getString(OWNER.getValue()),
+                    getArguments().getString(NICKNAME.getValue()),
+                    getArguments().getString(BILL_ID.getValue()),
+                    getArguments().getInt(DEBT.getValue()));
         }
     }
 
@@ -46,6 +50,7 @@ public class CardFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCardBinding.inflate(inflater, container, false);
+        binding.setViewModel(viewModel);
         initialize();
         return binding.getRoot();
     }

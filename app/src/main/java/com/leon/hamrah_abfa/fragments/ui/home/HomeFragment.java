@@ -14,9 +14,6 @@ import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
     private FragmentHomeBinding binding;
 
@@ -31,8 +28,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         final CardPagerAdapter cardPagerAdapter = new CardPagerAdapter(requireActivity());
         binding.viewPagerCard.setAdapter(cardPagerAdapter);
 
-        final MenuAdapter adapter = new MenuAdapter(requireContext(), new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.home_menu)))
-                , getResources().obtainTypedArray(R.array.home_icons));
+        final MenuAdapter adapter = new MenuAdapter(requireContext(), R.array.home_menu, R.array.home_icons);
         binding.gridViewMenu.setAdapter(adapter);
         binding.gridViewMenu.setOnItemClickListener(this);
     }

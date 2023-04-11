@@ -11,16 +11,17 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.MenuHolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MenuAdapter extends BaseAdapter {
-    private final ArrayList<String> titles = new ArrayList<>();
+    private final ArrayList<String> titles;
     private final TypedArray drawable;
     private final LayoutInflater inflater;
 
-    public MenuAdapter(Context context, ArrayList<String> titles, TypedArray drawable) {
+    public MenuAdapter(Context context, int titleIds, int drawableIds) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.titles.addAll(titles);
-        this.drawable = drawable;
+        this.titles = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(titleIds)));
+        this.drawable = context.getResources().obtainTypedArray(drawableIds);
     }
 
     @Override

@@ -10,6 +10,14 @@
         <item>@string/last_bills</item>
         <item>@string/change_number</item>
         <item>@string/contact_us</item>
+
+<!--        <item>@string/contact_us</item>-->
+<!--        <item>@string/contact_us</item>-->
+<!--        <item>@string/contact_us</item>-->
+<!--        <item>@string/contact_us</item>-->
+<!--        <item>@string/contact_us</item>-->
+<!--        <item>@string/contact_us</item>-->
+<!--        <item>@string/contact_us</item>-->
     </string-array>
 
     <array name="home_icons">
@@ -22,6 +30,14 @@
         <item>@drawable/last_bills</item>
         <item>@drawable/change_number</item>
         <item>@drawable/contact_us</item>
+
+<!--        <item>@drawable/contact_us</item>-->
+<!--        <item>@drawable/contact_us</item>-->
+<!--        <item>@drawable/contact_us</item>-->
+<!--        <item>@drawable/contact_us</item>-->
+<!--        <item>@drawable/contact_us</item>-->
+<!--        <item>@drawable/contact_us</item>-->
+<!--        <item>@drawable/contact_us</item>-->
     </array>
 
     <string-array name="welcome_item_titles">

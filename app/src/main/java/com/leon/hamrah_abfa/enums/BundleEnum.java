@@ -1,6 +1,10 @@
 package com.leon.hamrah_abfa.enums;
 
 public enum BundleEnum {
+    NICKNAME("nickname"),
+    OWNER("owner"),
+    BILL_ID("bill_id"),
+    DEBT("debt"),
     MOBILE("mobile"),
     POSITION("position"),
     TITLE("title"),
