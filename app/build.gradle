@@ -109,6 +109,7 @@ dependencies {
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
     implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
     implementation 'com.github.rakshakhegde:stepper-indicator:1.0.6'
+//    implementation 'com.github.zhpanvip:bannerviewpager:3.5.11'
 
     implementation project(':toast')
 }

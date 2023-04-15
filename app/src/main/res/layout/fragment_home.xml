@@ -8,41 +8,25 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout_card"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/large_dp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/large_dp"
+        android:layout_marginBottom="@dimen/large_dp">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_card_empty"
+            android:saveEnabled="false"
+            android:clipChildren="false"
+            android:paddingEnd="@dimen/large_dp"
+            android:paddingStart="@dimen/large_dp"
+            android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_arrow_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/large_dp"
-            android:padding="@dimen/medium_dp"
-            android:src="@drawable/arrow_right"
-            android:tint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@id/view_pager_card"
-            app:layout_constraintStart_toStartOf="@id/view_pager_card"
-            app:layout_constraintTop_toTopOf="@id/view_pager_card" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_arrow_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/large_dp"
-            android:padding="@dimen/medium_dp"
-            android:src="@drawable/arrow_left"
-            android:tint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="@id/view_pager_card"
-            app:layout_constraintEnd_toEndOf="@id/view_pager_card"
-            app:layout_constraintTop_toTopOf="@id/view_pager_card" />
+<!--        android:background="@drawable/background_card_empty"-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridView

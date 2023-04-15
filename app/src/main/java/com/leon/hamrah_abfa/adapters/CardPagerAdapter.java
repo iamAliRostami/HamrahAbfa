@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.adapters;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.OWNER;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;

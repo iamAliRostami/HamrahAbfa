@@ -22,14 +22,19 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
+import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.toast.RTLToast;
 
 
-public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener, View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener,
+        View.OnClickListener, HomeFragment.ICallback,SubmitInfoFragment.ICallback {
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
+
+    private CardPagerAdapter cardPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     private void initialize() {
         //TODO
 //         initializeSplash();
+
+        cardPagerAdapter = new CardPagerAdapter(this);
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
     }
@@ -118,4 +125,17 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         lastClickTime = SystemClock.elapsedRealtime();
     }
 
+    @Override
+    public CardPagerAdapter getCardPagerAdapter() {
+        return cardPagerAdapter;
+    }
+
+    @Override
+    public void updateCard() {
+//        cardPagerAdapter = new CardPagerAdapter(this);
+        cardPagerAdapter.update();
+        final Intent intent = getIntent();
+        finish();
+        startActivity(intent);
+    }
 }
