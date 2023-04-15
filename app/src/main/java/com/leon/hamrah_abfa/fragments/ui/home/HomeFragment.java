@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.fragments.ui.home;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
+import com.leon.toast.RTLToast;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener/*, SubmitInfoFragment.ICallback */ {
     private FragmentHomeBinding binding;
@@ -60,9 +62,15 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         float pageMargin = getResources().getDimensionPixelOffset(R.dimen.large_dp);
         float pageOffset = getResources().getDimensionPixelOffset(R.dimen.medium_dp);
-        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+        float px1 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 getResources().getDimensionPixelOffset(R.dimen.low_dp),
                 getResources().getDisplayMetrics());
+//        RTLToast.success(requireContext(), (int) px1).show();
+
+        DisplayMetrics metrics = this.getResources().getDisplayMetrics();
+        float px = getResources().getDimensionPixelSize(R.dimen.large_dp) * (metrics.densityDpi/160f);
+
+//        RTLToast.info(requireContext(), (int) px).show();
 
 //        binding.viewPagerCard.setPageTransformer((page, position) -> {
 //            int pageWidth = binding.viewPagerCard.getMeasuredWidth() -
@@ -81,6 +89,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         binding.viewPagerCard.setOffscreenPageLimit(1);
         final CompositePageTransformer cpt = new CompositePageTransformer();
+        //TODO
         cpt.addTransformer(new MarginPageTransformer(20));
         cpt.addTransformer((page, position) -> page.setScaleY(0.80f + (1 - Math.abs(position)) * 0.20f));
         binding.viewPagerCard.setPageTransformer(cpt);
