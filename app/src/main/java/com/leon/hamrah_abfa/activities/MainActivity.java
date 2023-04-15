@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     public void updateCard() {
 //        cardPagerAdapter = new CardPagerAdapter(this);
         cardPagerAdapter.update();
-        final Intent intent = getIntent();
-        finish();
-        startActivity(intent);
+//        final Intent intent = getIntent();
+//        finish();
+//        startActivity(intent);
     }
 }
