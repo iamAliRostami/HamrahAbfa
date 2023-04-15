@@ -16,7 +16,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_light_1"
         android:padding="@dimen/large_dp">
 
         <androidx.appcompat.widget.AppCompatImageView

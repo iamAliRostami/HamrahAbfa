@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
+import com.leon.hamrah_abfa.adapters.CardPagerAdapter2;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 import com.leon.toast.RTLToast;
@@ -41,6 +42,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initializeViewPager() {
+        callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
 //        try {
 //        }catch (Exception e){
@@ -117,6 +119,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     public interface ICallback {
-        CardPagerAdapter getCardPagerAdapter();
+        CardPagerAdapter2 getCardPagerAdapter();
+
+        void createCardPagerAdapter();
     }
 }
