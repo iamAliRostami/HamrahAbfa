@@ -18,6 +18,6 @@ public class ServiceActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-
+binding.stepper.setCurrentStep(2);
     }
 }
