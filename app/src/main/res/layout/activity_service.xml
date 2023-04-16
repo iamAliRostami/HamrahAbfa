@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ServiceActivity">
+
     <com.badoualy.stepperindicator.StepperIndicator
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:stpi_stepCount="3"/>
+        android:layout_margin="@dimen/large_dp"
+        app:stpi_stepCount="3" />
 </RelativeLayout>

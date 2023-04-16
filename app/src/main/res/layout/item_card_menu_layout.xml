@@ -31,13 +31,9 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/low_dp"
+            style="@style/TextItem"
             android:text="@string/app_name"
             android:textAllCaps="true"
-            android:textSize="@dimen/text_size_small"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

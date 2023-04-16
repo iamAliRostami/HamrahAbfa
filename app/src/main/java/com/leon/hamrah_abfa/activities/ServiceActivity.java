@@ -1,16 +1,23 @@
 package com.leon.hamrah_abfa.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.leon.hamrah_abfa.R;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 
 public class ServiceActivity extends AppCompatActivity {
+    private ActivityServiceBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service);
+        binding = ActivityServiceBinding.inflate(getLayoutInflater());
+        initialize();
+        setContentView(binding.getRoot());
+    }
+
+    private void initialize() {
+
     }
 }
