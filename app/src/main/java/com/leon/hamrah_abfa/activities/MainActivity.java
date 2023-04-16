@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
 // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
+        final ImageView imageViewSetting = findViewById(R.id.image_view_setting);
+        imageViewSetting.setOnClickListener(this);
+        final ImageView imageViewNotification = findViewById(R.id.image_view_notification);
+        imageViewNotification.setOnClickListener(this);
     }
 
     private void initializeBottomSheet() {
@@ -114,6 +119,11 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         final int id = v.getId();
         if (id == R.id.float_button_add) {
             SubmitInfoFragment.newInstance().show(getSupportFragmentManager(), SUBMIT_INFO.getValue());
+        } else if (id == R.id.image_view_setting) {
+            final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.image_view_notification) {
+
         }
     }
 
