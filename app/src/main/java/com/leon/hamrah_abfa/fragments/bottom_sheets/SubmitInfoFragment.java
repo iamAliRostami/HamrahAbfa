@@ -1,9 +1,9 @@
 package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import android.app.Activity;
@@ -72,31 +72,25 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
                     }
                 }
                 //TODO
-                final CardViewModel card = new CardViewModel();
-                if (!viewModel.getNickname().isEmpty())
-                    card.setNickname(viewModel.getNickname());
-                else
-                    card.setNickname(viewModel.getBillId());
-                card.setBillId(viewModel.getBillId());
-                card.setDebt(Integer.parseInt(viewModel.getBillId()));
-                card.setOwner(viewModel.getBillId());
-
-                insertData(card);
+                if (viewModel.getNickname() == null || viewModel.getNickname().isEmpty())
+                    viewModel.setNickname(viewModel.getBillId());
+                viewModel.setDebt(Integer.parseInt(viewModel.getBillId()));
+                viewModel.setOwner(viewModel.getBillId());
+                insertData();
 
             }
         }
     }
 
-    private void insertData(CardViewModel card) {
-        final String billId = getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(card.getBillId()).concat(",");
-        final String nickname = getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue()).concat(card.getNickname()).concat(",");
-        final String owner = getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue()).concat(card.getOwner()).concat(",");
+    private void insertData() {
+        final String billId = getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(viewModel.getBillId()).concat(",");
+        final String nickname = getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue()).concat(viewModel.getNickname()).concat(",");
+        final String owner = getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue()).concat(viewModel.getOwner()).concat(",");
 
         getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
         getApplicationComponent().SharedPreferenceModel().putData(NICKNAME.getValue(), nickname);
-        getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), card.getDebt());
+        getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), viewModel.getDebt());
         getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
-
         if (callback != null)
             callback.updateCard();
         dismiss();

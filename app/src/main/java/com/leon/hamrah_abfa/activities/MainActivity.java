@@ -6,7 +6,6 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent
 
 import android.animation.Animator;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,7 +22,7 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.CardPagerAdapter2;
+import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
 
-    private CardPagerAdapter2 cardPagerAdapter;
+    private CardPagerAdapter cardPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +48,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     private void initialize() {
-        //TODO
+//TODO
 //         initializeSplash();
-
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
     }
@@ -127,29 +124,25 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     @Override
-    public CardPagerAdapter2 getCardPagerAdapter() {
+    public CardPagerAdapter getCardPagerAdapter() {
         return cardPagerAdapter;
     }
 
     @Override
     public void updateCard() {
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            fragmentManager.beginTransaction().detach(new HomeFragment()).commitNow();
-//            fragmentManager.beginTransaction().attach(this).commitNow();
-//        } else {
-//            fragmentManager.beginTransaction().detach(this).attach(this).commit();
-//        }
+        final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_activity_main);
+        if (navHostFragment != null) {
+            final NavController navController = navHostFragment.getNavController();
+            navController.popBackStack(R.id.navigation_home, true);
+            navController.navigate(R.id.navigation_home);
 
-//        cardPagerAdapter = new CardPagerAdapter(this);
-        cardPagerAdapter.update();
-//        final Intent intent = getIntent();
-//        finish();
-//        startActivity(intent);
+        }
+        initializeBottomSheet();
     }
 
     @Override
     public void createCardPagerAdapter() {
-        cardPagerAdapter = new CardPagerAdapter2(this);
+        cardPagerAdapter = new CardPagerAdapter(this);
     }
 }

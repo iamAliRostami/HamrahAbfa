@@ -18,14 +18,16 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
-import com.leon.hamrah_abfa.adapters.CardPagerAdapter2;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
-import com.leon.toast.RTLToast;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener/*, SubmitInfoFragment.ICallback */ {
     private FragmentHomeBinding binding;
     private ICallback callback;
+
+    public static Fragment newInstance() {
+        return new HomeFragment();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,11 +46,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private void initializeViewPager() {
         callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
-//        try {
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-        //TODO
         binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -70,7 +67,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 //        RTLToast.success(requireContext(), (int) px1).show();
 
         DisplayMetrics metrics = this.getResources().getDisplayMetrics();
-        float px = getResources().getDimensionPixelSize(R.dimen.large_dp) * (metrics.densityDpi/160f);
+        float px = getResources().getDimensionPixelSize(R.dimen.large_dp) * (metrics.densityDpi / 160f);
 
 //        RTLToast.info(requireContext(), (int) px).show();
 
@@ -91,7 +88,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         binding.viewPagerCard.setOffscreenPageLimit(1);
         final CompositePageTransformer cpt = new CompositePageTransformer();
-        //TODO
         cpt.addTransformer(new MarginPageTransformer(20));
         cpt.addTransformer((page, position) -> page.setScaleY(0.80f + (1 - Math.abs(position)) * 0.20f));
         binding.viewPagerCard.setPageTransformer(cpt);
@@ -100,11 +96,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     }
-
-//    @Override
-//    public void updateCard() {
-//        cardPagerAdapter.update();
-//    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -119,7 +110,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     public interface ICallback {
-        CardPagerAdapter2 getCardPagerAdapter();
+        CardPagerAdapter getCardPagerAdapter();
 
         void createCardPagerAdapter();
     }
