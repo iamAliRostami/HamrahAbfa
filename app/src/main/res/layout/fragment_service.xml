@@ -25,5 +25,5 @@
         android:layout_below="@id/view_pager_card"
         android:layout_margin="@dimen/large_dp"
         android:nestedScrollingEnabled="true"
-        tools:listitem="@layout/item_services_main" />
+        tools:listitem="@layout/item_service_main" />
 </RelativeLayout>

@@ -30,7 +30,7 @@ public class ServicesMainAdapter extends RecyclerView.Adapter<ServiceMainHolder>
     @NonNull
     @Override
     public ServiceMainHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = inflater.inflate(R.layout.item_services_main,parent,false);
+        final View view = inflater.inflate(R.layout.item_service_main,parent,false);
         return new ServiceMainHolder(view);
     }
 

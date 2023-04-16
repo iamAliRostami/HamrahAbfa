@@ -33,6 +33,9 @@
         android:theme="@style/Theme.HamrahAbfa.NoActionBar"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".activities.ServiceActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SettingActivity"
             android:exported="false" />
         <activity

@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.fragments.ui.services;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.activities.ServiceActivity;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.ServicesMainAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
@@ -90,7 +92,9 @@ public class ServiceFragment extends Fragment {
     }
 
     private void itemClick(View view, int position) {
+        final Intent intent = new Intent(view.getContext(), ServiceActivity.class);
 
+        startActivity(intent);
     }
 
     @Override

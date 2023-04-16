@@ -42,7 +42,7 @@ public class ServicesMainAdapterOld extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        if (view == null) view = inflater.inflate(R.layout.item_services_main, parent, false);
+        if (view == null) view = inflater.inflate(R.layout.item_service_main, parent, false);
         final ServiceMainHolder holder = new ServiceMainHolder(view);
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
