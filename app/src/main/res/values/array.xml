@@ -13,15 +13,28 @@
     </string-array>
 
     <array name="home_icons">
-        <item>@drawable/payment</item>
-        <item>@drawable/meter</item>
-        <item>@drawable/usage_history</item>
-        <item>@drawable/protest</item>
-        <item>@drawable/cart</item>
-        <item>@drawable/request</item>
-        <item>@drawable/last_bills</item>
-        <item>@drawable/change_number</item>
-        <item>@drawable/contact_us</item>
+        <item>@drawable/home_payment</item>
+        <item>@drawable/home_meter</item>
+        <item>@drawable/home_usage_history</item>
+        <item>@drawable/home_protest</item>
+        <item>@drawable/home_cart</item>
+        <item>@drawable/home_request</item>
+        <item>@drawable/home_last_bills</item>
+        <item>@drawable/home_change_number</item>
+        <item>@drawable/home_contact_us</item>
+    </array>
+
+
+    <string-array name="services_main_menu">
+        <item>@string/account_sale</item>
+        <item>@string/ab_baha</item>
+        <item>@string/service_after_sale</item>
+    </string-array>
+
+    <array name="services_main_icons">
+        <item>@drawable/service_main_account_sale</item>
+        <item>@drawable/service_main_ab_baha</item>
+        <item>@drawable/service_main_after_sale</item>
     </array>
 
     <string-array name="setting_menu">

@@ -27,11 +27,13 @@ import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
+import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.toast.RTLToast;
 
 
 public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener,
-        View.OnClickListener, HomeFragment.ICallback, SubmitInfoFragment.ICallback {
+        View.OnClickListener, HomeFragment.ICallback, SubmitInfoFragment.ICallback,
+        ServiceFragment.ICallback {
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
 
