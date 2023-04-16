@@ -7,8 +7,19 @@
     tools:context=".activities.ServiceActivity">
 
     <com.badoualy.stepperindicator.StepperIndicator
+        android:id="@+id/stepper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_dp"
         app:stpi_stepCount="3" />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_services"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/stepper"
+        android:background="@color/gray_light_1"
+        app:defaultNavHost="true" />
 </RelativeLayout>
