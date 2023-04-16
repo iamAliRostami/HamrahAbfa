@@ -21,7 +21,7 @@ import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener/*, SubmitInfoFragment.ICallback */ {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
     private FragmentHomeBinding binding;
     private ICallback callback;
 

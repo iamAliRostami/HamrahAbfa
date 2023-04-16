@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,17 +14,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:padding="@dimen/large_dp"
+        android:src="@drawable/ic_back" />
+
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/card_view_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/huge_dp"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/huge_dp"
-        android:src="@drawable/insert_mobile"
-        app:layout_constraintBottom_toTopOf="@id/card_view_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/setting_large" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"
@@ -37,59 +43,17 @@
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/huge_dp"
         android:layout_marginEnd="@dimen/huge_dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         card_view:cardElevation="@dimen/medium_dp">
 
-        <RelativeLayout
+        <GridView
+            android:id="@+id/grid_view_menu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_dp"
-            android:layout_marginBottom="@dimen/huge_dp"
-            android:padding="@dimen/large_dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_title"
-                style="@style/Title"
-                android:layout_alignParentTop="true"
-                android:labelFor="@id/edit_text_mobile"
-                android:text="@string/enter_mobile_title" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/medium_dp"
-                android:layout_toEndOf="@id/text_view_title"
-                android:padding="@dimen/low_dp"
-                android:src="@drawable/arrow_left" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_layout_mobile"
-                style="@style/TextInputLayout"
-                android:layout_below="@id/text_view_title"
-                android:layout_marginTop="@dimen/huge_dp"
-                android:layout_marginBottom="@dimen/huge_dp"
-                android:hint="@string/phone_number"
-                app:counterMaxLength="11"
-                app:helperText="@string/enter_account"
-                app:placeholderText="@string/mobile_hint">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_mobile"
-                    style="@style/TextInput"
-                    android:inputType="phone"
-                    android:maxLength="11" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_layout_mobile"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/huge_dp"
-                android:background="@drawable/circular"
-                android:padding="@dimen/large_dp"
-                android:src="@drawable/arrow_left_button" />
-        </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/large_dp"
+            android:horizontalSpacing="@dimen/medium_dp"
+            android:nestedScrollingEnabled="true"
+            android:numColumns="2"
+            android:verticalSpacing="@dimen/medium_dp"
+            tools:listitem="@layout/item_card_menu_layout" />
     </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,32 +17,30 @@
         android:id="@+id/image_view_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_margin="@dimen/huge_dp"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/huge_dp"
-        android:src="@drawable/confirm_code"
-        app:layout_constraintBottom_toTopOf="@id/card_view_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/confirm_code" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"
         style="@style/CardViewBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/image_view_logo"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginStart="@dimen/huge_dp"
         android:layout_marginEnd="@dimen/huge_dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         card_view:cardElevation="@dimen/medium_dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_dp"
-            android:layout_marginBottom="@dimen/huge_dp"
             android:padding="@dimen/large_dp">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -79,9 +77,9 @@
                 android:text="@string/mobile_hint" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/image_view_edit"
                 android:layout_below="@id/text_view_tip"
                 android:layout_marginStart="@dimen/medium_dp"
                 android:layout_toEndOf="@id/text_view_mobile"
@@ -127,8 +125,8 @@
                     android:layout_marginStart="@dimen/huge_dp"
                     android:layout_marginEnd="@dimen/medium_dp"
                     android:padding="@dimen/low_dp"
-                    android:visibility="gone"
-                    android:src="@drawable/arrow_right" />
+                    android:src="@drawable/arrow_right"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/text_view_try_again"
@@ -153,9 +151,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_submit"
                 style="@style/ButtonSubmit"
-                android:layout_below="@id/relative_layout_counter"
+                android:layout_alignParentBottom="true"
                 android:text="@string/submit" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

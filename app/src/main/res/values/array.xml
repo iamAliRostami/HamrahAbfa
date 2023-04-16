@@ -10,14 +10,6 @@
         <item>@string/last_bills</item>
         <item>@string/change_number</item>
         <item>@string/contact_us</item>
-
-<!--        <item>@string/contact_us</item>-->
-<!--        <item>@string/contact_us</item>-->
-<!--        <item>@string/contact_us</item>-->
-<!--        <item>@string/contact_us</item>-->
-<!--        <item>@string/contact_us</item>-->
-<!--        <item>@string/contact_us</item>-->
-<!--        <item>@string/contact_us</item>-->
     </string-array>
 
     <array name="home_icons">
@@ -30,14 +22,24 @@
         <item>@drawable/last_bills</item>
         <item>@drawable/change_number</item>
         <item>@drawable/contact_us</item>
+    </array>
 
-<!--        <item>@drawable/contact_us</item>-->
-<!--        <item>@drawable/contact_us</item>-->
-<!--        <item>@drawable/contact_us</item>-->
-<!--        <item>@drawable/contact_us</item>-->
-<!--        <item>@drawable/contact_us</item>-->
-<!--        <item>@drawable/contact_us</item>-->
-<!--        <item>@drawable/contact_us</item>-->
+    <string-array name="setting_menu">
+        <item>@string/active_devices</item>
+        <item>@string/change_theme</item>
+        <item>@string/help</item>
+        <item>@string/update</item>
+        <item>@string/share</item>
+        <item>@string/exit</item>
+    </string-array>
+
+    <array name="setting_icons">
+        <item>@drawable/setting_active_device</item>
+        <item>@drawable/setting_change_theme</item>
+        <item>@drawable/setting_help</item>
+        <item>@drawable/setting_update</item>
+        <item>@drawable/setting_share</item>
+        <item>@drawable/setting_logout</item>
     </array>
 
     <string-array name="welcome_item_titles">
