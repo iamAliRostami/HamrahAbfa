@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
@@ -17,9 +17,10 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.ServicesMainAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentServiceBinding;
 
-public class ServiceFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class ServiceFragment extends Fragment {
     private FragmentServiceBinding binding;
 
     private ICallback callback;
@@ -46,9 +47,25 @@ public class ServiceFragment extends Fragment implements AdapterView.OnItemClick
 
     private void initialize() {
         initializeViewPager();
-        final ServicesMainAdapter adapter = new ServicesMainAdapter(requireContext(), R.array.services_main_menu, R.array.services_main_icons);
-        binding.gridViewMenu.setAdapter(adapter);
-        binding.gridViewMenu.setOnItemClickListener(this);
+        initializeRecyclerView();
+    }
+
+    private void initializeRecyclerView() {
+        binding.recyclerViewMenu.setAdapter(new ServicesMainAdapter(requireContext(),
+                R.array.services_main_menu, R.array.services_main_icons));
+        binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.recyclerViewMenu.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(),
+                binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                itemClick(view, position);
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     private void initializeViewPager() {
@@ -72,8 +89,7 @@ public class ServiceFragment extends Fragment implements AdapterView.OnItemClick
         binding.viewPagerCard.setPageTransformer(cpt);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    private void itemClick(View view, int position) {
 
     }
 

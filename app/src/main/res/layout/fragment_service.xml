@@ -18,15 +18,12 @@
         android:paddingEnd="@dimen/large_dp"
         android:saveEnabled="false" />
 
-    <GridView
-        android:id="@+id/grid_view_menu"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutDirection="rtl"
         android:layout_below="@id/view_pager_card"
         android:layout_margin="@dimen/large_dp"
-        android:horizontalSpacing="@dimen/medium_dp"
         android:nestedScrollingEnabled="true"
-        android:verticalSpacing="@dimen/medium_dp"
         tools:listitem="@layout/item_services_main" />
 </RelativeLayout>
