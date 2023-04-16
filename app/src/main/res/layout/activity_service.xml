@@ -11,11 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/large_dp"
-        app:stpi_circleColor="@color/gray_200"
-        app:stpi_lineColor="@color/teal_200"
-        app:stpi_lineDoneColor="@color/purple_7002"
+        app:stpi_indicatorColor="#9C27B0"
+        app:stpi_circleColor="#8BC34A"
+        app:stpi_lineColor="#00BCD4"
+        app:stpi_lineDoneColor="#FFC107"
+        app:stpi_useBottomIndicatorWithStepColors="true"
         app:stpi_stepCount="3" />
 
+<!--    app:stpi_stepsCircleColors="@color/green_500"-->
+<!--    app:stpi_stepsIndicatorColors="#3F51B5"-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_services"
         android:name="androidx.navigation.fragment.NavHostFragment"
