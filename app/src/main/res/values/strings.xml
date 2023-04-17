@@ -86,4 +86,8 @@
     <string name="account_sale">فروش انشعاب</string>
     <string name="ab_baha">آب بها</string>
     <string name="service_after_sale">خدمات پس از فروش</string>
+
+    <string name="service_introduce">معرفی خدمت</string>
+    <string name="service_submit">ثبت درخواست</string>
+    <string name="service_confirm">تایید نهایی</string>
 </resources>

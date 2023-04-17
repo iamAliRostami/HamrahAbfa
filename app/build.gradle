@@ -110,7 +110,15 @@ dependencies {
     implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
     implementation 'com.github.rakshakhegde:stepper-indicator:1.0.6'
 //    implementation 'com.params.stepview:stepview:1.0.2'
+//    implementation 'com.github.seasox:android-material-stepper:2.4.0-alpha'
+//    implementation 'com.stepstone.stepper:material-stepper:2.3.2'
+    implementation 'com.github.seasox:android-material-stepper:2.4.0-alpha'
+//    implementation 'com.shuhart.stepview:stepview:1.5.1'
 
-
+//    implementation 'com.kofigyan.stateprogressbar:stateprogressbar:1.0.0'
+    implementation 'com.google.guava:guava:27.0.1-android'
+    implementation 'com.github.YablokovDmitry:StateViewPager:v1.1'
+//    implementation 'com.github.acefalobi:android-stepper:0.3.0'
+    implementation 'com.github.shuhart:stepview:1.5.1'
     implementation project(':toast')
 }

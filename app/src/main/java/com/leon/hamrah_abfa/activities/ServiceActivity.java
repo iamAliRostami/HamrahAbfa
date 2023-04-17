@@ -28,6 +28,8 @@ public class ServiceActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-        binding.stepper.setCurrentStep(1);
+        binding.fragmentServices.setOnClickListener(v ->
+                binding.stepper.go(binding.stepper.getCurrentStep() + 1, true));
+
     }
 }
