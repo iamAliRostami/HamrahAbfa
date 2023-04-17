@@ -1,5 +1,8 @@
 package com.leon.hamrah_abfa.fragments.ui.services;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -93,7 +96,8 @@ public class ServiceFragment extends Fragment {
 
     private void itemClick(View view, int position) {
         final Intent intent = new Intent(view.getContext(), ServiceActivity.class);
-
+        intent.putExtra(BILL_ID.getValue(), callback.getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(SERVICE_TYPE.getValue(), position);
         startActivity(intent);
     }
 
@@ -113,5 +117,7 @@ public class ServiceFragment extends Fragment {
         CardPagerAdapter getCardPagerAdapter();
 
         void createCardPagerAdapter();
+
+        String getCurrentBillId(int position);
     }
 }

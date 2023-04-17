@@ -4,6 +4,7 @@ public interface ISharedPreferenceManager {
     void putData(String key, String value);
 
     void putData(String key, int value);
+    void putData(String key, long value);
 
     void putData(String key, boolean value);
 
@@ -20,4 +21,6 @@ public interface ISharedPreferenceManager {
     boolean checkIsNotEmpty(String key);
 
     boolean checkIsNotEmpty(String key, boolean b);
+
+    long getLongData(String key);
 }

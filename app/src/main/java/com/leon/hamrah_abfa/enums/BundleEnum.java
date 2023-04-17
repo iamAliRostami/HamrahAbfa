@@ -4,6 +4,7 @@ public enum BundleEnum {
     NICKNAME("nickname"),
     OWNER("owner"),
     BILL_ID("bill_id"),
+    SERVICE_TYPE("service_type"),
     DEBT("debt"),
     MOBILE("mobile"),
     POSITION("position"),

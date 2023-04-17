@@ -44,8 +44,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentSubmitInfoBottomBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
         initialize();
@@ -63,8 +62,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
             if (viewModel.getBillId().isEmpty()) {
                 RTLToast.warning(requireContext(), getString(R.string.enter_bill_id)).show();
             } else {
-                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getApplicationComponent()
-                        .SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
+                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
                 for (int i = 0; i < billIds.size(); i++) {
                     if (billIds.get(i).equals(viewModel.getBillId())) {
                         RTLToast.warning(requireContext(), getString(R.string.bill_id_repeatitive)).show();
@@ -91,8 +89,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
         getApplicationComponent().SharedPreferenceModel().putData(NICKNAME.getValue(), nickname);
         getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), viewModel.getDebt());
         getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
-        if (callback != null)
-            callback.updateCard();
+        if (callback != null) callback.updateCard();
         dismiss();
     }
 

@@ -31,13 +31,21 @@ public class SharedPreferenceModel implements ISharedPreferenceManager {
         return appPrefs != null;
     }
 
+
+    @Override
+    public void putData(String key, long value) {
+        final SharedPreferences.Editor prefsEditor = appPrefs.edit();
+        prefsEditor.putLong(key, value);
+        prefsEditor.apply();
+    }
+
     @Override
     public void putData(String key, int value) {
         final SharedPreferences.Editor prefsEditor = appPrefs.edit();
         prefsEditor.putInt(key, value);
         prefsEditor.apply();
-
     }
+
 
     @Override
     public void putData(String key, String data) {
@@ -61,6 +69,11 @@ public class SharedPreferenceModel implements ISharedPreferenceManager {
     @Override
     public int getIntData(String key) {
         return appPrefs.getInt(key, 1);
+    }
+
+    @Override
+    public long getLongData(String key) {
+        return appPrefs.getLong(key, 0);
     }
 
     @Override

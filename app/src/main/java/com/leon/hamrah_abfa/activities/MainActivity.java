@@ -156,4 +156,9 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     public void createCardPagerAdapter() {
         cardPagerAdapter = new CardPagerAdapter(this);
     }
+
+    @Override
+    public String getCurrentBillId(int position) {
+        return cardPagerAdapter.getCurrentBillId(position);
+    }
 }

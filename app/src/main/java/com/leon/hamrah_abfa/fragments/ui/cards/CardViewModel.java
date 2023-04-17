@@ -10,7 +10,7 @@ public class CardViewModel extends BaseObservable {
     private String nickname;
     private String billId;
     private String debtString;
-    private int debt;
+    private long debt;
 
     public CardViewModel(String owner, String nickname, String billId, int debt) {
         setOwner(owner);
@@ -63,11 +63,11 @@ public class CardViewModel extends BaseObservable {
         notifyPropertyChanged(BR.debtString);
     }
 
-    public int getDebt() {
+    public long getDebt() {
         return debt;
     }
 
-    public void setDebt(int debt) {
+    public void setDebt(long debt) {
         this.debt = debt;
     }
 }

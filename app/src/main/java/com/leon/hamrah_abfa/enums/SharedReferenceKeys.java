@@ -2,12 +2,14 @@ package com.leon.hamrah_abfa.enums;
 
 public enum SharedReferenceKeys {
     ACCOUNT("account"),
-    BILL_ID("bill_id_111111111111111111111111111111"),
+    BILL_ID("bill_id_1111111111111111111111111111"),
 
-    OWNER("owner_111111111111111111111111111111"),
-    NICKNAME("nickname_111111111111111111111111111111"),
-    DEBT("debt_111111111111111111111111111111"),
+    OWNER("owner_1111111111111111111111111111"),
+    NICKNAME("nickname_1111111111111111111111111111"),
+    DEBT("debt_1111111111111111111111111111"),
+    DEFAULT_BILL_ID("default_bill_id"),
     IS_FIRST("is_first_111111111111111111");
+
 
     private final String value;
 
