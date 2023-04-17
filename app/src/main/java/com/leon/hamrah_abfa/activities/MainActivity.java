@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         ServiceFragment.ICallback {
     private long lastClickTime = 0;
     private ActivityMainBinding binding;
-
     private CardPagerAdapter cardPagerAdapter;
 
     @Override
@@ -77,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         bottomBarBackground.setShapeAppearanceModel(
                 bottomBarBackground.getShapeAppearanceModel()
                         .toBuilder()
-//                        .setAllCorners(new RoundedCornerTreatment()).setAllCornerSizes(new RelativeCornerSize(0.5f))
                         .setTopLeftCorner(new RoundedCornerTreatment()).setTopLeftCornerSize(new RelativeCornerSize(0.5f))
                         .setTopRightCorner(new RoundedCornerTreatment()).setTopRightCornerSize(new RelativeCornerSize(0.5f))
                         .build());
@@ -125,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
             startActivity(intent);
         } else if (id == R.id.image_view_notification) {
-
         }
     }
 
@@ -147,11 +144,12 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
                 .findFragmentById(R.id.nav_host_fragment_activity_main);
         if (navHostFragment != null) {
             final NavController navController = navHostFragment.getNavController();
-            navController.popBackStack(R.id.navigation_home, true);
-            navController.navigate(R.id.navigation_home);
-
+            if (navController.getCurrentDestination() != null) {
+                final int i = navController.getCurrentDestination().getId();
+                navController.popBackStack(i, true);
+                navController.navigate(i);
+            }
         }
-        initializeBottomSheet();
     }
 
     @Override
