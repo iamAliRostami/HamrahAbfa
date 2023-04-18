@@ -57,8 +57,18 @@ public class ServiceIntroductionFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        adapter = new ServicesIntroductionAdapter(requireContext(),
-                R.array.services_sale_menu, R.array.services_sale_introduction, R.array.services_sale_icons);
+        switch (serviceType) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 0:
+            default:
+                adapter = new ServicesIntroductionAdapter(requireContext(), R.array.services_sale_menu,
+                        R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons, serviceType);
+                break;
+        }
+
         binding.recyclerViewMenu.setAdapter(adapter);
         binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewMenu.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(),

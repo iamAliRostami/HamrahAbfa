@@ -20,15 +20,19 @@ import java.util.Collections;
 public class ServicesIntroductionAdapter extends RecyclerView.Adapter<ServiceIntroductionHolder> {
     private final ArrayList<String> titles;
     private final ArrayList<String> introduction;
-    private final TypedArray drawable;
-    private final LayoutInflater inflater;
     private final ArrayList<Integer> selectedServices;
-//    private final ArrayList<Integer> servicesId;
+    private final int[] servicesId;
+    private final LayoutInflater inflater;
+    private final TypedArray drawable;
+    private final int serviceType;
 
-    public ServicesIntroductionAdapter(Context context, int titleIds, int introductionIds, int drawableIds) {
+    public ServicesIntroductionAdapter(Context context, int titleIds, int introductionIds,
+                                       int serviceId, int drawableIds, int serviceType) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.serviceType = serviceType;
         this.titles = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(titleIds)));
         this.introduction = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(introductionIds)));
+        this.servicesId = context.getResources().getIntArray(serviceId);
         this.selectedServices = new ArrayList<>(Collections.nCopies(titles.size(), 0));
         this.drawable = context.getResources().obtainTypedArray(drawableIds);
     }
@@ -64,7 +68,19 @@ public class ServicesIntroductionAdapter extends RecyclerView.Adapter<ServiceInt
 
     @SuppressLint("NotifyDataSetChanged")
     public void updateSelectedService(int position) {
-        selectedServices.set(position, selectedServices.get(position) == 0 ? 1 : 0);
+        switch (serviceType) {
+            case 2:
+                selectedServices.set(position, selectedServices.get(position) == 0 ? servicesId[position] : 0);
+                break;
+            case 1:
+            case 0:
+            default:
+                selectedServices.clear();
+                selectedServices.addAll(Collections.nCopies(titles.size(), 0));
+                selectedServices.set(position, servicesId[position]);
+                int i = 0;
+                break;
+        }
         notifyItemChanged(position);
     }
 }
