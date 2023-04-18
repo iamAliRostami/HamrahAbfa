@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ServicesMainAdapter extends RecyclerView.Adapter<ServiceMainHolder> {
-
     private final ArrayList<String> titles;
     private final TypedArray drawable;
     private final LayoutInflater inflater;

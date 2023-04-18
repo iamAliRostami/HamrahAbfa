@@ -65,7 +65,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
                 final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
                 for (int i = 0; i < billIds.size(); i++) {
                     if (billIds.get(i).equals(viewModel.getBillId())) {
-                        RTLToast.warning(requireContext(), getString(R.string.bill_id_repeatitive)).show();
+                        RTLToast.warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
                         return;
                     }
                 }

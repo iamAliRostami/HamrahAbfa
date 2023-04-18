@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ServiceActivity;
@@ -27,7 +26,6 @@ import com.leon.hamrah_abfa.databinding.FragmentServiceBinding;
 
 public class ServiceFragment extends Fragment {
     private FragmentServiceBinding binding;
-
     private ICallback callback;
 
     public ServiceFragment() {
@@ -72,21 +70,9 @@ public class ServiceFragment extends Fragment {
             }
         }));
     }
-
     private void initializeViewPager() {
         callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
-        binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-            }
-        });
         binding.viewPagerCard.setOffscreenPageLimit(1);
         final CompositePageTransformer cpt = new CompositePageTransformer();
         cpt.addTransformer(new MarginPageTransformer(20));

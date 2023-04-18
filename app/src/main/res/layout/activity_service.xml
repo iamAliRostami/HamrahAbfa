@@ -41,4 +41,5 @@
         android:layout_below="@id/stepper"
         android:background="@color/gray_light_1"
         app:defaultNavHost="true" />
+
 </RelativeLayout>

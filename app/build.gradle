@@ -105,10 +105,9 @@ dependencies {
     androidTestImplementation "android.arch.persistence.room:testing:$arch_version"
 
     implementation "com.airbnb.android:lottie:6.0.0"
+    implementation 'com.github.shuhart:stepview:1.5.1'
     implementation 'com.yandex.android:mobmetricalib:5.3.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
     implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
-
-    implementation 'com.github.shuhart:stepview:1.5.1'
     implementation project(':toast')
 }

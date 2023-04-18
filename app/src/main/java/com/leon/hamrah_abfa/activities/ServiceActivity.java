@@ -7,7 +7,9 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
+import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 
 public class ServiceActivity extends AppCompatActivity {
     private int serviceType;
@@ -30,6 +32,7 @@ public class ServiceActivity extends AppCompatActivity {
     private void initialize() {
         binding.fragmentServices.setOnClickListener(v ->
                 binding.stepper.go(binding.stepper.getCurrentStep() + 1, true));
-
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_services, ServiceIntroductionFragment.newInstance(billId, serviceType)).commit();
+//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_services, ServiceIntroductionFragment.newInstance(billId, serviceType)).commit();
     }
 }
