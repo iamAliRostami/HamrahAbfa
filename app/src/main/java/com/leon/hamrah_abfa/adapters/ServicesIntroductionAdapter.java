@@ -78,9 +78,10 @@ public class ServicesIntroductionAdapter extends RecyclerView.Adapter<ServiceInt
                 selectedServices.clear();
                 selectedServices.addAll(Collections.nCopies(titles.size(), 0));
                 selectedServices.set(position, servicesId[position]);
-                int i = 0;
+                for (int i = 0; i < selectedServices.size(); i++)
+                    notifyItemChanged(i);
                 break;
         }
-        notifyItemChanged(position);
+//        notifyItemChanged(position);
     }
 }
