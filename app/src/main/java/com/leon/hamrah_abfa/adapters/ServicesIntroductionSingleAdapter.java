@@ -1,0 +1,67 @@
+package com.leon.hamrah_abfa.adapters;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+
+import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionHolder;
+import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
+
+import java.util.ArrayList;
+
+public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseAdapter {
+    private Integer selectedServices = null;
+
+    public ServicesIntroductionSingleAdapter(Context context, int titleIds, int introductionIds,
+                                             int serviceId, int drawableIds) {
+        super(context, titleIds, introductionIds, serviceId, drawableIds);
+    }
+
+    @NonNull
+    @Override
+    public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        final View view;
+        if (selectedServices != null && selectedServices == viewType)
+            view = inflater.inflate(R.layout.item_service_selected, parent, false);
+        else
+            view = inflater.inflate(R.layout.item_service, parent, false);
+        return new ServiceIntroductionHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ServiceIntroductionHolder holder, int position) {
+        holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
+        holder.textViewTitle.setText(titles.get(position));
+        if (selectedServices != null && selectedServices == position)
+            holder.textViewIntroduction.setText(introduction.get(position));
+    }
+
+    @Override
+    public void updateSelectedService(int position) {
+        if (selectedServices == null) {
+            selectedServices = position;
+        } else if (selectedServices == position) {
+            selectedServices = null;
+        } else {
+            final int temp = selectedServices;
+            selectedServices = position;
+            notifyItemChanged(temp);
+        }
+        notifyItemChanged(position);
+    }
+
+    @Override
+    public ArrayList<Integer> selectedServiceId() {
+        return new ArrayList<>(servicesId[selectedServices]);
+    }
+
+    @Override
+    public ArrayList<String> selectedServiceTitle() {
+        final ArrayList<String> selectedServicesTitle = new ArrayList<>();
+        selectedServicesTitle.add(titles.get(selectedServices));
+        return selectedServicesTitle;
+    }
+}

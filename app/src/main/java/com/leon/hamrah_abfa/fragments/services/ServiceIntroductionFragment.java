@@ -12,13 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.leon.hamrah_abfa.Computer;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.ServicesIntroductionAdapter;
+import com.leon.hamrah_abfa.adapters.ServicesIntroductionMultiAdapter;
+import com.leon.hamrah_abfa.adapters.ServicesIntroductionSingleAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentServiceIntroductionBinding;
+import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
 
-public class ServiceIntroductionFragment extends Fragment {
-    private ServicesIntroductionAdapter adapter;
+public class ServiceIntroductionFragment extends Fragment implements View.OnClickListener {
+    private ServicesIntroductionBaseAdapter adapter;
     private FragmentServiceIntroductionBinding binding;
     private int serviceType;
     private String billId;
@@ -27,8 +30,8 @@ public class ServiceIntroductionFragment extends Fragment {
     }
 
     public static ServiceIntroductionFragment newInstance(String billId, int serviceType) {
-        ServiceIntroductionFragment fragment = new ServiceIntroductionFragment();
-        Bundle args = new Bundle();
+        final ServiceIntroductionFragment fragment = new ServiceIntroductionFragment();
+        final Bundle args = new Bundle();
         args.putString(BILL_ID.getValue(), billId);
         args.putInt(SERVICE_TYPE.getValue(), serviceType);
         fragment.setArguments(args);
@@ -54,18 +57,25 @@ public class ServiceIntroductionFragment extends Fragment {
 
     private void initialize() {
         initializeRecyclerView();
+        binding.buttonSubmit.setOnClickListener(this);
     }
 
     private void initializeRecyclerView() {
+        Computer comp = new Computer.ComputerBuilder(
+                "500 GB", "2 GB").setBluetoothEnabled(true)
+                .setGraphicsCardEnabled(true).build();
+
         switch (serviceType) {
             case 1:
+                adapter = new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_sale_menu,
+                        R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons);
                 break;
             case 2:
                 break;
             case 0:
             default:
-                adapter = new ServicesIntroductionAdapter(requireContext(), R.array.services_sale_menu,
-                        R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons, serviceType);
+                adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_sale_menu,
+                        R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons);
                 break;
         }
 
@@ -83,5 +93,13 @@ public class ServiceIntroductionFragment extends Fragment {
 
             }
         }));
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.button_submit) {
+
+        }
     }
 }

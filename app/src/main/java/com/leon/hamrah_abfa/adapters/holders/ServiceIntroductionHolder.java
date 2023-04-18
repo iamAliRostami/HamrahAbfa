@@ -17,9 +17,9 @@ public class ServiceIntroductionHolder extends RecyclerView.ViewHolder {
 
     public ServiceIntroductionHolder(View view) {
         super(view);
+        cardView = view.findViewById(R.id.contribute_card);
         imageViewLogo = view.findViewById(R.id.image_view_icon);
         textViewTitle = view.findViewById(R.id.text_view_title);
         textViewIntroduction = view.findViewById(R.id.text_view_introduction);
-        cardView = view.findViewById(R.id.contribute_card);
     }
 }
