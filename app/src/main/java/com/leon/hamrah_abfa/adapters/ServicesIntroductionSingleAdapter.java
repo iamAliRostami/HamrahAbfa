@@ -55,11 +55,17 @@ public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseA
 
     @Override
     public ArrayList<Integer> selectedServiceId() {
-        return new ArrayList<>(servicesId[selectedServices]);
+        if (selectedServices == null)
+            return new ArrayList<>();
+        final ArrayList<Integer> selectedServicesId = new ArrayList<>();
+        selectedServicesId.add(servicesId[selectedServices]);
+        return selectedServicesId;
     }
 
     @Override
     public ArrayList<String> selectedServiceTitle() {
+        if (selectedServices == null)
+            return new ArrayList<>();
         final ArrayList<String> selectedServicesTitle = new ArrayList<>();
         selectedServicesTitle.add(titles.get(selectedServices));
         return selectedServicesTitle;

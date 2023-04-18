@@ -9,9 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
+import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 
-public class ServiceActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback {
     private int serviceType;
     private String billId;
     private ActivityServiceBinding binding;
@@ -32,7 +35,13 @@ public class ServiceActivity extends AppCompatActivity {
     private void initialize() {
         binding.fragmentServices.setOnClickListener(v ->
                 binding.stepper.go(binding.stepper.getCurrentStep() + 1, true));
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_services, ServiceIntroductionFragment.newInstance(billId, serviceType)).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_services, ServiceIntroductionFragment.newInstance(serviceType)).commit();
 //        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_services, ServiceIntroductionFragment.newInstance(billId, serviceType)).commit();
+    }
+
+    @Override
+    public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
+        binding.stepper.go(1, true);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_services, ServiceFormFragment.newInstance(billId, billId)).commit();
     }
 }
