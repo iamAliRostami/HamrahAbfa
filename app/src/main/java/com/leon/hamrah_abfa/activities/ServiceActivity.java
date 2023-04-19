@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
@@ -43,6 +42,6 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
         binding.stepper.go(1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceFormFragment.newInstance(billId)).commit();
+                ServiceFormFragment.newInstance(billId, serviceType)).commit();
     }
 }

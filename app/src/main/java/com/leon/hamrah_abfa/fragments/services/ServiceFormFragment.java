@@ -20,10 +20,11 @@ public class ServiceFormFragment extends Fragment {
     public ServiceFormFragment() {
     }
 
-    public static ServiceFormFragment newInstance(String billId) {
+    public static ServiceFormFragment newInstance(String billId,int serviceType) {
         final ServiceFormFragment fragment = new ServiceFormFragment();
         final Bundle args = new Bundle();
         args.putString(BILL_ID.getValue(), billId);
+        args.putInt(SERVICE_TYPE.getValue(), serviceType);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,5 +48,6 @@ public class ServiceFormFragment extends Fragment {
     }
 
     private void initialize() {
+        binding.imageViewIcon.setImageDrawable(viewModel.getDrawable());
     }
 }

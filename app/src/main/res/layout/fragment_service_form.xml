@@ -42,16 +42,18 @@
                         android:id="@+id/image_view_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@drawable/service_main_ab_baha"
                         android:padding="@dimen/medium_dp" />
 
+<!--                    app:imageResource="@{viewModel.iconDrawable}"-->
                     <!--                    android:src="@{viewModel.iconDrawable}"-->
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/Title"
                         android:layout_above="@id/view"
                         android:layout_alignParentTop="true"
                         android:layout_toEndOf="@id/image_view_icon"
-                        android:text="@{viewModel.title}"
-                        android:gravity="center" />
+                        android:gravity="center"
+                        android:text="@{viewModel.title}" />
 
                     <View
                         android:id="@+id/view"
@@ -73,8 +75,8 @@
                             android:id="@+id/edit_text_mobile"
                             style="@style/TextInput"
                             android:inputType="phone"
-                            android:text="@={viewModel.mobile}"
-                            android:maxLength="11" />
+                            android:maxLength="11"
+                            android:text="@={viewModel.mobile}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -84,13 +86,14 @@
                         android:layout_marginTop="@dimen/medium_dp"
                         android:hint="@string/bill_id"
                         app:counterMaxLength="13">
-<!--                        android:text="@={viewModel.billId}"-->
+                        <!--                        android:text="@={viewModel.billId}"-->
                         <!--min 5-->
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edit_text_bill_id"
                             style="@style/TextInput"
                             android:inputType="number"
-                            android:maxLength="13" />
+                            android:maxLength="13"
+                            android:text="@={viewModel.billId}" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </RelativeLayout>
             </androidx.core.widget.NestedScrollView>

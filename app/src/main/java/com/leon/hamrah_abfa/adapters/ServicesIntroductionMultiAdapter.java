@@ -52,7 +52,7 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
         final ArrayList<Integer> selectedServicesId = new ArrayList<>();
         for (int i : this.selectedServicesId) {
             if (i != 0)
-                selectedServicesId.add(servicesId[i]);
+                selectedServicesId.add(i);
         }
         return selectedServicesId;
     }
