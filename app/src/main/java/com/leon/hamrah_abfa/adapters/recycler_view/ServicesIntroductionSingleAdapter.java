@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.adapters;
+package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
 import android.view.View;
@@ -25,7 +25,7 @@ public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseA
     public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view;
         if (selectedServices != null && selectedServices == viewType)
-            view = inflater.inflate(R.layout.item_service_selected, parent, false);
+            view = inflater.inflate(R.layout.item_service_collapsed, parent, false);
         else
             view = inflater.inflate(R.layout.item_service, parent, false);
         return new ServiceIntroductionHolder(view);

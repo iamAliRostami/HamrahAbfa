@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.ServicesIntroductionMultiAdapter;
-import com.leon.hamrah_abfa.adapters.ServicesIntroductionSingleAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionMultiAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionSingleAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentServiceIntroductionBinding;
 import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
@@ -27,7 +27,6 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     private ServicesIntroductionBaseAdapter adapter;
     private FragmentServiceIntroductionBinding binding;
     private int serviceType;
-    //    private String billId;
     private ICallback serviceActivity;
 
     public ServiceIntroductionFragment() {
@@ -36,7 +35,6 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     public static ServiceIntroductionFragment newInstance(int serviceType) {
         final ServiceIntroductionFragment fragment = new ServiceIntroductionFragment();
         final Bundle args = new Bundle();
-//        args.putString(BILL_ID.getValue(), billId);
         args.putInt(SERVICE_TYPE.getValue(), serviceType);
         fragment.setArguments(args);
         return fragment;
@@ -46,7 +44,6 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-//            billId = getArguments().getString(BILL_ID.getValue());
             serviceType = getArguments().getInt(SERVICE_TYPE.getValue());
         }
     }

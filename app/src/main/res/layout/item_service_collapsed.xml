@@ -14,7 +14,6 @@
     app:cardCornerRadius="@dimen/medium_dp">
 
     <RelativeLayout
-        android:background="@drawable/background_service_introduction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -30,7 +29,8 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_title"
             style="@style/TextItem"
-            android:layout_centerVertical="true"
+            android:layout_above="@id/divider"
+            android:layout_alignParentTop="true"
             android:layout_toStartOf="@id/image_view_arrow"
             android:layout_toEndOf="@id/image_view_icon"
             android:text="@string/app_name"
@@ -40,11 +40,27 @@
             android:id="@+id/image_view_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@id/divider"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:padding="@dimen/large_dp"
-            android:src="@drawable/arrow_down"
+            android:src="@drawable/arrow_up"
             android:tint="@color/gray_200" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/small_dp"
+            android:layout_below="@id/image_view_icon"
+            android:background="@color/gray_light_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_introduction"
+            style="@style/TextItem"
+            android:layout_width="match_parent"
+            android:layout_below="@id/divider"
+            android:text="@string/services_help_content"
+            android:textAllCaps="true" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
