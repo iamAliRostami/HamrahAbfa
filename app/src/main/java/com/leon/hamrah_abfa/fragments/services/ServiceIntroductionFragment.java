@@ -5,7 +5,6 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     private FragmentServiceIntroductionBinding binding;
     private int serviceType;
     //    private String billId;
-    private ICallback callback;
+    private ICallback serviceActivity;
 
     public ServiceIntroductionFragment() {
     }
@@ -102,7 +101,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (!adapter.selectedServiceId().isEmpty()) {
-                callback.submitServices(adapter.selectedServiceId(), adapter.selectedServiceTitle());
+                serviceActivity.submitServices(adapter.selectedServiceId(), adapter.selectedServiceTitle());
             } else {
                 RTLToast.warning(requireContext(), R.string.choose_a_service).show();
             }
@@ -112,7 +111,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) callback = (ICallback) context;
+        if (context instanceof Activity) serviceActivity = (ICallback) context;
     }
 
     public interface ICallback {

@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.services;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +15,7 @@ import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
 
 public class ServiceFormFragment extends Fragment {
     private FragmentServiceFormBinding binding;
-    private ServicesFormViewModel viewModel = new ServicesFormViewModel();
+    private ServicesFormViewModel viewModel;
 
     public ServiceFormFragment() {
     }
@@ -31,7 +32,8 @@ public class ServiceFormFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            viewModel.setBillId(getArguments().getString(BILL_ID.getValue()));
+            viewModel = new ServicesFormViewModel(requireContext(),getArguments().getInt(SERVICE_TYPE.getValue()),
+                    getArguments().getString(BILL_ID.getValue()));
         }
     }
 
@@ -43,5 +45,7 @@ public class ServiceFormFragment extends Fragment {
         initialize();
         return binding.getRoot();
     }
-    private void initialize(){}
+
+    private void initialize() {
+    }
 }

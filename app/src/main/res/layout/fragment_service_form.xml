@@ -8,17 +8,116 @@
             type="com.leon.hamrah_abfa.fragments.services.ServicesFormViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.services.ServiceFormFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linear_layout_buttons"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/large_dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/medium_dp"
+            card_view:cardElevation="@dimen/medium_dp">
 
-    </FrameLayout>
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/medium_dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/medium_dp" />
+
+                    <!--                    android:src="@{viewModel.iconDrawable}"-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_above="@id/view"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/image_view_icon"
+                        android:text="@{viewModel.title}"
+                        android:gravity="center" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/small_dp"
+                        android:layout_below="@id/image_view_icon"
+                        android:background="@color/gray_light_1" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_mobile"
+                        style="@style/TextInputLayout"
+                        android:layout_below="@id/view"
+                        android:layout_marginTop="@dimen/medium_dp"
+                        android:hint="@string/phone_number"
+                        app:counterMaxLength="11"
+                        app:placeholderText="@string/mobile_hint">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_text_mobile"
+                            style="@style/TextInput"
+                            android:inputType="phone"
+                            android:text="@={viewModel.mobile}"
+                            android:maxLength="11" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_bill_id"
+                        style="@style/TextInputLayout"
+                        android:layout_below="@id/text_layout_mobile"
+                        android:layout_marginTop="@dimen/medium_dp"
+                        android:hint="@string/bill_id"
+                        app:counterMaxLength="13">
+<!--                        android:text="@={viewModel.billId}"-->
+                        <!--min 5-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_text_bill_id"
+                            style="@style/TextInput"
+                            android:inputType="number"
+                            android:maxLength="13" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+            </androidx.core.widget.NestedScrollView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/medium_dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonSubmit"
+                android:layout_width="wrap_content"
+                android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
+                android:text="@string/go_continue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_previous"
+                style="@style/ButtonCancel"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
+                android:text="@string/previous" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
 </layout>

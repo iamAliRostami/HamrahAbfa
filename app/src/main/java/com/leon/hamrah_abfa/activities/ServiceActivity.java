@@ -42,6 +42,7 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     @Override
     public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
         binding.stepper.go(1, true);
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(), ServiceFormFragment.newInstance(billId)).commit();
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                ServiceFormFragment.newInstance(billId)).commit();
     }
 }

@@ -43,6 +43,14 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
+    <style name="ButtonCancel">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:background">@drawable/background_white_blue</item>
+    </style>
+
     <style name="CardViewBottom" parent="@style/Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
         </item>

@@ -94,19 +94,19 @@
                 android:layout_marginTop="@dimen/huge_dp"
                 android:gravity="center">
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_4"
                     style="@style/InputVerificationCode" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_3"
                     style="@style/InputVerificationCode" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_2"
                     style="@style/InputVerificationCode" />
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_text_1"
                     style="@style/InputVerificationCode" />
             </androidx.appcompat.widget.LinearLayoutCompat>

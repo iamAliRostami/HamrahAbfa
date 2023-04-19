@@ -1,14 +1,16 @@
 package com.leon.hamrah_abfa.fragments;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -20,8 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.activities.MainActivity;
 import com.leon.hamrah_abfa.databinding.FragmentVerificationCodeBinding;
+import com.leon.hamrah_abfa.enums.SharedReferenceKeys;
+import com.leon.hamrah_abfa.helpers.MyApplication;
 
 public class VerificationCodeFragment extends Fragment implements View.OnClickListener,
         TextWatcher, View.OnKeyListener {
@@ -83,8 +86,8 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
             else if (s == binding.editText3.getEditableText())
                 binding.editText4.requestFocus();
             else if (s == binding.editText4.getEditableText()) {
-               final InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                final InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 binding.buttonSubmit.requestFocus();
             }
     }
@@ -92,11 +95,11 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_DEL) {
-            if (binding.editText2.getText().length() < 1) {
+            if (TextUtils.isEmpty(binding.editText2.getText())) {
                 binding.editText1.requestFocus();
-            } else if (binding.editText3.getText().length() < 1) {
+            } else if (TextUtils.isEmpty(binding.editText3.getText())) {
                 binding.editText2.requestFocus();
-            } else if (binding.editText4.getText().length() < 1) {
+            } else if (TextUtils.isEmpty(binding.editText4.getText())) {
                 binding.editText3.requestFocus();
             }
         }
@@ -115,7 +118,8 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
             if (checkInputs()) {
 //                final Intent intent = new Intent(requireContext(), MainActivity.class);
 //                startActivity(intent);
-                //TODO
+                //TODO call new api
+                getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(),submitActivity.getMobile() );
                 requireActivity().finish();
             }
         } else if (id == R.id.image_view_edit) {
@@ -125,16 +129,16 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
 
     private boolean checkInputs() {
         boolean cancel = false;
-        if (binding.editText1.getText().toString().isEmpty()) {
+        if (TextUtils.isEmpty(binding.editText1.getText())) {
             cancel = true;
             binding.editText1.requestFocus();
-        } else if (binding.editText2.getText().toString().isEmpty()) {
+        } else if (TextUtils.isEmpty(binding.editText2.getText())) {
             cancel = true;
             binding.editText2.requestFocus();
-        } else if (binding.editText3.getText().toString().isEmpty()) {
+        } else if (TextUtils.isEmpty(binding.editText3.getText())) {
             cancel = true;
             binding.editText3.requestFocus();
-        } else if (binding.editText4.getText().toString().isEmpty()) {
+        } else if (TextUtils.isEmpty(binding.editText4.getText())) {
             cancel = true;
             binding.editText4.requestFocus();
         }
