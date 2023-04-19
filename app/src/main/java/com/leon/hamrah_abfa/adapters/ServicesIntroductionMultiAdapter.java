@@ -60,8 +60,8 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
     @Override
     public ArrayList<String> selectedServiceTitle() {
         final ArrayList<String> selectedServicesTitle = new ArrayList<>();
-        for (int i : this.selectedServicesId) {
-            if (i != 0)
+        for (int i = 0; i < this.titles.size(); i++) {
+            if (this.selectedServicesId.get(i) != 0)
                 selectedServicesTitle.add(titles.get(i));
         }
         return selectedServicesTitle;
