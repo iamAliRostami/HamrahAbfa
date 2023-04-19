@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.adapters;
+package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
 import android.view.View;
