@@ -6,7 +6,6 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -27,13 +26,7 @@ public class ServicesFormViewModel extends BaseObservable {
         setBillId(billId);
         setMobile(getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
-//        setIconDrawable(R.drawable.help);
         setIconDrawable(context.getResources().obtainTypedArray(R.array.services_main_icons));
-
-//        final int[] servicesId = context.getResources().getIntArray(R.array.services_sale_id);
-//        Log.e("id 1", String.valueOf(context.getResources().getIntArray(R.array.services_main_icons)[(getServiceType())]));
-//        Log.e("id 2", String.valueOf(R.drawable.service_main_account_sale));
-//        setIconDrawable(context.getResources().getIntArray(R.array.services_main_icons)[(getServiceType())]);
     }
 
     @Bindable
@@ -95,6 +88,7 @@ public class ServicesFormViewModel extends BaseObservable {
         this.iconDrawable = iconDrawable;
         notifyPropertyChanged(BR.iconDrawable);
     }
+
     @Bindable
     public Drawable getDrawable() {
         return iconDrawable.getDrawable(getServiceType());

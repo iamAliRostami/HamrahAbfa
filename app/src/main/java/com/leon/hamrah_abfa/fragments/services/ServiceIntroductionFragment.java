@@ -67,11 +67,12 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     private void initializeRecyclerView() {
         switch (serviceType) {
             case 1:
-                //TODO
-                adapter = new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_sale_menu,
-                        R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons);
+                adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
+                        R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons);
                 break;
             case 2:
+                adapter = new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
+                        R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons);
                 //TODO
                 break;
             case 0:
