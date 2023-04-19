@@ -35,13 +35,13 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     private void initialize() {
         binding.fragmentServices.setOnClickListener(v ->
                 binding.stepper.go(binding.stepper.getCurrentStep() + 1, true));
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_services, ServiceIntroductionFragment.newInstance(serviceType)).commit();
-//        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_services, ServiceIntroductionFragment.newInstance(billId, serviceType)).commit();
+        getSupportFragmentManager().beginTransaction().add(binding.fragmentServices.getId(),
+                ServiceIntroductionFragment.newInstance(serviceType)).commit();
     }
 
     @Override
     public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
         binding.stepper.go(1, true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_services, ServiceFormFragment.newInstance(billId, billId)).commit();
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(), ServiceFormFragment.newInstance(billId)).commit();
     }
 }

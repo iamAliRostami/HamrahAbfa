@@ -37,20 +37,16 @@ public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFrag
     @Override
     public void displayView(int position) {
         final String tag = Integer.toString(position);
-//        final Fragment fragment = getSupportFragmentManager().findFragmentByTag(tag);
-//        if (isLogin.length == 0 && fragment != null && fragment.isVisible()) return;
         final FragmentManager fragmentManager = getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //        fragmentTransaction.setCustomAnimations(R.animator.enter, R.animator.exit,
 //                R.animator.pop_enter, R.animator.pop_exit);
         fragmentTransaction.replace(binding.containerBody.getId(), getFragment(position), tag);
-        // Home fragment is not added to the stack
         if (position != SUBMIT_PHONE_FRAGMENT) {
             fragmentTransaction.addToBackStack(null);
         }
         fragmentTransaction.commitAllowingStateLoss();
         runOnUiThread(() -> getFragmentManager().executePendingTransactions());
-//        getFragmentManager().executePendingTransactions();
     }
 
     @Override

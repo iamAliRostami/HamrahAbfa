@@ -68,10 +68,12 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     private void initializeRecyclerView() {
         switch (serviceType) {
             case 1:
+                //TODO
                 adapter = new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_sale_menu,
                         R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons);
                 break;
             case 2:
+                //TODO
                 break;
             case 0:
             default:
