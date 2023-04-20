@@ -14,8 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
-import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionMultiAdapter2;
+import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionMultiAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionSingleAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentServiceIntroductionBinding;
 import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
@@ -25,10 +24,9 @@ import java.util.ArrayList;
 
 public class ServiceIntroductionFragment extends Fragment implements View.OnClickListener {
     private ServicesIntroductionBaseAdapter adapter;
-    private RecyclerItemClickListener listener;
     private FragmentServiceIntroductionBinding binding;
-    private int serviceType;
     private ICallback serviceActivity;
+    private int serviceType;
 
     public ServiceIntroductionFragment() {
     }
@@ -63,43 +61,24 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     }
 
     private void initializeRecyclerView() {
-        listener = new RecyclerItemClickListener(requireContext(),
-                binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                adapter.updateSelectedService(position);
-//                binding.recyclerViewMenu.setAdapter(adapter);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-        });
-
         switch (serviceType) {
             case 2:
-                adapter = new ServicesIntroductionMultiAdapter2(requireContext(), R.array.services_after_sale_menu,
+                adapter = new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
                         R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons);
                 //TODO
                 break;
             case 1:
                 adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
                         R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons);
-//                binding.recyclerViewMenu.addOnItemTouchListener(listener);
                 break;
             case 0:
             default:
-//                adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_after_sale_menu,
-//                        R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons);
                 adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_sale_menu,
                         R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons);
-//                binding.recyclerViewMenu.addOnItemTouchListener(listener);
                 break;
         }
         binding.recyclerViewMenu.setAdapter(adapter);
         binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
-//        binding.recyclerViewMenu.addOnItemTouchListener(listener);
     }
 
     @Override
