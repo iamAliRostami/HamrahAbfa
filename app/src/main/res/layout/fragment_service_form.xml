@@ -43,10 +43,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/medium_dp"
-                        android:src="@drawable/service_main_ab_baha" />
+                        app:imageResource="@{viewModel.srcIcon}" />
 
-                    <!--                    app:imageResource="@{viewModel.iconDrawable}"-->
-                    <!--                    android:src="@{viewModel.iconDrawable}"-->
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/Title"
                         android:layout_above="@id/view"
@@ -117,12 +115,12 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <org.osmdroid.views.MapView
-                        android:background="@color/purple_7001"
                         android:id="@+id/map_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/text_layout_address"
                         android:layout_marginTop="@dimen/medium_dp"
+                        android:background="@color/purple_7001"
                         android:hint="@string/address" />
                 </RelativeLayout>
             </androidx.core.widget.NestedScrollView>

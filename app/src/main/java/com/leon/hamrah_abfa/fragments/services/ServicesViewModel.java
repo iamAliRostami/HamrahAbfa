@@ -6,6 +6,7 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -21,6 +22,7 @@ public class ServicesViewModel extends BaseObservable {
     private String title;
     private int serviceType;
     private TypedArray iconDrawable;
+    private int srcIcon;
 
     public ServicesViewModel(Context context, int serviceType, String billId) {
         setBillId(billId);
@@ -28,6 +30,7 @@ public class ServicesViewModel extends BaseObservable {
         setMobile(getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
         setIconDrawable(context.getResources().obtainTypedArray(R.array.services_main_icons));
+        setSrcIcon(iconDrawable.getResourceId(getServiceType(), -1));
     }
 
     @Bindable
@@ -103,5 +106,15 @@ public class ServicesViewModel extends BaseObservable {
     public void setAddress(String address) {
         this.address = address;
         notifyPropertyChanged(BR.address);
+    }
+
+    @Bindable
+    public int getSrcIcon() {
+        return srcIcon;
+    }
+
+    public void setSrcIcon(int srcIcon) {
+        this.srcIcon = srcIcon;
+        notifyPropertyChanged(BR.srcIcon);
     }
 }
