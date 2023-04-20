@@ -29,15 +29,12 @@
             app:cardCornerRadius="@dimen/medium_dp"
             card_view:cardElevation="@dimen/medium_dp">
 
-            <androidx.core.widget.NestedScrollView
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/medium_dp"
-                android:layout_marginStart="@dimen/medium_dp"
-                android:layout_marginBottom="@dimen/medium_dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <RelativeLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -50,83 +47,86 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/Title"
-                        android:layout_above="@id/view"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/image_view_icon"
-                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:text="@{viewModel.title}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <View
-                        android:id="@+id/view"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/small_dp"
-                        android:layout_below="@id/image_view_icon"
-                        android:background="@color/gray_light_1" />
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/small_dp"
+                    android:layout_below="@id/image_view_icon"
+                    android:background="@color/gray_light_1" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_mobile"
-                        style="@style/TextInputLayout"
-                        android:layout_below="@id/view"
-                        android:layout_marginTop="@dimen/medium_dp"
-                        android:hint="@string/phone_number"
-                        app:counterMaxLength="11"
-                        app:placeholderText="@string/mobile_hint">
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_dp"
+                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:layout_marginBottom="@dimen/medium_dp">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_mobile"
-                            style="@style/TextInput"
-                            android:inputType="phone"
-                            android:maxLength="11"
-                            android:text="@={viewModel.mobile}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_bill_id"
-                        style="@style/TextInputLayout"
-                        android:layout_below="@id/text_layout_mobile"
-                        android:layout_marginTop="@dimen/medium_dp"
-                        android:hint="@string/bill_id"
-                        app:counterMaxLength="13">
-                        <!--                        android:text="@={viewModel.billId}"-->
-                        <!--min 5-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_bill_id"
-                            style="@style/TextInput"
-                            android:inputType="number"
-                            android:maxLength="13"
-                            android:text="@={viewModel.billId}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_address"
-                        style="@style/TextInputLayout"
-                        android:layout_below="@id/text_layout_bill_id"
-                        android:layout_marginTop="@dimen/medium_dp"
-                        android:hint="@string/address">
-                        <!--                        android:text="@={viewModel.billId}"-->
-                        <!--min 5-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_address"
-                            style="@style/TextInput"
-                            android:gravity="top"
-                            android:inputType="textMultiLine"
-                            android:lines="3"
-                            android:maxLength="13"
-                            android:maxLines="3"
-                            android:text="@={viewModel.address}" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <org.osmdroid.views.MapView
-                        android:id="@+id/map_view"
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/text_layout_address"
-                        android:layout_marginTop="@dimen/medium_dp"
-                        android:background="@color/purple_7001"
-                        android:hint="@string/address" />
-                </RelativeLayout>
-            </androidx.core.widget.NestedScrollView>
+                        android:orientation="vertical">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_mobile"
+                            style="@style/TextInputLayout"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:hint="@string/phone_number"
+                            app:counterMaxLength="11"
+                            app:placeholderText="@string/mobile_hint">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_mobile"
+                                style="@style/TextInput"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:text="@={viewModel.mobile}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_bill_id"
+                            style="@style/TextInputLayout"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:hint="@string/bill_id"
+                            app:counterMaxLength="13">
+                            <!--                        android:text="@={viewModel.billId}"-->
+                            <!--min 5-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_bill_id"
+                                style="@style/TextInput"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:text="@={viewModel.billId}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_address"
+                            style="@style/TextInputLayout"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:hint="@string/address">
+                            <!--min 5-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_address"
+                                style="@style/TextInput"
+                                android:gravity="top"
+                                android:inputType="textMultiLine"
+                                android:lines="3"
+                                android:maxLength="13"
+                                android:maxLines="3"
+                                android:text="@={viewModel.address}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <org.osmdroid.views.MapView
+                            android:id="@+id/map_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_dp" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.LinearLayoutCompat
