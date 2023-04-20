@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 public class ServiceIntroductionFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceIntroductionBinding binding;
-    private ServicesIntroductionBaseAdapter adapter;
     private ICallback serviceActivity;
     private int serviceType;
 
@@ -61,23 +60,25 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     }
 
     private void initializeRecyclerView() {
-        switch (serviceType) {
-            case 2:
-                adapter = new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
-                        R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons);
-                //TODO
-                break;
-            case 1:
-                adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
-                        R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons);
-                break;
-            case 0:
-            default:
-                adapter = new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_sale_menu,
-                        R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons);
-                break;
+        if (serviceActivity.getAdapter() == null) {
+            //TODO
+            switch (serviceType) {
+                case 2:
+                    serviceActivity.setAdapter(new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
+                            R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons));
+                    break;
+                case 1:
+                    serviceActivity.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
+                            R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons));
+                    break;
+                case 0:
+                default:
+                    serviceActivity.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_sale_menu,
+                            R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons));
+                    break;
+            }
         }
-        binding.recyclerViewMenu.setAdapter(adapter);
+        binding.recyclerViewMenu.setAdapter(serviceActivity.getAdapter());
         binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
@@ -85,8 +86,8 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (!adapter.selectedServiceId().isEmpty()) {
-                serviceActivity.submitServices(adapter.selectedServiceId(), adapter.selectedServiceTitle());
+            if (!serviceActivity.getAdapter().selectedServiceId().isEmpty()) {
+                serviceActivity.submitServices(serviceActivity.getAdapter().selectedServiceId(), serviceActivity.getAdapter().selectedServiceTitle());
             } else {
                 RTLToast.warning(requireContext(), R.string.choose_a_service).show();
             }
@@ -101,5 +102,9 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
 
     public interface ICallback {
         void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle);
+
+        ServicesIntroductionBaseAdapter getAdapter();
+
+        void setAdapter(ServicesIntroductionBaseAdapter adapter);
     }
 }

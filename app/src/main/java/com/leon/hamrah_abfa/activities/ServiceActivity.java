@@ -10,13 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
+import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
 
 import java.util.ArrayList;
 
-public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback {
+public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback,
+        ServiceFormFragment.ICallback {
     private int serviceType;
     private String billId;
     private ActivityServiceBinding binding;
+    private ServicesIntroductionBaseAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,5 +46,27 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
         binding.stepper.go(1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                 ServiceFormFragment.newInstance(billId, serviceType)).commit();
+    }
+
+    @Override
+    public ServicesIntroductionBaseAdapter getAdapter() {
+        return adapter;
+    }
+
+    @Override
+    public void setAdapter(ServicesIntroductionBaseAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+    @Override
+    public void submitUserInfo() {
+
+    }
+
+    @Override
+    public void goServices() {
+        binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                ServiceIntroductionFragment.newInstance(serviceType)).commit();
     }
 }
