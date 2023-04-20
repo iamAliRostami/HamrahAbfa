@@ -4,20 +4,24 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
+import com.leon.toast.RTLToast;
 
 import java.util.ArrayList;
 
 public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback,
         ServiceFormFragment.ICallback {
     private ServicesViewModel viewModel;
+    private long lastClickTime = 0;
     private ActivityServiceBinding binding;
     private ServicesIntroductionBaseAdapter adapter;
 
@@ -74,5 +78,12 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
         binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                 ServiceIntroductionFragment.newInstance()).commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
+        RTLToast.info(this, getString(R.string.return_by_press_again)).show();
+        lastClickTime = SystemClock.elapsedRealtime();
     }
 }
