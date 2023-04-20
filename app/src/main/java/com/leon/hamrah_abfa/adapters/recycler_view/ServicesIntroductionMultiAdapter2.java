@@ -13,13 +13,11 @@ import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAdapter {
+public class ServicesIntroductionMultiAdapter2 extends ServicesIntroductionBaseAdapter {
     private final ArrayList<Integer> selectedServicesId;
-
     private Integer collapsedPosition;
-
-    public ServicesIntroductionMultiAdapter(Context context, int titleIds, int introductionIds,
-                                            int serviceId, int drawableIds) {
+    public ServicesIntroductionMultiAdapter2(Context context, int titleIds, int introductionIds,
+                                             int serviceId, int drawableIds) {
         super(context, titleIds, introductionIds, serviceId, drawableIds);
         this.selectedServicesId = new ArrayList<>(Collections.nCopies(titles.size(), 0));
     }
@@ -27,34 +25,33 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
     @NonNull
     @Override
     public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view;
-        if (collapsedPosition != null && collapsedPosition == viewType) {
-            if (selectedServicesId.get(viewType) == 0)
-                view = inflater.inflate(R.layout.item_service_collapsed, parent, false);
-            else
-                view = inflater.inflate(R.layout.item_service_collapsed_selected, parent, false);
-        } else {
-            if (selectedServicesId.get(viewType) == 0)
-                view = inflater.inflate(R.layout.item_service, parent, false);
-            else
-                view = inflater.inflate(R.layout.item_service_selected, parent, false);
-        }
-        return new ServiceIntroductionHolder(view);
+        return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service_collapsed, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ServiceIntroductionHolder holder, int position) {
+        final int positionHolder = position;
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
+        holder.textViewIntroduction.setText(introduction.get(position));
+        holder.imageViewArrow.setOnClickListener(v -> updateCollapseItem(positionHolder));
+        holder.textViewTitle.setOnClickListener(v -> updateSelectedService(positionHolder));
+        holder.imageViewLogo.setOnClickListener(v -> updateSelectedService(positionHolder));
 
-        final int temp = position;
-        holder.imageViewArrow.setOnClickListener(v -> updateCollapseItem(temp));
-        holder.textViewTitle.setOnClickListener(v -> updateSelectedService(temp));
-        holder.imageViewLogo.setOnClickListener(v -> updateSelectedService(temp));
-
-//        if (selectedServicesId.get(position) > 0 && collapsedPosition != null)
-        if (collapsedPosition != null)
-            holder.textViewIntroduction.setText(introduction.get(position));
+        if (selectedServicesId.get(position) == 0) {
+            holder.relativeLayout.setBackgroundResource(android.R.color.transparent);
+        } else {
+            holder.relativeLayout.setBackgroundResource(R.drawable.background_service_introduction);
+        }
+        if (collapsedPosition != null && collapsedPosition == position) {
+            holder.viewDivider.setBackgroundResource(R.color.gray_light_1);
+            holder.imageViewArrow.setImageResource(R.drawable.arrow_up);
+            holder.textViewIntroduction.setVisibility(View.VISIBLE);
+        } else {
+            holder.viewDivider.setBackgroundResource(android.R.color.transparent);
+            holder.imageViewArrow.setImageResource(R.drawable.arrow_down);
+            holder.textViewIntroduction.setVisibility(View.GONE);
+        }
     }
 
     private void updateCollapseItem(int position) {

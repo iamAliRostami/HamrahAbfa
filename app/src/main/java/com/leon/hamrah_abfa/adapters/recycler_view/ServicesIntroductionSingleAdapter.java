@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -23,12 +22,11 @@ public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseA
     @NonNull
     @Override
     public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view;
-        if (selectedServices != null && selectedServices == viewType)
-            view = inflater.inflate(R.layout.item_service_collapsed, parent, false);
-        else
-            view = inflater.inflate(R.layout.item_service, parent, false);
-        return new ServiceIntroductionHolder(view);
+        if (selectedServices != null && selectedServices == viewType) {
+            return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
+        } else {
+            return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service, parent, false));
+        }
     }
 
     @Override

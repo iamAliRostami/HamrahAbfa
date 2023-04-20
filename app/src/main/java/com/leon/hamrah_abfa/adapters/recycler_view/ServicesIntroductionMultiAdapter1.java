@@ -13,13 +13,11 @@ import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAdapter {
+public class ServicesIntroductionMultiAdapter1 extends ServicesIntroductionBaseAdapter {
     private final ArrayList<Integer> selectedServicesId;
-
     private Integer collapsedPosition;
-
-    public ServicesIntroductionMultiAdapter(Context context, int titleIds, int introductionIds,
-                                            int serviceId, int drawableIds) {
+    public ServicesIntroductionMultiAdapter1(Context context, int titleIds, int introductionIds,
+                                             int serviceId, int drawableIds) {
         super(context, titleIds, introductionIds, serviceId, drawableIds);
         this.selectedServicesId = new ArrayList<>(Collections.nCopies(titles.size(), 0));
     }
@@ -28,17 +26,29 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
     @Override
     public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view;
-        if (collapsedPosition != null && collapsedPosition == viewType) {
-            if (selectedServicesId.get(viewType) == 0)
-                view = inflater.inflate(R.layout.item_service_collapsed, parent, false);
-            else
-                view = inflater.inflate(R.layout.item_service_collapsed_selected, parent, false);
-        } else {
+//        if (collapsedPosition != null && collapsedPosition == viewType) {
+//            if (selectedServicesId.get(viewType) == 0)
+//                view = inflater.inflate(R.layout.item_service_collapsed, parent, false);
+//            else
+//                view = inflater.inflate(R.layout.item_service_collapsed_selected, parent, false);
+//        } else {
+//            if (selectedServicesId.get(viewType) == 0)
+//                view = inflater.inflate(R.layout.item_service, parent, false);
+//            else
+//                view = inflater.inflate(R.layout.item_service_selected, parent, false);
+//        }
+
+//        if (selectedServicesId.get(viewType) == 0)
+//            view = inflater.inflate(R.layout.item_service_collapsed, parent, false);
+//        else
+//            view = inflater.inflate(R.layout.item_service_collapsed_selected, parent, false);
+
+
             if (selectedServicesId.get(viewType) == 0)
                 view = inflater.inflate(R.layout.item_service, parent, false);
             else
                 view = inflater.inflate(R.layout.item_service_selected, parent, false);
-        }
+
         return new ServiceIntroductionHolder(view);
     }
 
@@ -48,9 +58,9 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
         holder.textViewTitle.setText(titles.get(position));
 
         final int temp = position;
-        holder.imageViewArrow.setOnClickListener(v -> updateCollapseItem(temp));
         holder.textViewTitle.setOnClickListener(v -> updateSelectedService(temp));
         holder.imageViewLogo.setOnClickListener(v -> updateSelectedService(temp));
+        holder.imageViewArrow.setOnClickListener(v -> updateCollapseItem(temp));
 
 //        if (selectedServicesId.get(position) > 0 && collapsedPosition != null)
         if (collapsedPosition != null)

@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.adapters.holders;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -16,6 +17,8 @@ public class ServiceIntroductionHolder extends RecyclerView.ViewHolder {
     public final TextView textViewTitle;
     public final TextView textViewIntroduction;
     public final CardView cardView;
+    public final RelativeLayout relativeLayout;
+    public final View viewDivider;
     private IClickListener listener;
 
     public ServiceIntroductionHolder(View view) {
@@ -25,6 +28,8 @@ public class ServiceIntroductionHolder extends RecyclerView.ViewHolder {
         textViewIntroduction = view.findViewById(R.id.text_view_introduction);
         imageViewLogo = view.findViewById(R.id.image_view_icon);
         imageViewArrow = view.findViewById(R.id.image_view_arrow);
+        viewDivider = view.findViewById(R.id.divider);
+        relativeLayout = view.findViewById(R.id.relative_layout);
     }
 
     public ServiceIntroductionHolder(View view, int position, IClickListener listener) {
@@ -33,13 +38,13 @@ public class ServiceIntroductionHolder extends RecyclerView.ViewHolder {
         textViewTitle = view.findViewById(R.id.text_view_title);
         textViewIntroduction = view.findViewById(R.id.text_view_introduction);
         imageViewLogo = view.findViewById(R.id.image_view_icon);
+        viewDivider = view.findViewById(R.id.divider);
+        relativeLayout = view.findViewById(R.id.relative_layout);
+
         imageViewArrow = view.findViewById(R.id.image_view_arrow);
-        imageViewArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("position", String.valueOf(position));
-//                listener.collapse(12);
-            }
+        textViewTitle.setOnClickListener(v -> {
+            Log.e("position", String.valueOf(position));
+            listener.collapse(position);
         });
     }
 
