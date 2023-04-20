@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
+import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
 
 import java.util.ArrayList;
 
 public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback,
         ServiceFormFragment.ICallback {
-    private int serviceType;
-    private String billId;
+    private ServicesViewModel viewModel;
     private ActivityServiceBinding binding;
     private ServicesIntroductionBaseAdapter adapter;
 
@@ -26,8 +26,9 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
         super.onCreate(savedInstanceState);
         binding = ActivityServiceBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
-            serviceType = getIntent().getExtras().getInt(SERVICE_TYPE.getValue());
+            viewModel = new ServicesViewModel(this, getIntent().getExtras().getInt(SERVICE_TYPE.getValue()),
+                    getIntent().getExtras().getString(BILL_ID.getValue()));
+
             getIntent().getExtras().clear();
         }
         initialize();
@@ -38,14 +39,14 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
         binding.fragmentServices.setOnClickListener(v ->
                 binding.stepper.go(binding.stepper.getCurrentStep() + 1, true));
         getSupportFragmentManager().beginTransaction().add(binding.fragmentServices.getId(),
-                ServiceIntroductionFragment.newInstance(serviceType)).commit();
+                ServiceIntroductionFragment.newInstance()).commit();
     }
 
     @Override
     public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
         binding.stepper.go(1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceFormFragment.newInstance(billId, serviceType)).commit();
+                ServiceFormFragment.newInstance()).commit();
     }
 
     @Override
@@ -59,6 +60,11 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     }
 
     @Override
+    public ServicesViewModel getServicesViewModel() {
+        return viewModel;
+    }
+
+    @Override
     public void submitUserInfo() {
 
     }
@@ -67,6 +73,6 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     public void goServices() {
         binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceIntroductionFragment.newInstance(serviceType)).commit();
+                ServiceIntroductionFragment.newInstance()).commit();
     }
 }

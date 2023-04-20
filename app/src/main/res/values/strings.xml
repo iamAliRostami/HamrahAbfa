@@ -92,4 +92,5 @@
     <string name="next_level">مرحله بعد</string>
     <string name="choose_a_service">یکی از خدمات را انتخاب کنید</string>
     <string name="previous">مرحله قبل</string>
+    <string name="address">نشانی</string>
 </resources>

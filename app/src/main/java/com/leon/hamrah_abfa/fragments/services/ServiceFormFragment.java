@@ -1,11 +1,9 @@
 package com.leon.hamrah_abfa.fragments.services;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
-import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,41 +16,77 @@ import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
 
 public class ServiceFormFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceFormBinding binding;
-    private ServicesFormViewModel viewModel;
     private ICallback serviceActivity;
 
     public ServiceFormFragment() {
     }
 
-    public static ServiceFormFragment newInstance(String billId, int serviceType) {
-        final ServiceFormFragment fragment = new ServiceFormFragment();
-        final Bundle args = new Bundle();
-        args.putString(BILL_ID.getValue(), billId);
-        args.putInt(SERVICE_TYPE.getValue(), serviceType);
-        fragment.setArguments(args);
-        return fragment;
+    public static ServiceFormFragment newInstance() {
+        return new ServiceFormFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            viewModel = new ServicesFormViewModel(requireContext(), getArguments().getInt(SERVICE_TYPE.getValue()),
-                    getArguments().getString(BILL_ID.getValue()));
-        }
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentServiceFormBinding.inflate(inflater, container, false);
-        binding.setViewModel(viewModel);
+        binding.setViewModel(serviceActivity.getServicesViewModel());
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
-        binding.imageViewIcon.setImageDrawable(viewModel.getDrawable());
+        binding.getRoot().post(() -> Log.e("size", String.valueOf(binding.mapView.getMeasuredWidth())));
+        Log.e("size 1", String.valueOf(binding.linearLayoutButtons.getMeasuredWidth()));
+        int size = binding.linearLayoutButtons.getMeasuredWidth();
+        Log.e("size 2", String.valueOf(size));
+        binding.mapView.getLayoutParams().height = binding.buttonPrevious.getMeasuredWidth();
+//        binding.mapView.getLayoutParams().height = 500;
+
+        Log.e("size", String.valueOf(binding.mapView.getMeasuredWidth()));
+        Log.e("size", String.valueOf(binding.cardViewContent.getMeasuredWidth()));
+        size = binding.buttonPrevious.getMeasuredWidth();
+        Log.e("size 2", String.valueOf(size));
+        Log.e("size", String.valueOf(binding.buttonPrevious.getMeasuredWidth()));
+//        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+//        );
+//        ViewGroup.LayoutParams params = new LinearLayout.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+////                binding.mapView.getLayoutParams().width,
+//                1.0f
+//        );
+//
+//        binding.mapView.measure(1, 1);
+//        int size = binding.mapView.getWidth();
+//
+////        new RelativeLayout.LayoutParams(
+////                ViewGroup.LayoutParams.MATCH_PARENT,
+//////                ViewGroup.LayoutParams.MATCH_PARENT,
+////                binding.mapView.getLayoutParams().width,
+////                1.0f
+////        );
+//        Log.e("size", String.valueOf(size));
+//        params1.width = size;
+//        params1.height = size;
+//        binding.mapView.setLayoutParams(params1);
+
+//        RelativeLayout.LayoutParams param = new RelativeLayout.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+////                ViewGroup.LayoutParams.MATCH_PARENT,
+//                binding.mapView.getLayoutParams().width,
+//                1.0f
+//        );
+//
+//        binding.mapView.setLayoutParams(param);
+
+        binding.imageViewIcon.setImageDrawable(serviceActivity.getServicesViewModel().getDrawable());
         binding.buttonSubmit.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
     }
@@ -77,5 +111,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         void submitUserInfo();
 
         void goServices();
+
+        ServicesViewModel getServicesViewModel();
     }
 }

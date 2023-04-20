@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.services.ServicesFormViewModel" />
+            type="com.leon.hamrah_abfa.fragments.services.ServicesViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -42,10 +42,10 @@
                         android:id="@+id/image_view_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/service_main_ab_baha"
-                        android:padding="@dimen/medium_dp" />
+                        android:padding="@dimen/medium_dp"
+                        android:src="@drawable/service_main_ab_baha" />
 
-<!--                    app:imageResource="@{viewModel.iconDrawable}"-->
+                    <!--                    app:imageResource="@{viewModel.iconDrawable}"-->
                     <!--                    android:src="@{viewModel.iconDrawable}"-->
                     <androidx.appcompat.widget.AppCompatTextView
                         style="@style/Title"
@@ -95,6 +95,35 @@
                             android:maxLength="13"
                             android:text="@={viewModel.billId}" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/text_layout_address"
+                        style="@style/TextInputLayout"
+                        android:layout_below="@id/text_layout_bill_id"
+                        android:layout_marginTop="@dimen/medium_dp"
+                        android:hint="@string/address">
+                        <!--                        android:text="@={viewModel.billId}"-->
+                        <!--min 5-->
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edit_text_address"
+                            style="@style/TextInput"
+                            android:gravity="top"
+                            android:inputType="textMultiLine"
+                            android:lines="3"
+                            android:maxLength="13"
+                            android:maxLines="3"
+                            android:text="@={viewModel.address}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <org.osmdroid.views.MapView
+                        android:background="@color/purple_7001"
+                        android:id="@+id/map_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text_layout_address"
+                        android:layout_marginTop="@dimen/medium_dp"
+                        android:hint="@string/address" />
                 </RelativeLayout>
             </androidx.core.widget.NestedScrollView>
         </com.google.android.material.card.MaterialCardView>

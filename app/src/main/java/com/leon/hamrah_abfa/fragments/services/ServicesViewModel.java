@@ -13,7 +13,8 @@ import androidx.databinding.Bindable;
 import com.leon.hamrah_abfa.BR;
 import com.leon.hamrah_abfa.R;
 
-public class ServicesFormViewModel extends BaseObservable {
+public class ServicesViewModel extends BaseObservable {
+    private String address;
     private String billId;
     private String selectedServices;
     private String mobile;
@@ -21,9 +22,9 @@ public class ServicesFormViewModel extends BaseObservable {
     private int serviceType;
     private TypedArray iconDrawable;
 
-    public ServicesFormViewModel(Context context, int serviceType, String billId) {
-        setServiceType(serviceType);
+    public ServicesViewModel(Context context, int serviceType, String billId) {
         setBillId(billId);
+        setServiceType(serviceType);
         setMobile(getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
         setIconDrawable(context.getResources().obtainTypedArray(R.array.services_main_icons));
@@ -92,5 +93,15 @@ public class ServicesFormViewModel extends BaseObservable {
     @Bindable
     public Drawable getDrawable() {
         return iconDrawable.getDrawable(getServiceType());
+    }
+
+    @Bindable
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+        notifyPropertyChanged(BR.address);
     }
 }
