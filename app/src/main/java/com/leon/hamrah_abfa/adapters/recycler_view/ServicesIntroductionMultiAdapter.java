@@ -25,7 +25,7 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
     @NonNull
     @Override
     public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service_collapsed, parent, false));
+        return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
     }
 
     @Override

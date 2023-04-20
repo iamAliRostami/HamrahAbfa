@@ -23,8 +23,8 @@ import com.leon.toast.RTLToast;
 import java.util.ArrayList;
 
 public class ServiceIntroductionFragment extends Fragment implements View.OnClickListener {
-    private ServicesIntroductionBaseAdapter adapter;
     private FragmentServiceIntroductionBinding binding;
+    private ServicesIntroductionBaseAdapter adapter;
     private ICallback serviceActivity;
     private int serviceType;
 

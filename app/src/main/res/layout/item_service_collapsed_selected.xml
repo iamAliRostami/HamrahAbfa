@@ -14,6 +14,7 @@
     app:cardCornerRadius="@dimen/medium_dp">
 
     <RelativeLayout
+        android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_service_introduction">
@@ -52,7 +53,6 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="@dimen/small_dp"
             android:layout_below="@id/image_view_icon"
             android:background="@color/gray_light_1" />
@@ -60,7 +60,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_introduction"
             style="@style/TextItem"
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_below="@id/divider"
             android:text="@string/services_help_content"
