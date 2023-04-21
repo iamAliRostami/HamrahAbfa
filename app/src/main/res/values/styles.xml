@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="NewDialog" parent="Theme.AppCompat">
         <item name="android:windowIsFloating">true</item>
@@ -34,6 +34,7 @@
         <item name="android:layout_gravity">center_vertical|end</item>
         <item name="android:layout_marginEnd">@dimen/medium_dp</item>
         <item name="android:layout_marginStart">@dimen/medium_dp</item>
+        <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
     </style>
 
     <style name="TitleSubmitInfo">
@@ -151,6 +152,6 @@
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:padding">@dimen/large_dp</item>
         <item name="android:layout_gravity">center</item>
-
+        <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
     </style>
 </resources>

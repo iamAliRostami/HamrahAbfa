@@ -62,6 +62,7 @@
             style="@style/TextItem"
             android:layout_width="match_parent"
             android:layout_below="@id/divider"
+            android:lineSpacingExtra="@dimen/low_dp"
             android:text="@string/services_help_content"
             android:textAllCaps="true" />
     </RelativeLayout>

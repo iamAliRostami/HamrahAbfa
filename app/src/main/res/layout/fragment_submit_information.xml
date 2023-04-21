@@ -120,9 +120,46 @@
                             android:layout_marginBottom="@dimen/medium_dp"
                             android:background="@drawable/background_confirm">
 
-                            <androidx.appcompat.widget.LinearLayoutCompat
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/image_view_service"
                                 android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/bill_id" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TitleSubmitInfo"
+                                android:layout_above="@id/divider"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@id/image_view_service"
+                                android:gravity="center_vertical"
+                                android:text="@string/services" />
+
+                            <View
+                                android:id="@+id/divider"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/small_dp"
+                                android:layout_below="@id/image_view_service"
+                                android:background="@color/gray_1" />
+
+                            <GridView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/divider"
+                                android:numColumns="3"
+                                tools:listitem="@layout/item_selected_service" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
                                 android:id="@+id/linear_layout_address"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content">
 
                                 <androidx.appcompat.widget.AppCompatImageView
@@ -141,8 +178,11 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 style="@style/TextSubmitInfo"
+                                android:layout_marginTop="@dimen/medium_dp"
+                                android:layout_marginBottom="@dimen/medium_dp"
                                 android:layout_toEndOf="@id/linear_layout_address"
-                                android:text="@string/services_help_content" />
+                                android:lineSpacingExtra="@dimen/low_dp"
+                                android:text="@{viewModel.address}" />
                         </RelativeLayout>
 
                         <androidx.appcompat.widget.AppCompatImageView
