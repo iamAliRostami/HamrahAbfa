@@ -44,7 +44,7 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
             holder.relativeLayout.setBackgroundResource(R.drawable.background_service_introduction);
         }
         if (collapsedPosition != null && collapsedPosition == position) {
-            holder.viewDivider.setBackgroundResource(R.color.gray_light_1);
+            holder.viewDivider.setBackgroundResource(R.color.gray_1);
             holder.imageViewArrow.setImageResource(R.drawable.arrow_up);
             holder.textViewIntroduction.setVisibility(View.VISIBLE);
         } else {

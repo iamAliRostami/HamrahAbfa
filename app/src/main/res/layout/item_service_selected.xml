@@ -45,6 +45,6 @@
             android:layout_gravity="center"
             android:padding="@dimen/large_dp"
             android:src="@drawable/arrow_down"
-            android:tint="@color/gray_200" />
+            android:tint="@color/gray_2" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

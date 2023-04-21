@@ -39,7 +39,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_owner"
-            style="@style/HelpTitle"
+            style="@style/TitleHelp"
             android:layout_below="@id/text_view_owner_title"
             android:layout_marginStart="@dimen/large_dp"
             android:text="@{viewModel.owner}" />
@@ -55,7 +55,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_bill_id"
-            style="@style/HelpTitle"
+            style="@style/TitleHelp"
             android:layout_below="@id/text_view_owner_title"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/large_dp"

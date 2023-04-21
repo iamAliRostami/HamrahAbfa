@@ -22,11 +22,24 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="HelpTitle" parent="Title">
+    <style name="TitleHelp" parent="Title">
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:textStyle">normal</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextSubmitInfo" parent="TitleHelp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">center_vertical|end</item>
+        <item name="android:layout_marginEnd">@dimen/medium_dp</item>
+        <item name="android:layout_marginStart">@dimen/medium_dp</item>
+    </style>
+
+    <style name="TitleSubmitInfo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="Button">

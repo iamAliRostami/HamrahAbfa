@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="40dp"
-            android:background="@color/gray_light_1"
+            android:background="@color/gray_1"
             android:paddingBottom="50dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/mobile_navigation" />

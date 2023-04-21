@@ -56,14 +56,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/small_dp"
                     android:layout_below="@id/image_view_icon"
-                    android:background="@color/gray_light_1" />
+                    android:background="@color/gray_1" />
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/medium_dp"
-                    android:layout_marginEnd="@dimen/medium_dp"
-                    android:layout_marginBottom="@dimen/medium_dp">
+                    android:layout_margin="@dimen/medium_dp">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -73,7 +71,6 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_layout_mobile"
                             style="@style/TextInputLayout"
-                            android:layout_marginTop="@dimen/medium_dp"
                             android:hint="@string/phone_number"
                             app:counterMaxLength="11"
                             app:placeholderText="@string/mobile_hint">
@@ -124,7 +121,6 @@
                             android:id="@+id/relative_layout_map"
                             android:background="@drawable/border_dotted_gray"
                             android:layout_height="wrap_content">
-
 
                             <org.osmdroid.views.MapView
                                 android:id="@+id/map_view"

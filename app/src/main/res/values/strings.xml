@@ -94,4 +94,5 @@
     <string name="choose_a_service">یکی از خدمات را انتخاب کنید</string>
     <string name="previous">مرحله قبل</string>
     <string name="address">نشانی</string>
+    <string name="confirm_information">تایید اطلاعات</string>
 </resources>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.services.ServicesViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.services.SubmitInformationFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/linear_layout_buttons"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/large_dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/medium_dp"
+            card_view:cardElevation="@dimen/medium_dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/medium_dp"
+                        android:src="@drawable/tick1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_gravity="center"
+                        android:text="@string/confirm_information" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/small_dp"
+                    android:layout_below="@id/image_view_icon"
+                    android:background="@color/gray_1" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_dp"
+                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:layout_marginBottom="@dimen/medium_dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/mobile" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/mobile" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TextSubmitInfo"
+                                android:text="@{viewModel.mobile}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/bill_id" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/bill_id" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TextSubmitInfo"
+                                android:text="@{viewModel.billId}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/medium_dp"
+                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="wrap_content"
+                                android:id="@+id/linear_layout_address"
+                                android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/image_view_address"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/medium_dp"
+                                    android:src="@drawable/address_tick" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/text_view_address_title"
+                                    style="@style/TitleSubmitInfo"
+                                    android:layout_toEndOf="@id/image_view_address"
+                                    android:text="@string/address" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TextSubmitInfo"
+                                android:layout_toEndOf="@id/linear_layout_address"
+                                android:text="@string/services_help_content" />
+                        </RelativeLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_dotted_gray"
+                            android:src="@drawable/raw_map" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/medium_dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonSubmit"
+                android:layout_width="wrap_content"
+                android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
+                android:text="@string/go_continue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_previous"
+                style="@style/ButtonCancel"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
+                android:text="@string/previous" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</layout>
