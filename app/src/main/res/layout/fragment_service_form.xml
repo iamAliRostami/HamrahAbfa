@@ -122,6 +122,7 @@
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:id="@+id/relative_layout_map"
+                            android:background="@drawable/border_dotted_gray"
                             android:layout_height="wrap_content">
 
 
