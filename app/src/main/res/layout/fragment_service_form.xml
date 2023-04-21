@@ -119,11 +119,24 @@
                                 android:text="@={viewModel.address}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <org.osmdroid.views.MapView
-                            android:id="@+id/map_view"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/medium_dp" />
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:id="@+id/relative_layout_map"
+                            android:layout_height="wrap_content">
+
+
+                            <org.osmdroid.views.MapView
+                                android:id="@+id/map_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_marginTop="@dimen/medium_dp" />
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/map_pointer" />
+                        </RelativeLayout>
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.core.widget.NestedScrollView>
             </androidx.appcompat.widget.LinearLayoutCompat>

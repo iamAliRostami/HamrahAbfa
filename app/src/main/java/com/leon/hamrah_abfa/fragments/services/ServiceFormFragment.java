@@ -3,7 +3,6 @@ package com.leon.hamrah_abfa.fragments.services;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +13,12 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
 
+import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
-import org.osmdroid.config.Configuration;
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class ServiceFormFragment extends Fragment implements View.OnClickListener, MapEventsReceiver {
     private FragmentServiceFormBinding binding;
@@ -49,7 +46,8 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
-        binding.getRoot().post(() -> binding.mapView.getLayoutParams().height = binding.mapView.getMeasuredWidth());
+//        binding.getRoot().post(() -> binding.mapView.getLayoutParams().height = binding.mapView.getMeasuredWidth());
+        binding.getRoot().post(() -> binding.relativeLayoutMap.getLayoutParams().height = binding.relativeLayoutMap.getMeasuredWidth());
         initializeMap();
         binding.buttonSubmit.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
@@ -64,6 +62,9 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         mapController.setZoom(19.0);
         final GeoPoint startPoint = new GeoPoint(32.65462762641145, 51.67064483950463);
         mapController.setCenter(startPoint);
+
+//TODO
+        final IGeoPoint endPoint  = binding.mapView.getMapCenter();
 
 //        if (getLocationTracker(activity).getCurrentLocation() != null) {
 //            final GeoPoint startPoint = new GeoPoint(getLocationTracker(activity).getCurrentLocation().getLatitude(),
@@ -102,6 +103,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     public boolean longPressHelper(GeoPoint p) {
         return false;
     }
+
     public void onResume() {
         super.onResume();
         binding.mapView.onResume();
