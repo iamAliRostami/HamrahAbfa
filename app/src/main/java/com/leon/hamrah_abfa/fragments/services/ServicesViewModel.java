@@ -5,14 +5,16 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.leon.hamrah_abfa.BR;
 import com.leon.hamrah_abfa.R;
+
+import org.osmdroid.util.GeoPoint;
 
 public class ServicesViewModel extends BaseObservable {
     private String address;
@@ -23,6 +25,8 @@ public class ServicesViewModel extends BaseObservable {
     private int serviceType;
     private TypedArray iconDrawable;
     private int srcIcon;
+    private GeoPoint point;
+    private Bitmap bitmapLocation;
 
     public ServicesViewModel(Context context, int serviceType, String billId) {
         setBillId(billId);
@@ -116,5 +120,25 @@ public class ServicesViewModel extends BaseObservable {
     public void setSrcIcon(int srcIcon) {
         this.srcIcon = srcIcon;
         notifyPropertyChanged(BR.srcIcon);
+    }
+
+    @Bindable
+    public GeoPoint getPoint() {
+        return point;
+    }
+
+    public void setPoint(GeoPoint point) {
+        this.point = point;
+        notifyPropertyChanged(BR.point);
+    }
+
+    @Bindable
+    public Bitmap getBitmapLocation() {
+        return bitmapLocation;
+    }
+
+    public void setBitmapLocation(Bitmap bitmapLocation) {
+        this.bitmapLocation = bitmapLocation;
+        notifyPropertyChanged(BR.bitmapLocation);
     }
 }

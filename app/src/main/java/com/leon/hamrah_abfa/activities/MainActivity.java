@@ -1,8 +1,10 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.animation.Animator;
 import android.content.Intent;
@@ -25,6 +27,7 @@ import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
@@ -118,7 +121,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.float_button_add) {
-            SubmitInfoFragment.newInstance().show(getSupportFragmentManager(), SUBMIT_INFO.getValue());
+//            SubmitInfoFragment.newInstance().show(getSupportFragmentManager(), SUBMIT_INFO.getValue());
+            ShowFragmentDialogOnce(this, SERVICE_LOCATION.getValue(), ServicesLocationFragment.newInstance());
         } else if (id == R.id.image_view_setting) {
             final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
             startActivity(intent);

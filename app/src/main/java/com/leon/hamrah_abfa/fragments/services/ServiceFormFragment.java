@@ -1,8 +1,13 @@
 package com.leon.hamrah_abfa.fragments.services;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +17,11 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
+import com.leon.hamrah_abfa.fragments.ServicesLocationDialogFragment;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 
-import org.osmdroid.api.IGeoPoint;
-import org.osmdroid.api.IMapController;
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.CustomZoomButtonsController;
-import org.osmdroid.views.overlay.MapEventsOverlay;
 
 public class ServiceFormFragment extends Fragment implements View.OnClickListener, MapEventsReceiver {
     private FragmentServiceFormBinding binding;
@@ -46,36 +49,21 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
-//        binding.getRoot().post(() -> binding.mapView.getLayoutParams().height = binding.mapView.getMeasuredWidth());
-        binding.getRoot().post(() -> binding.relativeLayoutMap.getLayoutParams().height = binding.relativeLayoutMap.getMeasuredWidth());
-        initializeMap();
+        Bitmap bitmap = serviceActivity.getServicesViewModel().getBitmapLocation();
+        bitmap = serviceActivity.getBitmap();
+        if (serviceActivity.getServicesViewModel().getBitmapLocation() != null)
+//            binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
+            binding.imageViewLocation.setImageBitmap(serviceActivity.getBitmap());
         binding.buttonSubmit.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
-    }
-
-    private void initializeMap() {
-//        Configuration.getInstance().load(requireContext(), PreferenceManager.getDefaultSharedPreferences(requireContext()));
-        binding.mapView.getZoomController().
-                setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
-        binding.mapView.setMultiTouchControls(true);
-        final IMapController mapController = binding.mapView.getController();
-        mapController.setZoom(19.0);
-        final GeoPoint startPoint = new GeoPoint(32.65462762641145, 51.67064483950463);
-        mapController.setCenter(startPoint);
-
-//TODO
-        final IGeoPoint endPoint  = binding.mapView.getMapCenter();
-
-//        if (getLocationTracker(activity).getCurrentLocation() != null) {
-//            final GeoPoint startPoint = new GeoPoint(getLocationTracker(activity).getCurrentLocation().getLatitude(),
-//                    getLocationTracker(activity).getCurrentLocation().getLongitude());
-//            mapController.setCenter(startPoint);
-//        }
-//        final MyLocationNewOverlay locationOverlay =
-//                new MyLocationNewOverlay(new GpsMyLocationProvider(requireContext()), binding.mapView);
-//        locationOverlay.enableMyLocation();
-//        binding.mapView.getOverlays().add(locationOverlay);
-        binding.mapView.getOverlays().add(new MapEventsOverlay(this));
+        binding.imageViewLocation.setOnClickListener(this);
+        binding.imageViewLocation.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(), ServicesLocationDialogFragment.newInstance());
+                return false;
+            }
+        });
     }
 
     @Override
@@ -85,6 +73,8 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
             serviceActivity.submitUserInfo();
         } else if (id == R.id.button_previous) {
             serviceActivity.goServices();
+        } else if (id == R.id.image_view_location) {
+            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(), ServicesLocationFragment.newInstance());
         }
     }
 
@@ -104,22 +94,13 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         return false;
     }
 
-    public void onResume() {
-        super.onResume();
-        binding.mapView.onResume();
-    }
-
-    public void onPause() {
-        super.onPause();
-        binding.mapView.onPause();
-    }
-
-
     public interface ICallback {
         void submitUserInfo();
 
         void goServices();
 
         ServicesViewModel getServicesViewModel();
+
+        Bitmap getBitmap();
     }
 }
