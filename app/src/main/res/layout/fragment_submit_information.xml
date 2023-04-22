@@ -206,12 +206,12 @@
             android:padding="@dimen/medium_dp">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_submit"
+                android:id="@+id/button_confirm"
                 style="@style/ButtonSubmit"
                 android:layout_width="wrap_content"
                 android:layout_margin="@dimen/medium_dp"
                 android:layout_weight="1"
-                android:text="@string/go_continue" />
+                android:text="@string/confirm" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_previous"

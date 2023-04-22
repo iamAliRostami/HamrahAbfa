@@ -104,7 +104,6 @@
                             style="@style/TextInputLayout"
                             android:layout_marginTop="@dimen/medium_dp"
                             android:hint="@string/address">
-                            <!--min 5-->
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/edit_text_address"
                                 style="@style/TextInput"
@@ -116,29 +115,11 @@
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="match_parent"
-                            android:src="@drawable/raw_map"
                             android:id="@+id/image_view_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="@drawable/border_dotted_gray"
-                            android:layout_height="wrap_content" />
-                        <!--                        <RelativeLayout-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:id="@+id/relative_layout_map"-->
-                        <!--                            android:background="@drawable/border_dotted_gray"-->
-                        <!--                            android:layout_height="wrap_content">-->
-
-                        <!--                            <org.osmdroid.views.MapView-->
-                        <!--                                android:id="@+id/map_view"-->
-                        <!--                                android:layout_width="match_parent"-->
-                        <!--                                android:layout_height="wrap_content"-->
-                        <!--                                android:layout_centerInParent="true"-->
-                        <!--                                android:layout_marginTop="@dimen/medium_dp" />-->
-<!--                                                    <androidx.appcompat.widget.AppCompatImageView-->
-<!--                                                        android:layout_width="wrap_content"-->
-<!--                                                        android:layout_height="match_parent"-->
-<!--                                                        android:layout_centerInParent="true"-->
-<!--                                                        android:src="@drawable/map_pointer" />-->
-                        <!--                        </RelativeLayout>-->
+                            android:src="@drawable/raw_map" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.core.widget.NestedScrollView>
             </androidx.appcompat.widget.LinearLayoutCompat>

@@ -45,7 +45,7 @@ public class SubmitInformationFragment extends Fragment implements View.OnClickL
 
     private void initialize() {
         binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
-        binding.buttonSubmit.setOnClickListener(this);
+        binding.buttonConfirm.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
         for (int i = 0; i < serviceActivity.getServicesViewModel().getSelectedServices().size(); i++) {
             final Chip chip = new Chip(requireContext());
@@ -60,8 +60,8 @@ public class SubmitInformationFragment extends Fragment implements View.OnClickL
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.button_submit) {
-            //TODO
+        if (id == R.id.button_confirm) {
+            serviceActivity.submitInformation();
         } else if (id == R.id.button_previous) {
             serviceActivity.backToServiceForm();
         } else if (id == R.id.image_view_location) {
@@ -76,10 +76,11 @@ public class SubmitInformationFragment extends Fragment implements View.OnClickL
         if (context instanceof Activity) serviceActivity = (ICallback) context;
     }
 
-
     public interface ICallback {
         ServicesViewModel getServicesViewModel();
 
         void backToServiceForm();
+
+        void submitInformation();
     }
 }

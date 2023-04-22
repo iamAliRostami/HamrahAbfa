@@ -2,6 +2,8 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
+import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
+import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
@@ -55,14 +58,6 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
                 ServiceIntroductionFragment.newInstance()).commit();
     }
 
-    @Override
-    public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
-        binding.stepper.go(1, true);
-        viewModel.setSelectedServices(selectedServicesTitle);
-        viewModel.setSelectedServicesId(selectedServicesId);
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceFormFragment.newInstance()).commit();
-    }
 
     @Override
     public ServicesIntroductionBaseAdapter getAdapter() {
@@ -80,10 +75,25 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     }
 
     @Override
+    public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
+        binding.stepper.go(1, true);
+        viewModel.setSelectedServices(selectedServicesTitle);
+        viewModel.setSelectedServicesId(selectedServicesId);
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                ServiceFormFragment.newInstance()).commit();
+    }
+
+    @Override
     public void submitUserInfo() {
         binding.stepper.go(2, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                 SubmitInformationFragment.newInstance()).commit();
+    }
+
+    @Override
+    public void submitInformation() {
+        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(),
+                RequestDoneFragment.newInstance("123456"));
     }
 
     @Override

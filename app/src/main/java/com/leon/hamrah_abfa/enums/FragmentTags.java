@@ -4,6 +4,7 @@ public enum FragmentTags {
 
     SUBMIT_INFO("submit info"),
     ASK_YES_NO("ask yes no"),
+    REQUEST_DONE("request done"),
     SERVICE_LOCATION("service location");
 
 

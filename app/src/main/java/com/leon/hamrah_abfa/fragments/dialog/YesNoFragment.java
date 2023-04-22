@@ -19,8 +19,8 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentYesNoBinding;
 
 public class YesNoFragment extends DialogFragment implements View.OnClickListener {
-    private YesNoViewModel viewModel;
     private FragmentYesNoBinding binding;
+    private YesNoViewModel viewModel;
     private IClickListener listener;
 
     public YesNoFragment() {
