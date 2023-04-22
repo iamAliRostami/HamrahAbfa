@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
-import com.leon.hamrah_abfa.di.module.LocationTrackingModule;
+import com.leon.hamrah_abfa.utils.GpsTracker;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -29,8 +29,6 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class ServicesLocationFragment extends BottomSheetDialogFragment implements View.OnClickListener, MapEventsReceiver {
     private FragmentServicesLocationBinding binding;
@@ -78,7 +76,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         );
         binding.relativeLayoutMap.setLayoutParams(params);
         binding.buttonSubmit.setOnClickListener(this);
-        binding.imageViewArrowDown.setOnClickListener(this);
+        binding.imageViewCurrentLocation.setOnClickListener(this);
 
     }
 
@@ -90,17 +88,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         final IMapController mapController = binding.mapView.getController();
         mapController.setZoom(19.0);
         mapController.setCenter(point);
-//TODO
-
-//        if (getLocationTracker(activity).getCurrentLocation() != null) {
-//            startPoint = new GeoPoint(getLocationTracker(activity).getCurrentLocation().getLatitude(),
-//                    getLocationTracker(activity).getCurrentLocation().getLongitude());
-//            mapController.setCenter(startPoint);
-//        }
-//        final MyLocationNewOverlay locationOverlay =
-//                new MyLocationNewOverlay(new GpsMyLocationProvider(requireContext()), binding.mapView);
-//        locationOverlay.enableMyLocation();
-//        binding.mapView.getOverlays().add(locationOverlay);
+        //TODO
         binding.mapView.getOverlays().add(new MapEventsOverlay(this));
     }
 
@@ -113,23 +101,22 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             serviceActivity.setLocation(convertMapToBitmap(), point);
             dismiss();
         } else if (id == R.id.image_view_current_location) {
-
+            showCurrentLocation();
         }
     }
-    private void showCurrentLocation() {
-        //TODO
-        final IMapController mapController = binding.mapView.getController();
-        mapController.setZoom(19.5);
-        LocationTrackingModule location = new LocationTrackingModule(requireActivity());
-        point = new GeoPoint(location.providesLocationTrackingGps().getLatitude(),location.providesLocationTrackingGps().getLongitude());
-        mapController.setCenter(point);
-        final MyLocationNewOverlay locationOverlay =
-                new MyLocationNewOverlay(new GpsMyLocationProvider(requireContext()), binding.mapView);
-        locationOverlay.enableMyLocation();
-        binding.mapView.getOverlays().add(locationOverlay);
-        //TODO
 
+    private void showCurrentLocation() {
+        final GpsTracker gpsTracker = new GpsTracker(requireContext());
+        if (!gpsTracker.canGetLocation()) {
+            gpsTracker.showSettingsAlert();
+        } else if (gpsTracker.getLocation() != null) {
+            final IMapController mapController = binding.mapView.getController();
+            mapController.setZoom(19.5);
+            point = new GeoPoint(gpsTracker.getLatitude(), gpsTracker.getLongitude());
+            mapController.setCenter(point);
+        }
     }
+
     private Bitmap convertMapToBitmap() {
         addPlace();
         binding.mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
