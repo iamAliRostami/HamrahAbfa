@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.utils;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.helpers.Constants.MIN_DISTANCE_CHANGE_FOR_UPDATES;
 import static com.leon.hamrah_abfa.helpers.Constants.MIN_TIME_BW_UPDATES;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.Manifest;
 import android.app.Activity;
@@ -25,12 +26,10 @@ import com.leon.hamrah_abfa.fragments.dialog.YesNoFragment;
 
 public class GpsTracker extends Service implements LocationListener {
     private final Context context;
-    boolean isGPSEnabled = false;
-    boolean isNetworkEnabled = false;
-    boolean canGetLocation = false;
-    Location location;
-    double latitude;
-    double longitude;
+    private boolean canGetLocation = false;
+    private Location location;
+    private double latitude;
+    private double longitude;
     protected LocationManager locationManager;
 
     public GpsTracker(Context context) {
@@ -41,8 +40,8 @@ public class GpsTracker extends Service implements LocationListener {
     public Location getLocation() {
         try {
             locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-            isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            final boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            final boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             if (isGPSEnabled || isNetworkEnabled) {
                 this.canGetLocation = true;
                 if (isNetworkEnabled) {
@@ -51,7 +50,6 @@ public class GpsTracker extends Service implements LocationListener {
                     }
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
                             MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-
                     if (locationManager != null) {
                         location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         if (location != null) {
@@ -123,20 +121,20 @@ public class GpsTracker extends Service implements LocationListener {
 //            }
 //        });
 //        alertDialog.show();
-        ShowFragmentDialog.ShowFragmentDialogOnce(context, ASK_YES_NO.getValue(),
+        ShowFragmentDialogOnce(context, ASK_YES_NO.getValue(),
                 YesNoFragment.newInstance(R.drawable.raw_map, "GPS is settings",
                         "GPS is not enabled. Do you want to go to settings menu?", "Setting"
                         , "Cancel", new YesNoFragment.IClickListener() {
                             @Override
-                            public void yes(DialogFragment dialogFragment) {
-                                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            public void yes(DialogFragment fragment) {
+                                final Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                                 context.startActivity(intent);
-                                dialogFragment.dismiss();
+                                fragment.dismiss();
                             }
 
                             @Override
-                            public void no(DialogFragment dialogFragment) {
-                                dialogFragment.dismiss();
+                            public void no(DialogFragment fragment) {
+                                fragment.dismiss();
                             }
                         })
         );

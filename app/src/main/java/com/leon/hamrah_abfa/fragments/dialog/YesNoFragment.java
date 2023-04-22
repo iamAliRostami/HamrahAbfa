@@ -32,7 +32,8 @@ public class YesNoFragment extends DialogFragment implements View.OnClickListene
 
     public static YesNoFragment newInstance(int drawable, String title, String question,
                                             String yes, String no, IClickListener listener) {
-        YesNoFragment fragment = new YesNoFragment(listener);
+        final YesNoFragment fragment = new YesNoFragment(listener);
+        fragment.setCancelable(false);
         Bundle args = new Bundle();
         args.putInt(DRAWABLE.getValue(), drawable);
         args.putString(TITLE.getValue(), title);
