@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
+import com.leon.hamrah_abfa.fragments.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
@@ -25,7 +26,7 @@ import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
 public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback,
-        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback {
+        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, ServicesLocationDialogFragment.ICallback {
     private ServicesViewModel viewModel;
     private long lastClickTime = 0;
     private ActivityServiceBinding binding;
@@ -84,11 +85,6 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
         binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                 ServiceIntroductionFragment.newInstance()).commit();
-    }
-
-    @Override
-    public Bitmap getBitmap() {
-        return viewModel.getBitmapLocation();
     }
 
     @Override

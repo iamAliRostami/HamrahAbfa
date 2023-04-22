@@ -113,7 +113,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
 
     private Bitmap convertMapToBitmap() {
         addPlace();
-        binding.mapView.setBuiltInZoomControls(false);
+        binding.mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
         binding.mapView.setDrawingCacheEnabled(true);
         return binding.mapView.getDrawingCache(true);
     }

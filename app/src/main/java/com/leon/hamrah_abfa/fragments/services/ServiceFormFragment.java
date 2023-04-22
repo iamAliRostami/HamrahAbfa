@@ -5,9 +5,7 @@ import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOn
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,18 +47,16 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
-        Bitmap bitmap = serviceActivity.getServicesViewModel().getBitmapLocation();
-        bitmap = serviceActivity.getBitmap();
         if (serviceActivity.getServicesViewModel().getBitmapLocation() != null)
-//            binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
-            binding.imageViewLocation.setImageBitmap(serviceActivity.getBitmap());
+            binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
         binding.buttonSubmit.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
         binding.imageViewLocation.setOnClickListener(this);
         binding.imageViewLocation.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(), ServicesLocationDialogFragment.newInstance());
+                ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
+                        ServicesLocationDialogFragment.newInstance(serviceActivity.getServicesViewModel().getPoint()));
                 return false;
             }
         });
@@ -74,7 +70,8 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         } else if (id == R.id.button_previous) {
             serviceActivity.goServices();
         } else if (id == R.id.image_view_location) {
-            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(), ServicesLocationFragment.newInstance(serviceActivity.getServicesViewModel().getPoint()));
+            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
+                    ServicesLocationFragment.newInstance(serviceActivity.getServicesViewModel().getPoint()));
         }
     }
 
@@ -100,7 +97,5 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         void goServices();
 
         ServicesViewModel getServicesViewModel();
-
-        Bitmap getBitmap();
     }
 }
