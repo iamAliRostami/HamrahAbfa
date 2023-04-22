@@ -88,6 +88,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 style="@style/TextSubmitInfo"
+                                android:gravity="end"
                                 android:text="@{viewModel.mobile}" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -110,6 +111,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 style="@style/TextSubmitInfo"
+                                android:gravity="end"
                                 android:text="@{viewModel.billId}" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -143,10 +145,13 @@
                                 android:background="@color/gray_1" />
 
                             <GridView
+                                android:layout_margin="@dimen/medium_dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/divider"
                                 android:numColumns="3"
+                                android:horizontalSpacing="@dimen/medium_dp"
+                                android:verticalSpacing="@dimen/medium_dp"
                                 tools:listitem="@layout/item_selected_service" />
                         </RelativeLayout>
 
@@ -188,6 +193,7 @@
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:id="@+id/image_view_location"
                             android:background="@drawable/border_dotted_gray"
                             android:src="@drawable/raw_map" />
                     </androidx.appcompat.widget.LinearLayoutCompat>

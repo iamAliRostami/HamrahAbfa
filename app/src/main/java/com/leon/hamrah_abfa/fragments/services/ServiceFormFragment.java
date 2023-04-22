@@ -15,8 +15,9 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
-import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
+import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
+import com.leon.toast.RTLToast;
 
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
@@ -66,13 +67,45 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            serviceActivity.submitUserInfo();
+            if (checkInputs())
+                serviceActivity.submitUserInfo();
         } else if (id == R.id.button_previous) {
-            serviceActivity.goServices();
+            serviceActivity.backToServices();
         } else if (id == R.id.image_view_location) {
             ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
                     ServicesLocationFragment.newInstance(serviceActivity.getServicesViewModel().getPoint()));
         }
+    }
+
+    private boolean checkInputs() {
+        if (serviceActivity.getServicesViewModel().getBitmapLocation() == null) {
+            RTLToast.warning(requireContext(), R.string.locate_address).show();
+            return false;
+        }
+        if (serviceActivity.getServicesViewModel().getBillId() == null ||
+                serviceActivity.getServicesViewModel().getBillId().isEmpty() ||
+                serviceActivity.getServicesViewModel().getBillId().length() < 5) {
+            RTLToast.warning(requireContext(), R.string.incorrect_bill_id_format).show();
+            binding.editTextBillId.setError(getString(R.string.incorrect_bill_id_format));
+            binding.editTextBillId.requestFocus();
+            return false;
+        }
+        if (serviceActivity.getServicesViewModel().getMobile() == null ||
+                serviceActivity.getServicesViewModel().getMobile().length() < 11 ||
+                !serviceActivity.getServicesViewModel().getMobile().substring(0, 2).contains("09")) {
+            RTLToast.warning(requireContext(), R.string.incorrect_mobile_format).show();
+            binding.editTextMobile.setError(getString(R.string.incorrect_mobile_format));
+            binding.editTextMobile.requestFocus();
+            return false;
+        }
+        if (serviceActivity.getServicesViewModel().getAddress() == null ||
+                serviceActivity.getServicesViewModel().getAddress().isEmpty()) {
+            RTLToast.warning(requireContext(), R.string.fill_in_address).show();
+            binding.editTextAddress.setError(getString(R.string.fill_in_address));
+            binding.editTextAddress.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -94,7 +127,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     public interface ICallback {
         void submitUserInfo();
 
-        void goServices();
+        void backToServices();
 
         ServicesViewModel getServicesViewModel();
     }

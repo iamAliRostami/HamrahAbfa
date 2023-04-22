@@ -12,13 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
-import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
+import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.fragments.services.SubmitInformationFragment;
 import com.leon.toast.RTLToast;
 
 import org.osmdroid.util.GeoPoint;
@@ -26,7 +27,8 @@ import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
 public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback,
-        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, ServicesLocationDialogFragment.ICallback {
+        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, SubmitInformationFragment.ICallback,
+        ServicesLocationDialogFragment.ICallback {
     private ServicesViewModel viewModel;
     private long lastClickTime = 0;
     private ActivityServiceBinding binding;
@@ -77,11 +79,20 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
 
     @Override
     public void submitUserInfo() {
-
+        binding.stepper.go(2, true);
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                SubmitInformationFragment.newInstance()).commit();
     }
 
     @Override
-    public void goServices() {
+    public void backToServiceForm() {
+        binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                ServiceFormFragment.newInstance()).commit();
+    }
+
+    @Override
+    public void backToServices() {
         binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                 ServiceIntroductionFragment.newInstance()).commit();
@@ -91,13 +102,14 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     public void setLocation(Bitmap bitmapLocation, GeoPoint point) {
         viewModel.setPoint(point);
         viewModel.setBitmapLocation(bitmapLocation.copy(Bitmap.Config.ARGB_8888, true));
+        //TODO
         final Fragment fragment = getSupportFragmentManager().findFragmentById(binding.fragmentServices.getId());
-        final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.detach(fragment);
-        transaction.commit();
-        final FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-        transaction1.attach(fragment);
-        transaction1.commit();
+        if (fragment != null) {
+            final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.detach(fragment).commit();
+            final FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
+            transaction1.attach(fragment).commit();
+        }
 
 //        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
 //                ServiceFormFragment.newInstance()).commit();

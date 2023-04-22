@@ -111,7 +111,6 @@
                                 android:gravity="top"
                                 android:inputType="textMultiLine"
                                 android:lines="3"
-                                android:maxLength="13"
                                 android:maxLines="3"
                                 android:text="@={viewModel.address}" />
                         </com.google.android.material.textfield.TextInputLayout>

@@ -96,4 +96,8 @@
     <string name="address">نشانی</string>
     <string name="confirm_information">تایید اطلاعات</string>
     <string name="submit_location">ثبت محل</string>
+    <string name="locate_address">نشانی روی نقشه مشخص نشده است</string>
+    <string name="incorrect_bill_id_format">فرمت شناسه قبض صحیح نیست</string>
+    <string name="incorrect_mobile_format">فرمت موبایل صحیح نیست</string>
+    <string name="fill_in_address">نشانی را وارد کنید</string>
 </resources>
