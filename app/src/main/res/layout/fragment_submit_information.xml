@@ -144,15 +144,12 @@
                                 android:layout_below="@id/image_view_service"
                                 android:background="@color/gray_1" />
 
-                            <GridView
-                                android:layout_margin="@dimen/medium_dp"
+                            <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/chip_group_services"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@id/divider"
-                                android:numColumns="3"
-                                android:horizontalSpacing="@dimen/medium_dp"
-                                android:verticalSpacing="@dimen/medium_dp"
-                                tools:listitem="@layout/item_selected_service" />
+                                android:layout_below="@id/divider"/>
+
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -191,9 +188,9 @@
                         </RelativeLayout>
 
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_location"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:id="@+id/image_view_location"
                             android:background="@drawable/border_dotted_gray"
                             android:src="@drawable/raw_map" />
                     </androidx.appcompat.widget.LinearLayoutCompat>

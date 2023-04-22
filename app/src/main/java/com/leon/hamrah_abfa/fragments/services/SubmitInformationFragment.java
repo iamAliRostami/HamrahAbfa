@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.chip.Chip;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInformationBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
@@ -46,6 +47,14 @@ public class SubmitInformationFragment extends Fragment implements View.OnClickL
         binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
         binding.buttonSubmit.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
+        for (int i = 0; i < serviceActivity.getServicesViewModel().getSelectedServices().size(); i++) {
+            final Chip chip = new Chip(requireContext());
+            chip.setCloseIconVisible(false);
+            chip.setTextAppearance(R.style.ChipTextAppearance);
+            chip.setChipBackgroundColorResource(R.color.purple_7002);
+            chip.setText(serviceActivity.getServicesViewModel().getSelectedServices().get(i));
+            binding.chipGroupServices.addView(chip);
+        }
     }
 
     @Override

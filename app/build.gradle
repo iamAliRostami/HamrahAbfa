@@ -111,5 +111,8 @@ dependencies {
     implementation 'com.yandex.android:mobmetricalib:5.3.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
     implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
+
+    implementation 'com.ns-developer:tagcloudview:0.1.0'
+
     implementation project(':toast')
 }

@@ -16,10 +16,13 @@ import com.leon.hamrah_abfa.R;
 
 import org.osmdroid.util.GeoPoint;
 
+import java.util.ArrayList;
+
 public class ServicesViewModel extends BaseObservable {
     private String address;
     private String billId;
-    private String selectedServices;
+    private ArrayList<String> selectedServices;
+    private ArrayList<Integer> selectedServicesId;
     private String mobile;
     private String title;
     private int serviceType;
@@ -49,13 +52,23 @@ public class ServicesViewModel extends BaseObservable {
     }
 
     @Bindable
-    public String getSelectedServices() {
+    public ArrayList<String> getSelectedServices() {
         return selectedServices;
     }
 
-    public void setSelectedServices(String selectedServices) {
+    public void setSelectedServices(ArrayList<String> selectedServices) {
         this.selectedServices = selectedServices;
         notifyPropertyChanged(BR.selectedServices);
+    }
+
+    @Bindable
+    public ArrayList<Integer> getSelectedServicesId() {
+        return selectedServicesId;
+    }
+
+    public void setSelectedServicesId(ArrayList<Integer> selectedServicesId) {
+        this.selectedServicesId = selectedServicesId;
+        notifyPropertyChanged(BR.selectedServicesId);
     }
 
     @Bindable

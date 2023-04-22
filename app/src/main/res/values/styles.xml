@@ -154,4 +154,10 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
     </style>
+
+
+    <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
 </resources>
