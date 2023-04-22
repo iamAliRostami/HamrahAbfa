@@ -16,7 +16,7 @@ import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionMultiAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionSingleAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentServiceIntroductionBinding;
-import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.toast.RTLToast;
 
 import java.util.ArrayList;

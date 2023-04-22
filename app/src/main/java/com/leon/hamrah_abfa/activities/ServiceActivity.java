@@ -18,7 +18,7 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.toast.RTLToast;
 
 import org.osmdroid.util.GeoPoint;

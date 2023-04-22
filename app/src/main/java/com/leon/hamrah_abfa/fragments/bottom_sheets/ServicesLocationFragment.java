@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
+import com.leon.hamrah_abfa.di.module.LocationTrackingModule;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -28,6 +29,8 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class ServicesLocationFragment extends BottomSheetDialogFragment implements View.OnClickListener, MapEventsReceiver {
     private FragmentServicesLocationBinding binding;
@@ -75,6 +78,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         );
         binding.relativeLayoutMap.setLayoutParams(params);
         binding.buttonSubmit.setOnClickListener(this);
+        binding.imageViewArrowDown.setOnClickListener(this);
 
     }
 
@@ -108,9 +112,24 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             point = new GeoPoint(binding.mapView.getMapCenter().getLatitude(), binding.mapView.getMapCenter().getLongitude());
             serviceActivity.setLocation(convertMapToBitmap(), point);
             dismiss();
+        } else if (id == R.id.image_view_current_location) {
+
         }
     }
+    private void showCurrentLocation() {
+        //TODO
+        final IMapController mapController = binding.mapView.getController();
+        mapController.setZoom(19.5);
+        LocationTrackingModule location = new LocationTrackingModule(requireActivity());
+        point = new GeoPoint(location.providesLocationTrackingGps().getLatitude(),location.providesLocationTrackingGps().getLongitude());
+        mapController.setCenter(point);
+        final MyLocationNewOverlay locationOverlay =
+                new MyLocationNewOverlay(new GpsMyLocationProvider(requireContext()), binding.mapView);
+        locationOverlay.enableMyLocation();
+        binding.mapView.getOverlays().add(locationOverlay);
+        //TODO
 
+    }
     private Bitmap convertMapToBitmap() {
         addPlace();
         binding.mapView.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);

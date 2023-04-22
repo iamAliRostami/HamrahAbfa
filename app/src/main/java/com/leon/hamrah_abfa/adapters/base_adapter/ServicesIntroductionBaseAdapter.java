@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.infrastructure;
+package com.leon.hamrah_abfa.adapters.base_adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;

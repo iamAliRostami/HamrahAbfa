@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionHolder;
-import com.leon.hamrah_abfa.infrastructure.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 
 import java.util.ArrayList;
 
