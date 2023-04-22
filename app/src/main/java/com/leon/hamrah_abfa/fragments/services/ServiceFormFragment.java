@@ -74,7 +74,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         } else if (id == R.id.button_previous) {
             serviceActivity.goServices();
         } else if (id == R.id.image_view_location) {
-            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(), ServicesLocationFragment.newInstance());
+            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(), ServicesLocationFragment.newInstance(serviceActivity.getServicesViewModel().getPoint()));
         }
     }
 

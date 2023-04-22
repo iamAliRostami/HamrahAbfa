@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
         final int id = v.getId();
         if (id == R.id.float_button_add) {
 //            SubmitInfoFragment.newInstance().show(getSupportFragmentManager(), SUBMIT_INFO.getValue());
-            ShowFragmentDialogOnce(this, SERVICE_LOCATION.getValue(), ServicesLocationFragment.newInstance());
+            ShowFragmentDialogOnce(this, SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
         } else if (id == R.id.image_view_setting) {
             final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
             startActivity(intent);

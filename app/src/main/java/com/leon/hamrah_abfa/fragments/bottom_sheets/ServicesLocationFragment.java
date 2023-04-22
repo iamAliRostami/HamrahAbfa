@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.WIDTH;
+import static com.leon.hamrah_abfa.enums.BundleEnum.LATITUDE;
+import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;
 
 import android.app.Activity;
 import android.content.Context;
@@ -31,6 +32,7 @@ import org.osmdroid.views.overlay.Marker;
 public class ServicesLocationFragment extends BottomSheetDialogFragment implements View.OnClickListener, MapEventsReceiver {
     private FragmentServicesLocationBinding binding;
     private ICallback serviceActivity;
+    private GeoPoint point;
 
     public ServicesLocationFragment() {
     }
@@ -39,16 +41,21 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         return new ServicesLocationFragment();
     }
 
-    public static ServicesLocationFragment newInstance(int width) {
+    public static ServicesLocationFragment newInstance(GeoPoint point) {
         ServicesLocationFragment fragment = new ServicesLocationFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(WIDTH.getValue(), width);
+        bundle.putDouble(LATITUDE.getValue(), point.getLatitude());
+        bundle.putDouble(LONGITUDE.getValue(), point.getLongitude());
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()), getArguments().getDouble(LONGITUDE.getValue()));
+        }
     }
 
     @Override
@@ -60,17 +67,13 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
     }
 
     private void initialize() {
-//        final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.MATCH_PARENT,
-//                requireActivity().getWindowManager().getDefaultDisplay().getWidth()
-//        );
+        initializeMap();
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
-                requireActivity().getWindowManager().getDefaultDisplay().getWidth()
+                requireContext().getResources().getDisplayMetrics().widthPixels / 2
+                /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/
         );
-//        binding.mapView.setLayoutParams(params);
         binding.relativeLayoutMap.setLayoutParams(params);
-        initializeMap();
         binding.buttonSubmit.setOnClickListener(this);
 
     }
@@ -80,15 +83,13 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         binding.mapView.getZoomController().
                 setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
         binding.mapView.setMultiTouchControls(true);
-        final GeoPoint startPoint = new GeoPoint(32.65462762641145, 51.67064483950463);
         final IMapController mapController = binding.mapView.getController();
         mapController.setZoom(19.0);
-        mapController.setCenter(startPoint);
-
+        mapController.setCenter(point);
 //TODO
 
 //        if (getLocationTracker(activity).getCurrentLocation() != null) {
-//            final GeoPoint startPoint = new GeoPoint(getLocationTracker(activity).getCurrentLocation().getLatitude(),
+//            startPoint = new GeoPoint(getLocationTracker(activity).getCurrentLocation().getLatitude(),
 //                    getLocationTracker(activity).getCurrentLocation().getLongitude());
 //            mapController.setCenter(startPoint);
 //        }
@@ -104,25 +105,24 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            final GeoPoint point = new GeoPoint(binding.mapView.getMapCenter().getLatitude(), binding.mapView.getMapCenter().getLongitude());
-            serviceActivity.setLocation(convertMapToBitmap(point), point);
+            point = new GeoPoint(binding.mapView.getMapCenter().getLatitude(), binding.mapView.getMapCenter().getLongitude());
+            serviceActivity.setLocation(convertMapToBitmap(), point);
             dismiss();
         }
     }
 
-    private Bitmap convertMapToBitmap(GeoPoint point) {
-//        binding.mapView.destroyDrawingCache();
+    private Bitmap convertMapToBitmap() {
+        addPlace();
+        binding.mapView.setBuiltInZoomControls(false);
         binding.mapView.setDrawingCacheEnabled(true);
-        addPlace(point);
-//        Bitmap bitmap = binding.mapView.getDrawingCache(true);
         return binding.mapView.getDrawingCache(true);
     }
 
-    private void addPlace(GeoPoint point) {
+    private void addPlace() {
         final Marker startMarker = new Marker(binding.mapView);
         startMarker.setPosition(point);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        startMarker.setIcon(ContextCompat.getDrawable(requireContext(), R.drawable.map_pointer));
+        startMarker.setIcon(ContextCompat.getDrawable(requireContext(), R.drawable.map_pointer_image));
         binding.mapView.getOverlays().add(startMarker);
     }
 

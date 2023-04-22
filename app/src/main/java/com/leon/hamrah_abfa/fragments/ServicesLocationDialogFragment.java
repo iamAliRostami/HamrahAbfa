@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
@@ -101,7 +100,7 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
         final Marker startMarker = new Marker(binding.mapView);
         startMarker.setPosition(geoPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        startMarker.setIcon(ContextCompat.getDrawable(requireContext(), R.drawable.map_pointer));
+        startMarker.setIcon(ContextCompat.getDrawable(requireContext(), R.drawable.map_pointer_image));
         binding.mapView.getOverlays().add(startMarker);
     }
 
