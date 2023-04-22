@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.enums;
 public enum FragmentTags {
 
     SUBMIT_INFO("submit info"),
+    ASK_YES_NO("ask yes no"),
     SERVICE_LOCATION("service location");
 
 

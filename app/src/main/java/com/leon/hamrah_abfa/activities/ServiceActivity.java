@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
-import com.leon.hamrah_abfa.fragments.ServicesLocationDialogFragment;
+import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;

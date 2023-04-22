@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.dialog;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.LATITUDE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;
@@ -21,7 +21,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;

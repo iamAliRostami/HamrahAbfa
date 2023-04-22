@@ -11,6 +11,10 @@ public enum BundleEnum {
     MOBILE("mobile"),
     POSITION("position"),
     TITLE("title"),
+    DRAWABLE("drawable"),
+    QUESTION("question"),
+    YEY("yes"),
+    NO("no"),
     CONTENT("content"),
     LOGO("logo"),
     BACKGROUND_COLOR("background");

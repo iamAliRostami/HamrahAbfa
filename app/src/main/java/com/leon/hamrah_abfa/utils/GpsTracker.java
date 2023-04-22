@@ -1,14 +1,13 @@
 package com.leon.hamrah_abfa.utils;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.helpers.Constants.MIN_DISTANCE_CHANGE_FOR_UPDATES;
 import static com.leon.hamrah_abfa.helpers.Constants.MIN_TIME_BW_UPDATES;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -19,9 +18,13 @@ import android.os.IBinder;
 import android.provider.Settings;
 
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.DialogFragment;
+
+import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.fragments.dialog.YesNoFragment;
 
 public class GpsTracker extends Service implements LocationListener {
-    private final Context mContext;
+    private final Context context;
     boolean isGPSEnabled = false;
     boolean isNetworkEnabled = false;
     boolean canGetLocation = false;
@@ -31,20 +34,20 @@ public class GpsTracker extends Service implements LocationListener {
     protected LocationManager locationManager;
 
     public GpsTracker(Context context) {
-        this.mContext = context;
+        this.context = context;
         getLocation();
     }
 
     public Location getLocation() {
         try {
-            locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
+            locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             if (isGPSEnabled || isNetworkEnabled) {
                 this.canGetLocation = true;
                 if (isNetworkEnabled) {
-                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
                     }
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
                             MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
@@ -59,8 +62,8 @@ public class GpsTracker extends Service implements LocationListener {
                 }
                 if (isGPSEnabled) {
                     if (location == null) {
-                        if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            ActivityCompat.requestPermissions((Activity) mContext, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+                        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
                         }
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
@@ -105,21 +108,38 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     public void showSettingsAlert() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
-        alertDialog.setTitle("GPS is settings");
-        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                mContext.startActivity(intent);
-            }
-        });
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        alertDialog.show();
+//        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+//        alertDialog.setTitle("GPS is settings");
+//        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
+//        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//                context.startActivity(intent);
+//            }
+//        });
+//        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        alertDialog.show();
+        ShowFragmentDialog.ShowFragmentDialogOnce(context, ASK_YES_NO.getValue(),
+                YesNoFragment.newInstance(R.drawable.raw_map, "GPS is settings",
+                        "GPS is not enabled. Do you want to go to settings menu?", "Setting"
+                        , "Cancel", new YesNoFragment.IClickListener() {
+                            @Override
+                            public void yes(DialogFragment dialogFragment) {
+                                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                context.startActivity(intent);
+                                dialogFragment.dismiss();
+                            }
+
+                            @Override
+                            public void no(DialogFragment dialogFragment) {
+                                dialogFragment.dismiss();
+                            }
+                        })
+        );
     }
 
     @Override

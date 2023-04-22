@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.dialog.YesNoViewModel" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/card_view_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/large_dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/medium_dp"
+        card_view:cardElevation="@dimen/medium_dp"
+        tools:context=".fragments.dialog.YesNoFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_dp"
+                    app:imageResource="@{viewModel.drawable}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Title"
+                    android:layout_gravity="center"
+                    android:text="@{viewModel.title}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/small_dp"
+                android:layout_below="@id/image_view_icon"
+                android:background="@color/gray_1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextItem"
+                android:layout_gravity="center"
+                android:text="@{viewModel.question}" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/medium_dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_yes"
+                    style="@style/ButtonSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_margin="@dimen/medium_dp"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.yes}" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_no"
+                    style="@style/ButtonCancel"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="@dimen/medium_dp"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.no}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
