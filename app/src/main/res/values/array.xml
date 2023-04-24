@@ -54,7 +54,7 @@
         <item>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</item>
     </string-array>
 
-<!--    TODO-->
+    <!--    TODO-->
     <string-array name="services_ab_baha_menu">
         <item>اعلام اشتباه در قرائت</item>
         <item>تعویض کنتور</item>
@@ -62,11 +62,10 @@
         <item>خرابی کنتور</item>
     </string-array>
     <array name="services_ab_baha_icons">
-        <item>@drawable/wrong_reading</item>
-        <item>@drawable/sale_ab_waste_water</item>
-        <item>@drawable/sale_tank</item>
-        <item>@drawable/sale_tank</item>
-<!--        <item>@drawable/counter_broken</item>-->
+        <item>@drawable/ab_baha_wrong_reading</item>
+        <item>@drawable/ab_baha_change_counter</item>
+        <item>@drawable/ab_baha_test_counter</item>
+        <item>@drawable/ab_baha_counter_broken</item>
     </array>
 
     <string-array name="services_ab_baha_introduction">
@@ -104,23 +103,23 @@
 
     </string-array>
     <array name="services_after_sale_icons">
-        <item>@drawable/sale_ab</item>
-        <item>@drawable/change_name</item>
-        <item>@drawable/sale_tank</item>
-        <item>@drawable/change_karbari</item>
-        <item>@drawable/sale_ab</item>
-        <item>@drawable/sale_ab_waste_water</item>
-        <item>@drawable/family_counting</item>
-        <item>@drawable/sale_tank</item>
-        <item>@drawable/sale_ab</item>
-        <item>@drawable/sale_ab_waste_water</item>
-        <item>@drawable/change_counter_location</item>
-        <item>@drawable/install_siphon</item>
-        <item>@drawable/sale_ab</item>
-        <item>@drawable/sale_ab_waste_water</item>
-        <item>@drawable/change_siphon_place</item>
-        <item>@drawable/sale_tank</item>
-        <item>@drawable/sale_tank</item>
+        <item>@drawable/after_sale_change_number</item>
+        <item>@drawable/after_sale_change_name</item>
+        <item>@drawable/after_sale_waste_water_account</item>
+        <item>@drawable/after_sale_change_karbari</item>
+        <item>@drawable/after_sale_change_unit</item>
+        <item>@drawable/after_sale_change_zarfiat</item>
+        <item>@drawable/after_sale_family_counting</item>
+        <item>@drawable/after_sale_out_of_construction</item>
+        <item>@drawable/after_sale_change_qotr</item>
+        <item>@drawable/after_sale_tafkik_counter</item>
+        <item>@drawable/after_sale_change_counter_location</item>
+        <item>@drawable/after_sale_install_siphon</item>
+        <item>@drawable/after_sale_change_siphon_qotr</item>
+        <item>@drawable/after_sale_change_siphon</item>
+        <item>@drawable/after_sale_change_siphon_place</item>
+        <item>@drawable/after_sale_go_out_in</item>
+        <item>@drawable/after_sale_response_to_request</item>
     </array>
 
     <string-array name="services_after_sale_introduction">
@@ -163,7 +162,7 @@
         <item>24</item>
     </integer-array>
 
-<!--    TODO-->
+    <!--    TODO-->
 
     <integer-array name="services_sale_id">
         <item>1</item>
