@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.fragments.ui.incident;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkRecorderPermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
+import static com.leon.toast.RTLToast.warning;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -30,7 +31,6 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
-import com.leon.toast.RTLToast;
 
 import java.io.IOException;
 import java.util.Map;
@@ -77,81 +77,89 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             showMenu(binding.textViewIncidentType, R.menu.incident_menu);
         } else if (id == R.id.image_view_mic_play_pause) {
             if (checkRecorderPermission(requireContext())) {
-                binding.imageViewMicPlayPause.setVisibility(View.GONE);
-                binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.pause));
-                binding.lottieAnimationView.setVisibility(View.VISIBLE);
                 if (ready) {
-                    setupMediaRecorder();
-                    binding.imageViewDelete.setVisibility(View.VISIBLE);
-                    binding.lottieAnimationView.setAnimation(R.raw.recorder_animation);
+                    startRecording();
                 } else {
-                    setupMediaPlayer();
-                    binding.lottieAnimationView.setAnimation(R.raw.player_animation_1);
+                    startPlaying();
                 }
+                binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_pause));
+                binding.imageViewMicPlayPause.setVisibility(View.GONE);
+                binding.lottieAnimationView.setVisibility(View.VISIBLE);
                 binding.lottieAnimationView.playAnimation();
             } else {
                 requestRecordPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
             }
 
-        }
-        else if (id == R.id.lottie_animation_view) {
+        } else if (id == R.id.lottie_animation_view) {
             handler.removeCallbacks(runnable);
+            viewModel.setPosition(0);
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
-            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
-            viewModel.setPosition(0);
-            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
+            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
             if (recording) {
-                recording = false;
-                viewModel.stopRecorder();
+                stopRecording();
             } else if (playing) {
-                //TODO
-                viewModel.setStartTime(SystemClock.uptimeMillis());
-                viewModel.setLength();
-                playing = false;
-                viewModel.stopPlaying();
+                stopPlaying();
             }
         } else if (id == R.id.image_view_delete) {
-
             viewModel.setPosition(0);
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
-            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
-            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
-
+            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
             if (recording) {
-                recording = false;
-                viewModel.stopRecorder();
+                stopRecording();
             } else if (playing) {
-                playing = false;
-                viewModel.setStartTime(SystemClock.uptimeMillis());
-                viewModel.setLength();
-                viewModel.stopPlaying();
+                stopPlaying();
             } else {
-                //TODO delete current file;
-                if (SystemClock.elapsedRealtime() - lastClickTime < 2000) {
-                    //viewModel.setR
-                    viewModel.setStartTime(SystemClock.uptimeMillis());
-                    viewModel.setLength();
-                    binding.audioRecordView.recreate();
-                    binding.imageViewDelete.setVisibility(View.GONE);
-                    binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.mic_blue));
-                    ready = true;
-                }
-                RTLToast.info(requireContext(), getString(R.string.delete_by_press_again)).show();
-                lastClickTime = SystemClock.elapsedRealtime();
+                resetRecorder();
             }
         }
+    }
 
+    private void resetRecorder() {
+        //TODO delete current file;
+        if (SystemClock.elapsedRealtime() - lastClickTime < 2000) {
+            viewModel.resetTime();
+            binding.audioRecordView.recreate();
+            binding.imageViewDelete.setVisibility(View.GONE);
+            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_recorder));
+            ready = true;
+        }
+        warning(requireContext(), getString(R.string.delete_by_press_again)).show();
+        lastClickTime = SystemClock.elapsedRealtime();
+    }
+
+    private void stopRecording() {
+        recording = false;
+        viewModel.stopRecorder();
+    }
+
+    private void stopPlaying() {
+        viewModel.stopPlaying();
+        viewModel.resetTime();
+        playing = false;
+    }
+
+    private void startPlaying() {
+        setupMediaPlayer();
+        binding.lottieAnimationView.setAnimation(R.raw.player_animation_1);
+    }
+
+    private void startRecording() {
+        setupMediaRecorder();
+        binding.imageViewDelete.setVisibility(View.VISIBLE);
+        binding.lottieAnimationView.setAnimation(R.raw.recorder_animation);
     }
 
     private void setupMediaPlayer() {
         binding.audioRecordView.recreate();
         handler.removeCallbacks(runnable);
+        playing = true;
         try {
-            playing = true;
             viewModel.preparePlayer(requireContext());
             viewModel.setStartTime(SystemClock.uptimeMillis());
             handler.postDelayed(runnable, 200);
@@ -160,7 +168,7 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             error(requireContext(), e.toString()).show();
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
         }
     }
@@ -171,21 +179,17 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         ready = false;
         recording = true;
         try {
-            viewModel.setPosition(0);
             viewModel.prepareRecorder(requireContext());
             viewModel.setStartTime(SystemClock.uptimeMillis());
             handler.postDelayed(runnable, 200);
         } catch (IOException e) {
+            error(requireContext(), e.toString()).show();
             recording = false;
             ready = true;
-            error(requireContext(), e.toString()).show();
             viewModel.stopRecorder();
-
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
-
             binding.imageViewDelete.setVisibility(View.GONE);
-
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
         }
     }
@@ -203,17 +207,16 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                     viewModel.setPosition(viewModel.getPosition() + 1);
                 }
                 if (viewModel.getCurrentPosition() == viewModel.getDuration()) {
-                    playing = false;
                     handler.removeCallbacks(runnable);
                     binding.lottieAnimationView.setVisibility(View.GONE);
                     binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
-                    binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
-                    binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
-                    //TODO
+                    binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
+                    binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
                     binding.audioRecordView.recreate();
                     viewModel.setPosition(0);
                     viewModel.stopPlaying();
                     viewModel.setStartTime(SystemClock.uptimeMillis());
+                    playing = false;
                 }
             }
             viewModel.setLength();

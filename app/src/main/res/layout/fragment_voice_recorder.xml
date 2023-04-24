@@ -49,10 +49,9 @@
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:background="@drawable/background_mic"
         android:contentDescription="@string/record_voice"
         android:padding="@dimen/medium_dp"
-        android:src="@drawable/mic_blue" />
+        android:src="@drawable/ic_recorder" />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_recorder"
         android:layout_width="wrap_content"

@@ -122,7 +122,7 @@ public class GpsTracker extends Service implements LocationListener {
 //        });
 //        alertDialog.show();
         ShowFragmentDialogOnce(context, ASK_YES_NO.getValue(),
-                YesNoFragment.newInstance(R.drawable.raw_map, "GPS is settings",
+                YesNoFragment.newInstance(R.drawable.ic_raw_map, "GPS is settings",
                         "GPS is not enabled. Do you want to go to settings menu?", "Setting"
                         , "Cancel", new YesNoFragment.IClickListener() {
                             @Override

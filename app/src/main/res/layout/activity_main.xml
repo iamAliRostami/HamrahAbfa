@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/plus"
+            android:src="@drawable/ic_plus"
             app:elevation="@dimen/medium_dp"
             app:layout_anchor="@id/bottom_app_bar"
             app:tint="@android:color/white" />

@@ -23,7 +23,7 @@ public class IncidentViewModel extends BaseObservable {
     private String length;
     private int position;
     private MediaRecorder mediaRecorder;
-    private MediaPlayer mediaPlayer/* = new MediaPlayer()*/;
+    private MediaPlayer mediaPlayer;
 
     public IncidentViewModel() {
         setStartTime(SystemClock.uptimeMillis());
@@ -38,6 +38,11 @@ public class IncidentViewModel extends BaseObservable {
     public void setStartTime(long startTime) {
         this.startTime = startTime;
         notifyPropertyChanged(BR.startTime);
+    }
+
+    public void resetTime() {
+        setStartTime(SystemClock.uptimeMillis());
+        setLength();
     }
 
     @Bindable

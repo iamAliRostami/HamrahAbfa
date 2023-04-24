@@ -119,7 +119,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/border_dotted_gray"
-                            android:src="@drawable/raw_map" />
+                            android:src="@drawable/ic_raw_map" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.core.widget.NestedScrollView>
             </androidx.appcompat.widget.LinearLayoutCompat>
