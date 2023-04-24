@@ -10,7 +10,6 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentRequestDoneBinding;
@@ -23,10 +22,11 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
     }
 
     public static RequestDoneFragment newInstance(String trackNumber) {
-        RequestDoneFragment fragment = new RequestDoneFragment();
-        Bundle args = new Bundle();
+        final RequestDoneFragment fragment = new RequestDoneFragment();
+        final Bundle args = new Bundle();
         args.putString(TRACK_NUMBER.getValue(), trackNumber);
         fragment.setArguments(args);
+        fragment.setCancelable(false);
         return fragment;
     }
 
@@ -48,6 +48,7 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
 
     private void initialize() {
         binding.textViewTrackNumber.setText(trackNumber);
+        binding.buttonReturn.setOnClickListener(this);
     }
 
     @Override
