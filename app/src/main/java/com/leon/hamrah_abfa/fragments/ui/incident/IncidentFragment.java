@@ -25,10 +25,12 @@ import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
+import com.leon.toast.RTLToast;
 
 import java.io.IOException;
 import java.util.Map;
@@ -36,8 +38,8 @@ import java.util.Map;
 public class IncidentFragment extends Fragment implements View.OnClickListener {
     private final IncidentViewModel viewModel = new IncidentViewModel();
     private FragmentIncidentBinding binding;
-    private boolean recording;
-    private boolean playing;
+    private boolean recording, playing, ready = true;
+    private long lastClickTime = 0;
 
     public IncidentFragment() {
     }
@@ -62,9 +64,9 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
 
     private void initialize() {
         binding.textViewIncidentType.setOnClickListener(this);
-        binding.imageViewMic.setOnClickListener(this);
         binding.lottieAnimationView.setOnClickListener(this);
-        binding.imageViewPlayPause.setOnClickListener(this);
+        binding.imageViewMicPlayPause.setOnClickListener(this);
+        binding.imageViewDelete.setOnClickListener(this);
     }
 
 
@@ -73,48 +75,76 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         final int id = v.getId();
         if (id == R.id.text_view_incident_type) {
             showMenu(binding.textViewIncidentType, R.menu.incident_menu);
-        } else if (id == R.id.image_view_mic) {
+        } else if (id == R.id.image_view_mic_play_pause) {
             if (checkRecorderPermission(requireContext())) {
-                setupMediaRecorder();
-                binding.imageViewMic.setVisibility(View.GONE);
+                binding.imageViewMicPlayPause.setVisibility(View.GONE);
+                binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.pause));
                 binding.lottieAnimationView.setVisibility(View.VISIBLE);
-                binding.lottieAnimationView.setAnimation(R.raw.recorder_animation);
+                if (ready) {
+                    setupMediaRecorder();
+                    binding.imageViewDelete.setVisibility(View.VISIBLE);
+                    binding.lottieAnimationView.setAnimation(R.raw.recorder_animation);
+                } else {
+                    setupMediaPlayer();
+                    binding.lottieAnimationView.setAnimation(R.raw.player_animation_1);
+                }
                 binding.lottieAnimationView.playAnimation();
             } else {
                 requestRecordPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO);
             }
-        } else if (id == R.id.image_view_play_pause) {
-//            if (checkStoragePermission(requireContext())) {
-            setupMediaPlayer();
-            binding.imageViewPlayPause.setVisibility(View.GONE);
-            binding.lottieAnimationView.setVisibility(View.VISIBLE);
-            binding.lottieAnimationView.setAnimation(R.raw.player_animation_1);
-            binding.lottieAnimationView.playAnimation();
-//            } else {
-//                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
-//                        Manifest.permission.WRITE_EXTERNAL_STORAGE,};
-//
-//                requestStoragePermissionLauncher.launch(permissions);
-//
-////                requestStoragePermissionLauncher.launch(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-////                        Manifest.permission.READ_EXTERNAL_STORAGE});
-////                requestStoragePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE,
-////                        Manifest.permission.READ_EXTERNAL_STORAGE);
-//            }
-        } else if (id == R.id.lottie_animation_view) {
+
+        }
+        else if (id == R.id.lottie_animation_view) {
             handler.removeCallbacks(runnable);
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.imageViewPlayPause.setVisibility(View.VISIBLE);
+            binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
+            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
+            viewModel.setPosition(0);
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
             if (recording) {
                 recording = false;
                 viewModel.stopRecorder();
             } else if (playing) {
                 //TODO
+                viewModel.setStartTime(SystemClock.uptimeMillis());
+                viewModel.setLength();
                 playing = false;
                 viewModel.stopPlaying();
             }
+        } else if (id == R.id.image_view_delete) {
+
+            viewModel.setPosition(0);
+            binding.lottieAnimationView.pauseAnimation();
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
+            binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
+
+            if (recording) {
+                recording = false;
+                viewModel.stopRecorder();
+            } else if (playing) {
+                playing = false;
+                viewModel.setStartTime(SystemClock.uptimeMillis());
+                viewModel.setLength();
+                viewModel.stopPlaying();
+            } else {
+                //TODO delete current file;
+                if (SystemClock.elapsedRealtime() - lastClickTime < 2000) {
+                    //viewModel.setR
+                    viewModel.setStartTime(SystemClock.uptimeMillis());
+                    viewModel.setLength();
+                    binding.audioRecordView.recreate();
+                    binding.imageViewDelete.setVisibility(View.GONE);
+                    binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.mic_blue));
+                    ready = true;
+                }
+                RTLToast.info(requireContext(), getString(R.string.delete_by_press_again)).show();
+                lastClickTime = SystemClock.elapsedRealtime();
+            }
         }
+
     }
 
     private void setupMediaPlayer() {
@@ -130,26 +160,33 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             error(requireContext(), e.toString()).show();
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.imageViewPlayPause.setVisibility(View.VISIBLE);
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
+            binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
         }
     }
 
     private void setupMediaRecorder() {
         binding.audioRecordView.recreate();
         handler.removeCallbacks(runnable);
+        ready = false;
+        recording = true;
         try {
-            recording = true;
             viewModel.setPosition(0);
             viewModel.prepareRecorder(requireContext());
             viewModel.setStartTime(SystemClock.uptimeMillis());
             handler.postDelayed(runnable, 200);
         } catch (IOException e) {
             recording = false;
+            ready = true;
             error(requireContext(), e.toString()).show();
             viewModel.stopRecorder();
+
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.imageViewMic.setVisibility(View.VISIBLE);
+
+            binding.imageViewDelete.setVisibility(View.GONE);
+
+            binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
         }
     }
 
@@ -168,8 +205,11 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                 if (viewModel.getCurrentPosition() == viewModel.getDuration()) {
                     playing = false;
                     handler.removeCallbacks(runnable);
-                    binding.imageViewPlayPause.setVisibility(View.VISIBLE);
                     binding.lottieAnimationView.setVisibility(View.GONE);
+                    binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
+                    binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.play));
+                    binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.delete));
+                    //TODO
                     binding.audioRecordView.recreate();
                     viewModel.setPosition(0);
                     viewModel.stopPlaying();

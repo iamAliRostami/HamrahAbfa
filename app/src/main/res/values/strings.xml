@@ -3,6 +3,7 @@
     <string name="dashboard">داشبورد</string>
     <string name="title_notifications">اعلان\u200cها</string>
     <string name="exit_by_press_again">لطفا جهت خروج، دکمه\u200cی بازگشت را مجدد کلیک کنید</string>
+    <string name="delete_by_press_again">لطفا جهت حذف، دکمه را مجدد کلیک کنید</string>
     <string name="return_by_press_again">لطفا جهت بازگشت به صفحه\u200cی پیشین، دکمه\u200cی بازگشت را مجدد کلیک کنید</string>
     <string name="skip">نادیده بگیر</string>
     <string name="done">انجام شد</string>
