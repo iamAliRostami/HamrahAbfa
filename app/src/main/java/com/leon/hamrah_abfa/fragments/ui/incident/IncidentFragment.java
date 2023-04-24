@@ -37,8 +37,9 @@ import java.util.Map;
 
 public class IncidentFragment extends Fragment implements View.OnClickListener {
     private final IncidentViewModel viewModel = new IncidentViewModel();
-    private FragmentIncidentBinding binding;
+    private final Handler handler = new Handler();
     private boolean recording, playing, ready = true;
+    private FragmentIncidentBinding binding;
     private long lastClickTime = 0;
 
     public IncidentFragment() {
@@ -194,7 +195,6 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private final Handler handler = new Handler();
     private final Runnable runnable = new Runnable() {
         @SuppressLint("DefaultLocale")
         public void run() {
@@ -257,21 +257,17 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             menuBuilder.setOptionalIconsVisible(true);
             //noinspection RestrictedApi
             for (MenuItem item : menuBuilder.getVisibleItems()) {
-                int iconMarginPx =
-                        (int)
-                                TypedValue.applyDimension(
-                                        TypedValue.COMPLEX_UNIT_DIP, R.dimen.low_dp, getResources().getDisplayMetrics());
-
+                int iconMarginPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                        R.dimen.low_dp, getResources().getDisplayMetrics());
                 if (item.getIcon() != null) {
                     item.setIcon(new InsetDrawable(item.getIcon(), iconMarginPx, 0, iconMarginPx, 0));
                 }
             }
         }
-        popup.setOnMenuItemClickListener(
-                menuItem -> {
-                    binding.textViewIncidentType.setText(menuItem.getTitle());
-                    return true;
-                });
+        popup.setOnMenuItemClickListener(menuItem -> {
+            binding.textViewIncidentType.setText(menuItem.getTitle());
+            return true;
+        });
         popup.show();
     }
 }
