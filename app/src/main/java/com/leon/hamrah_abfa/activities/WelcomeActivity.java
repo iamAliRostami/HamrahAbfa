@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import android.content.Intent;
@@ -68,9 +69,10 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         } else if (id == R.id.button_done) {
             getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
             //TODO permanent redirect
-            final Intent intent = new Intent(getApplicationContext(), SubmitActivity.class);
-            startActivity(intent);
-            //TODO
+            if (!getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                final Intent intent = new Intent(getApplicationContext(), SubmitActivity.class);
+                startActivity(intent);
+            }
             finish();
         }
     }
