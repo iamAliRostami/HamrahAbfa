@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.services;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
+import static com.leon.hamrah_abfa.helpers.Constants.POINT;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import android.content.Context;
@@ -38,7 +39,7 @@ public class ServicesViewModel extends BaseObservable {
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
         setIconDrawable(context.getResources().obtainTypedArray(R.array.services_main_icons));
         setSrcIcon(iconDrawable.getResourceId(getServiceType(), -1));
-        setPoint(new GeoPoint(32.65836947131902, 51.667315643280745));
+        setPoint(POINT);
     }
 
     @Bindable

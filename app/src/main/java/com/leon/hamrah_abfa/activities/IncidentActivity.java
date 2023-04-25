@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.ActivityIncidentBinding;
-import com.leon.hamrah_abfa.fragments.incident.IncidentBaseFragment;
+import com.leon.hamrah_abfa.fragments.incident.IncidentCompleteFragment;
 
 public class IncidentActivity extends AppCompatActivity {
     private ActivityIncidentBinding binding;
@@ -25,7 +25,7 @@ public class IncidentActivity extends AppCompatActivity {
 
     private void initialize() {
         getSupportFragmentManager().beginTransaction().add(binding.fragmentIncident.getId(),
-                IncidentBaseFragment.newInstance()).commit();
+                IncidentCompleteFragment.newInstance()/*IncidentBaseFragment.newInstance()*/).commit();
     }
 
     @Override

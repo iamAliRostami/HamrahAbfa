@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.LATITUDE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;
+import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,7 +22,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
 import com.leon.hamrah_abfa.utils.GpsTracker;
-import static com.leon.toast.RTLToast.warning;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -114,7 +114,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             mapController.setZoom(19.5);
             point = new GeoPoint(gpsTracker.getLatitude(), gpsTracker.getLongitude());
             mapController.setCenter(point);
-        }else {
+        } else {
             warning(requireContext(), R.string.make_sure_internet_is_connected).show();
         }
     }

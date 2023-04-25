@@ -64,7 +64,6 @@
             app:boxBackgroundMode="outline"
             app:counterEnabled="true"
             app:counterMaxLength="1000"
-
             app:helperText="@string/enter_incident_description">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -138,7 +137,6 @@
                 android:src="@drawable/ic_delete_1"
                 android:visibility="gone" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_next"
