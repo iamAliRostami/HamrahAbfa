@@ -122,9 +122,9 @@ public class GpsTracker extends Service implements LocationListener {
 //        });
 //        alertDialog.show();
         ShowFragmentDialogOnce(context, ASK_YES_NO.getValue(),
-                YesNoFragment.newInstance(R.drawable.ic_raw_map, "GPS is settings",
-                        "GPS is not enabled. Do you want to go to settings menu?", "Setting"
-                        , "Cancel", new YesNoFragment.IClickListener() {
+                YesNoFragment.newInstance(R.drawable.ic_raw_map, context.getString(R.string.gps_settings),
+                        context.getString(R.string.enable_gps), context.getString(R.string.setting)
+                        , context.getString(R.string.cancel), new YesNoFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment fragment) {
                                 final Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);

@@ -98,7 +98,7 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
             binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
-            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_1));
             if (recording) {
                 stopRecording();
             } else if (playing) {
@@ -110,7 +110,7 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
             binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
-            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_1));
             if (recording) {
                 stopRecording();
             } else if (playing) {
@@ -169,7 +169,7 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
             error(requireContext(), e.toString()).show();
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
+            binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_1));
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
         }
     }
@@ -211,7 +211,7 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                     binding.lottieAnimationView.setVisibility(View.GONE);
                     binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
                     binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
-                    binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete));
+                    binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_1));
                     binding.audioRecordView.recreate();
                     viewModel.setPosition(0);
                     viewModel.stopPlaying();
@@ -242,8 +242,6 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
                             Log.e("here", result.toString());
                         }
                     });
-
-
     private void showMenu(View v, @MenuRes int menuRes) {
         final PopupMenu popup = new PopupMenu(requireActivity(), v, Gravity.TOP);
         // Inflating the Popup using xml file

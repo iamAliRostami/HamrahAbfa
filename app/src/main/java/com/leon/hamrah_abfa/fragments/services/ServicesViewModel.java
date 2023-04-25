@@ -38,7 +38,7 @@ public class ServicesViewModel extends BaseObservable {
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
         setIconDrawable(context.getResources().obtainTypedArray(R.array.services_main_icons));
         setSrcIcon(iconDrawable.getResourceId(getServiceType(), -1));
-        setPoint(new GeoPoint(32.65462762641145, 51.67064483950463));
+        setPoint(new GeoPoint(32.65836947131902, 51.667315643280745));
     }
 
     @Bindable

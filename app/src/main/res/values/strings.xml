@@ -105,4 +105,9 @@
     <string name="request_submitted">درخواست شما با موفقیت ثبت شد</string>
     <string name="write_track_number">کد رهگیری خود را یادداشت کنید</string>
     <string name="confirm">تایید</string>
+    <string name="make_sure_internet_is_connected">ارتباط اینترنت خود را بررسی کنید</string>
+    <string name="cancel">لغو</string>
+    <string name="setting">تنظیمات</string>
+    <string name="gps_settings">تنظیمات جی\u200cپی\u200cاس</string>
+    <string name="enable_gps">جی\u200cپی\u200cاس غیرفعال است. آیا می\u200cخواهید جی\u200cپی\u200cاس را روشن کنید؟</string>
 </resources>

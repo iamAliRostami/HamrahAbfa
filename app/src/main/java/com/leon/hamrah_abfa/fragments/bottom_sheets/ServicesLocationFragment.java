@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
 import com.leon.hamrah_abfa.utils.GpsTracker;
+import static com.leon.toast.RTLToast.warning;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -43,8 +44,8 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
     }
 
     public static ServicesLocationFragment newInstance(GeoPoint point) {
-        ServicesLocationFragment fragment = new ServicesLocationFragment();
-        Bundle bundle = new Bundle();
+        final ServicesLocationFragment fragment = new ServicesLocationFragment();
+        final Bundle bundle = new Bundle();
         bundle.putDouble(LATITUDE.getValue(), point.getLatitude());
         bundle.putDouble(LONGITUDE.getValue(), point.getLongitude());
         fragment.setArguments(bundle);
@@ -88,7 +89,6 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         final IMapController mapController = binding.mapView.getController();
         mapController.setZoom(19.0);
         mapController.setCenter(point);
-        //TODO
         binding.mapView.getOverlays().add(new MapEventsOverlay(this));
     }
 
@@ -114,6 +114,8 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             mapController.setZoom(19.5);
             point = new GeoPoint(gpsTracker.getLatitude(), gpsTracker.getLongitude());
             mapController.setCenter(point);
+        }else {
+            warning(requireContext(), R.string.make_sure_internet_is_connected).show();
         }
     }
 

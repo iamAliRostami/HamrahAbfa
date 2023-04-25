@@ -5,6 +5,7 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +20,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
 import com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel;
-import com.leon.toast.RTLToast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -60,12 +60,12 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (viewModel.getBillId().isEmpty()) {
-                RTLToast.warning(requireContext(), getString(R.string.enter_bill_id)).show();
+                warning(requireContext(), getString(R.string.enter_bill_id)).show();
             } else {
                 final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
                 for (int i = 0; i < billIds.size(); i++) {
                     if (billIds.get(i).equals(viewModel.getBillId())) {
-                        RTLToast.warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
+                        warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
                         return;
                     }
                 }

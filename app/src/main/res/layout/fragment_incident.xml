@@ -128,7 +128,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/record_voice"
                 android:padding="@dimen/low_dp"
-                android:src="@drawable/ic_delete"
+                android:src="@drawable/ic_delete_1"
                 android:visibility="gone" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

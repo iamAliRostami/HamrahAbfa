@@ -84,6 +84,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout_debt"
             android:layout_toEndOf="@id/image_view_edit"
-            android:src="@drawable/ic_delete" />
+            android:src="@drawable/ic_delete_2" />
     </RelativeLayout>
 </layout>
