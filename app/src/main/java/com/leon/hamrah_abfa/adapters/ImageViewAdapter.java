@@ -49,7 +49,7 @@ public class ImageViewAdapter extends BaseAdapter {
             });
         } else {
             Log.e("position 3", String.valueOf(position));
-//            holder.imageViewDelete.setVisibility(View.GONE);
+            holder.imageViewDelete.setVisibility(View.GONE);
         }
         return view;
     }
