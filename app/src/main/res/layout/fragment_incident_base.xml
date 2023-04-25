@@ -40,9 +40,8 @@
             style="@style/MenuLayout"
             android:layout_below="@id/text_view_description"
             android:hint="@string/incident_type"
-            app:boxStrokeColor="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="outline"
             app:hintTextColor="@color/purple_7001">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -50,7 +49,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/background_incident_field"
                 android:inputType="none"
                 android:text="@={viewModel.incidentType}" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -62,14 +60,16 @@
             android:layout_marginTop="@dimen/huge_dp"
             android:layout_marginBottom="@dimen/huge_dp"
             android:hint="@string/description"
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="outline"
             app:counterEnabled="true"
             app:counterMaxLength="1000"
+
             app:helperText="@string/enter_incident_description">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_description"
                 style="@style/TextInput"
-                android:background="@drawable/background_incident_field"
                 android:gravity="top"
                 android:inputType="textMultiLine"
                 android:lines="3"

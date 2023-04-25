@@ -274,12 +274,12 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
         // IF you need the icons to show this works however it's discouraged to rely on library only
         // APIs since they might disappear in future versions.
         if (popup.getMenu() instanceof MenuBuilder) {
-            MenuBuilder menuBuilder = (MenuBuilder) popup.getMenu();
+            final MenuBuilder menuBuilder = (MenuBuilder) popup.getMenu();
             //noinspection RestrictedApi
             menuBuilder.setOptionalIconsVisible(true);
             //noinspection RestrictedApi
             for (MenuItem item : menuBuilder.getVisibleItems()) {
-                int iconMarginPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+               final int iconMarginPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                         R.dimen.low_dp, getResources().getDisplayMetrics());
                 if (item.getIcon() != null) {
                     item.setIcon(new InsetDrawable(item.getIcon(), iconMarginPx, 0, iconMarginPx, 0));
