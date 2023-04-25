@@ -28,7 +28,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/background_recorder">
+        android:background="@drawable/background_incident_field">
 
         <com.visualizer.amplitude.AudioRecordView
             android:id="@+id/audio_record_view"

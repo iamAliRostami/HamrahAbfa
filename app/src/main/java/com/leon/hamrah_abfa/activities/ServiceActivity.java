@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.toast.RTLToast.info;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -23,7 +24,6 @@ import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.services.SubmitInformationFragment;
-import com.leon.toast.RTLToast;
 
 import org.osmdroid.util.GeoPoint;
 
@@ -130,7 +130,7 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     @Override
     public void onBackPressed() {
         if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        RTLToast.info(this, getString(R.string.return_by_press_again)).show();
+        info(this, getString(R.string.return_by_press_again)).show();
         lastClickTime = SystemClock.elapsedRealtime();
     }
 

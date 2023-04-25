@@ -110,4 +110,7 @@
     <string name="setting">تنظیمات</string>
     <string name="gps_settings">تنظیمات جی\u200cپی\u200cاس</string>
     <string name="enable_gps">جی\u200cپی\u200cاس غیرفعال است. آیا می\u200cخواهید جی\u200cپی\u200cاس را روشن کنید؟</string>
+    <string name="choose_incident_type">نوع حادثه را انتخاب کنید</string>
+    <string name="field_incident_description">توضیح متنی را وارد کنید یا صدا ضبط کنید</string>
+    <string name="start">شروع</string>
 </resources>

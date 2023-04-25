@@ -50,7 +50,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     private void initialize() {
         if (serviceActivity.getServicesViewModel().getBitmapLocation() != null)
             binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
-        binding.buttonSubmit.setOnClickListener(this);
+        binding.buttonNext.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
         binding.imageViewLocation.setOnClickListener(this);
         binding.imageViewLocation.setOnLongClickListener(new View.OnLongClickListener() {
@@ -66,7 +66,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.button_submit) {
+        if (id == R.id.button_next) {
             if (checkInputs())
                 serviceActivity.submitUserInfo();
         } else if (id == R.id.button_previous) {
