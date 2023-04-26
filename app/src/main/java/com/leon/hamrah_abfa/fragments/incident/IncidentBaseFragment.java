@@ -129,17 +129,23 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
                 resetRecorder();
             }
         } else if (id == R.id.button_next) {
-            if (incidentActivity.getIncidentViewModel().getIncidentType() == null || incidentActivity.getIncidentViewModel().getIncidentType().isEmpty()) {
+            if (incidentActivity.getIncidentViewModel().getIncidentType() == null ||
+                    incidentActivity.getIncidentViewModel().getIncidentType().isEmpty()) {
                 binding.editTextIncidentType.setError(getString(R.string.choose_incident_type));
                 binding.editTextIncidentType.requestFocus();
                 warning(requireContext(), R.string.choose_incident_type).show();
             } else {
-                if ((incidentActivity.getIncidentViewModel().getDescription() == null || incidentActivity.getIncidentViewModel().getDescription().isEmpty()) &&
+                if ((incidentActivity.getIncidentViewModel().getDescription() == null ||
+                        incidentActivity.getIncidentViewModel().getDescription().isEmpty()) &&
                         incidentActivity.getIncidentViewModel().getMediaRecorder() == null) {
                     binding.editTextDescription.setError(getString(R.string.choose_incident_type));
                     binding.editTextDescription.requestFocus();
                     warning(requireContext(), R.string.field_incident_description).show();
                 } else {
+                    if (recording || playing) {
+                        warning(requireContext(), R.string.stop_recording_playing).show();
+                        return;
+                    }
                     incidentActivity.nextPage();
                 }
             }

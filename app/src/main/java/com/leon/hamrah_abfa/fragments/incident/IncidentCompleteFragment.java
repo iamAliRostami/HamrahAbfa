@@ -78,7 +78,8 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     }
 
     private void initializeGridView() {
-        incidentActivity.setImageViewAdapter(new ImageViewAdapter(requireContext()));
+        if (incidentActivity.getImageViewAdapter() == null)
+            incidentActivity.setImageViewAdapter(new ImageViewAdapter(requireContext()));
         binding.gridViewImages.setAdapter(incidentActivity.getImageViewAdapter());
         binding.gridViewImages.setOnItemClickListener(this);
     }
