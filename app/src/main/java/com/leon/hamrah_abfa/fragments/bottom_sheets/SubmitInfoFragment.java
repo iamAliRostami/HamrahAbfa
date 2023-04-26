@@ -53,6 +53,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
 
     private void initialize() {
         binding.buttonSubmit.setOnClickListener(this);
+        binding.imageViewArrowDown.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +78,8 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
                 insertData();
 
             }
+        } else if (id == R.id.image_view_arrow_down) {
+            dismiss();
         }
     }
 

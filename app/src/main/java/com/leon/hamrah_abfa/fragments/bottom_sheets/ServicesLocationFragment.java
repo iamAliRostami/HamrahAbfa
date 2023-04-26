@@ -78,6 +78,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         binding.relativeLayoutMap.setLayoutParams(params);
         binding.buttonSubmit.setOnClickListener(this);
         binding.imageViewCurrentLocation.setOnClickListener(this);
+        binding.imageViewArrowDown.setOnClickListener(this);
 
     }
 
@@ -102,6 +103,8 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             dismiss();
         } else if (id == R.id.image_view_current_location) {
             showCurrentLocation();
+        } else if (id == R.id.image_view_arrow_down) {
+            dismiss();
         }
     }
 

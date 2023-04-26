@@ -37,7 +37,7 @@
     <string name="send_again">ارسال مجدد</string>
     <string name="enter_mobile">شماره موبایل را وارد کنید</string>
     <string name="mobile_error">شماره موبایل به درستی وارد نشده است</string>
-    <string name="mobile">"شماره همراه "</string>
+    <string name="mobile">شماره همراه </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -119,4 +119,6 @@
     <string name="start">شروع</string>
     <string name="save_format_name">yyyyMMdd_HHmmss</string>
     <string name="stop_recording_playing">ضبط/پخش صدا را متوفق کنید</string>
+    <string name="last_login">آخرین ورود</string>
+    <string name="ip">آی پی</string>
 </resources>
