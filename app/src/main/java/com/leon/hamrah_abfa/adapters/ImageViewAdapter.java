@@ -5,7 +5,6 @@ import static com.leon.toast.RTLToast.warning;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,11 +33,12 @@ public class ImageViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.item_image, null);
         }
         final ImageViewHolder holder = new ImageViewHolder(view);
-        Log.e("position 1", String.valueOf(position));
-        Log.e("size 1", String.valueOf(bitmaps.size()));
-        if (position < bitmaps.size()) {
-            Log.e("position 2", String.valueOf(position));
+        if (bitmaps.isEmpty() || position == bitmaps.size()) {
+            holder.imageView.setImageResource(R.drawable.ic_image_raw);
+            holder.imageViewDelete.setVisibility(View.GONE);
+        } else {
             holder.imageView.setImageBitmap(bitmaps.get(position));
+            holder.imageViewDelete.setVisibility(View.VISIBLE);
             holder.imageViewDelete.setOnClickListener(v -> {
                 if (SystemClock.elapsedRealtime() - lastClickTime < 2000) {
                     bitmaps.remove(position);
@@ -47,9 +47,6 @@ public class ImageViewAdapter extends BaseAdapter {
                 warning(context, context.getString(R.string.delete_by_press_again)).show();
                 lastClickTime = SystemClock.elapsedRealtime();
             });
-        } else {
-            Log.e("position 3", String.valueOf(position));
-            holder.imageViewDelete.setVisibility(View.GONE);
         }
         return view;
     }
@@ -61,7 +58,7 @@ public class ImageViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return bitmaps.size() + 1;
+        return Math.min(bitmaps.size() + 1, 5);
     }
 
     @Override
@@ -71,6 +68,6 @@ public class ImageViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return bitmaps.size() + 1;
+        return position/*bitmaps.size() + 1*/;
     }
 }

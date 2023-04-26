@@ -10,6 +10,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -44,10 +45,9 @@ import java.io.IOException;
 
 public class IncidentCompleteFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private FragmentIncidentCompleteBinding binding;
-    private ICallback callback;
-    private ImageViewAdapter adapter;
+    private ICallback incidentActivity;
     private long lastClickTime = 0;
-    File fileImage = null;
+    private File fileImage = null;
 
     public IncidentCompleteFragment() {
     }
@@ -78,8 +78,8 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     }
 
     private void initializeGridView() {
-        adapter = new ImageViewAdapter(requireContext());
-        binding.gridViewImages.setAdapter(adapter);
+        incidentActivity.setImageViewAdapter(new ImageViewAdapter(requireContext()));
+        binding.gridViewImages.setAdapter(incidentActivity.getImageViewAdapter());
         binding.gridViewImages.setOnItemClickListener(this);
     }
 
@@ -97,9 +97,9 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            callback.confirm();
+            incidentActivity.confirm();
         } else if (id == R.id.button_previous) {
-            callback.returnToBase();
+            incidentActivity.returnToBase();
         } else if (id == R.id.image_view_current_location) {
             showCurrentLocation();
         }
@@ -122,10 +122,12 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (SystemClock.elapsedRealtime() - lastClickTime < 1000) return;
         lastClickTime = SystemClock.elapsedRealtime();
-        if (checkCameraPermission(requireContext()))
-            openCameraForResult();
-        else {
-            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+        if (position + 1 == incidentActivity.getImageViewAdapter().getCount()) {
+            if (checkCameraPermission(requireContext()))
+                openCameraForResult();
+            else {
+                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+            }
         }
     }
 
@@ -155,13 +157,10 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
-                    final BitmapFactory.Options options = new BitmapFactory.Options();
-                    final Bitmap bitmap = BitmapFactory.decodeFile(fileImage.getAbsolutePath(), options);
-//                    adapter.addItem(Bitmap.createScaledBitmap(bitmap, parent.getWidth(), parent.getHeight(), true));
-                    adapter.addItem(compressBitmap(requireContext(), bitmap));
-
+                    final Bitmap bitmap = BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
+                            new BitmapFactory.Options());
+                    incidentActivity.getImageViewAdapter().addItem(compressBitmap(requireContext(), bitmap));
                 }
-                //TODO
             });
     private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -172,9 +171,21 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
                 }
             });
 
-    interface ICallback {
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) incidentActivity = (ICallback) context;
+    }
+
+    public interface ICallback {
+        IncidentViewModel getIncidentViewModel();
+
         void returnToBase();
 
         void confirm();
+
+        ImageViewAdapter getImageViewAdapter();
+
+        void setImageViewAdapter(ImageViewAdapter adapter);
     }
 }

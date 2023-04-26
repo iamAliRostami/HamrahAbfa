@@ -3,15 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/huge_dp"
+    android:padding="@dimen/large_dp"
     tools:context=".fragments.incident.IncidentCompleteFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_map_title"
+        style="@style/TitleHelp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/medium_dp"
+        android:layout_marginTop="@dimen/medium_dp"
+        android:text="@string/submit_location" />
 
     <RelativeLayout
         android:id="@+id/relative_layout_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/grid_view_images"
-        android:layout_alignParentTop="true"
+        android:layout_above="@id/text_view_image_title"
+        android:layout_below="@id/text_view_map_title"
+        android:layout_margin="@dimen/medium_dp"
         android:background="@drawable/border_dotted_gray">
 
         <org.osmdroid.views.MapView
@@ -34,11 +43,19 @@
             android:src="@drawable/current_location" />
     </RelativeLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_image_title"
+        style="@style/TitleHelp"
+        android:layout_above="@id/grid_view_images"
+        android:layout_marginStart="@dimen/medium_dp"
+        android:text="@string/upload_image" />
+
     <GridView
         android:id="@+id/grid_view_images"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@id/linear_layout_buttons"
+        android:layout_margin="@dimen/medium_dp"
         android:background="@drawable/background_incident_field"
         android:numColumns="5"
         tools:listitem="@layout/item_image" />
