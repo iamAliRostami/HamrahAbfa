@@ -6,10 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.recycler_view.ActiveSessionAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentActiveSessionBinding;
+import com.leon.hamrah_abfa.tables.ActiveSession;
+
+import java.util.ArrayList;
 
 public class ActiveSessionFragment extends BottomSheetDialogFragment implements View.OnClickListener {
     private FragmentActiveSessionBinding binding;
@@ -35,7 +40,15 @@ public class ActiveSessionFragment extends BottomSheetDialogFragment implements 
     }
 
     private void initialize() {
-
+        final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
+        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+                "12.12.12.12"));
+        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+                "12.12.12.12"));
+        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+                "12.12.12.12"));
+        binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), activeSessions));
+        binding.recyclerViewActiveSession.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     @Override

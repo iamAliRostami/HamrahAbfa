@@ -40,10 +40,10 @@
             android:gravity="center_vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_device_name"
+                android:id="@+id/image_view_last_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/setting_active_device" />
+                android:src="@drawable/ic_timer" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_device_last_login_title"
@@ -71,7 +71,7 @@
                 android:id="@+id/image_view_IP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/setting_active_device" />
+                android:src="@drawable/ic_ip" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_ip_title"
@@ -95,10 +95,10 @@
             android:gravity="center_vertical">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_mobile_title"
+                android:id="@+id/image_view_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/setting_active_device" />
+                android:src="@drawable/mobile" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_mobile_title"
