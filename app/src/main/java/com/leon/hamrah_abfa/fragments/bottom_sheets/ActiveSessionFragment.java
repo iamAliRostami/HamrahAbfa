@@ -49,14 +49,13 @@ public class ActiveSessionFragment extends BottomSheetDialogFragment implements 
                 "12.12.12.12"));
         binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), activeSessions));
         binding.recyclerViewActiveSession.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.imageViewArrowDown.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.button_submit) {
-
-        } else if (id == R.id.image_view_arrow_down) {
+        if (id == R.id.image_view_arrow_down) {
             dismiss();
         }
     }
