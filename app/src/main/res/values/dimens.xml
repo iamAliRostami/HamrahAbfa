@@ -10,10 +10,15 @@
     <dimen name="large_dp">20dp</dimen>
     <dimen name="huge_dp">40dp</dimen>
 
-    <dimen name="text_size_small">14sp</dimen>
-    <dimen name="text_size_medium">16sp</dimen>
-    <dimen name="text_size_large">20sp</dimen>
-    <dimen name="text_size_huge">35sp</dimen>
+        <dimen name="font_small">14sp</dimen>
+        <dimen name="font_medium">16sp</dimen>
+        <dimen name="font_large">20sp</dimen>
+        <dimen name="font_xlarge">35sp</dimen>
+
+<!--    <dimen name="font_small">?attr/font_small</dimen>-->
+<!--    <dimen name="font_medium">?attr/font_medium</dimen>-->
+<!--    <dimen name="font_large">?attr/font_large</dimen>-->
+<!--    <dimen name="font_xlarge">?attr/font_xlarge</dimen>-->
 
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>

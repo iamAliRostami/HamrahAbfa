@@ -25,12 +25,12 @@
         app:sv_selectedStepNumberColor="@android:color/white"
         app:sv_selectedTextColor="@color/purple_7001"
         app:sv_stepLineWidth="@dimen/small_dp"
-        app:sv_stepNumberTextSize="@dimen/text_size_small"
+        app:sv_stepNumberTextSize="@dimen/font_small"
         app:sv_stepPadding="@dimen/small_dp"
         app:sv_stepViewStyle="@style/StepView"
         app:sv_steps="@array/services_steps"
         app:sv_stepsNumber="4"
-        app:sv_textSize="@dimen/text_size_medium"
+        app:sv_textSize="@dimen/font_medium"
         app:sv_typeface="@font/font_1" />
 
     <androidx.fragment.app.FragmentContainerView

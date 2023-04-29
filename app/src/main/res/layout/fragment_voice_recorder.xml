@@ -23,7 +23,7 @@
         android:layout_marginTop="@dimen/huge_dp"
         android:layout_marginBottom="@dimen/huge_dp"
         android:text="@string/record_voice"
-        android:textSize="@dimen/text_size_medium" />
+        android:textSize="@dimen/font_medium" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
