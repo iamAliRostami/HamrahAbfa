@@ -6,6 +6,7 @@ public enum FragmentTags {
     ASK_YES_NO("ask yes no"),
     REQUEST_DONE("request done"),
     ACTIVE_SESSION("active session"),
+    CHANGE_THEME("change theme"),
     SERVICE_LOCATION("service location");
 
 

@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
+import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionFragment;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener,
         AdapterView.OnItemClickListener {
@@ -46,7 +48,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         if (position == 0) {
             ShowFragmentDialogOnce(this, ACTIVE_SESSION.getValue(), ActiveSessionFragment.newInstance());
         } else if (position == 1) {
-
+            ShowFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
         }
     }
 }

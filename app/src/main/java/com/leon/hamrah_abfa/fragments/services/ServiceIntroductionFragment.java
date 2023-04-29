@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.services;
 
+import static com.leon.toast.RTLToast.warning;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,12 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionMultiAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionSingleAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentServiceIntroductionBinding;
-import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
-import com.leon.toast.RTLToast;
 
 import java.util.ArrayList;
 
@@ -94,7 +95,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
             if (!serviceActivity.getAdapter().selectedServiceId().isEmpty()) {
                 serviceActivity.submitServices(serviceActivity.getAdapter().selectedServiceId(), serviceActivity.getAdapter().selectedServiceTitle());
             } else {
-                RTLToast.warning(requireContext(), R.string.choose_a_service).show();
+                warning(requireContext(), R.string.choose_a_service).show();
             }
         }
     }

@@ -117,14 +117,11 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
         //TODO
         final Fragment fragment = getSupportFragmentManager().findFragmentById(binding.fragmentServices.getId());
         if (fragment != null) {
-            final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.detach(fragment).commit();
-            final FragmentTransaction transaction1 = getSupportFragmentManager().beginTransaction();
-            transaction1.attach(fragment).commit();
+            final FragmentTransaction transactionCurrent = getSupportFragmentManager().beginTransaction();
+            transactionCurrent.detach(fragment).commit();
+            final FragmentTransaction transactionNext = getSupportFragmentManager().beginTransaction();
+            transactionNext.attach(fragment).commit();
         }
-
-//        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-//                ServiceFormFragment.newInstance()).commit();
     }
 
     @Override

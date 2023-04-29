@@ -17,7 +17,9 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
-import com.leon.toast.RTLToast;
+import static com.leon.toast.RTLToast.error;
+import static com.leon.toast.RTLToast.success;
+import static com.leon.toast.RTLToast.warning;
 
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
@@ -79,13 +81,13 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
 
     private boolean checkInputs() {
         if (serviceActivity.getServicesViewModel().getBitmapLocation() == null) {
-            RTLToast.warning(requireContext(), R.string.locate_address).show();
+            warning(requireContext(), R.string.locate_address).show();
             return false;
         }
         if (serviceActivity.getServicesViewModel().getBillId() == null ||
                 serviceActivity.getServicesViewModel().getBillId().isEmpty() ||
                 serviceActivity.getServicesViewModel().getBillId().length() < 5) {
-            RTLToast.warning(requireContext(), R.string.incorrect_bill_id_format).show();
+            warning(requireContext(), R.string.incorrect_bill_id_format).show();
             binding.editTextBillId.setError(getString(R.string.incorrect_bill_id_format));
             binding.editTextBillId.requestFocus();
             return false;
@@ -93,14 +95,14 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         if (serviceActivity.getServicesViewModel().getMobile() == null ||
                 serviceActivity.getServicesViewModel().getMobile().length() < 11 ||
                 !serviceActivity.getServicesViewModel().getMobile().substring(0, 2).contains("09")) {
-            RTLToast.warning(requireContext(), R.string.incorrect_mobile_format).show();
+            warning(requireContext(), R.string.incorrect_mobile_format).show();
             binding.editTextMobile.setError(getString(R.string.incorrect_mobile_format));
             binding.editTextMobile.requestFocus();
             return false;
         }
         if (serviceActivity.getServicesViewModel().getAddress() == null ||
                 serviceActivity.getServicesViewModel().getAddress().isEmpty()) {
-            RTLToast.warning(requireContext(), R.string.fill_in_address).show();
+            warning(requireContext(), R.string.fill_in_address).show();
             binding.editTextAddress.setError(getString(R.string.fill_in_address));
             binding.editTextAddress.requestFocus();
             return false;

@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.fragments;
 
 import static com.leon.hamrah_abfa.helpers.Constants.MOBILE_REGEX;
 import static com.leon.hamrah_abfa.helpers.Constants.VERIFICATION_FRAGMENT;
+import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,12 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentPhoneSubmitBinding;
-import com.leon.toast.RTLToast;
 
 public class PhoneSubmitFragment extends Fragment implements View.OnClickListener {
     private FragmentPhoneSubmitBinding binding;
@@ -67,7 +66,7 @@ public class PhoneSubmitFragment extends Fragment implements View.OnClickListene
         if (!binding.editTextMobile.getText().toString().isEmpty()) {
             mobile = binding.editTextMobile.getText().toString().trim();
         } else {
-            RTLToast.warning(requireContext(), getString(R.string.enter_mobile)).show();
+            warning(requireContext(), getString(R.string.enter_mobile)).show();
             return;
         }
 //        if (android.util.Patterns.PHONE.matcher(mobile).matches()) {
@@ -75,7 +74,7 @@ public class PhoneSubmitFragment extends Fragment implements View.OnClickListene
             submitActivity.setMobile(mobile);
             submitActivity.displayView(VERIFICATION_FRAGMENT);
         } else {
-            RTLToast.warning(requireContext(), getString(R.string.mobile_error)).show();
+            warning(requireContext(), getString(R.string.mobile_error)).show();
         }
     }
 

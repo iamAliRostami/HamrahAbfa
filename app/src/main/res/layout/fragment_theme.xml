@@ -1,22 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_1"
     android:gravity="center"
     android:padding="@dimen/huge_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.bottom_sheets.ThemeFragment">
 
-    <RelativeLayout
-        android:id="@+id/linear_layout_size"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_submit"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/large_dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/medium_dp"
+        app:layout_constraintBottom_toTopOf="@id/card_view_size"
+        app:layout_constraintStart_toStartOf="parent"
+        card_view:cardElevation="@dimen/medium_dp">
 
-    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative_layout_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_theme_title"
+                style="@style/Title"
+                android:layout_margin="@dimen/large_dp"
+                android:text="@string/change_theme" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_based_on_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_theme_title"
+                android:layout_marginStart="@dimen/medium_dp"
+                android:layout_marginTop="@dimen/medium_dp"
+                android:layout_marginEnd="@dimen/medium_dp"
+                android:layout_marginBottom="@dimen/medium_dp"
+                android:layout_toStartOf="@id/linear_layout_light"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_based_on_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/theme_based_on_device" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_theme_based_on_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/theme_based_on_device" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_theme_title"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/medium_dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/theme_light_mode" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_theme_light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/theme_light" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_theme_title"
+                android:layout_margin="@dimen/medium_dp"
+                android:layout_toEndOf="@id/linear_layout_light"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/theme_dark_mode" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_theme_dark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/theme_dark" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/large_dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/medium_dp"
+        app:layout_constraintBottom_toTopOf="@id/button_submit"
+        app:layout_constraintStart_toStartOf="parent"
+        card_view:cardElevation="@dimen/medium_dp">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_size_title"
+                style="@style/Title"
+                android:layout_margin="@dimen/large_dp"
+                android:text="@string/change_size" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_submit"

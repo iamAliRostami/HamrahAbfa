@@ -121,4 +121,9 @@
     <string name="stop_recording_playing">ضبط/پخش صدا را متوفق کنید</string>
     <string name="last_login">آخرین ورود</string>
     <string name="ip">آی پی</string>
+    <string name="change_size">اندازه قلم</string>
+    <string name="theme_based_on_device">مطابق دستگاه</string>
+    <string name="theme_light">روشن</string>
+    <string name="theme_dark">تیره</string>
+    <string name="restart_app">اپلیکیشن را باز و بسته نمایید</string>
 </resources>
