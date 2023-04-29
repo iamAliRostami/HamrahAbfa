@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
@@ -104,10 +105,10 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
             }
             warning(requireContext(), R.string.restart_app).show();
         }
-//        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), theme);
-//        final FragmentTransaction transactionCurrent = requireActivity().getSupportFragmentManager().beginTransaction();
-//        transactionCurrent.detach(ThemeFragment.this).commit();
-//        final FragmentTransaction transactionNext = requireActivity().getSupportFragmentManager().beginTransaction();
-//        transactionNext.attach(ThemeFragment.this).commit();
+        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), theme);
+        final FragmentTransaction transactionCurrent = requireActivity().getSupportFragmentManager().beginTransaction();
+        transactionCurrent.detach(ThemeFragment.this).commit();
+        final FragmentTransaction transactionNext = requireActivity().getSupportFragmentManager().beginTransaction();
+        transactionNext.attach(ThemeFragment.this).commit();
     }
 }
