@@ -126,4 +126,6 @@
     <string name="theme_light">روشن</string>
     <string name="theme_dark">تیره</string>
     <string name="restart_app">اپلیکیشن را باز و بسته نمایید</string>
+    <string name="bill_price">مبلغ قابل پرداخت</string>
+    <string name="pay">پرداخت</string>
 </resources>

@@ -64,10 +64,37 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_debt"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/text_view_bill_id"
-            android:layout_margin="@dimen/large_dp"
-            android:orientation="horizontal"></androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:background="@drawable/background_card_input_right"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/large_dp"
+                android:layout_weight="1"
+                android:text="@string/bill_price" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="1,234,567,890 ریال" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_view_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_card_input_left"
+                android:gravity="center"
+                android:text="@string/pay"
+                android:textColor="@android:color/white" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_edit"
