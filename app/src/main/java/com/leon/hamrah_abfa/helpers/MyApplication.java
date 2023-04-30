@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 
 import com.leon.hamrah_abfa.BuildConfig;
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.di.component.ApplicationComponent;
 import com.leon.hamrah_abfa.di.component.DaggerApplicationComponent;
 import com.leon.hamrah_abfa.di.module.CustomProgressModule;
@@ -33,6 +34,7 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
+//        setTheme(R.style.Theme_HamrahAbfa_Small);
         super.onCreate();
         appContext = getApplicationContext();
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))

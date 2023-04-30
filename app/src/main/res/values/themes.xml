@@ -25,7 +25,33 @@
         <item name="font_xlarge">@dimen/font_xlarge_value</item>
     </style>
 
+    <style name="Theme.HamrahAbfa.Tiny">
+
+    </style>
+
+    <style name="Theme.HamrahAbfa.Small">
+        <item name="font_small">@dimen/font_tiny_value</item>
+        <item name="font_medium">@dimen/font_small_value</item>
+        <item name="font_large">@dimen/font_medium_value</item>
+        <item name="font_xlarge">@dimen/font_large_value</item>
+    </style>
+
+    <style name="Theme.HamrahAbfa.Large">
+        <item name="font_small">@dimen/font_medium_value</item>
+        <item name="font_medium">@dimen/font_large_value</item>
+        <item name="font_large">@dimen/font_xlarge_value</item>
+        <item name="font_xlarge">@dimen/font_huge_value</item>
+    </style>
+
+
+    <style name="Theme.HamrahAbfa.Huge"></style>
+
     <style name="Theme.HamrahAbfa.NoActionBar">
+
+<!--        <item name="font_small">@dimen/font_medium_value</item>-->
+<!--        <item name="font_medium">@dimen/font_large_value</item>-->
+<!--        <item name="font_large">@dimen/font_xlarge_value</item>-->
+<!--        <item name="font_xlarge">@dimen/font_huge_value</item>-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
