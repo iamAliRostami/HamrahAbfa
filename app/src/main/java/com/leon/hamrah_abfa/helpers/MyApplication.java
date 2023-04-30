@@ -11,7 +11,6 @@ import static com.leon.toast.RTLToast.Config;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -24,7 +23,6 @@ import com.leon.hamrah_abfa.di.module.CustomProgressModule;
 import com.leon.hamrah_abfa.di.module.MyDatabaseModule;
 import com.leon.hamrah_abfa.di.module.NetworkModule;
 import com.leon.hamrah_abfa.di.module.SharedPreferenceModule;
-import com.leon.hamrah_abfa.enums.FontStyle;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
@@ -35,7 +33,6 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-        getDefaultTextSize();
         super.onCreate();
         appContext = getApplicationContext();
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
@@ -46,17 +43,6 @@ public class MyApplication extends Application {
 //        throw new RuntimeException("Test Exception");
     }
 
-    private void getDefaultTextSize() {
-//        getTheme().applyStyle(applicationComponent.SharedPreferenceModel().getFontStyle().getResId(), true);
-        getTheme().applyStyle(FontStyle.Large.getResId(), true);
-//        getTheme().applyStyle(new Preferences(this).getFontStyle().getResId(), true);
-//        FontStyle.valueOf(applicationComponent.SharedPreferenceModel().getStringData(FONT_STYLE.getValue()));
-    }
-
-    public void setDefaultTextSize(FontStyle style) {
-//        applicationComponent.SharedPreferenceModel().putData(FONT_STYLE.getValue(), style.name());
-//        getTheme().applyStyle(new Preferences(this).getFontStyle().getResId(), true);
-    }
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -74,15 +60,6 @@ public class MyApplication extends Application {
 
     private void setDefaultTheme() {
         if (applicationComponent.SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_DEFAULT) {
-//            switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
-//                case Configuration.UI_MODE_NIGHT_YES:
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//                    break;
-//                case Configuration.UI_MODE_NIGHT_NO:
-//                case Configuration.UI_MODE_NIGHT_UNDEFINED:
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//                    break;
-//            }
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } else if (applicationComponent.SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_LIGHT) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

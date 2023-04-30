@@ -1,12 +1,10 @@
 package com.leon.hamrah_abfa.di.view_model;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.FONT_STYLE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.leon.hamrah_abfa.enums.FontStyle;
 import com.leon.hamrah_abfa.infrastructure.ISharedPreferenceManager;
 
 import javax.inject.Inject;
@@ -93,15 +91,4 @@ public class SharedPreferenceModel implements ISharedPreferenceManager {
         return appPrefs.getBoolean(key, b);
     }
 
-    @Override
-    public void putFontStyle(FontStyle style) {
-        final SharedPreferences.Editor prefsEditor = appPrefs.edit();
-        prefsEditor.putString(FONT_STYLE.getValue(), style.name());
-        prefsEditor.apply();
-    }
-
-    @Override
-    public FontStyle getFontStyle() {
-        return FontStyle.valueOf(appPrefs.getString(FONT_STYLE.getValue(), FontStyle.Medium.name()));
-    }
 }

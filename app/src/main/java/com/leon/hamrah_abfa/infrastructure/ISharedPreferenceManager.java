@@ -1,7 +1,5 @@
 package com.leon.hamrah_abfa.infrastructure;
 
-import com.leon.hamrah_abfa.enums.FontStyle;
-
 public interface ISharedPreferenceManager {
     void putData(String key, String value);
 
@@ -26,6 +24,6 @@ public interface ISharedPreferenceManager {
 
     long getLongData(String key);
 
-    void putFontStyle(FontStyle style);
-    FontStyle getFontStyle();
+//    void putFontStyle(FontStyle style);
+//    FontStyle getFontStyle();
 }
