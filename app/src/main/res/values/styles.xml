@@ -114,6 +114,8 @@
 
     <style name="TextHelper" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">@dimen/font_medium</item>
+<!--        <item name="fontFamily">@font/font_3</item>-->
+<!--        <item name="android:fontFamily">@font/font_3</item>-->
     </style>
 
     <style name="HeaderImageView">
