@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/button_skip"
-            android:layout_margin="@dimen/low_dp"
+            android:layout_margin="@dimen/small_dp"
             android:padding="@dimen/medium_dp"
             android:rotationY="180"
             app:layout_constraintBottom_toTopOf="@id/view"
@@ -34,7 +34,7 @@
             app:vpi_slide_mode="worm"
             app:vpi_slider_checked_color="@android:color/black"
             app:vpi_slider_normal_color="@android:color/white"
-            app:vpi_slider_radius="@dimen/small_dp" />
+            app:vpi_slider_radius="@dimen/tiny_dp" />
 
         <View
             android:id="@+id/view"

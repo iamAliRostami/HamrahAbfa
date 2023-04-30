@@ -53,7 +53,7 @@
                 <View
                     android:id="@+id/view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/small_dp"
+                    android:layout_height="@dimen/tiny_dp"
                     android:layout_below="@id/image_view_icon"
                     android:background="@color/gray_1" />
 
@@ -140,7 +140,7 @@
                             <View
                                 android:id="@+id/divider"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/small_dp"
+                                android:layout_height="@dimen/tiny_dp"
                                 android:layout_below="@id/image_view_service"
                                 android:background="@color/gray_1" />
 
@@ -183,7 +183,7 @@
                                 android:layout_marginTop="@dimen/medium_dp"
                                 android:layout_marginBottom="@dimen/medium_dp"
                                 android:layout_toEndOf="@id/linear_layout_address"
-                                android:lineSpacingExtra="@dimen/low_dp"
+                                android:lineSpacingExtra="@dimen/small_dp"
                                 android:text="@{viewModel.address}" />
                         </RelativeLayout>
 

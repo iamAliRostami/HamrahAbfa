@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="font_small" format="reference" />
+    <attr name="font_medium" format="reference" />
+    <attr name="font_large" format="reference" />
+    <attr name="font_xlarge" format="reference" />
+</resources>

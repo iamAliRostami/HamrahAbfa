@@ -18,7 +18,6 @@ import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
 import static com.leon.toast.RTLToast.warning;
 
-
 public final class CustomProgressModel {
     private Dialog dialog;
 
@@ -58,7 +57,7 @@ public final class CustomProgressModel {
         final LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.progress_bar, null);
-        dialog = new Dialog(context, R.style.NewDialog);
+        dialog = new Dialog(context/*, R.style.NewDialog*/);
         setCancelable(cancelable, view, cancelListener);
         dialog.setContentView(view);
         dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,

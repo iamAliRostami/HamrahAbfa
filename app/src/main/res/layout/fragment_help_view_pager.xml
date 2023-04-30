@@ -40,12 +40,11 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/text_view_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/huge_dp"
+                android:layout_marginTop="@dimen/xlarge_dp"
                 android:gravity="center"
                 android:text="@{viewModel.title}"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/font_large"
-                android:textStyle="bold" />
+                android:textAppearance="@style/TextStyleLarge.Bold"
+                android:textColor="@android:color/white" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_content"
@@ -53,11 +52,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/large_dp"
                 android:justificationMode="inter_word"
-                android:lineSpacingExtra="@dimen/low_dp"
+                android:lineSpacingExtra="@dimen/small_dp"
                 android:text="@{viewModel.content}"
                 android:textAlignment="gravity"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/font_small"
+                android:textSize="?attr/font_small"
                 tools:ignore="UnusedAttribute" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

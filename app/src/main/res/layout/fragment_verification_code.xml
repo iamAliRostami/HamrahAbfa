@@ -20,9 +20,9 @@
         android:layout_above="@id/card_view_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/huge_dp"
+        android:layout_margin="@dimen/xlarge_dp"
         android:contentDescription="@string/app_name"
-        android:padding="@dimen/huge_dp"
+        android:padding="@dimen/xlarge_dp"
         android:src="@drawable/confirm_code" />
 
     <com.google.android.material.card.MaterialCardView
@@ -32,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/huge_dp"
-        android:layout_marginEnd="@dimen/huge_dp"
+        android:layout_marginStart="@dimen/xlarge_dp"
+        android:layout_marginEnd="@dimen/xlarge_dp"
         card_view:cardElevation="@dimen/medium_dp">
 
         <RelativeLayout
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_title"
-                android:layout_marginTop="@dimen/huge_dp"
+                android:layout_marginTop="@dimen/xlarge_dp"
                 android:text="@string/enter_code" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -82,7 +82,7 @@
                 android:layout_below="@id/text_view_tip"
                 android:layout_marginStart="@dimen/medium_dp"
                 android:layout_toEndOf="@id/text_view_mobile"
-                android:padding="@dimen/low_dp"
+                android:padding="@dimen/small_dp"
                 android:src="@drawable/edit_blue" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_mobile"
-                android:layout_marginTop="@dimen/huge_dp"
+                android:layout_marginTop="@dimen/xlarge_dp"
                 android:gravity="center">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -115,15 +115,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/linear_layout_code"
-                android:layout_marginBottom="@dimen/huge_dp">
+                android:layout_marginBottom="@dimen/xlarge_dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/huge_dp"
+                    android:layout_marginStart="@dimen/xlarge_dp"
                     android:layout_marginEnd="@dimen/medium_dp"
-                    android:padding="@dimen/low_dp"
+                    android:padding="@dimen/small_dp"
                     android:src="@drawable/arrow_right"
                     android:visibility="gone" />
 
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/huge_dp"
+                    android:layout_marginEnd="@dimen/xlarge_dp"
                     android:text="@string/one_minute" />
 
             </RelativeLayout>

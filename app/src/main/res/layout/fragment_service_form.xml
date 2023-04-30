@@ -54,7 +54,7 @@
                 <View
                     android:id="@+id/view"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/small_dp"
+                    android:layout_height="@dimen/tiny_dp"
                     android:layout_below="@id/image_view_icon"
                     android:background="@color/gray_1" />
 

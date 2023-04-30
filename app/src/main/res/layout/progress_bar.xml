@@ -19,6 +19,6 @@
         android:layout_below="@+id/progress_bar"
         android:layout_centerHorizontal="true"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/font_xlarge" />
+        android:textSize="?attr/font_xlarge" />
 
 </RelativeLayout>

@@ -2,12 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners
-        android:bottomLeftRadius="@dimen/huge_dp"
-        android:bottomRightRadius="@dimen/huge_dp" />
+        android:bottomLeftRadius="@dimen/xlarge_dp"
+        android:bottomRightRadius="@dimen/xlarge_dp" />
     <padding
-        android:bottom="@dimen/small_dp"
-        android:left="@dimen/small_dp"
-        android:right="@dimen/small_dp"
-        android:top="@dimen/small_dp" />
+        android:bottom="@dimen/tiny_dp"
+        android:left="@dimen/tiny_dp"
+        android:right="@dimen/tiny_dp"
+        android:top="@dimen/tiny_dp" />
     <solid android:color="@color/purple_7001" />
 </shape>

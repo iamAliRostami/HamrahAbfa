@@ -44,7 +44,7 @@
             android:layout_gravity="bottom"
             android:padding="@dimen/medium_dp"
             app:fabCradleMargin="@dimen/medium_dp"
-            app:fabCradleRoundedCornerRadius="@dimen/huge_dp">
+            app:fabCradleRoundedCornerRadius="@dimen/xlarge_dp">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/nav_view"

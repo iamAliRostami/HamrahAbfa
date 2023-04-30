@@ -20,8 +20,8 @@
         android:layout_above="@id/card_view_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/huge_dp"
-        android:padding="@dimen/huge_dp"
+        android:layout_margin="@dimen/xlarge_dp"
+        android:padding="@dimen/xlarge_dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/insert_mobile" />
 
@@ -32,8 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/huge_dp"
-        android:layout_marginEnd="@dimen/huge_dp"
+        android:layout_marginStart="@dimen/xlarge_dp"
+        android:layout_marginEnd="@dimen/xlarge_dp"
         card_view:cardElevation="@dimen/medium_dp">
 
         <RelativeLayout
@@ -54,14 +54,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/medium_dp"
                 android:layout_toEndOf="@id/text_view_title"
-                android:padding="@dimen/low_dp"
+                android:padding="@dimen/small_dp"
                 android:src="@drawable/arrow_left" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/text_layout_mobile"
                 style="@style/TextInputLayout"
                 android:layout_below="@id/text_view_title"
-                android:layout_marginTop="@dimen/huge_dp"
+                android:layout_marginTop="@dimen/xlarge_dp"
                 android:hint="@string/phone_number"
                 app:counterMaxLength="11"
                 app:helperText="@string/enter_account"

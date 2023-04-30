@@ -275,7 +275,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
             //noinspection RestrictedApi
             for (MenuItem item : menuBuilder.getVisibleItems()) {
                 final int iconMarginPx = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                        R.dimen.low_dp, getResources().getDisplayMetrics());
+                        R.dimen.small_dp, getResources().getDisplayMetrics());
                 if (item.getIcon() != null) {
                     item.setIcon(new InsetDrawable(item.getIcon(), iconMarginPx, 0, iconMarginPx, 0));
                 }

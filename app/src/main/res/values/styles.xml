@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="NewDialog" parent="Theme.AppCompat">
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">false</item>
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowTitleStyle">@null</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
     <style name="Title">
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:textSize">@dimen/font_medium</item>
-        <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textAppearance">@style/TextStyleMedium.Bold</item>
     </style>
 
     <style name="TitleHelp" parent="Title">
-        <item name="android:textSize">@dimen/font_small</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextStyleSmall</item>
     </style>
 
-    <style name="TextSubmitInfo" parent="TitleHelp">
+    <style name="TextSubmitInfo" parent="Title">
+        <item name="android:textAppearance">@style/TextStyleSmall</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_gravity">center_vertical|end</item>
         <item name="android:layout_marginEnd">@dimen/medium_dp</item>
@@ -54,13 +39,11 @@
         <item name="android:backgroundTint">@color/purple_7001</item>
         <item name="backgroundTint">@color/purple_7001</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
 
-    <style name="ButtonCancel">
-        <item name="android:textSize">@dimen/font_medium</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="ButtonCancel" parent="Button">
+        <item name="android:textAppearance">@style/TextStyleMedium</item>
         <item name="android:textColor">@color/purple_7001</item>
         <item name="android:background">@drawable/background_white_blue</item>
     </style>
@@ -78,8 +61,6 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
-
-    <!--    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">-->
     <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -94,6 +75,10 @@
         <item name="counterEnabled">false</item>
         <item name="errorEnabled">true</item>
         <item name="helperTextTextAppearance">@style/TextHelper</item>
+    </style>
+
+    <style name="TextHelper" parent="TextAppearance.Design.Hint">
+        <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
 
     <style name="TextInput">
@@ -112,15 +97,9 @@
         <item name="android:layout_margin">@dimen/medium_dp</item>
     </style>
 
-    <style name="TextHelper" parent="TextAppearance.Design.Hint">
-        <item name="android:textSize">@dimen/font_medium</item>
-<!--        <item name="fontFamily">@font/font_3</item>-->
-<!--        <item name="android:fontFamily">@font/font_3</item>-->
-    </style>
-
     <style name="HeaderImageView">
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">@dimen/xlarge_dp</item>
+        <item name="android:layout_height">@dimen/xlarge_dp</item>
         <item name="android:layout_marginTop">@dimen/medium_dp</item>
         <item name="android:layout_marginBottom">@dimen/medium_dp</item>
         <item name="android:padding">@dimen/medium_dp</item>
@@ -131,7 +110,6 @@
         <item name="itemTextColor">@drawable/bnv_tab_item_foreground</item>
         <item name="itemTextAppearanceActive">@style/BottomNavigationView.TextAppearance.Active
         </item>
-        <!--        <item name="itemTextAppearanceInactive">@style/BottomNavigationView.TextAppearance</item>-->
         <item name="android:background">@android:color/transparent</item>
         <item name="elevation">0dp</item>
         <item name="labelVisibilityMode">labeled</item>
@@ -140,19 +118,17 @@
     </style>
 
     <style name="BottomNavigationView.TextAppearance" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textAppearance">@style/TextStyleSmall</item>
     </style>
 
     <style name="BottomNavigationView.TextAppearance.Active" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:textSize">@dimen/font_medium</item>
-        <!--        <item name="itemIconSize">@dimen/text_size_huge</item>-->
+        <item name="android:textSize">?attr/font_medium</item>
     </style>
 
     <style name="TextItem">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
         <item name="android:padding">@dimen/large_dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
@@ -161,6 +137,39 @@
 
     <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textColor">@color/purple_7001</item>
-        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
+
+    <style name="TextStyleSmall">
+        <item name="android:textSize">?attr/font_small</item>
+    </style>
+
+    <style name="TextStyleSmall.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextStyleMedium">
+        <item name="android:textSize">?attr/font_medium</item>
+    </style>
+
+    <style name="TextStyleMedium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextStyleLarge">
+        <item name="android:textSize">?attr/font_large</item>
+    </style>
+
+    <style name="TextStyleLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextStyleXLarge">
+        <item name="android:textSize">?attr/font_xlarge</item>
+    </style>
+
+    <style name="TextStyleXLarge.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

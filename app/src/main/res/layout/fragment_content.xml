@@ -19,16 +19,15 @@
         android:layout_marginBottom="100dp"
         android:gravity="center"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/font_large" />
+        android:textSize="?attr/font_large" />
 
     <TextView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/font_small"
-        android:textStyle="bold" />
+        android:layout_marginStart="@dimen/medium_dp"
+        android:layout_marginBottom="@dimen/medium_dp"
+        android:textAppearance="@style/TextStyleSmall.Bold"
+        android:textColor="@android:color/white" />
 </RelativeLayout>
