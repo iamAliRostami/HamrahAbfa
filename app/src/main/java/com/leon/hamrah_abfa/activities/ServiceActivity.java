@@ -7,15 +7,15 @@ import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOn
 import static com.leon.toast.RTLToast.info;
 
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
@@ -29,31 +29,22 @@ import org.osmdroid.util.GeoPoint;
 
 import java.util.ArrayList;
 
-public class ServiceActivity extends AppCompatActivity implements ServiceIntroductionFragment.ICallback,
+public class ServiceActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
         ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, SubmitInformationFragment.ICallback,
         ServicesLocationDialogFragment.ICallback {
     private ServicesViewModel viewModel;
-    private long lastClickTime = 0;
     private ActivityServiceBinding binding;
     private ServicesIntroductionBaseAdapter adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initialize() {
         binding = ActivityServiceBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             viewModel = new ServicesViewModel(this, getIntent().getExtras().getInt(SERVICE_TYPE.getValue()),
                     getIntent().getExtras().getString(BILL_ID.getValue()));
-
             getIntent().getExtras().clear();
         }
-        initialize();
         setContentView(binding.getRoot());
-    }
-
-    private void initialize() {
-        binding.fragmentServices.setOnClickListener(v ->
-                binding.stepper.go(binding.stepper.getCurrentStep() + 1, true));
         getSupportFragmentManager().beginTransaction().add(binding.fragmentServices.getId(),
                 ServiceIntroductionFragment.newInstance()).commit();
     }
@@ -125,10 +116,12 @@ public class ServiceActivity extends AppCompatActivity implements ServiceIntrodu
     }
 
     @Override
-    public void onBackPressed() {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        info(this, getString(R.string.return_by_press_again)).show();
-        lastClickTime = SystemClock.elapsedRealtime();
+    protected String getExitMessage() {
+        return  getString(R.string.return_by_press_again);
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
