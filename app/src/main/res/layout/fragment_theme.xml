@@ -130,6 +130,17 @@
                 style="@style/Title"
                 android:layout_margin="@dimen/large_dp"
                 android:text="@string/change_size" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/slider_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_size_title"
+                android:layout_margin="@dimen/large_dp"
+                android:valueFrom="-1"
+                android:stepSize="1"
+                android:layoutDirection="rtl"
+                android:valueTo="2" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 

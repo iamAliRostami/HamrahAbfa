@@ -19,7 +19,6 @@ public class ServiceIntroductionHolder extends RecyclerView.ViewHolder {
     public final CardView cardView;
     public final RelativeLayout relativeLayout;
     public final View viewDivider;
-    private IClickListener listener;
 
     public ServiceIntroductionHolder(View view) {
         super(view);
@@ -42,10 +41,7 @@ public class ServiceIntroductionHolder extends RecyclerView.ViewHolder {
         relativeLayout = view.findViewById(R.id.relative_layout);
 
         imageViewArrow = view.findViewById(R.id.image_view_arrow);
-        textViewTitle.setOnClickListener(v -> {
-            Log.e("position", String.valueOf(position));
-            listener.collapse(position);
-        });
+        textViewTitle.setOnClickListener(v -> listener.collapse(position));
     }
 
     public interface IClickListener {

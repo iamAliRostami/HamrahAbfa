@@ -21,7 +21,6 @@ public class ActiveSessionAdapter extends RecyclerView.Adapter<ActiveSessionView
     public ActiveSessionAdapter(Context context, ArrayList<ActiveSession> activeSessions) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.activeSessions.addAll(activeSessions);
-        Log.e("size", String.valueOf(this.activeSessions.size()));
     }
 
     @NonNull
@@ -32,7 +31,6 @@ public class ActiveSessionAdapter extends RecyclerView.Adapter<ActiveSessionView
 
     @Override
     public void onBindViewHolder(@NonNull ActiveSessionViewHolder holder, int position) {
-        Log.e("position",String.valueOf(position));
         holder.textViewIP.setText(activeSessions.get(position).getIp());
         holder.textViewMobile.setText(activeSessions.get(position).getMobile());
         holder.textViewLastLogin.setText(activeSessions.get(position).getLastLogin());

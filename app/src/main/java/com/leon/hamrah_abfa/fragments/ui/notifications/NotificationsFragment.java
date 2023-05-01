@@ -32,28 +32,6 @@ public class NotificationsFragment extends Fragment {
     }
 
     private void initialize() {
-//        binding.imageViewAnimation.playAnimation();
-//        binding.imageViewAnimation.addAnimatorListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(@NonNull Animator animation) {
-//                Log.e("here", "onAnimationStart");
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(@NonNull Animator animation) {
-//                Log.e("here", "onAnimationEnd");
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(@NonNull Animator animation) {
-//                Log.e("here", "onAnimationCancel");
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(@NonNull Animator animation) {
-//                Log.e("here", "onAnimationRepeat");
-//            }
-//        });
     }
 
     @Override

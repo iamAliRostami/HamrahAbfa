@@ -1,10 +1,13 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.SHOW_PRE_FRAGMENT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -15,16 +18,28 @@ import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
 
-public class SettingActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class SettingActivity extends BaseActivity implements AdapterView.OnItemClickListener,
+        ThemeFragment.ICallback {
     private ActivitySettingBinding binding;
+
     @Override
     protected void initialize() {
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        if (getIntent().getExtras() != null) {
+            if (getIntent().getExtras().getBoolean(SHOW_PRE_FRAGMENT.getValue())) {
+                ShowFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
+            }
+            getIntent().getExtras().clear();
+        }
+        initializeGridView();
+        binding.imageViewBack.setOnClickListener(this);
+    }
+
+    private void initializeGridView() {
         final MenuAdapter adapter = new MenuAdapter(this, R.array.setting_menu, R.array.setting_icons);
         binding.gridViewMenu.setAdapter(adapter);
         binding.gridViewMenu.setOnItemClickListener(this);
-        binding.imageViewBack.setOnClickListener(this);
     }
 
     @Override
@@ -47,5 +62,14 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     @Override
     protected String getExitMessage() {
         return null;
+    }
+
+    @Override
+    public void changeTheme(int value) {
+        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), value);
+        final Intent intent = getIntent();
+        finish();
+        intent.putExtra(SHOW_PRE_FRAGMENT.getValue(), true);
+        startActivity(intent);
     }
 }

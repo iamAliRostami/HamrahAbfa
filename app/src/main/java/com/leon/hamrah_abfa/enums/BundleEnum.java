@@ -9,6 +9,7 @@ public enum BundleEnum {
     LONGITUDE("longitude"),
     DEBT("debt"),
     MOBILE("mobile"),
+    SHOW_PRE_FRAGMENT("show pre fragment"),
     TRACK_NUMBER("track_number"),
     POSITION("position"),
     TITLE("title"),
