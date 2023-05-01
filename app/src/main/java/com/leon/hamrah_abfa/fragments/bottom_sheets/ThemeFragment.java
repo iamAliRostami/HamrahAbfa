@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME_MODE;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DARK;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DEFAULT;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_LIGHT;
@@ -56,7 +56,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     private void initializeViews() {
-        if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_DEFAULT) {
+        if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_DEFAULT) {
             binding.linearLayoutBasedOnDevice.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeBasedOnDevice.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
 
@@ -73,10 +73,10 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
 //            binding.textViewThemeDark.setTextColor(ContextCompat.getColor(requireContext(), android.R.attr.textColor));
 //            binding.textViewThemeLight.setTextColor(android.R.attr.textColor);
 //            binding.textViewThemeDark.setTextColor(android.R.attr.textColor);
-        } else if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_LIGHT) {
+        } else if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_LIGHT) {
             binding.linearLayoutLight.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
-        } else if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_DARK) {
+        } else if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_DARK) {
             binding.linearLayoutDark.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeDark.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
         }
@@ -104,7 +104,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
-        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), theme);
+        getApplicationComponent().SharedPreferenceModel().putData(THEME_MODE.getValue(), theme);
         final FragmentTransaction transactionCurrent = requireActivity().getSupportFragmentManager().beginTransaction();
         transactionCurrent.detach(ThemeFragment.this).commit();
         final FragmentTransaction transactionNext = requireActivity().getSupportFragmentManager().beginTransaction();

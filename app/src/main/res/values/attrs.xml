@@ -3,5 +3,5 @@
     <attr name="font_small" format="reference" />
     <attr name="font_medium" format="reference" />
     <attr name="font_large" format="reference" />
-    <attr name="font_xlarge" format="reference" />
+<!--    <attr name="font_xlarge" format="reference" />-->
 </resources>

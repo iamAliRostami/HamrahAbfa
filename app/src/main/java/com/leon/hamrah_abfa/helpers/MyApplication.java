@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.helpers;
 
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME_MODE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceNames.ACCOUNT;
 import static com.leon.hamrah_abfa.helpers.Constants.FONT_NAME;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DARK;
@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 
 import com.leon.hamrah_abfa.BuildConfig;
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.di.component.ApplicationComponent;
 import com.leon.hamrah_abfa.di.component.DaggerApplicationComponent;
 import com.leon.hamrah_abfa.di.module.CustomProgressModule;
@@ -28,45 +27,41 @@ import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
 public class MyApplication extends Application {
-    private static Context appContext;
     private static ApplicationComponent applicationComponent;
     private static MyApplication singleton = null;
 
     @Override
     public void onCreate() {
-//        setTheme(R.style.Theme_HamrahAbfa_Small);
         super.onCreate();
-        appContext = getApplicationContext();
+        setApplicationComponent();
+        setDefaultNightMode();
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
                 .setTextSize(TOAST_TEXT_SIZE).apply();
-        setApplicationComponent();
-        setDefaultTheme();
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
-//        throw new RuntimeException("Test Exception");
     }
 
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
-
-    public static Context getAppContext() {
-        return appContext;
+        MultiDex.install(getInstance());
     }
 
     public static ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
 
-    private void setDefaultTheme() {
-        if (applicationComponent.SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_DEFAULT) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        } else if (applicationComponent.SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_LIGHT) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        } else if (applicationComponent.SharedPreferenceModel().getIntNullData(THEME.getValue()) == THEME_DARK) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    private void setDefaultNightMode() {
+        switch (applicationComponent.SharedPreferenceModel().getIntNullData(THEME_MODE.getValue())) {
+            case THEME_DEFAULT:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
+            case THEME_LIGHT:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case THEME_DARK:
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
         }
     }
 
@@ -74,8 +69,8 @@ public class MyApplication extends Application {
         applicationComponent = DaggerApplicationComponent
                 .builder().networkModule(new NetworkModule())
                 .customProgressModule(new CustomProgressModule())
-                .myDatabaseModule(new MyDatabaseModule(appContext))
-                .sharedPreferenceModule(new SharedPreferenceModule(appContext, ACCOUNT)).build();
+                .myDatabaseModule(new MyDatabaseModule(this))
+                .sharedPreferenceModule(new SharedPreferenceModule(this, ACCOUNT)).build();
         applicationComponent.inject(getInstance());
     }
 
@@ -90,7 +85,7 @@ public class MyApplication extends Application {
         final String YANDEX_API_KEY = "0f22d2c8-1621-4448-b0db-267ab4131561";
         final YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(YANDEX_API_KEY)
                 .withLogs().withAppVersion(BuildConfig.VERSION_NAME).build();
-        YandexMetrica.activate(appContext, config);
-        YandexMetrica.enableActivityAutoTracking(this);
+        YandexMetrica.activate(this, config);
+        YandexMetrica.enableActivityAutoTracking(getInstance());
     }
 }

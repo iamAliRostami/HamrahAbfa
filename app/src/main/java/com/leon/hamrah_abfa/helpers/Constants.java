@@ -19,4 +19,9 @@ public class Constants {
     public static final int THEME_DARK = -1;
     public static final int THEME_DEFAULT = 0;
     public static final int THEME_LIGHT = 1;
+
+    public static final int SMALL = -1;
+    public static final int MEDIUM = 0;
+    public static final int LARGE = 1;
+    public static final int HUGE = 2;
 }

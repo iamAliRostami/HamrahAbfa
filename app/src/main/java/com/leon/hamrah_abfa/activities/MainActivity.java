@@ -4,18 +4,14 @@ import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
-import static com.leon.toast.RTLToast.info;
 
 import android.animation.Animator;
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,33 +22,25 @@ import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
+import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 
 
-public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener,
-        View.OnClickListener, HomeFragment.ICallback, SubmitInfoFragment.ICallback,
-        ServiceFragment.ICallback {
-    private long lastClickTime = 0;
+public class MainActivity extends BaseActivity implements Animator.AnimatorListener,
+        HomeFragment.ICallback, SubmitInfoFragment.ICallback,ServiceFragment.ICallback {
     private ActivityMainBinding binding;
     private CardPagerAdapter cardPagerAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
+    protected void initialize() {
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialize();
-    }
-
-    private void initialize() {
 //TODO
-//         initializeSplash();
+//        initializeSplash();
 // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
@@ -72,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             NavigationUI.setupActionBarWithNavController(this, navController, appBar);
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
-
         final MaterialShapeDrawable bottomBarBackground = (MaterialShapeDrawable) binding.bottomAppBar.getBackground();
         bottomBarBackground.setShapeAppearanceModel(
                 bottomBarBackground.getShapeAppearanceModel()
@@ -128,10 +115,8 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
     }
 
     @Override
-    public void onBackPressed() {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        info(this, getString(R.string.exit_by_press_again)).show();
-        lastClickTime = SystemClock.elapsedRealtime();
+    protected String getExitMessage() {
+        return getString(R.string.exit_by_press_again);
     }
 
     @Override
