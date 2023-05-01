@@ -30,18 +30,17 @@ import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 
 
 public class MainActivity extends BaseActivity implements Animator.AnimatorListener,
-        HomeFragment.ICallback, SubmitInfoFragment.ICallback,ServiceFragment.ICallback {
+        HomeFragment.ICallback, SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
     private ActivityMainBinding binding;
     private CardPagerAdapter cardPagerAdapter;
 
     @Override
     protected void initialize() {
-        if (getSupportActionBar() != null) getSupportActionBar().hide();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//TODO
+        //TODO
 //        initializeSplash();
-// TODO
+        // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
         final ImageView imageViewSetting = findViewById(R.id.image_view_setting);
@@ -61,12 +60,11 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
             NavigationUI.setupWithNavController(binding.navView, navController);
         }
         final MaterialShapeDrawable bottomBarBackground = (MaterialShapeDrawable) binding.bottomAppBar.getBackground();
-        bottomBarBackground.setShapeAppearanceModel(
-                bottomBarBackground.getShapeAppearanceModel()
-                        .toBuilder()
-                        .setTopLeftCorner(new RoundedCornerTreatment()).setTopLeftCornerSize(new RelativeCornerSize(0.5f))
-                        .setTopRightCorner(new RoundedCornerTreatment()).setTopRightCornerSize(new RelativeCornerSize(0.5f))
-                        .build());
+        bottomBarBackground.setShapeAppearanceModel(bottomBarBackground.getShapeAppearanceModel()
+                .toBuilder()
+                .setTopLeftCorner(new RoundedCornerTreatment()).setTopLeftCornerSize(new RelativeCornerSize(0.5f))
+                .setTopRightCorner(new RoundedCornerTreatment()).setTopRightCornerSize(new RelativeCornerSize(0.5f))
+                .build());
     }
 
     private void initializeSplash() {

@@ -20,12 +20,16 @@ public class WelcomeActivity extends BaseActivity {
     private ActivityWelcomeBinding binding;
 
     protected void initialize() {
-        if (getSupportActionBar() != null) getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        initializeViewPager();
+        binding.buttonSkip.setOnClickListener(this);
+        binding.buttonDone.setOnClickListener(this);
+    }
 
+    private void initializeViewPager() {
         final WelcomePagerAdapter adapter = new WelcomePagerAdapter(this);
         binding.viewPagerWelcome.setAdapter(adapter);
         binding.viewPagerWelcome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -50,13 +54,8 @@ public class WelcomeActivity extends BaseActivity {
 
             }
         });
-//        binding.indicator.attachTo(binding.viewPagerWelcome);
         binding.indicator.setupWithViewPager(binding.viewPagerWelcome);
-        binding.buttonSkip.setOnClickListener(this);
-        binding.buttonDone.setOnClickListener(this);
     }
-
-
 
     @Override
     public void onClick(View v) {
@@ -73,10 +72,12 @@ public class WelcomeActivity extends BaseActivity {
             finish();
         }
     }
+
     @Override
     protected String getExitMessage() {
         return null;
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

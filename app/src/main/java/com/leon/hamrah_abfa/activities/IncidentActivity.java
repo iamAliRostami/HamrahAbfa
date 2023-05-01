@@ -2,45 +2,40 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
-import static com.leon.toast.RTLToast.info;
 
-import android.os.Bundle;
-import android.os.SystemClock;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.ImageViewAdapter;
+import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityIncidentBinding;
 import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
 import com.leon.hamrah_abfa.fragments.incident.IncidentBaseFragment;
 import com.leon.hamrah_abfa.fragments.incident.IncidentCompleteFragment;
 import com.leon.hamrah_abfa.fragments.incident.IncidentViewModel;
 
-public class IncidentActivity extends AppCompatActivity implements IncidentBaseFragment.ICallback, IncidentCompleteFragment.ICallback {
+public class IncidentActivity extends BaseActivity implements IncidentBaseFragment.ICallback,
+        IncidentCompleteFragment.ICallback {
     private ActivityIncidentBinding binding;
-    private long lastClickTime;
     private ImageViewAdapter adapter;
     private final IncidentViewModel viewModel = new IncidentViewModel();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initialize() {
         binding = ActivityIncidentBinding.inflate(getLayoutInflater());
-        initialize();
         setContentView(binding.getRoot());
-    }
-
-    private void initialize() {
         getSupportFragmentManager().beginTransaction().add(binding.fragmentIncident.getId(),
                 IncidentBaseFragment.newInstance()).commit();
     }
 
     @Override
-    public void onBackPressed() {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        info(this, getString(R.string.return_by_press_again)).show();
-        lastClickTime = SystemClock.elapsedRealtime();
+    protected String getExitMessage() {
+        return getString(R.string.return_by_press_again);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     @Override
@@ -75,4 +70,5 @@ public class IncidentActivity extends AppCompatActivity implements IncidentBaseF
     public void setImageViewAdapter(ImageViewAdapter adapter) {
         this.adapter = adapter;
     }
+
 }
