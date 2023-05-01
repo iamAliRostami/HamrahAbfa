@@ -56,6 +56,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
             info(this, getExitMessage()).show();
             lastClickTime = SystemClock.elapsedRealtime();
-        }else super.onBackPressed();
+        } else super.onBackPressed();
     }
 }

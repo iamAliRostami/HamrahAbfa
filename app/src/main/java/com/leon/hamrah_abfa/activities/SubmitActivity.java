@@ -4,33 +4,29 @@ import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.VERIFICATION_FRAGMENT;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySubmitBinding;
 import com.leon.hamrah_abfa.fragments.PhoneSubmitFragment;
 import com.leon.hamrah_abfa.fragments.VerificationCodeFragment;
 
-public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFragment.Callback,
+public class SubmitActivity extends BaseActivity implements PhoneSubmitFragment.Callback,
         VerificationCodeFragment.Callback {
     private String mobile;
     private ActivitySubmitBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initialize() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivitySubmitBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialize();
-    }
-
-    private void initialize() {
         displayView(SUBMIT_PHONE_FRAGMENT);
     }
 
@@ -67,5 +63,15 @@ public class SubmitActivity extends AppCompatActivity implements PhoneSubmitFrag
             default:
                 return PhoneSubmitFragment.newInstance();
         }
+    }
+
+    @Override
+    protected String getExitMessage() {
+        return null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

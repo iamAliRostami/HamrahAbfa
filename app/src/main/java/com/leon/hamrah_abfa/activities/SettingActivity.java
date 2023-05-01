@@ -8,27 +8,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
+import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
 
-public class SettingActivity extends AppCompatActivity implements View.OnClickListener,
-        AdapterView.OnItemClickListener {
+public class SettingActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     private ActivitySettingBinding binding;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initialize() {
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialize();
-    }
-
-    private void initialize() {
         final MenuAdapter adapter = new MenuAdapter(this, R.array.setting_menu, R.array.setting_icons);
         binding.gridViewMenu.setAdapter(adapter);
         binding.gridViewMenu.setOnItemClickListener(this);
@@ -50,5 +42,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         } else if (position == 1) {
             ShowFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
         }
+    }
+
+    @Override
+    protected String getExitMessage() {
+        return null;
     }
 }
