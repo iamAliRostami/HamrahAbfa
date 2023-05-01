@@ -11,7 +11,7 @@ public enum SharedReferenceKeys {
     NICKNAME("nickname_1111111111111111111111111111"),
     DEBT("debt_1111111111111111111111111111"),
     DEFAULT_BILL_ID("default_bill_id"),
-    IS_FIRST("is_first_1111111111111111");
+    IS_FIRST("is_first_111111111111111");
 
 
     private final String value;

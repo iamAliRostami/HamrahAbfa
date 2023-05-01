@@ -51,8 +51,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onBackPressed() {
-        if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
-        info(this, getExitMessage()).show();
-        lastClickTime = SystemClock.elapsedRealtime();
+        if (getExitMessage() != null) {
+            if (SystemClock.elapsedRealtime() - lastClickTime < 2000) super.onBackPressed();
+            info(this, getExitMessage()).show();
+            lastClickTime = SystemClock.elapsedRealtime();
+        }else super.onBackPressed();
     }
 }

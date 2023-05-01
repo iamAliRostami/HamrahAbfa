@@ -5,33 +5,27 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.WelcomePagerAdapter;
+import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityWelcomeBinding;
 
-public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class WelcomeActivity extends BaseActivity {
     private ActivityWelcomeBinding binding;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-//        setTheme(R.style.Theme_HamrahAbfa_Huge);
-        super.onCreate(savedInstanceState);
+    protected void initialize() {
+        if (getSupportActionBar() != null) getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initialize();
-    }
 
-    private void initialize() {
         final WelcomePagerAdapter adapter = new WelcomePagerAdapter(this);
         binding.viewPagerWelcome.setAdapter(adapter);
         binding.viewPagerWelcome.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -62,6 +56,8 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         binding.buttonDone.setOnClickListener(this);
     }
 
+
+
     @Override
     public void onClick(View v) {
         final int id = v.getId();
@@ -77,10 +73,13 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
             finish();
         }
     }
-
+    @Override
+    protected String getExitMessage() {
+        return null;
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
+        getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), true);
     }
 }
