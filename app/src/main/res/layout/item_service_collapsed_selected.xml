@@ -49,14 +49,14 @@
             android:layout_gravity="center"
             android:padding="@dimen/large_dp"
             android:src="@drawable/arrow_up"
-            android:tint="@color/gray_2" />
+            android:tint="@color/dark_gray" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tiny_dp"
             android:layout_below="@id/image_view_icon"
-            android:background="@color/gray_1" />
+            android:background="@color/light_gray" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_introduction"

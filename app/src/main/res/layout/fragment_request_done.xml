@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/done" />
+            android:src="@drawable/ic_done" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_return"

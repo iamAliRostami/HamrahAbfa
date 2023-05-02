@@ -17,10 +17,10 @@
         app:sv_doneStepLineColor="@color/purple_7001"
         app:sv_doneStepMarkColor="@android:color/white"
         app:sv_doneTextColor="@color/purple_7001"
-        app:sv_nextStepCircleColor="@color/gray_2"
+        app:sv_nextStepCircleColor="@color/dark_gray"
         app:sv_nextStepCircleEnabled="true"
-        app:sv_nextStepLineColor="@color/gray_2"
-        app:sv_nextTextColor="@color/gray_2"
+        app:sv_nextStepLineColor="@color/dark_gray"
+        app:sv_nextTextColor="@color/dark_gray"
         app:sv_selectedCircleColor="@color/purple_7001"
         app:sv_selectedStepNumberColor="@android:color/white"
         app:sv_selectedTextColor="@color/purple_7001"
@@ -39,6 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/stepper"
-        android:background="@color/gray_1"
+        android:background="@color/light_gray"
         app:defaultNavHost="true" />
 </RelativeLayout>

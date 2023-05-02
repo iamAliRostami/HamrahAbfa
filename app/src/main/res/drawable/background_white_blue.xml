@@ -7,7 +7,7 @@
         android:left="@dimen/tiny_dp"
         android:right="@dimen/tiny_dp"
         android:top="@dimen/tiny_dp" />
-    <solid android:color="@android:color/white" />
+    <solid android:color="@color/light" />
     <stroke
         android:width="@dimen/tiny_dp"
         android:color="@color/purple_7001" />

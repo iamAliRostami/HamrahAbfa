@@ -16,7 +16,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue_light">
+        android:background="@color/light_blue">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_device_name"
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/tiny_dp"
             android:layout_below="@id/text_view_device_name"
-            android:background="@color/gray_1" />
+            android:background="@color/light_gray" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_last_login"
@@ -43,7 +43,7 @@
                 android:id="@+id/image_view_last_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_timer" />
+                android:src="@drawable/ic_clock" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_view_device_last_login_title"

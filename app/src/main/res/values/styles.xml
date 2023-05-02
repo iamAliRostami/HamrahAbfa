@@ -5,7 +5,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/dark</item>
         <item name="android:textAppearance">@style/TextStyleMedium.Bold</item>
     </style>
 
@@ -37,14 +37,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/background_blue</item>
         <item name="android:backgroundTint">@color/purple_7001</item>
-        <item name="backgroundTint">@color/purple_7001</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">?android:attr/colorPrimary</item>
+        <item name="android:textColor">@color/light</item>
         <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
 
     <style name="ButtonCancel" parent="Button">
         <item name="android:textAppearance">@style/TextStyleMedium</item>
-        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:textColor">?android:attr/colorPrimary</item>
         <item name="android:background">@drawable/background_white_blue</item>
     </style>
 
@@ -69,8 +69,8 @@
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="boxStrokeColor">@color/purple_7001</item>
-        <item name="hintTextColor">@color/purple_7001</item>
+        <item name="boxStrokeColor">?android:attr/colorPrimary</item>
+        <item name="hintTextColor">?android:attr/colorPrimary</item>
         <item name="helperTextEnabled">true</item>
         <item name="counterEnabled">false</item>
         <item name="errorEnabled">true</item>
@@ -136,7 +136,7 @@
 
 
     <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
-        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:textColor">?android:attr/colorPrimary</item>
         <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
 
@@ -163,7 +163,7 @@
     <style name="TextStyleLarge.Bold">
         <item name="android:textStyle">bold</item>
     </style>
-    
+
     <style name="ThemeTextStyle">
         <item name="android:textColor">?android:attr/textColor</item>
     </style>

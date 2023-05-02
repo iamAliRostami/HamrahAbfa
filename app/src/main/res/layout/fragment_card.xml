@@ -25,6 +25,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_title"
             style="@style/Title"
+            android:textColor="@color/dark_gray"
             android:layout_below="@id/image_view_logo"
             android:layout_centerHorizontal="true"
             android:text="@{viewModel.nickname}" />
@@ -40,6 +41,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_owner"
             style="@style/TitleHelp"
+            android:textColor="@color/dark_gray"
             android:layout_below="@id/text_view_owner_title"
             android:layout_marginStart="@dimen/large_dp"
             android:text="@{viewModel.owner}" />
@@ -56,6 +58,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_bill_id"
             style="@style/TitleHelp"
+            android:textColor="@color/dark_gray"
             android:layout_below="@id/text_view_owner_title"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/large_dp"
@@ -93,7 +96,7 @@
                 android:background="@drawable/background_card_input_left"
                 android:gravity="center"
                 android:text="@string/pay"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/light_gray" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -103,7 +106,8 @@
             android:layout_below="@id/linear_layout_debt"
             android:layout_marginStart="@dimen/large_dp"
             android:layout_marginEnd="@dimen/large_dp"
-            android:src="@drawable/edit_white" />
+            android:tint="@color/light"
+            android:src="@drawable/ic_edit" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_delete"

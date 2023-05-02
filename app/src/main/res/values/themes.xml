@@ -4,14 +4,15 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_7001</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorOnPrimary">@color/light</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/purple_7001</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@android:color/black</item>
+        <item name="colorOnSecondary">@color/dark</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
         <item name="android:layoutDirection">rtl</item>.
         <item name="fontFamily">@font/font_3</item>
         <item name="font">@font/font_3</item>
@@ -21,7 +22,7 @@
         <item name="font_small">@dimen/font_small_value</item>
         <item name="font_medium">@dimen/font_medium_value</item>
         <item name="font_large">@dimen/font_large_value</item>
-        <item name="android:textColor">@color/gray_2</item>
+        <item name="android:textColor">@color/dark_gray</item>
     </style>
 
     <style name="Theme.HamrahAbfa.Tiny">

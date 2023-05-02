@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@id/text_view_tip"
                 android:layout_marginEnd="@dimen/medium_dp"
-                android:src="@drawable/tick1" />
+                android:src="@drawable/ic_tick" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_title"
@@ -83,7 +83,8 @@
                 android:layout_marginStart="@dimen/medium_dp"
                 android:layout_toEndOf="@id/text_view_mobile"
                 android:padding="@dimen/small_dp"
-                android:src="@drawable/edit_blue" />
+                android:tint="@color/purple_7001"
+                android:src="@drawable/ic_edit" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linear_layout_code"
