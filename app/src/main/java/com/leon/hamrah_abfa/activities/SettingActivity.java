@@ -21,6 +21,7 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
 public class SettingActivity extends BaseActivity implements AdapterView.OnItemClickListener,
         ThemeFragment.ICallback {
     private ActivitySettingBinding binding;
+    private boolean isChange = false;
 
     @Override
     protected void initialize() {
@@ -29,6 +30,7 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().getBoolean(SHOW_PRE_FRAGMENT.getValue())) {
                 ShowFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
+                isChange = true;
             }
             getIntent().getExtras().clear();
         }
@@ -43,11 +45,13 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     }
 
     @Override
-    public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.image_view_back) {
-            finish();
-        }
+    public void changeTheme(int value) {
+        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), value);
+        final Intent intent = getIntent();
+        setResult(RESULT_OK, intent);
+        finish();
+        intent.putExtra(SHOW_PRE_FRAGMENT.getValue(), true);
+        startActivity(intent);
     }
 
     @Override
@@ -60,16 +64,30 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     }
 
     @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.image_view_back) {
+            setResult();
+            finish();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult();
+    }
+
+    private void setResult() {
+        if (isChange) {
+            final Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+        }
+    }
+
+    @Override
     protected String getExitMessage() {
         return null;
     }
 
-    @Override
-    public void changeTheme(int value) {
-        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), value);
-        final Intent intent = getIntent();
-        finish();
-        intent.putExtra(SHOW_PRE_FRAGMENT.getValue(), true);
-        startActivity(intent);
-    }
 }

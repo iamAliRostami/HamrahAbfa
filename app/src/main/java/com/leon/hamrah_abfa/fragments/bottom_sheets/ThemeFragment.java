@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME_MODE;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DARK;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DEFAULT;
@@ -16,9 +17,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.slider.Slider;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentThemeBinding;
 import com.leon.hamrah_abfa.enums.SharedReferenceKeys;
@@ -50,7 +51,6 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     private void initialize() {
-        binding.buttonSubmit.setOnClickListener(this);
         binding.linearLayoutDark.setOnClickListener(this);
         binding.linearLayoutLight.setOnClickListener(this);
         binding.linearLayoutBasedOnDevice.setOnClickListener(this);
@@ -59,8 +59,20 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     private void initializeSlider() {
-        binding.sliderSize.setValue(getApplicationComponent().SharedPreferenceModel().getIntNullData(SharedReferenceKeys.THEME.getValue()));
-        binding.sliderSize.addOnChangeListener((slider, value, fromUser) -> settingActivity.changeTheme((int) value));
+        binding.sliderSize.setValue(getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME.getValue()));
+//        binding.sliderSize.addOnChangeListener((slider, value, fromUser) -> settingActivity.changeTheme((int) value));
+        binding.sliderSize.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(@NonNull Slider slider) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(@NonNull Slider slider) {
+                settingActivity.changeTheme((int) slider.getValue());
+
+            }
+        });
     }
 
     private void initializeViews() {
@@ -108,14 +120,6 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
         getApplicationComponent().SharedPreferenceModel().putData(THEME_MODE.getValue(), theme);
         initializeViews();
     }
-
-    private void resetFragment() {
-        final FragmentTransaction transactionCurrent = requireActivity().getSupportFragmentManager().beginTransaction();
-        transactionCurrent.detach(ThemeFragment.this).commit();
-        final FragmentTransaction transactionNext = requireActivity().getSupportFragmentManager().beginTransaction();
-        transactionNext.attach(ThemeFragment.this).commit();
-    }
-
 
     @Override
     public void onAttach(@NonNull @NotNull Context context) {

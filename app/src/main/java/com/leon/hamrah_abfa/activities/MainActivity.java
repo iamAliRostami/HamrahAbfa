@@ -6,11 +6,14 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.animation.Animator;
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -33,6 +36,14 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         HomeFragment.ICallback, SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
     private ActivityMainBinding binding;
     private CardPagerAdapter cardPagerAdapter;
+    final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    final Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }
+            });
 
     @Override
     protected void initialize() {
@@ -107,7 +118,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
             ShowFragmentDialogOnce(this, SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
         } else if (id == R.id.image_view_setting) {
             final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-            startActivity(intent);
+            settingActivityResultLauncher.launch(intent);
         } else if (id == R.id.image_view_notification) {
         }
     }
@@ -145,4 +156,6 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     public String getCurrentBillId(int position) {
         return cardPagerAdapter.getCurrentBillId(position);
     }
+
+
 }

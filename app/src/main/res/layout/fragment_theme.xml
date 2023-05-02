@@ -116,7 +116,7 @@
         android:layout_marginBottom="@dimen/large_dp"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/medium_dp"
-        app:layout_constraintBottom_toTopOf="@id/button_submit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         card_view:cardElevation="@dimen/medium_dp">
 
@@ -144,11 +144,4 @@
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_submit"
-        style="@style/ButtonSubmit"
-        android:layout_marginTop="@dimen/large_dp"
-        android:text="@string/confirm"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
