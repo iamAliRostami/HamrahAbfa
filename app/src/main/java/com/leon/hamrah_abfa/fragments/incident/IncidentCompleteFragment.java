@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.fragments.incident;
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
 import static com.leon.hamrah_abfa.utils.FileCustomize.compressBitmap;
 import static com.leon.hamrah_abfa.utils.FileCustomize.createImageFile;
+import static com.leon.hamrah_abfa.utils.FileCustomize.recognizeImageAngle;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCameraPermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
@@ -12,8 +13,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -158,11 +157,18 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
-                    final Bitmap bitmap = BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
-                            new BitmapFactory.Options());
-                    incidentActivity.getImageViewAdapter().addItem(compressBitmap(requireContext(), bitmap));
+//                    final Bitmap bitmap = BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
+//                            new BitmapFactory.Options());
+                    try {
+                        incidentActivity.getImageViewAdapter().addItem(compressBitmap(requireContext(),
+                                recognizeImageAngle(fileImage)));
+                    } catch (IOException e) {
+                        error(requireContext(),e.getMessage()).show();
+                    }
                 }
             });
+
+
     private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
