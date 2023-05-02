@@ -33,9 +33,9 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         ArrayList<String> owners = new ArrayList<>();
         ArrayList<String> nicknames = new ArrayList<>();
         if (!(billId.isEmpty() || nickname.isEmpty() || owner.isEmpty())) {
-            billIds.addAll(Arrays.asList(billId.split(",")));
             nicknames.addAll(Arrays.asList(nickname.split(",")));
             owners.addAll(Arrays.asList(owner.split(",")));
+            billIds.addAll(Arrays.asList(billId.split(",")));
             billIds.add(billIds.get(getApplicationComponent().SharedPreferenceModel().getIntData(DEFAULT_BILL_ID.getValue()) - 1));
         } else {
             billIds.add("");

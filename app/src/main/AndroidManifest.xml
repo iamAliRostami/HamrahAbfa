@@ -48,6 +48,9 @@
         android:theme="@style/Theme.HamrahAbfa.NoActionBar"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".activities.SetCounterNumberActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.FollowRequestActivity"
             android:exported="false" />
         <activity

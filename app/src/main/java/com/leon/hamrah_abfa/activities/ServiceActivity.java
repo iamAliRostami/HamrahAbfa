@@ -4,10 +4,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
-import static com.leon.toast.RTLToast.info;
 
 import android.graphics.Bitmap;
-import android.os.SystemClock;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -117,7 +115,7 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
 
     @Override
     protected String getExitMessage() {
-        return  getString(R.string.return_by_press_again);
+        return getString(R.string.return_by_press_again);
     }
 
     @Override

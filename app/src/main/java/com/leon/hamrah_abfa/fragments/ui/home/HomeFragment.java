@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
+import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
 import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
@@ -40,6 +39,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void initialize() {
         initializeViewPager();
+        initializeGridView();
+    }
+
+    private void initializeGridView() {
         final MenuAdapter adapter = new MenuAdapter(requireContext(), R.array.home_menu, R.array.home_icons);
         binding.gridViewMenu.setAdapter(adapter);
         binding.gridViewMenu.setOnItemClickListener(this);
@@ -70,10 +73,16 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
         } else if (position == 1) {
+            startActivity(SetCounterNumberActivity.class);
+        } else if (position == 2) {
         } else if (position == 5) {
-            final Intent intent = new Intent(requireContext(), FollowRequestActivity.class);
-            startActivity(intent);
+            startActivity(FollowRequestActivity.class);
         }
+    }
+
+    private void startActivity(Class<?> cls) {
+        final Intent intent = new Intent(requireContext(), cls);
+        startActivity(intent);
     }
 
     @Override
