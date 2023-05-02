@@ -8,7 +8,6 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +64,13 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     private void initializeViews() {
+        binding.textViewThemeBasedOnDevice.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.textViewThemeLight.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.textViewThemeDark.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.linearLayoutBasedOnDevice.setBackground(null);
+        binding.linearLayoutLight.setBackground(null);
+        binding.linearLayoutDark.setBackground(null);
+
         if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_DEFAULT) {
             binding.linearLayoutBasedOnDevice.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeBasedOnDevice.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
@@ -100,7 +106,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
         getApplicationComponent().SharedPreferenceModel().putData(THEME_MODE.getValue(), theme);
-        resetFragment();
+        initializeViews();
     }
 
     private void resetFragment() {

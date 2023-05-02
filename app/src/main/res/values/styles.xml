@@ -163,13 +163,9 @@
     <style name="TextStyleLarge.Bold">
         <item name="android:textStyle">bold</item>
     </style>
-
-<!--    <style name="TextStyleXLarge">-->
-<!--        <item name="android:textSize">?attr/font_xlarge</item>-->
-<!--    </style>-->
-
-<!--    <style name="TextStyleXLarge.Bold">-->
-<!--        <item name="android:textStyle">bold</item>-->
-<!--    </style>-->
+    
+    <style name="ThemeTextStyle">
+        <item name="android:textColor">?android:attr/textColor</item>
+    </style>
 
 </resources>

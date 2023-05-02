@@ -137,9 +137,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_size_title"
                 android:layout_margin="@dimen/large_dp"
-                android:valueFrom="-1"
-                android:stepSize="1"
                 android:layoutDirection="rtl"
+                android:stepSize="1"
+                android:valueFrom="-1"
                 android:valueTo="2" />
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
