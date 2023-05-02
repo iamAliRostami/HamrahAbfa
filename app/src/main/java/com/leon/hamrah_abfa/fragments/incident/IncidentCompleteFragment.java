@@ -1,9 +1,8 @@
 package com.leon.hamrah_abfa.fragments.incident;
 
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
-import static com.leon.hamrah_abfa.utils.FileCustomize.compressBitmap;
 import static com.leon.hamrah_abfa.utils.FileCustomize.createImageFile;
-import static com.leon.hamrah_abfa.utils.FileCustomize.recognizeImageAngle;
+import static com.leon.hamrah_abfa.utils.FileCustomize.prepareImage;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCameraPermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
@@ -136,18 +135,12 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
         if (getContext() != null && cameraIntent.resolveActivity(requireContext().getPackageManager()) != null) {
             try {
                 fileImage = createImageFile(requireContext());
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getContext(),
+                        BuildConfig.APPLICATION_ID.concat(".provider"), fileImage));
+                cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+                cameraResultLauncher.launch(cameraIntent);
             } catch (IOException e) {
                 error(requireContext(), e.getMessage()).show();
-            }
-            if (fileImage != null) {
-                try {
-                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getContext(),
-                            BuildConfig.APPLICATION_ID.concat(".provider"), fileImage));
-                    cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-                    cameraResultLauncher.launch(cameraIntent);
-                } catch (Exception e) {
-                    error(requireContext(), e.getMessage()).show();
-                }
             }
         } else {
             error(requireContext(), "صفحه ی عکس را بسته و مجددا باز کنید.").show();
@@ -157,13 +150,10 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
-//                    final Bitmap bitmap = BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
-//                            new BitmapFactory.Options());
                     try {
-                        incidentActivity.getImageViewAdapter().addItem(compressBitmap(requireContext(),
-                                recognizeImageAngle(fileImage)));
+                        incidentActivity.getImageViewAdapter().addItem(prepareImage(fileImage));
                     } catch (IOException e) {
-                        error(requireContext(),e.getMessage()).show();
+                        error(requireContext(), e.getMessage()).show();
                     }
                 }
             });
@@ -187,12 +177,12 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     public interface ICallback {
         IncidentViewModel getIncidentViewModel();
 
-        void returnToBase();
-
-        void confirm();
-
         ImageViewAdapter getImageViewAdapter();
 
         void setImageViewAdapter(ImageViewAdapter adapter);
+
+        void returnToBase();
+
+        void confirm();
     }
 }

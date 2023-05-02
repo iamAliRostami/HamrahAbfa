@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.utils;
 
 import static com.leon.hamrah_abfa.helpers.Constants.MAX_IMAGE_SIZE;
-import static com.leon.toast.RTLToast.error;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,53 +31,47 @@ public class FileCustomize {
         );
     }
 
-    public static Bitmap compressBitmap(Context context, Bitmap bitmapOriginal) {
-        try {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmapOriginal.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            if (stream.toByteArray().length > MAX_IMAGE_SIZE) {
-                final int width, height;
-                if (bitmapOriginal.getHeight() > bitmapOriginal.getWidth()) {
-                    height = Math.min(MAX_IMAGE_SIZE / 100, bitmapOriginal.getHeight());
-                    width = bitmapOriginal.getWidth() / (bitmapOriginal.getHeight() / height);
-                } else {
-                    width = Math.min(MAX_IMAGE_SIZE / 100, bitmapOriginal.getWidth());
-                    height = bitmapOriginal.getHeight() / (bitmapOriginal.getWidth() / width);
-                }
-                bitmapOriginal = Bitmap.createScaledBitmap(bitmapOriginal, width, height, false);
-                stream = new ByteArrayOutputStream();
-                bitmapOriginal.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+    private static Bitmap compressBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        if (stream.toByteArray().length > MAX_IMAGE_SIZE) {
+            final int width, height;
+            if (bitmap.getHeight() > bitmap.getWidth()) {
+                height = Math.min(MAX_IMAGE_SIZE / 100, bitmap.getHeight());
+                width = bitmap.getWidth() / (bitmap.getHeight() / height);
+            } else {
+                width = Math.min(MAX_IMAGE_SIZE / 100, bitmap.getWidth());
+                height = bitmap.getHeight() / (bitmap.getWidth() / width);
             }
-            return bitmapOriginal;
-        } catch (Exception e) {
-            error(context, e.getMessage()).show();
+            bitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
+            stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
         }
-        return null;
+        return bitmap;
     }
 
-    private static Bitmap rotateImage(Bitmap source, float angle) {
+    private static Bitmap rotateImage(Bitmap bitmap, float angle) {
         final Matrix matrix = new Matrix();
         matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
-                matrix, true);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 
-    public static Bitmap recognizeImageAngle(File fileImage) throws IOException {
-        final ExifInterface ei = new ExifInterface(fileImage.getAbsolutePath());
+    private static Bitmap recognizeImageAngle(String path) throws IOException {
+        final ExifInterface ei = new ExifInterface(path);
         switch (ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)) {
             case ExifInterface.ORIENTATION_ROTATE_90:
-                return rotateImage(BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
-                        new BitmapFactory.Options()), 90);
+                return rotateImage(BitmapFactory.decodeFile(path, new BitmapFactory.Options()), 90);
             case ExifInterface.ORIENTATION_ROTATE_180:
-                return rotateImage(BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
-                        new BitmapFactory.Options()), 180);
+                return rotateImage(BitmapFactory.decodeFile(path, new BitmapFactory.Options()), 180);
             case ExifInterface.ORIENTATION_ROTATE_270:
-                return rotateImage(BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
-                        new BitmapFactory.Options()), 270);
+                return rotateImage(BitmapFactory.decodeFile(path, new BitmapFactory.Options()), 270);
             case ExifInterface.ORIENTATION_NORMAL:
             default:
-                return BitmapFactory.decodeFile(fileImage.getAbsolutePath(),
-                        new BitmapFactory.Options());
+                return BitmapFactory.decodeFile(path, new BitmapFactory.Options());
         }
+    }
+
+    public static Bitmap prepareImage(File fileImage) throws IOException {
+        return compressBitmap(recognizeImageAngle(fileImage.getAbsolutePath()));
     }
 }
