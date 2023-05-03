@@ -15,18 +15,18 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.chip.Chip;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentSubmitInformationBinding;
+import com.leon.hamrah_abfa.databinding.FragmentServiceSubmitInformationBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 
-public class SubmitInformationFragment extends Fragment implements View.OnClickListener {
-    private FragmentSubmitInformationBinding binding;
+public class ServiceSubmitInformationFragment extends Fragment implements View.OnClickListener {
+    private FragmentServiceSubmitInformationBinding binding;
     private ICallback serviceActivity;
 
-    public SubmitInformationFragment() {
+    public ServiceSubmitInformationFragment() {
     }
 
-    public static SubmitInformationFragment newInstance() {
-        return new SubmitInformationFragment();
+    public static ServiceSubmitInformationFragment newInstance() {
+        return new ServiceSubmitInformationFragment();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SubmitInformationFragment extends Fragment implements View.OnClickL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSubmitInformationBinding.inflate(inflater, container, false);
+        binding = FragmentServiceSubmitInformationBinding.inflate(inflater, container, false);
         binding.setViewModel(serviceActivity.getServicesViewModel());
         initialize();
         return binding.getRoot();

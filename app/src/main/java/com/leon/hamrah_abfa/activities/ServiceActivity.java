@@ -21,14 +21,14 @@ import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.fragments.services.SubmitInformationFragment;
+import com.leon.hamrah_abfa.fragments.services.ServiceSubmitInformationFragment;
 
 import org.osmdroid.util.GeoPoint;
 
 import java.util.ArrayList;
 
 public class ServiceActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
-        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, SubmitInformationFragment.ICallback,
+        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, ServiceSubmitInformationFragment.ICallback,
         ServicesLocationDialogFragment.ICallback {
     private ServicesViewModel viewModel;
     private ActivityServiceBinding binding;
@@ -76,7 +76,7 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
     public void submitUserInfo() {
         binding.stepper.go(2, true);
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                SubmitInformationFragment.newInstance()).commit();
+                ServiceSubmitInformationFragment.newInstance()).commit();
     }
 
     @Override

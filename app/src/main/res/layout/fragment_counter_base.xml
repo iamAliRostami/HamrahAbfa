@@ -14,20 +14,77 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/button_confirm"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/font_huge_value"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/medium_dp"
         card_view:cardElevation="@dimen/medium_dp">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_card"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/text_layout_counter_number"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_counter" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_counter_number"
+                style="@style/TextInputLayout"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/large_dp"
+                android:layout_marginEnd="@dimen/large_dp"
+                android:hint="@string/counter_number"
+                app:counterEnabled="true"
+                app:counterMaxLength="7"
+                app:helperText="@string/enter_counter_number"
+                app:helperTextTextAppearance="@style/TextHelper"
+                app:placeholderText="@string/counter_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_counter_number"
+                    style="@style/TextInput"
+                    android:inputType="number"
+                    android:maxLength="7" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_mobile"
+                style="@style/TextInputLayout"
+                android:layout_below="@id/text_layout_counter_number"
+                android:layout_margin="@dimen/large_dp"
+                android:hint="@string/phone_number"
+                app:counterMaxLength="11"
+                app:helperText="@string/enter_account"
+                app:placeholderText="@string/mobile_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_mobile"
+                    style="@style/TextInput"
+                    android:inputType="phone"
+                    android:maxLength="11" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xlarge_dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/purple_7001" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/background_set_counter" />
+
+        </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
