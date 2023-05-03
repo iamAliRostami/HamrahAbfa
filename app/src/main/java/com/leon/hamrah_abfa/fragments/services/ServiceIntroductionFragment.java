@@ -52,8 +52,35 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     }
 
     private void initializeRecyclerView() {
+        binding.recyclerViewMenu.setAdapter(getAdapter());
+        binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
+        setRecyclerViewListener();
+    }
+
+    private ServicesIntroductionBaseAdapter getAdapter() {
         if (serviceActivity.getAdapter() == null) {
             //TODO
+            switch (serviceActivity.getServicesViewModel().getServiceType()) {
+                case 2:
+                    serviceActivity.setAdapter(new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
+                            R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons));
+                    break;
+                case 1:
+                    serviceActivity.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
+                            R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons));
+                    break;
+                case 0:
+                default:
+                    serviceActivity.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_sale_menu,
+                            R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons));
+                    break;
+            }
+        }
+        return serviceActivity.getAdapter();
+    }
+
+    private void setRecyclerViewListener() {
+        if (serviceActivity.getServicesViewModel().getServiceType() != 2) {
             final RecyclerItemClickListener listener = new RecyclerItemClickListener(requireContext(),
                     binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
                 @Override
@@ -66,26 +93,8 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
 
                 }
             });
-            switch (serviceActivity.getServicesViewModel().getServiceType()) {
-                case 2:
-                    serviceActivity.setAdapter(new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
-                            R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons));
-                    break;
-                case 1:
-                    serviceActivity.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
-                            R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons));
-                    binding.recyclerViewMenu.addOnItemTouchListener(listener);
-                    break;
-                case 0:
-                default:
-                    serviceActivity.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_sale_menu,
-                            R.array.services_sale_introduction, R.array.services_sale_id, R.array.services_sale_icons));
-                    binding.recyclerViewMenu.addOnItemTouchListener(listener);
-                    break;
-            }
+            binding.recyclerViewMenu.addOnItemTouchListener(listener);
         }
-        binding.recyclerViewMenu.setAdapter(serviceActivity.getAdapter());
-        binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     @Override
