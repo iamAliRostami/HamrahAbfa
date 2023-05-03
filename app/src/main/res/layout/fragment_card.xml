@@ -19,7 +19,7 @@
             android:id="@+id/image_view_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/medium_dp"
+            android:padding="@dimen/small_dp"
             android:src="@drawable/abfa_logo_simple" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -69,8 +69,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_bill_id"
-            android:layout_marginTop="@dimen/large_dp"
-            android:layout_marginBottom="@dimen/large_dp"
+            android:layout_marginTop="@dimen/medium_dp"
+            android:layout_marginBottom="@dimen/medium_dp"
             android:background="@drawable/background_card_input_right"
             android:orientation="horizontal">
 
@@ -96,7 +96,7 @@
                 android:background="@drawable/background_card_input_left"
                 android:gravity="center"
                 android:text="@string/pay"
-                android:textColor="@color/light_gray" />
+                android:textColor="@color/light" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -105,6 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout_debt"
             android:layout_marginStart="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/medium_dp"
             android:layout_marginEnd="@dimen/large_dp"
             android:tint="@color/light"
             android:src="@drawable/ic_edit" />

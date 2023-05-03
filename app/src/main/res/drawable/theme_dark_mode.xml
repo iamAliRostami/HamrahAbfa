@@ -14,5 +14,5 @@
       android:fillColor="@color/dark_gray"/>
   <path
       android:pathData="M25.167,58.576L68.833,58.576A6.167,6.167 0,0 1,75 64.742L75,64.742A6.167,6.167 0,0 1,68.833 70.909L25.167,70.909A6.167,6.167 0,0 1,19 64.742L19,64.742A6.167,6.167 0,0 1,25.167 58.576z"
-      android:fillColor="@color/purple_700"/>
+      android:fillColor="@color/purple_7002"/>
 </vector>

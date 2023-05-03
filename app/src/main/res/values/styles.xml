@@ -123,6 +123,7 @@
 
     <style name="BottomNavigationView.TextAppearance.Active" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">?attr/font_medium</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextItem">

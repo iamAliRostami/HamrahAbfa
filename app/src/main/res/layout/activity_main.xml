@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="40dp"
-            android:background="@color/light"
+            android:background="@color/light_blue"
             android:paddingBottom="50dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/mobile_navigation" />
@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:backgroundTint="@color/light"
             android:padding="@dimen/medium_dp"
             app:fabCradleMargin="@dimen/medium_dp"
             app:fabCradleRoundedCornerRadius="@dimen/xlarge_dp">
@@ -61,6 +62,6 @@
             android:src="@drawable/ic_plus"
             app:elevation="@dimen/medium_dp"
             app:layout_anchor="@id/bottom_app_bar"
-            app:tint="@android:color/white" />
+            app:tint="@color/light" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </RelativeLayout>

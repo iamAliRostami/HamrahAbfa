@@ -51,7 +51,7 @@ public class SubmitInformationFragment extends Fragment implements View.OnClickL
             final Chip chip = new Chip(requireContext());
             chip.setCloseIconVisible(false);
             chip.setTextAppearance(R.style.ChipTextAppearance);
-            chip.setChipBackgroundColorResource(R.color.purple_7002);
+            chip.setChipBackgroundColorResource(R.color.light);
             chip.setText(serviceActivity.getServicesViewModel().getSelectedServices().get(i));
             binding.chipGroupServices.addView(chip);
         }

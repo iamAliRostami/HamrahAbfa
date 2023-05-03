@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_7001">#002E94</color>
-    <color name="purple_7002">#673AB7</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="light_gray">#F0F0F0</color>
-    <color name="dark_gray">#939393</color>
-    <color name="light_blue">#F5F8FE</color>
+    <color name="purple_7001">#AAC0AA</color>
+<!--    <color name="purple_7001">#82846D</color>-->
+<!--    <color name="purple_7001">#1E1E24</color>-->
+<!--    <color name="purple_7001">#0C0C0C</color>-->
+<!--    <color name="purple_7003">#673AB7</color>-->
+    <color name="purple_7002">#392B58</color>
+<!--    <color name="teal_700">#FF018786</color>-->
+    <color name="light_blue">#5B616A</color>
+
+<!--    <color name="light_gray">#373737</color>-->
+<!--    <color name="dark_gray">#C0C0C2</color>-->
+<!--    <color name="light_gray">#373737</color>-->
+
+<!--    bottom-->
+    <color name="light_gray">#8B8C89</color>
+<!--    <color name="light_gray">#82846D</color>-->
+    <color name="dark_gray">#E7ECEF</color>
+<!--    <color name="dark_gray">#E0EFDA</color>-->
 
     <color name="dark">#F1F1F3</color>
+<!--    <color name="light">#292D32</color>-->
     <color name="light">#292D32</color>
 
     <!--    <color name="light">#28272C</color>-->

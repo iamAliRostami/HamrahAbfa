@@ -39,6 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/stepper"
-        android:background="@color/light_gray"
+        android:background="@color/light_blue"
         app:defaultNavHost="true" />
 </RelativeLayout>

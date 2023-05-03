@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_gray"
     android:gravity="center"
     android:padding="@dimen/xlarge_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"

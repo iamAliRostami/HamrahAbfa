@@ -39,7 +39,7 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
         holder.imageViewLogo.setOnClickListener(v -> updateSelectedService(positionHolder));
 
         if (selectedServicesId.get(position) == 0) {
-            holder.relativeLayout.setBackgroundResource(android.R.color.transparent);
+            holder.relativeLayout.setBackgroundResource(R.color.light);
         } else {
             holder.relativeLayout.setBackgroundResource(R.drawable.background_service_introduction);
         }

@@ -15,6 +15,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:background="@color/light"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
