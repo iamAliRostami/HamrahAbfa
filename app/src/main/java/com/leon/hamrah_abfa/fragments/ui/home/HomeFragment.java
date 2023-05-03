@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.ui.home;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -73,6 +75,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
         } else if (position == 1) {
+
             startActivity(SetCounterNumberActivity.class);
         } else if (position == 2) {
         } else if (position == 5) {
@@ -82,6 +85,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void startActivity(Class<?> cls) {
         final Intent intent = new Intent(requireContext(), cls);
+        intent.putExtra(BILL_ID.getValue(), callback.getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
         startActivity(intent);
     }
 
@@ -101,5 +105,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         CardPagerAdapter getCardPagerAdapter();
 
         void createCardPagerAdapter();
+
+        String getCurrentBillId(int position);
     }
 }
