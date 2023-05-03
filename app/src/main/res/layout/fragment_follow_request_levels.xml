@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.follow_request.FollowRequestLevelsFragment">
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/stepper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_dp"
+        app:sv_animationType="Circle"
+        app:sv_doneCircleColor="@color/purple_7001"
+        app:sv_doneCircleRadius="@dimen/medium_dp"
+        app:sv_doneStepLineColor="@color/purple_7001"
+        app:sv_doneStepMarkColor="@android:color/white"
+        app:sv_doneTextColor="@color/purple_7001"
+        app:sv_nextStepCircleColor="@color/dark_gray"
+        app:sv_nextStepCircleEnabled="true"
+        app:sv_nextStepLineColor="@color/dark_gray"
+        app:sv_nextTextColor="@color/dark_gray"
+        app:sv_selectedCircleColor="@color/purple_7001"
+        app:sv_selectedStepNumberColor="@android:color/white"
+        app:sv_selectedTextColor="@color/purple_7001"
+        app:sv_stepLineWidth="@dimen/tiny_dp"
+        app:sv_stepNumberTextSize="?attr/font_small"
+        app:sv_stepPadding="@dimen/tiny_dp"
+        app:sv_stepViewStyle="@style/StepView"
+        app:sv_steps="@array/services_steps"
+        app:sv_stepsNumber="4"
+        app:sv_textSize="?attr/font_medium"
+        app:sv_typeface="@font/font_1" />
+</RelativeLayout>
