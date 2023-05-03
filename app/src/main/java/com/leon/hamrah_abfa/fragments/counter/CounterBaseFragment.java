@@ -1,5 +1,8 @@
 package com.leon.hamrah_abfa.fragments.counter;
 
+import static com.leon.hamrah_abfa.helpers.Constants.MOBILE_REGEX;
+import static com.leon.toast.RTLToast.warning;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
 
 public class CounterBaseFragment extends Fragment {
@@ -41,6 +45,17 @@ public class CounterBaseFragment extends Fragment {
 
     }
 
+    private boolean mobileValidation() {
+        if (counterActivity.getViewModel().getMobile().isEmpty()) {
+            warning(requireContext(), getString(R.string.enter_mobile)).show();
+            return false;
+        } else if (!MOBILE_REGEX.matcher(counterActivity.getViewModel().getMobile()).matches()) {
+            warning(requireContext(), getString(R.string.mobile_error)).show();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -49,5 +64,7 @@ public class CounterBaseFragment extends Fragment {
 
     public interface ICallback {
         CounterViewModel getViewModel();
+
+        void goToMessagePage();
     }
 }

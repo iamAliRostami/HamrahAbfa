@@ -9,7 +9,6 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySetCounterNumberBinding;
 import com.leon.hamrah_abfa.fragments.counter.CounterBaseFragment;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
-import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 
 public class SetCounterNumberActivity extends BaseActivity implements CounterBaseFragment.ICallback {
     private CounterViewModel viewModel;
@@ -40,5 +39,11 @@ public class SetCounterNumberActivity extends BaseActivity implements CounterBas
     @Override
     public CounterViewModel getViewModel() {
         return viewModel;
+    }
+
+    //TODO
+    @Override
+    public void goToMessagePage() {
+
     }
 }
