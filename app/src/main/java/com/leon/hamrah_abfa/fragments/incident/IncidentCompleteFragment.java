@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments.incident;
 
+import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
 import static com.leon.hamrah_abfa.utils.FileCustomize.createImageFile;
 import static com.leon.hamrah_abfa.utils.FileCustomize.prepareImage;
@@ -43,7 +44,7 @@ import java.io.IOException;
 
 public class IncidentCompleteFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private FragmentIncidentCompleteBinding binding;
-    private ICallback incidentActivity;
+    private ICallback callback;
     private long lastClickTime = 0;
     private File fileImage = null;
 
@@ -76,9 +77,9 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     }
 
     private void initializeGridView() {
-        if (incidentActivity.getImageViewAdapter() == null)
-            incidentActivity.setImageViewAdapter(new ImageViewAdapter(requireContext()));
-        binding.gridViewImages.setAdapter(incidentActivity.getImageViewAdapter());
+        if (callback.getImageViewAdapter() == null)
+            callback.setImageViewAdapter(new ImageViewAdapter(requireContext()));
+        binding.gridViewImages.setAdapter(callback.getImageViewAdapter());
         binding.gridViewImages.setOnItemClickListener(this);
     }
 
@@ -96,9 +97,9 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            incidentActivity.confirm();
+            callback.confirm();
         } else if (id == R.id.button_previous) {
-            incidentActivity.returnToBase();
+            callback.displayView(INCIDENT_BASE_FRAGMENT);
         } else if (id == R.id.image_view_current_location) {
             showCurrentLocation();
         }
@@ -121,7 +122,7 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (SystemClock.elapsedRealtime() - lastClickTime < 1000) return;
         lastClickTime = SystemClock.elapsedRealtime();
-        if (position + 1 == incidentActivity.getImageViewAdapter().getCount()) {
+        if (position + 1 == callback.getImageViewAdapter().getCount()) {
             if (checkCameraPermission(requireContext()))
                 openCameraForResult();
             else {
@@ -151,7 +152,7 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     try {
-                        incidentActivity.getImageViewAdapter().addItem(prepareImage(fileImage));
+                        callback.getImageViewAdapter().addItem(prepareImage(fileImage));
                     } catch (IOException e) {
                         error(requireContext(), e.getMessage()).show();
                     }
@@ -171,7 +172,7 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) incidentActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {
@@ -181,8 +182,7 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
 
         void setImageViewAdapter(ImageViewAdapter adapter);
 
-        void returnToBase();
-
+        void displayView(int position);
         void confirm();
     }
 }

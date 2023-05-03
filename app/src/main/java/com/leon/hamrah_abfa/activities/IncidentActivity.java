@@ -1,6 +1,8 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
+import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_COMPLETE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.view.View;
@@ -24,8 +26,7 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
     protected void initialize() {
         binding = ActivityIncidentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportFragmentManager().beginTransaction().add(binding.fragmentIncident.getId(),
-                IncidentBaseFragment.newInstance()).commit();
+        displayView(INCIDENT_BASE_FRAGMENT);
     }
 
     @Override
@@ -45,20 +46,18 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
 
     @Override
     public void confirm() {
-        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456"));
+        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456"));
     }
 
     @Override
-    public void nextPage() {
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentIncident.getId(),
-                IncidentCompleteFragment.newInstance()).commit();
-    }
-
-    @Override
-    public void returnToBase() {
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentIncident.getId(),
-                IncidentBaseFragment.newInstance()).commit();
+    public void displayView(int position) {
+        if (position == INCIDENT_BASE_FRAGMENT) {
+            getSupportFragmentManager().beginTransaction().replace(binding.fragmentIncident.getId(),
+                    IncidentBaseFragment.newInstance()).commit();
+        } else if (position == INCIDENT_COMPLETE_FRAGMENT) {
+            getSupportFragmentManager().beginTransaction().replace(binding.fragmentIncident.getId(),
+                    IncidentCompleteFragment.newInstance()).commit();
+        }
     }
 
     @Override

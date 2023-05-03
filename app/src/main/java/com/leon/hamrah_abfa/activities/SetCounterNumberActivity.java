@@ -33,17 +33,14 @@ public class SetCounterNumberActivity extends BaseActivity implements CounterBas
 
     @Override
     public void onClick(View v) {
-
     }
-
     @Override
     public CounterViewModel getViewModel() {
         return viewModel;
     }
 
-    //TODO
     @Override
     public void goToMessagePage() {
-
+        //TODO
     }
 }

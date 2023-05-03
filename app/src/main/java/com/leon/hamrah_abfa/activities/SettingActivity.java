@@ -63,6 +63,13 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
         }
     }
 
+    private void setResult() {
+        if (isChange) {
+            final Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+        }
+    }
+
     @Override
     public void onClick(View v) {
         final int id = v.getId();
@@ -76,13 +83,6 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     public void onBackPressed() {
         super.onBackPressed();
         setResult();
-    }
-
-    private void setResult() {
-        if (isChange) {
-            final Intent intent = new Intent();
-            setResult(RESULT_OK, intent);
-        }
     }
 
     @Override

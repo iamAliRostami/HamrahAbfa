@@ -31,11 +31,11 @@ import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
-public class ServicesLocationFragment extends BottomSheetDialogFragment implements View.OnClickListener, MapEventsReceiver {
+public class ServicesLocationFragment extends BottomSheetDialogFragment implements View.OnClickListener,
+        MapEventsReceiver {
     private FragmentServicesLocationBinding binding;
-    private ICallback serviceActivity;
+    private ICallback callback;
     private GeoPoint point;
-
     public ServicesLocationFragment() {
     }
 
@@ -73,8 +73,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 requireContext().getResources().getDisplayMetrics().widthPixels / 2
-                /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/
-        );
+                /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/);
         binding.relativeLayoutMap.setLayoutParams(params);
         binding.buttonSubmit.setOnClickListener(this);
         binding.imageViewCurrentLocation.setOnClickListener(this);
@@ -99,7 +98,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         final int id = v.getId();
         if (id == R.id.button_submit) {
             point = new GeoPoint(binding.mapView.getMapCenter().getLatitude(), binding.mapView.getMapCenter().getLongitude());
-            serviceActivity.setLocation(convertMapToBitmap(), point);
+            callback.setLocation(convertMapToBitmap(), point);
             dismiss();
         } else if (id == R.id.image_view_current_location) {
             showCurrentLocation();
@@ -150,7 +149,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) serviceActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {

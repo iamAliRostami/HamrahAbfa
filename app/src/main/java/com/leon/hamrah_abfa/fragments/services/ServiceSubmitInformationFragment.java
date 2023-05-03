@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.services;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.app.Activity;
@@ -20,7 +21,7 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 
 public class ServiceSubmitInformationFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceSubmitInformationBinding binding;
-    private ICallback serviceActivity;
+    private ICallback callback;
 
     public ServiceSubmitInformationFragment() {
     }
@@ -38,21 +39,21 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentServiceSubmitInformationBinding.inflate(inflater, container, false);
-        binding.setViewModel(serviceActivity.getServicesViewModel());
+        binding.setViewModel(callback.getServicesViewModel());
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
-        binding.imageViewLocation.setImageBitmap(serviceActivity.getServicesViewModel().getBitmapLocation());
+        binding.imageViewLocation.setImageBitmap(callback.getServicesViewModel().getBitmapLocation());
         binding.buttonConfirm.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
-        for (int i = 0; i < serviceActivity.getServicesViewModel().getSelectedServices().size(); i++) {
+        for (int i = 0; i < callback.getServicesViewModel().getSelectedServices().size(); i++) {
             final Chip chip = new Chip(requireContext());
             chip.setCloseIconVisible(false);
             chip.setTextAppearance(R.style.ChipTextAppearance);
             chip.setChipBackgroundColorResource(R.color.light);
-            chip.setText(serviceActivity.getServicesViewModel().getSelectedServices().get(i));
+            chip.setText(callback.getServicesViewModel().getSelectedServices().get(i));
             binding.chipGroupServices.addView(chip);
         }
     }
@@ -61,26 +62,27 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            serviceActivity.submitInformation();
+            callback.submitInformation();
         } else if (id == R.id.button_previous) {
-            serviceActivity.backToServiceForm();
+            callback.displayView(SERVICE_FORM_FRAGMENT,false);
         } else if (id == R.id.image_view_location) {
             ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
-                    ServicesLocationFragment.newInstance(serviceActivity.getServicesViewModel().getPoint()));
+                    ServicesLocationFragment.newInstance(callback.getServicesViewModel().getPoint()));
         }
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) serviceActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {
         ServicesViewModel getServicesViewModel();
 
-        void backToServiceForm();
-
+        //        void backToServiceForm();
+//
         void submitInformation();
+        void displayView(int position, boolean next);
     }
 }

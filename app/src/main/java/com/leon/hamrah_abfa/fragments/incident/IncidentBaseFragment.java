@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments.incident;
 
+import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_COMPLETE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkRecorderPermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
@@ -38,7 +39,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
     private FragmentIncidentBaseBinding binding;
     private boolean recording, playing, ready = true;
     private final Handler handler = new Handler();
-    private ICallback incidentActivity;
+    private ICallback callback;
     private long lastClickTime = 0;
 
     public IncidentBaseFragment() {
@@ -57,7 +58,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentIncidentBaseBinding.inflate(inflater, container, false);
-        binding.setViewModel(incidentActivity.getIncidentViewModel());
+        binding.setViewModel(callback.getIncidentViewModel());
         initialize();
         return binding.getRoot();
     }
@@ -72,7 +73,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
     }
 
     private void initializeRecorder() {
-        if (incidentActivity.getIncidentViewModel().getMediaRecorder() != null) {
+        if (callback.getIncidentViewModel().getMediaRecorder() != null) {
             binding.textViewTimer.setVisibility(View.VISIBLE);
             binding.imageViewDelete.setVisibility(View.VISIBLE);
             binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
@@ -103,7 +104,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
 
         } else if (id == R.id.lottie_animation_view) {
             handler.removeCallbacks(runnable);
-            incidentActivity.getIncidentViewModel().setPosition(0);
+            callback.getIncidentViewModel().setPosition(0);
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
@@ -115,7 +116,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
                 stopPlaying();
             }
         } else if (id == R.id.image_view_delete) {
-            incidentActivity.getIncidentViewModel().setPosition(0);
+            callback.getIncidentViewModel().setPosition(0);
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
@@ -129,15 +130,15 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
                 resetRecorder();
             }
         } else if (id == R.id.button_next) {
-            if (incidentActivity.getIncidentViewModel().getIncidentType() == null ||
-                    incidentActivity.getIncidentViewModel().getIncidentType().isEmpty()) {
+            if (callback.getIncidentViewModel().getIncidentType() == null ||
+                    callback.getIncidentViewModel().getIncidentType().isEmpty()) {
                 binding.editTextIncidentType.setError(getString(R.string.choose_incident_type));
                 binding.editTextIncidentType.requestFocus();
                 warning(requireContext(), R.string.choose_incident_type).show();
             } else {
-                if ((incidentActivity.getIncidentViewModel().getDescription() == null ||
-                        incidentActivity.getIncidentViewModel().getDescription().isEmpty()) &&
-                        incidentActivity.getIncidentViewModel().getMediaRecorder() == null) {
+                if ((callback.getIncidentViewModel().getDescription() == null ||
+                        callback.getIncidentViewModel().getDescription().isEmpty()) &&
+                        callback.getIncidentViewModel().getMediaRecorder() == null) {
                     binding.editTextDescription.setError(getString(R.string.choose_incident_type));
                     binding.editTextDescription.requestFocus();
                     warning(requireContext(), R.string.field_incident_description).show();
@@ -146,7 +147,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
                         warning(requireContext(), R.string.stop_recording_playing).show();
                         return;
                     }
-                    incidentActivity.nextPage();
+                    callback.displayView(INCIDENT_COMPLETE_FRAGMENT);
                 }
             }
         }
@@ -154,8 +155,8 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
 
     private void resetRecorder() {
         if (SystemClock.elapsedRealtime() - lastClickTime < 2000) {
-            incidentActivity.getIncidentViewModel().resetTime();
-            incidentActivity.getIncidentViewModel().resetRecorder();
+            callback.getIncidentViewModel().resetTime();
+            callback.getIncidentViewModel().resetRecorder();
             binding.audioRecordView.recreate();
             binding.imageViewDelete.setVisibility(View.GONE);
             binding.textViewTimer.setVisibility(View.GONE);
@@ -168,12 +169,12 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
 
     private void stopRecording() {
         recording = false;
-        incidentActivity.getIncidentViewModel().stopRecorder();
+        callback.getIncidentViewModel().stopRecorder();
     }
 
     private void stopPlaying() {
-        incidentActivity.getIncidentViewModel().stopPlaying();
-        incidentActivity.getIncidentViewModel().resetTime();
+        callback.getIncidentViewModel().stopPlaying();
+        callback.getIncidentViewModel().resetTime();
         playing = false;
     }
 
@@ -193,8 +194,8 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
         handler.removeCallbacks(runnable);
         playing = true;
         try {
-            incidentActivity.getIncidentViewModel().preparePlayer(requireContext());
-            incidentActivity.getIncidentViewModel().setStartTime(SystemClock.uptimeMillis());
+            callback.getIncidentViewModel().preparePlayer(requireContext());
+            callback.getIncidentViewModel().setStartTime(SystemClock.uptimeMillis());
             handler.postDelayed(runnable, 200);
         } catch (IOException e) {
             playing = false;
@@ -212,14 +213,14 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
         ready = false;
         recording = true;
         try {
-            incidentActivity.getIncidentViewModel().prepareRecorder(requireContext());
-            incidentActivity.getIncidentViewModel().setStartTime(SystemClock.uptimeMillis());
+            callback.getIncidentViewModel().prepareRecorder(requireContext());
+            callback.getIncidentViewModel().setStartTime(SystemClock.uptimeMillis());
             handler.postDelayed(runnable, 200);
         } catch (IOException e) {
             error(requireContext(), e.toString()).show();
             recording = false;
             ready = true;
-            incidentActivity.getIncidentViewModel().stopRecorder();
+            callback.getIncidentViewModel().stopRecorder();
             binding.lottieAnimationView.pauseAnimation();
             binding.lottieAnimationView.setVisibility(View.GONE);
             binding.imageViewDelete.setVisibility(View.GONE);
@@ -231,27 +232,27 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
         @SuppressLint("DefaultLocale")
         public void run() {
             if (recording) {
-                incidentActivity.getIncidentViewModel().setAmplitude(incidentActivity.getIncidentViewModel().getMaxAmplitudeRecorder());
-                binding.audioRecordView.update(incidentActivity.getIncidentViewModel().getAmplitudes(incidentActivity.getIncidentViewModel().getAmplitudes().size() - 1));
+                callback.getIncidentViewModel().setAmplitude(callback.getIncidentViewModel().getMaxAmplitudeRecorder());
+                binding.audioRecordView.update(callback.getIncidentViewModel().getAmplitudes(callback.getIncidentViewModel().getAmplitudes().size() - 1));
             } else if (playing) {
-                if (incidentActivity.getIncidentViewModel().getPosition() < incidentActivity.getIncidentViewModel().getAmplitudes().size()) {
-                    binding.audioRecordView.update(incidentActivity.getIncidentViewModel().getAmplitudes(incidentActivity.getIncidentViewModel().getPosition()));
-                    incidentActivity.getIncidentViewModel().setPosition(incidentActivity.getIncidentViewModel().getPosition() + 1);
+                if (callback.getIncidentViewModel().getPosition() < callback.getIncidentViewModel().getAmplitudes().size()) {
+                    binding.audioRecordView.update(callback.getIncidentViewModel().getAmplitudes(callback.getIncidentViewModel().getPosition()));
+                    callback.getIncidentViewModel().setPosition(callback.getIncidentViewModel().getPosition() + 1);
                 }
-                if (incidentActivity.getIncidentViewModel().getCurrentPosition() == incidentActivity.getIncidentViewModel().getDuration()) {
+                if (callback.getIncidentViewModel().getCurrentPosition() == callback.getIncidentViewModel().getDuration()) {
                     handler.removeCallbacks(runnable);
                     binding.lottieAnimationView.setVisibility(View.GONE);
                     binding.imageViewMicPlayPause.setVisibility(View.VISIBLE);
                     binding.imageViewMicPlayPause.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_play));
                     binding.imageViewDelete.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete_1));
                     binding.audioRecordView.recreate();
-                    incidentActivity.getIncidentViewModel().setPosition(0);
-                    incidentActivity.getIncidentViewModel().stopPlaying();
-                    incidentActivity.getIncidentViewModel().setStartTime(SystemClock.uptimeMillis());
+                    callback.getIncidentViewModel().setPosition(0);
+                    callback.getIncidentViewModel().stopPlaying();
+                    callback.getIncidentViewModel().setStartTime(SystemClock.uptimeMillis());
                     playing = false;
                 }
             }
-            incidentActivity.getIncidentViewModel().setLength();
+            callback.getIncidentViewModel().setLength();
             if (recording || playing)
                 handler.postDelayed(this, 200);
         }
@@ -291,12 +292,13 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) incidentActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {
         IncidentViewModel getIncidentViewModel();
 
-        void nextPage();
+        //        void nextPage();
+        void displayView(int position);
     }
 }

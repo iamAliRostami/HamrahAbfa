@@ -63,7 +63,7 @@
             android:name=".activities.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SubmitActivity"
+            android:name=".activities.MobileSubmitActivity"
             android:exported="false" />
         <activity
             android:name=".activities.WelcomeActivity"

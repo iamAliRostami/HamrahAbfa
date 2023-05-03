@@ -17,7 +17,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
 
 public class CounterBaseFragment extends Fragment {
-    private ICallback counterActivity;
+    private ICallback callback;
     private FragmentCounterBaseBinding binding;
 
     public CounterBaseFragment() {
@@ -36,7 +36,7 @@ public class CounterBaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCounterBaseBinding.inflate(inflater, container, false);
-        binding.setViewModel(counterActivity.getViewModel());
+        binding.setViewModel(callback.getViewModel());
         initialize();
         return binding.getRoot();
     }
@@ -46,10 +46,10 @@ public class CounterBaseFragment extends Fragment {
     }
 
     private boolean mobileValidation() {
-        if (counterActivity.getViewModel().getMobile().isEmpty()) {
+        if (callback.getViewModel().getMobile().isEmpty()) {
             warning(requireContext(), getString(R.string.enter_mobile)).show();
             return false;
-        } else if (!MOBILE_REGEX.matcher(counterActivity.getViewModel().getMobile()).matches()) {
+        } else if (!MOBILE_REGEX.matcher(callback.getViewModel().getMobile()).matches()) {
             warning(requireContext(), getString(R.string.mobile_error)).show();
             return false;
         }
@@ -59,7 +59,7 @@ public class CounterBaseFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) counterActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {

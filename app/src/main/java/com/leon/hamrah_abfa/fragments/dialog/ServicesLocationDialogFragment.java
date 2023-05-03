@@ -34,7 +34,7 @@ import org.osmdroid.views.overlay.Marker;
 public class ServicesLocationDialogFragment extends DialogFragment implements View.OnClickListener, MapEventsReceiver {
 
     private FragmentServicesLocationBinding binding;
-    private ICallback serviceActivity;
+    private ICallback callback;
     private GeoPoint point;
 
     public ServicesLocationDialogFragment() {
@@ -118,7 +118,7 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
         final int id = v.getId();
         if (id == R.id.button_submit) {
             point = new GeoPoint(binding.mapView.getMapCenter().getLatitude(), binding.mapView.getMapCenter().getLongitude());
-            serviceActivity.setLocation(convertMapToBitmap(), point);
+            callback.setLocation(convertMapToBitmap(), point);
             dismiss();
         }
     }
@@ -151,7 +151,7 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) serviceActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {

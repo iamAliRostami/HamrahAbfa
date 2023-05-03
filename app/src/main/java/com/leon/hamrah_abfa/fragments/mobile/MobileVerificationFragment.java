@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.mobile;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
@@ -22,20 +22,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentVerificationCodeBinding;
-import com.leon.hamrah_abfa.enums.SharedReferenceKeys;
-import com.leon.hamrah_abfa.helpers.MyApplication;
+import com.leon.hamrah_abfa.databinding.FragmentMobileVerificationBinding;
 
-public class VerificationCodeFragment extends Fragment implements View.OnClickListener,
+public class MobileVerificationFragment extends Fragment implements View.OnClickListener,
         TextWatcher, View.OnKeyListener {
-    private FragmentVerificationCodeBinding binding;
-    private Callback submitActivity;
+    private FragmentMobileVerificationBinding binding;
+    private ICallback callback;
 
-    public VerificationCodeFragment() {
+    public MobileVerificationFragment() {
     }
 
-    public static VerificationCodeFragment newInstance() {
-        return new VerificationCodeFragment();
+    public static MobileVerificationFragment newInstance() {
+        return new MobileVerificationFragment();
     }
 
     @Override
@@ -47,14 +45,14 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentVerificationCodeBinding.inflate(inflater, container, false);
+        binding = FragmentMobileVerificationBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
         startCounter();
-        binding.textViewMobile.setText(getString(R.string.mobile).concat(" ").concat(submitActivity.getMobile()));
+        binding.textViewMobile.setText(getString(R.string.mobile).concat(" ").concat(callback.getViewModel().getMobile()));
         binding.textViewTryAgain.setOnClickListener(this);
         binding.buttonSubmit.setOnClickListener(this);
         binding.imageViewEdit.setOnClickListener(this);
@@ -119,11 +117,11 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
 //                final Intent intent = new Intent(requireContext(), MainActivity.class);
 //                startActivity(intent);
                 //TODO call new api
-                getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(),submitActivity.getMobile() );
+                getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), callback.getViewModel().getMobile());
                 requireActivity().finish();
             }
         } else if (id == R.id.image_view_edit) {
-            submitActivity.displayView(SUBMIT_PHONE_FRAGMENT);
+            callback.displayView(SUBMIT_PHONE_FRAGMENT);
         }
     }
 
@@ -165,15 +163,16 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) submitActivity = (Callback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
 
-    public interface Callback {
+    public interface ICallback {
         void displayView(int position);
 
-        void setMobile(String mobile);
-
-        String getMobile();
+        MobileViewModel getViewModel();
+//        void setMobile(String mobile);
+//
+//        String getMobile();
     }
 }

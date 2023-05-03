@@ -3,6 +3,9 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_SUBMIT_INFORMATION_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.graphics.Bitmap;
@@ -20,16 +23,16 @@ import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
-import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.services.ServiceSubmitInformationFragment;
+import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 
 import org.osmdroid.util.GeoPoint;
 
 import java.util.ArrayList;
 
 public class ServiceActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
-        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback, ServiceSubmitInformationFragment.ICallback,
-        ServicesLocationDialogFragment.ICallback {
+        ServiceSubmitInformationFragment.ICallback, ServicesLocationDialogFragment.ICallback,
+        ServiceFormFragment.ICallback, ServicesLocationFragment.ICallback {
     private ServicesViewModel viewModel;
     private ActivityServiceBinding binding;
     private ServicesIntroductionBaseAdapter adapter;
@@ -64,39 +67,16 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
     }
 
     @Override
-    public void submitServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
-        binding.stepper.go(1, true);
+    public void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
         viewModel.setSelectedServices(selectedServicesTitle);
         viewModel.setSelectedServicesId(selectedServicesId);
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceFormFragment.newInstance()).commit();
     }
 
-    @Override
-    public void submitUserInfo() {
-        binding.stepper.go(2, true);
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceSubmitInformationFragment.newInstance()).commit();
-    }
 
     @Override
     public void submitInformation() {
         ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(),
                 RequestDoneFragment.newInstance("123456"));
-    }
-
-    @Override
-    public void backToServiceForm() {
-        binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceFormFragment.newInstance()).commit();
-    }
-
-    @Override
-    public void backToServices() {
-        binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
-        getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                ServiceIntroductionFragment.newInstance()).commit();
     }
 
     @Override
@@ -120,6 +100,24 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void displayView(int position, boolean next) {
+        if (position == SERVICE_FORM_FRAGMENT) {
+            getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                    ServiceFormFragment.newInstance()).commit();
+        } else if (position == SERVICE_INTRODUCTION_FRAGMENT) {
+            getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                    ServiceIntroductionFragment.newInstance()).commit();
+        } else if (position == SERVICE_SUBMIT_INFORMATION_FRAGMENT) {
+            getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                    ServiceSubmitInformationFragment.newInstance()).commit();
+        }
+        if (next)
+            binding.stepper.go(binding.stepper.getCurrentStep() + 1, true);
+        else binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
 
     }
 }

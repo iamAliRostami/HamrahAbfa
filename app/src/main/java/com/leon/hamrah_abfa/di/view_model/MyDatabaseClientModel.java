@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.di.view_model;
 
 
-import static com.leon.hamrah_abfa.helpers.Constants.DBName;
+import static com.leon.hamrah_abfa.helpers.Constants.DB_NAME;
 
 import android.content.Context;
 
@@ -23,7 +23,7 @@ public class MyDatabaseClientModel {
 
     @Inject
     public MyDatabaseClientModel(Context context) {
-        myDatabase = Room.databaseBuilder(context, MyDatabase.class, DBName)
+        myDatabase = Room.databaseBuilder(context, MyDatabase.class, DB_NAME)
                 .allowMainThreadQueries().build();
     }
 

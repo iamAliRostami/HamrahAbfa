@@ -24,17 +24,18 @@ import com.leon.hamrah_abfa.databinding.FragmentHelpViewPagerBinding;
 public class HelpViewPagerFragment extends Fragment {
     private final HelpViewModel viewModel = new HelpViewModel();
     private FragmentHelpViewPagerBinding binding;
+
     public HelpViewPagerFragment() {
     }
 
     public static HelpViewPagerFragment newInstance(int position, int bgColor, int logo, String title,
                                                     String content) {
-        HelpViewPagerFragment fragment = new HelpViewPagerFragment();
-        Bundle args = new Bundle();
-        args.putInt(LOGO.getValue(), logo);
+        final HelpViewPagerFragment fragment = new HelpViewPagerFragment();
+        final Bundle args = new Bundle();
         args.putString(TITLE.getValue(), title);
-        args.putInt(POSITION.getValue(), position);
         args.putString(CONTENT.getValue(), content);
+        args.putInt(LOGO.getValue(), logo);
+        args.putInt(POSITION.getValue(), position);
         args.putInt(BACKGROUND_COLOR.getValue(), bgColor);
         fragment.setArguments(args);
         return fragment;

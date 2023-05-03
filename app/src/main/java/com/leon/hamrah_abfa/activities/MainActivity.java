@@ -28,6 +28,7 @@ import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
+import com.leon.hamrah_abfa.fragments.mobile.MobileViewModel;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 

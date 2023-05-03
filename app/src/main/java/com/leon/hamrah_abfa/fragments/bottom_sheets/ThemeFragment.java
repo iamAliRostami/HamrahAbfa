@@ -22,14 +22,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.slider.Slider;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentThemeBinding;
-import com.leon.hamrah_abfa.enums.SharedReferenceKeys;
 
 import org.jetbrains.annotations.NotNull;
 
 public class ThemeFragment extends BottomSheetDialogFragment implements View.OnClickListener {
     private FragmentThemeBinding binding;
-    private ICallback settingActivity;
-
+    private ICallback callback;
     public ThemeFragment() {
     }
 
@@ -69,7 +67,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
 
             @Override
             public void onStopTrackingTouch(@NonNull Slider slider) {
-                settingActivity.changeTheme((int) slider.getValue());
+                callback.changeTheme((int) slider.getValue());
 
             }
         });
@@ -124,7 +122,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) settingActivity = (ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {

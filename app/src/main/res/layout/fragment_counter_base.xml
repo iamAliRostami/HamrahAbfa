@@ -70,7 +70,7 @@
                     android:layout_margin="@dimen/large_dp"
                     android:hint="@string/phone_number"
                     app:counterMaxLength="11"
-                    app:helperText="@string/enter_account"
+                    app:helperText="@string/mobile_tip"
                     app:placeholderText="@string/mobile_hint">
 
                     <com.google.android.material.textfield.TextInputEditText
