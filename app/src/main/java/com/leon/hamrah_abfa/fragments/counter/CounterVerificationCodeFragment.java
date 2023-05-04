@@ -1,8 +1,8 @@
-package com.leon.hamrah_abfa.fragments.mobile;
+package com.leon.hamrah_abfa.fragments.counter;
 
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
-import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
+import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -19,33 +19,34 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentMobileVerificationBinding;
+import com.leon.hamrah_abfa.databinding.FragmentCounterVerificationCodeBinding;
+import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
 
-public class MobileVerificationFragment extends Fragment implements View.OnClickListener,
-        TextWatcher, View.OnKeyListener {
-    private FragmentMobileVerificationBinding binding;
+public class CounterVerificationCodeFragment extends Fragment implements
+        TextWatcher, View.OnKeyListener, View.OnClickListener {
+    private FragmentCounterVerificationCodeBinding binding;
     private ICallback callback;
 
-    public MobileVerificationFragment() {
+    public CounterVerificationCodeFragment() {
     }
 
-    public static MobileVerificationFragment newInstance() {
-        return new MobileVerificationFragment();
+    public static CounterVerificationCodeFragment newInstance() {
+        return new CounterVerificationCodeFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentMobileVerificationBinding.inflate(inflater, container, false);
+        binding = FragmentCounterVerificationCodeBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
@@ -66,32 +67,65 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
         binding.editText4.setOnKeyListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.text_view_try_again) {
+        if (id == R.id.button_submit) {
+            if (checkInputs()) {
+                confirmCode();
+            }
+        } else if (id == R.id.text_view_try_again) {
             binding.textViewCounter.setVisibility(View.VISIBLE);
             binding.textViewTryAgain.setVisibility(View.GONE);
             binding.imageViewRight.setVisibility(View.GONE);
             startCounter();
-        } else if (id == R.id.button_submit) {
-            if (checkInputs()) {
-//                final Intent intent = new Intent(requireContext(), MainActivity.class);
-//                startActivity(intent);
-                //TODO call new api
-                getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), callback.getViewModel().getMobile());
-                requireActivity().finish();
-            }
         } else if (id == R.id.image_view_edit) {
-            callback.displayView(SUBMIT_PHONE_FRAGMENT);
+            callback.displayView(COUNTER_BASE_FRAGMENT);
         }
     }
+
+    private void confirmCode() {
+        ShowFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
+                RequestDoneFragment.newInstance("123456", new RequestDoneFragment.IClickListener() {
+                    @Override
+                    public void yes(DialogFragment dialogFragment) {
+                        requireActivity().finish();
+                    }
+
+                    @Override
+                    public void no(DialogFragment dialogFragment) {
+
+                    }
+                }));
+    }
+
+    private boolean checkInputs() {
+        boolean cancel = false;
+        if (TextUtils.isEmpty(binding.editText1.getText())) {
+            cancel = true;
+            binding.editText1.requestFocus();
+        } else if (TextUtils.isEmpty(binding.editText2.getText())) {
+            cancel = true;
+            binding.editText2.requestFocus();
+        } else if (TextUtils.isEmpty(binding.editText3.getText())) {
+            cancel = true;
+            binding.editText3.requestFocus();
+        } else if (TextUtils.isEmpty(binding.editText4.getText())) {
+            cancel = true;
+            binding.editText4.requestFocus();
+        }
+        return !cancel;
+    }
+
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
     }
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
+
     }
 
     @Override
@@ -110,6 +144,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
             }
     }
 
+
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_DEL) {
@@ -122,25 +157,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
             }
         }
         return false;
-    }
-
-
-    private boolean checkInputs() {
-        boolean cancel = false;
-        if (TextUtils.isEmpty(binding.editText1.getText())) {
-            cancel = true;
-            binding.editText1.requestFocus();
-        } else if (TextUtils.isEmpty(binding.editText2.getText())) {
-            cancel = true;
-            binding.editText2.requestFocus();
-        } else if (TextUtils.isEmpty(binding.editText3.getText())) {
-            cancel = true;
-            binding.editText3.requestFocus();
-        } else if (TextUtils.isEmpty(binding.editText4.getText())) {
-            cancel = true;
-            binding.editText4.requestFocus();
-        }
-        return !cancel;
     }
 
     private void startCounter() {
@@ -166,13 +182,9 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
         if (context instanceof Activity) callback = (ICallback) context;
     }
 
-
     public interface ICallback {
         void displayView(int position);
 
-        MobileViewModel getViewModel();
-//        void setMobile(String mobile);
-//
-//        String getMobile();
+        CounterViewModel getViewModel();
     }
 }

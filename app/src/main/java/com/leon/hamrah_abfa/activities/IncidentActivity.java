@@ -7,6 +7,8 @@ import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOn
 
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
+
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.ImageViewAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
@@ -46,7 +48,18 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
 
     @Override
     public void confirm() {
-        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456"));
+        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
+                new RequestDoneFragment.IClickListener() {
+                    @Override
+                    public void yes(DialogFragment dialogFragment) {
+                        finish();
+                    }
+
+                    @Override
+                    public void no(DialogFragment dialogFragment) {
+
+                    }
+                }));
     }
 
     @Override

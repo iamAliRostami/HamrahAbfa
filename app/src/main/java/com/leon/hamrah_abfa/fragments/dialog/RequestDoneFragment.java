@@ -17,14 +17,19 @@ import com.leon.hamrah_abfa.databinding.FragmentRequestDoneBinding;
 public class RequestDoneFragment extends DialogFragment implements View.OnClickListener {
     private FragmentRequestDoneBinding binding;
     private String trackNumber;
+    private IClickListener listener;
 
     public RequestDoneFragment() {
     }
 
-    public static RequestDoneFragment newInstance(String trackNumber) {
-        final RequestDoneFragment fragment = new RequestDoneFragment();
+    public RequestDoneFragment(IClickListener listener) {
+        this.listener = listener;
+    }
+
+    public static RequestDoneFragment newInstance(String trackNumber, IClickListener listener) {
         final Bundle args = new Bundle();
         args.putString(TRACK_NUMBER.getValue(), trackNumber);
+        final RequestDoneFragment fragment = new RequestDoneFragment(listener);
         fragment.setArguments(args);
         fragment.setCancelable(false);
         return fragment;
@@ -66,7 +71,13 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_return) {
-            requireActivity().finish();
+            listener.yes(this);
         }
+    }
+
+    public interface IClickListener {
+        void yes(DialogFragment dialogFragment);
+
+        void no(DialogFragment dialogFragment);
     }
 }

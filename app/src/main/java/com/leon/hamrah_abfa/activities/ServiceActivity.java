@@ -11,6 +11,7 @@ import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOn
 import android.graphics.Bitmap;
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -76,7 +77,17 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
     @Override
     public void submitInformation() {
         ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456"));
+                RequestDoneFragment.newInstance("123456", new RequestDoneFragment.IClickListener() {
+                    @Override
+                    public void yes(DialogFragment dialogFragment) {
+                        finish();
+                    }
+
+                    @Override
+                    public void no(DialogFragment dialogFragment) {
+
+                    }
+                }));
     }
 
     @Override

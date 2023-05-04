@@ -5,73 +5,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.mobile.MobileVerificationFragment">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:background="@drawable/background_submit_top"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/card_view_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/xlarge_dp"
-        android:contentDescription="@string/app_name"
-        android:padding="@dimen/xlarge_dp"
-        android:src="@drawable/confirm_code" />
+    android:padding="@dimen/large_dp"
+    tools:context=".fragments.counter.CounterVerificationCodeFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"
-        style="@style/CardViewBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@id/button_submit"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center"
-        android:layout_marginStart="@dimen/xlarge_dp"
-        android:layout_marginEnd="@dimen/xlarge_dp"
+        android:layout_marginBottom="@dimen/font_huge_value"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/medium_dp"
         card_view:cardElevation="@dimen/medium_dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_dp"
-            android:padding="@dimen/large_dp">
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_tick"
+                android:id="@+id/image_view_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/text_view_tip"
-                android:layout_marginEnd="@dimen/medium_dp"
-                android:src="@drawable/ic_tick" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_title"
-                style="@style/Title"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@id/image_view_tick"
-                android:labelFor="@id/edit_text_mobile"
-                android:text="@string/confirmation_code" />
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_message" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_tip"
                 style="@style/TitleHelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text_view_title"
+                android:layout_above="@id/linear_layout_mobile"
+                android:layout_marginStart="@dimen/xlarge_dp"
                 android:layout_marginTop="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
                 android:text="@string/enter_code" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linear_layout_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text_view_tip"
+                android:layout_above="@id/linear_layout_code"
+                android:layout_marginStart="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
                 android:gravity="center_vertical">
 
                 <com.google.android.material.textview.MaterialTextView
@@ -85,9 +64,7 @@
                     android:id="@+id/image_view_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/text_view_tip"
                     android:layout_marginStart="@dimen/medium_dp"
-                    android:layout_toEndOf="@id/text_view_mobile"
                     android:padding="@dimen/small_dp"
                     android:src="@drawable/ic_edit"
                     android:tint="@color/purple_7001" />
@@ -97,8 +74,10 @@
                 android:id="@+id/linear_layout_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/linear_layout_mobile"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/xlarge_dp"
                 android:layout_marginTop="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
                 android:gravity="center">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -119,12 +98,13 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linear_layout_counter"
+                android:id="@+id/relative_layout_counter"
                 android:layout_width="match_parent"
-                android:gravity="center_vertical"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
                 android:layout_below="@id/linear_layout_code"
-                android:layout_marginBottom="@dimen/xlarge_dp">
+                android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_right"
@@ -158,15 +138,29 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/xlarge_dp"
                     android:text="@string/one_minute" />
-
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_submit"
-                style="@style/ButtonSubmit"
-                android:layout_below="@id/linear_layout_counter"
-                android:text="@string/submit" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xlarge_dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/purple_7001" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/background_set_counter" />
+
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_submit"
+        style="@style/ButtonSubmit"
+        android:layout_alignParentBottom="true"
+        android:text="@string/confirm" />
 
 </RelativeLayout>

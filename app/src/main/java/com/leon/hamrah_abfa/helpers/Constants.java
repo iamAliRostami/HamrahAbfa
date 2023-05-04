@@ -17,6 +17,8 @@ public class Constants {
     public static final int SERVICE_FORM_FRAGMENT = 4;
     public static final int SERVICE_INTRODUCTION_FRAGMENT = 5;
     public static final int SERVICE_SUBMIT_INFORMATION_FRAGMENT = 6;
+    public static final int COUNTER_BASE_FRAGMENT = 7;
+    public static final int COUNTER_VERIFICATION_CODE_FRAGMENT = 8;
     public static final int MAX_IMAGE_SIZE = 100000;
     public static final int THEME_DARK = -1;
     public static final int THEME_DEFAULT = 0;

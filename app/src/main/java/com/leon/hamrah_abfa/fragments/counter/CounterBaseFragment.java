@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments.counter;
 
+import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_VERIFICATION_CODE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.MOBILE_REGEX;
 import static com.leon.toast.RTLToast.warning;
 
@@ -16,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
 
-public class CounterBaseFragment extends Fragment {
+public class CounterBaseFragment extends Fragment implements View.OnClickListener {
     private ICallback callback;
     private FragmentCounterBaseBinding binding;
 
@@ -42,18 +43,41 @@ public class CounterBaseFragment extends Fragment {
     }
 
     private void initialize() {
+        binding.buttonSubmit.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.button_submit) {
+            if (mobileValidation()) {
+                if (callback.getViewModel().getCounterNumber() == null ||
+                        callback.getViewModel().getCounterNumber().isEmpty()) {
+                    warning(requireContext(), getString(R.string.enter_counter_number)).show();
+                    binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
+                    binding.editTextCounterNumber.requestFocus();
+                } else {
+
+                    callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
+                }
+            }
+        }
     }
 
     private boolean mobileValidation() {
+        boolean cancel = false;
         if (callback.getViewModel().getMobile().isEmpty()) {
             warning(requireContext(), getString(R.string.enter_mobile)).show();
-            return false;
+            binding.editTextMobile.setError(getString(R.string.enter_mobile));
+            binding.editTextMobile.requestFocus();
+            cancel = true;
         } else if (!MOBILE_REGEX.matcher(callback.getViewModel().getMobile()).matches()) {
             warning(requireContext(), getString(R.string.mobile_error)).show();
-            return false;
+            binding.editTextMobile.setError(getString(R.string.mobile_error));
+            binding.editTextMobile.requestFocus();
+            cancel = true;
         }
-        return true;
+        return !cancel;
     }
 
     @Override
@@ -62,9 +86,10 @@ public class CounterBaseFragment extends Fragment {
         if (context instanceof Activity) callback = (ICallback) context;
     }
 
+
     public interface ICallback {
         CounterViewModel getViewModel();
 
-        void goToMessagePage();
+        void displayView(int position);
     }
 }

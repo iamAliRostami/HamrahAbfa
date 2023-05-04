@@ -21,7 +21,7 @@
             android:id="@+id/card_view_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@id/button_confirm"
+            android:layout_above="@id/button_submit"
             android:layout_alignParentTop="true"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/font_huge_value"
@@ -99,7 +99,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_confirm"
+            android:id="@+id/button_submit"
             style="@style/ButtonSubmit"
             android:layout_alignParentBottom="true"
             android:text="@string/confirm" />
