@@ -28,10 +28,8 @@ import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
-import com.leon.hamrah_abfa.fragments.mobile.MobileViewModel;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
-
 
 public class MainActivity extends BaseActivity implements Animator.AnimatorListener,
         HomeFragment.ICallback, SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
@@ -51,7 +49,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
-//        initializeSplash();
+        initializeSplash();
         // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
