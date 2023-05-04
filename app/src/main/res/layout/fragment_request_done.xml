@@ -19,14 +19,14 @@
         android:orientation="vertical"
         android:padding="@dimen/large_dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             style="@style/Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/request_submitted" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_track_number"
             style="@style/TitleHelp"
             android:layout_width="wrap_content"
@@ -34,7 +34,7 @@
             android:layout_gravity="center"
             android:text="123456" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             style="@style/TitleSubmitInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

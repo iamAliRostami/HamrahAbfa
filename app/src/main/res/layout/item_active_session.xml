@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="@color/light_blue">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_device_name"
             style="@style/TextItem"
             android:layout_alignParentStart="true"
@@ -45,13 +45,13 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_clock" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_device_last_login_title"
                 style="@style/TitleHelp"
                 android:layout_margin="@dimen/medium_dp"
                 android:text="@string/last_login" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_device_last_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -73,13 +73,13 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_ip" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_ip_title"
                 style="@style/TitleHelp"
                 android:layout_margin="@dimen/medium_dp"
                 android:text="@string/ip" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_ip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,13 +100,13 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/mobile" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_mobile_title"
                 style="@style/TitleHelp"
                 android:layout_margin="@dimen/medium_dp"
                 android:text="@string/mobile" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

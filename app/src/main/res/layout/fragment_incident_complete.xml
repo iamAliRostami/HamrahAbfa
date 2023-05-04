@@ -6,7 +6,7 @@
     android:padding="@dimen/large_dp"
     tools:context=".fragments.incident.IncidentCompleteFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_map_title"
         style="@style/TitleHelp"
         android:layout_alignParentTop="true"
@@ -43,7 +43,7 @@
             android:src="@drawable/current_location" />
     </RelativeLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_image_title"
         style="@style/TitleHelp"
         android:layout_above="@id/grid_view_images"

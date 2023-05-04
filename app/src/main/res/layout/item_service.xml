@@ -27,7 +27,7 @@
             android:padding="@dimen/small_dp"
             android:src="@drawable/service_main_account_sale" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
             style="@style/TextItem"
             android:layout_centerVertical="true"

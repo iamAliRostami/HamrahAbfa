@@ -49,7 +49,7 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
     @Override
     public void confirm() {
         ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
-                new RequestDoneFragment.IClickListener() {
+                getString(R.string.main_page), new RequestDoneFragment.IClickListener() {
                     @Override
                     public void yes(DialogFragment dialogFragment) {
                         finish();

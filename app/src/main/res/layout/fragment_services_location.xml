@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/large_dp">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
             style="@style/Title"
             android:layout_weight="1"

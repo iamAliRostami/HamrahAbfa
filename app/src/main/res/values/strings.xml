@@ -132,4 +132,5 @@
     <string name="enter_track_number">کد پیگیری را وارد کنید</string>
     <string name="counter_number">شماره کنتور</string>
     <string name="enter_counter_number">شماره کنتور را وارد کنید</string>
+    <string name="create_bill">صدور قبض</string>
 </resources>

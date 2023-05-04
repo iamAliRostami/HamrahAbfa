@@ -39,7 +39,7 @@
                     android:padding="@dimen/medium_dp"
                     app:imageResource="@{viewModel.drawable}" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.google.android.material.textview.MaterialTextView
                     style="@style/Title"
                     android:layout_gravity="center"
                     android:text="@{viewModel.title}" />
@@ -52,7 +52,7 @@
                 android:layout_below="@id/image_view_icon"
                 android:background="@color/light_gray" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/TextItem"
                 android:layout_gravity="center"
                 android:text="@{viewModel.question}" />

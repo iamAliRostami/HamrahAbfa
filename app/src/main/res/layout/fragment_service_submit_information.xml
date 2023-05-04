@@ -44,7 +44,7 @@
                         android:padding="@dimen/medium_dp"
                         android:src="@drawable/ic_tick" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         style="@style/Title"
                         android:layout_gravity="center"
                         android:text="@string/confirm_information" />
@@ -82,11 +82,11 @@
                                 android:padding="@dimen/medium_dp"
                                 android:src="@drawable/mobile" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <com.google.android.material.textview.MaterialTextView
                                 style="@style/TitleSubmitInfo"
                                 android:text="@string/mobile" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <com.google.android.material.textview.MaterialTextView
                                 style="@style/TextSubmitInfo"
                                 android:gravity="end"
                                 android:text="@{viewModel.mobile}" />
@@ -105,11 +105,11 @@
                                 android:padding="@dimen/medium_dp"
                                 android:src="@drawable/ic_bill_id" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <com.google.android.material.textview.MaterialTextView
                                 style="@style/TitleSubmitInfo"
                                 android:text="@string/bill_id" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <com.google.android.material.textview.MaterialTextView
                                 style="@style/TextSubmitInfo"
                                 android:gravity="end"
                                 android:text="@{viewModel.billId}" />
@@ -129,7 +129,7 @@
                                 android:padding="@dimen/medium_dp"
                                 android:src="@drawable/ic_bill_id" />
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <com.google.android.material.textview.MaterialTextView
                                 style="@style/TitleSubmitInfo"
                                 android:layout_above="@id/divider"
                                 android:layout_alignParentTop="true"
@@ -171,14 +171,14 @@
                                     android:padding="@dimen/medium_dp"
                                     android:src="@drawable/address_tick" />
 
-                                <androidx.appcompat.widget.AppCompatTextView
+                                <com.google.android.material.textview.MaterialTextView
                                     android:id="@+id/text_view_address_title"
                                     style="@style/TitleSubmitInfo"
                                     android:layout_toEndOf="@id/image_view_address"
                                     android:text="@string/address" />
                             </androidx.appcompat.widget.LinearLayoutCompat>
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                            <com.google.android.material.textview.MaterialTextView
                                 style="@style/TextSubmitInfo"
                                 android:layout_marginTop="@dimen/medium_dp"
                                 android:layout_marginBottom="@dimen/medium_dp"

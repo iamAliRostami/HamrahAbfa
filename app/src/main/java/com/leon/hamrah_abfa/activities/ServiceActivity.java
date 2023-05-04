@@ -77,17 +77,18 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
     @Override
     public void submitInformation() {
         ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456", new RequestDoneFragment.IClickListener() {
-                    @Override
-                    public void yes(DialogFragment dialogFragment) {
-                        finish();
-                    }
+                RequestDoneFragment.newInstance("123456", getString(R.string.main_page),
+                        new RequestDoneFragment.IClickListener() {
+                            @Override
+                            public void yes(DialogFragment dialogFragment) {
+                                finish();
+                            }
 
-                    @Override
-                    public void no(DialogFragment dialogFragment) {
+                            @Override
+                            public void no(DialogFragment dialogFragment) {
 
-                    }
-                }));
+                            }
+                        }));
     }
 
     @Override

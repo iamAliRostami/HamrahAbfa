@@ -22,7 +22,7 @@
             android:padding="@dimen/small_dp"
             android:src="@drawable/abfa_logo_simple" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
             style="@style/Title"
             android:textColor="@color/dark_gray"
@@ -30,7 +30,7 @@
             android:layout_centerHorizontal="true"
             android:text="@{viewModel.nickname}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_owner_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_marginStart="@dimen/large_dp"
             android:text="@string/owner" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_owner"
             style="@style/TitleHelp"
             android:textColor="@color/dark_gray"
@@ -46,7 +46,7 @@
             android:layout_marginStart="@dimen/large_dp"
             android:text="@{viewModel.owner}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_bill_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:layout_marginEnd="@dimen/large_dp"
             android:text="@string/bill_id" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_bill_id"
             style="@style/TitleHelp"
             android:textColor="@color/dark_gray"
@@ -74,7 +74,7 @@
             android:background="@drawable/background_card_input_right"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -82,14 +82,14 @@
                 android:layout_weight="1"
                 android:text="@string/bill_price" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="1,234,567,890 ریال" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

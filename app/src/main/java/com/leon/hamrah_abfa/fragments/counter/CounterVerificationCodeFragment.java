@@ -87,17 +87,18 @@ public class CounterVerificationCodeFragment extends Fragment implements
 
     private void confirmCode() {
         ShowFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456", new RequestDoneFragment.IClickListener() {
-                    @Override
-                    public void yes(DialogFragment dialogFragment) {
-                        requireActivity().finish();
-                    }
+                RequestDoneFragment.newInstance("123456", getString(R.string.create_bill),
+                        new RequestDoneFragment.IClickListener() {
+                            @Override
+                            public void yes(DialogFragment dialogFragment) {
+                                requireActivity().finish();
+                            }
 
-                    @Override
-                    public void no(DialogFragment dialogFragment) {
+                            @Override
+                            public void no(DialogFragment dialogFragment) {
 
-                    }
-                }));
+                            }
+                        }));
     }
 
     private boolean checkInputs() {
