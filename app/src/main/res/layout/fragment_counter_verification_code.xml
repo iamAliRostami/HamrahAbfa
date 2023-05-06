@@ -63,6 +63,14 @@
                 android:layout_marginEnd="@dimen/xlarge_dp"
                 android:gravity="center_vertical">
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:padding="@dimen/small_dp"
+                    android:src="@drawable/ic_edit"
+                    android:tint="@color/purple_7001" />
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_mobile"
                     style="@style/Title"
@@ -70,14 +78,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/mobile_hint" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/medium_dp"
-                    android:padding="@dimen/small_dp"
-                    android:src="@drawable/ic_edit"
-                    android:tint="@color/purple_7001" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat

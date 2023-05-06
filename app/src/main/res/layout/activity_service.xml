@@ -30,7 +30,7 @@
         app:sv_stepViewStyle="@style/StepView"
         app:sv_steps="@array/services_steps"
         app:sv_stepsNumber="4"
-        app:sv_textSize="?attr/font_medium"
+        app:sv_textSize="?attr/font_small"
         app:sv_typeface="@font/font_1" />
 
     <androidx.fragment.app.FragmentContainerView

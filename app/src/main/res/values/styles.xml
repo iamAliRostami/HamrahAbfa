@@ -9,6 +9,12 @@
         <item name="android:textAppearance">@style/TextStyleMedium.Bold</item>
     </style>
 
+    <style name="Title.Bottom">
+        <item name="android:paddingTop">@dimen/large_dp</item>
+        <item name="android:paddingBottom">@dimen/large_dp</item>
+        <item name="android:textAppearance">@style/TextStyleMedium</item>
+    </style>
+
     <style name="TitleHelp" parent="Title">
         <item name="android:textAppearance">@style/TextStyleSmall</item>
     </style>
@@ -37,14 +43,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/background_blue</item>
         <item name="android:backgroundTint">@color/purple_7001</item>
-        <item name="backgroundTint">?android:attr/colorPrimary</item>
+        <item name="backgroundTint">@color/purple_7001</item>
         <item name="android:textColor">@color/light</item>
-        <item name="android:textAppearance">@style/TextStyleMedium</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
     </style>
 
     <style name="ButtonCancel" parent="Button">
-        <item name="android:textAppearance">@style/TextStyleMedium</item>
-        <item name="android:textColor">?android:attr/colorPrimary</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
+        <item name="android:textColor">@color/purple_7001</item>
         <item name="android:background">@drawable/background_white_blue</item>
     </style>
 
@@ -61,20 +67,28 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+
+<!--    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
     <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/light</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="hintTextColor">@color/purple_7001</item>
+        <item name="boxStrokeColor">@color/purple_7001</item>
     </style>
 
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="boxStrokeColor">?android:attr/colorPrimary</item>
-        <item name="hintTextColor">?android:attr/colorPrimary</item>
         <item name="helperTextEnabled">true</item>
         <item name="counterEnabled">false</item>
         <item name="errorEnabled">true</item>
         <item name="helperTextTextAppearance">@style/TextHelper</item>
+        <item name="boxStrokeColor">@color/purple_7001</item>
+        <item name="hintTextColor">@color/purple_7001</item>
+        <item name="boxBackgroundColor">@color/light</item>
+        <item name="boxBackgroundMode">outline</item>
     </style>
 
     <style name="TextHelper" parent="TextAppearance.Design.Hint">

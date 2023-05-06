@@ -47,6 +47,8 @@ public class ActiveSessionFragment extends BottomSheetDialogFragment implements 
                 "12.12.12.12"));
         activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
                 "12.12.12.12"));
+        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+                "12.12.12.12"));
         binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), activeSessions));
         binding.recyclerViewActiveSession.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.imageViewArrowDown.setOnClickListener(this);

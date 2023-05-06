@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,10 +10,7 @@
             type="com.leon.hamrah_abfa.fragments.services.ServicesViewModel" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.services.ServiceFormFragment">
@@ -27,7 +26,7 @@
             android:layout_margin="@dimen/large_dp"
             android:foreground="?android:attr/selectableItemBackground"
             app:cardCornerRadius="@dimen/medium_dp"
-            card_view:cardElevation="@dimen/medium_dp">
+            app:cardElevation="@dimen/medium_dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -143,7 +142,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_previous"
                 style="@style/ButtonCancel"
-                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
                 android:layout_margin="@dimen/medium_dp"
                 android:layout_weight="1"
                 android:text="@string/previous" />

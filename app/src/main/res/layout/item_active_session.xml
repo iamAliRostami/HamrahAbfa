@@ -48,14 +48,13 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_device_last_login_title"
                 style="@style/TitleHelp"
+                android:layout_weight="1"
                 android:layout_margin="@dimen/medium_dp"
                 android:text="@string/last_login" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_device_last_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/medium_dp"
+                style="@style/TextItem"
                 android:text="@string/active_devices" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -76,14 +75,13 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_ip_title"
                 style="@style/TitleHelp"
+                android:layout_weight="1"
                 android:layout_margin="@dimen/medium_dp"
                 android:text="@string/ip" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_ip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/medium_dp"
+                style="@style/TextItem"
                 android:text="@string/active_devices" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -103,14 +101,13 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_mobile_title"
                 style="@style/TitleHelp"
+                android:layout_weight="1"
                 android:layout_margin="@dimen/medium_dp"
                 android:text="@string/mobile" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_mobile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/medium_dp"
+                style="@style/TextItem"
                 android:text="@string/active_devices" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>

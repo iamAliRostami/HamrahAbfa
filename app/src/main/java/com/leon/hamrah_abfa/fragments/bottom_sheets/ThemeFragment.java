@@ -74,6 +74,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     private void initializeViews() {
+        binding.textViewThemeBasedOnDevice.setSelected(true);
         binding.textViewThemeBasedOnDevice.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
         binding.textViewThemeLight.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
         binding.textViewThemeDark.setTextAppearance(requireContext(), R.style.ThemeTextStyle);

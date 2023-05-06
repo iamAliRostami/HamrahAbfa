@@ -15,8 +15,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="@color/light"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/light">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_icon"
@@ -25,7 +25,8 @@
             android:layout_alignParentStart="true"
             android:contentDescription="@string/app_name"
             android:padding="@dimen/small_dp"
-            android:src="@drawable/service_main_account_sale" />
+            android:src="@drawable/service_main_account_sale"
+            android:tint="@color/purple_7001" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"

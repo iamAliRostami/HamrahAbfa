@@ -77,7 +77,6 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_previous"
             style="@style/ButtonCancel"
-            android:layout_alignParentEnd="true"
             android:layout_margin="@dimen/medium_dp"
             android:layout_weight="1"
             android:text="@string/previous" />

@@ -33,6 +33,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_owner_title"
             android:layout_width="wrap_content"
+            android:textAppearance="@style/TextStyleSmall"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_title"
             android:layout_marginStart="@dimen/large_dp"
@@ -50,6 +51,7 @@
             android:id="@+id/text_view_bill_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextStyleSmall"
             android:layout_below="@id/text_view_title"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="@dimen/large_dp"
@@ -73,7 +75,7 @@
             android:layout_marginBottom="@dimen/medium_dp"
             android:background="@drawable/background_card_input_right"
             android:orientation="horizontal">
-
+<!--TODO-->
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,6 +86,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_price"
+                android:textAppearance="@style/TextStyleSmall.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -93,6 +96,7 @@
                 android:id="@+id/text_view_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:textAppearance="@style/TextStyleSmall"
                 android:background="@drawable/background_card_input_left"
                 android:gravity="center"
                 android:text="@string/pay"

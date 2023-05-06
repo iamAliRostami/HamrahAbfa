@@ -18,68 +18,83 @@
         android:padding="@dimen/large_dp"
         tools:context=".fragments.incident.IncidentBaseFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_dp"
-            android:src="@drawable/info" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_description"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/small_dp"
-            android:layout_toEndOf="@id/image_view_info"
-            android:text="@string/incident_description" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/medium_dp"
+            app:cardElevation="@dimen/medium_dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/menu"
-            style="@style/MenuLayout"
-            android:layout_below="@id/text_view_description"
-            android:hint="@string/incident_type"
-            app:boxBackgroundColor="@android:color/white"
-            app:boxBackgroundMode="outline"
-            app:hintTextColor="@color/purple_7001">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/edit_text_incident_type"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:inputType="none"
-                android:text="@={viewModel.incidentType}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="@dimen/large_dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_layout_description"
-            style="@style/TextInputLayout"
-            android:layout_below="@id/menu"
-            android:layout_marginTop="@dimen/xlarge_dp"
-            android:layout_marginBottom="@dimen/xlarge_dp"
-            android:hint="@string/description"
-            app:boxBackgroundColor="@android:color/white"
-            app:boxBackgroundMode="outline"
-            app:counterEnabled="true"
-            app:counterMaxLength="1000"
-            app:helperText="@string/enter_incident_description">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_dp"
+                    android:src="@drawable/info" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_description"
-                style="@style/TextInput"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:lines="3"
-                android:maxLength="1000"
-                android:maxLines="3"
-                android:text="@={viewModel.description}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_dp"
+                    android:layout_toEndOf="@id/image_view_info"
+                    android:text="@string/incident_description"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menu"
+                    style="@style/MenuLayout"
+                    android:layout_below="@id/text_view_description"
+                    android:hint="@string/incident_type">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/edit_text_incident_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:inputType="none"
+                        android:text="@={viewModel.incidentType}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_description"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/menu"
+                    android:layout_marginTop="@dimen/xlarge_dp"
+                    android:layout_marginBottom="@dimen/xlarge_dp"
+                    android:hint="@string/description"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="1000"
+                    app:helperText="@string/enter_incident_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_description"
+                        style="@style/TextInput"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLength="1000"
+                        android:maxLines="3"
+                        android:text="@={viewModel.description}" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_recording"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_layout_description"
+            android:layout_below="@id/card_view_content"
             android:background="@drawable/background_incident_field"
             android:orientation="horizontal"
             android:padding="@dimen/tiny_dp">

@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:padding="@dimen/xlarge_dp"
+    android:paddingStart="@dimen/xlarge_dp"
+    android:paddingEnd="@dimen/xlarge_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.bottom_sheets.ActiveSessionFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_arrow_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/arrow_down"
-        app:layout_constraintBottom_toBottomOf="@id/text_view_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/text_view_title" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_view_title"
-        style="@style/Title"
-        android:layout_marginBottom="@dimen/large_dp"
-        android:text="@string/active_devices"
-        app:layout_constraintBottom_toTopOf="@id/recycler_view_active_session"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_title"
+            style="@style/Title.Bottom"
+            android:layout_weight="1"
+            android:text="@string/active_devices" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/arrow_down" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_active_session"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@id/linear_layout_title"
+        android:layout_marginBottom="@dimen/large_dp"
         tools:listitem="@layout/item_active_session" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
