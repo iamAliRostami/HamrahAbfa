@@ -135,6 +135,16 @@
         <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
     </style>
 
+    <style name="TextItem.SingleLine">
+
+        <item name="maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+    </style>
 
     <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textColor">?android:attr/colorPrimary</item>

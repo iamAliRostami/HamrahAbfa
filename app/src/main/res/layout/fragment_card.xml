@@ -92,7 +92,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_pay"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/background_card_input_left"
                 android:gravity="center"
                 android:text="@string/pay"

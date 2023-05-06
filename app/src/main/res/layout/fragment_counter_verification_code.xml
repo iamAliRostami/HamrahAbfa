@@ -33,14 +33,24 @@
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/ic_message" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xlarge_dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/purple_7001" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/background_set_counter" />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_tip"
                 style="@style/TitleHelp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_above="@id/linear_layout_mobile"
                 android:layout_marginStart="@dimen/xlarge_dp"
-                android:layout_marginTop="@dimen/xlarge_dp"
                 android:layout_marginEnd="@dimen/xlarge_dp"
                 android:text="@string/enter_code" />
 
@@ -140,19 +150,6 @@
                     android:text="@string/one_minute" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/xlarge_dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/purple_7001" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:adjustViewBounds="true"
-                android:src="@drawable/background_set_counter" />
 
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>

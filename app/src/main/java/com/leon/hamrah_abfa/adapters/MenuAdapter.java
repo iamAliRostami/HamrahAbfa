@@ -46,6 +46,7 @@ public class MenuAdapter extends BaseAdapter {
         final MenuHolder holder = new MenuHolder(view);
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
+        holder.textViewTitle.setSelected(true);
         return view;
     }
 }

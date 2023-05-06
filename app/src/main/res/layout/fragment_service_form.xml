@@ -86,7 +86,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_layout_bill_id"
                             style="@style/TextInputLayout"
-                            android:layout_marginTop="@dimen/medium_dp"
+                            android:layout_marginTop="@dimen/small_dp"
                             android:hint="@string/bill_id"
                             app:counterMaxLength="13">
                             <!--                        android:text="@={viewModel.billId}"-->
@@ -102,7 +102,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_layout_address"
                             style="@style/TextInputLayout"
-                            android:layout_marginTop="@dimen/medium_dp"
+                            android:layout_marginTop="@dimen/small_dp"
                             android:hint="@string/address">
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/edit_text_address"

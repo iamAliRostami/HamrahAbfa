@@ -72,8 +72,8 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/medium_dp"
-                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
                             android:background="@drawable/background_confirm">
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -95,8 +95,8 @@
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/medium_dp"
-                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
                             android:background="@drawable/background_confirm">
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -118,8 +118,8 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/medium_dp"
-                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
                             android:background="@drawable/background_confirm">
 
                             <androidx.appcompat.widget.AppCompatImageView
@@ -155,8 +155,8 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/medium_dp"
-                            android:layout_marginBottom="@dimen/medium_dp"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
                             android:background="@drawable/background_confirm">
 
                             <androidx.appcompat.widget.LinearLayoutCompat
