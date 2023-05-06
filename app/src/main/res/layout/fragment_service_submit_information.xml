@@ -46,6 +46,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/Title"
+                        android:textAppearance="@style/TextStyleMedium"
                         android:layout_gravity="center"
                         android:text="@string/confirm_information" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -145,6 +146,7 @@
                                 android:background="@color/light_gray" />
 
                             <com.google.android.material.chip.ChipGroup
+
                                 android:id="@+id/chip_group_services"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

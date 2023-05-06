@@ -29,6 +29,7 @@
     </style>
 
     <style name="TitleSubmitInfo">
+        <item name="android:textAppearance">@style/TextStyleSmall</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
@@ -68,9 +69,9 @@
     </style>
 
 
-<!--    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
+    <!--    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
     <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-    <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="boxBackgroundColor">@color/light</item>
         <item name="boxBackgroundMode">outline</item>
@@ -162,6 +163,7 @@
 
     <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textColor">?android:attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/font_medium_value</item>
         <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
 

@@ -133,20 +133,29 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
 
     private void openCameraForResult() {
         final Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (getContext() != null && cameraIntent.resolveActivity(requireContext().getPackageManager()) != null) {
-            try {
-                fileImage = createImageFile(requireContext());
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getContext(),
-                        BuildConfig.APPLICATION_ID.concat(".provider"), fileImage));
-                cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-                cameraResultLauncher.launch(cameraIntent);
-            } catch (IOException e) {
-                error(requireContext(), e.getMessage()).show();
-            }
-        } else {
-            error(requireContext(), "صفحه ی عکس را بسته و مجددا باز کنید.").show();
+        try {
+            fileImage = createImageFile(requireContext());
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(requireContext(),
+                    BuildConfig.APPLICATION_ID.concat(".provider"), fileImage));
+            cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+            cameraResultLauncher.launch(cameraIntent);
+        } catch (IOException e) {
+            error(requireContext(), e.getMessage()).show();
         }
-    }
+/*        if (getContext() != null && cameraIntent.resolveActivity(requireContext().getPackageManager()) != null) {
+//            try {
+//                fileImage = createImageFile(requireContext());
+//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(requireContext(),
+//                        BuildConfig.APPLICATION_ID.concat(".provider"), fileImage));
+//                cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+//                cameraResultLauncher.launch(cameraIntent);
+//            } catch (IOException e) {
+//                error(requireContext(), e.getMessage()).show();
+//            }
+//        } else {
+//            error(requireContext(), "صفحه ی عکس را بسته و مجددا باز کنید.").show();
+       }*/
+}
 
     private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {

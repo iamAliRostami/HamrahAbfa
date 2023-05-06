@@ -72,7 +72,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         initializeMap();
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
-                requireContext().getResources().getDisplayMetrics().widthPixels / 2
+                requireContext().getResources().getDisplayMetrics().widthPixels
                 /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/);
         binding.relativeLayoutMap.setLayoutParams(params);
         binding.buttonSubmit.setOnClickListener(this);

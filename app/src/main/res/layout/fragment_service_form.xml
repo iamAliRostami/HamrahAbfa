@@ -46,6 +46,7 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/Title"
+                        android:textAppearance="@style/TextStyleMedium"
                         android:layout_gravity="center"
                         android:text="@{viewModel.title}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
