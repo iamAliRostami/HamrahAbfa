@@ -119,6 +119,8 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
             final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
             settingActivityResultLauncher.launch(intent);
         } else if (id == R.id.image_view_notification) {
+            final Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+            startActivity(intent);
         }
     }
 
