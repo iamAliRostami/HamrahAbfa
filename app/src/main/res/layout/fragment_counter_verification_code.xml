@@ -46,6 +46,7 @@
                 android:layout_alignParentBottom="true"
                 android:adjustViewBounds="true"
                 android:src="@drawable/background_set_counter" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_tip"
                 style="@style/TitleHelp"
@@ -61,22 +62,30 @@
                 android:layout_above="@id/linear_layout_code"
                 android:layout_marginStart="@dimen/xlarge_dp"
                 android:layout_marginEnd="@dimen/xlarge_dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical|start">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_mobile"
+                    style="@style/TextItem.SingleLine"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/small_dp"
+                    android:textAppearance="@style/TextStyleMedium" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:layout_gravity="center_vertical"
                     android:padding="@dimen/small_dp"
                     android:src="@drawable/ic_edit"
                     android:tint="@color/purple_7001" />
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text_view_mobile"
-                    style="@style/Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mobile_hint" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -85,9 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/xlarge_dp"
-                android:layout_marginTop="@dimen/xlarge_dp"
-                android:layout_marginEnd="@dimen/xlarge_dp"
+                android:layout_marginTop="@dimen/large_dp"
                 android:gravity="center">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -111,9 +118,9 @@
                 android:id="@+id/relative_layout_counter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_code"
                 android:layout_marginStart="@dimen/xlarge_dp"
                 android:layout_marginEnd="@dimen/xlarge_dp"
-                android:layout_below="@id/linear_layout_code"
                 android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -133,6 +140,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@id/image_view_right"
                     android:text="@string/send_again"
+                    android:textAppearance="@style/TextStyleSmall.Bold"
                     android:visibility="gone" />
 
                 <View
@@ -147,7 +155,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/xlarge_dp"
-                    android:text="@string/one_minute" />
+                    android:text="@string/one_minute"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 

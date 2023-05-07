@@ -88,8 +88,8 @@ dependencies {
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 
     // Libraries For Dependency Injection Using Dagger 2
@@ -112,8 +112,8 @@ dependencies {
     implementation 'com.yandex.android:mobmetricalib:5.3.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
     implementation 'com.github.zhpanvip:viewpagerindicator:1.2.1'
-//    implementation 'com.github.mehranelyas:RtlMarqueeView:1.5.3'
 
+//    implementation 'com.github.mehranelyas:RtlMarqueeView:1.5.3'
 //    implementation 'com.ernestoyaquello.stepperform:vertical-stepper-form:2.7.0'
 //    implementation 'com.ns-developer:tagcloudview:0.1.0'
 

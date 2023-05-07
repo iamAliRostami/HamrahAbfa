@@ -28,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 public class ThemeFragment extends BottomSheetDialogFragment implements View.OnClickListener {
     private FragmentThemeBinding binding;
     private ICallback callback;
+
     public ThemeFragment() {
     }
 
@@ -74,14 +75,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     private void initializeViews() {
-        binding.textViewThemeBasedOnDevice.setSelected(true);
-        binding.textViewThemeBasedOnDevice.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
-        binding.textViewThemeLight.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
-        binding.textViewThemeDark.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
-        binding.linearLayoutBasedOnDevice.setBackground(null);
-        binding.linearLayoutLight.setBackground(null);
-        binding.linearLayoutDark.setBackground(null);
-
+        resetTextViews();
         if (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_DEFAULT) {
             binding.linearLayoutBasedOnDevice.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeBasedOnDevice.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
@@ -94,6 +88,18 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
         }
     }
 
+    private void resetTextViews() {
+        binding.textViewThemeBasedOnDevice.setSelected(true);
+        binding.textViewThemeLight.setSelected(true);
+        binding.textViewThemeDark.setSelected(true);
+
+        binding.textViewThemeBasedOnDevice.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.textViewThemeLight.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.textViewThemeDark.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.linearLayoutBasedOnDevice.setBackground(null);
+        binding.linearLayoutLight.setBackground(null);
+        binding.linearLayoutDark.setBackground(null);
+    }
 
     @Override
     public void onClick(View v) {

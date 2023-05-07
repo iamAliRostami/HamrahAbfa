@@ -53,7 +53,8 @@ public class CounterVerificationCodeFragment extends Fragment implements
 
     private void initialize() {
         startCounter();
-        binding.textViewMobile.setText(getString(R.string.mobile).concat(" ").concat(callback.getViewModel().getMobile()));
+        binding.textViewMobile.setText(callback.getViewModel().getMobile());
+        binding.textViewMobile.setSelected(true);
         binding.textViewTryAgain.setOnClickListener(this);
         binding.buttonSubmit.setOnClickListener(this);
         binding.imageViewEdit.setOnClickListener(this);

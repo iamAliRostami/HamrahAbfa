@@ -46,13 +46,14 @@
                     android:id="@+id/image_view_based_on_device"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:src="@drawable/theme_based_on_device" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_theme_based_on_device"
-                    android:padding="0dp"
                     style="@style/TextItem.SingleLine"
-                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/small_dp"
                     android:text="@string/theme_based_on_device" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -62,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_theme_title"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/medium_dp"
                 android:orientation="vertical">
 
@@ -73,9 +75,8 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_theme_light"
-                    android:padding="0dp"
                     style="@style/TextItem.SingleLine"
-                    android:layout_gravity="center"
+                    android:padding="@dimen/small_dp"
                     android:text="@string/theme_light" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -84,6 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_theme_title"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/medium_dp"
                 android:layout_toEndOf="@id/linear_layout_light"
                 android:orientation="vertical">
@@ -96,9 +98,8 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_theme_dark"
-                    android:padding="0dp"
                     style="@style/TextItem.SingleLine"
-                    android:layout_gravity="center"
+                    android:padding="@dimen/small_dp"
                     android:text="@string/theme_dark" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>
