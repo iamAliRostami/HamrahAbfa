@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.ui.notifications;
+package com.leon.hamrah_abfa.fragments.notifications;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -48,7 +48,7 @@
         android:theme="@style/Theme.HamrahAbfa.NoActionBar"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".activities.NotificationActivity"
+            android:name=".activities.NotificationsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SetCounterNumberActivity"

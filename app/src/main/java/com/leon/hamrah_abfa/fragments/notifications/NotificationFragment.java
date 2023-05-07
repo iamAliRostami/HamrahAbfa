@@ -1,8 +1,6 @@
-package com.leon.hamrah_abfa.fragments.ui.notifications;
+package com.leon.hamrah_abfa.fragments.notifications;
 
-import android.animation.Animator;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.leon.hamrah_abfa.databinding.FragmentNotificationsBinding;
+import com.leon.hamrah_abfa.databinding.FragmentNotificationBinding;
 
+public class NotificationFragment extends Fragment {
 
-public class NotificationsFragment extends Fragment {
+    private FragmentNotificationBinding binding;
 
-    private FragmentNotificationsBinding binding;
+    public NotificationFragment() {
+    }
+
+    public static NotificationFragment newInstance() {
+        return new NotificationFragment();
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentNotificationBinding.inflate(inflater, container, false);
 
         NotificationsViewModel notificationsViewModel =
                 new ViewModelProvider(this).get(NotificationsViewModel.class);
