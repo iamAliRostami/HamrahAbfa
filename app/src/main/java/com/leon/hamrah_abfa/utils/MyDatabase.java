@@ -13,7 +13,7 @@ import com.leon.hamrah_abfa.tables.dao.NotificationDao;
 import com.leon.hamrah_abfa.tables.dao.UserDao;
 
 @Database(entities = {User.class, Notification.class, News.class},
-        version = 2, exportSchema = false)
+        version = 3, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -23,16 +23,15 @@ public abstract class MyDatabase extends RoomDatabase {
     public static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
+//            database.execSQL("ALTER TABLE 'News' ADD COLUMN 'test' INTEGER NOT NULL DEFAULT 0");
 
-//            database.execSQL("CREATE UNIQUE INDEX id ON news (id)");
-//            database.execSQL("CREATE UNIQUE INDEX id ON Notification (id)");
-
-//            database.execSQL("CREATE UNIQUE INDEX [IF NOT EXISTS] ON news (id)");
-//            database.execSQL("CREATE UNIQUE INDEX [IF NOT EXISTS] ON Notification (id)");
 //            database.execSQL("CREATE TABLE t1_backup AS SELECT * FROM News");
 //            database.execSQL("DROP TABLE News");
 //            database.execSQL("ALTER TABLE t1_backup RENAME TO News");
-//            database.execSQL("DROP TABLE t1_backup");
+
+            database.execSQL("CREATE TABLE t1_backup AS SELECT id, customId, summary, title, text, date, seen, category  FROM News");
+            database.execSQL("DROP TABLE News");
+            database.execSQL("ALTER TABLE t1_backup RENAME TO News");
         }
     };
 

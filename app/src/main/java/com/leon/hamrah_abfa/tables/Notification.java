@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.tables;
 
-import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
@@ -15,12 +14,12 @@ public class Notification {
     public int customId;
     @ColumnInfo(name = "id")
     public int id;
+    public int category;
     public String summary;
     public String title;
     public String text;
     public String date;
     public boolean seen;
-    public int category;
 
     public Notification(int id, String title, String summary, String text, String date, int category) {
         this.id = id;
