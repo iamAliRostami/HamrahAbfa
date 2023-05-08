@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.di.view_model;
 
 
 import static com.leon.hamrah_abfa.helpers.Constants.DB_NAME;
+import static com.leon.hamrah_abfa.utils.MyDatabase.MIGRATION_2_3;
 
 import android.content.Context;
 
@@ -24,6 +25,7 @@ public class MyDatabaseClientModel {
     @Inject
     public MyDatabaseClientModel(Context context) {
         myDatabase = Room.databaseBuilder(context, MyDatabase.class, DB_NAME)
+                /*.fallbackToDestructiveMigration()*/.addMigrations(MIGRATION_2_3)
                 .allowMainThreadQueries().build();
     }
 

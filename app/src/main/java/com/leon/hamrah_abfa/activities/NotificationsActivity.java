@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -13,6 +15,11 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityNotificationsBinding;
 import com.leon.hamrah_abfa.fragments.notifications.NewsFragment;
 import com.leon.hamrah_abfa.fragments.notifications.NotificationFragment;
+import com.leon.hamrah_abfa.tables.News;
+import com.leon.hamrah_abfa.tables.Notification;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     private ActivityNotificationsBinding binding;
@@ -26,7 +33,38 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     protected void initialize() {
         binding = ActivityNotificationsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        insertData();
         initializeViewPager();
+    }
+
+    private void insertData() {
+//        int id, String summary, String title, String text, String date, int category
+        final ArrayList<News> news = new ArrayList<>(Arrays.asList(
+                new News(12, "خلاصه 1", "خبر 1", "این متن خبر یک است.", "12/12/12", 1),
+                new News(13, "خلاصه 2", "خبر 11", "این متن خبر دو است.", "12/12/12", 1),
+                new News(14, "خلاصه 3", "خبر 12", "این متن خبر سه است.", "12/12/12", 1),
+                new News(15, "خلاصه 4", "خبر 13", "این متن خبر چهار است.", "12/12/12", 1),
+                new News(22, "خلاصه 5", "خبر 14", "این متن خبر پنج است.", "12/12/12", 1),
+                new News(32, "خلاصه 6", "خبر 15", "این متن خبر شش است.", "12/12/12", 1),
+                new News(42, "خلاصه 7", "خبر 16", "این متن خبر هفت است.", "12/12/12", 1),
+                new News(52, "خلاصه 8", "خبر 17", "این متن خبر هشت است.", "12/12/12", 1),
+                new News(17, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
+                new News(86, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
+                new News(21, "خلاصه 10", "خبر 19", "این متن خبر ده است.", "12/12/12", 1)));
+        getApplicationComponent().MyDatabase().newsDao().insertNews(news);
+        final ArrayList<Notification> notifications = new ArrayList<>(Arrays.asList(
+                new Notification(12, "خلاصه 1", "نوتیف 1", "این متن نوتیف یک است.", "12/12/12", 1),
+                new Notification(13, "خلاصه 2", "نوتیف 11", "این متن نوتیف دو است.", "12/12/12", 1),
+                new Notification(14, "خلاصه 3", "نوتیف 12", "این متن نوتیف سه است.", "12/12/12", 1),
+                new Notification(15, "خلاصه 4", "نوتیف 13", "این متن نوتیف چهار است.", "12/12/12", 1),
+                new Notification(22, "خلاصه 5", "نوتیف 14", "این متن نوتیف پنج است.", "12/12/12", 1),
+                new Notification(32, "خلاصه 6", "نوتیف 15", "این متن نوتیف شش است.", "12/12/12", 1),
+                new Notification(42, "خلاصه 7", "نوتیف 16", "این متن نوتیف هفت است.", "12/12/12", 1),
+                new Notification(52, "خلاصه 8", "نوتیف 17", "این متن نوتیف هشت است.", "12/12/12", 1),
+                new Notification(17, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 1),
+                new Notification(86, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 1),
+                new Notification(21, "خلاصه 10", "نوتیف 19", "این متن نوتیف ده است.", "12/12/12", 1)));
+        getApplicationComponent().MyDatabase().notificationDao().insertNotifications(notifications);
     }
 
     private void initializeViewPager() {
@@ -68,6 +106,8 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         binding.viewPager.setCurrentItem(tab.getPosition());
+        //TODO
+        tab.removeBadge();
     }
 
     @Override
