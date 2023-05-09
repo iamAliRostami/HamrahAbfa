@@ -1,65 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingStart="@dimen/xlarge_dp"
     android:paddingEnd="@dimen/xlarge_dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.bottom_sheets.ServicesLocationFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_title"
-            style="@style/Title.Bottom"
-            android:layout_weight="1"
-            android:text="@string/account_submit" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_arrow_down"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/arrow_down" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <RelativeLayout
-        android:id="@+id/relative_layout_map"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/border_dotted_gray">
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <org.osmdroid.views.MapView
-            android:id="@+id/map_view"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatImageView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_title"
+                style="@style/Title.Bottom"
+                android:layout_weight="1"
+                android:text="@string/account_submit" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_arrow_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_down" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/map_pointer" />
+            android:layout_weight="1"
+            android:background="@drawable/border_dotted_gray">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_current_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:padding="@dimen/medium_dp"
-            android:src="@drawable/current_location" />
-    </RelativeLayout>
+            <org.osmdroid.views.MapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_submit"
-        style="@style/ButtonSubmit"
-        android:layout_marginTop="@dimen/large_dp"
-        android:layout_marginBottom="@dimen/large_dp"
-        android:text="@string/submit_location" />
-</androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/map_pointer" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_current_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/medium_dp"
+                android:src="@drawable/current_location" />
+        </RelativeLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit"
+            style="@style/ButtonSubmit"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:text="@string/submit_location" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

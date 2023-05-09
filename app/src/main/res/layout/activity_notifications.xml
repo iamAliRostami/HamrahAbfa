@@ -9,6 +9,7 @@
     tools:context=".activities.NotificationsActivity">
 
     <com.google.android.material.tabs.TabLayout
+        android:background="@drawable/background_tab_layout"
         android:id="@+id/tab_layout"
         app:tabInlineLabel="true"
         android:layout_width="match_parent"

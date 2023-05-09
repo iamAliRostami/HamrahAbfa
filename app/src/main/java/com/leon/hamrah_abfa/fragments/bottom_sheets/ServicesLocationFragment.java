@@ -5,19 +5,25 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
@@ -36,6 +42,7 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
     private FragmentServicesLocationBinding binding;
     private ICallback callback;
     private GeoPoint point;
+
     public ServicesLocationFragment() {
     }
 
@@ -68,6 +75,31 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         return binding.getRoot();
     }
 
+//    @Override
+//    public void setupDialog(@NonNull Dialog dialog, int style) {
+//        super.setupDialog(dialog, style);
+//    }
+
+    //    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Dialog dialog = getDialog();
+//
+//        if (dialog != null) {
+//            View bottomSheet = dialog.findViewById(R.id.design_bottom_sheet);
+//            bottomSheet.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+//        }
+//        View view = getView();
+//        view.post(() -> {
+//            View parent = (View) view.getParent();
+//            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) (parent).getLayoutParams();
+//            CoordinatorLayout.Behavior behavior = params.getBehavior();
+//            BottomSheetBehavior bottomSheetBehavior = (BottomSheetBehavior) behavior;
+//            bottomSheetBehavior.setPeekHeight(view.getMeasuredHeight());
+////            ((View)bottomSheet.getParent()).setBackgroundColor(Color.TRANSPARENT)
+//
+//        });
+//    }
     private void initialize() {
         initializeMap();
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
@@ -158,7 +190,38 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
 
     public void onResume() {
         super.onResume();
+//        BottomSheetBehavior.from(binding.getRoot()).setState(BottomSheetBehavior.STATE_EXPANDED);
+
+//        View bottomSheet = binding.test;
+//        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
+//        behavior.setPeekHeight(1500);
+//        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         binding.mapView.onResume();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        final View bottomSheet = view.findViewById(R.id.linear_layout_container);
+        if (bottomSheet != null) {
+            final DisplayMetrics displayMetrics = requireActivity().getResources().getDisplayMetrics();
+            BottomSheetBehavior.from(bottomSheet).setPeekHeight((int) (displayMetrics.heightPixels * 0.99));
+        }
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Dialog serviceLocationDialog = super.onCreateDialog(savedInstanceState);
+        serviceLocationDialog.setOnShowListener(dialog -> {
+            final BottomSheetDialog bottomDialog = (BottomSheetDialog) dialog;
+            final FrameLayout bottomSheet = bottomDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                final DisplayMetrics displayMetrics = requireActivity().getResources().getDisplayMetrics();
+                BottomSheetBehavior.from(bottomSheet).setPeekHeight((int) (displayMetrics.heightPixels * 0.99));
+            }
+        });
+        return serviceLocationDialog;
     }
 
     public void onPause() {
