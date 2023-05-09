@@ -17,6 +17,11 @@ public interface NotificationDao {
 
     @Query("SELECT * FROM Notification")
     List<User> getAllNotifications();
+    @Query("SELECT * FROM Notification WHERE billId = :billId")
+    List<User> getNotificationsByBillId(String billId);
+
+    @Query("SELECT COUNT(*) FROM Notification WHERE billId = :billId AND seen = :seen")
+    int getUnseenNotificationNumber(String billId,boolean seen);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNotification(Notification notification);

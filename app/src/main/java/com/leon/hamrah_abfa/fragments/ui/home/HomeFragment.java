@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                callback.setPosition(position);
             }
         });
         binding.viewPagerCard.setOffscreenPageLimit(1);
@@ -75,7 +76,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
         } else if (position == 1) {
-
             startActivity(SetCounterNumberActivity.class);
         } else if (position == 2) {
         } else if (position == 5) {
@@ -107,5 +107,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         void createCardPagerAdapter();
 
         String getCurrentBillId(int position);
+        void setPosition(int position);
     }
 }

@@ -1,13 +1,17 @@
 package com.leon.hamrah_abfa.tables;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 //@Entity(tableName = "Notification", indices = {@Index(value = {"customId", "id"}, unique = true)})
+//@Entity(tableName = "Notification",primaryKeys = {"customId", "billId"}, indices = {@Index(value = {"customId"}, unique = true),
+//        @Index(value = "id", unique = true), @Index(value = "billId", unique = true)})
 @Entity(tableName = "Notification", indices = {@Index(value = {"customId"}, unique = true),
-        @Index(value = "id", unique = true)})
+        @Index(value = {"id", "billId"}, unique = true)})
 public class Notification {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "customId")
@@ -18,15 +22,33 @@ public class Notification {
     public String summary;
     public String title;
     public String text;
+    public String imageAddress;
+
+    @ColumnInfo(name = "billId")
+    @NonNull
+    public String billId;
     public String date;
     public boolean seen;
 
-    public Notification(int id, String title, String summary, String text, String date, int category) {
+    @Ignore
+    public Notification(int id, @NonNull String billId, String title, String summary, String text, String date, int category) {
         this.id = id;
+        this.billId = billId;
         this.summary = summary;
         this.title = title;
         this.text = text;
         this.date = date;
+        this.category = category;
+    }
+
+    public Notification(int id, @NonNull String billId, String title, String summary, String text, String date, String imageAddress, int category) {
+        this.id = id;
+        this.billId = billId;
+        this.summary = summary;
+        this.title = title;
+        this.text = text;
+        this.date = date;
+        this.imageAddress = imageAddress;
         this.category = category;
     }
 }

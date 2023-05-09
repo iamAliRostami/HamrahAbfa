@@ -16,6 +16,12 @@ public interface NewsDao {
     @Query("SELECT * FROM News")
     List<User> getAllNews();
 
+    @Query("SELECT * FROM News WHERE billId = :billId")
+    List<User> getNewsBillId(String billId);
+
+    @Query("SELECT COUNT(*) FROM News WHERE billId = :billId AND seen = :seen")
+    int getUnseenNewsNumber(String billId,boolean seen);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNews(News news);
 

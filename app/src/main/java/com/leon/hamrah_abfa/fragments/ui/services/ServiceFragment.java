@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ServiceActivity;
@@ -24,7 +25,7 @@ import com.leon.hamrah_abfa.adapters.ServicesMainAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentServiceBinding;
 
-public class ServiceFragment extends Fragment {
+public class ServiceFragment extends Fragment implements RecyclerItemClickListener.OnItemClickListener {
     private FragmentServiceBinding binding;
     private ICallback callback;
 
@@ -58,21 +59,34 @@ public class ServiceFragment extends Fragment {
                 R.array.services_main_menu, R.array.services_main_icons));
         binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewMenu.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(),
-                binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                itemClick(view, position);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-        }));
+                binding.recyclerViewMenu, this));
     }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        itemClick(view, position);
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+
+    }
+
     private void initializeViewPager() {
         callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
+        binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                callback.setPosition(position);
+            }
+        });
         binding.viewPagerCard.setOffscreenPageLimit(1);
         final CompositePageTransformer cpt = new CompositePageTransformer();
         cpt.addTransformer(new MarginPageTransformer(20));
@@ -99,11 +113,14 @@ public class ServiceFragment extends Fragment {
         binding = null;
     }
 
+
     public interface ICallback {
         CardPagerAdapter getCardPagerAdapter();
 
         void createCardPagerAdapter();
 
         String getCurrentBillId(int position);
+
+        void setPosition(int position);
     }
 }

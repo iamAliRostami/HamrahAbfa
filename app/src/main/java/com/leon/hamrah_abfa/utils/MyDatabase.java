@@ -13,7 +13,7 @@ import com.leon.hamrah_abfa.tables.dao.NotificationDao;
 import com.leon.hamrah_abfa.tables.dao.UserDao;
 
 @Database(entities = {User.class, Notification.class, News.class},
-        version = 3, exportSchema = false)
+        version = 1, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();

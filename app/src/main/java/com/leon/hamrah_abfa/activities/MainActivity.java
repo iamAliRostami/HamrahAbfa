@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
@@ -35,6 +36,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         HomeFragment.ICallback, SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
     private ActivityMainBinding binding;
     private CardPagerAdapter cardPagerAdapter;
+    private int position;
     final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
@@ -120,6 +122,8 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
             settingActivityResultLauncher.launch(intent);
         } else if (id == R.id.image_view_notification) {
             final Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
+            //TODO
+            intent.putExtra(BILL_ID.getValue(), cardPagerAdapter.getCurrentBillId(position));
             startActivity(intent);
         }
     }
@@ -158,5 +162,8 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         return cardPagerAdapter.getCurrentBillId(position);
     }
 
-
+    @Override
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }
