@@ -26,11 +26,6 @@ public class NotificationFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentNotificationBinding.inflate(inflater, container, false);
-
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), binding.textNotifications::setText);
-
         initialize();
         return binding.getRoot();
     }

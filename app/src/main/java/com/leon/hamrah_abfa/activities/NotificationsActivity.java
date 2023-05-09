@@ -41,6 +41,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         setContentView(binding.getRoot());
         insertData();
         initializeViewPager();
+        initializeTabLayout();
     }
 
     private void insertData() {
@@ -80,9 +81,11 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         adapter.addFragment(NotificationFragment.newInstance());
         adapter.addFragment(NewsFragment.newInstance());
         binding.viewPager.setAdapter(adapter);
+    }
+
+    private void initializeTabLayout() {
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.services)).setIcon(android.R.drawable.ic_popup_reminder));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.news)).setIcon(android.R.drawable.ic_dialog_email));
-
         binding.tabLayout.setSelectedTabIndicator(R.drawable.cat_tabs_rounded_line_indicator);
         BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
@@ -109,13 +112,11 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         binding.viewPager.setCurrentItem(tab.getPosition());
-        //TODO
         tab.removeBadge();
     }
 
@@ -126,6 +127,5 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
     }
 }
