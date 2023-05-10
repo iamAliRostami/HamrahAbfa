@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -19,11 +20,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationItem> 
 
     private final LayoutInflater inflater;
     private ArrayList<Notification> notifications;
+    private final TypedArray icons;
     private final String billId;
 
 
     public NotificationAdapter(Context context, String billId) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.icons = context.getResources().obtainTypedArray(R.array.notification_icons);
         this.billId = billId;
         setNotifications();
     }
@@ -36,10 +39,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationItem> 
 
     @Override
     public void onBindViewHolder(@NonNull NotificationItem holder, int position) {
-        holder.textViewSummary.setText(notifications.get(position).summary);
-        holder.textViewTitle.setText(notifications.get(position).title);
+        holder.imageView.setImageDrawable(icons.getDrawable(notifications.get(position).category-1));
         holder.textViewDate.setText(notifications.get(position).date);
-//        holder.imageView.setImageResource();
+        holder.textViewTitle.setText(notifications.get(position).title);
+        holder.textViewSummary.setText(notifications.get(position).summary);
         holder.relativeLayout.setBackgroundResource(notifications.get(position).seen ?
                 R.drawable.background_seen : R.drawable.background_white_blue);
     }

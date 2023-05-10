@@ -220,4 +220,13 @@
         <item>@color/purple_7001</item>
         <item>@color/purple_7001</item>
     </integer-array>
+
+    <array name="notification_icons">
+        <item>@drawable/notification_bill</item>
+        <item>@drawable/notification_cut_off</item>
+        <item>@drawable/notification_level</item>
+        <item>@drawable/notification_thank</item>
+        <item>@drawable/notification_debt_1</item>
+        <item>@drawable/notification_debt_2</item>
+    </array>
 </resources>
