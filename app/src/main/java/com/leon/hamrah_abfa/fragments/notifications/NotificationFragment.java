@@ -55,6 +55,7 @@ public class NotificationFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 getApplicationComponent().MyDatabase().notificationDao().updateOnOffLoadSeen(
                         adapter.getNotification(position).customId, true);
+                callback.setUnseenNotificationNumber();
                 adapter.updateNotification(position);
             }
 
@@ -80,5 +81,7 @@ public class NotificationFragment extends Fragment {
 
     public interface ICallback {
         String getBillId();
+
+        void setUnseenNotificationNumber();
     }
 }

@@ -88,11 +88,10 @@ NotificationFragment.ICallback{
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.services)).setIcon(android.R.drawable.ic_popup_reminder));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.news)).setIcon(android.R.drawable.ic_dialog_email));
         binding.tabLayout.setSelectedTabIndicator(R.drawable.cat_tabs_rounded_line_indicator);
-        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
-        badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
 
-        badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
+        setUnseenNotificationNumber();
+
+        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
         badgeDrawable.setVisible(true);
         badgeDrawable.setNumber(getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
 
@@ -104,6 +103,13 @@ NotificationFragment.ICallback{
             }
         });
         binding.tabLayout.addOnTabSelectedListener(this);
+    }
+
+    @Override
+    public void setUnseenNotificationNumber() {
+        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
+        badgeDrawable.setVisible(true);
+        badgeDrawable.setNumber(getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
     }
 
     @Override
