@@ -16,9 +16,9 @@ import java.util.List;
 public interface NotificationDao {
 
     @Query("SELECT * FROM Notification")
-    List<User> getAllNotifications();
+    List<Notification> getAllNotifications();
     @Query("SELECT * FROM Notification WHERE billId = :billId")
-    List<User> getNotificationsByBillId(String billId);
+    List<Notification> getNotificationsByBillId(String billId);
 
     @Query("SELECT COUNT(*) FROM Notification WHERE billId = :billId AND seen = :seen")
     int getUnseenNotificationNumber(String billId,boolean seen);
@@ -41,6 +41,6 @@ public interface NotificationDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateNotifications(List<Notification> notifications);
 
-    @Query("UPDATE Notification set seen = :seen WHERE id = :id")
+    @Query("UPDATE Notification set seen = :seen WHERE customId = :id")
     void updateOnOffLoadSeen(int id, boolean seen);
 }

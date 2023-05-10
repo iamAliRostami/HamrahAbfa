@@ -7,9 +7,6 @@ import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-//@Entity(tableName = "News", indices = {@Index(value = {"customId", "id"}, unique = true)})
-//@Entity(tableName = "News", primaryKeys = {"customId", "billId"}, indices = {@Index(value = {"customId"}, unique = true),
-//        @Index(value = "id", unique = true), @Index(value = "billId", unique = true)})
 @Entity(tableName = "News", indices = {@Index(value = {"customId"}, unique = true),
         @Index(value = {"id", "billId"}, unique = true)})
 public class News {
@@ -31,7 +28,7 @@ public class News {
     public boolean seen;
 
     @Ignore
-    public News(int id, @NonNull String billId, String title, String summary, String text, String date, int category) {
+    public News(int id, @NonNull String billId, String summary, String title, String text, String date, int category) {
         this.id = id;
         this.billId = billId;
         this.summary = summary;

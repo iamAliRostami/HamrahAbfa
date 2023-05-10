@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ActiveSessionAdapter extends RecyclerView.Adapter<ActiveSessionViewHolder> {
     private final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
-    public final LayoutInflater inflater;
+    private final LayoutInflater inflater;
 
     public ActiveSessionAdapter(Context context, ArrayList<ActiveSession> activeSessions) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

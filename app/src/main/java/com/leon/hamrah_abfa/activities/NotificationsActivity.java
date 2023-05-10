@@ -22,7 +22,8 @@ import com.leon.hamrah_abfa.tables.Notification;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
+NotificationFragment.ICallback{
     private ActivityNotificationsBinding binding;
     private String billId;
 
@@ -127,5 +128,10 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+    }
+
+    @Override
+    public String getBillId() {
+        return billId;
     }
 }
