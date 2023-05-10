@@ -18,9 +18,9 @@ import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentNotificationBinding;
 
 public class NotificationFragment extends Fragment {
-    private ICallback callback;
     private FragmentNotificationBinding binding;
     private NotificationAdapter adapter;
+    private ICallback callback;
 
     public NotificationFragment() {
     }

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
-NotificationFragment.ICallback{
+        NotificationFragment.ICallback, NewsFragment.ICallback {
     private ActivityNotificationsBinding binding;
     private String billId;
 
@@ -90,11 +90,7 @@ NotificationFragment.ICallback{
         binding.tabLayout.setSelectedTabIndicator(R.drawable.cat_tabs_rounded_line_indicator);
 
         setUnseenNotificationNumber();
-
-        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
-        badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
-
+        setUnseenNewsNumber();
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -107,9 +103,16 @@ NotificationFragment.ICallback{
 
     @Override
     public void setUnseenNotificationNumber() {
-        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
+        final BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
         badgeDrawable.setNumber(getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
+    }
+
+    @Override
+    public void setUnseenNewsNumber() {
+        final BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
+        badgeDrawable.setVisible(true);
+        badgeDrawable.setNumber(getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
     }
 
     @Override
