@@ -36,4 +36,9 @@ public class FollowRequestLevelsFragment extends Fragment {
     private void initialize() {
 
     }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
+import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestTrackFragment;
 
 public class FollowRequestActivity extends BaseActivity {
@@ -16,7 +17,7 @@ public class FollowRequestActivity extends BaseActivity {
         binding = ActivityFollowRequestBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportFragmentManager().beginTransaction().add(binding.fragmentRequest.getId(),
-                FollowRequestTrackFragment.newInstance()).commit();
+                FollowRequestListFragment.newInstance()).commit();
     }
 
     @Override

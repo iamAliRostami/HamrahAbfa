@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.leon.hamrah_abfa.databinding.FragmentFollowRequestTrackBinding;
+import com.leon.hamrah_abfa.databinding.FragmentFollowRequestListBinding;
 
-public class FollowRequestTrackFragment extends Fragment {
-    private FragmentFollowRequestTrackBinding binding;
+public class FollowRequestListFragment extends Fragment {
+    private FragmentFollowRequestListBinding binding;
 
-    public FollowRequestTrackFragment() {
+    public FollowRequestListFragment() {
     }
 
-    public static FollowRequestTrackFragment newInstance() {
-        return new FollowRequestTrackFragment();
+    public static FollowRequestListFragment newInstance() {
+        return new FollowRequestListFragment();
     }
 
     @Override
@@ -28,12 +28,12 @@ public class FollowRequestTrackFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentFollowRequestTrackBinding.inflate(inflater, container, false);
+        binding = FragmentFollowRequestListBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
-    private void initialize() {
 
+    private void initialize() {
     }
     @Override
     public void onDestroyView() {
