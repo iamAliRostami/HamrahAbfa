@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.ui.home;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,8 +21,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
-import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
-import com.leon.hamrah_abfa.adapters.MenuAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
+import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -32,8 +33,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         return new HomeFragment();
     }
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
@@ -76,17 +77,20 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
         } else if (position == 1) {
-            startActivity(SetCounterNumberActivity.class);
+            startActivity(createIntent(SetCounterNumberActivity.class));
         } else if (position == 2) {
         } else if (position == 5) {
-            startActivity(FollowRequestActivity.class);
+            final Intent intent = createIntent(FollowRequestActivity.class);
+            intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
+                    (callback.getCardPagerAdapter().getItemCount() - 1));
+            startActivity(intent);
         }
     }
 
-    private void startActivity(Class<?> cls) {
+    private Intent createIntent(Class<?> cls) {
         final Intent intent = new Intent(requireContext(), cls);
         intent.putExtra(BILL_ID.getValue(), callback.getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
-        startActivity(intent);
+        return intent;
     }
 
     @Override
@@ -107,6 +111,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         void createCardPagerAdapter();
 
         String getCurrentBillId(int position);
+
         void setPosition(int position);
     }
 }

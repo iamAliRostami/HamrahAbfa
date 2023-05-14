@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.holders.NewsItem;
+import com.leon.hamrah_abfa.adapters.holders.NewsViewHolder;
 import com.leon.hamrah_abfa.tables.News;
 
 import java.util.ArrayList;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsItem> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     private final LayoutInflater inflater;
     private ArrayList<News> news;
     private final TypedArray icons;
@@ -32,12 +32,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsItem> {
 
     @NonNull
     @Override
-    public NewsItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new NewsItem(inflater.inflate(R.layout.item_news, parent, false));
+    public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new NewsViewHolder(inflater.inflate(R.layout.item_news, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsItem holder, int position) {
+    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
         holder.imageView.setImageDrawable(icons.getDrawable(news.get(position).category - 1));
         holder.textViewDate.setText(news.get(position).date);
         holder.textViewTitle.setText(news.get(position).title);

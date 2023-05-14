@@ -6,8 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionHolder;
-import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionViewHolder;
 
 import java.util.ArrayList;
 
@@ -21,16 +20,16 @@ public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseA
 
     @NonNull
     @Override
-    public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ServiceIntroductionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (selectedServices != null && selectedServices == viewType) {
-            return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
+            return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
         } else {
-            return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service, parent, false));
+            return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service, parent, false));
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ServiceIntroductionHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ServiceIntroductionViewHolder holder, int position) {
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
         if (selectedServices != null && selectedServices == position)

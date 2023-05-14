@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.MenuAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionFragment;

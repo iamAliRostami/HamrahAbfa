@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionHolder;
-import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
+import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionViewHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,12 +23,12 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
 
     @NonNull
     @Override
-    public ServiceIntroductionHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ServiceIntroductionHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
+    public ServiceIntroductionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ServiceIntroductionHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ServiceIntroductionViewHolder holder, int position) {
         final int positionHolder = position;
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));

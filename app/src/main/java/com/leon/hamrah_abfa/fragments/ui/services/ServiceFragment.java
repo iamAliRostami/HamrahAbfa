@@ -20,8 +20,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ServiceActivity;
-import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
-import com.leon.hamrah_abfa.adapters.ServicesMainAdapter;
+import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.ServicesMainAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentServiceBinding;
 

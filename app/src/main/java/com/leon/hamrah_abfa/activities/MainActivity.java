@@ -25,7 +25,7 @@ import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.CardPagerAdapter;
+import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
-        initializeSplash();
+//        initializeSplash();
         // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);

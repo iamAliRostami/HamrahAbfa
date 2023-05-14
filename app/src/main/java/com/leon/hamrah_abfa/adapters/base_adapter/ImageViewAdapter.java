@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.adapters;
+package com.leon.hamrah_abfa.adapters.base_adapter;
 
 import static com.leon.toast.RTLToast.warning;
 

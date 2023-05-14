@@ -10,7 +10,7 @@ import android.view.View;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.ImageViewAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityIncidentBinding;
 import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;

@@ -11,7 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.ViewPagerAdapter;
+import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityNotificationsBinding;
 import com.leon.hamrah_abfa.fragments.notifications.NewsFragment;

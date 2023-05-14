@@ -1,9 +1,8 @@
-package com.leon.hamrah_abfa.adapters;
+package com.leon.hamrah_abfa.adapters.fragment_state_adapter;
 
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;

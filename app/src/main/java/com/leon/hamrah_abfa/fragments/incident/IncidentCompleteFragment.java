@@ -30,7 +30,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.BuildConfig;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.ImageViewAdapter;
+import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentCompleteBinding;
 import com.leon.hamrah_abfa.utils.GpsTracker;
 

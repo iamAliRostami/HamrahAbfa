@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 
-public class NewsItem extends RecyclerView.ViewHolder{
+public class NotificationViewHolder extends RecyclerView.ViewHolder{
     public final ImageView imageView;
     public final TextView textViewDots;
     public final TextView textViewDate;
@@ -17,7 +17,7 @@ public class NewsItem extends RecyclerView.ViewHolder{
     public final TextView textViewSummary;
     public final RelativeLayout relativeLayout;
 
-    public NewsItem(View view) {
+    public NotificationViewHolder(View view) {
         super(view);
         imageView = view.findViewById(R.id.image_view_news);
         textViewDots = view.findViewById(R.id.text_view_dots);

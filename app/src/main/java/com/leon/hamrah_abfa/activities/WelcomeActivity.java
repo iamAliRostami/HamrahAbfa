@@ -12,7 +12,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.WelcomePagerAdapter;
+import com.leon.hamrah_abfa.adapters.fragment_state_adapter.WelcomePagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityWelcomeBinding;
 

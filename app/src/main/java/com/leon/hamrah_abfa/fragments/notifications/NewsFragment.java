@@ -44,12 +44,12 @@ public class NewsFragment extends Fragment {
 
     private void initialize() {
         initializeRecyclerView();
-        binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     private void initializeRecyclerView() {
         adapter = new NewsAdapter(requireContext(), callback.getBillId());
         binding.recyclerViewNews.setAdapter(adapter);
+        binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
     }
 

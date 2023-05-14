@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.adapters.base_adapter;
+package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,12 +6,12 @@ import android.view.LayoutInflater;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionHolder;
+import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionViewHolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public abstract class ServicesIntroductionBaseAdapter extends RecyclerView.Adapter<ServiceIntroductionHolder> {
+public abstract class ServicesIntroductionBaseAdapter extends RecyclerView.Adapter<ServiceIntroductionViewHolder> {
     public final ArrayList<String> titles;
     public final ArrayList<String> introduction;
     public final LayoutInflater inflater;
