@@ -135,4 +135,6 @@
     <string name="create_bill">صدور قبض</string>
     <string name="news">اخبار</string>
     <string name="request_type">نوع درخواست</string>
+    <string name="unfinished_requests">درخواست\u200cهای نیمه تمام</string>
+    <string name="finished_requests">درخواست\u200cهای پایان یافته</string>
 </resources>

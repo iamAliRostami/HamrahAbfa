@@ -42,7 +42,6 @@ public class FollowRequestListFinishedFragment extends Fragment implements View.
 
     private void initialize() {
         initializeRecyclerView();
-        binding.floatButtonSearch.setOnClickListener(this);
     }
 
     private void initializeRecyclerView() {

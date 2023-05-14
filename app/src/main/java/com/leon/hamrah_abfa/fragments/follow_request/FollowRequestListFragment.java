@@ -1,5 +1,9 @@
 package com.leon.hamrah_abfa.fragments.follow_request;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.FINISHED;
+import static com.leon.hamrah_abfa.enums.BundleEnum.TEXT_BUTTON;
+import static com.leon.hamrah_abfa.enums.BundleEnum.TRACK_NUMBER;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +23,25 @@ import java.util.Arrays;
 
 public class FollowRequestListFragment extends Fragment implements View.OnClickListener {
     private FragmentFollowRequestListBinding binding;
+    private boolean finished;
 
     public FollowRequestListFragment() {
     }
 
-    public static FollowRequestListFragment newInstance() {
-        return new FollowRequestListFragment();
+    public static FollowRequestListFragment newInstance(boolean finished) {
+        final Bundle args = new Bundle();
+        args.putBoolean(FINISHED.getValue(), finished);
+        final FollowRequestListFragment fragment = new FollowRequestListFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            finished = getArguments().getBoolean(FINISHED.getValue());
+        }
     }
 
     @Override
@@ -42,7 +54,6 @@ public class FollowRequestListFragment extends Fragment implements View.OnClickL
 
     private void initialize() {
         initializeRecyclerView();
-        binding.floatButtonSearch.setOnClickListener(this);
     }
 
     private void initializeRecyclerView() {
