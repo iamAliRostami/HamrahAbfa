@@ -39,7 +39,7 @@
                     android:layout_margin="@dimen/large_dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/text_layout_counter_number"
+                    android:layout_above="@id/text_layout_bill_id"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/home_meter" />
@@ -61,11 +61,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_counter_number"
                     style="@style/TextInputLayout"
-                    android:layout_above="@id/text_layout_bill_id"
                     android:layout_marginStart="@dimen/large_dp"
                     android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/counter_number"
                     app:counterEnabled="true"
+                    android:layout_centerInParent="true"
                     app:counterMaxLength="7"
                     app:helperText="@string/enter_counter_number"
                     app:helperTextTextAppearance="@style/TextHelper"
@@ -81,8 +81,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_bill_id"
+                    android:layout_above="@id/text_layout_counter_number"
                     style="@style/TextInputLayout"
-                    android:layout_centerInParent="true"
                     android:layout_margin="@dimen/large_dp"
                     android:hint="@string/bill_id"
                     app:helperText="@string/bill_id_help">
@@ -99,7 +99,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_mobile"
                     style="@style/TextInputLayout"
-                    android:layout_below="@id/text_layout_bill_id"
+                    android:layout_below="@id/text_layout_counter_number"
                     android:layout_marginStart="@dimen/large_dp"
                     android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/mobile"

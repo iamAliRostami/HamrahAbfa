@@ -13,7 +13,8 @@ import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileBaseFragment;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileVerificationCodeFragment;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 
-public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBaseFragment.ICallback {
+public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBaseFragment.ICallback,
+ChangeMobileVerificationCodeFragment.ICallback{
 
     private ActivityChangeMobileBinding binding;
     private ChangeMobileViewModel viewModel;

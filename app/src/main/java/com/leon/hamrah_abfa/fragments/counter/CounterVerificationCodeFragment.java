@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.counter;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
+import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
@@ -82,7 +83,7 @@ public class CounterVerificationCodeFragment extends Fragment implements
             binding.imageViewRight.setVisibility(View.GONE);
             startCounter();
         } else if (id == R.id.image_view_edit) {
-            callback.displayView(COUNTER_BASE_FRAGMENT);
+            callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
         }
     }
 

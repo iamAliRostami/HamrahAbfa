@@ -1,14 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/large_dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.change_mobile.ChangeMobileVerificationCodeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_submit"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/font_huge_value"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/medium_dp"
+        card_view:cardElevation="@dimen/medium_dp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/text_view_tip"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_message" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/xlarge_dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/purple_7001" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_background"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:adjustViewBounds="true"
+                android:src="@drawable/background_set_counter" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_tip"
+                style="@style/TitleHelp"
+                android:layout_above="@id/linear_layout_mobile"
+                android:layout_marginStart="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
+                android:text="@string/enter_code" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/linear_layout_code"
+                android:layout_marginStart="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
+                android:gravity="center_vertical|start">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_mobile"
+                    style="@style/TextItem.SingleLine"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:padding="@dimen/small_dp"
+                    android:textAppearance="@style/TextStyleMedium" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/small_dp"
+                    android:src="@drawable/ic_edit"
+                    android:tint="@color/purple_7001" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/large_dp"
+                android:gravity="center">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_4"
+                    style="@style/InputVerificationCode" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_3"
+                    style="@style/InputVerificationCode" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_2"
+                    style="@style/InputVerificationCode" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_1"
+                    style="@style/InputVerificationCode" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/relative_layout_counter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_code"
+                android:layout_marginStart="@dimen/xlarge_dp"
+                android:layout_marginEnd="@dimen/xlarge_dp"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/xlarge_dp"
+                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:padding="@dimen/small_dp"
+                    android:src="@drawable/arrow_right"
+                    android:visibility="gone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_try_again"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/image_view_right"
+                    android:text="@string/send_again"
+                    android:textAppearance="@style/TextStyleSmall.Bold"
+                    android:visibility="gone" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/xlarge_dp"
+                    android:text="@string/one_minute"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_submit"
+        style="@style/ButtonSubmit"
+        android:layout_alignParentBottom="true"
+        android:text="@string/confirm" />
+
+</RelativeLayout>
