@@ -71,7 +71,7 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_layout_mobile"
                             style="@style/TextInputLayout"
-                            android:hint="@string/phone_number"
+                            android:hint="@string/mobile"
                             app:counterMaxLength="11"
                             app:placeholderText="@string/mobile_hint">
 

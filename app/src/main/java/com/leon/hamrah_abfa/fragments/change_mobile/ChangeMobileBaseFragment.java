@@ -1,6 +1,6 @@
-package com.leon.hamrah_abfa.fragments.counter;
+package com.leon.hamrah_abfa.fragments.change_mobile;
 
-import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_VERIFICATION_CODE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.MOBILE_REGEX;
 import static com.leon.toast.RTLToast.warning;
 
@@ -15,17 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
+import com.leon.hamrah_abfa.databinding.FragmentChangeMobileBaseBinding;
 
-public class CounterBaseFragment extends Fragment implements View.OnClickListener {
+public class ChangeMobileBaseFragment extends Fragment implements View.OnClickListener {
+    private FragmentChangeMobileBaseBinding binding;
     private ICallback callback;
-    private FragmentCounterBaseBinding binding;
 
-    public CounterBaseFragment() {
+    public ChangeMobileBaseFragment() {
     }
 
-    public static CounterBaseFragment newInstance() {
-        return new CounterBaseFragment();
+    public static ChangeMobileBaseFragment newInstance() {
+        return new ChangeMobileBaseFragment();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentCounterBaseBinding.inflate(inflater, container, false);
+        binding = FragmentChangeMobileBaseBinding.inflate(inflater, container, false);
         binding.setViewModel(callback.getViewModel());
         initialize();
         return binding.getRoot();
@@ -51,30 +51,22 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (mobileValidation()) {
-                if (callback.getViewModel().getCounterNumber() == null ||
-                        callback.getViewModel().getCounterNumber().isEmpty()) {
-                    warning(requireContext(), getString(R.string.enter_counter_number)).show();
-                    binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
-                    binding.editTextCounterNumber.requestFocus();
-                } else {
-
-                    callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
-                }
+                callback.displayView(CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT);
             }
         }
     }
 
     private boolean mobileValidation() {
         boolean cancel = false;
-        if (callback.getViewModel().getMobile() == null || callback.getViewModel().getMobile().isEmpty()) {
+        if (callback.getViewModel().getNewMobile() == null || callback.getViewModel().getNewMobile().isEmpty()) {
             warning(requireContext(), getString(R.string.enter_mobile)).show();
-            binding.editTextMobile.setError(getString(R.string.enter_mobile));
-            binding.editTextMobile.requestFocus();
+            binding.editTextNewMobile.setError(getString(R.string.enter_mobile));
+            binding.editTextNewMobile.requestFocus();
             cancel = true;
-        } else if (!MOBILE_REGEX.matcher(callback.getViewModel().getMobile()).matches()) {
+        } else if (!MOBILE_REGEX.matcher(callback.getViewModel().getNewMobile()).matches()) {
             warning(requireContext(), getString(R.string.mobile_error)).show();
-            binding.editTextMobile.setError(getString(R.string.mobile_error));
-            binding.editTextMobile.requestFocus();
+            binding.editTextNewMobile.setError(getString(R.string.mobile_error));
+            binding.editTextNewMobile.requestFocus();
             cancel = true;
         }
         return !cancel;
@@ -86,10 +78,9 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
         if (context instanceof Activity) callback = (ICallback) context;
     }
 
-
     public interface ICallback {
-        CounterViewModel getViewModel();
-
         void displayView(int position);
+
+        ChangeMobileViewModel getViewModel();
     }
 }

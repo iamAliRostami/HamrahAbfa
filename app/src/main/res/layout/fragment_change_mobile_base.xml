@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.counter.CounterViewModel" />
+            type="com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/large_dp"
-        tools:context=".fragments.counter.CounterBaseFragment">
+        tools:context=".fragments.change_mobile.ChangeMobileBaseFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
@@ -35,14 +35,14 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_icon"
-                    android:padding="@dimen/xlarge_dp"
-                    android:layout_margin="@dimen/large_dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/text_layout_counter_number"
+                    android:layout_above="@id/text_layout_bill_id"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/home_meter" />
+                    android:layout_margin="@dimen/large_dp"
+                    android:padding="@dimen/xlarge_dp"
+                    android:src="@drawable/home_change_number" />
 
                 <View
                     android:layout_width="match_parent"
@@ -59,31 +59,11 @@
                     android:src="@drawable/background_set_counter" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/text_layout_counter_number"
-                    style="@style/TextInputLayout"
-                    android:layout_above="@id/text_layout_bill_id"
-                    android:layout_marginStart="@dimen/large_dp"
-                    android:layout_marginEnd="@dimen/large_dp"
-                    android:hint="@string/counter_number"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="7"
-                    app:helperText="@string/enter_counter_number"
-                    app:helperTextTextAppearance="@style/TextHelper"
-                    app:placeholderText="@string/counter_number">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_counter_number"
-                        style="@style/TextInput"
-                        android:inputType="number"
-                        android:maxLength="7"
-                        android:text="@={viewModel.counterNumber}" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_bill_id"
                     style="@style/TextInputLayout"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="@dimen/large_dp"
+                    android:layout_above="@id/text_layout_old_mobile"
+                    android:layout_marginStart="@dimen/large_dp"
+                    android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/bill_id"
                     app:helperText="@string/bill_id_help">
 
@@ -97,24 +77,42 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/text_layout_mobile"
+                    android:id="@+id/text_layout_old_mobile"
                     style="@style/TextInputLayout"
-                    android:layout_below="@id/text_layout_bill_id"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/large_dp"
+                    android:hint="@string/mobile_number_old">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_old_mobile"
+                        style="@style/TextInput"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:text="@={viewModel.oldMobile}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_new_mobile"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_layout_old_mobile"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginStart="@dimen/large_dp"
                     android:layout_marginEnd="@dimen/large_dp"
-                    android:hint="@string/mobile"
+                    android:hint="@string/new_mobile_number"
                     app:counterMaxLength="11"
                     app:helperText="@string/mobile_tip"
                     app:placeholderText="@string/mobile_hint">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_mobile"
+                        android:id="@+id/edit_text_new_mobile"
                         style="@style/TextInput"
                         android:inputType="phone"
                         android:maxLength="11"
-                        android:text="@={viewModel.mobile}" />
+                        android:text="@={viewModel.newMobile}" />
                 </com.google.android.material.textfield.TextInputLayout>
-
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

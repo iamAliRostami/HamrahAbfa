@@ -12,8 +12,7 @@
     <string name="canceled">عملیات متوقف شد.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="welcome_to_abfa">به همراه آبفا خوش آمدید</string>
-    <string name="mobile_tip">با وارد نمودن شماره همراه، یک کد تایید برای شما ارسال خواهد شد</string>
-    <string name="phone_number">شماره همراه</string>
+    <string name="mobile_tip">با وارد نمودن شماره موبایل، یک کد تایید برای شما ارسال خواهد شد</string>
     <string name="mobile_hint">09*********</string>
     <string name="sign_in_up">ورود / ثبت نام</string>
     <string name="_6_dashes">------</string>
@@ -37,7 +36,7 @@
     <string name="send_again">ارسال مجدد</string>
     <string name="enter_mobile">شماره موبایل را وارد کنید</string>
     <string name="mobile_error">شماره موبایل به درستی وارد نشده است</string>
-    <string name="mobile">شماره همراه </string>
+    <string name="mobile">شماره موبایل </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -49,7 +48,7 @@
     <string name="cart">صورت\u200cحساب</string>
     <string name="requests">درخواست\u200cها</string>
     <string name="last_bills">ده قبض آخر</string>
-    <string name="change_number">تغییر شماره همراه</string>
+    <string name="change_number">تغییر شماره موبایل</string>
     <string name="contact_us">ارتباط با آبفا</string>
     <string name="sign_account">ثبت انشعاب</string>
     <string name="bill_id">شناسه قبض</string>
@@ -138,4 +137,6 @@
     <string name="unfinished_requests">درخواست\u200cهای نیمه تمام</string>
     <string name="finished_requests">درخواست\u200cهای پایان یافته</string>
     <string name="bill_id_help">برای تغییر شناسه\u200cی قبض، کاردهای صفحه\u200cی خانه را جابجا کنید</string>
+    <string name="mobile_number_old">موبایل پیشین</string>
+    <string name="new_mobile_number">موبایل جدید</string>
 </resources>

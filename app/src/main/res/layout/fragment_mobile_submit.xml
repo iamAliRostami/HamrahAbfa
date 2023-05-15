@@ -71,7 +71,7 @@
                     style="@style/TextInputLayout"
                     android:layout_below="@id/text_view_title"
                     android:layout_marginTop="@dimen/xlarge_dp"
-                    android:hint="@string/phone_number"
+                    android:hint="@string/mobile"
                     app:counterMaxLength="11"
                     app:helperText="@{viewModel.tip}"
                     app:placeholderText="@string/mobile_hint">
