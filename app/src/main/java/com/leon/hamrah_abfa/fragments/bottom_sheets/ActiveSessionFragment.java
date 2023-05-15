@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class ActiveSessionFragment extends BottomSheetDialogFragment implements View.OnClickListener {
     private FragmentActiveSessionBinding binding;
-
     public ActiveSessionFragment() {
     }
 
@@ -38,7 +37,6 @@ public class ActiveSessionFragment extends BottomSheetDialogFragment implements 
         initialize();
         return binding.getRoot();
     }
-
     private void initialize() {
         final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
         activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
