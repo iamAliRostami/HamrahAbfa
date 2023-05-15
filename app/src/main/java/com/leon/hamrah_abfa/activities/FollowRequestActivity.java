@@ -2,6 +2,8 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
+import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_TRACK;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.view.View;
 
@@ -12,8 +14,8 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
-import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFragment;
+import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestTrackFragment;
 
 public class FollowRequestActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
     private ActivityFollowRequestBinding binding;
@@ -70,7 +72,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.float_button_search) {
-
+            ShowFragmentDialogOnce(v.getContext(), FOLLOW_REQUEST_TRACK.getValue(), FollowRequestTrackFragment.newInstance());
         }
     }
 

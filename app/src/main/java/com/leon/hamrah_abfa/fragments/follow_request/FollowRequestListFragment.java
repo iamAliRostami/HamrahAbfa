@@ -24,14 +24,13 @@ import java.util.Arrays;
 public class FollowRequestListFragment extends Fragment implements View.OnClickListener {
     private FragmentFollowRequestListBinding binding;
     private boolean finished;
-
     public FollowRequestListFragment() {
     }
 
     public static FollowRequestListFragment newInstance(boolean finished) {
+        final FollowRequestListFragment fragment = new FollowRequestListFragment();
         final Bundle args = new Bundle();
         args.putBoolean(FINISHED.getValue(), finished);
-        final FollowRequestListFragment fragment = new FollowRequestListFragment();
         fragment.setArguments(args);
         return fragment;
     }

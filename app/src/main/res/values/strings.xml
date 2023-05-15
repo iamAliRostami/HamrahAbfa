@@ -140,4 +140,6 @@
     <string name="mobile_number_old">موبایل پیشین</string>
     <string name="new_mobile_number">موبایل جدید</string>
     <string name="repetitive_mobile">شماره موبایل باید متفاوت باشد</string>
+    <string name="search">جستجو</string>
+    <string name="search_track">جستجوی کد پیگیری</string>
 </resources>

@@ -1,60 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/large_dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.follow_request.FollowRequestTrackFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_content"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_icon"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/large_dp"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="@dimen/medium_dp"
-        card_view:cardElevation="@dimen/medium_dp">
+        android:src="@drawable/ic_follow_request"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_title" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/medium_dp"
-            android:orientation="vertical">
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_title"
+        style="@style/Title.Bottom"
+        android:text="@string/search_track"
+        app:layout_constraintBottom_toTopOf="@id/text_layout_track_number"
+        app:layout_constraintStart_toEndOf="@id/image_view_icon" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_follow_request" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_down"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_view_title" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/text_layout_track_number"
-                style="@style/TextInputLayout"
-                android:hint="@string/track_number"
-                app:counterMaxLength="11"
-                app:helperText="@string/enter_track_number"
-                app:helperTextTextAppearance="@style/TextHelper"
-                app:placeholderText="@string/track_number">
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_track_number"
+        style="@style/TextInputLayout"
+        android:layout_marginBottom="@dimen/large_dp"
+        android:hint="@string/track_number"
+        app:counterMaxLength="11"
+        app:helperText="@string/enter_track_number"
+        app:helperTextTextAppearance="@style/TextHelper"
+        app:layout_constraintBottom_toTopOf="@id/button_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:placeholderText="@string/track_number">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_track_number"
-                    style="@style/TextInput"
-                    android:inputType="number"
-                    android:text="@={viewModel.mobile}" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_track_number"
+            style="@style/TextInput"
+            android:inputType="number"
+            android:text="@={viewModel.mobile}" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_start"
+        android:id="@+id/button_search"
         style="@style/ButtonSubmit"
-        android:layout_alignParentBottom="true"
-        android:text="@string/confirm" />
+        android:text="@string/search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

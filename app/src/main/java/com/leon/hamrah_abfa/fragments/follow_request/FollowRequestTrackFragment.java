@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestTrackBinding;
 
-public class FollowRequestTrackFragment extends Fragment {
+public class FollowRequestTrackFragment extends BottomSheetDialogFragment {
     private FragmentFollowRequestTrackBinding binding;
 
     public FollowRequestTrackFragment() {
@@ -32,9 +32,11 @@ public class FollowRequestTrackFragment extends Fragment {
         initialize();
         return binding.getRoot();
     }
+
     private void initialize() {
 
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
