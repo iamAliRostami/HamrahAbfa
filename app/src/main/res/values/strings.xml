@@ -137,4 +137,5 @@
     <string name="request_type">نوع درخواست</string>
     <string name="unfinished_requests">درخواست\u200cهای نیمه تمام</string>
     <string name="finished_requests">درخواست\u200cهای پایان یافته</string>
+    <string name="bill_id_help">برای تغییر شناسه\u200cی قبض، کاردهای صفحه\u200cی خانه را جابجا کنید</string>
 </resources>

@@ -40,7 +40,7 @@
                     android:layout_above="@id/text_layout_counter_number"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_counter" />
+                    android:src="@drawable/home_meter" />
 
                 <View
                     android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_counter_number"
                     style="@style/TextInputLayout"
-                    android:layout_centerInParent="true"
+                    android:layout_above="@id/text_layout_bill_id"
                     android:layout_marginStart="@dimen/large_dp"
                     android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/counter_number"
@@ -78,10 +78,29 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_bill_id"
+                    style="@style/TextInputLayout"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/large_dp"
+                    android:hint="@string/bill_id"
+                    app:helperText="@string/bill_id_help">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_bill_id"
+                        style="@style/TextInput"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:text="@={viewModel.billId}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_mobile"
                     style="@style/TextInputLayout"
-                    android:layout_below="@id/text_layout_counter_number"
-                    android:layout_margin="@dimen/large_dp"
+                    android:layout_below="@id/text_layout_bill_id"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/large_dp"
+                    android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/phone_number"
                     app:counterMaxLength="11"
                     app:helperText="@string/mobile_tip"

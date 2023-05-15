@@ -19,6 +19,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.activities.ChangeMobileActivity;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
@@ -84,6 +85,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
                     (callback.getCardPagerAdapter().getItemCount() - 1));
             startActivity(intent);
+        } else if (position == 7) {
+            startActivity(createIntent(ChangeMobileActivity.class));
         }
     }
 
