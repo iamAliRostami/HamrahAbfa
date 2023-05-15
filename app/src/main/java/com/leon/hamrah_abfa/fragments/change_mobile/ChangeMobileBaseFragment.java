@@ -68,6 +68,11 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
             binding.editTextNewMobile.setError(getString(R.string.mobile_error));
             binding.editTextNewMobile.requestFocus();
             cancel = true;
+        }else if (callback.getViewModel().getNewMobile().equals(callback.getViewModel().getOldMobile())){
+            warning(requireContext(), getString(R.string.repetitive_mobile)).show();
+            binding.editTextNewMobile.setError(getString(R.string.repetitive_mobile));
+            binding.editTextNewMobile.requestFocus();
+            cancel = true;
         }
         return !cancel;
     }

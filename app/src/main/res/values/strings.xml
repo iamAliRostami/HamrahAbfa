@@ -139,4 +139,5 @@
     <string name="bill_id_help">برای تغییر شناسه\u200cی قبض، کاردهای صفحه\u200cی خانه را جابجا کنید</string>
     <string name="mobile_number_old">موبایل پیشین</string>
     <string name="new_mobile_number">موبایل جدید</string>
+    <string name="repetitive_mobile">شماره موبایل باید متفاوت باشد</string>
 </resources>
