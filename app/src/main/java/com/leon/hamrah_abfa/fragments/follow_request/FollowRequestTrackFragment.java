@@ -5,12 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestTrackBinding;
 
-public class FollowRequestTrackFragment extends BottomSheetDialogFragment {
+public class FollowRequestTrackFragment extends BaseBottomSheetFragment {
     private FragmentFollowRequestTrackBinding binding;
 
     public FollowRequestTrackFragment() {
@@ -26,15 +24,18 @@ public class FollowRequestTrackFragment extends BottomSheetDialogFragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentFollowRequestTrackBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
+    }
 
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
     }
 
     @Override
