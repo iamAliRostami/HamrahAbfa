@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
 import com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel;
 
@@ -26,10 +27,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SubmitInfoFragment extends BottomSheetDialogFragment implements View.OnClickListener {
+public class SubmitInfoFragment extends BaseBottomSheetFragment {
     private FragmentSubmitInfoBottomBinding binding;
-    private ICallback callback;
     private final CardViewModel viewModel = new CardViewModel();
+    private ICallback callback;
 
     public SubmitInfoFragment() {
     }
@@ -44,7 +45,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentSubmitInfoBottomBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
         initialize();
@@ -58,6 +59,7 @@ public class SubmitInfoFragment extends BottomSheetDialogFragment implements Vie
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (viewModel.getBillId().isEmpty()) {

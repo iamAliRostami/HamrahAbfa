@@ -26,7 +26,7 @@
                 android:id="@+id/text_view_title"
                 style="@style/Title.Bottom"
                 android:layout_weight="1"
-                android:text="@string/account_submit" />
+                android:text="@string/deter_location" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view_arrow_down"

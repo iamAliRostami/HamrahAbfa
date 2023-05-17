@@ -18,14 +18,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.slider.Slider;
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentThemeBinding;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ThemeFragment extends BottomSheetDialogFragment implements View.OnClickListener {
+public class ThemeFragment extends BaseBottomSheetFragment {
     private FragmentThemeBinding binding;
     private ICallback callback;
 
@@ -42,8 +42,7 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentThemeBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
@@ -103,9 +102,9 @@ public class ThemeFragment extends BottomSheetDialogFragment implements View.OnC
 
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         final int id = v.getId();
-        if (id == R.id.button_submit) {
-        } else if (id == R.id.linear_layout_dark) {
+        if (id == R.id.linear_layout_dark) {
             setThemeMode(THEME_DARK);
         } else if (id == R.id.linear_layout_light) {
             setThemeMode(THEME_LIGHT);

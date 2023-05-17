@@ -24,8 +24,8 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
 import com.leon.hamrah_abfa.utils.GpsTracker;
 
@@ -37,8 +37,7 @@ import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
-public class ServicesLocationFragment extends BottomSheetDialogFragment implements View.OnClickListener,
-        MapEventsReceiver {
+public class ServicesLocationFragment extends BaseBottomSheetFragment implements MapEventsReceiver {
     private FragmentServicesLocationBinding binding;
     private ICallback callback;
     private GeoPoint point;
@@ -66,40 +65,13 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()), getArguments().getDouble(LONGITUDE.getValue()));
         }
     }
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentServicesLocationBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
 
-//    @Override
-//    public void setupDialog(@NonNull Dialog dialog, int style) {
-//        super.setupDialog(dialog, style);
-//    }
-
-    //    @Override
-//    public void onStart() {
-//        super.onStart();
-//        Dialog dialog = getDialog();
-//
-//        if (dialog != null) {
-//            View bottomSheet = dialog.findViewById(R.id.design_bottom_sheet);
-//            bottomSheet.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-//        }
-//        View view = getView();
-//        view.post(() -> {
-//            View parent = (View) view.getParent();
-//            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) (parent).getLayoutParams();
-//            CoordinatorLayout.Behavior behavior = params.getBehavior();
-//            BottomSheetBehavior bottomSheetBehavior = (BottomSheetBehavior) behavior;
-//            bottomSheetBehavior.setPeekHeight(view.getMeasuredHeight());
-////            ((View)bottomSheet.getParent()).setBackgroundColor(Color.TRANSPARENT)
-//
-//        });
-//    }
     private void initialize() {
         initializeMap();
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
@@ -112,7 +84,6 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         binding.imageViewArrowDown.setOnClickListener(this);
 
     }
-
     private void initializeMap() {
         Configuration.getInstance().load(requireContext(), PreferenceManager.getDefaultSharedPreferences(requireContext()));
         binding.mapView.getZoomController().
@@ -138,7 +109,6 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
             dismiss();
         }
     }
-
     private void showCurrentLocation() {
         final GpsTracker gpsTracker = new GpsTracker(requireContext());
         if (!gpsTracker.canGetLocation()) {
@@ -179,27 +149,6 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof Activity) callback = (ICallback) context;
-    }
-
-    public interface ICallback {
-        void setLocation(Bitmap location, GeoPoint point);
-    }
-
-    public void onResume() {
-        super.onResume();
-//        BottomSheetBehavior.from(binding.getRoot()).setState(BottomSheetBehavior.STATE_EXPANDED);
-
-//        View bottomSheet = binding.test;
-//        BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
-//        behavior.setPeekHeight(1500);
-//        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        binding.mapView.onResume();
-    }
-
-    @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final View bottomSheet = view.findViewById(R.id.linear_layout_container);
@@ -224,8 +173,23 @@ public class ServicesLocationFragment extends BottomSheetDialogFragment implemen
         return serviceLocationDialog;
     }
 
+    public void onResume() {
+        super.onResume();
+        binding.mapView.onResume();
+    }
+
     public void onPause() {
         super.onPause();
         binding.mapView.onPause();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+
+    public interface ICallback {
+        void setLocation(Bitmap location, GeoPoint point);
     }
 }

@@ -142,4 +142,6 @@
     <string name="repetitive_mobile">شماره موبایل باید متفاوت باشد</string>
     <string name="search">جستجو</string>
     <string name="search_track">جستجوی کد پیگیری</string>
+    <string name="deter_location">تعیین محل</string>
+    <string name="change_appearance">تغییر ظاهر</string>
 </resources>

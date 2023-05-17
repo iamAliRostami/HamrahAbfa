@@ -5,18 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.ActiveSessionAdapter;
+import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentActiveSessionBinding;
 import com.leon.hamrah_abfa.tables.ActiveSession;
 
 import java.util.ArrayList;
 
-public class ActiveSessionFragment extends BottomSheetDialogFragment implements View.OnClickListener {
+public class ActiveSessionFragment extends BaseBottomSheetFragment {
     private FragmentActiveSessionBinding binding;
     public ActiveSessionFragment() {
     }
@@ -29,15 +27,14 @@ public class ActiveSessionFragment extends BottomSheetDialogFragment implements 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentActiveSessionBinding.inflate(inflater, container, false);
-        initialize();
+        initializeRecyclerView();
         return binding.getRoot();
     }
-    private void initialize() {
+
+    private void initializeRecyclerView() {
         final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
         activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
                 "12.12.12.12"));
@@ -49,14 +46,5 @@ public class ActiveSessionFragment extends BottomSheetDialogFragment implements 
                 "12.12.12.12"));
         binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), activeSessions));
         binding.recyclerViewActiveSession.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.imageViewArrowDown.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.image_view_arrow_down) {
-            dismiss();
-        }
     }
 }
