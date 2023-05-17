@@ -8,6 +8,7 @@ public enum FragmentTags {
     ACTIVE_SESSION("active session"),
     CHANGE_THEME("change theme"),
     FOLLOW_REQUEST_TRACK("follow request track"),
+    FOLLOW_REQUEST_LEVEL("follow request level"),
     SERVICE_LOCATION("service location");
 
 

@@ -1,5 +1,8 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_LEVEL;
+import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.RequestViewHolder;
+import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestLevelsFragment;
 import com.leon.hamrah_abfa.tables.Request;
 
 import java.util.ArrayList;
@@ -42,12 +46,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
         holder.textViewTrackNumber.setText(requests.get(position).getTrackNumber());
         holder.textViewRequestType.setText(requests.get(position).getTitle());
         holder.imageViewRequest.setImageDrawable(icons.getDrawable(requests.get(position).getServiceType()));
-        holder.imageViewDetail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        holder.imageViewDetail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ShowFragmentDialogOnce(inflater.getContext(), FOLLOW_REQUEST_LEVEL.getValue(), FollowRequestLevelsFragment.newInstance());
+//            }
+//        });
     }
 
     @Override
