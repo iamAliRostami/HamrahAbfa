@@ -12,7 +12,9 @@
 <!--    <color name="light_gray">#BEB7A4</color>-->
 <!--    <color name="light_gray">#F1F2EE</color>-->
 <!--    <color name="light_gray">#E6EBE0</color>-->
-    <color name="light_gray">#E0EFDA</color>
+<!--    <color name="light_gray">#878E76</color>-->
+    <!--    <color name="light_gray">#E0EFDA</color>-->
+    <color name="light_gray">#dddddd</color>
     <color name="dark_gray">#373737</color>
 
     <color name="light">#FFFAFF</color>
