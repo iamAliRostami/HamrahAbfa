@@ -58,7 +58,7 @@ public class NewsFragment extends Fragment {
                 binding.recyclerViewNews, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                getApplicationComponent().MyDatabase().notificationDao().updateOnOffLoadSeen(
+                getApplicationComponent().MyDatabase().newsDao().updateNewsSeen(
                         adapter.getNews(position).customId, true);
                 callback.setUnseenNewsNumber();
                 adapter.updateNews(position);
@@ -71,11 +71,13 @@ public class NewsFragment extends Fragment {
         });
         binding.recyclerViewNews.addOnItemTouchListener(listener);
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) callback = (ICallback) context;
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
