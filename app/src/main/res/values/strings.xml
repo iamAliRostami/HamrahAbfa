@@ -144,4 +144,12 @@
     <string name="search_track">جستجوی کد پیگیری</string>
     <string name="deter_location">تعیین محل</string>
     <string name="change_appearance">تغییر ظاهر</string>
+
+
+    <string name="criticize">انتقاد و پیشنهاد</string>
+    <string name="complaint">شکایت</string>
+    <string name="faq">سوالات متداول</string>
+    <string name="branches">شعب</string>
+    <string name="forbidden">انشعاب غیرمجاز</string>
+    <string name="phones">تلفن\u200cها</string>
 </resources>

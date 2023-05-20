@@ -20,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ChangeMobileActivity;
+import com.leon.hamrah_abfa.activities.ContactUsActivity;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
@@ -87,6 +88,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             startActivity(intent);
         } else if (position == 7) {
             startActivity(createIntent(ChangeMobileActivity.class));
+        } else if (position == 8) {
+            startActivity(createIntent(ContactUsActivity.class));
         }
     }
 

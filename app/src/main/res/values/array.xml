@@ -192,6 +192,25 @@
         <item>@drawable/setting_logout</item>
     </array>
 
+
+    <string-array name="contact_abfa_menu">
+        <item>@string/criticize</item>
+        <item>@string/complaint</item>
+        <item>@string/faq</item>
+        <item>@string/branches</item>
+        <item>@string/forbidden</item>
+        <item>@string/phones</item>
+    </string-array>
+
+    <array name="contact_abfa_icons">
+        <item>@drawable/ic_criticize</item>
+        <item>@drawable/ic_complaint</item>
+        <item>@drawable/ic_faq</item>
+        <item>@drawable/ic_branches</item>
+        <item>@drawable/ic_forbidden</item>
+        <item>@drawable/ic_contacts1</item>
+    </array>
+
     <string-array name="welcome_item_titles">
         <item>@string/services</item>
         <item>@string/payment_services</item>
