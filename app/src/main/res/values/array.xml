@@ -187,11 +187,10 @@
         <item>@drawable/setting_active_device</item>
         <item>@drawable/setting_change_theme</item>
         <item>@drawable/setting_help</item>
-        <item>@drawable/setting_update</item>
-        <item>@drawable/setting_share</item>
+        <item>@drawable/setting_update1</item>
+        <item>@drawable/setting_share1</item>
         <item>@drawable/setting_logout</item>
     </array>
-
 
     <string-array name="contact_abfa_menu">
         <item>@string/criticize</item>
@@ -203,12 +202,12 @@
     </string-array>
 
     <array name="contact_abfa_icons">
-        <item>@drawable/ic_criticize</item>
+        <item>@drawable/ic_criticize2</item>
         <item>@drawable/ic_complaint</item>
         <item>@drawable/ic_faq</item>
-        <item>@drawable/ic_branches</item>
+        <item>@drawable/ic_branches1</item>
         <item>@drawable/ic_forbidden</item>
-        <item>@drawable/ic_contacts1</item>
+        <item>@drawable/ic_contacts2</item>
     </array>
 
     <string-array name="welcome_item_titles">

@@ -7,7 +7,6 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityContactUsBinding;
-import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 
 public class ContactUsActivity extends BaseActivity implements AdapterView.OnItemClickListener {
     private ActivityContactUsBinding binding;
