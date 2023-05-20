@@ -30,6 +30,6 @@
         style="@style/HeaderImageView"
         android:layout_alignParentEnd="true"
         android:layout_margin="@dimen/medium_dp"
-        android:src="@drawable/setting" />
+        android:src="@drawable/ic_setting" />
 
 </RelativeLayout>

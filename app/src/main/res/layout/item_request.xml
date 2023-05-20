@@ -18,7 +18,7 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:padding="@dimen/tiny_dp"
-            android:src="@drawable/setting" />
+            android:src="@drawable/ic_setting" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
