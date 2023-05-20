@@ -203,7 +203,7 @@
 
     <array name="contact_abfa_icons">
         <item>@drawable/ic_criticize2</item>
-        <item>@drawable/ic_complaint</item>
+        <item>@drawable/ic_complaint2</item>
         <item>@drawable/ic_faq</item>
         <item>@drawable/ic_branches1</item>
         <item>@drawable/ic_forbidden</item>
