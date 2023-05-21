@@ -28,7 +28,7 @@ import com.yandex.metrica.YandexMetricaConfig;
 
 public class MyApplication extends Application {
     private static ApplicationComponent applicationComponent;
-    private static MyApplication singleton = null;
+    private static MyApplication instance = null;
 
     @Override
     public void onCreate() {
@@ -45,10 +45,6 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(getInstance());
-    }
-
-    public static ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
     }
 
     private void setDefaultNightMode() {
@@ -74,11 +70,15 @@ public class MyApplication extends Application {
         applicationComponent.inject(getInstance());
     }
 
+    public static ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
     public static MyApplication getInstance() {
-        if (singleton == null) {
-            singleton = new MyApplication();
+        if (instance == null) {
+            instance = new MyApplication();
         }
-        return singleton;
+        return instance;
     }
 
     protected void setupYandex() {
