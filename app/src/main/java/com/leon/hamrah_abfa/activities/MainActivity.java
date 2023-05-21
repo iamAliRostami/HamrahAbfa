@@ -4,7 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -116,7 +116,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.float_button_add) {
-            ShowFragmentDialogOnce(this, SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
+            showFragmentDialogOnce(this, SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
         } else if (id == R.id.image_view_setting) {
             final Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
             settingActivityResultLauncher.launch(intent);

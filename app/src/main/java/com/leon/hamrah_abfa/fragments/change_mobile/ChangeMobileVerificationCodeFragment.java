@@ -1,8 +1,8 @@
 package com.leon.hamrah_abfa.fragments.change_mobile;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
-import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -30,8 +30,10 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
         View.OnKeyListener, View.OnClickListener {
     private FragmentChangeMobileVerificationCodeBinding binding;
     private ICallback callback;
+
     public ChangeMobileVerificationCodeFragment() {
     }
+
     public static ChangeMobileVerificationCodeFragment newInstance() {
         return new ChangeMobileVerificationCodeFragment();
     }
@@ -81,12 +83,12 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
             binding.imageViewRight.setVisibility(View.GONE);
             startCounter();
         } else if (id == R.id.image_view_edit) {
-            callback.displayView(COUNTER_BASE_FRAGMENT);
+            callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
         }
     }
 
     private void confirmCode() {
-        ShowFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
+        showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
                 RequestDoneFragment.newInstance("123456", getString(R.string.change_number),
                         new RequestDoneFragment.IClickListener() {
                             @Override

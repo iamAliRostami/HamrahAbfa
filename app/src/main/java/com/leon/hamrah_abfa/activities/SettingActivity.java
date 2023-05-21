@@ -5,7 +5,7 @@ import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.content.Intent;
 import android.view.View;
@@ -29,7 +29,7 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
         setContentView(binding.getRoot());
         if (getIntent().getExtras() != null) {
             if (getIntent().getExtras().getBoolean(SHOW_PRE_FRAGMENT.getValue())) {
-                ShowFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
+                showFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
                 isChange = true;
             }
             getIntent().getExtras().clear();
@@ -57,9 +57,9 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
-            ShowFragmentDialogOnce(this, ACTIVE_SESSION.getValue(), ActiveSessionFragment.newInstance());
+            showFragmentDialogOnce(this, ACTIVE_SESSION.getValue(), ActiveSessionFragment.newInstance());
         } else if (position == 1) {
-            ShowFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
+            showFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
         }
     }
 

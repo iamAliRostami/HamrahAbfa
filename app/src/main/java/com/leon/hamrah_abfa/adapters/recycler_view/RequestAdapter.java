@@ -1,12 +1,8 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
-import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_LEVEL;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.RequestViewHolder;
-import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestLevelsFragment;
 import com.leon.hamrah_abfa.tables.Request;
 
 import java.util.ArrayList;

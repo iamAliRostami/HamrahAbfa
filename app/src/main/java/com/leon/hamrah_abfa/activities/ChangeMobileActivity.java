@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT;
+import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
 
 import android.view.View;
 
@@ -14,7 +15,7 @@ import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileVerificationCode
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 
 public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBaseFragment.ICallback,
-ChangeMobileVerificationCodeFragment.ICallback{
+        ChangeMobileVerificationCodeFragment.ICallback {
 
     private ActivityChangeMobileBinding binding;
     private ChangeMobileViewModel viewModel;
@@ -33,11 +34,11 @@ ChangeMobileVerificationCodeFragment.ICallback{
     @Override
     public void displayView(int position) {
         if (position == CHANGE_MOBILE_BASE_FRAGMENT) {
-            getSupportFragmentManager().beginTransaction().replace(binding.fragmentChangeNumber.getId(),
-                    ChangeMobileBaseFragment.newInstance()).commit();
+            replaceFragment(this, binding.fragmentChangeNumber.getId(),
+                    ChangeMobileBaseFragment.newInstance());
         } else if (position == CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT) {
-            getSupportFragmentManager().beginTransaction().replace(binding.fragmentChangeNumber.getId(),
-                    ChangeMobileVerificationCodeFragment.newInstance()).commit();
+            replaceFragment(this, binding.fragmentChangeNumber.getId(),
+                    ChangeMobileVerificationCodeFragment.newInstance());
         }
     }
 

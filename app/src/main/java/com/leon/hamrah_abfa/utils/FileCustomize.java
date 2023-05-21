@@ -21,14 +21,18 @@ import java.util.Date;
 public class FileCustomize {
     @SuppressLint({"SimpleDateFormat"})
     public static File createImageFile(Context context) throws IOException {
-        String timeStamp = new SimpleDateFormat(context.getString(R.string.save_format_name)).format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        final String timeStamp = new SimpleDateFormat(context.getString(R.string.save_format_name)).format(new Date());
+        final String imageFileName = "JPEG_" + timeStamp + "_";
+        final File storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
+    }
+
+    public static Bitmap prepareImage(File fileImage) throws IOException {
+        return compressBitmap(recognizeImageAngle(fileImage.getAbsolutePath()));
     }
 
     private static Bitmap compressBitmap(Bitmap bitmap) {
@@ -50,12 +54,6 @@ public class FileCustomize {
         return bitmap;
     }
 
-    private static Bitmap rotateImage(Bitmap bitmap, float angle) {
-        final Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-    }
-
     private static Bitmap recognizeImageAngle(String path) throws IOException {
         final ExifInterface ei = new ExifInterface(path);
         switch (ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED)) {
@@ -71,7 +69,9 @@ public class FileCustomize {
         }
     }
 
-    public static Bitmap prepareImage(File fileImage) throws IOException {
-        return compressBitmap(recognizeImageAngle(fileImage.getAbsolutePath()));
+    private static Bitmap rotateImage(Bitmap bitmap, float angle) {
+        final Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
     }
 }

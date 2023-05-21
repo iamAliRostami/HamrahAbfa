@@ -2,8 +2,7 @@ package com.leon.hamrah_abfa.fragments.counter;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
-import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -88,7 +87,7 @@ public class CounterVerificationCodeFragment extends Fragment implements
     }
 
     private void confirmCode() {
-        ShowFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
+        showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
                 RequestDoneFragment.newInstance("123456", getString(R.string.create_bill),
                         new RequestDoneFragment.IClickListener() {
                             @Override

@@ -3,7 +3,7 @@ package com.leon.hamrah_abfa.utils;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.helpers.Constants.MIN_DISTANCE_CHANGE_FOR_UPDATES;
 import static com.leon.hamrah_abfa.helpers.Constants.MIN_TIME_BW_UPDATES;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.Manifest;
 import android.app.Activity;
@@ -25,12 +25,12 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.dialog.YesNoFragment;
 
 public class GpsTracker extends Service implements LocationListener {
-    private final Context context;
-    private boolean canGetLocation = false;
     private Location location;
+    private final Context context;
     private double latitude;
     private double longitude;
     protected LocationManager locationManager;
+    private boolean canGetLocation = false;
 
     public GpsTracker(Context context) {
         this.context = context;
@@ -121,7 +121,7 @@ public class GpsTracker extends Service implements LocationListener {
 //            }
 //        });
 //        alertDialog.show();
-        ShowFragmentDialogOnce(context, ASK_YES_NO.getValue(),
+        showFragmentDialogOnce(context, ASK_YES_NO.getValue(),
                 YesNoFragment.newInstance(R.drawable.ic_raw_map, context.getString(R.string.gps_settings),
                         context.getString(R.string.enable_gps), context.getString(R.string.setting)
                         , context.getString(R.string.cancel), new YesNoFragment.IClickListener() {

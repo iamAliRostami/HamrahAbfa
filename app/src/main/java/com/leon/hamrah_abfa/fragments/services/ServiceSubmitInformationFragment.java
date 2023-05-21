@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.fragments.services;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.app.Activity;
 import android.content.Context;
@@ -66,7 +66,7 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
         } else if (id == R.id.button_previous) {
             callback.displayView(SERVICE_FORM_FRAGMENT,false);
         } else if (id == R.id.image_view_location) {
-            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
+            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
                     ServicesLocationFragment.newInstance(callback.getServicesViewModel().getPoint()));
         }
     }

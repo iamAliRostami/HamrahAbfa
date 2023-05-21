@@ -3,7 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
 import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_TRACK;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.view.View;
 
@@ -35,8 +35,6 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
         binding.floatButtonSearch.setOnClickListener(this);
         initializeViewPager();
         initializeTabLayout();
-//        getSupportFragmentManager().beginTransaction().add(binding.fragmentRequest.getId(),
-//                FollowRequestListFragment.newInstance()).commit();
     }
 
     private void initializeViewPager() {
@@ -51,8 +49,6 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.finished_requests)).setIcon(R.drawable.finished_request));
         binding.tabLayout.setSelectedTabIndicator(R.drawable.cat_tabs_rounded_line_indicator);
 
-//        setUnseenNotificationNumber();
-//        setUnseenNewsNumber();
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
@@ -72,7 +68,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.float_button_search) {
-            ShowFragmentDialogOnce(v.getContext(), FOLLOW_REQUEST_TRACK.getValue(), FollowRequestTrackFragment.newInstance());
+            showFragmentDialogOnce(v.getContext(), FOLLOW_REQUEST_TRACK.getValue(), FollowRequestTrackFragment.newInstance());
         }
     }
 

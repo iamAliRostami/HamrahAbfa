@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.fragments.follow_request;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.FINISHED;
 import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_LEVEL;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -73,7 +73,7 @@ public class FollowRequestListFragment extends Fragment implements View.OnClickL
                 binding.recyclerViewRequest, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ShowFragmentDialogOnce(view.getContext(), FOLLOW_REQUEST_LEVEL.getValue(),
+                showFragmentDialogOnce(view.getContext(), FOLLOW_REQUEST_LEVEL.getValue(),
                         FollowRequestLevelsFragment.newInstance());
             }
 

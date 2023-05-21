@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.fragments.ui.cards;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -47,7 +47,7 @@ public class CardEmptyFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.image_view_add) {
-            ShowFragmentDialogOnce(requireContext(), SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
+            showFragmentDialogOnce(requireContext(), SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
         }
     }
 }

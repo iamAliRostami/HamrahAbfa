@@ -3,7 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_COMPLETE_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.view.View;
 
@@ -48,7 +48,7 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
 
     @Override
     public void confirm() {
-        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
+        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
                 getString(R.string.main_page), new RequestDoneFragment.IClickListener() {
                     @Override
                     public void yes(DialogFragment dialogFragment) {

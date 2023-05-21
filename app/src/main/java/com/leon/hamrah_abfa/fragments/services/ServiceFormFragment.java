@@ -3,7 +3,7 @@ package com.leon.hamrah_abfa.fragments.services;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_SUBMIT_INFORMATION_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -56,7 +56,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         binding.buttonPrevious.setOnClickListener(this);
         binding.imageViewLocation.setOnClickListener(this);
         binding.imageViewLocation.setOnLongClickListener(v -> {
-            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
+            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
                     ServicesLocationDialogFragment.newInstance(callback.getServicesViewModel().getPoint()));
             return false;
         });
@@ -71,7 +71,7 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         } else if (id == R.id.button_previous) {
             callback.displayView(SERVICE_INTRODUCTION_FRAGMENT, false);
         } else if (id == R.id.image_view_location) {
-            ShowFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
+            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
                     ServicesLocationFragment.newInstance(callback.getServicesViewModel().getPoint()));
         }
     }

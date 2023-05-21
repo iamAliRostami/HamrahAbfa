@@ -6,7 +6,7 @@ import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_SUBMIT_INFORMATION_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.graphics.Bitmap;
 import android.view.View;
@@ -76,7 +76,7 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
 
     @Override
     public void submitInformation() {
-        ShowFragmentDialogOnce(this, REQUEST_DONE.getValue(),
+        showFragmentDialogOnce(this, REQUEST_DONE.getValue(),
                 RequestDoneFragment.newInstance("123456", getString(R.string.main_page),
                         new RequestDoneFragment.IClickListener() {
                             @Override

@@ -12,8 +12,7 @@ import com.leon.hamrah_abfa.tables.dao.NewsDao;
 import com.leon.hamrah_abfa.tables.dao.NotificationDao;
 import com.leon.hamrah_abfa.tables.dao.UserDao;
 
-@Database(entities = {User.class, Notification.class, News.class},
-        version = 1, exportSchema = false)
+@Database(entities = {User.class, Notification.class, News.class}, version = 1, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -24,10 +23,6 @@ public abstract class MyDatabase extends RoomDatabase {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 //            database.execSQL("ALTER TABLE 'News' ADD COLUMN 'test' INTEGER NOT NULL DEFAULT 0");
-
-//            database.execSQL("CREATE TABLE t1_backup AS SELECT * FROM News");
-//            database.execSQL("DROP TABLE News");
-//            database.execSQL("ALTER TABLE t1_backup RENAME TO News");
 
             database.execSQL("CREATE TABLE t1_backup AS SELECT id, customId, summary, title, text, date, seen, category  FROM News");
             database.execSQL("DROP TABLE News");

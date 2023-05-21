@@ -20,17 +20,9 @@ public class PermissionManager {
                 Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
     }
 
-    public static boolean checkStoragePermission(Context context) {
-        return ActivityCompat.checkSelfPermission(context,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ||
-                ActivityCompat.checkSelfPermission(context,
-                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-    }
-
     public static boolean checkCameraPermission(Context context) {
-        return /*checkStoragePermission(context) &&*/
-                ActivityCompat.checkSelfPermission(context,
-                        Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+        return ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 
 }
