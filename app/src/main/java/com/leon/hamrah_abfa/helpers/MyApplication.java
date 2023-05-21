@@ -70,7 +70,7 @@ public class MyApplication extends Application {
         applicationComponent.inject(getInstance());
     }
 
-    public static ApplicationComponent getApplicationComponent() {
+    public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
 

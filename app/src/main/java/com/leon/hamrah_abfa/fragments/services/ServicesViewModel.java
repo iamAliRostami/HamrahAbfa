@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.fragments.services;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -35,7 +35,7 @@ public class ServicesViewModel extends BaseObservable {
     public ServicesViewModel(Context context, int serviceType, String billId) {
         setBillId(billId);
         setServiceType(serviceType);
-        setMobile(getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
+        setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
         setIconDrawable(context.getResources().obtainTypedArray(R.array.services_main_icons));
         setSrcIcon(iconDrawable.getResourceId(getServiceType(), -1));

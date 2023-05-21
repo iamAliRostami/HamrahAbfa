@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.os.Bundle;
 import android.view.View;
@@ -60,7 +60,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
                 new News(86, billId, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
                 new News(86, billId, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
                 new News(21, billId, "خلاصه 10", "خبر 19", "این متن خبر ده است.", "12/12/12", 1)));
-        getApplicationComponent().MyDatabase().newsDao().insertNews(news);
+        getInstance().getApplicationComponent().MyDatabase().newsDao().insertNews(news);
         final ArrayList<Notification> notifications = new ArrayList<>(Arrays.asList(
                 new Notification(12, billId, "خلاصه 1", "نوتیف 1", "این متن نوتیف یک است.", "12/12/12", 1),
                 new Notification(13, billId, "خلاصه 2", "نوتیف 11", "این متن نوتیف دو است.", "12/12/12", 3),
@@ -74,7 +74,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
                 new Notification(86, billId, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
                 new Notification(86, billId, "خلاصه 10", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
                 new Notification(21, billId, "خلاصه 11", "نوتیف 19", "این متن نوتیف ده است.", "12/12/12", 1)));
-        getApplicationComponent().MyDatabase().notificationDao().insertNotifications(notifications);
+        getInstance().getApplicationComponent().MyDatabase().notificationDao().insertNotifications(notifications);
     }
 
     private void initializeViewPager() {
@@ -105,14 +105,14 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     public void setUnseenNotificationNumber() {
         final BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
+        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
     }
 
     @Override
     public void setUnseenNewsNumber() {
         final BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
         badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
+        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
     }
 
     @Override

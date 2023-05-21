@@ -4,7 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.SHOW_PRE_FRAGMENT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.content.Intent;
@@ -46,7 +46,7 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
 
     @Override
     public void changeTheme(int value) {
-        getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), value);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(THEME.getValue(), value);
         final Intent intent = getIntent();
         setResult(RESULT_OK, intent);
         finish();

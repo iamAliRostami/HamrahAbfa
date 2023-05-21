@@ -4,7 +4,7 @@ package com.leon.hamrah_abfa.di.view_model;
 import static com.leon.hamrah_abfa.enums.ProgressType.SHOW;
 import static com.leon.hamrah_abfa.enums.ProgressType.SHOW_CANCELABLE;
 import static com.leon.hamrah_abfa.enums.ProgressType.SHOW_CANCELABLE_REDIRECT;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
@@ -34,7 +34,7 @@ public class HttpClientWrapper {
                                          final ICallback<T> callback, final ICallbackIncomplete<T> incomplete,
                                          final ICallbackError error) {
         cancel = false;
-        final CustomProgressModel progress = getApplicationComponent().CustomProgressModel();
+        final CustomProgressModel progress = getInstance().getApplicationComponent().CustomProgressModel();
         try {
             if (progressType == SHOW.getValue()) {
                 progress.show(context, context.getString(R.string.waiting));

@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.fragments.counter;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -15,7 +15,7 @@ public class CounterViewModel extends BaseObservable {
     private String billId;
 
     public CounterViewModel(String billId) {
-        setMobile(getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
+        setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setBillId(billId);
     }
 

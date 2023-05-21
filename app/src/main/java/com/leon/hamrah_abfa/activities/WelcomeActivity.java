@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.content.Intent;
 import android.view.View;
@@ -63,9 +63,9 @@ public class WelcomeActivity extends BaseActivity {
         if (id == R.id.button_skip) {
             binding.viewPagerWelcome.setCurrentItem(binding.viewPagerWelcome.getCurrentItem() + 1);
         } else if (id == R.id.button_done) {
-            getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
             //TODO permanent redirect
-            if (!getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
                 startActivity(intent);
             }
@@ -81,6 +81,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), true);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), true);
     }
 }

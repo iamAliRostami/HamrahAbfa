@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.fragments.mobile;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -79,13 +79,14 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
 //                final Intent intent = new Intent(requireContext(), MainActivity.class);
 //                startActivity(intent);
                 //TODO call new api
-                getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), callback.getViewModel().getMobile());
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), callback.getViewModel().getMobile());
                 requireActivity().finish();
             }
         } else if (id == R.id.image_view_edit) {
             callback.displayView(SUBMIT_PHONE_FRAGMENT);
         }
     }
+
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     }

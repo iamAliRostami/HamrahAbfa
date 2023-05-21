@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -52,7 +52,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     }
 
     public void setNotifications() {
-        news = new ArrayList<>(getApplicationComponent().MyDatabase().newsDao().getNewsBillId(billId));
+        news = new ArrayList<>(getInstance().getApplicationComponent().MyDatabase().newsDao().getNewsBillId(billId));
     }
 
     public News getNews(int position) {

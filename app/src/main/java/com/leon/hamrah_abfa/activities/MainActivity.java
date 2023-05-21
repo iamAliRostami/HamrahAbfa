@@ -3,7 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragmentDialog.ShowFragmentDialogOnce;
 
 import android.animation.Animator;
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     @Override
     public void onAnimationEnd(@NonNull Animator animation) {
         binding.lottieAnimationView.setVisibility(View.GONE);
-        if (/*  TODO true ||*/getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+        if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         }

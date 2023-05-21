@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.fragments.notifications;
 
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.app.Activity;
 import android.content.Context;
@@ -58,7 +58,7 @@ public class NewsFragment extends Fragment {
                 binding.recyclerViewNews, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                getApplicationComponent().MyDatabase().newsDao().updateNewsSeen(
+                getInstance().getApplicationComponent().MyDatabase().newsDao().updateNewsSeen(
                         adapter.getNews(position).customId, true);
                 callback.setUnseenNewsNumber();
                 adapter.updateNews(position);

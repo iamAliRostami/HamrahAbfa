@@ -1,10 +1,10 @@
 package com.leon.hamrah_abfa.di.view_model;
 
 import static com.leon.hamrah_abfa.helpers.DifferentCompanyManager.getBaseUrl;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.leon.hamrah_abfa.helpers.MyApplication;
 
 import java.util.concurrent.TimeUnit;
 
@@ -71,8 +71,8 @@ public final class NetworkHelperModel {
     public Retrofit getInstance() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(getBaseUrl())
-                    .client(getApplicationComponent().NetworkHelperModel().getHttpClient())
-                    .addConverterFactory(GsonConverterFactory.create(getApplicationComponent().Gson()))
+                    .client(MyApplication.getInstance().getApplicationComponent().NetworkHelperModel().getHttpClient())
+                    .addConverterFactory(GsonConverterFactory.create(MyApplication.getInstance().getApplicationComponent().Gson()))
                     .addConverterFactory(ScalarsConverterFactory.create()).build();
         }
         return retrofit;
@@ -82,8 +82,8 @@ public final class NetworkHelperModel {
     public Retrofit getInstance(int denominator) {
         if (denominator == 1 || denominator <= 0) return getInstance();
         return new Retrofit.Builder().baseUrl(getBaseUrl())
-                .client(getApplicationComponent().NetworkHelperModel().getHttpClient(denominator))
-                .addConverterFactory(GsonConverterFactory.create(getApplicationComponent().Gson()))
+                .client(MyApplication.getInstance().getApplicationComponent().NetworkHelperModel().getHttpClient(denominator))
+                .addConverterFactory(GsonConverterFactory.create(MyApplication.getInstance().getApplicationComponent().Gson()))
                 .addConverterFactory(ScalarsConverterFactory.create()).build();
     }
 
@@ -100,7 +100,7 @@ public final class NetworkHelperModel {
                 .client(new OkHttpClient.Builder().readTimeout(readTimeout, TIME_UNIT)
                         .writeTimeout(writeTimeout, TIME_UNIT).connectTimeout(connectTimeout, TIME_UNIT)
                         .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(interceptor).build())
-                .addConverterFactory(GsonConverterFactory.create(getApplicationComponent().Gson()))
+                .addConverterFactory(GsonConverterFactory.create(MyApplication.getInstance().getApplicationComponent().Gson()))
                 .build();
     }
 

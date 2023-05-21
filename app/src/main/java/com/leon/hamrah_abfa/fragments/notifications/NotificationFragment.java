@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.fragments.notifications;
 
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.app.Activity;
 import android.content.Context;
@@ -53,7 +53,7 @@ public class NotificationFragment extends Fragment {
                 binding.recyclerViewNotifications, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                getApplicationComponent().MyDatabase().notificationDao().updateOnOffLoadSeen(
+                getInstance().getApplicationComponent().MyDatabase().notificationDao().updateOnOffLoadSeen(
                         adapter.getNotification(position).customId, true);
                 callback.setUnseenNotificationNumber();
                 adapter.updateNotification(position);

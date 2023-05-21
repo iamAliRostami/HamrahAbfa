@@ -5,7 +5,7 @@ import static com.leon.hamrah_abfa.helpers.Constants.HUGE;
 import static com.leon.hamrah_abfa.helpers.Constants.LARGE;
 import static com.leon.hamrah_abfa.helpers.Constants.MEDIUM;
 import static com.leon.hamrah_abfa.helpers.Constants.SMALL;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.info;
 
 import android.os.Bundle;
@@ -34,7 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected abstract String getExitMessage();
 
     private void setTheme() {
-        switch (getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME.getValue())) {
+        switch (getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME.getValue())) {
             case SMALL:
                 setTheme(R.style.Theme_HamrahAbfa_Small);
                 break;

@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -39,7 +39,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
 
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
-        holder.imageView.setImageDrawable(icons.getDrawable(notifications.get(position).category-1));
+        holder.imageView.setImageDrawable(icons.getDrawable(notifications.get(position).category - 1));
         holder.textViewDate.setText(notifications.get(position).date);
         holder.textViewTitle.setText(notifications.get(position).title);
         holder.textViewSummary.setText(notifications.get(position).summary);
@@ -53,7 +53,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
     }
 
     public void setNotifications() {
-        notifications = new ArrayList<>(getApplicationComponent().MyDatabase().notificationDao().getNotificationsByBillId(billId));
+        notifications = new ArrayList<>(getInstance().getApplicationComponent().MyDatabase().notificationDao().getNotificationsByBillId(billId));
     }
 
     public Notification getNotification(int position) {

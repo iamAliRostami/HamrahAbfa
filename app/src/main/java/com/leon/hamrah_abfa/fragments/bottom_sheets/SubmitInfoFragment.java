@@ -4,7 +4,7 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getApplicationComponent;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
@@ -65,7 +64,7 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
             if (viewModel.getBillId().isEmpty()) {
                 warning(requireContext(), getString(R.string.enter_bill_id)).show();
             } else {
-                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
+                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
                 for (int i = 0; i < billIds.size(); i++) {
                     if (billIds.get(i).equals(viewModel.getBillId())) {
                         warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
@@ -86,14 +85,14 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     }
 
     private void insertData() {
-        final String billId = getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(viewModel.getBillId()).concat(",");
-        final String nickname = getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue()).concat(viewModel.getNickname()).concat(",");
-        final String owner = getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue()).concat(viewModel.getOwner()).concat(",");
+        final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(viewModel.getBillId()).concat(",");
+        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue()).concat(viewModel.getNickname()).concat(",");
+        final String owner = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue()).concat(viewModel.getOwner()).concat(",");
 
-        getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
-        getApplicationComponent().SharedPreferenceModel().putData(NICKNAME.getValue(), nickname);
-        getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), viewModel.getDebt());
-        getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(NICKNAME.getValue(), nickname);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), viewModel.getDebt());
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
         if (callback != null) callback.updateCard();
         dismiss();
     }
