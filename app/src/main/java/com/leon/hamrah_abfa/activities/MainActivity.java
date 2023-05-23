@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
-        initializeSplash();
+//        initializeSplash();
         // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     @Override
     public void onAnimationEnd(@NonNull Animator animation) {
         binding.lottieAnimationView.setVisibility(View.GONE);
-        if (/*  TODO */true ||getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+        if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         }
