@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_below="@id/divider"
             android:lineSpacingExtra="@dimen/small_dp"
-            android:text="@string/services_help_content"
+            android:text="@string/help_content_services"
             android:textAllCaps="true" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

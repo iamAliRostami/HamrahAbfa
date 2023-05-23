@@ -218,16 +218,16 @@
     </string-array>
 
     <string-array name="welcome_item_contents">
-        <item>@string/services_help_content</item>
-        <item>@string/payment_services_help_content</item>
-        <item>@string/dashboard_help_content</item>
-        <item>@string/incident_help_content</item>
+        <item>@string/help_content_services</item>
+        <item>@string/help_content_payment</item>
+        <item>@string/help_content_dashboard</item>
+        <item>@string/help_content_incident</item>
     </string-array>
 
     <integer-array name="welcome_icons">
         <item>@drawable/help_service</item>
-        <item>@drawable/help_dashboard</item>
         <item>@drawable/help_payment</item>
+        <item>@drawable/help_dashboard</item>
         <item>@drawable/help_accidents</item>
     </integer-array>
 
