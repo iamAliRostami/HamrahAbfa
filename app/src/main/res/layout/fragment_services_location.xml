@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:padding="@dimen/medium_dp"
-                android:src="@drawable/current_location" />
+                android:src="@drawable/ic_current_location" />
         </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton
