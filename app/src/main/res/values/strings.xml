@@ -152,4 +152,10 @@
     <string name="branches">شعب</string>
     <string name="forbidden">انشعاب غیرمجاز</string>
     <string name="phones">تلفن\u200cها</string>
+
+
+    <string name="help_services">خدمات غیرحضوری</string>
+    <string name="help_payment">خدمات پرداخت و مطالبات</string>
+    <string name="help_dashboard">داشبورد مدیریتی</string>
+    <string name="help_incident">حوادث آبفا</string>
 </resources>

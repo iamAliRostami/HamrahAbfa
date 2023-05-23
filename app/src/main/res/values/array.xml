@@ -211,10 +211,10 @@
     </array>
 
     <string-array name="welcome_item_titles">
-        <item>@string/services</item>
-        <item>@string/payment_services</item>
-        <item>@string/dashboard</item>
-        <item>@string/incident</item>
+        <item>@string/help_services</item>
+        <item>@string/help_payment</item>
+        <item>@string/help_dashboard</item>
+        <item>@string/help_incident</item>
     </string-array>
 
     <string-array name="welcome_item_contents">

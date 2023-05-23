@@ -23,7 +23,7 @@
         android:layout_margin="@dimen/xlarge_dp"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/xlarge_dp"
-        android:src="@drawable/confirm_code" />
+        android:src="@drawable/large_confirm_code" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"

@@ -34,7 +34,7 @@
         android:layout_margin="@dimen/xlarge_dp"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/xlarge_dp"
-        android:src="@drawable/setting_large" />
+        android:src="@drawable/large_setting" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"
