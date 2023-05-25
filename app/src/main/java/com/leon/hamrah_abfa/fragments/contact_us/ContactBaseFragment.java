@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_COMPLAINT_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
 
 import android.app.Activity;
@@ -65,6 +66,7 @@ public class ContactBaseFragment extends Fragment implements AdapterView.OnItemC
         if (position == 0) {
             callback.displayView(CONTACT_SUGGESTION_FRAGMENT);
         } else if (position == 1) {
+            callback.displayView(CONTACT_COMPLAINT_FRAGMENT);
         } else if (position == 2) {
         } else if (position == 3) {
         } else if (position == 4) {

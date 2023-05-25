@@ -7,15 +7,19 @@ import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FAQ_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.addFragment;
+import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
 
-import android.util.Log;
 import android.view.View;
 
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityContactUsBinding;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactBaseFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactBranchFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactComplaintFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactPhonebookFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
 
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback {
@@ -33,10 +37,15 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
         if (position == CONTACT_SUGGESTION_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactSuggestionFragment.newInstance());
         } else if (position == CONTACT_COMPLAINT_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactComplaintFragment.newInstance());
         } else if (position == CONTACT_FAQ_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactFAQFragment.newInstance());
         } else if (position == CONTACT_BRANCH_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactBranchFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenFragment.newInstance());
         } else if (position == CONTACT_PHONEBOOK_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactPhonebookFragment.newInstance());
         } else {
             addFragment(this, binding.fragmentContact.getId(), ContactBaseFragment.newInstance());
         }
@@ -49,7 +58,7 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1 ) {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
