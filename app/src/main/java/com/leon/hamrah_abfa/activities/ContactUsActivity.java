@@ -1,45 +1,59 @@
 package com.leon.hamrah_abfa.activities;
 
-import android.view.View;
-import android.widget.AdapterView;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_BRANCH_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_COMPLAINT_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FAQ_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
+import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
+import static com.leon.hamrah_abfa.utils.ShowFragment.addFragment;
 
-import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
+import android.util.Log;
+import android.view.View;
+
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityContactUsBinding;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactBaseFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
 
-public class ContactUsActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback {
     private ActivityContactUsBinding binding;
 
     @Override
     protected void initialize() {
         binding = ActivityContactUsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        initializeGridView();
-        binding.imageViewBack.setOnClickListener(this);
-    }
-
-    private void initializeGridView() {
-        final MenuAdapter adapter = new MenuAdapter(this, R.array.contact_abfa_menu, R.array.contact_abfa_icons);
-        binding.gridViewMenu.setAdapter(adapter);
-        binding.gridViewMenu.setOnItemClickListener(this);
+        displayView(CONTACT_BASE_FRAGMENT);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void displayView(int position) {
+        if (position == CONTACT_SUGGESTION_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactSuggestionFragment.newInstance());
+        } else if (position == CONTACT_COMPLAINT_FRAGMENT) {
+        } else if (position == CONTACT_FAQ_FRAGMENT) {
+        } else if (position == CONTACT_BRANCH_FRAGMENT) {
+        } else if (position == CONTACT_FORBIDDEN_FRAGMENT) {
+        } else if (position == CONTACT_PHONEBOOK_FRAGMENT) {
+        } else {
+            addFragment(this, binding.fragmentContact.getId(), ContactBaseFragment.newInstance());
+        }
     }
 
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.image_view_back) {
-            finish();
-        }
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1 ) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

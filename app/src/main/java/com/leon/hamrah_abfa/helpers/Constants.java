@@ -22,6 +22,13 @@ public class Constants {
 
     public static final int CHANGE_MOBILE_BASE_FRAGMENT = 9;
     public static final int CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT = 10;
+    public static final int CONTACT_BASE_FRAGMENT = 11;
+    public static final int CONTACT_SUGGESTION_FRAGMENT = 12;
+    public static final int CONTACT_COMPLAINT_FRAGMENT = 13;
+    public static final int CONTACT_FAQ_FRAGMENT = 14;
+    public static final int CONTACT_BRANCH_FRAGMENT = 15;
+    public static final int CONTACT_FORBIDDEN_FRAGMENT = 16;
+    public static final int CONTACT_PHONEBOOK_FRAGMENT = 17;
     public static final int MAX_IMAGE_SIZE = 100000;
     public static final int THEME_DARK = -1;
     public static final int THEME_DEFAULT = 0;

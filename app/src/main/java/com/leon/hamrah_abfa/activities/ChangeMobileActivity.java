@@ -3,7 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT;
-import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
+import static com.leon.hamrah_abfa.utils.ShowFragment.setFragment;
 
 import android.view.View;
 
@@ -34,10 +34,10 @@ public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBa
     @Override
     public void displayView(int position) {
         if (position == CHANGE_MOBILE_BASE_FRAGMENT) {
-            replaceFragment(this, binding.fragmentChangeNumber.getId(),
+            setFragment(this, binding.fragmentChangeNumber.getId(),
                     ChangeMobileBaseFragment.newInstance());
         } else if (position == CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT) {
-            replaceFragment(this, binding.fragmentChangeNumber.getId(),
+            setFragment(this, binding.fragmentChangeNumber.getId(),
                     ChangeMobileVerificationCodeFragment.newInstance());
         }
     }

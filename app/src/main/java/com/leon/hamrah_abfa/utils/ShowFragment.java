@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class ShowFragment {
@@ -18,8 +19,18 @@ public class ShowFragment {
         }
     }
 
-    public static void replaceFragment(Context context, int id, Fragment fragment) {
+    public static void setFragment(Context context, int id, Fragment fragment) {
         ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
                 .replace(id, fragment).commit();
+    }
+
+    public static void addFragment(Context context, int id, Fragment fragment) {
+        final FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(id, fragment).commit();
+    }
+
+    public static void replaceFragment(Context context, int id, Fragment fragment) {
+        final FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
     }
 }
