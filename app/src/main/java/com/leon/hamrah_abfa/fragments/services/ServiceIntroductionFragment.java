@@ -55,7 +55,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
     private void initializeRecyclerView() {
         binding.recyclerViewMenu.setAdapter(getAdapter());
         binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
-        setRecyclerViewListener();
+        recyclerViewListener();
     }
 
     private ServicesIntroductionBaseAdapter getAdapter() {
@@ -80,7 +80,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
         return callback.getAdapter();
     }
 
-    private void setRecyclerViewListener() {
+    private void recyclerViewListener() {
         if (callback.getServicesViewModel().getServiceType() != 2) {
             final RecyclerItemClickListener listener = new RecyclerItemClickListener(requireContext(),
                     binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
