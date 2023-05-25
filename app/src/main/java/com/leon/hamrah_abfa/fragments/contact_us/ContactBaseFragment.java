@@ -1,6 +1,10 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_BRANCH_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_COMPLAINT_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FAQ_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
 
 import android.app.Activity;
@@ -68,9 +72,13 @@ public class ContactBaseFragment extends Fragment implements AdapterView.OnItemC
         } else if (position == 1) {
             callback.displayView(CONTACT_COMPLAINT_FRAGMENT);
         } else if (position == 2) {
+            callback.displayView(CONTACT_FAQ_FRAGMENT);
         } else if (position == 3) {
+            callback.displayView(CONTACT_BRANCH_FRAGMENT);
         } else if (position == 4) {
+            callback.displayView(CONTACT_FORBIDDEN_FRAGMENT);
         } else if (position == 5) {
+            callback.displayView(CONTACT_PHONEBOOK_FRAGMENT);
         }
     }
 
