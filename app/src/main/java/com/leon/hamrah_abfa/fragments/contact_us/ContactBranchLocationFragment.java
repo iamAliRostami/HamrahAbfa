@@ -2,12 +2,15 @@ package com.leon.hamrah_abfa.fragments.contact_us;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.LATITUDE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;
+import static com.leon.toast.RTLToast.warning;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -26,12 +29,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentContactBranchLocationBinding;
+import com.leon.hamrah_abfa.utils.GpsTracker;
 import com.leon.toast.RTLToast;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.bonuspack.routing.OSRMRoadManager;
+import org.osmdroid.bonuspack.routing.Road;
+import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.Polyline;
+
+import java.util.ArrayList;
 
 public class ContactBranchLocationFragment extends BaseBottomSheetFragment implements View.OnClickListener {
     private FragmentContactBranchLocationBinding binding;
@@ -99,10 +109,7 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         super.onClick(v);
         final int id = v.getId();
         if (id == R.id.button_internal) {
-
-
-
-
+            roadFromCurrentLocation();
         } else if (id == R.id.button_external) {
             try {
                 final String uriString = "geo:" + point.getLatitude() + "," + point.getLongitude() + "?q=" +
@@ -113,6 +120,37 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
             } catch (Exception e) {
                 RTLToast.warning(requireContext(), "دستگاه شما مجهز به مسیریاب نیست.").show();
             }
+        }
+    }
+
+    private void roadFromCurrentLocation() {
+        final GpsTracker gpsTracker = new GpsTracker(requireContext());
+        if (!gpsTracker.canGetLocation()) {
+            gpsTracker.showSettingsAlert();
+        } else if (gpsTracker.getLocation() != null) {
+            //TODO
+
+            final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            final RoadManager roadManager = new OSRMRoadManager(requireActivity());
+            final ArrayList<GeoPoint> wayPoints = new ArrayList<>();
+            wayPoints.add(new GeoPoint(gpsTracker.getLatitude(), gpsTracker.getLongitude()));
+            wayPoints.add(point);
+            final Road road = roadManager.getRoad(wayPoints);
+            final Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
+
+            roadOverlay.setWidth(12);
+            roadOverlay.setColor(Color.RED);
+
+//            String distance = String.valueOf(roadOverlay.getDistance());
+//            distance = distance.substring(0, distance.indexOf("."));
+//            binding.textViewDistance.setText(distance);
+            binding.mapView.getOverlays().add(roadOverlay);
+            binding.mapView.invalidate();
+
+
+        } else {
+            warning(requireContext(), R.string.make_sure_internet_is_connected).show();
         }
     }
 
