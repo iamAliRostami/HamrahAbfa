@@ -30,11 +30,9 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentContactBranchLocationBinding;
 import com.leon.hamrah_abfa.utils.GpsTracker;
-import com.leon.toast.RTLToast;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.routing.OSRMRoadManager;
-import org.osmdroid.bonuspack.routing.Road;
 import org.osmdroid.bonuspack.routing.RoadManager;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
@@ -79,8 +77,7 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         initializeMap();
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
-                requireContext().getResources().getDisplayMetrics().widthPixels
-                /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/);
+                requireContext().getResources().getDisplayMetrics().widthPixels);
         binding.relativeLayoutMap.setLayoutParams(params);
         binding.buttonExternal.setOnClickListener(this);
         binding.buttonInternal.setOnClickListener(this);
@@ -89,10 +86,10 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
     @SuppressLint("ClickableViewAccessibility")
     private void initializeMap() {
         Configuration.getInstance().load(requireContext(), PreferenceManager.getDefaultSharedPreferences(requireContext()));
-        binding.mapView.setOnTouchListener((v, event) -> true);
         final IMapController mapController = binding.mapView.getController();
         mapController.setZoom(19.0);
         mapController.setCenter(point);
+
         addPlace();
     }
 
@@ -109,46 +106,39 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         super.onClick(v);
         final int id = v.getId();
         if (id == R.id.button_internal) {
-            roadFromCurrentLocation();
+            internalRouting();
         } else if (id == R.id.button_external) {
-            try {
-                final String uriString = "geo:" + point.getLatitude() + "," + point.getLongitude() + "?q=" +
-                        Uri.encode(point.getLatitude() + "," + point.getLongitude() + "(label)") + "&z=19";
-                final Uri uri = Uri.parse(uriString);
-                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
-            } catch (Exception e) {
-                RTLToast.warning(requireContext(), "دستگاه شما مجهز به مسیریاب نیست.").show();
-            }
+            externalRouting();
         }
     }
 
-    private void roadFromCurrentLocation() {
+    private void externalRouting() {
+        try {
+            final String uriString = "geo:" + point.getLatitude() + "," + point.getLongitude() + "?q=" +
+                    Uri.encode(point.getLatitude() + "," + point.getLongitude() + "(label)") + "&z=19";
+            final Uri uri = Uri.parse(uriString);
+            final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        } catch (Exception e) {
+            warning(requireContext(), R.string.gps_is_not_available).show();
+        }
+    }
+
+    private void internalRouting() {
         final GpsTracker gpsTracker = new GpsTracker(requireContext());
         if (!gpsTracker.canGetLocation()) {
             gpsTracker.showSettingsAlert();
         } else if (gpsTracker.getLocation() != null) {
-            //TODO
-
             final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            final RoadManager roadManager = new OSRMRoadManager(requireActivity());
             final ArrayList<GeoPoint> wayPoints = new ArrayList<>();
             wayPoints.add(new GeoPoint(gpsTracker.getLatitude(), gpsTracker.getLongitude()));
             wayPoints.add(point);
-            final Road road = roadManager.getRoad(wayPoints);
-            final Polyline roadOverlay = RoadManager.buildRoadOverlay(road);
-
-            roadOverlay.setWidth(12);
-            roadOverlay.setColor(Color.RED);
-
-//            String distance = String.valueOf(roadOverlay.getDistance());
-//            distance = distance.substring(0, distance.indexOf("."));
-//            binding.textViewDistance.setText(distance);
+            final Polyline roadOverlay = RoadManager.buildRoadOverlay(new OSRMRoadManager(requireContext()).getRoad(wayPoints));
+//            roadOverlay.setWidth(12);
+            roadOverlay.setColor(R.color.purple_7001);
             binding.mapView.getOverlays().add(roadOverlay);
             binding.mapView.invalidate();
-
-
         } else {
             warning(requireContext(), R.string.make_sure_internet_is_connected).show();
         }

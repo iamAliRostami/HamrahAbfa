@@ -166,4 +166,5 @@
     <string name="location">محل</string>
     <string name="road_external">مسیریابی خارجی</string>
     <string name="road_internal">مسیریابی داخلی</string>
+    <string name="gps_is_not_available">دستگاه شما مجهز به مسیریاب نیست.</string>
 </resources>
