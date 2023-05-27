@@ -5,11 +5,12 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -25,15 +26,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentContactBranchLocationBinding;
+import com.leon.toast.RTLToast;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.CustomZoomButtonsController;
-import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
-public class ContactBranchLocationFragment extends BaseBottomSheetFragment {
+public class ContactBranchLocationFragment extends BaseBottomSheetFragment implements View.OnClickListener {
     private FragmentContactBranchLocationBinding binding;
     private GeoPoint point;
 
@@ -72,7 +72,10 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment {
                 requireContext().getResources().getDisplayMetrics().widthPixels
                 /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/);
         binding.relativeLayoutMap.setLayoutParams(params);
+        binding.buttonExternal.setOnClickListener(this);
+        binding.buttonInternal.setOnClickListener(this);
     }
+
     @SuppressLint("ClickableViewAccessibility")
     private void initializeMap() {
         Configuration.getInstance().load(requireContext(), PreferenceManager.getDefaultSharedPreferences(requireContext()));
@@ -82,6 +85,7 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment {
         mapController.setCenter(point);
         addPlace();
     }
+
     private void addPlace() {
         final Marker startMarker = new Marker(binding.mapView);
         startMarker.setPosition(point);
@@ -89,6 +93,29 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment {
         startMarker.setIcon(ContextCompat.getDrawable(requireContext(), R.drawable.map_pointer));
         binding.mapView.getOverlays().add(startMarker);
     }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        final int id = v.getId();
+        if (id == R.id.button_internal) {
+
+
+
+
+        } else if (id == R.id.button_external) {
+            try {
+                final String uriString = "geo:" + point.getLatitude() + "," + point.getLongitude() + "?q=" +
+                        Uri.encode(point.getLatitude() + "," + point.getLongitude() + "(label)") + "&z=19";
+                final Uri uri = Uri.parse(uriString);
+                final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            } catch (Exception e) {
+                RTLToast.warning(requireContext(), "دستگاه شما مجهز به مسیریاب نیست.").show();
+            }
+        }
+    }
+
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

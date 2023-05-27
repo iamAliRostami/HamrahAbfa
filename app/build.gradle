@@ -101,6 +101,7 @@ dependencies {
     androidTestImplementation "android.arch.persistence.room:testing:$arch_version"
 
     implementation 'org.osmdroid:osmdroid-android:6.1.16'
+    implementation 'com.github.MKergall:osmbonuspack:6.6.0'
 
     implementation "com.airbnb.android:lottie:6.0.0"
     implementation 'com.github.shuhart:stepview:1.5.1'

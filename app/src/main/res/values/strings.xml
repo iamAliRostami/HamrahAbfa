@@ -164,4 +164,6 @@
     <string name="postal_code">کد پستی</string>
     <string name="phone">تلفن</string>
     <string name="location">محل</string>
+    <string name="road_external">مسیریابی خارجی</string>
+    <string name="road_internal">مسیریابی داخلی</string>
 </resources>
