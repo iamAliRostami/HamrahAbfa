@@ -6,7 +6,7 @@
     tools:context=".fragments.contact_us.ContactFAQFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_menu"
+        android:id="@+id/recycler_view_question"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/large_dp"

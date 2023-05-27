@@ -7,7 +7,7 @@
     android:paddingStart="@dimen/xlarge_dp"
     android:paddingEnd="@dimen/xlarge_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".fragments.services.ServicesLocationFragment">
+    tools:context=".fragments.contact_us.ContactBranchLocationFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_container"
@@ -24,7 +24,7 @@
                 android:id="@+id/text_view_title"
                 style="@style/Title.Bottom"
                 android:layout_weight="1"
-                android:text="@string/deter_location" />
+                android:text="@string/location" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view_arrow_down"
@@ -47,26 +47,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/map_pointer" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_current_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:padding="@dimen/medium_dp"
-                android:src="@drawable/ic_current_location" />
         </RelativeLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_submit"
-            style="@style/ButtonSubmit"
-            android:layout_marginTop="@dimen/large_dp"
-            android:layout_marginBottom="@dimen/large_dp"
-            android:text="@string/submit_location" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

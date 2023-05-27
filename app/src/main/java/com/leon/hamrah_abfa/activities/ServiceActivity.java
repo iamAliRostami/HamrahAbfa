@@ -19,7 +19,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
+import com.leon.hamrah_abfa.fragments.services.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;

@@ -158,4 +158,10 @@
     <string name="help_payment">خدمات پرداخت و مطالبات</string>
     <string name="help_dashboard">داشبورد مدیریتی</string>
     <string name="help_incident">حوادث آبفا</string>
+    <string name="manager_name">نام مدیر</string>
+    <string name="zone_name">منطقه</string>
+    <string name="fax">فکس</string>
+    <string name="postal_code">کد پستی</string>
+    <string name="phone">تلفن</string>
+    <string name="location">محل</string>
 </resources>

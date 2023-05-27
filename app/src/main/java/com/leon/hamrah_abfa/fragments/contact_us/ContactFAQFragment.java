@@ -43,14 +43,14 @@ public class ContactFAQFragment extends Fragment {
 
     private void initializeRecyclerView() {
         adapter = new FAQAdapter(requireContext());
-        binding.recyclerViewMenu.setAdapter(adapter);
-        binding.recyclerViewMenu.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.recyclerViewQuestion.setAdapter(adapter);
+        binding.recyclerViewQuestion.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
     }
 
     private void setRecyclerViewListener() {
         final RecyclerItemClickListener listener = new RecyclerItemClickListener(requireContext(),
-                binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
+                binding.recyclerViewQuestion, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 adapter.updateSelectedService(position);
@@ -61,6 +61,6 @@ public class ContactFAQFragment extends Fragment {
 
             }
         });
-        binding.recyclerViewMenu.addOnItemTouchListener(listener);
+        binding.recyclerViewQuestion.addOnItemTouchListener(listener);
     }
 }

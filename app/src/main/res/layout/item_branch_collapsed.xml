@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contribute_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/medium_dp"
+    android:clickable="false"
+    android:descendantFocusability="blocksDescendants"
+    android:elevation="@dimen/medium_dp"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/medium_dp">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_service_introduction">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_name"
+            style="@style/TextItem.SingleLine"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/image_view_arrow"
+            android:gravity="start"
+            android:text="@string/app_name"
+            android:textAllCaps="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/divider"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center"
+            android:padding="@dimen/large_dp"
+            android:src="@drawable/arrow_up"
+            android:tint="@color/dark_gray" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tiny_dp"
+            android:layout_below="@id/text_view_name"
+            android:background="@color/light_gray" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_zone_title"
+            android:layout_below="@id/divider"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_manager" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_manager_title"
+            style="@style/TitleBranch"
+            android:layout_above="@id/text_view_zone_title"
+            android:layout_below="@id/divider"
+            android:layout_toEndOf="@id/image_view_manager"
+            android:text="@string/manager_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_manager"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/divider"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_manager_title"
+            android:text="@string/manager_name"
+            android:textAllCaps="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_zone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_phone_1_title"
+            android:layout_below="@id/text_view_manager"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_zone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_zone_title"
+            style="@style/TitleBranch"
+            android:layout_above="@id/text_view_phone_1_title"
+            android:layout_below="@id/text_view_manager"
+            android:layout_toEndOf="@id/image_view_zone"
+            android:text="@string/zone_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_zone"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/text_view_manager"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/zone_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_phone_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_fax"
+            android:layout_below="@id/text_view_zone"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_phone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_phone_1_title"
+            style="@style/TitleBranch"
+            android:layout_above="@id/text_view_fax"
+            android:layout_below="@id/text_view_zone"
+            android:layout_toEndOf="@id/image_view_fax"
+            android:text="@string/phone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_phone_1"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/text_view_zone"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/phone" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_fax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_postal"
+            android:layout_below="@id/text_view_phone_1"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_fax" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_fax_title"
+            style="@style/TitleBranch"
+            android:layout_above="@id/text_view_postal"
+            android:layout_below="@id/text_view_phone_1"
+            android:layout_toEndOf="@id/image_view_fax"
+            android:text="@string/fax" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_fax"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/text_view_phone_1"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/fax" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_postal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_address"
+            android:layout_below="@id/text_view_fax"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_postal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_postal_title"
+            style="@style/TitleBranch"
+            android:layout_above="@id/text_view_address"
+            android:layout_below="@id/text_view_fax"
+            android:layout_toEndOf="@id/image_view_postal"
+            android:text="@string/postal_code" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_postal"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/text_view_fax"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/postal_code" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_postal"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_address" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_address_title"
+            style="@style/TitleBranch"
+            android:layout_below="@id/text_view_postal"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_toEndOf="@id/image_view_address"
+            android:text="@string/address" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_address"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/text_view_postal"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/help_content_dashboard"
+            android:textAlignment="viewStart" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

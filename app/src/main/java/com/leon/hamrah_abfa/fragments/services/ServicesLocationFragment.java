@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.bottom_sheets;
+package com.leon.hamrah_abfa.fragments.services;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.LATITUDE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LONGITUDE;

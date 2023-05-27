@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.chip.Chip;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceSubmitInformationBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.ServicesLocationFragment;
 
 public class ServiceSubmitInformationFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceSubmitInformationBinding binding;
