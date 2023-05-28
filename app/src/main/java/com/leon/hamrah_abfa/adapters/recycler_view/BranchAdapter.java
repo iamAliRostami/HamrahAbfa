@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 import static com.leon.hamrah_abfa.enums.FragmentTags.BRANCH_LOCATION;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchViewHolder> {
 
     public BranchAdapter(Context context, ArrayList<BranchViewModel> branches) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.branches = branches;
+        this.branches = new ArrayList<>(branches);
     }
 
     @NonNull
@@ -78,5 +79,12 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchViewHolder> {
             notifyItemChanged(temp);
         }
         notifyItemChanged(position);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(ArrayList<BranchViewModel> branches) {
+        this.branches.clear();
+        this.branches.addAll(branches);
+        notifyDataSetChanged();
     }
 }

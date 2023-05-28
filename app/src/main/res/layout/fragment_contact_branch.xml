@@ -3,13 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/large_dp"
     tools:context=".fragments.contact_us.ContactBranchFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_search"
+        style="@style/TextInputLayout"
+        android:hint="@string/search">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_search"
+            style="@style/TextInput"
+            android:drawableEnd="@drawable/ic_search"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_branch"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/large_dp"
+        android:layout_below="@id/text_layout_search"
         android:nestedScrollingEnabled="true"
         tools:listitem="@layout/item_branch" />
 </RelativeLayout>
