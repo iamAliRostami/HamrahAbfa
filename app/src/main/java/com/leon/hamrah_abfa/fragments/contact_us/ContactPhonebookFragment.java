@@ -50,8 +50,6 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
 
     private void initialize() {
         initializeGridView();
-//        requestCallPhonePermissionLauncher.launch(CALL_PHONE);
-//        askForCallPermission();
     }
 
     private void initializeGridView() {
