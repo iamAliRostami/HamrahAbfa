@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 public class Constants {
     public static final String DB_NAME = "Database_4";
     public static final String FONT_NAME = "fonts/font_1.ttf";
+    public static final int CARRIER_PRIVILEGE_STATUS = 901;
+    public static final int PERMISSIONS_REQUEST_CALL_PHONE = 902;
     public static final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;
     public static final long MIN_TIME_BW_UPDATES = 100;
     public static final int TOAST_TEXT_SIZE = 15;

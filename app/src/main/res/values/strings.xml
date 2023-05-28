@@ -168,4 +168,6 @@
     <string name="road_internal">مسیریابی داخلی</string>
     <string name="gps_is_not_available">دستگاه شما مجهز به مسیریاب نیست.</string>
     <string name="not_found">موردی یافت نشد</string>
+    <string name="call_permission_granted">دسترسی تماس داده شد</string>
+    <string name="call_permission_unavailable">دسترسی تماس داده نشد</string>
 </resources>

@@ -28,5 +28,5 @@
         android:nestedScrollingEnabled="true"
         android:numColumns="3"
         android:verticalSpacing="@dimen/medium_dp"
-        tools:listitem="@layout/item_card_menu_layout" />
+        tools:listitem="@layout/item_card_menu" />
 </RelativeLayout>

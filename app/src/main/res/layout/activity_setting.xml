@@ -55,6 +55,6 @@
             android:nestedScrollingEnabled="true"
             android:numColumns="2"
             android:verticalSpacing="@dimen/medium_dp"
-            tools:listitem="@layout/item_card_menu_layout" />
+            tools:listitem="@layout/item_card_menu" />
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

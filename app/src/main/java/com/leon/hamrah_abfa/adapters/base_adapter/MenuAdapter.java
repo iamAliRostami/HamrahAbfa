@@ -42,7 +42,7 @@ public class MenuAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
-        if (view == null) view = inflater.inflate(R.layout.item_card_menu_layout, parent, false);
+        if (view == null) view = inflater.inflate(R.layout.item_card_menu, parent, false);
         final MenuViewHolder holder = new MenuViewHolder(view);
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
