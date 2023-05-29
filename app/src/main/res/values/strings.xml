@@ -176,4 +176,8 @@
     <string name="enter_complaint_description">شرح شکایت را ارائه نمایید</string>
     <string name="choose_complaint_type">نوع شکایت را انتخاب کنید</string>
     <string name="field_complaint_description">توضیح را وارد کنید</string>
+    <string name="suggestion_description">توضیح انتقاد</string>
+    <string name="suggestion_type">نوع انتقاد</string>
+    <string name="enter_your_proposal">راهکار پیشنهادی خود را ارائه دهید</string>
+    <string name="proposal">راهکار پیشنهادی</string>
 </resources>

@@ -45,7 +45,7 @@ import java.io.IOException;
 
 public class ContactComplaintFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private FragmentContactComplaintBinding binding;
-    private ComplaintViewModel viewModel = new ComplaintViewModel();
+    private final ComplaintViewModel viewModel = new ComplaintViewModel();
     private ImageViewAdapter adapter;
     private long lastClickTime = 0;
     private File fileImage = null;
