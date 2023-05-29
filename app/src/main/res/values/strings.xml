@@ -171,4 +171,9 @@
     <string name="call_permission_granted">دسترسی تماس داده شد</string>
     <string name="call_permission_unavailable">دسترسی تماس داده نشد</string>
     <string name="saved_in_clipboard">در کلیپ برد ذخیره شد</string>
+    <string name="complaint_description">توضیح شکایت.</string>
+    <string name="complaint_type">نوع شکایت</string>
+    <string name="enter_complaint_description">شرح شکایت را ارائه نمایید</string>
+    <string name="choose_complaint_type">نوع شکایت را انتخاب کنید</string>
+    <string name="field_complaint_description">توضیح را وارد کنید</string>
 </resources>
