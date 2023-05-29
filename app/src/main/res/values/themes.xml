@@ -16,8 +16,8 @@
 <!--        <item name="background">@color/light_blue</item>-->
 <!--        <item name="android:background">@color/light_blue</item>-->
         <item name="android:layoutDirection">rtl</item>.
-        <item name="fontFamily">@font/font_3</item>
-        <item name="font">@font/font_3</item>
+        <item name="fontFamily">@font/font_1</item>
+        <item name="font">@font/font_1</item>
 
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
 
