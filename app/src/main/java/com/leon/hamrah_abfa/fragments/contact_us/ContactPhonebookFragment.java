@@ -1,10 +1,13 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
 import static android.Manifest.permission.CALL_PHONE;
+import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCallPhonePermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,7 +27,8 @@ import com.leon.hamrah_abfa.databinding.FragmentContactPhonebookBinding;
 
 import java.util.ArrayList;
 
-public class ContactPhonebookFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class ContactPhonebookFragment extends Fragment implements AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener {
     private FragmentContactPhonebookBinding binding;
     private final ArrayList<PhonebookViewModel> phonebook = new ArrayList<>();
 
@@ -64,6 +68,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
         final PhonebookAdapter adapter = new PhonebookAdapter(requireContext(), phonebook);
         binding.gridViewPhones.setAdapter(adapter);
         binding.gridViewPhones.setOnItemClickListener(this);
+        binding.gridViewPhones.setOnItemLongClickListener(this);
     }
 
     @Override
@@ -73,6 +78,15 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
         } else {
             requestCallPhonePermissionLauncher.launch(CALL_PHONE);
         }
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(CLIPBOARD_SERVICE);
+        final ClipData clip = ClipData.newPlainText("phonebook", phonebook.get(position).getPhoneNumber());
+        clipboard.setPrimaryClip(clip);
+        success(requireContext(), getString(R.string.saved_in_clipboard)).show();
+        return true;
     }
 
     private void call(String phoneNumber) {

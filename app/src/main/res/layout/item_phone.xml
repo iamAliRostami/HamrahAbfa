@@ -35,7 +35,7 @@
             android:layout_height="70dp"
             android:contentDescription="@string/app_name"
             android:padding="@dimen/small_dp"
-            android:src="@drawable/ic_phone"
+            android:src="@drawable/ic_call"
             app:layout_constraintBottom_toTopOf="@id/text_view_phone_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

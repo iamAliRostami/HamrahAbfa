@@ -170,4 +170,5 @@
     <string name="not_found">موردی یافت نشد</string>
     <string name="call_permission_granted">دسترسی تماس داده شد</string>
     <string name="call_permission_unavailable">دسترسی تماس داده نشد</string>
+    <string name="saved_in_clipboard">در کلیپ برد ذخیره شد</string>
 </resources>
