@@ -56,7 +56,6 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
         } else if (position == CONTACT_BRANCH_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactBranchFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_FRAGMENT) {
-            viewModel.resetViewModel();
             replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenBaseFragment.newInstance());
         } else if (position == CONTACT_PHONEBOOK_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactPhonebookFragment.newInstance());
@@ -103,7 +102,6 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
 
     @Override
     public void onClick(View v) {
-        final int id = v.getId();
     }
 
     @Override

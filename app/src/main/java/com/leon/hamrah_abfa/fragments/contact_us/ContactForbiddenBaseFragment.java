@@ -36,6 +36,7 @@ public class ContactForbiddenBaseFragment extends Fragment implements View.OnCli
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentContactForbiddenBaseBinding.inflate(inflater, container, false);
+        callback.getForbiddenViewModel().resetViewModel();
         binding.setViewModel(callback.getForbiddenViewModel());
         initialize();
         return binding.getRoot();
