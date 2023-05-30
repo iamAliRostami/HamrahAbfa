@@ -21,7 +21,6 @@ public class Constants {
     public static final int SERVICE_SUBMIT_INFORMATION_FRAGMENT = 6;
     public static final int COUNTER_BASE_FRAGMENT = 7;
     public static final int COUNTER_VERIFICATION_CODE_FRAGMENT = 8;
-
     public static final int CHANGE_MOBILE_BASE_FRAGMENT = 9;
     public static final int CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT = 10;
     public static final int CONTACT_BASE_FRAGMENT = 11;
@@ -31,6 +30,7 @@ public class Constants {
     public static final int CONTACT_BRANCH_FRAGMENT = 15;
     public static final int CONTACT_FORBIDDEN_FRAGMENT = 16;
     public static final int CONTACT_PHONEBOOK_FRAGMENT = 17;
+    public static final int CONTACT_FORBIDDEN_COMPLETE_FRAGMENT = 18;
     public static final int MAX_IMAGE_SIZE = 100000;
     public static final int THEME_DARK = -1;
     public static final int THEME_DEFAULT = 0;

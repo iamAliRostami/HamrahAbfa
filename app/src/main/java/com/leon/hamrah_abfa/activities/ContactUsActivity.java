@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_BRANCH_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_COMPLAINT_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FAQ_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
@@ -18,11 +19,13 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactBaseFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactBranchFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactComplaintFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQFragment;
-import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenCompleteFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenBaseFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhonebookFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
 
-public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback {
+public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,
+        ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback {
     private ActivityContactUsBinding binding;
 
     @Override
@@ -43,9 +46,11 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
         } else if (position == CONTACT_BRANCH_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactBranchFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_FRAGMENT) {
-            replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenFragment.newInstance());
+            replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenBaseFragment.newInstance());
         } else if (position == CONTACT_PHONEBOOK_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactPhonebookFragment.newInstance());
+        } else if (position == CONTACT_FORBIDDEN_COMPLETE_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenCompleteFragment.newInstance());
         } else {
             addFragment(this, binding.fragmentContact.getId(), ContactBaseFragment.newInstance());
         }

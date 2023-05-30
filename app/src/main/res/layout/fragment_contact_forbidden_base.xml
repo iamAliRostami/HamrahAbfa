@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/large_dp"
-        tools:context=".fragments.contact_us.ContactForbiddenFragment">
+        tools:context=".fragments.contact_us.ContactForbiddenBaseFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
