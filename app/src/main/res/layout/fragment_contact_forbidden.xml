@@ -1,9 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/large_dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.contact_us.ContactForbiddenFragment">
+<layout>
 
-</RelativeLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/large_dp"
+        tools:context=".fragments.contact_us.ContactForbiddenFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="@dimen/medium_dp"
+            app:cardElevation="@dimen/medium_dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/large_dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_dp"
+                    android:src="@drawable/info" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_dp"
+                    android:layout_toEndOf="@id/image_view_info"
+                    android:text="@string/forbidden_description_1"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_postal"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_view_description"
+                    android:layout_centerInParent="true"
+                    android:hint="@string/postal_code"
+                    app:helperText="@string/enter_postal_code">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_postal"
+                        style="@style/TextInput"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:text="@={viewModel.postalCode}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_pre"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_layout_postal"
+                    android:layout_alignParentEnd="true"
+                    android:hint="@string/pre_account"
+                    app:counterMaxLength="11"
+                    app:helperText="@string/enter_pre">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_pre"
+                        style="@style/TextInput"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:text="@={viewModel.preBillId}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_next"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_layout_pre"
+                    android:layout_alignParentEnd="true"
+                    android:hint="@string/next_account"
+                    app:counterMaxLength="11"
+                    app:helperText="@string/enter_next">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_next"
+                        style="@style/TextInput"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:text="@={viewModel.nextBillId}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_description"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_layout_next"
+                    android:hint="@string/description"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="1000"
+                    app:helperText="@string/enter_forbidden_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_description"
+                        style="@style/TextInput"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLength="1000"
+                        android:maxLines="3"
+                        android:text="@={viewModel.description}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_view_content"
+            android:background="@drawable/background_incident_field"
+            android:orientation="horizontal"
+            android:padding="@dimen/tiny_dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation_view"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:lottie_loop="true"
+                app:lottie_repeatMode="restart" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_mic_play_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/record_voice"
+                android:padding="@dimen/small_dp"
+                android:src="@drawable/ic_recorder" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/medium_dp"
+                android:text="@{viewModel.length}"
+                android:visibility="gone" />
+
+            <com.visualizer.amplitude.AudioRecordView
+                android:id="@+id/audio_record_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layoutDirection="rtl"
+                app:chunkAlignTo="center"
+                app:chunkColor="@color/purple_7001"
+                app:chunkMinHeight="0dp"
+                app:chunkRoundedCorners="true"
+                app:chunkSoftTransition="true"
+                app:chunkSpace="@dimen/tiny_dp"
+                app:chunkWidth="@dimen/tiny_dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/record_voice"
+                android:padding="@dimen/small_dp"
+                android:src="@drawable/ic_delete_1"
+                android:visibility="gone" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_next"
+            style="@style/ButtonSubmit"
+            android:layout_alignParentBottom="true"
+            android:text="@string/next_level" />
+    </RelativeLayout>
+</layout>

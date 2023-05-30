@@ -180,4 +180,12 @@
     <string name="suggestion_type">نوع انتقاد</string>
     <string name="enter_your_proposal">راهکار پیشنهادی خود را ارائه دهید</string>
     <string name="proposal">راهکار پیشنهادی</string>
+    <string name="forbidden_description_1">توضیح غیرمجاز.</string>
+    <string name="enter_forbidden_description">توضیح غیرمجاز را ارائه دهید</string>
+    <string name="enter_postal_code">کد پستی را وارد کنید</string>
+    <string name="pre_account">اشتراک قبلی</string>
+    <string name="enter_pre">شناسه قبض اشتراک قبلی را وارد کنید</string>
+    <string name="enter_nick_name">جهت نمایش به عنوان نام مستعار، عنوان انشعاب را وارد کنید</string>
+    <string name="next_account">اشتراک بعدی</string>
+    <string name="enter_next">شناسه قبض اشتراک بعدی را وارد کنید</string>
 </resources>

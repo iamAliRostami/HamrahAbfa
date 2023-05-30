@@ -80,7 +80,8 @@
                     android:id="@+id/text_layout_old_mobile"
                     style="@style/TextInputLayout"
                     android:layout_centerInParent="true"
-                    android:layout_margin="@dimen/large_dp"
+                    android:layout_marginStart="@dimen/large_dp"
+                    android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/mobile_number_old">
 
                     <com.google.android.material.textfield.TextInputEditText

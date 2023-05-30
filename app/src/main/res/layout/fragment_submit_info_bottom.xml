@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<data>
-    <variable
-        name="viewModel"
-        type="com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel" />
-</data>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -36,36 +39,39 @@
             android:id="@+id/text_layout_account_title"
             style="@style/TextInputLayout"
             android:hint="@string/account_title"
+            app:helperText="@string/enter_nick_name"
             app:layout_constraintBottom_toTopOf="@id/text_layout_bill_id"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_account_title"
-                android:text="@={viewModel.nickname}"
                 style="@style/TextInput"
-                android:inputType="text" />
+                android:inputType="text"
+                android:text="@={viewModel.nickname}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_layout_bill_id"
             style="@style/TextInputLayout"
+            android:layout_marginBottom="@dimen/medium_dp"
             android:hint="@string/bill_id"
             app:counterMaxLength="11"
+            app:helperText="@string/enter_bill_id"
             app:layout_constraintBottom_toTopOf="@id/button_submit"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_bill_id"
-                android:text="@={viewModel.billId}"
                 style="@style/TextInput"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@={viewModel.billId}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_submit"
             style="@style/ButtonSubmit"
-            android:text="@string/sign_account"
             android:layout_marginBottom="@dimen/large_dp"
+            android:text="@string/sign_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
