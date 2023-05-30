@@ -60,9 +60,6 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_postal"
                         style="@style/TextInput"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
                         android:inputType="number"
                         android:maxLength="10"
                         android:text="@={viewModel.postalCode}" />
@@ -124,67 +121,6 @@
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/linear_layout_recording"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/card_view_content"
-            android:background="@drawable/background_incident_field"
-            android:orientation="horizontal"
-            android:padding="@dimen/tiny_dp">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie_animation_view"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                app:lottie_loop="true"
-                app:lottie_repeatMode="restart" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_mic_play_pause"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/record_voice"
-                android:padding="@dimen/small_dp"
-                android:src="@drawable/ic_recorder" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_timer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/medium_dp"
-                android:text="@{viewModel.length}"
-                android:visibility="gone" />
-
-            <com.visualizer.amplitude.AudioRecordView
-                android:id="@+id/audio_record_view"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layoutDirection="rtl"
-                app:chunkAlignTo="center"
-                app:chunkColor="@color/purple_7001"
-                app:chunkMinHeight="0dp"
-                app:chunkRoundedCorners="true"
-                app:chunkSoftTransition="true"
-                app:chunkSpace="@dimen/tiny_dp"
-                app:chunkWidth="@dimen/tiny_dp" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/record_voice"
-                android:padding="@dimen/small_dp"
-                android:src="@drawable/ic_delete_1"
-                android:visibility="gone" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_next"

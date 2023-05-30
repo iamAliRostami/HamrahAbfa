@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
+import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
 import android.content.Context;
@@ -35,6 +36,7 @@ public class ContactForbiddenBaseFragment extends Fragment implements View.OnCli
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentContactForbiddenBaseBinding.inflate(inflater, container, false);
+        binding.setViewModel(callback.getForbiddenViewModel());
         initialize();
         return binding.getRoot();
     }
@@ -47,6 +49,13 @@ public class ContactForbiddenBaseFragment extends Fragment implements View.OnCli
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_next) {
+            if (callback.getForbiddenViewModel().getDescription() == null ||
+                    callback.getForbiddenViewModel().getDescription().isEmpty()) {
+                binding.editTextDescription.setError(getString(R.string.enter_forbidden_description));
+                binding.editTextDescription.requestFocus();
+                warning(requireContext(), R.string.enter_forbidden_description).show();
+                return;
+            }
             callback.displayView(CONTACT_FORBIDDEN_COMPLETE_FRAGMENT);
         }
     }
@@ -59,5 +68,7 @@ public class ContactForbiddenBaseFragment extends Fragment implements View.OnCli
 
     public interface ICallback {
         void displayView(int position);
+
+        ForbiddenViewModel getForbiddenViewModel();
     }
 }
