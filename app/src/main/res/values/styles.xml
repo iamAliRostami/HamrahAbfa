@@ -37,7 +37,7 @@
 
     <style name="TitleBranch" parent="TitleSubmitInfo">
         <item name="android:gravity">center</item>
-<!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
+        <!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
     </style>
 
     <style name="Button">
@@ -46,11 +46,20 @@
     </style>
 
     <style name="ButtonSubmit" parent="Button">
-        <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/background_blue</item>
-        <item name="android:backgroundTint">@color/purple_7001</item>
         <item name="backgroundTint">@color/purple_7001</item>
+        <item name="android:backgroundTint">@color/purple_7001</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/light</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
+    </style>
+
+    <style name="ButtonState" parent="ThemeOverlay.Material3.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_button</item>
+        <item name="android:backgroundTint">@color/color_states_button</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/color_states_text_button</item>
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
     </style>
 
@@ -158,7 +167,7 @@
 
     <style name="TextItem.Branch">
         <item name="android:gravity">end</item>
-<!--        <item name="android:textAlignment">viewStart</item>-->
+        <!--        <item name="android:textAlignment">viewStart</item>-->
     </style>
 
     <style name="TextItem.SingleLine">

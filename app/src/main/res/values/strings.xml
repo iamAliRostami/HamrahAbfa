@@ -188,4 +188,5 @@
     <string name="enter_nick_name">جهت نمایش به عنوان نام مستعار، عنوان انشعاب را وارد کنید</string>
     <string name="next_account">اشتراک بعدی</string>
     <string name="enter_next">شناسه قبض اشتراک بعدی را وارد کنید</string>
+    <string name="deadline">مهلت پرداخت</string>
 </resources>

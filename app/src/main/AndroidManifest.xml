@@ -22,7 +22,6 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -52,6 +51,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HamrahAbfa.NoActionBar"
         tools:ignore="UnusedAttribute">
+        <activity
+            android:name=".activities.PayBillActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ContactUsActivity"
             android:exported="false" />

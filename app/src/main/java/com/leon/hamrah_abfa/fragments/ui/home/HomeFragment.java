@@ -22,6 +22,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ChangeMobileActivity;
 import com.leon.hamrah_abfa.activities.ContactUsActivity;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
+import com.leon.hamrah_abfa.activities.PayBillActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
@@ -78,6 +79,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
+            startActivity(createIntent(PayBillActivity.class));
         } else if (position == 1) {
             startActivity(createIntent(SetCounterNumberActivity.class));
         } else if (position == 2) {

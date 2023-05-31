@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.di.view_model;
 
+import static com.leon.toast.RTLToast.warning;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -13,10 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leon.hamrah_abfa.R;
-
-import static com.leon.toast.RTLToast.error;
-import static com.leon.toast.RTLToast.success;
-import static com.leon.toast.RTLToast.warning;
 
 public final class CustomProgressModel {
     private Dialog dialog;

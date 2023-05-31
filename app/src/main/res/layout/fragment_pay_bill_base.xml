@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.pay_bill.PayBillBaseFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_pay_bill"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/button_pay"
+        tools:listitem="@layout/item_pay_bill" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_pay"
+        style="@style/ButtonState"
+        android:layout_marginTop="@dimen/large_dp"
+        android:layout_alignParentBottom="true"
+        android:text="@string/pay" />
+</RelativeLayout>
