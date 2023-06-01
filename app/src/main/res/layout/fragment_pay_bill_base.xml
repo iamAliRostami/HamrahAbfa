@@ -18,12 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/large_dp"
-        android:background="@drawable/background_white_blue">
+        android:background="@drawable/background_blue">
 
         <Button
             android:id="@+id/button_pay"
             style="@style/ButtonState"
-            android:enabled="true"
             android:text="@string/pay" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>
