@@ -9,13 +9,21 @@
         android:id="@+id/recycler_view_pay_bill"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/button_pay"
+        android:layout_above="@id/linear_layout"
         tools:listitem="@layout/item_pay_bill" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_pay"
-        style="@style/ButtonState"
-        android:layout_marginTop="@dimen/large_dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/pay" />
+        android:layout_marginTop="@dimen/large_dp"
+        android:background="@drawable/background_white_blue">
+
+        <Button
+            android:id="@+id/button_pay"
+            style="@style/ButtonState"
+            android:enabled="true"
+            android:text="@string/pay" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

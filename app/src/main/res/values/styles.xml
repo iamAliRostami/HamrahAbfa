@@ -55,9 +55,12 @@
     </style>
 
     <style name="ButtonState" parent="ThemeOverlay.Material3.Button">
+        <!--    <style name="ButtonState" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton">-->
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/background_button</item>
-        <item name="android:backgroundTint">@color/color_states_button</item>
+        <!--                <item name="android:colorBackground">@color/color_states_button</item>-->
+<!--        <item name="android:backgroundTint">@color/color_states_button</item>-->
+<!--        <item name="colorOnSurface">@color/color_states_button</item>-->
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/color_states_text_button</item>
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>

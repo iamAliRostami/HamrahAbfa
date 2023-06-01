@@ -98,6 +98,8 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
     private void setButtonText() {
         binding.buttonPay.setText(String.format("پرداخت (%d) قبض", adapter.getSelectedNumber()));
         binding.buttonPay.setEnabled(adapter.getSelectedNumber() > 0);
+        binding.linearLayout.setBackgroundResource(adapter.getSelectedNumber() > 0 ?
+                R.drawable.background_blue : R.drawable.background_white_blue);
     }
 
     @Override
