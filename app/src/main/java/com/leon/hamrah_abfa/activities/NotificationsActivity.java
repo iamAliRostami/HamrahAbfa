@@ -116,15 +116,6 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     @Override
-    protected String getExitMessage() {
-        return null;
-    }
-
-    @Override
-    public void onClick(View v) {
-    }
-
-    @Override
     public void onTabSelected(TabLayout.Tab tab) {
         binding.viewPager.setCurrentItem(tab.getPosition());
         tab.removeBadge();
@@ -142,5 +133,14 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public String getBillId() {
         return billId;
+    }
+
+    @Override
+    public void onClick(View v) {
+    }
+
+    @Override
+    protected String getExitMessage() {
+        return null;
     }
 }

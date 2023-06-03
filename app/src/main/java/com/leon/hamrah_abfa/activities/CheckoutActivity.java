@@ -1,16 +1,29 @@
 package com.leon.hamrah_abfa.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
 
-import android.os.Bundle;
+import com.leon.hamrah_abfa.base_items.BaseActivity;
+import com.leon.hamrah_abfa.databinding.ActivityCheckoutBinding;
+import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillFragment;
+import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
 
-import com.leon.hamrah_abfa.R;
-
-public class CheckoutActivity extends AppCompatActivity {
+public class CheckoutActivity extends BaseActivity implements CheckoutBillFragment.ICallback,
+        CheckoutPaymentFragment.ICallback {
+    private ActivityCheckoutBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
+    protected void initialize() {
+        binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+    }
+
+    @Override
+    protected String getExitMessage() {
+        return null;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
