@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.checkout;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import com.leon.hamrah_abfa.databinding.FragmentCheckoutBillBinding;
 
 public class CheckoutBillFragment extends Fragment {
     private FragmentCheckoutBillBinding binding;
+    private ICallback callback;
 
     public CheckoutBillFragment() {
     }
@@ -35,6 +38,18 @@ public class CheckoutBillFragment extends Fragment {
 
     private void initialize() {
 
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     public interface ICallback {

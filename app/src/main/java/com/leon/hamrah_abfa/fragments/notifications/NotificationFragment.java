@@ -39,12 +39,12 @@ public class NotificationFragment extends Fragment {
 
     private void initialize() {
         initializeRecyclerView();
-        binding.recyclerViewNotifications.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
 
     private void initializeRecyclerView() {
         adapter = new NotificationAdapter(requireContext(), callback.getBillId());
         binding.recyclerViewNotifications.setAdapter(adapter);
+        binding.recyclerViewNotifications.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
     }
 

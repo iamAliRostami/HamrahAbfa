@@ -17,7 +17,6 @@ import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
 public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         CheckoutBillFragment.ICallback, CheckoutPaymentFragment.ICallback {
     private ActivityCheckoutBinding binding;
-
     private String billId;
 
     @Override
@@ -80,6 +79,6 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
 
     @Override
     public String getBillId() {
-        return null;
+        return billId;
     }
 }
