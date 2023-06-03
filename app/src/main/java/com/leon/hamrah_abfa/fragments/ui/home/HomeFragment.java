@@ -23,6 +23,7 @@ import com.leon.hamrah_abfa.activities.ChangeMobileActivity;
 import com.leon.hamrah_abfa.activities.CheckoutActivity;
 import com.leon.hamrah_abfa.activities.ContactUsActivity;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
+import com.leon.hamrah_abfa.activities.LastBillActivity;
 import com.leon.hamrah_abfa.activities.PayBillActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
@@ -93,6 +94,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                     (callback.getCardPagerAdapter().getItemCount() - 1));
             startActivity(intent);
         } else if (position == 6) {
+            startActivity(createIntent(LastBillActivity.class));
         } else if (position == 7) {
             startActivity(createIntent(ChangeMobileActivity.class));
         } else if (position == 8) {

@@ -51,28 +51,28 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
     }
 
     private void initializeRecyclerView() {
-        branches.add(new BranchViewModel("منطقه یک", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه یک", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه دو", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه دو", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه سه", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه سه", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه چهار", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه چهار", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه پنج", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه پنج", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه شش", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه شش", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه هفت", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه هفت", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه هشت", "رضا رضایی", "منطقه یک",
+        branches.add(new BranchViewModel("منطقه هشت", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
         adapter = new BranchAdapter(requireContext(), branches);

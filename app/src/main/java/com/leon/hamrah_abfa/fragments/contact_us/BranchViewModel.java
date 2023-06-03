@@ -7,16 +7,18 @@ public class BranchViewModel {
     private final String manager;
     private final String zone;
     private final String phone1;
+    private final String financialCode;
     private final String fax;
     private final String address;
     private final String postal;
     private final GeoPoint point;
 
-    public BranchViewModel(String name, String manager, String zone, String phone1, String fax,
-                           String address, String postal, GeoPoint point) {
+    public BranchViewModel(String name, String manager, String zone, String financialCode,
+                           String phone1, String fax, String address, String postal, GeoPoint point) {
         this.name = name;
         this.manager = manager;
         this.zone = zone;
+        this.financialCode = financialCode;
         this.phone1 = phone1;
         this.fax = fax;
         this.address = address;
@@ -54,5 +56,9 @@ public class BranchViewModel {
 
     public GeoPoint getPoint() {
         return point;
+    }
+
+    public String getFinancialCode() {
+        return financialCode;
     }
 }

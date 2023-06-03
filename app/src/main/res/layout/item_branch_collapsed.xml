@@ -79,7 +79,7 @@
             android:id="@+id/image_view_zone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/text_view_phone_1_title"
+            android:layout_above="@id/text_view_financial"
             android:layout_below="@id/text_view_manager"
             android:layout_marginStart="@dimen/medium_dp"
             android:layout_marginEnd="@dimen/medium_dp"
@@ -88,10 +88,10 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_zone_title"
             style="@style/TitleBranch"
-            android:layout_above="@id/text_view_phone_1_title"
+            android:layout_above="@id/text_view_financial"
             android:layout_below="@id/text_view_manager"
             android:layout_toEndOf="@id/image_view_zone"
-            android:text="@string/zone_name" />
+            android:text="@string/financial_code" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_zone"
@@ -99,14 +99,41 @@
             android:layout_below="@id/text_view_manager"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/financial_code" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_financial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/text_view_phone_1_title"
+            android:layout_below="@id/text_view_zone"
+            android:layout_marginStart="@dimen/medium_dp"
+            android:layout_marginEnd="@dimen/medium_dp"
+            android:src="@drawable/ic_financial_code" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_financial_title"
+            style="@style/TitleBranch"
+            android:layout_above="@id/text_view_phone_1_title"
+            android:layout_below="@id/text_view_zone"
+            android:layout_toEndOf="@id/image_view_zone"
             android:text="@string/zone_name" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_financial"
+            style="@style/TextItem.Branch"
+            android:layout_below="@id/text_view_zone"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/text_view_zone_title"
+            android:text="@string/zone_name" />
+
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_phone_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/text_view_fax"
-            android:layout_below="@id/text_view_zone"
+            android:layout_below="@id/text_view_financial"
             android:layout_marginStart="@dimen/medium_dp"
             android:layout_marginEnd="@dimen/medium_dp"
             android:src="@drawable/ic_phone" />
@@ -115,14 +142,14 @@
             android:id="@+id/text_view_phone_1_title"
             style="@style/TitleBranch"
             android:layout_above="@id/text_view_fax"
-            android:layout_below="@id/text_view_zone"
+            android:layout_below="@id/text_view_financial"
             android:layout_toEndOf="@id/image_view_fax"
             android:text="@string/phone" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_phone_1"
             style="@style/TextItem.Branch"
-            android:layout_below="@id/text_view_zone"
+            android:layout_below="@id/text_view_financial"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/text_view_zone_title"
             android:text="@string/phone" />

@@ -51,6 +51,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchViewHolder> {
             holder.textViewPostal.setText(branches.get(position).getPostal());
             holder.textViewAddress.setText(branches.get(position).getAddress());
             holder.textViewZone.setText(branches.get(position).getZone());
+            holder.textViewFinancialCode.setText(branches.get(position).getFinancialCode());
             holder.imageViewAddress.setOnClickListener(v -> {
                 showFragmentDialogOnce(inflater.getContext(), BRANCH_LOCATION.getValue(),
                         ContactBranchLocationFragment.newInstance(branches.get(position).getPoint()));
