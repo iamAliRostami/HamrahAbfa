@@ -59,8 +59,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/background_button</item>
         <!--                <item name="android:colorBackground">@color/color_states_button</item>-->
-<!--        <item name="android:backgroundTint">@color/color_states_button</item>-->
-<!--        <item name="colorOnSurface">@color/color_states_button</item>-->
+        <!--        <item name="android:backgroundTint">@color/color_states_button</item>-->
+        <!--        <item name="colorOnSurface">@color/color_states_button</item>-->
         <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/color_states_text_button</item>
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
@@ -217,4 +217,28 @@
         <item name="android:textColor">?android:attr/textColor</item>
     </style>
 
+    <style name="TabLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_tab_layout</item>
+        <item name="tabInlineLabel">true</item>
+    </style>
+
+
+    <style name="ViewPagerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/large_dp</item>
+    </style>
+    <style name="ViewPagerCardStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/large_dp</item>
+        <item name="android:layout_marginBottom">@dimen/large_dp</item>
+        <item name="paddingStart">@dimen/large_dp</item>
+        <item name="paddingEnd">@dimen/large_dp</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:saveEnabled">false</item>
+    </style>
 </resources>

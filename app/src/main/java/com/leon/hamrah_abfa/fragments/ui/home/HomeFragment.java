@@ -20,6 +20,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ChangeMobileActivity;
+import com.leon.hamrah_abfa.activities.CheckoutActivity;
 import com.leon.hamrah_abfa.activities.ContactUsActivity;
 import com.leon.hamrah_abfa.activities.FollowRequestActivity;
 import com.leon.hamrah_abfa.activities.PayBillActivity;
@@ -83,6 +84,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         } else if (position == 1) {
             startActivity(createIntent(SetCounterNumberActivity.class));
         } else if (position == 2) {
+        } else if (position == 3) {
+            startActivity(createIntent(SetCounterNumberActivity.class));
+        } else if (position == 4) {
+            startActivity(createIntent(CheckoutActivity.class));
         } else if (position == 5) {
             final Intent intent = createIntent(FollowRequestActivity.class);
             intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==

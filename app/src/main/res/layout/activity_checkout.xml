@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_blue"
     android:padding="@dimen/large_dp"
-    tools:context=".activities.NotificationsActivity">
+    tools:context=".activities.CheckoutActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
@@ -15,5 +15,4 @@
         android:id="@+id/view_pager"
         style="@style/ViewPagerStyle"
         android:layout_below="@id/tab_layout" />
-
 </RelativeLayout>
