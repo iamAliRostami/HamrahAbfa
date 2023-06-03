@@ -123,7 +123,6 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
     }
 
     @Override

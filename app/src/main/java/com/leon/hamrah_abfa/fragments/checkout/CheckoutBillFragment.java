@@ -38,5 +38,6 @@ public class CheckoutBillFragment extends Fragment {
     }
 
     public interface ICallback {
+        String getBillId();
     }
 }

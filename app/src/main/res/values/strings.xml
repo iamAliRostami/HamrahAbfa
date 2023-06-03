@@ -189,4 +189,6 @@
     <string name="next_account">اشتراک بعدی</string>
     <string name="enter_next">شناسه قبض اشتراک بعدی را وارد کنید</string>
     <string name="deadline">مهلت پرداخت</string>
+    <string name="bills">قبض\u200cها</string>
+    <string name="payments">پرداخت\u200cها</string>
 </resources>
