@@ -85,7 +85,6 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             startActivity(createIntent(SetCounterNumberActivity.class));
         } else if (position == 2) {
         } else if (position == 3) {
-            startActivity(createIntent(SetCounterNumberActivity.class));
         } else if (position == 4) {
             startActivity(createIntent(CheckoutActivity.class));
         } else if (position == 5) {
@@ -93,6 +92,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
             intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
                     (callback.getCardPagerAdapter().getItemCount() - 1));
             startActivity(intent);
+        } else if (position == 6) {
         } else if (position == 7) {
             startActivity(createIntent(ChangeMobileActivity.class));
         } else if (position == 8) {
