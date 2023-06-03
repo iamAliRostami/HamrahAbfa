@@ -14,7 +14,7 @@ public class LastBillViewModel extends BaseObservable {
     private String deadline;
 
     private String usingM3;
-    private String usingLitter;
+    private String usingLiter;
     private String average;
 
     private String bahaAb;
@@ -104,13 +104,13 @@ public class LastBillViewModel extends BaseObservable {
     }
 
     @Bindable
-    public String getUsingLitter() {
-        return usingLitter;
+    public String getUsingLiter() {
+        return usingLiter;
     }
 
-    public void setUsingLitter(String usingLitter) {
-        this.usingLitter = usingLitter;
-        notifyPropertyChanged(BR.usingLitter);
+    public void setUsingLiter(String usingLiter) {
+        this.usingLiter = usingLiter;
+        notifyPropertyChanged(BR.usingLiter);
     }
 
     @Bindable
@@ -253,75 +253,93 @@ public class LastBillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.currentDate);
     }
 
+    @Bindable
     public String getDays() {
         return days;
     }
 
     public void setDays(String days) {
         this.days = days;
+        notifyPropertyChanged(BR.days);
     }
 
+    @Bindable
     public String getPreNumber() {
         return preNumber;
     }
 
     public void setPreNumber(String preNumber) {
         this.preNumber = preNumber;
+        notifyPropertyChanged(BR.preNumber);
     }
 
+    @Bindable
     public String getCurrentNumber() {
         return currentNumber;
     }
 
     public void setCurrentNumber(String currentNumber) {
         this.currentNumber = currentNumber;
+        notifyPropertyChanged(BR.currentNumber);
     }
 
+    @Bindable
     public String getKarbari() {
         return karbari;
     }
 
     public void setKarbari(String karbari) {
         this.karbari = karbari;
+        notifyPropertyChanged(BR.karbari);
     }
 
+    @Bindable
     public String getAhahdMaskooni() {
         return ahahdMaskooni;
     }
 
     public void setAhahdMaskooni(String ahahdMaskooni) {
         this.ahahdMaskooni = ahahdMaskooni;
+        notifyPropertyChanged(BR.ahahdMaskooni);
     }
 
+    @Bindable
     public String getAhadNonMaskooni() {
         return ahadNonMaskooni;
     }
 
     public void setAhadNonMaskooni(String ahadNonMaskooni) {
         this.ahadNonMaskooni = ahadNonMaskooni;
+        notifyPropertyChanged(BR.ahadNonMaskooni);
     }
 
+    @Bindable
     public String getZarfiat() {
         return zarfiat;
     }
 
     public void setZarfiat(String zarfiat) {
         this.zarfiat = zarfiat;
+        notifyPropertyChanged(BR.zarfiat);
     }
 
+    @Bindable
     public String getQotrEnsheab() {
         return qotrEnsheab;
     }
 
     public void setQotrEnsheab(String qotrEnsheab) {
         this.qotrEnsheab = qotrEnsheab;
+        notifyPropertyChanged(BR.qotrEnsheab);
     }
 
+    @Bindable
     public String getQotrSiphon() {
         return qotrSiphon;
     }
 
     public void setQotrSiphon(String qotrSiphon) {
         this.qotrSiphon = qotrSiphon;
+        notifyPropertyChanged(BR.qotrSiphon);
     }
 }
