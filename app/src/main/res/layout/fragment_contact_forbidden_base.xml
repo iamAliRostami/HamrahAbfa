@@ -18,15 +18,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/large_dp"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="@dimen/medium_dp"
-            app:cardElevation="@dimen/medium_dp">
+            android:layout_margin="0dp"
+            style="@style/CardStyle">
 
             <RelativeLayout
                 android:layout_width="match_parent"

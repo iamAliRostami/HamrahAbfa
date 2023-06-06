@@ -37,63 +37,11 @@
 
     <style name="TitleBranch" parent="TitleSubmitInfo">
         <item name="android:gravity">center</item>
-        <!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
     </style>
 
-    <style name="Button">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="ButtonSubmit" parent="Button">
-        <item name="android:background">@drawable/background_blue</item>
-        <item name="backgroundTint">@color/purple_7001</item>
-        <item name="android:backgroundTint">@color/purple_7001</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:textColor">@color/light</item>
-        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
-    </style>
-
-    <style name="ButtonState" parent="ThemeOverlay.Material3.Button">
-        <!--    <style name="ButtonState" parent="@style/Widget.MaterialComponents.Button.UnelevatedButton">-->
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/background_button</item>
-        <!--                <item name="android:colorBackground">@color/color_states_button</item>-->
-        <!--        <item name="android:backgroundTint">@color/color_states_button</item>-->
-        <!--        <item name="colorOnSurface">@color/color_states_button</item>-->
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:textColor">@color/color_states_text_button</item>
-        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
-    </style>
-
-    <style name="ButtonCancel" parent="Button">
-        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
-        <item name="android:textColor">@color/purple_7001</item>
-        <item name="android:background">@drawable/background_white_blue</item>
-    </style>
-
-    <style name="CardViewBottom" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
-        </item>
-    </style>
-
-    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">@dimen/large_dp</item>
-        <item name="cornerSizeTopLeft">@dimen/large_dp</item>
-        <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerSizeBottomLeft">0dp</item>
-    </style>
-
-
-    <!--    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">-->
-    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="boxBackgroundColor">@color/light</item>
-        <item name="boxBackgroundMode">outline</item>
-        <item name="hintTextColor">@color/purple_7001</item>
-        <item name="boxStrokeColor">@color/purple_7001</item>
+    <style name="TitleBill" parent="TitleBranch">
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
     </style>
 
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -120,6 +68,73 @@
         <item name="maxLines">1</item>
     </style>
 
+    <style name="TextItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
+        <item name="android:padding">@dimen/large_dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
+    </style>
+
+    <style name="TextItem.Branch">
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="TextItem.SingleLine">
+        <item name="maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:marqueeRepeatLimit">marquee_forever</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ButtonSubmit" parent="Button">
+        <item name="android:background">@drawable/background_blue</item>
+        <item name="backgroundTint">@color/purple_7001</item>
+        <item name="android:backgroundTint">@color/purple_7001</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/light</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
+    </style>
+
+    <style name="ButtonState" parent="ThemeOverlay.Material3.Button">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_button</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/color_states_text_button</item>
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
+    </style>
+
+    <style name="ButtonCancel" parent="Button">
+        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
+        <item name="android:textColor">@color/purple_7001</item>
+        <item name="android:background">@drawable/background_white_blue</item>
+    </style>
+
+    <style name="ButtonFloatStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+    </style>
+
+
+    <style name="MenuLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/light</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="hintTextColor">@color/purple_7001</item>
+        <item name="boxStrokeColor">@color/purple_7001</item>
+    </style>
+
     <style name="InputVerificationCode">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -130,7 +145,30 @@
         <item name="android:layout_margin">@dimen/medium_dp</item>
     </style>
 
-    <style name="HeaderImageView">
+    <style name="ImageItemStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/medium_dp</item>
+        <item name="android:layout_marginEnd">@dimen/medium_dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ImageTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/small_dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ImageArrowStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/large_dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:tint">@color/dark_gray</item>
+    </style>
+
+    <style name="ImageHeader">
         <item name="android:layout_width">@dimen/xlarge_dp</item>
         <item name="android:layout_height">@dimen/xlarge_dp</item>
         <item name="android:layout_marginTop">@dimen/medium_dp</item>
@@ -158,34 +196,81 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextItem">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
-        <item name="android:padding">@dimen/large_dp</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:justificationMode" tools:ignore="NewApi">inter_word</item>
-    </style>
-
-    <style name="TextItem.Branch">
-        <item name="android:gravity">end</item>
-        <!--        <item name="android:textAlignment">viewStart</item>-->
-    </style>
-
-    <style name="TextItem.SingleLine">
-        <item name="maxLines">1</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:scrollHorizontally">true</item>
-        <item name="android:ellipsize">marquee</item>
-        <item name="android:marqueeRepeatLimit">marquee_forever</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:gravity">center</item>
-    </style>
 
     <style name="ChipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textColor">?android:attr/colorPrimary</item>
         <item name="android:textSize">@dimen/font_medium_value</item>
         <item name="android:textAppearance">@style/TextStyleMedium</item>
+    </style>
+
+
+    <style name="TabLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/background_tab_layout</item>
+        <item name="tabInlineLabel">true</item>
+    </style>
+
+    <style name="ViewPagerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/large_dp</item>
+    </style>
+
+    <style name="CardStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+        <item name="cardCornerRadius">@dimen/medium_dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+    </style>
+
+    <style name="CardStyle.Parent">
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+    </style>
+
+    <style name="CardStyle.ViewPager">
+        <item name="android:layout_marginTop">@dimen/large_dp</item>
+        <item name="android:layout_marginBottom">@dimen/large_dp</item>
+        <item name="android:paddingStart">@dimen/large_dp</item>
+        <item name="android:paddingEnd">@dimen/large_dp</item>
+    </style>
+
+    <style name="CardStyle.Center">
+        <item name="android:layout_marginStart">@dimen/large_dp</item>
+        <item name="android:layout_marginEnd">@dimen/large_dp</item>
+    </style>
+
+    <style name="CardViewBottom" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut
+        </item>
+        <item name="cardElevation">@dimen/medium_dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/xlarge_dp</item>
+        <item name="android:layout_marginEnd">@dimen/xlarge_dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/large_dp</item>
+        <item name="cornerSizeTopLeft">@dimen/large_dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="FragmentContainerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/light_blue</item>
+        <item name="defaultNavHost">true</item>
+        <item name="android:name">androidx.navigation.fragment.NavHostFragment</item>
     </style>
 
     <style name="TextStyleSmall">
@@ -212,85 +297,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="ThemeTextStyle">
+    <style name="TextThemeStyle">
         <item name="android:textColor">?android:attr/textColor</item>
     </style>
 
-    <style name="TabLayoutStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/background_tab_layout</item>
-        <item name="tabInlineLabel">true</item>
-    </style>
-
-
-    <style name="ViewPagerStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginTop">@dimen/large_dp</item>
-    </style>
-
-    <style name="ViewPagerCardStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/large_dp</item>
-        <item name="android:layout_marginBottom">@dimen/large_dp</item>
-        <item name="android:paddingStart">@dimen/large_dp</item>
-        <item name="android:paddingEnd">@dimen/large_dp</item>
-        <item name="android:clipChildren">false</item>
-        <item name="android:clipToPadding">false</item>
-        <item name="android:saveEnabled">false</item>
-    </style>
-
-    <style name="ImageItemStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/medium_dp</item>
-        <item name="android:layout_marginEnd">@dimen/medium_dp</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-    <style name="ImageTitleStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/small_dp</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-    <style name="ImageArrowStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/large_dp</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-
-    <style name="TitleBill" parent="TitleBranch">
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">start</item>
-    </style>
-
-    <style name="CardStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">@dimen/medium_dp</item>
-        <item name="android:elevation">@dimen/medium_dp</item>
-        <item name="cardCornerRadius">@dimen/medium_dp</item>
-        <item name="android:foreground">?android:attr/selectableItemBackground</item>
-        <item name="android:focusable">false</item>
-        <item name="android:clickable">false</item>
-        <item name="android:focusableInTouchMode">false</item>
-        <item name="android:descendantFocusability">blocksDescendants</item>
-    </style>
-
-    <style name="FragmentContainerStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@color/light_blue</item>
-        <item name="defaultNavHost">true</item>
-        <item name="android:name">androidx.navigation.fragment.NavHostFragment</item>
-    </style>
-
-    <style name="FloatButtonStyle">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:elevation">@dimen/medium_dp</item>
-    </style>
 </resources>

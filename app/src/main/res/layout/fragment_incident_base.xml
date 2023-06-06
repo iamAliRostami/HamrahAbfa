@@ -20,15 +20,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/CardStyle"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/large_dp"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="@dimen/medium_dp"
-            app:cardElevation="@dimen/medium_dp">
+            android:layout_margin="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,9 +49,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/menu"
                     style="@style/MenuLayout"
+                    android:layout_below="@id/text_view_description"
                     android:layout_marginTop="@dimen/large_dp"
                     android:layout_marginBottom="@dimen/large_dp"
-                    android:layout_below="@id/text_view_description"
                     android:hint="@string/incident_type">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -95,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/card_view_content"
+            android:layout_marginTop="@dimen/large_dp"
             android:background="@drawable/background_incident_field"
             android:orientation="horizontal"
             android:padding="@dimen/tiny_dp">

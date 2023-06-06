@@ -92,9 +92,9 @@ public class ThemeFragment extends BaseBottomSheetFragment {
         binding.textViewThemeLight.setSelected(true);
         binding.textViewThemeDark.setSelected(true);
 
-        binding.textViewThemeBasedOnDevice.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
-        binding.textViewThemeLight.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
-        binding.textViewThemeDark.setTextAppearance(requireContext(), R.style.ThemeTextStyle);
+        binding.textViewThemeBasedOnDevice.setTextAppearance(requireContext(), R.style.TextThemeStyle);
+        binding.textViewThemeLight.setTextAppearance(requireContext(), R.style.TextThemeStyle);
+        binding.textViewThemeDark.setTextAppearance(requireContext(), R.style.TextThemeStyle);
         binding.linearLayoutBasedOnDevice.setBackground(null);
         binding.linearLayoutLight.setBackground(null);
         binding.linearLayoutDark.setBackground(null);

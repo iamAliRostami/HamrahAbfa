@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contribute_card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/small_dp"
-    android:clickable="false"
-    android:descendantFocusability="blocksDescendants"
-    android:elevation="@dimen/medium_dp"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="@dimen/medium_dp">
+    style="@style/CardStyle.Parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,8 +38,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_device_last_login_title"
                 style="@style/TitleHelp"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
                 android:text="@string/last_login" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -75,8 +65,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_ip_title"
                 style="@style/TitleHelp"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
                 android:text="@string/ip" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -101,8 +91,8 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_mobile_title"
                 style="@style/TitleHelp"
-                android:layout_weight="1"
                 android:layout_margin="@dimen/medium_dp"
+                android:layout_weight="1"
                 android:text="@string/mobile" />
 
             <com.google.android.material.textview.MaterialTextView

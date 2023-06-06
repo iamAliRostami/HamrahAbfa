@@ -10,7 +10,6 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,15 +18,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
+            style="@style/CardStyle"
+            android:layout_margin="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_above="@id/button_submit"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/font_huge_value"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="@dimen/medium_dp"
-            card_view:cardElevation="@dimen/medium_dp">
+            android:layout_alignParentTop="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -35,13 +30,13 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_icon"
-                    android:padding="@dimen/xlarge_dp"
-                    android:layout_margin="@dimen/large_dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_above="@id/text_layout_bill_id"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/large_dp"
+                    android:padding="@dimen/xlarge_dp"
                     android:src="@drawable/home_meter" />
 
                 <View
@@ -61,8 +56,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_bill_id"
-                    android:layout_above="@id/text_layout_counter_number"
                     style="@style/TextInputLayout"
+                    android:layout_above="@id/text_layout_counter_number"
                     android:layout_marginStart="@dimen/large_dp"
                     android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/bill_id"
@@ -80,11 +75,11 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_counter_number"
                     style="@style/TextInputLayout"
+                    android:layout_centerInParent="true"
                     android:layout_marginStart="@dimen/large_dp"
                     android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/counter_number"
                     app:counterEnabled="true"
-                    android:layout_centerInParent="true"
                     app:counterMaxLength="7"
                     app:helperText="@string/enter_counter_number"
                     app:helperTextTextAppearance="@style/TextHelper"
@@ -97,6 +92,7 @@
                         android:maxLength="7"
                         android:text="@={viewModel.counterNumber}" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_mobile"
                     style="@style/TextInputLayout"
@@ -123,6 +119,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_submit"
             style="@style/ButtonSubmit"
+            android:layout_marginTop="@dimen/large_dp"
             android:layout_alignParentBottom="true"
             android:text="@string/confirm" />
     </RelativeLayout>

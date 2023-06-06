@@ -17,16 +17,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/large_dp"
             android:layout_above="@id/linear_layout_buttons"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/large_dp"
-            android:foreground="?android:attr/selectableItemBackground"
-            app:cardCornerRadius="@dimen/medium_dp"
-            card_view:cardElevation="@dimen/medium_dp">
+            style="@style/CardStyle">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

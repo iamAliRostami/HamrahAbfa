@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contribute_card"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/medium_dp"
-    android:clickable="false"
-    android:descendantFocusability="blocksDescendants"
-    android:elevation="@dimen/medium_dp"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="@dimen/medium_dp">
+    style="@style/CardStyle.Parent">
 
     <RelativeLayout
         android:id="@+id/relative_layout"
@@ -24,7 +14,7 @@
             style="@style/ImageTitleStyle"
             android:layout_alignParentStart="true"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/service_main_account_sale"/>
+            android:src="@drawable/service_main_account_sale" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"

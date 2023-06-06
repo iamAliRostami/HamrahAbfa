@@ -2,16 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contribute_card"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/light"
-    android:clickable="false"
-    android:descendantFocusability="blocksDescendants"
-    android:elevation="@dimen/medium_dp"
-    android:focusable="false"
-    android:focusableInTouchMode="false"
-    android:foreground="?android:attr/selectableItemBackground"
-    app:cardCornerRadius="@dimen/small_dp">
+    style="@style/CardStyle.Parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
