@@ -11,45 +11,178 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_summary"
-            style="@style/CardStyle">
+            style="@style/CardStyle"
+            android:background="@drawable/background_service_introduction">
 
             <RelativeLayout
-                android:id="@+id/relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_service_introduction">
+                android:background="@color/light_blue">
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text_view_name"
+                    android:id="@+id/text_view_summary"
                     style="@style/TextItem.SingleLine"
                     android:layout_alignParentStart="true"
-                    android:layout_toStartOf="@id/image_view_arrow"
+                    android:layout_toStartOf="@id/image_view_arrow_1"
                     android:gravity="start"
-                    android:text="@string/app_name"
+                    android:text="@string/bill_summary"
                     android:textAllCaps="true" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_arrow"
+                    android:id="@+id/image_view_arrow_1"
                     style="@style/ImageArrowStyle"
-                    android:layout_above="@id/divider"
+                    android:layout_above="@id/divider_1"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/arrow_up" />
 
                 <View
-                    android:id="@+id/divider"
+                    android:id="@+id/divider_1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/tiny_dp"
-                    android:layout_below="@id/text_view_name"
+                    android:layout_below="@id/text_view_summary"
                     android:background="@color/light_gray" />
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/divider">
+                    android:layout_below="@id/divider_1">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/linear_layout_11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_owner"
+                            style="@style/ImageItemStyle"
+                            android:src="@drawable/ic_manager" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_owner_title"
+                            style="@style/TitleBill"
+                            android:text="@string/manager_name" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_owner"
+                            style="@style/TextItem"
+                            android:text="@string/manager_name" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linear_layout_12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linear_layout_11">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_bill_id"
+                            style="@style/ImageItemStyle"
+                            android:src="@drawable/ic_zone" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_bill_id_title"
+                            style="@style/TitleBill"
+                            android:layout_toEndOf="@id/image_view_zone"
+                            android:text="@string/zone_name" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_bill_id"
+                            style="@style/TextItem"
+                            android:text="@string/zone_name" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linear_layout_13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/linear_layout_12">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_bill_price"
+                            style="@style/ImageItemStyle"
+                            android:src="@drawable/ic_financial_code" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_bill_price_title"
+                            style="@style/TitleBill"
+                            android:text="@string/financial_code" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_bill_price"
+                            style="@style/TextItem"
+                            android:text="@string/financial_code" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linear_layout_14"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/linear_layout_13">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_dead_line"
+                            style="@style/ImageItemStyle"
+                            android:src="@drawable/ic_phone" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_dead_line_title"
+                            style="@style/TitleBill"
+                            android:text="@string/phone" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/text_view_dead_line"
+                            style="@style/TextItem"
+                            android:text="@string/phone" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_using_info"
+            style="@style/CardStyle"
+            android:layout_below="@id/card_view_summary"
+            android:background="@drawable/background_service_introduction">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_using_info"
+                    style="@style/TextItem.SingleLine"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@id/image_view_arrow_2"
+                    android:gravity="start"
+                    android:text="@string/using_info"
+                    android:textAllCaps="true" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_arrow_2"
+                    style="@style/ImageArrowStyle"
+                    android:layout_above="@id/divider_2"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/arrow_up" />
+
+                <View
+                    android:id="@+id/divider_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tiny_dp"
+                    android:layout_below="@id/text_view_using_info"
+                    android:background="@color/light_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/relative_layout_using_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider_2">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/linear_layout_21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -70,10 +203,10 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/linear_layout_12"
+                        android:id="@+id/linear_layout_22"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/linear_layout_11">
+                        android:layout_below="@id/linear_layout_21">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/image_view_zone"
@@ -93,10 +226,10 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/linear_layout_13"
+                        android:id="@+id/linear_layout_23"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/linear_layout_12">
+                        android:layout_below="@id/linear_layout_22">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/image_view_financial"
@@ -112,28 +245,6 @@
                             android:id="@+id/text_view_financial"
                             style="@style/TextItem"
                             android:text="@string/financial_code" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/linear_layout_14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/linear_layout_13">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/image_view_phone_1"
-                            style="@style/ImageItemStyle"
-                            android:src="@drawable/ic_phone" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/text_view_phone_1_title"
-                            style="@style/TitleBill"
-                            android:text="@string/phone" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/text_view_phone_1"
-                            style="@style/TextItem"
-                            android:text="@string/phone" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </RelativeLayout>

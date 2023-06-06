@@ -192,4 +192,6 @@
     <string name="bills">قبض\u200cها</string>
     <string name="payments">پرداخت\u200cها</string>
     <string name="financial_code">کد اقتصادی</string>
+    <string name="bill_summary">خلاصه قبض</string>
+    <string name="using_info">اطلاعات مصرف</string>
 </resources>

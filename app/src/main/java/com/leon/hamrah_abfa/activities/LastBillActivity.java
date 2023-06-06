@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 
 import android.view.View;
 
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityLastBillBinding;
 
@@ -29,6 +30,9 @@ public class LastBillActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.image_view_arrow_1) {
 
+        }
     }
 }
