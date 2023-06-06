@@ -10,17 +10,12 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_tab_layout"
-        app:tabInlineLabel="false" />
+        style="@style/TabLayoutStyle" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/ViewPagerStyle"
         android:layout_below="@id/tab_layout"
-        android:layout_marginTop="@dimen/large_dp"
         android:layout_marginBottom="@dimen/xlarge_dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
