@@ -8,7 +8,9 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_card"
         style="@style/ViewPagerCardStyle"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingStart="@dimen/large_dp"
+        android:paddingEnd="@dimen/large_dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_menu"
