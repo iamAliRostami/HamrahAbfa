@@ -138,11 +138,10 @@
         <item name="android:padding">@dimen/medium_dp</item>
     </style>
 
-    <style name="BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+    <style name="BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemIconTint">@drawable/bnv_tab_item_foreground</item>
         <item name="itemTextColor">@drawable/bnv_tab_item_foreground</item>
-        <item name="itemTextAppearanceActive">@style/BottomNavigationView.TextAppearance.Active
-        </item>
+        <item name="itemTextAppearanceActive">@style/BottomNavigation.TextAppearance.Active</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="elevation">0dp</item>
         <item name="labelVisibilityMode">labeled</item>
@@ -150,11 +149,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="BottomNavigationView.TextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+    <style name="BottomNavigation.TextAppearance" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textAppearance">@style/TextStyleSmall</item>
     </style>
 
-    <style name="BottomNavigationView.TextAppearance.Active" parent="TextAppearance.MaterialComponents.Caption">
+    <style name="BottomNavigation.TextAppearance.Active" parent="TextAppearance.MaterialComponents.Caption">
         <item name="android:textSize">?attr/font_medium</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -282,6 +281,7 @@
         <item name="defaultNavHost">true</item>
         <item name="android:name">androidx.navigation.fragment.NavHostFragment</item>
     </style>
+
     <style name="FloatButtonStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
