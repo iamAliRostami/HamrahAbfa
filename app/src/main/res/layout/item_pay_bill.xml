@@ -22,11 +22,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/medium_dp"
-                android:layout_marginEnd="@dimen/medium_dp"
+                style="@style/ImageTitleStyle"
                 android:src="@drawable/ic_bill_price" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -46,11 +42,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/medium_dp"
-                android:layout_marginEnd="@dimen/medium_dp"
+                style="@style/ImageTitleStyle"
                 android:src="@drawable/ic_deadline" />
 
             <com.google.android.material.textview.MaterialTextView
