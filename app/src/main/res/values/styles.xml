@@ -282,4 +282,9 @@
         <item name="defaultNavHost">true</item>
         <item name="android:name">androidx.navigation.fragment.NavHostFragment</item>
     </style>
+    <style name="FloatButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+    </style>
 </resources>
