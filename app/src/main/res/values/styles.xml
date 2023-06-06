@@ -230,15 +230,56 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">@dimen/large_dp</item>
     </style>
+
     <style name="ViewPagerCardStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/large_dp</item>
         <item name="android:layout_marginBottom">@dimen/large_dp</item>
-        <item name="paddingStart">@dimen/large_dp</item>
-        <item name="paddingEnd">@dimen/large_dp</item>
+        <item name="android:paddingStart">@dimen/large_dp</item>
+        <item name="android:paddingEnd">@dimen/large_dp</item>
         <item name="android:clipChildren">false</item>
         <item name="android:clipToPadding">false</item>
         <item name="android:saveEnabled">false</item>
+    </style>
+
+    <style name="ImageItemStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/medium_dp</item>
+        <item name="android:layout_marginEnd">@dimen/medium_dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="ImageArrowStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/large_dp</item>
+    </style>
+
+    <style name="TitleBill" parent="TitleBranch">
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <style name="CardStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+        <item name="cardCornerRadius">@dimen/medium_dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+    </style>
+
+    <style name="FragmentContainerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/light_blue</item>
+        <item name="defaultNavHost">true</item>
+        <item name="android:name">androidx.navigation.fragment.NavHostFragment</item>
     </style>
 </resources>

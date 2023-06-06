@@ -8,8 +8,6 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_card"
         style="@style/ViewPagerCardStyle"
-        android:paddingStart="@dimen/large_dp"
-        android:paddingEnd="@dimen/large_dp"
         android:layout_centerHorizontal="true" />
 
 <!--    <androidx.viewpager2.widget.ViewPager2-->
