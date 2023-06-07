@@ -194,4 +194,24 @@
     <string name="financial_code">کد اقتصادی</string>
     <string name="bill_summary">خلاصه قبض</string>
     <string name="using_info">اطلاعات مصرف</string>
+    <string name="dear_user">مشترک گرامی</string>
+    <string name="using_m3">مصرف به متر مکعب</string>
+    <string name="using_liter">مصرف به لیتر</string>
+    <string name="using_average">میانگین مصرف</string>
+    <string name="baha_ab">بهای آب مصرفی</string>
+    <string name="items">شرح اقلام</string>
+    <string name="baha_dafe">بهای دفع فاضلاب</string>
+    <string name="tax">مالیات و عوارض</string>
+    <string name="taklif">تکلیف قانون بودجه</string>
+    <string name="kahande">لوازم کاهنده</string>
+    <string name="total">جمع کل</string>
+    <string name="discount">تخفیف</string>
+    <string name="debt">بدهی</string>
+    <string name="reading_info">اطلاعات قرائت</string>
+    <string name="eshterak">شماره اشتراک</string>
+    <string name="pre_date">تاریخ قرائت پیشین</string>
+    <string name="current_date">تاریخ قرائت کنونی</string>
+    <string name="days">تعداد روز</string>
+    <string name="pre_number">رقم قرائت پیشین</string>
+    <string name="current_number">رقم قرائت فعلی</string>
 </resources>
