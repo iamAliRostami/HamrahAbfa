@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 
 import android.view.View;
 
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityLastBillBinding;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillEnsheabInfoFragment;
@@ -25,13 +26,21 @@ public class LastBillActivity extends BaseActivity {
         }
         setContentView(binding.getRoot());
         initializeFrameLayouts();
+        setOnClickListener();
+    }
 
+    private void setOnClickListener() {
+        binding.linearLayoutEnsheab.setOnClickListener(this);
+        binding.linearLayoutItems.setOnClickListener(this);
+        binding.linearLayoutSummary.setOnClickListener(this);
+        binding.linearLayoutUsingInfo.setOnClickListener(this);
+        binding.linearLayoutReadingInfo.setOnClickListener(this);
     }
 
     private void initializeFrameLayouts() {
         getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutSummary.getId(),
                 LastBillSummaryFragment.newInstance()).commitNow();
-        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsing.getId(),
+        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsingInfo.getId(),
                 LastBillUsingInfoFragment.newInstance()).commitNow();
         getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutItems.getId(),
                 LastBillItemsFragment.newInstance()).commitNow();
@@ -49,5 +58,40 @@ public class LastBillActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         final int id = v.getId();
+        final int visibility = getVisibility(id);
+
+        binding.frameLayoutItems.setVisibility(View.GONE);
+        binding.frameLayoutSummary.setVisibility(View.GONE);
+        binding.frameLayoutUsingInfo.setVisibility(View.GONE);
+        binding.frameLayoutEnsheabInfo.setVisibility(View.GONE);
+        binding.frameLayoutReadingInfo.setVisibility(View.GONE);
+
+        binding.imageViewArrowItems.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_down);
+
+        if (id == R.id.linear_layout_summary) {
+            if (visibility == View.GONE) {
+                binding.frameLayoutSummary.setVisibility(View.VISIBLE);
+                binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_up);
+            } else {
+                binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
+            }
+        }
+    }
+
+    private int getVisibility(int id) {
+        if (id == R.id.linear_layout_using_info)
+            return binding.frameLayoutUsingInfo.getVisibility();
+        else if (id == R.id.linear_layout_items)
+            return binding.frameLayoutItems.getVisibility();
+        else if (id == R.id.linear_layout_reading_info)
+            return binding.frameLayoutReadingInfo.getVisibility();
+        else if (id == R.id.linear_layout_ensheab)
+            return binding.frameLayoutEnsheabInfo.getVisibility();
+        else /*if (id == R.id.linear_layout_summary)*/
+            return binding.frameLayoutSummary.getVisibility();
     }
 }
