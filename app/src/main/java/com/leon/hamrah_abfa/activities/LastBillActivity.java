@@ -20,9 +20,14 @@ public class LastBillActivity extends BaseActivity {
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
+        initializeFrameLayouts();
 
     }
-
+    private void initializeFrameLayouts() {
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(binding.frameLayoutSummary.getId(), LastBillSummaryFragment.newInstance())
+//                .commitNow();
+    }
     @Override
     protected String getExitMessage() {
         return null;
@@ -30,9 +35,5 @@ public class LastBillActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.image_view_arrow_1) {
-
-        }
     }
 }
