@@ -1,14 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/CardStyle"
+    android:background="@drawable/background_service_introduction"
     tools:context=".fragments.last_bill.LastBillReadingInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_reading_info"
+            style="@style/TextItem.SingleLine"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/image_view_arrow"
+            android:gravity="start"
+            android:text="@string/reading_info" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_arrow"
+            style="@style/ImageArrowStyle"
+            android:layout_above="@id/divider"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_up" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tiny_dp"
+            android:layout_below="@id/text_view_reading_info"
+            android:background="@color/light_gray" />
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_reading_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_41"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_eshterak"
+                    style="@style/ImageItemStyle"
+                    android:src="@drawable/ic_manager" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_eshterak_title"
+                    style="@style/TitleBill"
+                    android:text="@string/eshterak" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_eshterak"
+                    style="@style/TextItem"
+                    android:text="@string/eshterak" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_42"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_41">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_pre_date"
+                    style="@style/ImageItemStyle"
+                    android:src="@drawable/ic_zone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_pre_date_title"
+                    style="@style/TitleBill"
+                    android:layout_toEndOf="@id/image_view_zone"
+                    android:text="@string/pre_date" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_pre_date"
+                    style="@style/TextItem"
+                    android:text="@string/pre_date" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_43"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_42">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_current_date"
+                    style="@style/ImageItemStyle"
+                    android:src="@drawable/ic_financial_code" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_current_date_title"
+                    style="@style/TitleBill"
+                    android:text="@string/current_date" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_current_date"
+                    style="@style/TextItem"
+                    android:text="@string/current_date" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_44"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_43">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_days"
+                    style="@style/ImageItemStyle"
+                    android:src="@drawable/ic_financial_code" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_days_title"
+                    style="@style/TitleBill"
+                    android:text="@string/days" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_days"
+                    style="@style/TextItem"
+                    android:text="@string/days" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_44">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_pre_number"
+                    style="@style/ImageItemStyle"
+                    android:src="@drawable/ic_zone" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_pre_number_title"
+                    style="@style/TitleBill"
+                    android:text="@string/pre_number" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_pre_number"
+                    style="@style/TextItem"
+                    android:text="@string/pre_number" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout_46"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_layout_45">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_current_number"
+                    style="@style/ImageItemStyle"
+                    android:src="@drawable/ic_financial_code" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_current_number_title"
+                    style="@style/TitleBill"
+                    android:text="@string/current_number" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_current_number"
+                    style="@style/TextItem"
+                    android:text="@string/current_number" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

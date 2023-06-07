@@ -25,9 +25,9 @@ public class LastBillActivity extends BaseActivity {
 
     }
     private void initializeFrameLayouts() {
-//        getSupportFragmentManager().beginTransaction()
-//                .replace(binding.frameLayoutSummary.getId(), LastBillSummaryFragment.newInstance())
-//                .commitNow();
+        getSupportFragmentManager().beginTransaction()
+                .replace(binding.frameLayoutSummary.getId(), LastBillSummaryFragment.newInstance())
+                .commitNow();
     }
     @Override
     protected String getExitMessage() {
@@ -36,5 +36,6 @@ public class LastBillActivity extends BaseActivity {
 
     @Override
     public void onClick(View v) {
+        final int id = v.getId();
     }
 }
