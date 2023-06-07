@@ -59,18 +59,8 @@ public class LastBillActivity extends BaseActivity {
     public void onClick(View v) {
         final int id = v.getId();
         final int visibility = getVisibility(id);
-
-        binding.frameLayoutItems.setVisibility(View.GONE);
-        binding.frameLayoutSummary.setVisibility(View.GONE);
-        binding.frameLayoutUsingInfo.setVisibility(View.GONE);
-        binding.frameLayoutEnsheabInfo.setVisibility(View.GONE);
-        binding.frameLayoutReadingInfo.setVisibility(View.GONE);
-
-        binding.imageViewArrowItems.setImageResource(R.drawable.arrow_down);
-        binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
-        binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_down);
-        binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_down);
-        binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_down);
+        makeViewsGone();
+        resetImageViews();
 
         if (id == R.id.linear_layout_summary) {
             if (visibility == View.GONE) {
@@ -79,7 +69,43 @@ public class LastBillActivity extends BaseActivity {
             } else {
                 binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
             }
+        } else if (id == R.id.linear_layout_items) {
+            if (visibility == View.GONE) {
+                binding.frameLayoutItems.setVisibility(View.VISIBLE);
+                binding.imageViewArrowItems.setImageResource(R.drawable.arrow_up);
+            } else {
+                binding.imageViewArrowItems.setImageResource(R.drawable.arrow_down);
+            }
+        } else if (id == R.id.linear_layout_using_info) {
+            if (visibility == View.GONE) {
+                binding.frameLayoutUsingInfo.setVisibility(View.VISIBLE);
+                binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_up);
+            } else {
+                binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_down);
+            }
+        }else if (id == R.id.linear_layout_reading_info) {
+            if (visibility == View.GONE) {
+                binding.frameLayoutReadingInfo.setVisibility(View.VISIBLE);
+                binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_up);
+            } else {
+                binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_down);
+            }
+        }else if (id == R.id.linear_layout_ensheab) {
+            if (visibility == View.GONE) {
+                binding.frameLayoutEnsheabInfo.setVisibility(View.VISIBLE);
+                binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_up);
+            } else {
+                binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_down);
+            }
         }
+    }
+
+    private void resetImageViews() {
+        binding.imageViewArrowItems.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_down);
+        binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_down);
     }
 
     private int getVisibility(int id) {
@@ -93,5 +119,14 @@ public class LastBillActivity extends BaseActivity {
             return binding.frameLayoutEnsheabInfo.getVisibility();
         else /*if (id == R.id.linear_layout_summary)*/
             return binding.frameLayoutSummary.getVisibility();
+    }
+
+    private void makeViewsGone() {
+
+        binding.frameLayoutItems.setVisibility(View.GONE);
+        binding.frameLayoutSummary.setVisibility(View.GONE);
+        binding.frameLayoutUsingInfo.setVisibility(View.GONE);
+        binding.frameLayoutEnsheabInfo.setVisibility(View.GONE);
+        binding.frameLayoutReadingInfo.setVisibility(View.GONE);
     }
 }
