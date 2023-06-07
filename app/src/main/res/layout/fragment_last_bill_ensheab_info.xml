@@ -4,6 +4,7 @@
     style="@style/CardStyle"
     android:background="@drawable/background_service_introduction"
     tools:context=".fragments.last_bill.LastBillEnsheabInfoFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -216,6 +217,4 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>
     </RelativeLayout>
-
-
 </com.google.android.material.card.MaterialCardView>

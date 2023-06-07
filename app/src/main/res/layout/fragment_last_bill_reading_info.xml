@@ -13,20 +13,20 @@
             android:id="@+id/text_view_reading_info"
             style="@style/TextItem.SingleLine"
             android:layout_alignParentStart="true"
-            android:layout_toStartOf="@id/image_view_arrow_4"
+            android:layout_toStartOf="@id/image_view_arrow"
             android:gravity="start"
             android:text="@string/reading_info" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_arrow_4"
+            android:id="@+id/image_view_arrow"
             style="@style/ImageArrowStyle"
-            android:layout_above="@id/divider_4"
+            android:layout_above="@id/divider"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:src="@drawable/arrow_up" />
 
         <View
-            android:id="@+id/divider_4"
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tiny_dp"
             android:layout_below="@id/text_view_reading_info"
@@ -36,7 +36,7 @@
             android:id="@+id/relative_layout_reading_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/divider_4">
+            android:layout_below="@id/divider">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/linear_layout_41"
