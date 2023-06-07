@@ -7,6 +7,7 @@ import android.view.View;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityLastBillBinding;
+import com.leon.hamrah_abfa.fragments.last_bill.LastBillSummaryFragment;
 
 public class LastBillActivity extends BaseActivity {
     private ActivityLastBillBinding binding;
@@ -20,7 +21,13 @@ public class LastBillActivity extends BaseActivity {
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
+        initializeFrameLayouts();
+    }
 
+    private void initializeFrameLayouts() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(binding.frameLayoutSummary.getId(), LastBillSummaryFragment.newInstance())
+                .commitNow();
     }
 
     @Override
