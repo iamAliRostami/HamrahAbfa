@@ -214,4 +214,5 @@
     <string name="days">تعداد روز</string>
     <string name="pre_number">رقم قرائت پیشین</string>
     <string name="current_number">رقم قرائت فعلی</string>
+    <string name="ensheab_info">اطلاعات انشعاب</string>
 </resources>

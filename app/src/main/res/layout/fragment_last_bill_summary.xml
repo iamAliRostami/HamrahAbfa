@@ -2,13 +2,12 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/CardStyle"
-    android:background="@drawable/background_service_introduction"
     tools:context=".fragments.last_bill.LastBillSummaryFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_blue">
+        android:background="@color/light_gray">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_summary"
@@ -32,10 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/tiny_dp"
             android:layout_below="@id/text_view_summary"
-            android:background="@color/light_gray" />
+            android:background="@color/light" />
 
         <RelativeLayout
-            android:id="@+id/relative_layout_summary"
+            android:id="@+id/relative_layout_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/divider">

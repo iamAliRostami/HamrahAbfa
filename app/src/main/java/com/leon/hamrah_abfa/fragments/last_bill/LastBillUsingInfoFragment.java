@@ -16,7 +16,7 @@ public class LastBillUsingInfoFragment extends Fragment {
     public LastBillUsingInfoFragment() {
     }
 
-    public static LastBillUsingInfoFragment newInstance(String param1, String param2) {
+    public static LastBillUsingInfoFragment newInstance() {
         return new LastBillUsingInfoFragment();
     }
 

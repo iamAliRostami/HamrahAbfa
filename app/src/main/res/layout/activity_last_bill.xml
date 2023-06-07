@@ -3,39 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".activities.LastBillActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <FrameLayout
-            android:id="@+id/frame_layout_summary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/relative_layout_1"
+            style="@style/FrameLayoutStyle"
+            android:background="@color/light_gray">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_items"
+                style="@style/TextItem.SingleLine"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/image_view_arrow"
+                android:gravity="start"
+                android:text="@string/ensheab_info"
+                android:textAllCaps="true" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_arrow"
+                style="@style/ImageArrowStyle"
+                android:layout_above="@id/frame_layout_summary"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/arrow_up" />
+
+            <FrameLayout
+                android:id="@+id/frame_layout_summary"
+                style="@style/FrameLayoutStyle"
+                android:layout_below="@id/text_view_items" />
+        </RelativeLayout>
 
         <FrameLayout
             android:id="@+id/frame_layout_using"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/frame_layout_summary" />
+            style="@style/FrameLayoutStyle"
+            android:layout_below="@id/relative_layout_1" />
 
         <FrameLayout
             android:id="@+id/frame_layout_items"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/FrameLayoutStyle"
             android:layout_below="@id/frame_layout_using" />
 
         <FrameLayout
             android:id="@+id/frame_layout_reading_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/FrameLayoutStyle"
             android:layout_below="@id/frame_layout_items" />
 
         <FrameLayout
             android:id="@+id/frame_layout_ensheab_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/FrameLayoutStyle"
             android:layout_below="@id/frame_layout_reading_info" />
     </RelativeLayout>
 </ScrollView>

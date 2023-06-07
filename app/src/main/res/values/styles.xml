@@ -301,4 +301,13 @@
         <item name="android:textColor">?android:attr/textColor</item>
     </style>
 
+    <style name="FrameLayoutStyle">
+<!--        <item name="android:background">@drawable/background_service_introduction</item>-->
+        <item name="android:layout_marginTop">@dimen/medium_dp</item>
+        <item name="android:layout_marginBottom">@dimen/medium_dp</item>
+        <item name="android:layout_marginStart">@dimen/large_dp</item>
+        <item name="android:layout_marginEnd">@dimen/large_dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
