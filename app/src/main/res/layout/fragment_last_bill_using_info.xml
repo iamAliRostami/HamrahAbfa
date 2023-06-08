@@ -18,17 +18,17 @@
         android:layout_below="@id/divider">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_manager"
+            android:id="@+id/image_view_m3"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_manager" />
+            android:src="@drawable/ic_m3" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_manager_title"
+            android:id="@+id/text_view_m3_title"
             style="@style/TitleBill"
             android:text="@string/using_m3" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_manager"
+            android:id="@+id/text_view_m3"
             style="@style/TextItem"
             android:text="@string/using_m3" />
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -40,18 +40,17 @@
         android:layout_below="@id/linear_layout_21">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_zone"
+            android:id="@+id/image_view_liter"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_zone" />
+            android:src="@drawable/ic_meter" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_zone_title"
+            android:id="@+id/text_view_liter_title"
             style="@style/TitleBill"
-            android:layout_toEndOf="@id/image_view_zone"
             android:text="@string/using_liter" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_zone"
+            android:id="@+id/text_view_litere"
             style="@style/TextItem"
             android:text="@string/using_liter" />
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -63,17 +62,17 @@
         android:layout_below="@id/linear_layout_22">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_financial"
+            android:id="@+id/image_view_average"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_financial_code" />
+            android:src="@drawable/ic_average" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_financial_title"
+            android:id="@+id/text_view_average_title"
             style="@style/TitleBill"
             android:text="@string/using_average" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_financial"
+            android:id="@+id/text_view_average"
             style="@style/TextItem"
             android:text="@string/using_average" />
     </androidx.appcompat.widget.LinearLayoutCompat>

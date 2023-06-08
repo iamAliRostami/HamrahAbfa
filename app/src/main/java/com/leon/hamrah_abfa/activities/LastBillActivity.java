@@ -30,8 +30,8 @@ public class LastBillActivity extends BaseActivity {
     }
 
     private void setOnClickListener() {
-        binding.linearLayoutEnsheab.setOnClickListener(this);
         binding.linearLayoutItems.setOnClickListener(this);
+        binding.linearLayoutEnsheab.setOnClickListener(this);
         binding.linearLayoutSummary.setOnClickListener(this);
         binding.linearLayoutUsingInfo.setOnClickListener(this);
         binding.linearLayoutReadingInfo.setOnClickListener(this);
@@ -117,12 +117,11 @@ public class LastBillActivity extends BaseActivity {
             return binding.frameLayoutReadingInfo.getVisibility();
         else if (id == R.id.linear_layout_ensheab)
             return binding.frameLayoutEnsheabInfo.getVisibility();
-        else /*if (id == R.id.linear_layout_summary)*/
+        else
             return binding.frameLayoutSummary.getVisibility();
     }
 
     private void makeViewsGone() {
-
         binding.frameLayoutItems.setVisibility(View.GONE);
         binding.frameLayoutSummary.setVisibility(View.GONE);
         binding.frameLayoutUsingInfo.setVisibility(View.GONE);

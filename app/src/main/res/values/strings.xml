@@ -215,4 +215,12 @@
     <string name="pre_number">رقم قرائت پیشین</string>
     <string name="current_number">رقم قرائت فعلی</string>
     <string name="ensheab_info">اطلاعات انشعاب</string>
+    <string name="karbari">کاربری</string>
+    <string name="ahad_maskooni">آحاد مسکونی</string>
+    <string name="ahad_non_maskooni">آحاد غیرمسکونی</string>
+    <string name="zarfiat">ظرفیت قراردادی</string>
+    <string name="qotr">قطر انشعاب</string>
+    <string name="qotr_siphon">قطر سیفون</string>
+    اطلاعات مصرف
+    تعداد روز
 </resources>

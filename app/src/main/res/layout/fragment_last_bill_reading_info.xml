@@ -45,7 +45,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_pre_date"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_zone" />
+            android:src="@drawable/ic_date_from" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_pre_date_title"
@@ -68,7 +68,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_current_date"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_financial_code" />
+            android:src="@drawable/ic_date_to" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_current_date_title"
@@ -90,7 +90,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_days"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_financial_code" />
+            android:src="@drawable/ic_calendar_2" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_days_title"
@@ -112,7 +112,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_pre_number"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_zone" />
+            android:src="@drawable/ic_more" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_pre_number_title"
@@ -134,7 +134,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_current_number"
             style="@style/ImageItemStyle"
-            android:src="@drawable/ic_financial_code" />
+            android:src="@drawable/ic_less" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_current_number_title"

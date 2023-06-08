@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/app_name"
                     android:padding="@dimen/medium_dp"
-                    android:src="@drawable/ic_calendar"
+                    android:src="@drawable/ic_calendar_1"
                     android:tint="@color/purple_7001" />
 
                 <com.google.android.material.textview.MaterialTextView

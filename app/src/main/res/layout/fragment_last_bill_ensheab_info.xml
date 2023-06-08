@@ -1,189 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragments.last_bill.LastBillEnsheabInfoFragment">
 
     <View
-        android:background="@color/light"
         android:id="@+id/divider"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/tiny_dp"
-        android:layout_width="match_parent" />
+        android:background="@color/light" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_31"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_karbari"
             style="@style/ImageItemStyle"
-            android:id="@+id/image_view_baha"
-            android:src="@drawable/ic_manager" />
+            android:src="@drawable/ic_using" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_karbari_title"
             style="@style/TitleBill"
-            android:id="@+id/text_view_baha_title"
-            android:text="@string/baha_ab" />
+            android:text="@string/karbari" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_karbari"
             style="@style/TextItem"
-            android:id="@+id/text_view_baha"
-            android:text="@string/baha_ab" />
+            android:text="@string/karbari" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_32"
-        android:layout_below="@id/linear_layout_31"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_below="@id/linear_layout_31">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_ahad_maskooni"
             style="@style/ImageItemStyle"
-            android:id="@+id/image_view_dafe"
-            android:src="@drawable/ic_bill_id" />
+            android:src="@drawable/ic_maskooni" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/TitleBill"
             android:id="@+id/text_view_dafe_title"
-            android:layout_toEndOf="@id/image_view_zone"
-            android:text="@string/baha_dafe" />
+            style="@style/TitleBill"
+            android:text="@string/ahad_maskooni" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/TextItem"
             android:id="@+id/text_view_dafe"
-            android:text="@string/baha_dafe" />
+            style="@style/TextItem"
+            android:text="@string/ahad_maskooni" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_33"
-        android:layout_below="@id/linear_layout_32"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_below="@id/linear_layout_32">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_ahad_non_maskooni"
             style="@style/ImageItemStyle"
-            android:id="@+id/image_view_tax"
-            android:src="@drawable/ic_bill_price" />
+            android:src="@drawable/ic_market" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_ahad_non_maskooni_title"
             style="@style/TitleBill"
-            android:id="@+id/text_view_tax_title"
-            android:text="@string/tax" />
+            android:text="@string/ahad_non_maskooni" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_ahad_non_maskooni"
             style="@style/TextItem"
-            android:id="@+id/text_view_tax"
-            android:text="@string/tax" />
+            android:text="@string/ahad_non_maskooni" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_34"
-        android:layout_below="@+id/linear_layout_33"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_below="@+id/linear_layout_33">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_zarfiat"
             style="@style/ImageItemStyle"
-            android:id="@+id/image_view_taklif"
-            android:src="@drawable/ic_deadline" />
+            android:src="@drawable/ic_contract" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_zarfiat_title"
             style="@style/TitleBill"
-            android:id="@+id/text_view_taklif_title"
-            android:text="@string/taklif" />
+            android:text="@string/zarfiat" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_zarfiat"
             style="@style/TextItem"
-            android:id="@+id/text_view_taklif"
-            android:text="@string/taklif" />
+            android:text="@string/zarfiat" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_35"
-        android:layout_below="@+id/linear_layout_34"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_below="@+id/linear_layout_34">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_qotr"
             style="@style/ImageItemStyle"
-            android:id="@+id/image_view_kahande"
-            android:src="@drawable/ic_deadline" />
+            android:src="@drawable/ic_diameter_1" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_qotr_title"
             style="@style/TitleBill"
-            android:id="@+id/text_view_kahande_title"
-            android:text="@string/kahande" />
+            android:text="@string/qotr" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_qotr"
             style="@style/TextItem"
-            android:id="@+id/text_view_kahande"
-            android:text="@string/kahande" />
+            android:text="@string/qotr" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_36"
-        android:layout_below="@+id/linear_layout_35"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_below="@+id/linear_layout_35">
 
         <androidx.appcompat.widget.AppCompatImageView
-            style="@style/ImageItemStyle"
             android:id="@+id/image_view_total"
-            android:src="@drawable/ic_deadline" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TitleBill"
-            android:id="@+id/text_view_total_title"
-            android:text="@string/total" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextItem"
-            android:id="@+id/text_view_total"
-            android:text="@string/total" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_37"
-        android:layout_below="@+id/linear_layout_36"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
             style="@style/ImageItemStyle"
-            android:id="@+id/image_view_discount"
-            android:src="@drawable/ic_deadline" />
+            android:src="@drawable/ic_radius" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_qotr_siphon_title"
             style="@style/TitleBill"
-            android:id="@+id/text_view_discount_title"
-            android:text="@string/discount" />
+            android:text="@string/qotr_siphon" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_qotr_siphon"
             style="@style/TextItem"
-            android:id="@+id/text_view_discount"
-            android:text="@string/discount" />
+            android:text="@string/qotr_siphon" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_38"
-        android:layout_below="@+id/linear_layout_37"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            style="@style/ImageItemStyle"
-            android:id="@+id/image_view_debt"
-            android:src="@drawable/ic_deadline" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TitleBill"
-            android:id="@+id/text_view_debt_title"
-            android:text="@string/debt" />
-
-        <com.google.android.material.textview.MaterialTextView
-            style="@style/TextItem"
-            android:id="@+id/text_view_debt"
-            android:text="@string/debt" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>
