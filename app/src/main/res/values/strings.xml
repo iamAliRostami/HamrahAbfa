@@ -221,6 +221,8 @@
     <string name="zarfiat">ظرفیت قراردادی</string>
     <string name="qotr">قطر انشعاب</string>
     <string name="qotr_siphon">قطر سیفون</string>
+    <string name="save_bill">ذخیره قبض</string>
+    <string name="share_bill">همرسانی قبض</string>
     اطلاعات مصرف
     تعداد روز
 </resources>

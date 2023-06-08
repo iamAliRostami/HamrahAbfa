@@ -237,18 +237,18 @@
         android:layout_alignParentBottom="true">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_confirm"
+            android:id="@+id/button_save"
             style="@style/ButtonSubmit"
             android:layout_width="wrap_content"
             android:layout_margin="@dimen/medium_dp"
             android:layout_weight="1"
-            android:text="@string/confirm" />
+            android:text="@string/save_bill" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_previous"
+            android:id="@+id/button_share"
             style="@style/ButtonCancel"
             android:layout_margin="@dimen/medium_dp"
             android:layout_weight="1"
-            android:text="@string/previous" />
+            android:text="@string/share_bill" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>
