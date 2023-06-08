@@ -61,11 +61,12 @@ public class LastBillActivity extends BaseActivity {
         final int visibility = getVisibility(id);
         makeViewsGone();
         resetImageViews();
-
+        resetBackground();
         if (id == R.id.linear_layout_summary) {
             if (visibility == View.GONE) {
                 binding.frameLayoutSummary.setVisibility(View.VISIBLE);
                 binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_up);
+                binding.relativeLayoutSummary.setBackgroundResource(R.drawable.background_last_bill);
             } else {
                 binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
             }
@@ -73,6 +74,7 @@ public class LastBillActivity extends BaseActivity {
             if (visibility == View.GONE) {
                 binding.frameLayoutItems.setVisibility(View.VISIBLE);
                 binding.imageViewArrowItems.setImageResource(R.drawable.arrow_up);
+                binding.relativeLayoutItems.setBackgroundResource(R.drawable.background_last_bill);
             } else {
                 binding.imageViewArrowItems.setImageResource(R.drawable.arrow_down);
             }
@@ -80,20 +82,23 @@ public class LastBillActivity extends BaseActivity {
             if (visibility == View.GONE) {
                 binding.frameLayoutUsingInfo.setVisibility(View.VISIBLE);
                 binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_up);
+                binding.relativeLayoutUsingInfo.setBackgroundResource(R.drawable.background_service_introduction);
             } else {
                 binding.imageViewArrowUsingInfo.setImageResource(R.drawable.arrow_down);
             }
-        }else if (id == R.id.linear_layout_reading_info) {
+        } else if (id == R.id.linear_layout_reading_info) {
             if (visibility == View.GONE) {
                 binding.frameLayoutReadingInfo.setVisibility(View.VISIBLE);
                 binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_up);
+                binding.relativeLayoutReadingInfo.setBackgroundResource(R.drawable.background_service_introduction);
             } else {
                 binding.imageViewArrowReadingInfo.setImageResource(R.drawable.arrow_down);
             }
-        }else if (id == R.id.linear_layout_ensheab) {
+        } else if (id == R.id.linear_layout_ensheab) {
             if (visibility == View.GONE) {
                 binding.frameLayoutEnsheabInfo.setVisibility(View.VISIBLE);
                 binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_up);
+                binding.relativeLayoutEnsheabInfo.setBackgroundResource(R.drawable.background_last_bill);
             } else {
                 binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_down);
             }
@@ -127,5 +132,13 @@ public class LastBillActivity extends BaseActivity {
         binding.frameLayoutUsingInfo.setVisibility(View.GONE);
         binding.frameLayoutEnsheabInfo.setVisibility(View.GONE);
         binding.frameLayoutReadingInfo.setVisibility(View.GONE);
+    }
+
+    private void resetBackground() {
+        binding.relativeLayoutReadingInfo.setBackgroundResource(android.R.color.transparent);
+        binding.relativeLayoutUsingInfo.setBackgroundResource(android.R.color.transparent);
+        binding.relativeLayoutEnsheabInfo.setBackgroundResource(R.color.light_gray);
+        binding.relativeLayoutSummary.setBackgroundResource(R.color.light_gray);
+        binding.relativeLayoutItems.setBackgroundResource(R.color.light_gray);
     }
 }

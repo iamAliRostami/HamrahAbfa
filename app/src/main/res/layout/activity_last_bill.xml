@@ -24,7 +24,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_gray">
+                    android:id="@+id/relative_layout_summary"
+                    android:background="@drawable/background_last_bill">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:id="@+id/linear_layout_summary"
@@ -64,6 +65,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/relative_layout_using_info"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -105,6 +107,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:id="@+id/relative_layout_items"
                     android:layout_height="wrap_content"
                     android:background="@color/light_gray">
 
@@ -146,6 +149,7 @@
                 android:layout_below="@id/card_view_content_items">
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_reading_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -187,6 +191,7 @@
                 android:layout_below="@id/card_view_content_reading_info">
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_ensheab_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/light_gray">
