@@ -223,6 +223,7 @@
     <string name="qotr_siphon">قطر سیفون</string>
     <string name="save_bill">ذخیره قبض</string>
     <string name="share_bill">همرسانی قبض</string>
-    اطلاعات مصرف
-    تعداد روز
+    <string name="description_payments">توضیح پرداخت\u200cها</string>
+    <string name="description_bill">توضیح قبض\u200cها</string>
+    <string name="number_type">تعداد آیتم</string>
 </resources>

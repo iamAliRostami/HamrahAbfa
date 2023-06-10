@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -133,7 +134,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
             }
         }
         popup.setOnMenuItemClickListener(menuItem -> {
-            binding.editTextIncidentType.setText(menuItem.getTitle());
+            ((TextView)v).setText(menuItem.getTitle());
             return true;
         });
         popup.show();
