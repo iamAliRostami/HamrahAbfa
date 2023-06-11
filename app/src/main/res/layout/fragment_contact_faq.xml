@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/large_dp"
     tools:context=".fragments.contact_us.ContactFAQFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_question"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/large_dp"
         android:nestedScrollingEnabled="true"
         tools:listitem="@layout/item_faq" />
 

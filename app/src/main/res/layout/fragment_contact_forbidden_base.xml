@@ -13,15 +13,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/large_dp"
+        android:layout_margin="@dimen/large_dp"
         tools:context=".fragments.contact_us.ContactForbiddenBaseFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_margin="0dp"
-            style="@style/CardStyle">
+            style="@style/CardStyle.NoMargin">
 
             <RelativeLayout
                 android:layout_width="match_parent"

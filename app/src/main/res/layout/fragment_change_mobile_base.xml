@@ -71,8 +71,6 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_old_mobile"
                         style="@style/TextInput.Stable"
-                        android:inputType="phone"
-                        android:maxLength="11"
                         android:text="@={viewModel.oldMobile}" />
                 </com.google.android.material.textfield.TextInputLayout>
 

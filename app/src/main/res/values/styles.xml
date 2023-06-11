@@ -116,6 +116,12 @@
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
     </style>
 
+    <style name="ButtonSubmit.Dual">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
     <style name="ButtonState" parent="ThemeOverlay.Material3.Button">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/background_button</item>
@@ -128,6 +134,12 @@
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
         <item name="android:textColor">@color/purple_7001</item>
         <item name="android:background">@drawable/background_white_blue</item>
+    </style>
+
+    <style name="ButtonCancel.Dual">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:layout_width">wrap_content</item>
     </style>
 
     <style name="ButtonFloatStyle">
@@ -235,10 +247,10 @@
         <item name="android:elevation">@dimen/medium_dp</item>
         <item name="cardCornerRadius">@dimen/medium_dp</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-        <item name="android:focusable">false</item>
-        <item name="android:clickable">false</item>
-        <item name="android:focusableInTouchMode">false</item>
-        <item name="android:descendantFocusability">blocksDescendants</item>
+        <!--        <item name="android:focusable">false</item>-->
+        <!--        <item name="android:clickable">false</item>-->
+        <!--        <item name="android:focusableInTouchMode">false</item>-->
+        <!--        <item name="android:descendantFocusability">blocksDescendants</item>-->
     </style>
 
     <style name="CardStyle.NoMargin">

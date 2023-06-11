@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".activities.ServiceActivity">
 
     <com.shuhart.stepview.StepView
@@ -36,5 +37,6 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_services"
         style="@style/FragmentContainerStyle"
-        android:layout_below="@id/stepper" />
+        android:layout_below="@id/stepper"
+        android:layout_margin="@dimen/large_dp" />
 </RelativeLayout>

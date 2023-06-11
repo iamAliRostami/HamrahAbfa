@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/button_submit"
-        android:layout_margin="@dimen/large_dp"
+        android:layout_marginBottom="@dimen/large_dp"
         android:nestedScrollingEnabled="true"
         tools:listitem="@layout/item_service" />
 
@@ -18,6 +18,5 @@
         android:id="@+id/button_submit"
         style="@style/ButtonSubmit"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/large_dp"
         android:text="@string/next_level" />
 </RelativeLayout>

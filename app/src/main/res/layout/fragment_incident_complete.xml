@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/large_dp"
     tools:context=".fragments.incident.IncidentCompleteFragment">
 
     <com.google.android.material.textview.MaterialTextView
@@ -68,17 +67,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_confirm"
-            style="@style/ButtonSubmit"
-            android:layout_width="wrap_content"
-            android:layout_margin="@dimen/medium_dp"
-            android:layout_weight="1"
+            style="@style/ButtonSubmit.Dual"
             android:text="@string/confirm" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_previous"
-            style="@style/ButtonCancel"
-            android:layout_margin="@dimen/medium_dp"
-            android:layout_weight="1"
+            style="@style/ButtonCancel.Dual"
             android:text="@string/previous" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
