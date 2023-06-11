@@ -3,15 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/large_dp"
     tools:context=".fragments.change_mobile.ChangeMobileVerificationCodeFragment">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"
-        style="@style/CardStyle"
+        style="@style/CardStyle.NoMargin"
         android:layout_above="@id/button_submit"
-        android:layout_alignParentTop="true"
-        android:layout_margin="0dp">
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -27,10 +25,9 @@
                 android:src="@drawable/ic_message" />
 
             <View
-                android:layout_width="match_parent"
+                style="@style/ViewStyle"
                 android:layout_height="@dimen/xlarge_dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/purple_7001" />
+                android:layout_alignParentBottom="true" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view_background"
@@ -158,9 +155,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_submit"
-        android:layout_marginTop="@dimen/large_dp"
         style="@style/ButtonSubmit"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/large_dp"
         android:text="@string/confirm" />
 
 </RelativeLayout>

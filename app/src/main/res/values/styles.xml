@@ -57,6 +57,11 @@
         <item name="boxBackgroundMode">outline</item>
     </style>
 
+    <style name="TextInputLayout.Margin">
+        <item name="android:layout_marginStart">@dimen/large_dp</item>
+        <item name="android:layout_marginEnd">@dimen/large_dp</item>
+    </style>
+
     <style name="TextHelper" parent="TextAppearance.Design.Hint">
         <item name="android:textAppearance">@style/TextStyleMedium</item>
     </style>
@@ -66,6 +71,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="maxLines">1</item>
+    </style>
+
+    <style name="TextInput.Stable">
+        <item name="android:clickable">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
     </style>
 
     <style name="TextItem">
@@ -230,6 +241,10 @@
         <item name="android:descendantFocusability">blocksDescendants</item>
     </style>
 
+    <style name="CardStyle.NoMargin">
+        <item name="android:layout_margin">0dp</item>
+    </style>
+
     <style name="CardStyleLastBill">
 
         <item name="android:layout_width">match_parent</item>
@@ -249,9 +264,9 @@
         <item name="android:layout_marginEnd">@dimen/medium_dp</item>
     </style>
 
-<!--    <style name="CardStyle.Parent">-->
-<!--        <item name="android:layout_margin">@dimen/medium_dp</item>-->
-<!--    </style>-->
+    <!--    <style name="CardStyle.Parent">-->
+    <!--        <item name="android:layout_margin">@dimen/medium_dp</item>-->
+    <!--    </style>-->
 
     <style name="CardStyle.ViewPager">
         <item name="android:layout_marginTop">@dimen/large_dp</item>
@@ -323,5 +338,17 @@
     <style name="FrameLayoutStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ParentLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">@dimen/large_dp</item>
+        <item name="android:background">@color/light_blue</item>
+    </style>
+
+    <style name="ViewStyle">
+        <item name="android:background">@color/purple_7001</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 </resources>

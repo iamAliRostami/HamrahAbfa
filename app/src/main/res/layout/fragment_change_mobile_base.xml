@@ -13,15 +13,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/large_dp"
         tools:context=".fragments.change_mobile.ChangeMobileBaseFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
-            style="@style/CardStyle"
+            style="@style/CardStyle.NoMargin"
             android:layout_above="@id/button_submit"
-            android:layout_alignParentTop="true"
-            android:layout_margin="0dp">
+            android:layout_alignParentTop="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -39,10 +37,9 @@
                     android:src="@drawable/home_change_number" />
 
                 <View
-                    android:layout_width="match_parent"
+                    style="@style/ViewStyle"
                     android:layout_height="@dimen/xlarge_dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/purple_7001" />
+                    android:layout_alignParentBottom="true" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_background"
@@ -54,36 +51,26 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_bill_id"
-                    style="@style/TextInputLayout"
+                    style="@style/TextInputLayout.Margin"
                     android:layout_above="@id/text_layout_old_mobile"
-                    android:layout_marginStart="@dimen/large_dp"
-                    android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/bill_id"
                     app:helperText="@string/bill_id_help">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_bill_id"
-                        style="@style/TextInput"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
+                        style="@style/TextInput.Stable"
                         android:text="@={viewModel.billId}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_old_mobile"
-                    style="@style/TextInputLayout"
+                    style="@style/TextInputLayout.Margin"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="@dimen/large_dp"
-                    android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/mobile_number_old">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_old_mobile"
-                        style="@style/TextInput"
-                        android:clickable="false"
-                        android:cursorVisible="false"
-                        android:focusable="false"
+                        style="@style/TextInput.Stable"
                         android:inputType="phone"
                         android:maxLength="11"
                         android:text="@={viewModel.oldMobile}" />
@@ -91,11 +78,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_new_mobile"
-                    style="@style/TextInputLayout"
+                    style="@style/TextInputLayout.Margin"
                     android:layout_below="@id/text_layout_old_mobile"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/large_dp"
-                    android:layout_marginEnd="@dimen/large_dp"
                     android:hint="@string/new_mobile_number"
                     app:counterMaxLength="11"
                     app:helperText="@string/mobile_tip"
