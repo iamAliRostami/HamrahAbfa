@@ -226,4 +226,8 @@
     <string name="description_payments">توضیح پرداخت\u200cها</string>
     <string name="description_bill">توضیح قبض\u200cها</string>
     <string name="number_type">تعداد آیتم</string>
+    <string name="from">از</string>
+    <string name="to">تا</string>
+    <string name="usage">مصرف</string>
+    <string name="price">مبلغ</string>
 </resources>
