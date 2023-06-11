@@ -37,9 +37,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_device_last_login_title"
-                style="@style/TitleHelp"
-                android:layout_margin="@dimen/medium_dp"
-                android:layout_weight="1"
+                style="@style/TitleItem"
                 android:text="@string/last_login" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -64,9 +62,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_ip_title"
-                style="@style/TitleHelp"
-                android:layout_margin="@dimen/medium_dp"
-                android:layout_weight="1"
+                style="@style/TitleItem"
                 android:text="@string/ip" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -86,13 +82,12 @@
                 android:id="@+id/image_view_mobile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mobile" />
+                android:src="@drawable/ic_mobile"
+                android:tint="@color/purple_7001" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_mobile_title"
-                style="@style/TitleHelp"
-                android:layout_margin="@dimen/medium_dp"
-                android:layout_weight="1"
+                style="@style/TitleItem"
                 android:text="@string/mobile" />
 
             <com.google.android.material.textview.MaterialTextView

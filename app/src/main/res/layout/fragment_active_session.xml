@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:paddingStart="@dimen/xlarge_dp"
-    android:paddingEnd="@dimen/xlarge_dp"
+    android:layout_marginBottom="@dimen/large_dp"
+    android:paddingStart="@dimen/large_dp"
+    android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.bottom_sheets.ActiveSessionFragment">
 
@@ -33,6 +34,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_layout_title"
-        android:layout_marginBottom="@dimen/large_dp"
         tools:listitem="@layout/item_active_session" />
 </RelativeLayout>

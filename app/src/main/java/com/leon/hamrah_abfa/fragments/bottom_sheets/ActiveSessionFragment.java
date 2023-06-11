@@ -36,13 +36,13 @@ public class ActiveSessionFragment extends BaseBottomSheetFragment {
 
     private void initializeRecyclerView() {
         final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
-        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
                 "12.12.12.12"));
-        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
                 "12.12.12.12"));
-        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
                 "12.12.12.12"));
-        activeSessions.add(new ActiveSession("device name", "mobile", "12/12/12",
+        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
                 "12.12.12.12"));
         binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), activeSessions));
         binding.recyclerViewActiveSession.setLayoutManager(new LinearLayoutManager(requireContext()));
