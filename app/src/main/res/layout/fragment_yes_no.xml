@@ -13,7 +13,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card_view_content"
-        style="@style/CardStyle.Parent"
+        style="@style/CardStyle"
         android:layout_margin="@dimen/large_dp"
         tools:context=".fragments.dialog.YesNoFragment">
 

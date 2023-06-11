@@ -24,6 +24,8 @@ import com.leon.hamrah_abfa.adapters.recycler_view.CheckoutBillAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentCheckoutBillBinding;
 
+import java.util.ArrayList;
+
 public class CheckoutBillFragment extends Fragment implements View.OnClickListener {
     private FragmentCheckoutBillBinding binding;
     private CheckoutBillAdapter adapter;
@@ -55,7 +57,48 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
     }
 
     private void initializeRecyclerView() {
-        adapter = new CheckoutBillAdapter(requireContext());
+        final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        bills.add(new CheckoutBillViewModel("12/12/12","12/12/12","123","1234567890"));
+        adapter = new CheckoutBillAdapter(requireContext(),bills);
         binding.recyclerViewCheckoutBill.setAdapter(adapter);
         binding.recyclerViewCheckoutBill.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -103,6 +146,7 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
         }
         popup.setOnMenuItemClickListener(menuItem -> {
             ((TextView) v).setText(menuItem.getTitle());
+            adapter.setShownNumber(Integer.parseInt(binding.editTextNumberType.getText().toString()));
             return true;
         });
         popup.show();

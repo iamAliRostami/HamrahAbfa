@@ -1,56 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/CardStyle.Parent">
+    android:id="@+id/card_content"
+    style="@style/CardStyle">
 
     <RelativeLayout
+        android:id="@id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/relative_layout_date"
+            android:id="@+id/relative_layout_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="3">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/from" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_from"
-                style="@style/TextItem.SingleLine"
-                android:layout_weight="1"
-                android:text="@string/from" />
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/to" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_to"
-                style="@style/TextItem.SingleLine"
-                android:layout_weight="1"
-                android:text="@string/to" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/relative_layout_date"
-            android:weightSum="3">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/usage" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_usage"
-                style="@style/TextItem.SingleLine"
-                android:layout_weight="1"
-                android:text="@string/usage" />
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextItem"
@@ -62,6 +24,76 @@
                 style="@style/TextItem.SingleLine"
                 android:layout_weight="1"
                 android:text="@string/price" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextItem"
+                android:layout_weight="0.5"
+                android:text="@string/date" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_date"
+                style="@style/TextItem.SingleLine"
+                android:layout_weight="1"
+                android:text="@string/date" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/divider_1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/relative_layout_payment"
+            android:background="@color/purple_7001" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/relative_layout_bank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relative_layout_payment"
+            android:weightSum="3">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextItem"
+                android:layout_weight="0.5"
+                android:text="@string/payment_type" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_payment_type"
+                style="@style/TextItem.SingleLine"
+                android:layout_weight="1"
+                android:text="@string/payment_type" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextItem"
+                android:layout_weight="0.5"
+                android:text="@string/bank" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_bank"
+                style="@style/TextItem.SingleLine"
+                android:layout_weight="1"
+                android:text="@string/bank" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/divider_2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/relative_layout_bank"
+            android:background="@color/purple_7001" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider_2">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextItem"
+                android:text="@string/submit_type" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_submit_type"
+                style="@style/TextItem.SingleLine"
+                android:text="@string/submit_type" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
