@@ -31,7 +31,7 @@
         app:sv_steps="@array/services_steps"
         app:sv_stepsNumber="4"
         app:sv_textSize="?attr/font_small"
-        app:sv_typeface="@font/font_1" />
+        app:sv_typeface="@font/iranian_sans_b" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_services"
