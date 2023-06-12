@@ -35,17 +35,19 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
     @Override
     public void onBindViewHolder(@NonNull PayBillViewHolder holder, int position) {
         if (payBills.get(position).selected) {
-            holder.linearLayoutContent.setBackgroundResource(R.drawable.background_pay_bill_selected);
+            holder.relativeLayoutContent.setBackgroundResource(R.drawable.background_pay_bill_selected);
+            holder.imageView.setImageResource(R.drawable.ic_minus);
         } else {
-            holder.linearLayoutContent.setBackgroundResource(R.drawable.background_pay_bill);
+            holder.relativeLayoutContent.setBackgroundResource(R.drawable.background_pay_bill);
+            holder.imageView.setImageResource(R.drawable.ic_plus);
         }
-        holder.textViewNickname.setChecked(payBills.get(position).selected);
+//        holder.textViewNickname.setChecked(payBills.get(position).selected);
         holder.textViewNickname.setText(payBills.get(position).nickName);
 
         holder.textViewDeadline.setText(payBills.get(position).deadline);
         holder.textViewPrice.setText(payBills.get(position).debt);
 
-        holder.linearLayoutContent.setOnClickListener(this);
+        holder.relativeLayoutContent.setOnClickListener(this);
         holder.textViewNickname.setOnClickListener(this);
     }
 
