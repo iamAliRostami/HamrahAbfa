@@ -18,8 +18,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/xlarge_dp"
         android:background="@drawable/background_white_blue"
-        android:paddingEnd="@dimen/large_dp"
-        android:paddingStart="@dimen/large_dp">
+        android:paddingStart="@dimen/large_dp"
+        android:paddingEnd="@dimen/large_dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/medium_dp"
+            android:src="@drawable/home_cart" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TitleBranch"
@@ -30,8 +37,8 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_price"
             style="@style/TextItem.Branch"
-            android:textAppearance="@style/TextStyleLarge.Bold"
-            android:text="@string/price" />
+            android:text="@string/price"
+            android:textAppearance="@style/TextStyleLarge.Bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.card.MaterialCardView
