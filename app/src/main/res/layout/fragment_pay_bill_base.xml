@@ -11,12 +11,14 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/background_submit_top" />
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/xlarge_dp"
+        android:layout_marginStart="@dimen/xlarge_dp"
+        android:layout_marginTop="@dimen/xlarge_dp"
+        android:layout_marginEnd="@dimen/xlarge_dp"
+        android:layout_marginBottom="@dimen/xlarge_dp"
         android:background="@drawable/background_white_blue"
         android:paddingStart="@dimen/large_dp"
         android:paddingEnd="@dimen/large_dp">
@@ -25,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_margin="@dimen/medium_dp"
+            android:padding="@dimen/medium_dp"
             android:src="@drawable/home_cart" />
 
         <com.google.android.material.textview.MaterialTextView

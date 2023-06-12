@@ -34,10 +34,11 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
 
     @Override
     public void onBindViewHolder(@NonNull PayBillViewHolder holder, int position) {
-        if (payBills.get(position).selected)
+        if (payBills.get(position).selected) {
             holder.linearLayoutContent.setBackgroundResource(R.drawable.background_pay_bill_selected);
-        else
+        } else {
             holder.linearLayoutContent.setBackgroundResource(R.drawable.background_pay_bill);
+        }
         holder.textViewNickname.setChecked(payBills.get(position).selected);
         holder.textViewNickname.setText(payBills.get(position).nickName);
 
@@ -71,10 +72,10 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         payBills.get(position).selected = !payBills.get(position).selected;
         if (payBills.get(position).selected) {
             selectedNumber++;
-            selectedPrice += Integer.parseInt(payBills.get(position).debt.replace(" ریال",""));
+            selectedPrice += Integer.parseInt(payBills.get(position).debt.replace(" ریال", ""));
         } else {
             selectedNumber--;
-            selectedPrice -= Integer.parseInt(payBills.get(position).debt.replace(" ریال",""));
+            selectedPrice -= Integer.parseInt(payBills.get(position).debt.replace(" ریال", ""));
         }
         notifyItemChanged(position);
     }
