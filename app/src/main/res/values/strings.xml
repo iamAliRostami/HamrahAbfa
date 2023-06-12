@@ -234,4 +234,5 @@
     <string name="payment_type">نحوه پرداخت</string>
     <string name="bank">بانک</string>
     <string name="submit_type">نوع ثبت</string>
+    <string name="bills_number">تعداد قبض</string>
 </resources>

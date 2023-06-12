@@ -53,6 +53,7 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
     private void initialize() {
         initializeRecyclerView();
         setButtonText();
+        setTextPrice();
         binding.buttonPay.setOnClickListener(this);
     }
 
@@ -84,6 +85,7 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
             public void onItemClick(View view, int position) {
                 adapter.updateSelectedBill(position);
                 setButtonText();
+                setTextPrice();
             }
 
             @Override
@@ -100,6 +102,11 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
         binding.buttonPay.setEnabled(adapter.getSelectedNumber() > 0);
         binding.linearLayout.setBackgroundResource(adapter.getSelectedNumber() > 0 ?
                 R.drawable.background_blue : R.drawable.background_white_blue);
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void setTextPrice() {
+        binding.textViewPrice.setText(String.format("(%d) ریال", adapter.getSelectedPrice()));
     }
 
     @Override

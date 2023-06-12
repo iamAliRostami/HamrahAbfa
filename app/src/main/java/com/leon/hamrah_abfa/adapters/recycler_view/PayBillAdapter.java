@@ -19,6 +19,7 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
     private final LayoutInflater inflater;
     private final ArrayList<PayBillViewModel> payBills;
     private int selectedNumber;
+    private int selectedPrice;
 
     public PayBillAdapter(Context context, ArrayList<PayBillViewModel> payBills) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -68,13 +69,21 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
 
     public void updateSelectedBill(int position) {
         payBills.get(position).selected = !payBills.get(position).selected;
-        if (payBills.get(position).selected)
+        if (payBills.get(position).selected) {
             selectedNumber++;
-        else selectedNumber--;
+            selectedPrice += Integer.parseInt(payBills.get(position).debt.replace(" ریال",""));
+        } else {
+            selectedNumber--;
+            selectedPrice -= Integer.parseInt(payBills.get(position).debt.replace(" ریال",""));
+        }
         notifyItemChanged(position);
     }
 
     public int getSelectedNumber() {
         return selectedNumber;
+    }
+
+    public int getSelectedPrice() {
+        return selectedPrice;
     }
 }

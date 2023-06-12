@@ -5,24 +5,65 @@
     android:layout_height="match_parent"
     tools:context=".fragments.pay_bill.PayBillBaseFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_pay_bill"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/linear_layout"
-        tools:listitem="@layout/item_pay_bill" />
+        android:layout_height="500dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_submit_top" />
+
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout"
+        android:id="@+id/linear_layout_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="@dimen/large_dp"
-        android:background="@drawable/background_blue">
+        android:layout_margin="@dimen/xlarge_dp"
+        android:background="@drawable/background_white_blue"
+        android:paddingEnd="@dimen/large_dp"
+        android:paddingStart="@dimen/large_dp">
 
-        <Button
-            android:id="@+id/button_pay"
-            style="@style/ButtonState"
-            android:text="@string/pay" />
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TitleBranch"
+            android:layout_weight="1"
+            android:text="@string/price"
+            android:textAlignment="viewStart" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_price"
+            style="@style/TextItem.Branch"
+            android:textAppearance="@style/TextStyleLarge.Bold"
+            android:text="@string/price" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/linear_layout_price">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_pay_bill"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/linear_layout"
+                tools:listitem="@layout/item_pay_bill" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/large_dp"
+                android:background="@drawable/background_blue">
+
+                <Button
+                    android:id="@+id/button_pay"
+                    style="@style/ButtonState"
+                    android:text="@string/pay" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </RelativeLayout>
