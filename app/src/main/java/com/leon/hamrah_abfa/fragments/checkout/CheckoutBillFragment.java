@@ -53,7 +53,7 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
     private void initializeRecyclerView() {
         final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
         for (int i = 0; i < 50; i++)
-            bills.add(new CheckoutBillViewModel("12/12/12", "12/12/12", "123", "1234567890", "38", i % 3));
+            bills.add(new CheckoutBillViewModel("1402/12/12", "12/12/12", "1234567890", 125, 38, i % 3));
         adapter = new CheckoutBillAdapter(requireContext(), bills);
         binding.recyclerViewCheckoutBill.setAdapter(adapter);
         binding.recyclerViewCheckoutBill.setLayoutManager(new LinearLayoutManager(requireContext()));

@@ -21,7 +21,7 @@ public class CheckoutBillViewHolder extends RecyclerView.ViewHolder {
 
     public CheckoutBillViewHolder(@NonNull View itemView) {
         super(itemView);
-        textViewDays = itemView.findViewById(R.id.text_view_from);
+        textViewDays = itemView.findViewById(R.id.text_view_days);
         textViewTo = itemView.findViewById(R.id.text_view_to);
         textViewPrice = itemView.findViewById(R.id.text_view_price);
         textViewUsage = itemView.findViewById(R.id.text_view_usage);

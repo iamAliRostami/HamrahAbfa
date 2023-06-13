@@ -27,7 +27,7 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
     @NonNull
     @Override
     public CheckoutBillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill, parent, false));
+        return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill_1, parent, false));
     }
 
     @Override
@@ -43,10 +43,10 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
             holder.imageViewUsageType.setImageResource(R.drawable.ic_low);
         else
             holder.imageViewUsageType.setImageResource(R.drawable.ic_standard);
-        holder.textViewDays.setText(bill.days);
         holder.textViewTo.setText(bill.dateEnd);
-        holder.textViewUsage.setText(bill.usage);
         holder.textViewPrice.setText(bill.price);
+        holder.textViewDays.setText(String.valueOf(bill.days));
+        holder.textViewUsage.setText(String.valueOf(bill.usage));
     }
 
     @Override
