@@ -15,10 +15,7 @@
         android:id="@+id/linear_layout_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/xlarge_dp"
-        android:layout_marginTop="@dimen/xlarge_dp"
-        android:layout_marginEnd="@dimen/xlarge_dp"
-        android:layout_marginBottom="@dimen/xlarge_dp"
+        android:layout_margin="@dimen/xlarge_dp"
         android:background="@drawable/background_white_blue"
         android:paddingStart="@dimen/large_dp"
         android:paddingEnd="@dimen/large_dp">

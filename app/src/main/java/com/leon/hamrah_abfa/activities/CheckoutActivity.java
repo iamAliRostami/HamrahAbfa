@@ -39,8 +39,8 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
     }
 
     private void initializeTabLayout() {
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.bills)));
-        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.payments)));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.bills)).setIcon(R.drawable.ic_bill));
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.payments)).setIcon(R.drawable.ic_paid_bill));
         binding.tabLayout.setSelectedTabIndicator(R.drawable.cat_tabs_rounded_line_indicator);
 
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {

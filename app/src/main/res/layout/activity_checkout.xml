@@ -4,15 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    android:padding="@dimen/large_dp"
     tools:context=".activities.CheckoutActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_submit_top" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/xlarge_dp"
+        android:background="@drawable/background_white_blue"
+        android:paddingStart="@dimen/large_dp"
+        android:paddingEnd="@dimen/large_dp"
+        android:visibility="gone">
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        style="@style/TabLayoutStyle" />
+        style="@style/TabLayoutStyle"
+        android:layout_margin="@dimen/xlarge_dp" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        style="@style/ViewPagerStyle"
-        android:layout_below="@id/tab_layout" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/tab_layout">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            style="@style/ViewPagerStyle"
+            android:layout_marginTop="0dp" />
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

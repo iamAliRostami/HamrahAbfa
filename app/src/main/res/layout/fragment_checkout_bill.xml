@@ -3,61 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/large_dp"
-    android:paddingBottom="@dimen/large_dp"
     tools:context=".fragments.checkout.CheckoutBillFragment">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_content"
-        style="@style/CardStyle"
+    <RelativeLayout
+        android:id="@+id/relative_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:paddingStart="@dimen/medium_dp"
+        android:paddingEnd="@dimen/medium_dp">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_dp"
+            android:src="@drawable/info" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/large_dp">
+            android:layout_margin="@dimen/small_dp"
+            android:layout_toEndOf="@id/image_view_info"
+            android:text="@string/description_payments"
+            android:textAppearance="@style/TextStyleSmall.Bold" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/small_dp"
-                android:src="@drawable/info" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/menu"
+            style="@style/MenuLayout"
+            android:layout_below="@id/text_view_description"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:hint="@string/number_type">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_description"
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/edit_text_number_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/small_dp"
-                android:layout_toEndOf="@id/image_view_info"
-                android:text="@string/description_bill"
-                android:textAppearance="@style/TextStyleSmall.Bold" />
+                android:layout_gravity="center"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/menu"
-                style="@style/MenuLayout"
-                android:layout_below="@id/text_view_description"
-                android:layout_marginTop="@dimen/large_dp"
-                android:layout_marginBottom="@dimen/large_dp"
-                android:hint="@string/number_type">
-
-                <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                    android:id="@+id/edit_text_number_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_checkout_bill"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/card_view_content"
+        android:layout_below="@id/relative_layout_content"
         tools:listitem="@layout/item_checkout_bill" />
 
 </RelativeLayout>
