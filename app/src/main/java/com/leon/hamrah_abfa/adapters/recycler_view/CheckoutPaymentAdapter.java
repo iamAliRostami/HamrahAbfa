@@ -33,7 +33,7 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
     @Override
     public void onBindViewHolder(@NonNull CheckoutPaymentViewHolder holder, int position) {
         if (position % 2 == 0)
-            holder.relativeLayout.setBackgroundResource(R.drawable.background_service_introduction);
+            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
         else
             holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
         holder.textViewPrice.setText(payments.get(position).price);

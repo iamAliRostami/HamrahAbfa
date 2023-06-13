@@ -131,7 +131,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/background_button</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textColor">@color/color_states_text_button</item>
+        <item name="android:textColor">@color/color_states_button_text</item>
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
     </style>
 
@@ -370,5 +370,30 @@
     <style name="ViewStyle">
         <item name="android:background">@color/purple_7001</item>
         <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Chip.Filter" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Chip.Filter</item>
+        <item name="chipBackgroundColor">@color/color_states_chip</item>
+        <item name="android:textColor">@color/color_states_chip_text</item>
+        <item name="checkedIconTint">@color/color_states_chip_text</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:checkable">true</item>
+        <item name="android:textAppearance">@style/ChipText</item>
+<!--        <item name="paddingStart">@dimen/medium_dp</item>-->
+<!--        <item name="paddingEnd">@dimen/medium_dp</item>-->
+    </style>
+
+    <style name="ThemeOverlay.Chip.Filter" parent="">
+        <item name="elevationOverlayEnabled">false</item>
+    </style>
+
+    <style name="ChipText" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textAppearance">@style/TextStyleMedium.Bold</item>
+        <item name="android:textSize">@dimen/font_medium_value</item>
+        <item name="android:fontFamily">@font/iranian_sans_b</item>
     </style>
 </resources>
