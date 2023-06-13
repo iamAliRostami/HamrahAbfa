@@ -18,8 +18,8 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_nick_name"
             style="@style/Title"
-            android:layout_weight="1"
             android:layout_margin="@dimen/medium_dp"
+            android:layout_weight="1"
             android:text="@string/app_name"
             android:textAlignment="viewStart" />
 
@@ -53,6 +53,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_price"
             style="@style/TextItem.Branch"
+            android:padding="@dimen/medium_dp"
             android:text="@string/bill_price" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -74,6 +75,7 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_deadline"
             style="@style/TextItem.Branch"
+            android:padding="@dimen/medium_dp"
             android:text="@string/deadline" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

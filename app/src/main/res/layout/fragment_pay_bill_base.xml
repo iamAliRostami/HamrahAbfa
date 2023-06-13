@@ -28,17 +28,19 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:padding="@dimen/medium_dp"
-            android:src="@drawable/home_cart" />
+            android:src="@drawable/ic_transaction_approved" />
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TitleBranch"
             android:layout_weight="1"
             android:text="@string/price"
+            android:visibility="gone"
             android:textAlignment="viewStart" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_price"
             style="@style/TextItem.Branch"
+            android:layout_weight="1"
             android:text="@string/price"
             android:textAppearance="@style/TextStyleLarge.Bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
