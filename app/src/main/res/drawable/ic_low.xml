@@ -185,13 +185,13 @@
             </gradient>
         </aapt:attr>
     </path>
-    <path android:pathData="M32.646,20.146l-8.293,-8.293c-0.195,-0.195 -0.512,-0.195 -0.707,0l-8.293,8.293C15.039,20.461 15.262,21 15.707,21H21v13.5c0,0.276 0.224,0.5 0.5,0.5h5c0.276,0 0.5,-0.224 0.5,-0.5V21h5.293C32.738,21 32.961,20.461 32.646,20.146z">
+    <path android:pathData="M32.293,26H27V12.5c0,-0.276 -0.224,-0.5 -0.5,-0.5h-5c-0.276,0 -0.5,0.224 -0.5,0.5V26h-5.293c-0.445,0 -0.669,0.539 -0.354,0.854l8.293,8.293c0.195,0.195 0.512,0.195 0.707,0l8.293,-8.293C32.961,26.539 32.738,26 32.293,26z">
         <aapt:attr name="android:fillColor">
             <gradient
-                android:endX="24.113"
-                android:endY="37.842"
-                android:startX="23.959"
-                android:startY="14.154"
+                android:endX="24"
+                android:endY="39"
+                android:startX="24"
+                android:startY="10.333"
                 android:type="linear">
                 <item
                     android:color="@color/light"

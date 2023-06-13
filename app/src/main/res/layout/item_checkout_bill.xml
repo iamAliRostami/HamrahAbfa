@@ -28,13 +28,13 @@
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextItem"
                 android:layout_weight="0.5"
-                android:text="@string/to" />
+                android:text="@string/to_date" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_to"
                 style="@style/TextItem.SingleLine"
                 android:layout_weight="1"
-                android:text="@string/to" />
+                android:text="@string/to_date" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View

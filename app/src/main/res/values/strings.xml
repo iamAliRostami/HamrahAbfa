@@ -227,7 +227,7 @@
     <string name="description_bill">توضیح قبض\u200cها</string>
     <string name="number_type">تعداد</string>
     <string name="from">از</string>
-    <string name="to">تا</string>
+    <string name="to_date">تا تاریخ</string>
     <string name="usage">مصرف</string>
     <string name="price">مبلغ</string>
     <string name="date">تاریخ</string>

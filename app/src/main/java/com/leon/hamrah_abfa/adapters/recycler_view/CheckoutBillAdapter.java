@@ -32,14 +32,21 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CheckoutBillViewHolder holder, int position) {
+        final CheckoutBillViewModel bill = bills.get(position);
         if (position % 2 == 0)
             holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
         else
             holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
-        holder.textViewFrom.setText(bills.get(position).dateStart);
-        holder.textViewTo.setText(bills.get(position).dateEnd);
-        holder.textViewUsage.setText(bills.get(position).usage);
-        holder.textViewPrice.setText(bills.get(position).price);
+        if (bill.usageType == 2)
+            holder.imageViewUsageType.setImageResource(R.drawable.ic_high);
+        else if (bill.usageType == 1)
+            holder.imageViewUsageType.setImageResource(R.drawable.ic_low);
+        else
+            holder.imageViewUsageType.setImageResource(R.drawable.ic_standard);
+        holder.textViewDays.setText(bill.days);
+        holder.textViewTo.setText(bill.dateEnd);
+        holder.textViewUsage.setText(bill.usage);
+        holder.textViewPrice.setText(bill.price);
     }
 
     @Override

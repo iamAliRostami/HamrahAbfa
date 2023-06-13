@@ -96,7 +96,10 @@
     <style name="TextItem.Branch">
         <item name="android:gravity">end</item>
     </style>
-
+    <style name="TextItem.Checkout">
+        <item name="android:gravity">end</item>
+        <item name="android:padding">@dimen/medium_dp</item>
+    </style>
     <style name="TextItem.SingleLine">
         <item name="maxLines">1</item>
         <item name="android:singleLine">true</item>
