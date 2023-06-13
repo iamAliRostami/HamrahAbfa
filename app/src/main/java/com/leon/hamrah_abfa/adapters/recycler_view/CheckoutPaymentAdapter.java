@@ -27,7 +27,7 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
     @NonNull
     @Override
     public CheckoutPaymentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment, parent, false));
+        return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment_1, parent, false));
     }
 
     @Override
@@ -38,9 +38,13 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
             holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
         holder.textViewPrice.setText(payments.get(position).price);
         holder.textViewBank.setText(payments.get(position).bank);
-        holder.textViewSubmitType.setText(payments.get(position).submitType);
         holder.textViewPaymentType.setText(payments.get(position).paymentType);
         holder.textViewDate.setText(payments.get(position).date);
+
+        if (payments.get(position).submitType)
+            holder.imageViewSubmitType.setImageResource(R.drawable.ic_approval);
+        else
+            holder.imageViewSubmitType.setImageResource(R.drawable.ic_disapproval);
 
     }
 

@@ -1,6 +1,8 @@
 package com.leon.hamrah_abfa.adapters.holders;
 
+import android.media.Image;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,7 +16,7 @@ public class CheckoutPaymentViewHolder extends RecyclerView.ViewHolder {
     public final TextView textViewPrice;
     public final TextView textViewBank;
     public final TextView textViewPaymentType;
-    public final TextView textViewSubmitType;
+    public final ImageView imageViewSubmitType;
     public final RelativeLayout relativeLayout;
 
     public CheckoutPaymentViewHolder(@NonNull View itemView) {
@@ -22,7 +24,7 @@ public class CheckoutPaymentViewHolder extends RecyclerView.ViewHolder {
         textViewDate = itemView.findViewById(R.id.text_view_date);
         textViewPrice = itemView.findViewById(R.id.text_view_price);
         textViewPaymentType = itemView.findViewById(R.id.text_view_payment_type);
-        textViewSubmitType = itemView.findViewById(R.id.text_view_submit_type);
+        imageViewSubmitType = itemView.findViewById(R.id.image_view_submit_type);
         textViewBank = itemView.findViewById(R.id.text_view_bank);
         relativeLayout = itemView.findViewById(R.id.relative_layout);
     }

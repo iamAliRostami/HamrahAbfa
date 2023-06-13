@@ -231,7 +231,7 @@
     <string name="usage">مصرف</string>
     <string name="price">مبلغ</string>
     <string name="date">تاریخ</string>
-    <string name="payment_type">نحوه پرداخت</string>
+    <string name="payment_type">روش پرداخت</string>
     <string name="bank">بانک</string>
     <string name="submit_type">نوع ثبت</string>
     <string name="bills_number">تعداد قبض</string>

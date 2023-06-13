@@ -88,6 +88,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/relative_layout_content"
-        tools:listitem="@layout/item_checkout_payment" />
+        tools:listitem="@layout/item_checkout_payment_1" />
 
 </RelativeLayout>

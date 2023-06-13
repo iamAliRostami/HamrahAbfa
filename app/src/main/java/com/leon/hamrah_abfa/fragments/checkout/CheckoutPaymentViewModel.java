@@ -5,9 +5,9 @@ public class CheckoutPaymentViewModel {
     public String price;
     public String paymentType;
     public String bank;
-    public String submitType;
+    public boolean submitType;
 
-    public CheckoutPaymentViewModel(String date, String price, String paymentType, String bank, String submitType) {
+    public CheckoutPaymentViewModel(String date, String price, String paymentType, String bank, boolean submitType) {
         this.date = date;
         this.price = price;
         this.paymentType = paymentType;

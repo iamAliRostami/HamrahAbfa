@@ -52,46 +52,8 @@ public class CheckoutPaymentFragment extends Fragment implements View.OnClickLis
 
     private void initializeRecyclerView() {
         final ArrayList<CheckoutPaymentViewModel> payments = new ArrayList<>();
-
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
-        payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", "قطعی"));
+        for (int i = 0; i < 50; i++)
+            payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", i % 2 == 0));
 
         adapter = new CheckoutPaymentAdapter(requireContext(), payments);
         binding.recyclerViewCheckoutPayment.setAdapter(adapter);
