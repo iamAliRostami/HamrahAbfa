@@ -5,27 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    android:padding="@dimen/large_dp"
     tools:context=".activities.FollowRequestActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_submit_top" />
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        style="@style/TabLayoutStyle" />
+        style="@style/TabLayoutStyle.TopView" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        style="@style/ViewPagerStyle"
-        android:layout_below="@id/tab_layout"
-        android:layout_marginBottom="@dimen/xlarge_dp" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/tab_layout">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_button_search"
-        style="@style/ButtonFloatStyle"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_search"
-        app:layout_anchor="@id/view_pager"
-        app:layout_anchorGravity="bottom|left|end"
-        app:tint="@color/light" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                style="@style/ViewPagerStyle"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="@dimen/xlarge_dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_button_search"
+                style="@style/ButtonFloatStyle"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_search"
+                app:layout_anchorGravity="bottom|left|end"
+                app:tint="@color/light" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
 </RelativeLayout>

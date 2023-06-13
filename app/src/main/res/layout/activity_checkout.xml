@@ -12,23 +12,9 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/background_submit_top" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_switch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/xlarge_dp"
-        android:background="@drawable/background_white_blue"
-        android:paddingStart="@dimen/large_dp"
-        android:paddingEnd="@dimen/large_dp"
-        android:visibility="gone">
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        style="@style/TabLayoutStyle"
-        android:layout_margin="@dimen/xlarge_dp" />
+        style="@style/TabLayoutStyle.TopView" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_content"
