@@ -4,16 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    android:padding="@dimen/large_dp"
     tools:context=".activities.NotificationsActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_submit_top" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        style="@style/TabLayoutStyle" />
+        style="@style/TabLayoutStyle.TopView" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        style="@style/ViewPagerStyle"
-        android:layout_below="@id/tab_layout" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/tab_layout">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            style="@style/ViewPagerStyle"
+            android:layout_marginTop="0dp" />
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>
