@@ -55,15 +55,16 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
 //        final Sprite sprite = new WanderingCubes();
 //        binding.spinKit.setIndeterminateDrawable(sprite);
 
-        final SpinKitView spinKit = new SpinKitView(this);
-        final Sprite sprite = new WanderingCubes();
-        spinKit.setIndeterminateDrawable(sprite);
-        spinKit.setColor(ContextCompat.getColor(this, R.color.purple_7001));
-        spinKit.setIndeterminate(true);
-        spinKit.showContextMenu();
+//        final SpinKitView spinKit = new SpinKitView(this);
+//        final Sprite sprite = new WanderingCubes();
+//        spinKit.setIndeterminateDrawable(sprite);
+//        spinKit.setColor(ContextCompat.getColor(this, R.color.purple_7001));
+//        spinKit.setIndeterminate(true);
+//        spinKit.showContextMenu();
 
 
         //TODO

@@ -64,10 +64,10 @@
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/spin_kit"
-        style="@style/SpinKitView.Large.WanderingCubes"
+        style="@style/SpinKitView.Large.FoldingCube"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
+        android:visibility="visible"
         app:SpinKit_Color="@color/purple_7001" />
 </RelativeLayout>
