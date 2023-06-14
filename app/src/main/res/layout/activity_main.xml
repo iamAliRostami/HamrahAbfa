@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_view"
         android:layout_width="match_parent"
@@ -27,12 +28,12 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/nav_host_fragment_activity_main"
+            style="@style/FragmentContainerStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="@dimen/xlarge_dp"
             android:paddingBottom="50dp"
-            style="@style/FragmentContainerStyle"
             app:navGraph="@navigation/mobile_navigation" />
 
         <com.google.android.material.bottomappbar.BottomAppBar
@@ -60,4 +61,13 @@
             app:layout_anchor="@id/bottom_app_bar"
             app:tint="@color/light" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.WanderingCubes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/purple_7001" />
 </RelativeLayout>

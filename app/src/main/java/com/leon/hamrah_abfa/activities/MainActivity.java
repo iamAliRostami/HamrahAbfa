@@ -16,11 +16,15 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.WanderingCubes;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
@@ -50,6 +54,18 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     protected void initialize() {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+//        final Sprite sprite = new WanderingCubes();
+//        binding.spinKit.setIndeterminateDrawable(sprite);
+
+        final SpinKitView spinKit = new SpinKitView(this);
+        final Sprite sprite = new WanderingCubes();
+        spinKit.setIndeterminateDrawable(sprite);
+        spinKit.setColor(ContextCompat.getColor(this, R.color.purple_7001));
+        spinKit.setIndeterminate(true);
+        spinKit.showContextMenu();
+
+
         //TODO
 //        initializeSplash();
         // TODO

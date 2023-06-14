@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+//apply plugin: 'com.novoda.bintray-release'
+
+android {
+
+    compileSdk 33
+    buildToolsVersion '33.0.1'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 33
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    namespace 'com.github.ybq.android.spinkit'
+}
+
+
+//publish {
+//    userOrg = 'ybq'
+//    groupId = 'com.github.ybq'
+//    artifactId = 'Android-SpinKit'
+//    publishVersion = '1.4.0'
+//    desc = 'Android loading animations'
+//    website = 'https://github.com/ybq/Android-SpinKit'
+//    licences = ['MIT']
+//}
