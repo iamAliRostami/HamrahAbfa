@@ -96,10 +96,12 @@
     <style name="TextItem.Branch">
         <item name="android:gravity">end</item>
     </style>
+
     <style name="TextItem.Checkout">
         <item name="android:gravity">end</item>
         <item name="android:padding">@dimen/medium_dp</item>
     </style>
+
     <style name="TextItem.SingleLine">
         <item name="maxLines">1</item>
         <item name="android:singleLine">true</item>
@@ -124,11 +126,6 @@
         <item name="android:textAppearance">@style/TextStyleSmall.Bold</item>
     </style>
 
-    <style name="ButtonSubmit.Dual">
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_margin">@dimen/medium_dp</item>
-        <item name="android:layout_width">wrap_content</item>
-    </style>
 
     <style name="ButtonState" parent="ThemeOverlay.Material3.Button">
         <item name="android:layout_height">wrap_content</item>
@@ -144,9 +141,21 @@
         <item name="android:background">@drawable/background_white_blue</item>
     </style>
 
-    <style name="ButtonCancel.Dual">
+    <style name="ButtonSubmit.Dual">
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:layout_marginTop">@dimen/medium_dp</item>
+        <item name="android:layout_marginBottom">@dimen/medium_dp</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">@dimen/medium_dp</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="ButtonCancel.Dual">
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="android:layout_marginTop">@dimen/medium_dp</item>
+        <item name="android:layout_marginBottom">@dimen/medium_dp</item>
+        <item name="android:layout_marginStart">@dimen/medium_dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_width">wrap_content</item>
     </style>
 
@@ -251,6 +260,7 @@
         <item name="android:layout_marginStart">@dimen/large_dp</item>
         <item name="android:layout_marginEnd">@dimen/large_dp</item>
     </style>
+
     <style name="ViewPagerStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -289,8 +299,8 @@
 
         <item name="android:layout_marginTop">@dimen/large_dp</item>
         <item name="android:layout_marginBottom">@dimen/medium_dp</item>
-        <item name="android:layout_marginStart">@dimen/medium_dp</item>
-        <item name="android:layout_marginEnd">@dimen/medium_dp</item>
+<!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
+<!--        <item name="android:layout_marginEnd">@dimen/medium_dp</item>-->
     </style>
 
     <!--    <style name="CardStyle.Parent">-->
@@ -382,18 +392,19 @@
     </style>
 
     <style name="Chip.Filter" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Chip.Filter</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="materialThemeOverlay">@style/ThemeOverlay.Chip.Filter</item>
-        <item name="chipBackgroundColor">@color/color_states_chip</item>
         <item name="android:textColor">@color/color_states_chip_text</item>
-        <item name="checkedIconTint">@color/color_states_chip_text</item>
+        <item name="android:textAppearance">@style/ChipText</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:checkable">true</item>
-        <item name="android:textAppearance">@style/ChipText</item>
-<!--        <item name="paddingStart">@dimen/medium_dp</item>-->
-<!--        <item name="paddingEnd">@dimen/medium_dp</item>-->
+        <item name="checkedIconTint">@color/color_states_chip_text</item>
+        <item name="chipBackgroundColor">@color/color_states_chip</item>
+        <item name="chipMinTouchTargetSize">@dimen/tiny_dp</item>
+        <!--        <item name="paddingStart">@dimen/medium_dp</item>-->
+        <!--        <item name="paddingEnd">@dimen/medium_dp</item>-->
     </style>
 
     <style name="ThemeOverlay.Chip.Filter" parent="">
@@ -402,7 +413,8 @@
 
     <style name="ChipText" parent="TextAppearance.MaterialComponents.Chip">
         <item name="android:textAppearance">@style/TextStyleMedium.Bold</item>
-        <item name="android:textSize">@dimen/font_medium_value</item>
-        <item name="android:fontFamily">@font/iranian_sans_b</item>
+        <item name="android:textSize">@dimen/font_small_value</item>
+        <!--        <item name="android:textStyle">bold</item>-->
+        <item name="android:fontFamily">@font/iranian_sans</item>
     </style>
 </resources>

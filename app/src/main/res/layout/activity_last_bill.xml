@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
-    android:padding="@dimen/medium_dp"
+    android:padding="@dimen/large_dp"
     tools:context=".activities.LastBillActivity">
 
     <ScrollView
@@ -22,9 +22,9 @@
                 style="@style/CardStyleLastBill">
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_summary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/relative_layout_summary"
                     android:background="@drawable/background_last_bill">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -64,8 +64,8 @@
                 android:layout_below="@id/card_view_content_summary">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
                     android:id="@+id/relative_layout_using_info"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -106,8 +106,8 @@
                 android:layout_below="@id/card_view_content_using_info">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
                     android:id="@+id/relative_layout_items"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/light_gray">
 
@@ -238,17 +238,12 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_save"
-            style="@style/ButtonSubmit"
-            android:layout_width="wrap_content"
-            android:layout_margin="@dimen/medium_dp"
-            android:layout_weight="1"
+            style="@style/ButtonSubmit.Dual"
             android:text="@string/save_bill" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_share"
-            style="@style/ButtonCancel"
-            android:layout_margin="@dimen/medium_dp"
-            android:layout_weight="1"
+            style="@style/ButtonCancel.Dual"
             android:text="@string/share_bill" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

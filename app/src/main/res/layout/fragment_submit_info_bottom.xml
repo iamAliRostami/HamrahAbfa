@@ -13,6 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/large_dp"
         android:gravity="center"
         android:paddingStart="@dimen/xlarge_dp"
         android:paddingEnd="@dimen/xlarge_dp"
@@ -52,7 +53,6 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_layout_bill_id"
             style="@style/TextInputLayout"
-            android:layout_marginBottom="@dimen/medium_dp"
             android:hint="@string/bill_id"
             app:counterMaxLength="11"
             app:helperText="@string/enter_bill_id"
@@ -69,7 +69,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_submit"
             style="@style/ButtonSubmit"
-            android:layout_marginBottom="@dimen/large_dp"
+            android:layout_marginTop="@dimen/medium_dp"
             android:text="@string/sign_account"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

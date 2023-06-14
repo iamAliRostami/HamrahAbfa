@@ -20,7 +20,6 @@
             style="@style/CardStyle"
             android:layout_above="@id/linear_layout_buttons"
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/large_dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat

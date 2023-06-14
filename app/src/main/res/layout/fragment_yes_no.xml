@@ -60,18 +60,12 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_yes"
-                    style="@style/ButtonSubmit"
-                    android:layout_width="wrap_content"
-                    android:layout_margin="@dimen/medium_dp"
-                    android:layout_weight="1"
+                    style="@style/ButtonSubmit.Dual"
                     android:text="@{viewModel.yes}" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button_no"
-                    style="@style/ButtonCancel"
-                    android:layout_alignParentEnd="true"
-                    android:layout_margin="@dimen/medium_dp"
-                    android:layout_weight="1"
+                    style="@style/ButtonCancel.Dual"
                     android:text="@{viewModel.no}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

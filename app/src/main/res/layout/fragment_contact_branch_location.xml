@@ -13,8 +13,8 @@
         android:id="@+id/linear_layout_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -37,9 +37,9 @@
         <RelativeLayout
             android:id="@+id/relative_layout_map"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/border_dotted_gray">
+            android:background="@drawable/border_dotted_gray"
+            android:layout_height="wrap_content">
 
             <org.osmdroid.views.MapView
                 android:id="@+id/map_view"
@@ -55,19 +55,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_internal"
-                style="@style/ButtonSubmit"
-                android:layout_width="0dp"
-                android:layout_margin="@dimen/medium_dp"
-                android:layout_weight="1"
+                android:layout_marginStart="0dp"
+                style="@style/ButtonSubmit.Dual"
                 android:text="@string/road_internal" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_external"
-                style="@style/ButtonCancel"
-                android:layout_width="0dp"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/medium_dp"
-                android:layout_weight="1"
+                style="@style/ButtonCancel.Dual"
+                android:layout_marginEnd="0dp"
                 android:text="@string/road_external" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>

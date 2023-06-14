@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/large_dp"
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
@@ -39,7 +38,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_layout_track_number"
         style="@style/TextInputLayout"
-        android:layout_marginBottom="@dimen/large_dp"
         android:hint="@string/track_number"
         app:counterMaxLength="11"
         app:helperText="@string/enter_track_number"
@@ -59,6 +57,8 @@
         android:id="@+id/button_search"
         style="@style/ButtonSubmit"
         android:text="@string/search"
+        android:layout_marginTop="@dimen/large_dp"
+        android:layout_marginBottom="@dimen/large_dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
