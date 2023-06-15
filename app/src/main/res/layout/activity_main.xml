@@ -11,7 +11,7 @@
         android:id="@+id/lottie_animation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         android:visibility="gone"
         app:lottie_rawRes="@raw/splash_screen_animation" />
 
@@ -61,24 +61,4 @@
             app:layout_anchor="@id/bottom_app_bar"
             app:tint="@color/light" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:id="@+id/spin_kit"
-        style="@style/SpinKitView.Large.FoldingCube"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        app:SpinKit_Color="@color/purple_7001" />
-
-    <com.aseem.versatileprogressbar.ProgBar
-        android:id="@+id/myProgBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="10dp"
-        app:androidtextColor="@color/purple_7001"
-        app:barType="@drawable/jelly_belly"
-        app:enlarge="3"
-        app:text="Please wait..."
-        app:textSize="@dimen/font_medium_value" />
 </RelativeLayout>

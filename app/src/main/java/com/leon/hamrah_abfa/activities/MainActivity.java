@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
 
 
         //TODO
-//        initializeSplash();
+        initializeSplash();
         // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
