@@ -10,6 +10,7 @@ public enum FragmentTags {
     CHANGE_THEME("change theme"),
     FOLLOW_REQUEST_TRACK("follow request track"),
     FOLLOW_REQUEST_LEVEL("follow request level"),
+    WAITING("waiting"),
     SERVICE_LOCATION("service location");
 
 

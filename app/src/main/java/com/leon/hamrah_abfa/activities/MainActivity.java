@@ -11,20 +11,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.github.ybq.android.spinkit.SpinKitView;
-import com.github.ybq.android.spinkit.sprite.Sprite;
-import com.github.ybq.android.spinkit.style.WanderingCubes;
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
 import com.google.android.material.shape.RoundedCornerTreatment;
@@ -70,6 +68,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         //TODO
         initializeSplash();
         // TODO
+//        ShowFragment.showFragmentDialogOnce(this, WAITING.getValue(), WaitingFragment.newInstance());
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
         final ImageView imageViewSetting = findViewById(R.id.image_view_setting);
@@ -99,8 +98,9 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     private void initializeSplash() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        binding.container.setVisibility(View.GONE);
-        binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        final Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+        binding.imageViewSplash.startAnimation(animation);
+
         binding.lottieAnimationView.playAnimation();
         binding.lottieAnimationView.addAnimatorListener(this);
     }
@@ -117,6 +117,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         }
+        binding.relativeLayoutSplash.setVisibility(View.GONE);
         binding.container.setVisibility(View.VISIBLE);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
