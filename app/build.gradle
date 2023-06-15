@@ -114,4 +114,5 @@ dependencies {
 
     implementation project(':toast')
     implementation project(':spinkit')
+    implementation project(':versatileprogressbar')
 }
