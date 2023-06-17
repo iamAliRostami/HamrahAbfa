@@ -21,7 +21,7 @@ public class FadingCircle extends CircleLayoutContainer {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 dots[i].setAnimationDelay(1200 / 12 * i);
             } else {
-                dots[i].setAnimationDelay(1200 / 12 * i + -1200);
+                dots[i].setAnimationDelay(1200 / 12 * i - 1200);
             }
         }
         return dots;
@@ -35,7 +35,7 @@ public class FadingCircle extends CircleLayoutContainer {
 
         @Override
         public ValueAnimator onCreateAnimation() {
-            float fractions[] = new float[]{0f, 0.39f, 0.4f, 1f};
+            float[] fractions = new float[]{0f, 0.39f, 0.4f, 1f};
             return new SpriteAnimatorBuilder(this).
                     alpha(fractions, 0, 0, 255, 0).
                     duration(1200).

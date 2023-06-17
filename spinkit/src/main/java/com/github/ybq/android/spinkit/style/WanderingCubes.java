@@ -46,7 +46,7 @@ public class WanderingCubes extends SpriteContainer {
     }
 
     private class Cube extends RectSprite {
-        int startFrame;
+        final int startFrame;
 
         public Cube(int startFrame) {
             this.startFrame = startFrame;
@@ -54,7 +54,7 @@ public class WanderingCubes extends SpriteContainer {
 
         @Override
         public ValueAnimator onCreateAnimation() {
-            float fractions[] = new float[]{0f, 0.25f, 0.5f, 0.51f, 0.75f, 1f};
+            float[] fractions = new float[]{0f, 0.25f, 0.5f, 0.51f, 0.75f, 1f};
             SpriteAnimatorBuilder builder = new SpriteAnimatorBuilder(this).
                     rotate(fractions, 0, -90, -179, -180, -270, -360).
                     translateXPercentage(fractions, 0f, 0.75f, 0.75f, 0.75f, 0f, 0f).

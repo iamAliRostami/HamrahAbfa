@@ -1,11 +1,11 @@
 package com.leon.hamrah_abfa.fragments.checkout;
 
 public class CheckoutPaymentViewModel {
-    public String date;
-    public String price;
-    public String paymentType;
-    public String bank;
-    public boolean submitType;
+    public final String date;
+    public final String price;
+    public final String paymentType;
+    public final String bank;
+    public final boolean submitType;
 
     public CheckoutPaymentViewModel(String date, String price, String paymentType, String bank, boolean submitType) {
         this.date = date;

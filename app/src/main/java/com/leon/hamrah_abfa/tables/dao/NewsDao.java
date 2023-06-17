@@ -7,7 +7,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.leon.hamrah_abfa.tables.News;
-import com.leon.hamrah_abfa.tables.User;
 
 import java.util.List;
 

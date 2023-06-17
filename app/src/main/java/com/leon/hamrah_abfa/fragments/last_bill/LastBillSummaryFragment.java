@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentLastBillSummaryBinding;
 
 public class LastBillSummaryFragment extends Fragment {

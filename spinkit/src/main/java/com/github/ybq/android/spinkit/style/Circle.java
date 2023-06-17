@@ -21,7 +21,7 @@ public class Circle extends CircleLayoutContainer {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 dots[i].setAnimationDelay(1200 / 12 * i);
             } else {
-                dots[i].setAnimationDelay(1200 / 12 * i + -1200);
+                dots[i].setAnimationDelay(1200 / 12 * i - 1200);
             }
         }
         return dots;
@@ -35,7 +35,7 @@ public class Circle extends CircleLayoutContainer {
 
         @Override
         public ValueAnimator onCreateAnimation() {
-            float fractions[] = new float[]{0f, 0.5f, 1f};
+            float[] fractions = new float[]{0f, 0.5f, 1f};
             return new SpriteAnimatorBuilder(this).
                     scale(fractions, 0f, 1f, 0f).
                     duration(1200).

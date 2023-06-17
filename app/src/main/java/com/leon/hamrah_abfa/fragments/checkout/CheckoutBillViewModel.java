@@ -1,11 +1,11 @@
 package com.leon.hamrah_abfa.fragments.checkout;
 
 public class CheckoutBillViewModel {
-    public String price;
-    public String dateEnd;
-    public String dateStart;
+    public final String price;
+    public final String dateEnd;
+    public final String dateStart;
     public int days;
-    public int usage;
+    public final int usage;
     public int usageType;
 
     public CheckoutBillViewModel(String dateStart, String dateEnd, String price, int usage) {

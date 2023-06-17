@@ -1,15 +1,12 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.leon.hamrah_abfa.R;
 
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
     private final OnItemClickListener listener;

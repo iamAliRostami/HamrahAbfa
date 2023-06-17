@@ -1,11 +1,8 @@
 package com.leon.hamrah_abfa.di.module;
 
 import static com.leon.hamrah_abfa.di.view_model.MyDatabaseClientModel.getInstance;
-import static com.leon.hamrah_abfa.helpers.Constants.DB_NAME;
 
 import android.content.Context;
-
-import androidx.room.Room;
 
 import com.leon.hamrah_abfa.utils.MyDatabase;
 

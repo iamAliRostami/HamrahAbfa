@@ -14,17 +14,17 @@ public class News {
     @ColumnInfo(name = "customId")
     public int customId;
     @ColumnInfo(name = "id")
-    public int id;
-    public int category;
-    public String summary;
-    public String title;
-    public String text;
+    public final int id;
+    public final int category;
+    public final String summary;
+    public final String title;
+    public final String text;
     public String imageAddress;
 
     @ColumnInfo(name = "billId")
     @NonNull
-    public String billId;
-    public String date;
+    public final String billId;
+    public final String date;
     public boolean seen;
 
     @Ignore

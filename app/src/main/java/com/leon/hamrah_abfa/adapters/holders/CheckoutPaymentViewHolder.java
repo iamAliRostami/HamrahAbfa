@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.adapters.holders;
 
-import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

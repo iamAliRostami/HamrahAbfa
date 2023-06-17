@@ -313,7 +313,7 @@ public abstract class Sprite extends Drawable implements
         );
     }
 
-    public static final Property<Sprite, Integer> ROTATE_X = new IntProperty<Sprite>("rotateX") {
+    public static final Property<Sprite, Integer> ROTATE_X = new IntProperty<>("rotateX") {
         @Override
         public void setValue(Sprite object, int value) {
             object.setRotateX(value);
@@ -325,7 +325,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Integer> ROTATE = new IntProperty<Sprite>("rotate") {
+    public static final Property<Sprite, Integer> ROTATE = new IntProperty<>("rotate") {
         @Override
         public void setValue(Sprite object, int value) {
             object.setRotate(value);
@@ -337,7 +337,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Integer> ROTATE_Y = new IntProperty<Sprite>("rotateY") {
+    public static final Property<Sprite, Integer> ROTATE_Y = new IntProperty<>("rotateY") {
         @Override
         public void setValue(Sprite object, int value) {
             object.setRotateY(value);
@@ -350,7 +350,7 @@ public abstract class Sprite extends Drawable implements
     };
 
     @SuppressWarnings("unused")
-    public static final Property<Sprite, Integer> TRANSLATE_X = new IntProperty<Sprite>("translateX") {
+    public static final Property<Sprite, Integer> TRANSLATE_X = new IntProperty<>("translateX") {
         @Override
         public void setValue(Sprite object, int value) {
             object.setTranslateX(value);
@@ -363,7 +363,7 @@ public abstract class Sprite extends Drawable implements
     };
 
     @SuppressWarnings("unused")
-    public static final Property<Sprite, Integer> TRANSLATE_Y = new IntProperty<Sprite>("translateY") {
+    public static final Property<Sprite, Integer> TRANSLATE_Y = new IntProperty<>("translateY") {
         @Override
         public void setValue(Sprite object, int value) {
             object.setTranslateY(value);
@@ -375,7 +375,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Float> TRANSLATE_X_PERCENTAGE = new FloatProperty<Sprite>("translateXPercentage") {
+    public static final Property<Sprite, Float> TRANSLATE_X_PERCENTAGE = new FloatProperty<>("translateXPercentage") {
         @Override
         public void setValue(Sprite object, float value) {
             object.setTranslateXPercentage(value);
@@ -387,7 +387,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Float> TRANSLATE_Y_PERCENTAGE = new FloatProperty<Sprite>("translateYPercentage") {
+    public static final Property<Sprite, Float> TRANSLATE_Y_PERCENTAGE = new FloatProperty<>("translateYPercentage") {
         @Override
         public void setValue(Sprite object, float value) {
             object.setTranslateYPercentage(value);
@@ -400,7 +400,7 @@ public abstract class Sprite extends Drawable implements
     };
 
     @SuppressWarnings("unused")
-    public static final Property<Sprite, Float> SCALE_X = new FloatProperty<Sprite>("scaleX") {
+    public static final Property<Sprite, Float> SCALE_X = new FloatProperty<>("scaleX") {
         @Override
         public void setValue(Sprite object, float value) {
             object.setScaleX(value);
@@ -412,7 +412,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Float> SCALE_Y = new FloatProperty<Sprite>("scaleY") {
+    public static final Property<Sprite, Float> SCALE_Y = new FloatProperty<>("scaleY") {
         @Override
         public void setValue(Sprite object, float value) {
             object.setScaleY(value);
@@ -424,7 +424,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Float> SCALE = new FloatProperty<Sprite>("scale") {
+    public static final Property<Sprite, Float> SCALE = new FloatProperty<>("scale") {
         @Override
         public void setValue(Sprite object, float value) {
             object.setScale(value);
@@ -436,7 +436,7 @@ public abstract class Sprite extends Drawable implements
         }
     };
 
-    public static final Property<Sprite, Integer> ALPHA = new IntProperty<Sprite>("alpha") {
+    public static final Property<Sprite, Integer> ALPHA = new IntProperty<>("alpha") {
         @Override
         public void setValue(Sprite object, int value) {
             object.setAlpha(value);
