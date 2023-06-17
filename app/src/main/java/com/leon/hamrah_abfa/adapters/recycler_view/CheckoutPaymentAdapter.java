@@ -27,23 +27,28 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
     @NonNull
     @Override
     public CheckoutPaymentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment_1, parent, false));
+        if (getItemViewType(viewType) % 2 == 0)
+            return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment_light, parent, false));
+        return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment, parent, false));
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
     public void onBindViewHolder(@NonNull CheckoutPaymentViewHolder holder, int position) {
-        if (position % 2 == 0)
-            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
-        else
-            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
+//        if (position % 2 == 0)
+//            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
+//        else
+//            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
         holder.textViewPrice.setText(payments.get(position).price);
         holder.textViewBank.setText(payments.get(position).bank);
         holder.textViewPaymentType.setText(payments.get(position).paymentType);
         holder.textViewDate.setText(payments.get(position).date);
 
-        if (payments.get(position).submitType)
-            holder.imageViewSubmitType.setImageResource(R.drawable.ic_approval);
-        else
+        if (!payments.get(position).submitType)
             holder.imageViewSubmitType.setImageResource(R.drawable.ic_disapproval);
 
     }

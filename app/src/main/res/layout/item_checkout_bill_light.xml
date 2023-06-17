@@ -6,7 +6,8 @@
     <RelativeLayout
         android:id="@id/relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_last_bill_light">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -41,13 +42,13 @@
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/TitleBranch"
                         android:layout_weight="0.5"
-                        android:text="@string/date" />
+                        android:text="@string/to_date" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_view_date"
+                        android:id="@+id/text_view_to"
                         style="@style/TextItem.Checkout"
                         android:layout_weight="1"
-                        android:text="@string/date" />
+                        android:text="@string/to_date" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -57,13 +58,13 @@
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/TitleBranch"
                         android:layout_weight="0.5"
-                        android:text="@string/bank" />
+                        android:text="@string/days" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_view_bank"
+                        android:id="@+id/text_view_days"
                         style="@style/TextItem.Checkout"
                         android:layout_weight="1"
-                        android:text="@string/bank" />
+                        android:text="@string/days" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -74,13 +75,13 @@
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/TitleBranch"
                         android:layout_weight="0.5"
-                        android:text="@string/payment_type" />
+                        android:text="@string/usage" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_view_payment_type"
+                        android:id="@+id/text_view_usage"
                         style="@style/TextItem.Checkout"
                         android:layout_weight="1"
-                        android:text="@string/payment_type" />
+                        android:text="@string/usage" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -91,13 +92,21 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_submit_type"
+                    android:id="@+id/image_view_usage_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_margin="@dimen/medium_dp"
-                    android:src="@drawable/ic_approval" />
+                    android:baselineAlignBottom="false"
+                    android:src="@drawable/ic_standard" />
 
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="@dimen/medium_dp"
+                    android:src="@drawable/ic_details" />
             </RelativeLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>

@@ -5,6 +5,7 @@
 
     <RelativeLayout
         android:id="@id/relative_layout"
+        android:background="@drawable/background_last_bill_light"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,13 +42,13 @@
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/TitleBranch"
                         android:layout_weight="0.5"
-                        android:text="@string/to_date" />
+                        android:text="@string/date" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_view_to"
+                        android:id="@+id/text_view_date"
                         style="@style/TextItem.Checkout"
                         android:layout_weight="1"
-                        android:text="@string/to_date" />
+                        android:text="@string/date" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -57,13 +58,13 @@
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/TitleBranch"
                         android:layout_weight="0.5"
-                        android:text="@string/days" />
+                        android:text="@string/bank" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_view_days"
+                        android:id="@+id/text_view_bank"
                         style="@style/TextItem.Checkout"
                         android:layout_weight="1"
-                        android:text="@string/days" />
+                        android:text="@string/bank" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -74,13 +75,13 @@
                     <com.google.android.material.textview.MaterialTextView
                         style="@style/TitleBranch"
                         android:layout_weight="0.5"
-                        android:text="@string/usage" />
+                        android:text="@string/payment_type" />
 
                     <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/text_view_usage"
+                        android:id="@+id/text_view_payment_type"
                         style="@style/TextItem.Checkout"
                         android:layout_weight="1"
-                        android:text="@string/usage" />
+                        android:text="@string/payment_type" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -91,21 +92,13 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_usage_type"
+                    android:id="@+id/image_view_submit_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_margin="@dimen/medium_dp"
-                    android:baselineAlignBottom="false"
-                    android:src="@drawable/ic_standard" />
+                    android:src="@drawable/ic_approval" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_margin="@dimen/medium_dp"
-                    android:src="@drawable/ic_details" />
             </RelativeLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>

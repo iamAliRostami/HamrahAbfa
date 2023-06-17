@@ -27,22 +27,27 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
     @NonNull
     @Override
     public CheckoutBillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill_1, parent, false));
+        if (getItemViewType(viewType) % 2 == 0)
+            return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill_light, parent, false));
+        return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill, parent, false));
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
     public void onBindViewHolder(@NonNull CheckoutBillViewHolder holder, int position) {
         final CheckoutBillViewModel bill = bills.get(position);
-        if (position % 2 == 0)
-            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
-        else
-            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
+//        if (position % 2 == 0)
+//            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
+//        else
+//            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
         if (bill.usageType == 2)
             holder.imageViewUsageType.setImageResource(R.drawable.ic_high);
         else if (bill.usageType == 1)
             holder.imageViewUsageType.setImageResource(R.drawable.ic_low);
-        else
-            holder.imageViewUsageType.setImageResource(R.drawable.ic_standard);
         holder.textViewTo.setText(bill.dateEnd);
         holder.textViewPrice.setText(bill.price);
         holder.textViewDays.setText(String.valueOf(bill.days));

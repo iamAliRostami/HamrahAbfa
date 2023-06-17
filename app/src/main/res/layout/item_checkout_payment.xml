@@ -5,95 +5,101 @@
 
     <RelativeLayout
         android:id="@id/relative_layout"
+        android:background="@drawable/background_last_bill"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/relative_layout_payment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3">
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/price" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_price"
-                style="@style/TextItem.SingleLine"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/price" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/date" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_date"
-                style="@style/TextItem.SingleLine"
-                android:layout_weight="1"
-                android:text="@string/date" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TitleBranch"
+                        android:layout_weight="0.5"
+                        android:text="@string/price" />
 
-        <View
-            android:id="@+id/divider_1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/relative_layout_payment"
-            android:background="@color/purple_7001" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_price"
+                        style="@style/TextItem.Checkout"
+                        android:layout_weight="1"
+                        android:text="@string/price" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/relative_layout_bank"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/relative_layout_payment"
-            android:weightSum="3">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/payment_type" />
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TitleBranch"
+                        android:layout_weight="0.5"
+                        android:text="@string/date" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_payment_type"
-                style="@style/TextItem.SingleLine"
-                android:layout_weight="1"
-                android:text="@string/payment_type" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_date"
+                        style="@style/TextItem.Checkout"
+                        android:layout_weight="1"
+                        android:text="@string/date" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:layout_weight="0.5"
-                android:text="@string/bank" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_bank"
-                style="@style/TextItem.SingleLine"
-                android:layout_weight="1"
-                android:text="@string/bank" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TitleBranch"
+                        android:layout_weight="0.5"
+                        android:text="@string/bank" />
 
-        <View
-            android:id="@+id/divider_2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/relative_layout_bank"
-            android:background="@color/purple_7001" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_bank"
+                        style="@style/TextItem.Checkout"
+                        android:layout_weight="1"
+                        android:text="@string/bank" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/divider_2">
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextItem"
-                android:text="@string/submit_type" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_submit_type"
-                style="@style/TextItem.SingleLine"
-                android:text="@string/submit_type" />
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/TitleBranch"
+                        android:layout_weight="0.5"
+                        android:text="@string/payment_type" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_payment_type"
+                        style="@style/TextItem.Checkout"
+                        android:layout_weight="1"
+                        android:text="@string/payment_type" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_submit_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="@dimen/medium_dp"
+                    android:src="@drawable/ic_approval" />
+
+            </RelativeLayout>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
