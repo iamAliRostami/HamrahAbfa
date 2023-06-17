@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
-        initializeSplash();
+//        initializeSplash();
         // TODO
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
