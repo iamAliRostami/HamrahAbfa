@@ -52,23 +52,9 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     protected void initialize() {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-//        final Sprite sprite = new WanderingCubes();
-//        binding.spinKit.setIndeterminateDrawable(sprite);
-
-//        final SpinKitView spinKit = new SpinKitView(this);
-//        final Sprite sprite = new WanderingCubes();
-//        spinKit.setIndeterminateDrawable(sprite);
-//        spinKit.setColor(ContextCompat.getColor(this, R.color.purple_7001));
-//        spinKit.setIndeterminate(true);
-//        spinKit.showContextMenu();
-
-
         //TODO
         initializeSplash();
         // TODO
-//        ShowFragment.showFragmentDialogOnce(this, WAITING.getValue(), WaitingFragment.newInstance());
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
         final ImageView imageViewSetting = findViewById(R.id.image_view_setting);

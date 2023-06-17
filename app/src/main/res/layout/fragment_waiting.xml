@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/font_huge_value"
-    android:padding="@dimen/font_huge_value"
+    android:layout_margin="@dimen/xlarge_dp"
+    android:padding="@dimen/xlarge_dp"
     tools:context=".fragments.dialog.WaitingFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_waiting"
-        app:lottie_repeatMode="restart"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_rawRes="@raw/waiting_man" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/waiting_man_transparent"
+        app:lottie_repeatMode="restart" />
 
 </FrameLayout>

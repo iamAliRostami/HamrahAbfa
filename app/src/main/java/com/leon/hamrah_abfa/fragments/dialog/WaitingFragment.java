@@ -1,22 +1,21 @@
 package com.leon.hamrah_abfa.fragments.dialog;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
-import com.airbnb.lottie.LottieDrawable;
-import com.leon.hamrah_abfa.R;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+
 import com.leon.hamrah_abfa.databinding.FragmentWaitingBinding;
 
 public class WaitingFragment extends DialogFragment {
     private FragmentWaitingBinding binding;
+
     public WaitingFragment() {
     }
 
@@ -32,10 +31,13 @@ public class WaitingFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding =  FragmentWaitingBinding.inflate(inflater, container, false);
-//        binding.lottieWaiting.setRepeatCount(LottieDrawable.INFINITE);
+        binding = FragmentWaitingBinding.inflate(inflater, container, false);
+        if (getDialog() != null) {
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
         return binding.getRoot();
     }
+
     @Override
     public void onResume() {
         if (getDialog() != null) {

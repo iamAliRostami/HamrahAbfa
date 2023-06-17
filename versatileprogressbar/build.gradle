@@ -46,6 +46,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        esf {
+        }
     }
 
     namespace 'com.aseem.versatileprogressbar'

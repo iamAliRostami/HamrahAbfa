@@ -10,7 +10,10 @@ android {
         minSdkVersion 14
         targetSdkVersion 33
     }
-
+    buildTypes {
+        esf {
+        }
+    }
     lintOptions {
         abortOnError false
     }
