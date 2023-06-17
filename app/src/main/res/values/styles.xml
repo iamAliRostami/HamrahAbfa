@@ -299,19 +299,42 @@
 
         <item name="android:layout_marginTop">@dimen/large_dp</item>
         <item name="android:layout_marginBottom">@dimen/medium_dp</item>
-<!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
-<!--        <item name="android:layout_marginEnd">@dimen/medium_dp</item>-->
+        <!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
+        <!--        <item name="android:layout_marginEnd">@dimen/medium_dp</item>-->
     </style>
 
+    <style name="CardStyleRow">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+        <item name="cardCornerRadius">@dimen/medium_dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:descendantFocusability">blocksDescendants</item>
+
+
+        <item name="android:layout_marginTop">@dimen/medium_dp</item>
+        <item name="android:layout_marginBottom">@dimen/medium_dp</item>
+        <!--        <item name="android:layout_marginStart">@dimen/medium_dp</item>-->
+        <!--        <item name="android:layout_marginEnd">@dimen/medium_dp</item>-->
+    </style>
     <!--    <style name="CardStyle.Parent">-->
     <!--        <item name="android:layout_margin">@dimen/medium_dp</item>-->
     <!--    </style>-->
 
-    <style name="CardStyle.ViewPager">
-        <item name="android:layout_marginTop">@dimen/large_dp</item>
+    <style name="CardStyleViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+        <item name="cardCornerRadius">@dimen/medium_dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+<!--        <item name="android:layout_marginTop">@dimen/medium_dp</item>-->
         <item name="android:layout_marginBottom">@dimen/large_dp</item>
-        <item name="android:paddingStart">@dimen/large_dp</item>
-        <item name="android:paddingEnd">@dimen/large_dp</item>
+        <!--        <item name="android:paddingStart">@dimen/large_dp</item>-->
+        <!--        <item name="android:paddingEnd">@dimen/large_dp</item>-->
     </style>
 
     <style name="CardStyle.Center">

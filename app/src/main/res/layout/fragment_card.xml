@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -20,11 +20,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_dp"
+            android:visibility="gone"
             android:src="@drawable/abfa_logo_simple" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
             style="@style/Title"
+            android:layout_marginTop="@dimen/medium_dp"
             android:textColor="@color/dark_gray"
             android:layout_below="@id/image_view_logo"
             android:layout_centerHorizontal="true"

@@ -1,33 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/ParentLayout"
     tools:context=".fragments.ui.home.HomeFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_card"
-        style="@style/CardStyle.ViewPager"
+        style="@style/CardStyleViewPager"
         android:layout_centerHorizontal="true" />
 
-<!--    <androidx.viewpager2.widget.ViewPager2-->
-<!--        android:id="@+id/view_pager_card"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginTop="@dimen/large_dp"-->
-<!--        android:layout_marginBottom="@dimen/large_dp"-->
-<!--        android:clipChildren="false"-->
-<!--        android:clipToPadding="false"-->
-<!--        android:paddingStart="@dimen/large_dp"-->
-<!--        android:paddingEnd="@dimen/large_dp"-->
-<!--        android:saveEnabled="false" />-->
     <GridView
         android:id="@+id/grid_view_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/view_pager_card"
-        android:layout_margin="@dimen/large_dp"
         android:horizontalSpacing="@dimen/medium_dp"
         android:nestedScrollingEnabled="true"
         android:numColumns="3"

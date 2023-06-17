@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:paddingBottom="@dimen/large_dp"
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
@@ -27,7 +27,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_theme"
-        style="@style/CardStyleLastBill"
+        style="@style/CardStyleRow"
         app:layout_constraintBottom_toTopOf="@id/card_view_size"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -116,7 +116,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view_size"
-        style="@style/CardStyleLastBill"
+        style="@style/CardStyleRow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
