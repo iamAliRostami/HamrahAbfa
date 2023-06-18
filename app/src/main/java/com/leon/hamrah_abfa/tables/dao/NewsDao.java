@@ -39,6 +39,6 @@ public interface NewsDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateNews(List<News> news);
 
-    @Query("UPDATE News set seen = :seen WHERE id = :id")
+    @Query("UPDATE News set seen = :seen WHERE customId = :id")
     void updateNewsSeen(int id, boolean seen);
 }
