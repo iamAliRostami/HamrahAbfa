@@ -7,24 +7,40 @@
     android:background="@color/light_blue"
     tools:context=".activities.ServiceActivity">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_submit_top" />
+
     <com.shuhart.stepview.StepView
         android:id="@+id/stepper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:background="@drawable/background_tab_layout"
+
+        android:layout_margin="@dimen/large_dp"
         android:padding="@dimen/small_dp"
         app:sv_animationType="Circle"
-        app:sv_doneCircleColor="@color/purple_7001"
         app:sv_doneCircleRadius="@dimen/medium_dp"
-        app:sv_doneStepLineColor="@color/purple_7001"
-        app:sv_doneStepMarkColor="@android:color/white"
-        app:sv_doneTextColor="@color/purple_7001"
-        app:sv_nextStepCircleColor="@color/dark_gray"
         app:sv_nextStepCircleEnabled="true"
-        app:sv_nextStepLineColor="@color/dark_gray"
-        app:sv_nextTextColor="@color/dark_gray"
-        app:sv_selectedCircleColor="@color/purple_7001"
-        app:sv_selectedStepNumberColor="@android:color/white"
+
+        app:sv_nextStepCircleColor="@color/light_gray"
+        app:sv_nextStepLineColor="@color/purple_7001"
+        app:sv_nextTextColor="@color/purple_7001"
+
+        app:sv_doneTextColor="@color/dark_gray"
+        app:sv_doneCircleColor="@color/light_gray"
+        app:sv_doneStepLineColor="@color/light_gray"
+        app:sv_doneStepMarkColor="@color/dark_gray"
+
+
         app:sv_selectedTextColor="@color/purple_7001"
+        app:sv_selectedStepNumberColor="@color/light"
+        app:sv_selectedCircleColor="@color/purple_7001"
+
+
         app:sv_stepLineWidth="@dimen/tiny_dp"
         app:sv_stepNumberTextSize="?attr/font_small"
         app:sv_stepPadding="@dimen/tiny_dp"
@@ -34,9 +50,14 @@
         app:sv_textSize="?attr/font_small"
         app:sv_typeface="@font/iranian_sans_b" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_services"
-        style="@style/FragmentContainerStyle"
-        android:layout_below="@id/stepper"
-        android:layout_margin="@dimen/large_dp" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/stepper">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_services"
+            android:background="@android:color/transparent"
+            style="@style/FragmentContainerStyle" />
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

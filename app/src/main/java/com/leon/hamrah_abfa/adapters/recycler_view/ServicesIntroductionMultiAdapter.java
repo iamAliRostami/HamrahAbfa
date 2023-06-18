@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.adapters.holders.ServiceIntroductionViewHolder;
 
 import java.util.ArrayList;

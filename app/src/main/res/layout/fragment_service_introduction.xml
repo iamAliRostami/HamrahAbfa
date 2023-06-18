@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/button_submit"
-        android:layout_marginBottom="@dimen/large_dp"
+        android:layout_marginBottom="@dimen/medium_dp"
         android:nestedScrollingEnabled="true"
         tools:listitem="@layout/item_service" />
 

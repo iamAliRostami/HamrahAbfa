@@ -91,9 +91,9 @@
     <string name="ab_baha">آب بها</string>
     <string name="service_after_sale">خدمات پس از فروش</string>
 
-    <string name="service_introduce">معرفی خدمت</string>
-    <string name="service_submit">ثبت درخواست</string>
-    <string name="service_confirm">تایید نهایی</string>
+    <string name="service_introduce">معرفی</string>
+    <string name="service_submit">ثبت</string>
+    <string name="service_confirm">تایید</string>
     <string name="next_level">مرحله بعد</string>
     <string name="choose_a_service">یکی از خدمات را انتخاب کنید</string>
     <string name="previous">مرحله قبل</string>
