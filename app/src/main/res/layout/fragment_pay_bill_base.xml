@@ -51,6 +51,7 @@
         android:layout_below="@id/linear_layout_price">
 
         <RelativeLayout
+            android:layout_marginBottom="@dimen/medium_dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

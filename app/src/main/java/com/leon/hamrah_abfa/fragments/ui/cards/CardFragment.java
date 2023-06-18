@@ -24,8 +24,8 @@ public class CardFragment extends Fragment {
     }
 
     public static CardFragment newInstance(String billId, String nickname, String owner) {
-        CardFragment fragment = new CardFragment();
-        Bundle args = new Bundle();
+        final CardFragment fragment = new CardFragment();
+        final Bundle args = new Bundle();
         args.putString(BILL_ID.getValue(), billId);
         args.putString(NICKNAME.getValue(), nickname);
         args.putString(OWNER.getValue(), owner);

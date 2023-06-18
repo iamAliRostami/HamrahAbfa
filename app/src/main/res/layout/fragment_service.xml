@@ -2,16 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ParentLayout"
+    android:padding="0dp"
     tools:context=".fragments.ui.services.ServiceFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_card"
-        style="@style/CardStyleViewPager"
-        android:layout_centerHorizontal="true" />
+        style="@style/CardStyleViewPager" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_menu"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/large_dp"
         android:layout_height="match_parent"
         android:layout_below="@id/view_pager_card"
         android:nestedScrollingEnabled="true"

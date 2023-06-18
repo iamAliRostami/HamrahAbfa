@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout>
 
     <data>
 
@@ -20,87 +20,66 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/small_dp"
-            android:visibility="gone"
-            android:src="@drawable/abfa_logo_simple" />
+            android:src="@drawable/abfa_logo_simple"
+            android:visibility="gone" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
             style="@style/Title"
-            android:layout_marginTop="@dimen/medium_dp"
-            android:textColor="@color/dark_gray"
             android:layout_below="@id/image_view_logo"
-            android:layout_centerHorizontal="true"
-            android:text="@{viewModel.nickname}" />
+            android:layout_margin="@dimen/medium_dp"
+            android:text="@{viewModel.nickname}"
+            android:textAppearance="@style/TextStyleLarge.Bold"
+            android:textColor="@color/dark_gray" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_owner_title"
-            android:layout_width="wrap_content"
-            android:textAppearance="@style/TextStyleSmall"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_title"
-            android:layout_marginStart="@dimen/large_dp"
-            android:text="@string/owner" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_owner"
-            style="@style/TitleHelp"
-            android:textColor="@color/dark_gray"
-            android:layout_below="@id/text_view_owner_title"
-            android:layout_marginStart="@dimen/large_dp"
-            android:text="@{viewModel.owner}" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_bill_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextStyleSmall"
-            android:layout_below="@id/text_view_title"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/large_dp"
-            android:text="@string/bill_id" />
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:id="@+id/text_view_bill_title"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textAppearance="@style/TextStyleSmall"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:layout_marginEnd="@dimen/medium_dp"-->
+        <!--            android:text="@string/bill_id" />-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_bill_id"
             style="@style/TitleHelp"
-            android:textColor="@color/dark_gray"
-            android:layout_below="@id/text_view_owner_title"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/large_dp"
-            android:text="@{viewModel.billId}" />
+            android:layout_margin="@dimen/medium_dp"
+            android:text="@{viewModel.billId}"
+            android:textColor="@color/dark_gray" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_debt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_view_bill_id"
-            android:layout_marginTop="@dimen/medium_dp"
-            android:layout_marginBottom="@dimen/medium_dp"
             android:background="@drawable/background_card_input_right">
-<!--TODO-->
+            <!--TODO-->
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/large_dp"
                 android:layout_weight="1"
-                android:text="@string/bill_price" />
+                android:text="@string/price" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_price"
-                android:textAppearance="@style/TextStyleSmall.Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="1,234,567,890 ریال" />
+                android:text="1,234,567,890 ریال"
+                android:textAppearance="@style/TextStyleSmall.Bold" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textAppearance="@style/TextStyleSmall"
                 android:background="@drawable/background_card_input_left"
                 android:gravity="center"
                 android:text="@string/pay"
+                android:textAppearance="@style/TextStyleSmall"
                 android:textColor="@color/light" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -110,10 +89,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout_debt"
             android:layout_marginStart="@dimen/large_dp"
-            android:layout_marginBottom="@dimen/medium_dp"
             android:layout_marginEnd="@dimen/large_dp"
-            android:tint="@color/light"
-            android:src="@drawable/ic_edit" />
+            android:layout_marginBottom="@dimen/medium_dp"
+            android:src="@drawable/ic_edit"
+            android:tint="@color/light" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_delete"

@@ -331,10 +331,12 @@
         <item name="android:elevation">@dimen/medium_dp</item>
         <item name="cardCornerRadius">@dimen/medium_dp</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-<!--        <item name="android:layout_marginTop">@dimen/medium_dp</item>-->
-        <item name="android:layout_marginBottom">@dimen/large_dp</item>
-        <!--        <item name="android:paddingStart">@dimen/large_dp</item>-->
-        <!--        <item name="android:paddingEnd">@dimen/large_dp</item>-->
+        <item name="android:layout_marginTop">@dimen/large_dp</item>
+        <item name="android:paddingStart">@dimen/large_dp</item>
+        <item name="android:paddingEnd">@dimen/large_dp</item>
+        <item name="android:clipChildren">false</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:saveEnabled">false</item>
     </style>
 
     <style name="CardStyle.Center">

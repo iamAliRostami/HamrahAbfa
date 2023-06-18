@@ -7,9 +7,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +35,7 @@ import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
     private FragmentHomeBinding binding;
     private ICallback callback;
+    public static int height;
 
     public static Fragment newInstance() {
         return new HomeFragment();
@@ -46,6 +49,30 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initialize() {
+        binding.gridViewMenu.measure(0, 0);
+
+        Log.e("height 1", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
+        Log.e("height 2", String.valueOf(binding.gridViewMenu.getHeight()));
+//        binding.gridViewMenu.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        Log.e("height 3", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
+        binding.gridViewMenu.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                binding.gridViewMenu.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                binding.gridViewMenu.getHeight(); //height is ready
+                Log.e("height 4", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
+                Log.e("height 5", String.valueOf(binding.gridViewMenu.getHeight()));
+            }
+        });
+        binding.gridViewMenu.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("height 6", String.valueOf(binding.gridViewMenu.getHeight()));
+                Log.e("height 7", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
+//                binding.gridViewMenu.getHeight(); //height is ready
+            }
+        });
+        height = binding.gridViewMenu.getMeasuredHeight();
         initializeViewPager();
         initializeGridView();
     }
