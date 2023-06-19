@@ -24,8 +24,8 @@ public class TileAdapter extends RecyclerView.Adapter<TileViewHolder> {
 
     public TileAdapter(Context context, int titleIds, int drawableIds) {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.titles = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(titleIds)));
-        this.drawable = context.getResources().obtainTypedArray(drawableIds);
+        titles = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(titleIds)));
+        drawable = context.getResources().obtainTypedArray(drawableIds);
     }
 
     @NonNull
