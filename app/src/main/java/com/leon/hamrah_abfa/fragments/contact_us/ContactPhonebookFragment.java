@@ -5,12 +5,15 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCallPhonePermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
+import static com.leon.toast.RTLToast.warning;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +31,10 @@ import com.leon.hamrah_abfa.databinding.FragmentContactPhonebookBinding;
 import java.util.ArrayList;
 
 public class ContactPhonebookFragment extends Fragment implements AdapterView.OnItemClickListener,
-        AdapterView.OnItemLongClickListener {
+        AdapterView.OnItemLongClickListener, TextWatcher {
     private FragmentContactPhonebookBinding binding;
     private final ArrayList<PhonebookViewModel> phonebook = new ArrayList<>();
+    private PhonebookAdapter adapter;
 
     public ContactPhonebookFragment() {
     }
@@ -54,6 +58,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
 
     private void initialize() {
         initializeGridView();
+        binding.editTextSearch.addTextChangedListener(this);
     }
 
     private void initializeGridView() {
@@ -65,7 +70,9 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
         phonebook.add(new PhonebookViewModel("مدیر شماره شش", "03133333333"));
         phonebook.add(new PhonebookViewModel("مدیر شماره هفت", "03133333333"));
         phonebook.add(new PhonebookViewModel("مدیر شماره هشت", "03133333333"));
-        final PhonebookAdapter adapter = new PhonebookAdapter(requireContext(), phonebook);
+        phonebook.add(new PhonebookViewModel("مدیر شماره نه", "03133333333"));
+        phonebook.add(new PhonebookViewModel("مدیر شماره ده", "03133333333"));
+        adapter = new PhonebookAdapter(requireContext(), phonebook);
         binding.gridViewPhones.setAdapter(adapter);
         binding.gridViewPhones.setOnItemClickListener(this);
         binding.gridViewPhones.setOnItemLongClickListener(this);
@@ -103,4 +110,38 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
                     error(requireContext(), getString(R.string.call_permission_unavailable)).show();
                 }
             });
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (binding.editTextSearch.getEditableText() == s) {
+            if (s.toString().length() == 0) {
+                adapter.filterList(phonebook);
+                return;
+            }
+            filter(s.toString());
+        }
+    }
+
+    private void filter(String text) {
+        final ArrayList<PhonebookViewModel> phonebookTemp = new ArrayList<>();
+        for (PhonebookViewModel phone : this.phonebook) {
+            if (phone.getTitle().toLowerCase().contains(text.toLowerCase()))
+                phonebookTemp.add(phone);
+        }
+        if (phonebookTemp.isEmpty()) {
+            warning(requireContext(), R.string.not_found).show();
+        } else {
+            adapter.filterList(phonebookTemp);
+        }
+    }
 }

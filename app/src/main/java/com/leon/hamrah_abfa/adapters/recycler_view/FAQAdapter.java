@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -9,20 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.FAQViewHolder;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
-    private final ArrayList<String> questions;
-    private final ArrayList<String> answers;
+
+    private final ArrayList<ContactFAQViewModel> faq;
     public final LayoutInflater inflater;
     private Integer selectedServices = null;
 
-    public FAQAdapter(Context context) {
+    public FAQAdapter(Context context, ArrayList<ContactFAQViewModel> faq) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.questions = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(R.array.faq_questions)));
-        this.answers = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(R.array.faq_answers)));
+        this.faq = new ArrayList<>(faq);
     }
 
     @NonNull
@@ -37,15 +37,15 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FAQViewHolder holder, int position) {
-        holder.textViewQuestion.setText(questions.get(position));
+        holder.textViewQuestion.setText(faq.get(position).question);
         holder.textViewQuestion.setSelected(true);
         if (selectedServices != null && selectedServices == position)
-            holder.textViewAnswer.setText(answers.get(position));
+            holder.textViewAnswer.setText(faq.get(position).answer);
     }
 
     @Override
     public int getItemCount() {
-        return Math.min(questions.size(), answers.size());
+        return faq.size();
     }
 
     @Override
@@ -64,5 +64,12 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
             notifyItemChanged(temp);
         }
         notifyItemChanged(position);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(ArrayList<ContactFAQViewModel> faq) {
+        this.faq.clear();
+        this.faq.addAll(faq);
+        notifyDataSetChanged();
     }
 }

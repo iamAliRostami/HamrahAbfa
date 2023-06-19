@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.adapters.base_adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.PhonebookViewHolder;
+import com.leon.hamrah_abfa.fragments.contact_us.BranchViewModel;
 import com.leon.hamrah_abfa.fragments.contact_us.PhonebookViewModel;
 
 import java.util.ArrayList;
@@ -47,5 +49,11 @@ public class PhonebookAdapter extends BaseAdapter {
         holder.textViewPhoneNumber.setText(phoneBook.get(position).getPhoneNumber());
         holder.textViewPhoneNumber.setSelected(true);
         return view;
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(ArrayList<PhonebookViewModel> phonebook) {
+        this.phoneBook.clear();
+        this.phoneBook.addAll(phonebook);
+        notifyDataSetChanged();
     }
 }

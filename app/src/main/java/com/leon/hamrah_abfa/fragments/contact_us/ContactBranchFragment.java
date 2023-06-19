@@ -75,6 +75,9 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
         branches.add(new BranchViewModel("منطقه هشت", "رضا رضایی", "منطقه یک", "8521479630",
                 "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
                 "1234567890", POINT));
+        branches.add(new BranchViewModel("منطقه نه", "رضا رضایی", "منطقه یک", "8521479630",
+                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
+                "1234567890", POINT));
         adapter = new BranchAdapter(requireContext(), branches);
         binding.recyclerViewBranch.setAdapter(adapter);
         binding.recyclerViewBranch.setLayoutManager(new LinearLayoutManager(requireContext()));

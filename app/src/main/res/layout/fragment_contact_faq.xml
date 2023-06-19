@@ -3,14 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/large_dp"
     tools:context=".fragments.contact_us.ContactFAQFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_question"
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true"
-        tools:listitem="@layout/item_faq" />
+        android:layout_height="500dp"
+        android:background="@drawable/background_submit_top" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_layout_search"
+        style="@style/TextInputLayout"
+        android:layout_marginStart="@dimen/large_dp"
+        android:layout_marginTop="@dimen/large_dp"
+        android:layout_marginEnd="@dimen/large_dp"
+        android:hint="@string/search">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_search"
+            style="@style/TextInput"
+            android:background="@drawable/background_tab_layout"
+            android:drawableEnd="@drawable/ic_search"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/text_layout_search">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_question"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true"
+            tools:listitem="@layout/item_faq" />
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

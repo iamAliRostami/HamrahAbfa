@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/large_dp"
     tools:context=".fragments.contact_us.ContactBranchFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="@drawable/background_submit_top" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_layout_search"
         style="@style/TextInputLayout"
-        android:hint="@string/search">
+        android:layout_marginStart="@dimen/large_dp"
+        android:layout_marginEnd="@dimen/large_dp"
+        android:layout_marginTop="@dimen/large_dp"
+        android:hint="@string/search"
+        app:helperTextEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_search"
+            android:background="@drawable/background_tab_layout"
             style="@style/TextInput"
             android:drawableEnd="@drawable/ic_search"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_branch"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/text_layout_search"
-        android:nestedScrollingEnabled="true"
-        tools:listitem="@layout/item_branch" />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/text_layout_search">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_branch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true"
+            tools:listitem="@layout/item_branch" />
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>
