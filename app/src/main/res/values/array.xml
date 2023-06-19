@@ -14,7 +14,7 @@
 
     <array name="home_icons">
         <item>@drawable/home_payment</item>
-        <item>@drawable/home_meter</item>
+        <item>@drawable/home_meter_1</item>
         <item>@drawable/home_usage_history</item>
         <item>@drawable/home_protest</item>
         <item>@drawable/home_cart</item>
