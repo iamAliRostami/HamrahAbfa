@@ -79,8 +79,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private void initializeGridView() {
         final MenuAdapter adapter = new MenuAdapter(requireContext(), R.array.home_menu, R.array.home_icons);
-        binding.gridViewMenu.setAdapter(adapter);
-        binding.gridViewMenu.setOnItemClickListener(this);
+//        binding.gridViewMenu.setAdapter(adapter);
+//        binding.gridViewMenu.setOnItemClickListener(this);
     }
 
     private void initializeViewPager() {

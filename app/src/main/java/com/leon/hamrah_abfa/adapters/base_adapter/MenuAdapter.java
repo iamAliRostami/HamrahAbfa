@@ -12,7 +12,6 @@ import android.widget.BaseAdapter;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.MenuViewHolder;
-import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +29,11 @@ public class MenuAdapter extends BaseAdapter {
 
         final DisplayMetrics displaymetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        height = displaymetrics.heightPixels / (titles.size() / 3);
+
+
+//        height = displaymetrics.heightPixels / (titles.size() / 3);
+
+        height = context.getResources().getDisplayMetrics().widthPixels / 3;
         Log.e("height 12", String.valueOf(height));
     }
 
@@ -57,7 +60,7 @@ public class MenuAdapter extends BaseAdapter {
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
         holder.textViewTitle.setSelected(true);
-//        holder.cardView.setMinimumHeight(HomeFragment.height);
+//        holder.cardView.setMinimumHeight(height);
 //        holder.cardView.heigh;
         return view;
     }

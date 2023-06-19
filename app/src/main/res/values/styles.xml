@@ -442,4 +442,17 @@
         <!--        <item name="android:textStyle">bold</item>-->
         <item name="android:fontFamily">@font/iranian_sans</item>
     </style>
+
+    <style name="CardGridlayoutStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_rowWeight">1</item>
+        <item name="android:layout_margin">@dimen/medium_dp</item>
+        <item name="android:elevation">@dimen/medium_dp</item>
+        <item name="cardCornerRadius">@dimen/medium_dp</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <!--        <item name=""></item>-->
+        <!--        <item name=""></item>-->
+    </style>
 </resources>
