@@ -7,15 +7,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
@@ -28,14 +28,14 @@ import com.leon.hamrah_abfa.activities.FollowRequestActivity;
 import com.leon.hamrah_abfa.activities.LastBillActivity;
 import com.leon.hamrah_abfa.activities.PayBillActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
-import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
+import com.leon.hamrah_abfa.adapters.recycler_view.TileAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
     private FragmentHomeBinding binding;
     private ICallback callback;
-    public static int height;
 
     public static Fragment newInstance() {
         return new HomeFragment();
@@ -49,38 +49,58 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initialize() {
-        binding.gridViewMenu.measure(0, 0);
-
-        Log.e("height 1", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
-        Log.e("height 2", String.valueOf(binding.gridViewMenu.getHeight()));
-//        binding.gridViewMenu.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        Log.e("height 3", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
-        binding.gridViewMenu.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                binding.gridViewMenu.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-//                binding.gridViewMenu.getHeight(); //height is ready
-                Log.e("height 4", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
-                Log.e("height 5", String.valueOf(binding.gridViewMenu.getHeight()));
-            }
-        });
-        binding.gridViewMenu.post(new Runnable() {
-            @Override
-            public void run() {
-                Log.e("height 6", String.valueOf(binding.gridViewMenu.getHeight()));
-                Log.e("height 7", String.valueOf(binding.gridViewMenu.getMeasuredHeight()));
-//                binding.gridViewMenu.getHeight(); //height is ready
-            }
-        });
-        height = binding.gridViewMenu.getMeasuredHeight();
         initializeViewPager();
         initializeGridView();
     }
 
     private void initializeGridView() {
-        final MenuAdapter adapter = new MenuAdapter(requireContext(), R.array.home_menu, R.array.home_icons);
-//        binding.gridViewMenu.setAdapter(adapter);
-//        binding.gridViewMenu.setOnItemClickListener(this);
+        final TileAdapter tileAdapter = new TileAdapter(requireContext(), R.array.home_menu, R.array.home_icons);
+        binding.recyclerViewMenu.setLayoutManager(new GridLayoutManager(requireContext(), 3) {
+            @Override
+            public boolean checkLayoutParams(RecyclerView.LayoutParams lp) {
+                lp.width = getWidth() / getSpanCount();
+                lp.height = getHeight() / getSpanCount();
+                return true;
+            }
+        });
+        binding.recyclerViewMenu.setHasFixedSize(true);
+        binding.recyclerViewMenu.setAdapter(tileAdapter);
+        binding.recyclerViewMenu.addOnItemTouchListener(getListener());
+    }
+
+    private RecyclerItemClickListener getListener() {
+        return new RecyclerItemClickListener(requireContext(),
+                binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (position == 0) {
+                    startActivity(createIntent(PayBillActivity.class));
+                } else if (position == 1) {
+                    startActivity(createIntent(SetCounterNumberActivity.class));
+                } else if (position == 2) {
+                } else if (position == 3) {
+                } else if (position == 4) {
+                    startActivity(createIntent(CheckoutActivity.class));
+                } else if (position == 5) {
+                    final Intent intent = createIntent(FollowRequestActivity.class);
+                    intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
+                            (callback.getCardPagerAdapter().getItemCount() - 1));
+                    startActivity(intent);
+                } else if (position == 6) {
+                    startActivity(createIntent(LastBillActivity.class));
+                } else if (position == 7) {
+                    startActivity(createIntent(ChangeMobileActivity.class));
+                } else if (position == 8) {
+                    startActivity(createIntent(ContactUsActivity.class));
+                }
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+
     }
 
     private void initializeViewPager() {

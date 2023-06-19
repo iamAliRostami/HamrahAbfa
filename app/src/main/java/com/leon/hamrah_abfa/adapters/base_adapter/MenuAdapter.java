@@ -34,7 +34,7 @@ public class MenuAdapter extends BaseAdapter {
 //        height = displaymetrics.heightPixels / (titles.size() / 3);
 
         height = context.getResources().getDisplayMetrics().widthPixels / 3;
-        Log.e("height 12", String.valueOf(height));
+//        Log.e("height 12", String.valueOf(height));
     }
 
     @Override
