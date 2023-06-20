@@ -24,8 +24,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textview.MaterialTextView
-                        style="@style/TitleBranch"
-                        android:layout_weight="0.25"
+                        style="@style/TitleCheckout"
                         android:text="@string/price" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -40,8 +39,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textview.MaterialTextView
-                        style="@style/TitleBranch"
-                        android:layout_weight="0.25"
+                        style="@style/TitleCheckout"
                         android:text="@string/date" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -56,8 +54,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textview.MaterialTextView
-                        style="@style/TitleBranch"
-                        android:layout_weight="0.25"
+                        style="@style/TitleCheckout"
                         android:text="@string/bank" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -73,8 +70,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textview.MaterialTextView
-                        style="@style/TitleBranch"
-                        android:layout_weight="0.25"
+                        style="@style/TitleCheckout"
                         android:text="@string/payment_type" />
 
                     <com.google.android.material.textview.MaterialTextView

@@ -44,6 +44,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="TitleCheckout" parent="TitleBranch">
+        <item name="android:paddingEnd">@dimen/small_dp</item>
+        <item name="android:paddingStart">@dimen/small_dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">start</item>
+    </style>
+
     <style name="TitleBill" parent="TitleBranch">
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">start</item>
