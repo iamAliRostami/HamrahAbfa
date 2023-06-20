@@ -52,6 +52,9 @@
         android:theme="@style/Theme.HamrahAbfa.NoActionBar"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".activities.UsageHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.CutOffActivity"
             android:exported="false" />
         <activity

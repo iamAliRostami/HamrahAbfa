@@ -29,6 +29,7 @@ import com.leon.hamrah_abfa.activities.FollowRequestActivity;
 import com.leon.hamrah_abfa.activities.LastBillActivity;
 import com.leon.hamrah_abfa.activities.PayBillActivity;
 import com.leon.hamrah_abfa.activities.SetCounterNumberActivity;
+import com.leon.hamrah_abfa.activities.UsageHistoryActivity;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.TileAdapter;
@@ -79,6 +80,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 } else if (position == 1) {
                     startActivity(createIntent(SetCounterNumberActivity.class));
                 } else if (position == 2) {
+                    startActivity(createIntent(UsageHistoryActivity.class));
                 } else if (position == 3) {
                     startActivity(createIntent(CutOffActivity.class));
                 } else if (position == 4) {
