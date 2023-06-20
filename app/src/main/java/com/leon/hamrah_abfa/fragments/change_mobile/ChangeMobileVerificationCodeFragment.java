@@ -89,7 +89,7 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
 
     private void confirmCode() {
         showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456", getString(R.string.change_number),
+                RequestDoneFragment.newInstance("123456", getString(R.string.return_home),
                         new RequestDoneFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {

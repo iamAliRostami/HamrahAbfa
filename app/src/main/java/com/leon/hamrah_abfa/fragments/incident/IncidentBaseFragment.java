@@ -140,7 +140,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
                 if ((callback.getIncidentViewModel().getDescription() == null ||
                         callback.getIncidentViewModel().getDescription().isEmpty()) &&
                         callback.getIncidentViewModel().getMediaRecorder() == null) {
-                    binding.editTextDescription.setError(getString(R.string.choose_incident_type));
+                    binding.editTextDescription.setError(getString(R.string.enter_incident_description));
                     binding.editTextDescription.requestFocus();
                     warning(requireContext(), R.string.field_incident_description).show();
                 } else {

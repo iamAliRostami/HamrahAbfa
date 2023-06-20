@@ -235,4 +235,6 @@
     <string name="bank">بانک</string>
     <string name="submit_type">نوع ثبت</string>
     <string name="bills_number">تعداد قبض</string>
+    <string name="enter_description">توضیحات را وارد کنید</string>
+    <string name="return_home">بازگشت به خانه</string>
 </resources>

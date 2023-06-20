@@ -34,11 +34,9 @@ public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBa
     @Override
     public void displayView(int position) {
         if (position == CHANGE_MOBILE_BASE_FRAGMENT) {
-            setFragment(this, binding.fragmentChangeNumber.getId(),
-                    ChangeMobileBaseFragment.newInstance());
+            setFragment(this, binding.fragmentChangeNumber.getId(), ChangeMobileBaseFragment.newInstance());
         } else if (position == CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT) {
-            setFragment(this, binding.fragmentChangeNumber.getId(),
-                    ChangeMobileVerificationCodeFragment.newInstance());
+            setFragment(this, binding.fragmentChangeNumber.getId(), ChangeMobileVerificationCodeFragment.newInstance());
         }
     }
 
