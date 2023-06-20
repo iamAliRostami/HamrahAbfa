@@ -30,6 +30,7 @@ public class Constants {
     public static final int CONTACT_PHONEBOOK_FRAGMENT = 17;
     public static final int CONTACT_FORBIDDEN_COMPLETE_FRAGMENT = 18;
     public static final int PAY_BILL_BASE_FRAGMENT = 19;
+    public static final int CUT_OFF_BASE_FRAGMENT = 20;
     public static final int MAX_IMAGE_SIZE = 100000;
     public static final int THEME_DARK = -1;
     public static final int THEME_DEFAULT = 0;

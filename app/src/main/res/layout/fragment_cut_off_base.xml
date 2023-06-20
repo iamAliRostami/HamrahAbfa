@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.cut_off.CutOffViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.cut_off.CutOffBaseFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
+            style="@style/CardStyle.NoMargin"
+            android:layout_above="@id/button_submit"
+            android:layout_alignParentTop="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/text_layout_bill_id"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/large_dp"
+                    android:padding="@dimen/xlarge_dp"
+                    android:src="@drawable/home_protest" />
+
+                <View
+                    style="@style/ViewStyle"
+                    android:layout_height="@dimen/xlarge_dp"
+                    android:layout_alignParentBottom="true" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/background_set_counter" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_bill_id"
+                    style="@style/TextInputLayout.Margin"
+                    android:layout_above="@id/text_layout_mobile"
+                    android:hint="@string/bill_id"
+                    app:helperText="@string/bill_id_help">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_bill_id"
+                        style="@style/TextInput.Stable"
+                        android:text="@={viewModel.billId}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_mobile"
+                    style="@style/TextInputLayout.Margin"
+                    android:layout_centerInParent="true"
+                    android:hint="@string/mobile">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_mobile"
+                        style="@style/TextInput.Stable"
+                        android:text="@={viewModel.mobile}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_description"
+                    style="@style/TextInputLayout.Margin"
+                    android:layout_below="@id/text_layout_mobile"
+                    android:hint="@string/description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_description"
+                        style="@style/TextInput"
+                        android:gravity="top"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLines="3"
+                        android:text="@={viewModel.description}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit"
+            style="@style/ButtonSubmit"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/large_dp"
+            android:text="@string/confirm" />
+    </RelativeLayout>
+</layout>
