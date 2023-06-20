@@ -237,4 +237,6 @@
     <string name="bills_number">تعداد قبض</string>
     <string name="enter_description">توضیحات را وارد کنید</string>
     <string name="return_home">بازگشت به خانه</string>
+    <string name="successful">موفق</string>
+    <string name="failed">ناموفق</string>
 </resources>
