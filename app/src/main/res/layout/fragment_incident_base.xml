@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/small_dp"
-                    android:src="@drawable/info" />
+                    android:src="@drawable/ic_info" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_description"

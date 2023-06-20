@@ -50,7 +50,7 @@
             android:text="@string/using_liter" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_litere"
+            android:id="@+id/text_view_liter"
             style="@style/TextItem.LastBill"
             android:text="@string/using_liter" />
     </androidx.appcompat.widget.LinearLayoutCompat>

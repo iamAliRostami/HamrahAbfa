@@ -239,4 +239,6 @@
     <string name="return_home">بازگشت به خانه</string>
     <string name="successful">موفق</string>
     <string name="failed">ناموفق</string>
+    <string name="status">وضعیت</string>
+    <string name="description_usage_history">توضیح سوابق کارکرد</string>
 </resources>

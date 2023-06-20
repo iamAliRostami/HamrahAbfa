@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragments.usage_history.UsageHistoryFailedFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/relative_layout_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/medium_dp"
+        android:paddingEnd="@dimen/medium_dp">
 
-</FrameLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_dp"
+            android:src="@drawable/ic_info" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_dp"
+            android:layout_toEndOf="@id/image_view_info"
+            android:text="@string/description_usage_history"
+            android:textAppearance="@style/TextStyleSmall.Bold" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_description"
+            android:layout_marginTop="@dimen/medium_dp"
+            android:layout_marginBottom="@dimen/medium_dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_description_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/tiny_dp"
+                android:text="@string/number_type"
+                android:textAppearance="@style/TextStyleSmall.Bold" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_view_description"
+                android:layout_toEndOf="@id/text_view_description_chip"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Filter"
+                    android:checked="true"
+                    android:text="10" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Filter"
+                    android:text="20"
+                    app:chipIcon="@drawable/ic_delete_1" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Filter"
+                    android:text="30" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Filter"
+                    android:text="40" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/Chip.Filter"
+                    android:text="50" />
+            </com.google.android.material.chip.ChipGroup>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_usage_failed"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/item_usage_history" />
+</androidx.appcompat.widget.LinearLayoutCompat>
