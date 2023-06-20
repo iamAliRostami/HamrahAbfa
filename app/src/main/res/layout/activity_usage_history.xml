@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".activities.UsageHistoryActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_submit_top" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        style="@style/TabLayoutStyle.TopView" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/tab_layout">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            style="@style/ViewPagerStyle"
+            android:layout_marginTop="0dp" />
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>
