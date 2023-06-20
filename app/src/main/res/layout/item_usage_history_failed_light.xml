@@ -6,8 +6,8 @@
     <RelativeLayout
         android:id="@id/relative_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_last_bill_light">
+        android:background="@drawable/background_last_bill_light"
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_21"
@@ -58,20 +58,19 @@
             android:layout_below="@id/linear_layout_22">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_bill_price"
+                android:id="@+id/image_view_status"
                 style="@style/ImageItemStyle"
-                android:src="@drawable/ic_bill_price"
-                android:tint="@color/dark" />
+                android:src="@drawable/ic_info" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_price_title"
+                android:id="@+id/text_view_status_title"
                 style="@style/TitleBill"
-                android:text="@string/price" />
+                android:text="@string/status" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_price"
+                android:id="@+id/text_view_status"
                 style="@style/TextItem.LastBill"
-                android:text="@string/price" />
+                android:text="@string/status" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

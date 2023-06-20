@@ -7,11 +7,19 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.leon.hamrah_abfa.adapters.recycler_view.UsageHistoryFailedAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentUsageHistoryFailedBinding;
 
-public class UsageHistoryFailedFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
+
+public class UsageHistoryFailedFragment extends Fragment  implements ChipGroup.OnCheckedStateChangeListener {
     private FragmentUsageHistoryFailedBinding binding;
+    private UsageHistoryFailedAdapter adapter;
 
     public UsageHistoryFailedFragment() {
     }
@@ -34,6 +42,29 @@ public class UsageHistoryFailedFragment extends Fragment {
     }
 
     private void initialize() {
+        initializeRecyclerView();
+    }
 
+    private void initializeRecyclerView() {
+        final ArrayList<UsageHistoryViewModel> usageHistory = new ArrayList<>();
+        for (int i = 0; i < 50; i++)
+            usageHistory.add(new UsageHistoryViewModel("12/12/12", "145","مصرف بالا",true));
+        adapter = new UsageHistoryFailedAdapter(requireContext(), usageHistory);
+        binding.recyclerViewUsageFailed.setAdapter(adapter);
+        binding.recyclerViewUsageFailed.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
+
+    @Override
+    public void onCheckedChanged(@NonNull ChipGroup group, @NonNull List<Integer> checkedIds) {
+        final Chip chip = group.findViewById(checkedIds.get(0));
+        if (chip != null) {
+            adapter.setShownNumber(Integer.parseInt(chip.getText().toString()));
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

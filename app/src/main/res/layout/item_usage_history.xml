@@ -4,9 +4,10 @@
     style="@style/CardStyle">
 
     <RelativeLayout
+        android:id="@id/relative_layout"
         android:layout_width="match_parent"
-        android:background="@drawable/background_last_bill"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/background_last_bill">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_21"
@@ -19,12 +20,12 @@
                 android:src="@drawable/ic_meter_1" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_m3_title"
+                android:id="@+id/text_view_number_title"
                 style="@style/TitleBill"
                 android:text="@string/counter_number" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_m3"
+                android:id="@+id/text_view_number"
                 style="@style/TextItem.LastBill"
                 android:text="@string/counter_number" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -52,25 +53,25 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/linear_layout_23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout_22">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_average"
+                android:id="@+id/image_view_bill_price"
                 style="@style/ImageItemStyle"
-                android:src="@drawable/ic_info" />
+                android:tint="@color/dark"
+                android:src="@drawable/ic_bill_price" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_status"
+                android:id="@+id/text_view_price_title"
                 style="@style/TitleBill"
-                android:text="@string/status" />
+                android:text="@string/price" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_average"
+                android:id="@+id/text_view_price"
                 style="@style/TextItem.LastBill"
-                android:text="@string/status" />
+                android:text="@string/price" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
