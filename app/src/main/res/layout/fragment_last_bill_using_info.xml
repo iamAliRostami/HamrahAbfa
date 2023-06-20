@@ -29,7 +29,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_m3"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/using_m3" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -51,7 +51,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_litere"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/using_liter" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -73,7 +73,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_average"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/using_average" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

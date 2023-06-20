@@ -30,7 +30,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_owner"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/dear_user" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -53,7 +53,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_bill_id"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/bill_id" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -76,7 +76,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_bill_price"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/bill_price" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -99,7 +99,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_dead_line"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/deadline" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

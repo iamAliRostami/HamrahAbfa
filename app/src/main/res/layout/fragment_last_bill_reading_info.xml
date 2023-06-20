@@ -32,7 +32,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_eshterak"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/eshterak" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -55,7 +55,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_pre_date"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/pre_date" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -77,7 +77,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_current_date"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/current_date" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -99,7 +99,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_days"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/days" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -121,7 +121,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_pre_number"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/pre_number" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -143,7 +143,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_current_number"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/current_number" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

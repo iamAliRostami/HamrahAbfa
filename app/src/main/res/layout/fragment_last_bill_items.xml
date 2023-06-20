@@ -29,7 +29,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_baha"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/baha_ab" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -52,7 +52,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_dafe"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/baha_dafe" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -74,7 +74,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_tax"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/tax" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -96,7 +96,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_taklif"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/taklif" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -118,7 +118,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_kahande"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/kahande" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -140,7 +140,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_total"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/total" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -162,7 +162,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_discount"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/discount" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -184,7 +184,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_debt"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/debt" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>
