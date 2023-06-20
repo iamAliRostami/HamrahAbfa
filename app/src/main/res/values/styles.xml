@@ -99,7 +99,7 @@
 
     <style name="TextItem.Checkout">
         <item name="android:gravity">end</item>
-        <item name="android:padding">@dimen/medium_dp</item>
+        <item name="android:padding">@dimen/small_dp</item>
     </style>
 
     <style name="TextItem.SingleLine">
