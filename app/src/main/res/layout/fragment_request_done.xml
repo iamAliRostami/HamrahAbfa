@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_content"
     style="@style/CardStyle"
@@ -34,11 +35,20 @@
             android:layout_gravity="center"
             android:text="@string/write_track_number" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <!--        <androidx.appcompat.widget.AppCompatImageView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:src="@drawable/ic_done" />-->
+        <com.airbnb.lottie.LottieAnimationView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_done" />
+            android:src="@drawable/ic_done"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/successfully_done"
+            app:lottie_repeatMode="restart" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_return"

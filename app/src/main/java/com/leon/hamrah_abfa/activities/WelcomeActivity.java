@@ -65,7 +65,7 @@ public class WelcomeActivity extends BaseActivity {
         } else if (id == R.id.button_done) {
             getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
             //TODO permanent redirect
-            if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
                 startActivity(intent);
             }
