@@ -22,6 +22,7 @@ public enum BundleEnum {
     NO("no"),
     CONTENT("content"),
     LOGO("logo"),
+    ANIM("anim"),
     BACKGROUND_COLOR("background");
 
     private final String value;

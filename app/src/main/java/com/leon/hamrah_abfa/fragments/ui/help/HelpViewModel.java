@@ -1,7 +1,5 @@
 package com.leon.hamrah_abfa.fragments.ui.help;
 
-import android.graphics.drawable.Drawable;
-
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -11,13 +9,20 @@ public class HelpViewModel extends BaseObservable {
     private int position;
     private int bgColor;
     private int logo;
-    private Drawable logoDrawable;
+    private int animSrc;
     private String title;
     private String content;
 
-    public HelpViewModel() {
-    }
-
+    //    private Drawable logoDrawable;
+//    @Bindable
+//    public Drawable getLogoDrawable() {
+//        return logoDrawable;
+//    }
+//
+//    public void setLogoDrawable(Drawable logoDrawable) {
+//        this.logoDrawable = logoDrawable;
+//        notifyPropertyChanged(BR.logoDrawable);
+//    }
     @Bindable
     public int getPosition() {
         return position;
@@ -69,12 +74,12 @@ public class HelpViewModel extends BaseObservable {
     }
 
     @Bindable
-    public Drawable getLogoDrawable() {
-        return logoDrawable;
+    public int getAnimSrc() {
+        return animSrc;
     }
 
-    public void setLogoDrawable(Drawable logoDrawable) {
-        this.logoDrawable = logoDrawable;
-        notifyPropertyChanged(BR.logoDrawable);
+    public void setAnimSrc(int animSrc) {
+        this.animSrc = animSrc;
+        notifyPropertyChanged(BR.animSrc);
     }
 }

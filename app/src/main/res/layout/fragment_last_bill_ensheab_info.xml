@@ -28,7 +28,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_karbari"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/karbari" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -50,7 +50,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_dafe"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/ahad_maskooni" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -72,7 +72,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_ahad_non_maskooni"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/ahad_non_maskooni" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -94,7 +94,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_zarfiat"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/zarfiat" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -116,7 +116,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_qotr"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/qotr" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -138,7 +138,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_qotr_siphon"
-            style="@style/TextItem"
+            style="@style/TextItem.LastBill"
             android:text="@string/qotr_siphon" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

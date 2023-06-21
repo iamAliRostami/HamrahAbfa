@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,16 +16,30 @@
         android:rotationY="180"
         tools:context=".fragments.ui.help.HelpViewPagerFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_logo"
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/image_view_logo"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_above="@id/linear_layout_content"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerInParent="true"-->
+<!--            android:layout_margin="@dimen/large_dp"-->
+<!--            android:contentDescription="@string/app_name"-->
+<!--            android:visibility="gone"-->
+<!--            app:imageResource="@{viewModel.logo}" />-->
+
+<!--        android:src="@{viewModel.logoDrawable}"-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/linear_layout_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/large_dp"
-            android:contentDescription="@string/app_name"
-            android:src="@{viewModel.logoDrawable}" />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_repeatMode="restart" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_content"

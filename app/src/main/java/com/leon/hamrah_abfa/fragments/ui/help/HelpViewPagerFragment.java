@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.ui.help;
 
 import static android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ANIM;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BACKGROUND_COLOR;
 import static com.leon.hamrah_abfa.enums.BundleEnum.CONTENT;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LOGO;
@@ -16,7 +17,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.databinding.FragmentHelpViewPagerBinding;
@@ -28,14 +28,15 @@ public class HelpViewPagerFragment extends Fragment {
     public HelpViewPagerFragment() {
     }
 
-    public static HelpViewPagerFragment newInstance(int position, int bgColor, int logo, String title,
-                                                    String content) {
+    public static HelpViewPagerFragment newInstance(int position, String title, String content,/*int logo,*/
+                                                    int anim, int bgColor) {
         final HelpViewPagerFragment fragment = new HelpViewPagerFragment();
         final Bundle args = new Bundle();
+        args.putInt(POSITION.getValue(), position);
         args.putString(TITLE.getValue(), title);
         args.putString(CONTENT.getValue(), content);
-        args.putInt(LOGO.getValue(), logo);
-        args.putInt(POSITION.getValue(), position);
+//        args.putInt(LOGO.getValue(), logo);
+        args.putInt(ANIM.getValue(), anim);
         args.putInt(BACKGROUND_COLOR.getValue(), bgColor);
         fragment.setArguments(args);
         return fragment;
@@ -45,12 +46,13 @@ public class HelpViewPagerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            viewModel.setLogo(getArguments().getInt(LOGO.getValue()));
-            viewModel.setLogoDrawable(ContextCompat.getDrawable(requireContext(), getArguments().getInt(LOGO.getValue())));
+//            viewModel.setLogo(getArguments().getInt(LOGO.getValue()));
+//            viewModel.setLogoDrawable(ContextCompat.getDrawable(requireContext(), getArguments().getInt(LOGO.getValue())));
             viewModel.setTitle(getArguments().getString(TITLE.getValue()));
             viewModel.setPosition(getArguments().getInt(POSITION.getValue()));
             viewModel.setContent(getArguments().getString(CONTENT.getValue()));
             viewModel.setBgColor(getArguments().getInt(BACKGROUND_COLOR.getValue()));
+            viewModel.setAnimSrc(getArguments().getInt(ANIM.getValue()));
         }
     }
 
@@ -67,6 +69,7 @@ public class HelpViewPagerFragment extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             binding.textViewContent.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
         }
+        binding.lottieLogo.setAnimation(viewModel.getAnimSrc());
     }
 
     @SuppressLint("SetTextI18n")
