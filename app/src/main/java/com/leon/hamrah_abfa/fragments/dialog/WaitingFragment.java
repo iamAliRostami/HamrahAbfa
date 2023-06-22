@@ -42,8 +42,8 @@ public class WaitingFragment extends DialogFragment {
     public void onResume() {
         if (getDialog() != null) {
             final WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+            params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             getDialog().getWindow().setAttributes(params);
         }
         super.onResume();

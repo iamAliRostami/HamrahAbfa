@@ -6,6 +6,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.QUESTION;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TITLE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.YEY;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +77,7 @@ public class YesNoFragment extends DialogFragment implements View.OnClickListene
             params.width = ViewGroup.LayoutParams.MATCH_PARENT;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             getDialog().getWindow().setAttributes(params);
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         super.onResume();
     }
