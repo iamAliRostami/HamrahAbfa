@@ -2,7 +2,11 @@ package com.leon.hamrah_abfa.fragments.dialog;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.TEXT_BUTTON;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TRACK_NUMBER;
+import static com.leon.toast.RTLToast.success;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,13 +64,14 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
         binding.textViewTrackNumber.setText(trackNumber);
         binding.buttonReturn.setText(textButton);
         binding.buttonReturn.setOnClickListener(this);
+        binding.linearLayoutCopy.setOnClickListener(this);
     }
 
     @Override
     public void onResume() {
         if (getDialog() != null) {
             final WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             getDialog().getWindow().setAttributes(params);
         }
@@ -78,6 +83,11 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
         final int id = v.getId();
         if (id == R.id.button_return) {
             listener.yes(this);
+        } else if (id == R.id.linear_layout_copy) {
+            final ClipboardManager clipboard = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            final ClipData clip = ClipData.newPlainText(getString(R.string.track_number), trackNumber);
+            clipboard.setPrimaryClip(clip);
+            success(requireContext(), R.string.track_number_is_copied).show();
         }
     }
 

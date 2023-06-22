@@ -2,59 +2,63 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view_content"
     style="@style/CardStyle"
-    android:layout_margin="@dimen/large_dp"
+    android:layout_width="wrap_content"
     tools:context=".fragments.dialog.RequestDoneFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingEnd="@dimen/xlarge_dp"
+        android:paddingStart="@dimen/xlarge_dp"
         android:padding="@dimen/large_dp">
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_title"
             style="@style/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/request_submitted" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_track_number"
-            style="@style/TitleHelp"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:padding="@dimen/medium_dp"
+            android:id="@+id/linear_layout_copy"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="123456" />
+            android:gravity="center">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_track_number"
+                style="@style/TitleHelp"
+                android:text="123456" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_dp"
+                android:src="@drawable/ic_copy" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_tin"
             style="@style/TitleSubmitInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="@string/write_track_number" />
 
-        <!--        <androidx.appcompat.widget.AppCompatImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:src="@drawable/ic_done" />-->
+        <!--                <androidx.appcompat.widget.AppCompatImageView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:src="@drawable/ic_done" />-->
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="wrap_content"
+            android:id="@+id/lottie_animation"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_gravity="center"
             android:src="@drawable/ic_done"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/successfully_done"
-            app:lottie_repeatMode="restart" />
+            app:lottie_rawRes="@raw/successfully_done_1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_return"
             style="@style/ButtonSubmit"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="@dimen/large_dp"
             android:text="@string/main_page" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </com.google.android.material.card.MaterialCardView>
