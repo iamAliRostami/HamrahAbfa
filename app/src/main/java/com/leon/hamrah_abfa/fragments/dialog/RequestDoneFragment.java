@@ -7,10 +7,13 @@ import static com.leon.toast.RTLToast.success;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -56,6 +59,10 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRequestDoneBinding.inflate(inflater, container, false);
+//        if (getDialog() != null && getDialog().getWindow() != null) {
+//            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+//        }
         initialize();
         return binding.getRoot();
     }
@@ -70,6 +77,9 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
     @Override
     public void onResume() {
         if (getDialog() != null) {
+
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
             final WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
             params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
