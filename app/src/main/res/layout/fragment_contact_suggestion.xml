@@ -26,20 +26,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/large_dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_info"
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_animation_view_info"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/small_dp"
-                    android:src="@drawable/ic_info" />
+                    app:lottie_rawRes="@raw/info" />
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:id="@+id/image_view_info"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="@dimen/small_dp"-->
+<!--                    android:src="@drawable/ic_info" />-->
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/small_dp"
-                    android:layout_toEndOf="@id/image_view_info"
+                    android:layout_toEndOf="@id/lottie_animation_view_info"
                     android:text="@string/suggestion_description"
                     android:textAppearance="@style/TextStyleSmall.Bold" />
 
