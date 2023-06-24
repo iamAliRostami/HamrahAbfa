@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,12 +24,19 @@
         android:paddingStart="@dimen/large_dp"
         android:paddingEnd="@dimen/large_dp">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="@dimen/medium_dp"
-            android:src="@drawable/ic_transaction_approved" />
+            android:scaleType="centerInside"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/printer" />
+        <!--        <androidx.appcompat.widget.AppCompatImageView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:padding="@dimen/medium_dp"-->
+        <!--            android:src="@drawable/ic_transaction_approved" />-->
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TitleBranch"
@@ -51,9 +59,9 @@
         android:layout_below="@id/linear_layout_price">
 
         <RelativeLayout
-            android:layout_marginBottom="@dimen/medium_dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/medium_dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_pay_bill"

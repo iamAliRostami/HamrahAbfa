@@ -1,8 +1,10 @@
 package com.leon.hamrah_abfa.fragments.pay_bill;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
 import android.annotation.SuppressLint;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,6 +24,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.PayBillAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentPayBillBaseBinding;
+import com.leon.hamrah_abfa.fragments.dialog.SuccessfulPaymentFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,6 +125,8 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
         final int id = v.getId();
         if (id == R.id.button_pay) {
             warning(requireContext(), "پرداخت").show();
+            showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), SuccessfulPaymentFragment.newInstance("123456",
+                    DialogFragment::dismiss));
         }
     }
 

@@ -242,4 +242,5 @@
     <string name="status">وضعیت</string>
     <string name="description_usage_history">توضیح سوابق کارکرد</string>
     <string name="track_number_is_copied">شماره پیگیری در کلیپ بورد ذخیره شد</string>
+    <string name="payment_succeed">پرداخت با موفقیت انجام شد</string>
 </resources>

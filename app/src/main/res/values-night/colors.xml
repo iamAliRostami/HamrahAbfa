@@ -19,9 +19,9 @@
     <color name="dark_gray">#E7ECEF</color>
 <!--    <color name="dark_gray">#E0EFDA</color>-->
 
-    <color name="dark">#F1F1F3</color>
-<!--    <color name="light">#292D32</color>-->
     <color name="light">#292D32</color>
+    <!--    <color name="light">#292D32</color>-->
+    <color name="dark">#F1F1F3</color>
 
     <!--    <color name="light">#28272C</color>-->
     <!--    <color name="light">#17161B</color>-->
