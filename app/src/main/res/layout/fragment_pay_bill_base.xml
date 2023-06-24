@@ -20,12 +20,10 @@
         android:layout_marginTop="@dimen/xlarge_dp"
         android:layout_marginEnd="@dimen/large_dp"
         android:layout_marginBottom="@dimen/xlarge_dp"
-        android:background="@drawable/background_white_blue"
-        android:paddingStart="@dimen/large_dp"
-        android:paddingEnd="@dimen/large_dp">
+        android:background="@drawable/background_white_blue">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
             app:lottie_autoPlay="true"
