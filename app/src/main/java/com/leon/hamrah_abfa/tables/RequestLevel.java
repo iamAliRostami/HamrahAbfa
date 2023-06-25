@@ -5,11 +5,15 @@ public class RequestLevel {
     private int level;
     private String title;
     private String date;
+    private boolean doneLevel;
+    private boolean currentLevel;
 
-    public RequestLevel(int level, String title, String date) {
+    public RequestLevel(int level, String title, String date, boolean doneLevel, boolean currentLevel) {
         this.level = level;
         this.title = title;
         this.date = date;
+        this.doneLevel = doneLevel;
+        this.currentLevel = currentLevel;
     }
 
     public int getId() {
@@ -42,5 +46,21 @@ public class RequestLevel {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public boolean isDoneLevel() {
+        return doneLevel;
+    }
+
+    public void setDoneLevel(boolean doneLevel) {
+        this.doneLevel = doneLevel;
+    }
+
+    public boolean isCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(boolean currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

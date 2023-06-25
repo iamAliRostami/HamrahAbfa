@@ -127,7 +127,7 @@
     <string name="restart_app">اپلیکیشن را باز و بسته نمایید</string>
     <string name="bill_price">مبلغ قابل پرداخت</string>
     <string name="pay">پرداخت</string>
-    <string name="track_number">کد پیگیری</string>
+    <string name="track_number">شماره پیگیری</string>
     <string name="enter_track_number">کد پیگیری را وارد کنید</string>
     <string name="counter_number">شماره کنتور</string>
     <string name="enter_counter_number">شماره کنتور را وارد کنید</string>

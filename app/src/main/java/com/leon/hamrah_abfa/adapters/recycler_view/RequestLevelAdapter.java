@@ -26,7 +26,17 @@ public class RequestLevelAdapter extends RecyclerView.Adapter<RequestLevelViewHo
     @NonNull
     @Override
     public RequestLevelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_level, parent, false));
+        if (requestLevels.get(viewType).isCurrentLevel())
+            return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_current_level, parent, false));
+        else if (!requestLevels.get(viewType).isDoneLevel()) {
+            return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_waiting_level, parent, false));
+        }
+        return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_done_level, parent, false));
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
