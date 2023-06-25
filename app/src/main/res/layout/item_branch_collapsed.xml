@@ -178,14 +178,14 @@
             android:id="@+id/image_view_address"
             style="@style/ImageItemStyle"
             android:layout_below="@id/text_view_postal"
-            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginTop="@dimen/medium_dp"
             android:src="@drawable/ic_address" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_address_title"
             style="@style/TitleBranch"
             android:layout_below="@id/text_view_postal"
-            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginTop="@dimen/medium_dp"
             android:layout_toEndOf="@id/image_view_address"
             android:text="@string/address" />
 

@@ -53,7 +53,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_price"
             style="@style/TextItem.Branch"
-            android:padding="@dimen/medium_dp"
             android:text="@string/bill_price" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -75,7 +74,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_deadline"
             style="@style/TextItem.Branch"
-            android:padding="@dimen/medium_dp"
             android:text="@string/deadline" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
