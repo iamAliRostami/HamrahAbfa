@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/medium_dp"
-    android:layout_marginBottom="@dimen/large_dp">
+    android:layout_margin="@dimen/medium_dp"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_level_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/circular"
-        android:padding="@dimen/medium_dp"
+        android:padding="@dimen/large_dp"
         android:text="1"
         android:textColor="@color/light" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/contribute_card"
-        style="@style/CardStyle.Center"
+        style="@style/CardStyleRequestLevel"
         android:layout_below="@id/text_view_level_number">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/divider"
-                android:layout_alignParentTop="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/request_type"
-                android:tint="@color/purple_7001" />
-
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_title"
-                style="@style/TextItem"
+                style="@style/TextItem.Branch"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@id/image_view_icon"
                 android:gravity="center"
                 android:text="@string/app_name"
                 android:textAllCaps="true" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/medium_dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_eye"
+                android:tint="@color/purple_7001" />
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
@@ -69,15 +67,6 @@
                     android:layout_weight="1"
                     android:text="12/12/12"
                     android:textAllCaps="true" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/app_name"
-                    android:padding="@dimen/medium_dp"
-                    android:src="@drawable/ic_eye"
-                    android:tint="@color/purple_7001" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </RelativeLayout>

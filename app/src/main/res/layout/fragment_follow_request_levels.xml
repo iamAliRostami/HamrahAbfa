@@ -5,7 +5,6 @@
     android:id="@+id/relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/large_dp"
     android:background="@color/light_blue"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.follow_request.FollowRequestLevelsFragment">

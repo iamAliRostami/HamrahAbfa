@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contribute_card"
     style="@style/CardStyle">
 
@@ -174,19 +175,27 @@
             android:layout_toEndOf="@id/text_view_zone_title"
             android:text="@string/postal_code" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_address"
-            style="@style/ImageItemStyle"
+        <!--        <androidx.appcompat.widget.AppCompatImageView-->
+        <!--            android:id="@+id/image_view_address"-->
+        <!--            style="@style/ImageItemStyle"-->
+        <!--            android:layout_below="@id/text_view_postal"-->
+        <!--            android:layout_marginTop="@dimen/medium_dp"-->
+        <!--            android:src="@drawable/ic_address" />-->
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_animation_view_address"
+            android:layout_height="44dp"
+            android:layout_width="44dp"
             android:layout_below="@id/text_view_postal"
-            android:layout_marginTop="@dimen/medium_dp"
-            android:src="@drawable/ic_address" />
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/location" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_address_title"
             style="@style/TitleBranch"
             android:layout_below="@id/text_view_postal"
             android:layout_marginTop="@dimen/medium_dp"
-            android:layout_toEndOf="@id/image_view_address"
+            android:layout_toEndOf="@id/lottie_animation_view_address"
             android:text="@string/address" />
 
         <com.google.android.material.textview.MaterialTextView

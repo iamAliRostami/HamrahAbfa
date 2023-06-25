@@ -7,10 +7,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.leon.hamrah_abfa.R;
 
 public class BranchViewHolder extends RecyclerView.ViewHolder {
-    public final ImageView imageViewAddress;
+    public final LottieAnimationView animationView;
     public final ImageView imageViewArrow;
     public final TextView textViewName;
     public final TextView textViewManager;
@@ -23,7 +24,7 @@ public class BranchViewHolder extends RecyclerView.ViewHolder {
 
     public BranchViewHolder(@NonNull View itemView) {
         super(itemView);
-        imageViewAddress = itemView.findViewById(R.id.image_view_address);
+        animationView = itemView.findViewById(R.id.lottie_animation_view_address);
         imageViewArrow = itemView.findViewById(R.id.image_view_arrow);
 
         textViewName = itemView.findViewById(R.id.text_view_name);

@@ -63,7 +63,7 @@ public class FollowRequestLevelsFragment extends BottomSheetDialogFragment {
         final View bottomSheet = view.findViewById(R.id.linear_layout_container);
         if (bottomSheet != null) {
             final DisplayMetrics displayMetrics = requireActivity().getResources().getDisplayMetrics();
-            BottomSheetBehavior.from(bottomSheet).setPeekHeight((int) (displayMetrics.heightPixels));
+            BottomSheetBehavior.from(bottomSheet).setPeekHeight(displayMetrics.heightPixels);
         }
     }
 
