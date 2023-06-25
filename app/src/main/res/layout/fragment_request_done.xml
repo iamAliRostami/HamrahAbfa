@@ -19,6 +19,16 @@
             android:paddingStart="@dimen/xlarge_dp"
             android:paddingEnd="@dimen/xlarge_dp">
 
+            <!--                <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:src="@drawable/ic_done" />-->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation"
+                style="@style/AnimationDialog"
+                app:lottie_rawRes="@raw/successfully_done_1" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_title"
                 style="@style/Title"
@@ -48,22 +58,10 @@
                 style="@style/TitleSubmitInfo"
                 android:text="@string/write_track_number" />
 
-            <!--                <androidx.appcompat.widget.AppCompatImageView-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_gravity="center"-->
-            <!--                    android:src="@drawable/ic_done" />-->
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie_animation"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_done"
-                app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/successfully_done_1" />
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_return"
                 style="@style/ButtonSubmit"
+                android:layout_marginTop="@dimen/medium_dp"
                 android:text="@string/main_page" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.card.MaterialCardView>

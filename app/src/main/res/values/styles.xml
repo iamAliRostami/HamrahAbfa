@@ -103,6 +103,7 @@
     <style name="TextItem.LastBill">
         <item name="android:padding">@dimen/medium_dp</item>
     </style>
+
     <style name="TextItem.Branch">
         <item name="android:gravity">end</item>
         <item name="android:padding">@dimen/medium_dp</item>
@@ -465,5 +466,11 @@
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
         <!--        <item name=""></item>-->
         <!--        <item name=""></item>-->
+    </style>
+
+    <style name="AnimationDialog">
+        <item name="android:layout_height">160dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="lottie_autoPlay">true</item>
     </style>
 </resources>

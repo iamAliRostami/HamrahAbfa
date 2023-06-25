@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_dialog"
-    tools:context=".fragments.dialog.SuccessfulPaymentFragment">
+    tools:context=".fragments.dialog.PayBillSucceedFragment">
+
     <com.google.android.material.card.MaterialCardView
         style="@style/CardStyle"
         android:layout_width="wrap_content">
@@ -17,6 +18,11 @@
             android:padding="@dimen/large_dp"
             android:paddingStart="@dimen/xlarge_dp"
             android:paddingEnd="@dimen/xlarge_dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation"
+                style="@style/AnimationDialog"
+                app:lottie_rawRes="@raw/payment" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_title"
@@ -47,16 +53,10 @@
                 style="@style/TitleSubmitInfo"
                 android:text="@string/write_track_number" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/lottie_animation"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_done"
-                app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/payment" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_return"
+                android:layout_marginTop="@dimen/medium_dp"
                 style="@style/ButtonSubmit"
                 android:text="@string/main_page" />
         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -24,7 +24,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.PayBillAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentPayBillBaseBinding;
-import com.leon.hamrah_abfa.fragments.dialog.SuccessfulPaymentFragment;
+import com.leon.hamrah_abfa.fragments.dialog.PayBillSucceedFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -125,7 +125,7 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
         final int id = v.getId();
         if (id == R.id.button_pay) {
             warning(requireContext(), "پرداخت").show();
-            showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), SuccessfulPaymentFragment.newInstance("123456",
+            showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), PayBillSucceedFragment.newInstance("123456",
                     DialogFragment::dismiss));
         }
     }

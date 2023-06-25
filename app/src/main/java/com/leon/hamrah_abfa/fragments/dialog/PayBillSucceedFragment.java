@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.fragments.dialog;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.TEXT_BUTTON;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TRACK_NUMBER;
 import static com.leon.toast.RTLToast.success;
 
@@ -19,22 +18,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentSuccesfulPaymentBinding;
+import com.leon.hamrah_abfa.databinding.FragmentPayBillSucceedPaymentBinding;
 
-public class SuccessfulPaymentFragment extends DialogFragment implements View.OnClickListener {
-    private FragmentSuccesfulPaymentBinding binding;
+public class PayBillSucceedFragment extends DialogFragment implements View.OnClickListener {
+    private FragmentPayBillSucceedPaymentBinding binding;
     private String trackNumber;
     private IClickListener listener;
 
-    public SuccessfulPaymentFragment() {
+    public PayBillSucceedFragment() {
     }
 
-    public SuccessfulPaymentFragment(IClickListener listener) {
+    public PayBillSucceedFragment(IClickListener listener) {
         this.listener = listener;
     }
 
-    public static SuccessfulPaymentFragment newInstance(String trackNumber, IClickListener listener) {
-        final SuccessfulPaymentFragment fragment = new SuccessfulPaymentFragment(listener);
+    public static PayBillSucceedFragment newInstance(String trackNumber, IClickListener listener) {
+        final PayBillSucceedFragment fragment = new PayBillSucceedFragment(listener);
         final Bundle args = new Bundle();
         args.putString(TRACK_NUMBER.getValue(), trackNumber);
         fragment.setArguments(args);
@@ -53,8 +52,8 @@ public class SuccessfulPaymentFragment extends DialogFragment implements View.On
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentSuccesfulPaymentBinding.inflate(inflater, container, false);
-initialize();
+        binding = FragmentPayBillSucceedPaymentBinding.inflate(inflater, container, false);
+        initialize();
         return binding.getRoot();
     }
 
@@ -63,6 +62,7 @@ initialize();
         binding.buttonReturn.setOnClickListener(this);
         binding.linearLayoutCopy.setOnClickListener(this);
     }
+
     @Override
     public void onClick(View v) {
         final int id = v.getId();
