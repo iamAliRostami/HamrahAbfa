@@ -35,7 +35,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/large_dp">
+                android:padding="@dimen/medium_dp">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/lottie_animation_view_info"
@@ -65,8 +65,8 @@
                     android:id="@+id/menu"
                     style="@style/MenuLayout"
                     android:layout_below="@id/text_view_description"
-                    android:layout_marginTop="@dimen/large_dp"
-                    android:layout_marginBottom="@dimen/large_dp"
+                    android:layout_marginTop="@dimen/medium_dp"
+                    android:layout_marginBottom="@dimen/medium_dp"
                     android:hint="@string/suggestion_type">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -92,9 +92,9 @@
                         style="@style/TextInput"
                         android:gravity="top"
                         android:inputType="textMultiLine"
-                        android:lines="3"
+                        android:lines="2"
                         android:maxLength="1000"
-                        android:maxLines="3"
+                        android:maxLines="2"
                         android:text="@={viewModel.description}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +102,7 @@
                     android:id="@+id/text_layout_proposal"
                     style="@style/TextInputLayout"
                     android:layout_below="@id/text_layout_description"
-                    android:layout_marginTop="@dimen/large_dp"
+                    android:layout_marginTop="@dimen/medium_dp"
                     android:hint="@string/proposal"
                     app:counterEnabled="true"
                     app:counterMaxLength="1000"
@@ -113,9 +113,9 @@
                         style="@style/TextInput"
                         android:gravity="top"
                         android:inputType="textMultiLine"
-                        android:lines="3"
+                        android:lines="2"
                         android:maxLength="1000"
-                        android:maxLines="3"
+                        android:maxLines="2"
                         android:text="@={viewModel.proposal}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
@@ -124,10 +124,10 @@
         <GridView
             android:id="@+id/grid_view_images"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_above="@id/button_submit"
-            android:layout_marginTop="@dimen/large_dp"
-            android:layout_marginBottom="@dimen/large_dp"
+            android:layout_marginTop="@dimen/medium_dp"
+            android:layout_marginBottom="@dimen/medium_dp"
             android:background="@drawable/background_incident_field"
             android:numColumns="5"
             tools:listitem="@layout/item_image" />
