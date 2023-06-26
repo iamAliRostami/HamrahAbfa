@@ -20,10 +20,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.RelativeLayout;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -69,6 +71,14 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     }
 
     private void initialize() {
+
+//        final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                requireContext().getResources().getDisplayMetrics().widthPixels/2
+//                /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/);
+//        binding.relativeLayoutMap.setLayoutParams(params);
+
+
         initializeMap();
         initializeGridView();
         binding.buttonConfirm.setOnClickListener(this);
