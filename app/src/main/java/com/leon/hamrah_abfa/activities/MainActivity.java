@@ -98,14 +98,13 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
 
     @Override
     public void onAnimationEnd(@NonNull Animator animation) {
-        binding.lottieAnimationView.setVisibility(View.GONE);
+        binding.relativeLayoutSplash.setVisibility(View.GONE);
+        binding.container.setVisibility(View.VISIBLE);
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
             final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
         }
-        binding.relativeLayoutSplash.setVisibility(View.GONE);
-        binding.container.setVisibility(View.VISIBLE);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override
