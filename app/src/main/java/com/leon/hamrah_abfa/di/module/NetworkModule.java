@@ -1,20 +1,27 @@
 package com.leon.hamrah_abfa.di.module;
 
 import com.google.gson.Gson;
-import com.leon.hamrah_abfa.di.view_model.NetworkHelperModel;
+import com.leon.hamrah_abfa.di.view_model.APIClientModel;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 
 @Module
 public class NetworkModule {
-    final NetworkHelperModel networkHelper;
+    final APIClientModel networkHelper;
 
     public NetworkModule() {
-        networkHelper = new NetworkHelperModel();
+        networkHelper = new APIClientModel();
+    }
+
+    @Singleton
+    @Provides
+    public APIClientModel providesNetworkHelperModel() {
+        return networkHelper;
     }
 
     @Singleton
@@ -26,12 +33,12 @@ public class NetworkModule {
     @Singleton
     @Provides
     public Retrofit providesRetrofit() {
-        return networkHelper.getInstance();
+        return networkHelper.getClient();
     }
 
     @Singleton
     @Provides
-    public NetworkHelperModel providesNetworkHelperModel() {
-        return networkHelper;
+    public HttpLoggingInterceptor providesHttpLoggingInterceptor() {
+        return networkHelper.getInterceptor();
     }
 }

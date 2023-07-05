@@ -19,7 +19,6 @@ import androidx.multidex.MultiDex;
 import com.leon.hamrah_abfa.BuildConfig;
 import com.leon.hamrah_abfa.di.component.ApplicationComponent;
 import com.leon.hamrah_abfa.di.component.DaggerApplicationComponent;
-import com.leon.hamrah_abfa.di.module.CustomProgressModule;
 import com.leon.hamrah_abfa.di.module.MyDatabaseModule;
 import com.leon.hamrah_abfa.di.module.NetworkModule;
 import com.leon.hamrah_abfa.di.module.SharedPreferenceModule;
@@ -62,9 +61,8 @@ public class MyApplication extends Application {
     }
 
     private void setApplicationComponent() {
-        applicationComponent = DaggerApplicationComponent
-                .builder().networkModule(new NetworkModule())
-                .customProgressModule(new CustomProgressModule())
+        applicationComponent = DaggerApplicationComponent.builder()
+                .networkModule(new NetworkModule())
                 .myDatabaseModule(new MyDatabaseModule(this))
                 .sharedPreferenceModule(new SharedPreferenceModule(this, ACCOUNT)).build();
         applicationComponent.inject(getInstance());
