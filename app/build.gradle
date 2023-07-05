@@ -70,7 +70,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    def navigation_version = "2.5.3"
+    def navigation_version = "2.6.0"
     implementation "androidx.navigation:navigation-ui:$navigation_version"
     implementation "androidx.navigation:navigation-fragment:$navigation_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -103,7 +103,7 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.1.16'
     implementation 'com.github.MKergall:osmbonuspack:6.6.0'
 
-    implementation "com.airbnb.android:lottie:6.0.0"
+    implementation 'com.airbnb.android:lottie:6.0.1'
     implementation 'com.github.shuhart:stepview:1.5.1'
     implementation 'com.yandex.android:mobmetricalib:5.3.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
@@ -115,4 +115,13 @@ dependencies {
     implementation project(':toast')
     implementation project(':spinkit')
     implementation project(':versatileprogressbar')
+
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
 }
