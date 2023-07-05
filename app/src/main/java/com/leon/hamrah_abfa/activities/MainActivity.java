@@ -34,19 +34,11 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 
-public class MainActivity extends BaseActivity implements Animator.AnimatorListener,
-        HomeFragment.ICallback, SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
+public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
+        SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
     private ActivityMainBinding binding;
     private CardPagerAdapter cardPagerAdapter;
     private int position;
-    final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    final Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
-                }
-            });
 
     @Override
     protected void initialize() {
@@ -82,37 +74,11 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
     }
 
     private void initializeSplash() {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         final Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         binding.imageViewSplash.startAnimation(animation);
-
         binding.lottieAnimationView.playAnimation();
-        binding.lottieAnimationView.addAnimatorListener(this);
-    }
-
-    @Override
-    public void onAnimationStart(@NonNull Animator animation) {
-
-    }
-
-    @Override
-    public void onAnimationEnd(@NonNull Animator animation) {
-        binding.relativeLayoutSplash.setVisibility(View.GONE);
-        binding.container.setVisibility(View.VISIBLE);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
-            final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onAnimationCancel(@NonNull Animator animation) {
-    }
-
-    @Override
-    public void onAnimationRepeat(@NonNull Animator animation) {
+        binding.lottieAnimationView.addAnimatorListener(animatorLottieListener);
     }
 
     @Override
@@ -131,6 +97,61 @@ public class MainActivity extends BaseActivity implements Animator.AnimatorListe
         }
     }
 
+    private final Animation.AnimationListener animationTypoListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            binding.imageViewLogo.setVisibility(View.GONE);
+            binding.container.setVisibility(View.VISIBLE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+                final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                startActivity(intent);
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    };
+
+    private final Animator.AnimatorListener animatorLottieListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(@NonNull Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(@NonNull Animator animation) {
+            binding.relativeLayoutSplash.setVisibility(View.GONE);
+            binding.imageViewLogo.setVisibility(View.VISIBLE);
+            final Animation animationFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+            animationFadeOut.setAnimationListener(animationTypoListener);
+            binding.imageViewLogo.startAnimation(animationFadeOut);
+        }
+
+        @Override
+        public void onAnimationCancel(@NonNull Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(@NonNull Animator animation) {
+
+        }
+    };
+    final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    final Intent intent = getIntent();
+                    finish();
+                    startActivity(intent);
+                }
+            });
     @Override
     protected String getExitMessage() {
         return getString(R.string.exit_by_press_again);
