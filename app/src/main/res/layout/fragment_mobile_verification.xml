@@ -1,164 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.mobile.MobileVerificationFragment">
+<layout>
 
-    <View
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:background="@drawable/background_submit_top"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:context=".fragments.mobile.MobileVerificationFragment">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_view_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/card_view_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="@dimen/xlarge_dp"
-        android:contentDescription="@string/app_name"
-        android:padding="@dimen/xlarge_dp"
-        android:src="@drawable/large_confirm_code" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view_content"
-        style="@style/CardViewBottom">
-
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:background="@drawable/background_submit_top"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_logo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/large_dp"
-            android:padding="@dimen/large_dp">
+            android:layout_above="@id/card_view_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/xlarge_dp"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/xlarge_dp"
+            android:src="@drawable/large_confirm_code" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view_tick"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/text_view_tip"
-                android:layout_marginEnd="@dimen/medium_dp"
-                android:src="@drawable/ic_tick" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
+            style="@style/CardViewBottom">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_title"
-                style="@style/Title"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@id/image_view_tick"
-                android:labelFor="@id/edit_text_mobile"
-                android:text="@string/confirmation_code" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_tip"
-                style="@style/TitleHelp"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text_view_title"
-                android:layout_marginTop="@dimen/xlarge_dp"
-                android:text="@string/enter_code" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linear_layout_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_view_tip"
-                android:gravity="center_vertical">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text_view_mobile"
-                    style="@style/Title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/mobile_hint" />
+                android:layout_marginTop="@dimen/large_dp"
+                android:padding="@dimen/large_dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_edit"
+                    android:id="@+id/image_view_tick"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/text_view_tip"
+                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:src="@drawable/ic_tick" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_title"
+                    style="@style/Title"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@id/image_view_tick"
+                    android:labelFor="@id/edit_text_mobile"
+                    android:text="@string/confirmation_code" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_tip"
+                    style="@style/TitleHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/text_view_title"
+                    android:layout_marginTop="@dimen/xlarge_dp"
+                    android:text="@string/enter_code" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_mobile"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/text_view_tip"
-                    android:layout_marginStart="@dimen/medium_dp"
-                    android:layout_toEndOf="@id/text_view_mobile"
-                    android:padding="@dimen/small_dp"
-                    android:src="@drawable/ic_edit"
-                    android:tint="@color/purple_7001" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:gravity="center_vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linear_layout_code"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/linear_layout_mobile"
-                android:layout_marginTop="@dimen/xlarge_dp"
-                android:gravity="center">
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_mobile"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mobile_hint" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_4"
-                    style="@style/InputVerificationCode" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/text_view_tip"
+                        android:layout_marginStart="@dimen/medium_dp"
+                        android:layout_toEndOf="@id/text_view_mobile"
+                        android:padding="@dimen/small_dp"
+                        android:src="@drawable/ic_edit"
+                        android:tint="@color/purple_7001" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_3"
-                    style="@style/InputVerificationCode" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_2"
-                    style="@style/InputVerificationCode" />
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text_1"
-                    style="@style/InputVerificationCode" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linear_layout_counter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/linear_layout_code"
-                android:layout_marginBottom="@dimen/xlarge_dp"
-                android:gravity="center_vertical">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_view_right"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_code"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/xlarge_dp"
-                    android:layout_marginEnd="@dimen/medium_dp"
-                    android:padding="@dimen/small_dp"
-                    android:src="@drawable/arrow_right"
-                    android:visibility="gone" />
+                    android:layout_below="@id/linear_layout_mobile"
+                    android:layout_marginTop="@dimen/xlarge_dp"
+                    android:gravity="center">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text_view_try_again"
-                    android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_4"
+                        style="@style/InputVerificationCode" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_3"
+                        style="@style/InputVerificationCode" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_2"
+                        style="@style/InputVerificationCode" />
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_1"
+                        style="@style/InputVerificationCode" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_counter"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/image_view_right"
-                    android:text="@string/send_again"
-                    android:visibility="gone" />
+                    android:layout_below="@id/linear_layout_code"
+                    android:layout_marginBottom="@dimen/xlarge_dp"
+                    android:gravity="center_vertical">
 
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_right_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/xlarge_dp"
+                        android:layout_marginEnd="@dimen/medium_dp"
+                        android:padding="@dimen/small_dp"
+                        android:src="@drawable/arrow_right"
+                        android:visibility="@{viewModel.arrowVisibility}" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text_view_counter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/xlarge_dp"
-                    android:text="@string/one_minute" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_try_again"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/image_view_right"
+                        android:text="@string/send_again"
+                        android:visibility="@{viewModel.tryAgainVisibility}" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_submit"
-                style="@style/ButtonSubmit"
-                android:layout_below="@id/linear_layout_counter"
-                android:text="@string/submit" />
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_counter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/xlarge_dp"
+                        android:text="@{viewModel.remainedSecondsString}"
+                        android:visibility="@{viewModel.counterVisibility}" />
+                    <!--                    android:text="@string/one_minute"-->
 
-</RelativeLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_submit"
+                    style="@style/ButtonSubmit"
+                    android:layout_below="@id/linear_layout_counter"
+                    android:text="@string/submit" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
+</layout>

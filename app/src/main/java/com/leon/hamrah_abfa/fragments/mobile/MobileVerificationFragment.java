@@ -46,12 +46,13 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentMobileVerificationBinding.inflate(inflater, container, false);
+        binding.setViewModel(callback.getViewModel());
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
-        startCounter();
+        callback.getViewModel().startCounter();
         binding.textViewMobile.setText(getString(R.string.mobile).concat(" ").concat(callback.getViewModel().getMobile()));
         binding.textViewTryAgain.setOnClickListener(this);
         binding.buttonSubmit.setOnClickListener(this);
@@ -70,10 +71,12 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.text_view_try_again) {
-            binding.textViewCounter.setVisibility(View.VISIBLE);
-            binding.textViewTryAgain.setVisibility(View.GONE);
-            binding.imageViewRight.setVisibility(View.GONE);
-            startCounter();
+            callback.getViewModel().startCounter();
+//            binding.textViewCounter.setVisibility(View.VISIBLE);
+//            binding.textViewTryAgain.setVisibility(View.GONE);
+//            binding.imageViewRightArrow.setVisibility(View.GONE);
+//            //TODO
+//            startCounter();
         } else if (id == R.id.button_submit) {
             if (checkInputs()) {
 //                final Intent intent = new Intent(requireContext(), MainActivity.class);
@@ -155,7 +158,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
             public void onFinish() {
                 binding.textViewCounter.setVisibility(View.GONE);
                 binding.textViewTryAgain.setVisibility(View.VISIBLE);
-                binding.imageViewRight.setVisibility(View.VISIBLE);
+                binding.imageViewRightArrow.setVisibility(View.VISIBLE);
             }
 
         }.start();
@@ -171,9 +174,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     public interface ICallback {
         void displayView(int position);
 
-        MobileViewModel getViewModel();
-//        void setMobile(String mobile);
-//
-//        String getMobile();
+        PreLoginViewModel getViewModel();
     }
 }

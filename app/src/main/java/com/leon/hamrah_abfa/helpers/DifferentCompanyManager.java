@@ -43,7 +43,7 @@ public class DifferentCompanyManager {
     public static String getBaseUrl() {
         switch (getActiveCompanyName()) {
             case ESF:
-                return "http://172.18.12.36/";
+                return "https://37.191.92.157/";
             case ZONE1:
                 return "http://217.146.220.33:50011/";
             case ZONE2:
@@ -68,7 +68,7 @@ public class DifferentCompanyManager {
                 return "http://46.225.241.211:25123/";
             case DEBUG:
             default:
-                return "http://192.168.43.185:45458/";
+                return "https://37.191.92.157/";
         }
     }
 }

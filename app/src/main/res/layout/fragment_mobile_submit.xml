@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.mobile.MobileViewModel" />
+            type="com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,13 +78,25 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_submit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_below="@id/text_layout_mobile"
                     android:layout_centerHorizontal="true"
                     android:background="@drawable/circular"
                     android:padding="@dimen/large_dp"
                     android:src="@drawable/arrow_left_button" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_animation_view"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:lottie_speed="2"
+                    android:layout_below="@id/text_layout_mobile"
+                    android:layout_centerHorizontal="true"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    android:visibility="gone"
+                    app:lottie_rawRes="@raw/waiting" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 

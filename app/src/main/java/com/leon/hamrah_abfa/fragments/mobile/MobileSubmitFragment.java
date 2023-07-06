@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentMobileSubmitBinding;
+import com.leon.hamrah_abfa.utils.mobile_submit.PreLoginRequest;
 
 public class MobileSubmitFragment extends Fragment implements View.OnClickListener {
     private FragmentMobileSubmitBinding binding;
@@ -50,11 +51,12 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.image_view_submit) {
-            mobileValidation();
+            if (!mobileValidation())
+                request();
         }
     }
 
-    private void mobileValidation() {
+    private boolean mobileValidation() {
         boolean cancel = false;
         String error = null;
         if (callback.getViewModel().getMobile() == null ||
@@ -69,9 +71,29 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
             warning(requireContext(), error).show();
             binding.editTextMobile.setError(error);
             binding.editTextMobile.requestFocus();
-            return;
         }
-        callback.displayView(VERIFICATION_FRAGMENT);
+        return cancel;
+    }
+
+    private void request() {
+        new PreLoginRequest(getContext(), callback.getViewModel(), new PreLoginRequest.ICallback() {
+            @Override
+            public void succeed(String id, long remainedSeconds) {
+                callback.editPreLoginViewModel(id, remainedSeconds);
+                callback.displayView(VERIFICATION_FRAGMENT);
+            }
+            @Override
+            public void changeUI(boolean done) {
+                //TODO
+                if (done) {
+                    binding.imageViewSubmit.setVisibility(View.VISIBLE);
+                    binding.lottieAnimationView.setVisibility(View.GONE);
+                } else {
+                    binding.imageViewSubmit.setVisibility(View.GONE);
+                    binding.lottieAnimationView.setVisibility(View.VISIBLE);
+                }
+            }
+        }).request();
     }
 
     @Override
@@ -84,6 +106,8 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
     public interface ICallback {
         void displayView(int position);
 
-        MobileViewModel getViewModel();
+        PreLoginViewModel getViewModel();
+
+        void editPreLoginViewModel(String id, long remainedSeconds);
     }
 }

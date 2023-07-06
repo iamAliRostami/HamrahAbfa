@@ -13,11 +13,11 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMobileSubmitBinding;
 import com.leon.hamrah_abfa.fragments.mobile.MobileSubmitFragment;
 import com.leon.hamrah_abfa.fragments.mobile.MobileVerificationFragment;
-import com.leon.hamrah_abfa.fragments.mobile.MobileViewModel;
+import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 
 public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFragment.ICallback,
         MobileVerificationFragment.ICallback {
-    private final MobileViewModel viewModel = new MobileViewModel();
+    private final PreLoginViewModel viewModel = new PreLoginViewModel();
     private ActivityMobileSubmitBinding binding;
 
     @Override
@@ -42,7 +42,7 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
     }
 
     @Override
-    public MobileViewModel getViewModel() {
+    public PreLoginViewModel getViewModel() {
         return viewModel;
     }
 
@@ -54,6 +54,12 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
             default:
                 return MobileSubmitFragment.newInstance();
         }
+    }
+
+    @Override
+    public void editPreLoginViewModel(String id, long remainedSeconds) {
+        this.viewModel.setId(id);
+        this.viewModel.setRemainedSeconds(remainedSeconds);
     }
 
     @Override
