@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -22,9 +23,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.work.ExistingPeriodicWorkPolicy;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
 
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
@@ -36,9 +34,6 @@ import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
-import com.leon.hamrah_abfa.utils.CheckNotificationWorker;
-
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
@@ -116,6 +111,9 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
                 final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                 startActivity(intent);
+            } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
+                startActivity(intent);
             }
         }
 
@@ -158,6 +156,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                     startActivity(intent);
                 }
             });
+
     @Override
     protected String getExitMessage() {
         return getString(R.string.exit_by_press_again);
