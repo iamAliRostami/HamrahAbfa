@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.enums;
 
 public enum SharedReferenceKeys {
     ACCOUNT("account"),
-    MOBILE("mobile"),
+    MOBILE("mobile_111111111111111111111111111111111111111"),
     FONT_STYLE("font_style_1111111111111111111"),
     TOKEN("token"),
     BILL_ID("bill_id_1111111111111111111111111111"),

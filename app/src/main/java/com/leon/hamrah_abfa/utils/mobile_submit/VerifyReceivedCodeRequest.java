@@ -34,8 +34,8 @@ public class VerifyReceivedCodeRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<PreLoginViewModel> call = iAbfaService.verifyCode(preLogin);
-//        HttpClientWrapper.callHttpAsync(context, call, new VerifyCodeSuccessful(callback),
-//                new VerifyCodeIncomplete(context, callback), new VerifyCodeFailed(context, callback));
+        HttpClientWrapper.callHttpAsync(context, call, new VerifyCodeSuccessful(callback, context),
+                new VerifyCodeIncomplete(context, callback), new VerifyCodeFailed(context, callback));
     }
 
     public interface ICallback {
@@ -48,9 +48,11 @@ public class VerifyReceivedCodeRequest {
 
 class VerifyCodeSuccessful implements ICallbackSucceed<PreLoginViewModel> {
     private final VerifyReceivedCodeRequest.ICallback callback;
+    private final Context context;
 
-    public VerifyCodeSuccessful(VerifyReceivedCodeRequest.ICallback callback) {
+    public VerifyCodeSuccessful(VerifyReceivedCodeRequest.ICallback callback, Context context) {
         this.callback = callback;
+        this.context = context;
     }
 
     @Override
@@ -58,7 +60,9 @@ class VerifyCodeSuccessful implements ICallbackSucceed<PreLoginViewModel> {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
-            callback.succeed(response.body().getToken(), response.body().getFailureMessage(), response.body().isResult());
+            if (response.body().isResult())
+                callback.succeed(response.body().getToken(), response.body().getFailureMessage(), response.body().isResult());
+            else warning(context, response.body().getFailureMessage()).show();
         }
 
     }

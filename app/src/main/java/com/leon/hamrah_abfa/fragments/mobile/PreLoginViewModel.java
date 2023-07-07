@@ -29,6 +29,7 @@ public class PreLoginViewModel extends BaseObservable {
     private boolean result;
     private String token;
     private String failureMessage;
+    private CountDownTimer countDownTimer;
 
     @SuppressLint("DefaultLocale")
     public PreLoginViewModel() {
@@ -140,11 +141,12 @@ public class PreLoginViewModel extends BaseObservable {
         notifyPropertyChanged(BR.remainedSecondsString);
     }
 
+
     public void startCounter() {
         setCounterVisibility(View.VISIBLE);
         setTryAgainVisibility(View.GONE);
         setArrowVisibility(View.GONE);
-        new CountDownTimer(getRemainedSeconds() * 1000, 1000) {
+        countDownTimer = new CountDownTimer(getRemainedSeconds() * 1000, 1000) {
 
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
@@ -157,8 +159,17 @@ public class PreLoginViewModel extends BaseObservable {
                 setArrowVisibility(View.VISIBLE);
             }
 
-        }.start();
+        };
+        countDownTimer.start();
     }
+
+    public void cancelCounter() {
+        if (countDownTimer!=null) {
+            countDownTimer.cancel();
+            countDownTimer.onFinish();
+        }
+    }
+
     public String getSubmitCode() {
         return submitCode;
     }

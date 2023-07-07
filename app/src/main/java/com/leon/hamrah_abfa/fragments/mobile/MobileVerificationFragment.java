@@ -5,9 +5,11 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.TOKEN;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -53,7 +55,8 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     }
 
     private void initialize() {
-        callback.getViewModel().startCounter();
+//        callback.getViewModel().cancelCounter();
+        startCounter();
         binding.textViewMobile.setText(getString(R.string.mobile).concat(" ").concat(callback.getViewModel().getMobile()));
         binding.buttonSubmit.setOnClickListener(this);
         binding.imageViewEdit.setOnClickListener(this);
@@ -73,7 +76,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
         final int id = v.getId();
         if (id == R.id.text_view_try_again) {
             //TODO
-            callback.getViewModel().startCounter();
+            startCounter();
         } else if (id == R.id.button_submit) {
             if (checkInputs()) {
                 //TODO call new api
@@ -81,7 +84,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                         binding.editText2.getEditableText().toString() +
                         binding.editText3.getEditableText().toString() +
                         binding.editText4.getEditableText().toString();
-                Log.e("verification code", verificationCode);
                 callback.getViewModel().setSubmitCode(verificationCode);
                 request();
             }
@@ -96,8 +98,8 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                     @Override
                     public void succeed(String token, String failureMessage, boolean result) {
                         callback.editPreLoginViewModel(token, failureMessage, result);
-                        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(),
-                                callback.getViewModel().getMobile());
+//                        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(),
+//                                callback.getViewModel().getMobile());
                         getInstance().getApplicationComponent().SharedPreferenceModel().putData(TOKEN.getValue(),
                                 callback.getViewModel().getToken());
                         requireActivity().finish();
@@ -174,6 +176,26 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
             binding.editText4.requestFocus();
         }
         return !cancel;
+    }
+
+    private void startCounter() {
+        callback.getViewModel().setCounterVisibility(View.VISIBLE);
+        callback.getViewModel().setTryAgainVisibility(View.GONE);
+        callback.getViewModel().setArrowVisibility(View.GONE);
+        new CountDownTimer(callback.getViewModel().getRemainedSeconds() * 1000, 1000) {
+
+            @SuppressLint("SetTextI18n")
+            public void onTick(long millisUntilFinished) {
+                callback.getViewModel().setRemainedSeconds(millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                callback.getViewModel().setCounterVisibility(View.GONE);
+                callback.getViewModel().setTryAgainVisibility(View.VISIBLE);
+                callback.getViewModel().setArrowVisibility(View.VISIBLE);
+            }
+
+        }.start();
     }
 
     @Override
