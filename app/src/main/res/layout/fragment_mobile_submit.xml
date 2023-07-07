@@ -93,10 +93,9 @@
                     app:lottie_speed="2"
                     android:layout_below="@id/text_layout_mobile"
                     android:layout_centerHorizontal="true"
-                    app:lottie_autoPlay="true"
                     app:lottie_loop="true"
                     android:visibility="gone"
-                    app:lottie_rawRes="@raw/waiting" />
+                    app:lottie_rawRes="@raw/waiting_circular" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 

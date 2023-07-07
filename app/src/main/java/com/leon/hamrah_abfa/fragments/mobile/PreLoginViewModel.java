@@ -25,10 +25,14 @@ public class PreLoginViewModel extends BaseObservable {
     private String generationDateTime;
     private boolean isValid;
     private String verificationCode;
+    private String submitCode;
+    private boolean result;
+    private String token;
+    private String failureMessage;
 
     @SuppressLint("DefaultLocale")
     public PreLoginViewModel() {
-        setCustomSerial(String.format("%s - %s - %s - %s - %s - %d - %s", Build.BRAND, Build.HARDWARE,
+        setCustomSerial(String.format("! %s @ %s # %s $ %s ^ %s & %d * %s _", Build.BRAND, Build.HARDWARE,
                 Build.MANUFACTURER, Build.USER, Build.DEVICE, Build.VERSION.SDK_INT, Build.VERSION.RELEASE));
     }
 
@@ -85,12 +89,39 @@ public class PreLoginViewModel extends BaseObservable {
         return message;
     }
 
-    public String getGenerationDateTime() {
-        return generationDateTime;
-    }
-
     public boolean isValid() {
         return isValid;
+    }
+
+
+    @Bindable
+    public int getCounterVisibility() {
+        return counterVisibility;
+    }
+
+    public void setCounterVisibility(int counterVisibility) {
+        this.counterVisibility = counterVisibility;
+        notifyPropertyChanged(BR.counterVisibility);
+    }
+
+    @Bindable
+    public int getTryAgainVisibility() {
+        return tryAgainVisibility;
+    }
+
+    public void setTryAgainVisibility(int tryAgainVisibility) {
+        this.tryAgainVisibility = tryAgainVisibility;
+        notifyPropertyChanged(BR.tryAgainVisibility);
+    }
+
+    @Bindable
+    public int getArrowVisibility() {
+        return arrowVisibility;
+    }
+
+    public void setArrowVisibility(int arrowVisibility) {
+        this.arrowVisibility = arrowVisibility;
+        notifyPropertyChanged(BR.arrowVisibility);
     }
 
     @Bindable
@@ -128,34 +159,35 @@ public class PreLoginViewModel extends BaseObservable {
 
         }.start();
     }
-
-    @Bindable
-    public int getCounterVisibility() {
-        return counterVisibility;
+    public String getSubmitCode() {
+        return submitCode;
     }
 
-    public void setCounterVisibility(int counterVisibility) {
-        this.counterVisibility = counterVisibility;
-        notifyPropertyChanged(BR.counterVisibility);
+    public void setSubmitCode(String submitCode) {
+        this.submitCode = submitCode;
     }
 
-    @Bindable
-    public int getTryAgainVisibility() {
-        return tryAgainVisibility;
+    public boolean isResult() {
+        return result;
     }
 
-    public void setTryAgainVisibility(int tryAgainVisibility) {
-        this.tryAgainVisibility = tryAgainVisibility;
-        notifyPropertyChanged(BR.tryAgainVisibility);
+    public String getToken() {
+        return token;
     }
 
-    @Bindable
-    public int getArrowVisibility() {
-        return arrowVisibility;
+    public String getFailureMessage() {
+        return failureMessage;
     }
 
-    public void setArrowVisibility(int arrowVisibility) {
-        this.arrowVisibility = arrowVisibility;
-        notifyPropertyChanged(BR.arrowVisibility);
+    public void setResult(boolean result) {
+        this.result = result;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public void setFailureMessage(String failureMessage) {
+        this.failureMessage = failureMessage;
     }
 }

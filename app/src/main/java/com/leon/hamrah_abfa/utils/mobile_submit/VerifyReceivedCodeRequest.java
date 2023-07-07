@@ -17,12 +17,13 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class PreLoginRequest {
-    private final Context context;
-    private final PreLoginViewModel preLogin;
-    private final ICallback callback;
+public class VerifyReceivedCodeRequest {
 
-    public PreLoginRequest(Context context, PreLoginViewModel preLogin, ICallback callback) {
+    private final Context context;
+    private final ICallback callback;
+    private final PreLoginViewModel preLogin;
+
+    public VerifyReceivedCodeRequest(Context context, PreLoginViewModel preLogin, ICallback callback) {
         this.context = context;
         this.preLogin = preLogin;
         this.callback = callback;
@@ -32,22 +33,23 @@ public class PreLoginRequest {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<PreLoginViewModel> call = iAbfaService.preLogin(preLogin);
-        HttpClientWrapper.callHttpAsync(context, call, new PreLoginSuccessful(callback),
-                new PreLoginIncomplete(context, callback), new PreLoginFailed(context, callback));
+        final Call<PreLoginViewModel> call = iAbfaService.verifyCode(preLogin);
+//        HttpClientWrapper.callHttpAsync(context, call, new VerifyCodeSuccessful(callback),
+//                new VerifyCodeIncomplete(context, callback), new VerifyCodeFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(String id, long remainedSeconds);
+
+        void succeed(String token, String failureMessage, boolean result);
 
         void changeUI(boolean done);
     }
 }
 
-class PreLoginSuccessful implements ICallbackSucceed<PreLoginViewModel> {
-    private final PreLoginRequest.ICallback callback;
+class VerifyCodeSuccessful implements ICallbackSucceed<PreLoginViewModel> {
+    private final VerifyReceivedCodeRequest.ICallback callback;
 
-    public PreLoginSuccessful(PreLoginRequest.ICallback callback) {
+    public VerifyCodeSuccessful(VerifyReceivedCodeRequest.ICallback callback) {
         this.callback = callback;
     }
 
@@ -56,17 +58,17 @@ class PreLoginSuccessful implements ICallbackSucceed<PreLoginViewModel> {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
-            callback.succeed(response.body().getId(), response.body().getRemainedSeconds());
+            callback.succeed(response.body().getToken(), response.body().getFailureMessage(), response.body().isResult());
         }
 
     }
 }
 
-class PreLoginIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
+class VerifyCodeIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
     private final Context context;
-    private final PreLoginRequest.ICallback callback;
+    private final VerifyReceivedCodeRequest.ICallback callback;
 
-    public PreLoginIncomplete(Context context, PreLoginRequest.ICallback callback) {
+    public VerifyCodeIncomplete(Context context, VerifyReceivedCodeRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -74,15 +76,16 @@ class PreLoginIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
     @Override
     public void executeDismissed(Response<PreLoginViewModel> response) {
         callback.changeUI(true);
+        //TODO
         warning(context, "dismissed").show();
     }
 }
 
-class PreLoginFailed implements ICallbackFailure {
+class VerifyCodeFailed implements ICallbackFailure {
     private final Context context;
-    private final PreLoginRequest.ICallback callback;
+    private final VerifyReceivedCodeRequest.ICallback callback;
 
-    public PreLoginFailed(Context context, PreLoginRequest.ICallback callback) {
+    public VerifyCodeFailed(Context context, VerifyReceivedCodeRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -90,6 +93,7 @@ class PreLoginFailed implements ICallbackFailure {
     @Override
     public void executeFailed(Throwable t) {
         callback.changeUI(true);
+        //TODO
         error(context, "failed").show();
     }
 }

@@ -28,6 +28,7 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
         setContentView(binding.getRoot());
         displayView(SUBMIT_PHONE_FRAGMENT);
     }
+
     @Override
     public void displayView(int position) {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -58,8 +59,15 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
 
     @Override
     public void editPreLoginViewModel(String id, long remainedSeconds) {
-        this.viewModel.setId(id);
-        this.viewModel.setRemainedSeconds(remainedSeconds);
+        viewModel.setId(id);
+        viewModel.setRemainedSeconds(remainedSeconds);
+    }
+
+    @Override
+    public void editPreLoginViewModel(String token, String failureMessage, boolean result) {
+        viewModel.setToken(token);
+        viewModel.setFailureMessage(failureMessage);
+        viewModel.setResult(result);
     }
 
     @Override

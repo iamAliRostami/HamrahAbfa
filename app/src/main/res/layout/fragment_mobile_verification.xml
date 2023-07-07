@@ -124,7 +124,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/linear_layout_code"
-                    android:layout_marginBottom="@dimen/xlarge_dp"
                     android:gravity="center_vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -160,15 +159,31 @@
                         android:layout_marginEnd="@dimen/xlarge_dp"
                         android:text="@{viewModel.remainedSecondsString}"
                         android:visibility="@{viewModel.counterVisibility}" />
-                    <!--                    android:text="@string/one_minute"-->
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button_submit"
-                    style="@style/ButtonSubmit"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
                     android:layout_below="@id/linear_layout_counter"
-                    android:text="@string/submit" />
+                    android:layout_centerHorizontal="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button_submit"
+                        style="@style/ButtonSubmit"
+                        android:layout_alignParentBottom="true"
+                        android:text="@string/submit" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lottie_animation_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        android:layout_alignParentBottom="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/waiting_dots" />
+                </RelativeLayout>
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 

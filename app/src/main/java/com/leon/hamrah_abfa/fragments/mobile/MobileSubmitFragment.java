@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentMobileSubmitBinding;
-import com.leon.hamrah_abfa.utils.mobile_submit.PreLoginRequest;
+import com.leon.hamrah_abfa.utils.mobile_submit.AskVerificationCodeRequest;
 
 public class MobileSubmitFragment extends Fragment implements View.OnClickListener {
     private FragmentMobileSubmitBinding binding;
@@ -51,8 +51,9 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.image_view_submit) {
-            if (!mobileValidation())
+            if (!mobileValidation()) {
                 request();
+            }
         }
     }
 
@@ -76,20 +77,23 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
     }
 
     private void request() {
-        new PreLoginRequest(getContext(), callback.getViewModel(), new PreLoginRequest.ICallback() {
+        new AskVerificationCodeRequest(getContext(), callback.getViewModel(), new AskVerificationCodeRequest.ICallback() {
             @Override
             public void succeed(String id, long remainedSeconds) {
                 callback.editPreLoginViewModel(id, remainedSeconds);
                 callback.displayView(VERIFICATION_FRAGMENT);
             }
+
             @Override
             public void changeUI(boolean done) {
                 //TODO
                 if (done) {
                     binding.imageViewSubmit.setVisibility(View.VISIBLE);
                     binding.lottieAnimationView.setVisibility(View.GONE);
+                    binding.lottieAnimationView.pauseAnimation();
                 } else {
                     binding.imageViewSubmit.setVisibility(View.GONE);
+                    binding.lottieAnimationView.playAnimation();
                     binding.lottieAnimationView.setVisibility(View.VISIBLE);
                 }
             }

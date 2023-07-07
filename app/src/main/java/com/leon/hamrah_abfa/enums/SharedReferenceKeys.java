@@ -4,6 +4,7 @@ public enum SharedReferenceKeys {
     ACCOUNT("account"),
     MOBILE("mobile"),
     FONT_STYLE("font_style_1111111111111111111"),
+    TOKEN("token"),
     BILL_ID("bill_id_1111111111111111111111111111"),
     THEME_MODE("theme_mode_1111111111111111111111111111"),
     THEME("theme_1111111111111111111111"),
