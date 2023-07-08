@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -9,7 +10,9 @@ import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.animation.Animator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -19,6 +22,7 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -32,8 +36,10 @@ import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
+import com.leon.hamrah_abfa.utils.bill.GetBillsRequest;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
@@ -48,8 +54,8 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         //TODO
         initializeSplash();
         // TODO
-        initializeBottomSheet();
         createCardPagerAdapter();
+        initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
         final ImageView imageViewSetting = findViewById(R.id.image_view_setting);
         imageViewSetting.setOnClickListener(this);
@@ -114,7 +120,10 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 startActivity(intent);
             } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
-                startActivity(intent);
+                //TODO
+                submitMobileActivityResultLauncher.launch(intent);
+            } else {
+                requestBills();
             }
         }
 
@@ -149,6 +158,12 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
         }
     };
+    final ActivityResultLauncher<Intent> submitMobileActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    requestBills();
+                }
+            });
     final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
@@ -182,12 +197,32 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         }
     }
 
+    private void requestBills() {
+        Context context = this;
+        new GetBillsRequest(this, new GetBillsRequest.ICallback() {
+            @Override
+            public void succeed() {
+
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                if (!done) {
+                    showFragmentDialogOnce(context, WAITING.getValue(), WaitingFragment.newInstance());
+                } else {
+//                    DialogFragment fragment = (DialogFragment) getSupportFragmentManager().findFragmentByTag(WAITING.getValue());
+//                    if (fragment != null) {
+//                        fragment.dismiss();
+//                    }
+                }
+
+            }
+        }).request();
+    }
+
     //    @Override
     private void createCardPagerAdapter() {
         cardPagerAdapter = new CardPagerAdapter(this);
-        if (cardPagerAdapter.getItemCount() == 1) {
-
-        }
     }
 
     @Override

@@ -164,7 +164,7 @@ public class PreLoginViewModel extends BaseObservable {
     }
 
     public void cancelCounter() {
-        if (countDownTimer!=null) {
+        if (countDownTimer != null) {
             countDownTimer.cancel();
             countDownTimer.onFinish();
         }

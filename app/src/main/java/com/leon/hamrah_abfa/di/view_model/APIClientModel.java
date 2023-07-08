@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.di.view_model;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.TOKEN;
 import static com.leon.hamrah_abfa.helpers.DifferentCompanyManager.getBaseUrl;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
@@ -10,7 +11,9 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -45,18 +48,20 @@ public final class APIClientModel {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient.Builder().readTimeout(READ_TIMEOUT, TIME_UNIT)
                     .writeTimeout(WRITE_TIMEOUT, TIME_UNIT).connectTimeout(CONNECT_TIMEOUT, TIME_UNIT)
+                    .addInterceptor(getToken())
                     .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(getInterceptor()).build();
         }
         return okHttpClient;
     }
+
 
     @Inject
     public OkHttpClient getHttpClient(int timeDivider) {
         if (timeDivider == 1 || timeDivider <= 0) return getHttpClient();
         return new OkHttpClient.Builder().readTimeout(READ_TIMEOUT / timeDivider, TIME_UNIT)
                 .writeTimeout(WRITE_TIMEOUT / timeDivider, TIME_UNIT)
-                .connectTimeout(CONNECT_TIMEOUT, TIME_UNIT).retryOnConnectionFailure(RETRY_ENABLED)
-                .addInterceptor(getInterceptor()).build();
+                .connectTimeout(CONNECT_TIMEOUT, TIME_UNIT).addInterceptor(getInterceptor())
+                .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(getInterceptor()).build();
     }
 
     @Inject
@@ -64,7 +69,17 @@ public final class APIClientModel {
         if (readTimeout <= 1 || writeTimeout <= 1 || connectTimeout <= 1) return getHttpClient();
         return new OkHttpClient.Builder().readTimeout(readTimeout, TIME_UNIT)
                 .writeTimeout(writeTimeout, TIME_UNIT).connectTimeout(connectTimeout, TIME_UNIT)
+                .addInterceptor(getToken())
                 .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(getInterceptor()).build();
+    }
+
+    private Interceptor getToken() {
+        return chain -> {
+            Request request = chain.request().newBuilder().addHeader("X-Authorization",
+                            getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(TOKEN.getValue()))
+                    .build();
+            return chain.proceed(request);
+        };
     }
 
     @Inject
