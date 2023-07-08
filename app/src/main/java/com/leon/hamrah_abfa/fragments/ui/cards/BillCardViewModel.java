@@ -11,11 +11,10 @@ public class BillCardViewModel extends BaseObservable {
     private String alias;
     private long debt;
     private String debtString;
-
-    public int status;
-    public String message;
-    public String generationDateTime;
-    public boolean isValid;
+    private int status;
+    private String message;
+    private String generationDateTime;
+    private boolean isValid;
 
 
     public BillCardViewModel(String alias, String billId, int debt) {
@@ -64,5 +63,45 @@ public class BillCardViewModel extends BaseObservable {
 
     public void setDebt(long debt) {
         this.debt = debt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getGenerationDateTime() {
+        return generationDateTime;
+    }
+
+    public void setGenerationDateTime(String generationDateTime) {
+        this.generationDateTime = generationDateTime;
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
     }
 }

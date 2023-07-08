@@ -21,9 +21,10 @@ import retrofit2.Response;
 
 public class HttpClientWrapper {
 
-    public static <T> void callHttpAsync(Context context, Call<T> call, ICallbackSucceed<T> succeed,
-                                         ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
-        if (isNetworkAvailable(context)) {
+    public static <T> boolean callHttpAsync(Context context, Call<T> call, ICallbackSucceed<T> succeed,
+                                            ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
+        boolean isOnline = isNetworkAvailable(context);
+        if (isOnline) {
             call.enqueue(new Callback<T>() {
                 @Override
                 public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -43,7 +44,9 @@ public class HttpClientWrapper {
         } else {
             warning(context, R.string.turn_internet_on).show();
         }
+        return isOnline;
     }
+
     public static <T> void callHttpAsync(Context context, Call<T> call, ICallback<T> callback) {
         if (isNetworkAvailable(context)) {
             call.enqueue(new Callback<T>() {
@@ -66,6 +69,7 @@ public class HttpClientWrapper {
             warning(context, R.string.turn_internet_on).show();
         }
     }
+
     public static <T> void callHttpAsync(Context context, Call<T> call, CallbackModel<T> callback) {
         if (isNetworkAvailable(context)) {
             call.enqueue(callback);

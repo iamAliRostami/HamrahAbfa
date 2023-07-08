@@ -1,9 +1,8 @@
 package com.leon.hamrah_abfa.adapters.fragment_state_adapter;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEFAULT_BILL_ID;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;

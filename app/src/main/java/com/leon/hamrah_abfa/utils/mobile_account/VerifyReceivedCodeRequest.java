@@ -18,7 +18,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class VerifyReceivedCodeRequest {
-
     private final Context context;
     private final ICallback callback;
     private final PreLoginViewModel preLogin;
@@ -29,12 +28,12 @@ public class VerifyReceivedCodeRequest {
         this.callback = callback;
     }
 
-    public void request() {
+    public boolean request() {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<PreLoginViewModel> call = iAbfaService.verifyCode(preLogin);
-        HttpClientWrapper.callHttpAsync(context, call, new VerifyCodeSuccessful(callback, context),
+        return HttpClientWrapper.callHttpAsync(context, call, new VerifyCodeSuccessful(callback, context),
                 new VerifyCodeIncomplete(context, callback), new VerifyCodeFailed(context, callback));
     }
 

@@ -77,27 +77,33 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
     }
 
     private void request() {
-        new AskVerificationCodeRequest(getContext(), callback.getViewModel(), new AskVerificationCodeRequest.ICallback() {
-            @Override
-            public void succeed(String id, long remainedSeconds) {
-                callback.editPreLoginViewModel(id, remainedSeconds);
-                callback.displayView(VERIFICATION_FRAGMENT);
-            }
+        boolean isOnline = new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
+                new AskVerificationCodeRequest.ICallback() {
+                    @Override
+                    public void succeed(String id, long remainedSeconds) {
+                        callback.editPreLoginViewModel(id, remainedSeconds);
+                        callback.displayView(VERIFICATION_FRAGMENT);
+                    }
 
-            @Override
-            public void changeUI(boolean done) {
-                //TODO
-                if (done) {
-                    binding.imageViewSubmit.setVisibility(View.VISIBLE);
-                    binding.lottieAnimationView.setVisibility(View.GONE);
-                    binding.lottieAnimationView.pauseAnimation();
-                } else {
-                    binding.imageViewSubmit.setVisibility(View.GONE);
-                    binding.lottieAnimationView.playAnimation();
-                    binding.lottieAnimationView.setVisibility(View.VISIBLE);
-                }
-            }
-        }).request();
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }).request();
+        progressStatus(!isOnline);
+    }
+
+    private void progressStatus(boolean hide) {
+        //TODO
+        if (hide) {
+            binding.imageViewSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
+        } else {
+            binding.imageViewSubmit.setVisibility(View.GONE);
+            binding.lottieAnimationView.playAnimation();
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

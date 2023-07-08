@@ -28,12 +28,12 @@ public class AskVerificationCodeRequest {
         this.callback = callback;
     }
 
-    public void request() {
+    public boolean request() {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<PreLoginViewModel> call = iAbfaService.preLogin(preLogin);
-        HttpClientWrapper.callHttpAsync(context, call, new AskVerificationCodeSuccessful(callback),
+        return HttpClientWrapper.callHttpAsync(context, call, new AskVerificationCodeSuccessful(callback),
                 new AskVerificationCodeIncomplete(context, callback), new AskVerificationCodeFailed(context, callback));
     }
 

@@ -116,7 +116,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
                 final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                 startActivity(intent);
-            } else if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+            } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
                 //TODO
                 submitMobileActivityResultLauncher.launch(intent);

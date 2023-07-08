@@ -29,14 +29,13 @@ public class GetBillsRequest {
         this.callback = callback;
     }
 
-    public void request() {
+    public boolean request() {
         callback.changeUI(false);
-
         showFragmentDialogOnce(context, WAITING.getValue(), WaitingFragment.newInstance());
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<Bills> call = iAbfaService.getBills();
-        HttpClientWrapper.callHttpAsync(context, call, new GetBillsSuccessful(callback),
+        return HttpClientWrapper.callHttpAsync(context, call, new GetBillsSuccessful(callback),
                 new GetBillsIncomplete(context, callback), new GetBillsFailed(context, callback));
     }
 

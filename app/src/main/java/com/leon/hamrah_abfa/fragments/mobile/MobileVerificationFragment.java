@@ -100,7 +100,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     }
 
     private void request() {
-        new VerifyReceivedCodeRequest(getContext(), callback.getViewModel(),
+        boolean isOnline = new VerifyReceivedCodeRequest(getContext(), callback.getViewModel(),
                 new VerifyReceivedCodeRequest.ICallback() {
                     @Override
                     public void succeed(String token, String failureMessage, boolean result) {
@@ -109,28 +109,31 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                                 callback.getViewModel().getMobile());
                         getInstance().getApplicationComponent().SharedPreferenceModel().putData(TOKEN.getValue(),
                                 callback.getViewModel().getToken());
-
                         final Intent intent = new Intent();
                         requireActivity().setResult(RESULT_OK, intent);
-
                         requireActivity().finish();
                     }
 
                     @Override
                     public void changeUI(boolean done) {
                         //TODO
-                        if (done) {
-                            binding.buttonSubmit.setVisibility(View.VISIBLE);
-                            binding.lottieAnimationView.setVisibility(View.GONE);
-                            binding.lottieAnimationView.pauseAnimation();
-                        } else {
-                            binding.buttonSubmit.setVisibility(View.GONE);
-                            binding.lottieAnimationView.playAnimation();
-                            binding.lottieAnimationView.setVisibility(View.VISIBLE);
-                        }
+                        progressStatus(done);
                     }
                 }
         ).request();
+        progressStatus(!isOnline);
+    }
+
+    private void progressStatus(boolean hide) {
+        if (hide) {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
+        } else {
+            binding.buttonSubmit.setVisibility(View.GONE);
+            binding.lottieAnimationView.playAnimation();
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -209,6 +212,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
 
         }.start();
     }
+
     private void startSMSListener() {
         try {
             smsReceiver.setOTPListener(this);
