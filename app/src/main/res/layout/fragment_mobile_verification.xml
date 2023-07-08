@@ -133,17 +133,17 @@
                         android:layout_marginStart="@dimen/xlarge_dp"
                         android:layout_marginEnd="@dimen/medium_dp"
                         android:padding="@dimen/small_dp"
-                        android:src="@drawable/arrow_right"
-                        android:visibility="@{viewModel.arrowVisibility}" />
+                        android:visibility="gone"
+                        android:src="@drawable/arrow_right" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/text_view_try_again"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@id/image_view_right"
-                        android:text="@string/send_again"
-                        android:visibility="@{viewModel.tryAgainVisibility}" />
+                        android:text="@string/send_again" />
 
                     <View
                         android:layout_width="wrap_content"
@@ -156,9 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/xlarge_dp"
-                        android:text="@{viewModel.remainedSecondsString}"
-                        android:visibility="@{viewModel.counterVisibility}" />
+                        android:layout_marginEnd="@dimen/xlarge_dp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
