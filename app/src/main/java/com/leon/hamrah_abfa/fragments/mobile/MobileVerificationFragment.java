@@ -190,14 +190,10 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
 
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
-//                callback.getViewModel().setRemainedSeconds(millisUntilFinished / 1000);
                 binding.textViewCounter.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
             public void onFinish() {
-//                callback.getViewModel().setCounterVisibility(View.GONE);
-//                callback.getViewModel().setTryAgainVisibility(View.VISIBLE);
-//                callback.getViewModel().setArrowVisibility(View.VISIBLE);
 
                 binding.textViewCounter.setVisibility(View.GONE);
                 binding.textViewTryAgain.setVisibility(View.VISIBLE);
@@ -206,11 +202,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
 
         }.start();
     }
-
-
-    //TODO
-
-
     private void startSMSListener() {
         try {
             smsReceiver.setOTPListener(this);
@@ -263,7 +254,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
             requireActivity().unregisterReceiver(smsReceiver);
         }
     }
-    //TODO
 
     @Override
     public void onAttach(@NonNull Context context) {

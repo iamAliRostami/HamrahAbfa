@@ -13,18 +13,10 @@ public class SMSReceiver extends BroadcastReceiver {
 
     private OTPReceiveListener otpListener;
 
-    /**
-     * @param otpListener
-     */
     public void setOTPListener(OTPReceiveListener otpListener) {
         this.otpListener = otpListener;
     }
 
-
-    /**
-     * @param context
-     * @param intent
-     */
     @Override
     public void onReceive(Context context, Intent intent) {
         if (SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())) {
