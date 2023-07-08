@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel" />
+            type="com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,7 +28,7 @@
             style="@style/Title"
             android:layout_below="@id/image_view_logo"
             android:layout_margin="@dimen/medium_dp"
-            android:text="@{viewModel.nickname}"
+            android:text="@{viewModel.alias}"
             android:textAppearance="@style/TextStyleLarge.Bold"
             android:textColor="@color/dark_gray" />
 

@@ -1,8 +1,8 @@
 package com.leon.hamrah_abfa.infrastructure;
 
-import com.leon.hamrah_abfa.di.view_model.Bill;
 import com.leon.hamrah_abfa.di.view_model.Bills;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
+import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -21,6 +21,6 @@ public interface IAbfaService {
 
 
     @POST("kontoriNew/V1/MobileBill/Add")
-    Call<Bill> addBill(@Body Bill bill);
+    Call<BillCardViewModel> addBill(@Body BillCardViewModel bill);
 }
 

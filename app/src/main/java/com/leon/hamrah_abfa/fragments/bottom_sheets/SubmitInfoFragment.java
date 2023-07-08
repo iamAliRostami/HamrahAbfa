@@ -2,8 +2,7 @@ package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.warning;
 
@@ -19,7 +18,8 @@ import androidx.annotation.NonNull;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
-import com.leon.hamrah_abfa.fragments.ui.cards.CardViewModel;
+import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
+import com.leon.hamrah_abfa.utils.bill.AddBillRequest;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class SubmitInfoFragment extends BaseBottomSheetFragment {
+    private final BillCardViewModel viewModel = new BillCardViewModel();
     private FragmentSubmitInfoBottomBinding binding;
-    private final CardViewModel viewModel = new CardViewModel();
     private ICallback callback;
 
     public SubmitInfoFragment() {
@@ -72,10 +72,10 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
                     }
                 }
                 //TODO
-                if (viewModel.getNickname() == null || viewModel.getNickname().isEmpty())
-                    viewModel.setNickname(viewModel.getBillId());
+                if (viewModel.getAlias() == null || viewModel.getAlias().isEmpty())
+                    viewModel.setAlias(viewModel.getBillId());
                 viewModel.setDebt(Integer.parseInt(viewModel.getBillId()));
-                viewModel.setOwner(viewModel.getBillId());
+                requestAddBill();
                 insertData();
 
             }
@@ -84,15 +84,29 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         }
     }
 
+    private void requestAddBill() {
+        new AddBillRequest(requireContext(), viewModel, new AddBillRequest.ICallback() {
+            @Override
+            public void succeed() {
+                //TODO
+                insertData();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+
+            }
+        }).request();
+    }
+
     private void insertData() {
+        //TODO
         final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(viewModel.getBillId()).concat(",");
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue()).concat(viewModel.getNickname()).concat(",");
-        final String owner = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue()).concat(viewModel.getOwner()).concat(",");
+        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(viewModel.getAlias()).concat(",");
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(NICKNAME.getValue(), nickname);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), nickname);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), viewModel.getDebt());
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(OWNER.getValue(), owner);
         if (callback != null) callback.updateCard();
         dismiss();
     }

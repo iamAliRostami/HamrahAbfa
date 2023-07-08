@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.fragments.pay_bill;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
@@ -65,7 +65,7 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
         final ArrayList<PayBillViewModel> payBill = new ArrayList<>();
         final ArrayList<String> billIds = new ArrayList<>();
         final ArrayList<String> nicknames = new ArrayList<>();
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue());
+        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
         final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
         if (!billId.isEmpty()) {
             billIds.addAll(Arrays.asList(billId.split(",")));

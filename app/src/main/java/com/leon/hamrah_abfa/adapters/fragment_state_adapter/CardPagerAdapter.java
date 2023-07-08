@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.adapters.fragment_state_adapter;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEFAULT_BILL_ID;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.NICKNAME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OWNER;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
@@ -28,21 +28,18 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     public CardPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
         final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue());
-        final String owner = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue());
-        ArrayList<String> owners = new ArrayList<>();
+        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
         ArrayList<String> nicknames = new ArrayList<>();
-        if (!(billId.isEmpty() || nickname.isEmpty() || owner.isEmpty())) {
+        if (!(billId.isEmpty() || nickname.isEmpty())) {
             nicknames.addAll(Arrays.asList(nickname.split(",")));
-            owners.addAll(Arrays.asList(owner.split(",")));
             billIds.addAll(Arrays.asList(billId.split(",")));
             billIds.add(billIds.get(getInstance().getApplicationComponent().SharedPreferenceModel().getIntData(DEFAULT_BILL_ID.getValue()) - 1));
         } else {
             billIds.add("");
         }
 
-        for (int i = 0; i < Math.min(Math.min(billIds.size(), nicknames.size()), owners.size()); i++) {
-            addFragment(CardFragment.newInstance(billIds.get(i), nicknames.get(i), owners.get(i)));
+        for (int i = 0; i < Math.min(billIds.size(), nicknames.size()); i++) {
+            addFragment(CardFragment.newInstance(billIds.get(i), nicknames.get(i)));
         }
         addFragment(CardEmptyFragment.newInstance());
     }
@@ -69,12 +66,10 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     @SuppressLint("NotifyDataSetChanged")
     public void update() {
         final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(NICKNAME.getValue());
-        final String owner = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(OWNER.getValue());
-        if (!(billId.isEmpty() || nickname.isEmpty() || owner.isEmpty())) {
+        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
+        if (!(billId.isEmpty() || nickname.isEmpty())) {
             addFragment(CardFragment.newInstance(billId.split(",")[getItemCount() - 1],
-                            nickname.split(",")[getItemCount() - 1], owner.split(",")[getItemCount() - 1]),
-                    getItemCount() - 1);
+                    nickname.split(",")[getItemCount() - 1]), getItemCount() - 1);
             billIds.add(getItemCount() - 1, billId.split(",")[getItemCount() - 1]);
         }
         notifyDataSetChanged();

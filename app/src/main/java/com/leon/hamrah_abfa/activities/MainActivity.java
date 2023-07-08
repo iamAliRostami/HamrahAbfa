@@ -10,7 +10,6 @@ import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.animation.Animator;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +21,6 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -118,7 +116,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
                 final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
                 startActivity(intent);
-            } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+            } else if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
                 //TODO
                 submitMobileActivityResultLauncher.launch(intent);
@@ -198,7 +196,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     }
 
     private void requestBills() {
-        Context context = this;
+        Activity activity = this;
         new GetBillsRequest(this, new GetBillsRequest.ICallback() {
             @Override
             public void succeed() {
@@ -207,8 +205,14 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
             @Override
             public void changeUI(boolean done) {
+                //TODO
                 if (!done) {
-                    showFragmentDialogOnce(context, WAITING.getValue(), WaitingFragment.newInstance());
+                    try {
+//                        activity.runOnUiThread(() -> showFragmentDialogOnce(activity, WAITING.getValue(), WaitingFragment.newInstance()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("error", e.toString());
+                    }
                 } else {
 //                    DialogFragment fragment = (DialogFragment) getSupportFragmentManager().findFragmentByTag(WAITING.getValue());
 //                    if (fragment != null) {

@@ -3,7 +3,6 @@ package com.leon.hamrah_abfa.fragments.ui.cards;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.DEBT;
 import static com.leon.hamrah_abfa.enums.BundleEnum.NICKNAME;
-import static com.leon.hamrah_abfa.enums.BundleEnum.OWNER;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,17 +17,16 @@ import com.leon.hamrah_abfa.databinding.FragmentCardBinding;
 
 public class CardFragment extends Fragment {
     private FragmentCardBinding binding;
-    private CardViewModel viewModel;
+    private BillCardViewModel viewModel;
 
     public CardFragment() {
     }
 
-    public static CardFragment newInstance(String billId, String nickname, String owner) {
+    public static CardFragment newInstance(String billId, String nickname) {
         final CardFragment fragment = new CardFragment();
         final Bundle args = new Bundle();
         args.putString(BILL_ID.getValue(), billId);
         args.putString(NICKNAME.getValue(), nickname);
-        args.putString(OWNER.getValue(), owner);
         //TODO
         args.putInt(DEBT.getValue(), 987654);
         fragment.setArguments(args);
@@ -39,10 +37,8 @@ public class CardFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            viewModel = new CardViewModel(getArguments().getString(OWNER.getValue()),
-                    getArguments().getString(NICKNAME.getValue()),
-                    getArguments().getString(BILL_ID.getValue()),
-                    getArguments().getInt(DEBT.getValue()));
+            viewModel = new BillCardViewModel(getArguments().getString(NICKNAME.getValue()),
+                    getArguments().getString(BILL_ID.getValue()), getArguments().getInt(DEBT.getValue()));
         }
     }
 
