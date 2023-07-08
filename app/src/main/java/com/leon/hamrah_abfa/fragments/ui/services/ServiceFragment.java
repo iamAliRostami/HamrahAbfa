@@ -73,7 +73,7 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
     }
 
     private void initializeViewPager() {
-        callback.createCardPagerAdapter();
+//        callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
         binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -117,7 +117,7 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
     public interface ICallback {
         CardPagerAdapter getCardPagerAdapter();
 
-        void createCardPagerAdapter();
+//        void createCardPagerAdapter();
 
         String getCurrentBillId(int position);
 

@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initializeViewPager() {
-        callback.createCardPagerAdapter();
+//        callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
         binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -174,7 +174,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public interface ICallback {
         CardPagerAdapter getCardPagerAdapter();
 
-        void createCardPagerAdapter();
+//        void createCardPagerAdapter();
 
         String getCurrentBillId(int position);
 

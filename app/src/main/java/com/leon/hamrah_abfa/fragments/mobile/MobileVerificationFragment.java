@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.fragments.mobile;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.TOKEN;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -28,7 +29,7 @@ import com.google.android.gms.tasks.Task;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentMobileVerificationBinding;
 import com.leon.hamrah_abfa.utils.SMSReceiver;
-import com.leon.hamrah_abfa.utils.mobile_submit.VerifyReceivedCodeRequest;
+import com.leon.hamrah_abfa.utils.mobile_account.VerifyReceivedCodeRequest;
 
 public class MobileVerificationFragment extends Fragment implements View.OnClickListener,
         TextWatcher, View.OnKeyListener, SMSReceiver.OTPReceiveListener {
@@ -102,8 +103,8 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                     @Override
                     public void succeed(String token, String failureMessage, boolean result) {
                         callback.editPreLoginViewModel(token, failureMessage, result);
-//                        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(),
-//                                callback.getViewModel().getMobile());
+                        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(),
+                                callback.getViewModel().getMobile());
                         getInstance().getApplicationComponent().SharedPreferenceModel().putData(TOKEN.getValue(),
                                 callback.getViewModel().getToken());
                         requireActivity().finish();

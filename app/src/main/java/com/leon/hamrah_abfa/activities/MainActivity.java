@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         initializeSplash();
         // TODO
         initializeBottomSheet();
+        createCardPagerAdapter();
         binding.floatButtonAdd.setOnClickListener(this);
         final ImageView imageViewSetting = findViewById(R.id.image_view_setting);
         imageViewSetting.setOnClickListener(this);
@@ -181,9 +182,12 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         }
     }
 
-    @Override
-    public void createCardPagerAdapter() {
+    //    @Override
+    private void createCardPagerAdapter() {
         cardPagerAdapter = new CardPagerAdapter(this);
+        if (cardPagerAdapter.getItemCount() == 1) {
+
+        }
     }
 
     @Override
