@@ -9,6 +9,8 @@ public class BillCardViewModel extends BaseObservable {
     private String id;
     private String billId;
     private String alias;
+    private String fullName;
+    //TODO
     private long debt;
     private String debtString;
     private int status;
@@ -17,11 +19,12 @@ public class BillCardViewModel extends BaseObservable {
     private boolean isValid;
 
 
-    public BillCardViewModel(String alias, String billId, int debt) {
-        setAlias(alias);
+    public BillCardViewModel(String id, String billId, String alias, String debt) {
+        setId(alias);
         setBillId(billId);
-        setDebt(debt);
-        setDebtString(String.valueOf(getDebt()));
+        setAlias(alias);
+        setDebtString(debt);
+        setDebt(Long.parseLong(debt));
     }
 
     public BillCardViewModel() {
@@ -103,5 +106,13 @@ public class BillCardViewModel extends BaseObservable {
 
     public void setValid(boolean valid) {
         isValid = valid;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

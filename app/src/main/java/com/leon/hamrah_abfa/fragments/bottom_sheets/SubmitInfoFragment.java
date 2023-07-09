@@ -1,8 +1,10 @@
 package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.FULL_NAME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.warning;
 
@@ -61,22 +63,22 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         super.onClick(v);
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (viewModel.getBillId().isEmpty()) {
+            if (viewModel.getBillId()==null||viewModel.getBillId().isEmpty()) {
                 warning(requireContext(), getString(R.string.enter_bill_id)).show();
+                binding.editTextBillId.setError(getString(R.string.enter_bill_id));
+                binding.editTextBillId.requestFocus();
             } else {
-                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
-                for (int i = 0; i < billIds.size(); i++) {
-                    if (billIds.get(i).equals(viewModel.getBillId())) {
-                        warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
-                        return;
-                    }
-                }
+//                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
+//                for (int i = 0; i < billIds.size(); i++) {
+//                    if (billIds.get(i).equals(viewModel.getBillId())) {
+//                        warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
+//                        return;
+//                    }
+//                }
                 //TODO
                 if (viewModel.getAlias() == null || viewModel.getAlias().isEmpty())
                     viewModel.setAlias(viewModel.getBillId());
-                viewModel.setDebt(Integer.parseInt(viewModel.getBillId()));
                 requestAddBill();
-                insertData();
 
             }
         } else if (id == R.id.image_view_arrow_down) {
@@ -85,28 +87,49 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     }
 
     private void requestAddBill() {
-        new AddBillRequest(requireContext(), viewModel, new AddBillRequest.ICallback() {
+        boolean isOnline = new AddBillRequest(requireContext(), viewModel, new AddBillRequest.ICallback() {
             @Override
-            public void succeed() {
+            public void succeed(BillCardViewModel bill) {
                 //TODO
-                insertData();
+                insertData(bill);
             }
 
             @Override
             public void changeUI(boolean done) {
-
+                progressStatus(done);
             }
         }).request();
+        progressStatus(!isOnline);
     }
 
-    private void insertData() {
-        //TODO
-        final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(viewModel.getBillId()).concat(",");
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(viewModel.getAlias()).concat(",");
+    private void progressStatus(boolean hide) {
+        if (hide) {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
+        } else {
+            binding.buttonSubmit.setVisibility(View.GONE);
+            binding.lottieAnimationView.playAnimation();
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        }
+    }
 
+    private void insertData(BillCardViewModel bill) {
+        //TODO
+        bill.setDebtString(String.valueOf(bill.getDebt()));
+        String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).concat(bill.getId()).concat(",");
+        String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
+        String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
+        String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebtString()).concat(",");
+        String fullName = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(FULL_NAME.getValue()).concat(bill.getFullName()).concat(",");
+
+
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), nickname);
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), viewModel.getDebt());
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(FULL_NAME.getValue(), fullName);
+
         if (callback != null) callback.updateCard();
         dismiss();
     }

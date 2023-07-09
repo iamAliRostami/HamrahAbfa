@@ -2,7 +2,9 @@ package com.leon.hamrah_abfa.adapters.fragment_state_adapter;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEFAULT_BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.ui.cards.CardEmptyFragment;
 import com.leon.hamrah_abfa.fragments.ui.cards.CardFragment;
 
@@ -22,23 +25,24 @@ public class CardPagerAdapter extends FragmentStateAdapter {
 
     private final ArrayList<Fragment> fragmentList = new ArrayList<>();
 
-    private final ArrayList<String> billIds = new ArrayList<>();
+    private final ArrayList<BillCardViewModel> bills = new ArrayList<>();
 
     public CardPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-        final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
-        ArrayList<String> nicknames = new ArrayList<>();
-        if (!(billId.isEmpty() || nickname.isEmpty())) {
-            nicknames.addAll(Arrays.asList(nickname.split(",")));
-            billIds.addAll(Arrays.asList(billId.split(",")));
-            billIds.add(billIds.get(getInstance().getApplicationComponent().SharedPreferenceModel().getIntData(DEFAULT_BILL_ID.getValue()) - 1));
-        } else {
-            billIds.add("");
-        }
+        ArrayList<String> id = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).split(",")));
+        ArrayList<String> billId = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
+        ArrayList<String> alias = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).split(",")));
+        ArrayList<String> debt = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).split(",")));
 
-        for (int i = 0; i < Math.min(billIds.size(), nicknames.size()); i++) {
-            addFragment(CardFragment.newInstance(billIds.get(i), nicknames.get(i)));
+
+        if (!bills.isEmpty()) {
+            for (int i = 0; i < id.size(); i++) {
+                bills.add(new BillCardViewModel(id.get(i), billId.get(i), alias.get(i), debt.get(i)));
+            }
+            bills.add(bills.get(getInstance().getApplicationComponent().SharedPreferenceModel().getIntData(DEFAULT_BILL_ID.getValue()) - 1));
+        }
+        for (int i = 0; i < bills.size(); i++) {
+            addFragment(CardFragment.newInstance(bills.get(i)));
         }
         addFragment(CardEmptyFragment.newInstance());
     }
@@ -64,17 +68,18 @@ public class CardPagerAdapter extends FragmentStateAdapter {
 
     @SuppressLint("NotifyDataSetChanged")
     public void update() {
+        final String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue());
         final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
-        if (!(billId.isEmpty() || nickname.isEmpty())) {
-            addFragment(CardFragment.newInstance(billId.split(",")[getItemCount() - 1],
-                    nickname.split(",")[getItemCount() - 1]), getItemCount() - 1);
-            billIds.add(getItemCount() - 1, billId.split(",")[getItemCount() - 1]);
-        }
+        final String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
+        final String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue());
+
+        bills.add(new BillCardViewModel(id.split(",")[getItemCount() - 1], billId.split(",")[getItemCount() - 1],
+                alias.split(",")[getItemCount() - 1], debt.split(",")[getItemCount() - 1]));
+        addFragment(CardFragment.newInstance(bills.get(getItemCount() - 1)));
         notifyDataSetChanged();
     }
 
     public String getCurrentBillId(int position) {
-        return billIds.get(position);
+        return bills.get(position).getBillId();
     }
 }

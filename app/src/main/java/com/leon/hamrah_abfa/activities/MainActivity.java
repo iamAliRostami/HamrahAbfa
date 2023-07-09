@@ -1,8 +1,12 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.FULL_NAME;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -11,7 +15,6 @@ import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -21,6 +24,7 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,11 +37,17 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
+import com.leon.hamrah_abfa.di.view_model.Bills;
+import com.leon.hamrah_abfa.enums.BundleEnum;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.utils.bill.GetBillsRequest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
@@ -98,7 +108,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         } else if (id == R.id.image_view_notification) {
             final Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
             //TODO
-            intent.putExtra(BILL_ID.getValue(), cardPagerAdapter.getCurrentBillId(position));
+            intent.putExtra(BundleEnum.BILL_ID.getValue(), cardPagerAdapter.getCurrentBillId(position));
             startActivity(intent);
         }
     }
@@ -196,35 +206,81 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     }
 
     private void requestBills() {
-        Activity activity = this;
-        new GetBillsRequest(this, new GetBillsRequest.ICallback() {
+        boolean isOnline = new GetBillsRequest(this, new GetBillsRequest.ICallback() {
             @Override
-            public void succeed() {
-
+            public void succeed(Bills billsInfo) {
+                ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
+                for (int i = 0; i < billIds.size(); i++) {
+                    for (int j = 0; j < billsInfo.bills.size(); j++) {
+                        if (billIds.get(i).equals(billsInfo.bills.get(j).getBillId())) {
+                            editData(billsInfo);
+                        } else {
+                            insertData(billsInfo.bills.get(j));
+                        }
+                    }
+                }
             }
 
             @Override
             public void changeUI(boolean done) {
-                //TODO
-                if (!done) {
-                    try {
-//                        activity.runOnUiThread(() -> showFragmentDialogOnce(activity, WAITING.getValue(), WaitingFragment.newInstance()));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("error", e.toString());
-                    }
-                } else {
-//                    DialogFragment fragment = (DialogFragment) getSupportFragmentManager().findFragmentByTag(WAITING.getValue());
-//                    if (fragment != null) {
-//                        fragment.dismiss();
-//                    }
-                }
-
+                progressStatus(done);
             }
         }).request();
+        progressStatus(isOnline);
     }
 
-    //    @Override
+    private void insertData(BillCardViewModel bill) {
+        //TODO
+        bill.setDebtString(String.valueOf(bill.getDebt()));
+        String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).concat(bill.getId()).concat(",");
+        String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
+        String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
+        String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebtString()).concat(",");
+        String fullName = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(FULL_NAME.getValue()).concat(bill.getFullName()).concat(",");
+
+
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(FULL_NAME.getValue(), fullName);
+    }
+
+    private void editData(Bills billInfo) {
+        String debt = "";
+        String alias = "";
+        String fullName = "";
+        String id = "";
+        for (int i = 0; i < billInfo.bills.size(); i++) {
+            billInfo.bills.get(i).setDebtString(String.valueOf(billInfo.bills.get(i).getDebt()));
+            debt = debt.concat(billInfo.bills.get(i).getDebtString()).concat(",");
+            alias = debt.concat(billInfo.bills.get(i).getAlias()).concat(",");
+            fullName = debt.concat(billInfo.bills.get(i).getFullName()).concat(",");
+            id = debt.concat(billInfo.bills.get(i).getId()).concat(",");
+        }
+
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(FULL_NAME.getValue(), fullName);
+    }
+
+    private DialogFragment fragment;
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
+    }
+
     private void createCardPagerAdapter() {
         cardPagerAdapter = new CardPagerAdapter(this);
     }

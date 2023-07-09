@@ -1,8 +1,6 @@
 package com.leon.hamrah_abfa.utils.bill;
 
-import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
-import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
@@ -10,7 +8,6 @@ import android.content.Context;
 
 import com.leon.hamrah_abfa.di.view_model.Bills;
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
-import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -30,8 +27,7 @@ public class GetBillsRequest {
     }
 
     public boolean request() {
-        callback.changeUI(false);
-        showFragmentDialogOnce(context, WAITING.getValue(), WaitingFragment.newInstance());
+        callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<Bills> call = iAbfaService.getBills();
@@ -40,7 +36,7 @@ public class GetBillsRequest {
     }
 
     public interface ICallback {
-        void succeed();
+        void succeed(Bills bills);
 
         void changeUI(boolean done);
     }
@@ -58,9 +54,8 @@ class GetBillsSuccessful implements ICallbackSucceed<Bills> {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
-            callback.succeed();
+            callback.succeed(response.body());
         }
-
     }
 }
 
@@ -75,7 +70,7 @@ class GetBillsIncomplete implements ICallbackIncomplete<Bills> {
 
     @Override
     public void executeDismissed(Response<Bills> response) {
-        callback.changeUI(true);
+        callback.changeUI(false);
         //TODO
         warning(context, "dismissed").show();
     }
@@ -92,7 +87,7 @@ class GetBillsFailed implements ICallbackFailure {
 
     @Override
     public void executeFailed(Throwable t) {
-        callback.changeUI(true);
+        callback.changeUI(false);
         //TODO
         error(context, "failed").show();
     }

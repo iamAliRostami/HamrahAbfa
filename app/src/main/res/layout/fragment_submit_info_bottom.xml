@@ -56,7 +56,7 @@
             android:hint="@string/bill_id"
             app:counterMaxLength="11"
             app:helperText="@string/enter_bill_id"
-            app:layout_constraintBottom_toTopOf="@id/button_submit"
+            app:layout_constraintBottom_toTopOf="@id/relative_layout_submit"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -66,12 +66,35 @@
                 android:text="@={viewModel.billId}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_submit"
-            style="@style/ButtonSubmit"
-            android:layout_marginTop="@dimen/medium_dp"
-            android:text="@string/sign_account"
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/button_submit"-->
+<!--            style="@style/ButtonSubmit"-->
+<!--            android:layout_marginTop="@dimen/medium_dp"-->
+<!--            android:text="@string/sign_account"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:id="@+id/relative_layout_submit"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonSubmit"
+                android:layout_alignParentBottom="true"
+                android:text="@string/sign_account" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/waiting_dots" />
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
