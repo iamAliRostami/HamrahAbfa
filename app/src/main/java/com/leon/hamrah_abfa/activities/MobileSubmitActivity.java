@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.VERIFICATION_FRAGMENT;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -68,6 +69,13 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
         viewModel.setToken(token);
         viewModel.setFailureMessage(failureMessage);
         viewModel.setResult(result);
+    }
+
+    @Override
+    public void setResult() {
+        final Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override

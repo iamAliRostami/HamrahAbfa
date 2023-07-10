@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -21,8 +22,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ServiceActivity;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
-import com.leon.hamrah_abfa.adapters.recycler_view.ServicesMainAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
+import com.leon.hamrah_abfa.adapters.recycler_view.ServicesMainAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentServiceBinding;
 
 public class ServiceFragment extends Fragment implements RecyclerItemClickListener.OnItemClickListener {
@@ -49,8 +50,14 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
         return binding.getRoot();
     }
 
-    private void initialize() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initializeViewPager();
+    }
+
+    private void initialize() {
+        callback.createCardPagerAdapter();
         initializeRecyclerView();
     }
 
@@ -64,7 +71,16 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
 
     @Override
     public void onItemClick(View view, int position) {
-        itemClick(view, position);
+//        itemClick(view, position);
+        if (callback.isEmpty())
+            return;
+        final Intent intent = new Intent(view.getContext(), ServiceActivity.class);
+        intent.putExtra(BILL_ID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(SERVICE_TYPE.getValue(), position);
+        startActivity(intent);
+    }
+
+    private void itemClick(View view, int position) {
     }
 
     @Override
@@ -73,7 +89,6 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
     }
 
     private void initializeViewPager() {
-//        callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
         binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -94,12 +109,6 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
         binding.viewPagerCard.setPageTransformer(cpt);
     }
 
-    private void itemClick(View view, int position) {
-        final Intent intent = new Intent(view.getContext(), ServiceActivity.class);
-        intent.putExtra(BILL_ID.getValue(), callback.getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
-        intent.putExtra(SERVICE_TYPE.getValue(), position);
-        startActivity(intent);
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -115,12 +124,14 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
 
 
     public interface ICallback {
+        void createCardPagerAdapter();
+
         CardPagerAdapter getCardPagerAdapter();
 
-//        void createCardPagerAdapter();
-
-        String getCurrentBillId(int position);
+        String getCurrentId(int position);
 
         void setPosition(int position);
+
+        boolean isEmpty();
     }
 }

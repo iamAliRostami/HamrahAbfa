@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
 
 import android.view.View;
 
@@ -15,13 +16,13 @@ import com.leon.hamrah_abfa.fragments.last_bill.LastBillUsingInfoFragment;
 
 public class LastBillActivity extends BaseActivity {
     private ActivityLastBillBinding binding;
-    private String billId;
+    private String id;
 
     @Override
     protected void initialize() {
         binding = ActivityLastBillBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
+            id = getIntent().getExtras().getString(ID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());

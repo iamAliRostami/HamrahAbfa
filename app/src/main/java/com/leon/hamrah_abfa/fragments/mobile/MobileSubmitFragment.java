@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentMobileSubmitBinding;
-import com.leon.hamrah_abfa.utils.mobile_account.AskVerificationCodeRequest;
+import com.leon.hamrah_abfa.requests.mobile_account.AskVerificationCodeRequest;
 
 public class MobileSubmitFragment extends Fragment implements View.OnClickListener {
     private FragmentMobileSubmitBinding binding;

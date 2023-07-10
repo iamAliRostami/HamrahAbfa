@@ -30,8 +30,8 @@ import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.tasks.Task;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentMobileVerificationBinding;
+import com.leon.hamrah_abfa.requests.mobile_account.VerifyReceivedCodeRequest;
 import com.leon.hamrah_abfa.utils.SMSReceiver;
-import com.leon.hamrah_abfa.utils.mobile_account.VerifyReceivedCodeRequest;
 
 public class MobileVerificationFragment extends Fragment implements View.OnClickListener,
         TextWatcher, View.OnKeyListener, SMSReceiver.OTPReceiveListener {
@@ -109,9 +109,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                                 callback.getViewModel().getMobile());
                         getInstance().getApplicationComponent().SharedPreferenceModel().putData(TOKEN.getValue(),
                                 callback.getViewModel().getToken());
-                        final Intent intent = new Intent();
-                        requireActivity().setResult(RESULT_OK, intent);
-                        requireActivity().finish();
+                       callback.setResult();
                     }
 
                     @Override
@@ -279,5 +277,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
         PreLoginViewModel getViewModel();
 
         void editPreLoginViewModel(String token, String failureMessage, boolean result);
+
+        void setResult();
     }
 }

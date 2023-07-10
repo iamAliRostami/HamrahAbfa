@@ -29,19 +29,20 @@ public class CardPagerAdapter extends FragmentStateAdapter {
 
     public CardPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-        ArrayList<String> id = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).split(",")));
+        String ids = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue());
+        ArrayList<String> id = new ArrayList<>(Arrays.asList(ids.split(",")));
         ArrayList<String> billId = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
         ArrayList<String> alias = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).split(",")));
         ArrayList<String> debt = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).split(",")));
 
 
-        if (!bills.isEmpty()) {
+        if (ids.length() > 0) {
             for (int i = 0; i < id.size(); i++) {
                 bills.add(new BillCardViewModel(id.get(i), billId.get(i), alias.get(i), debt.get(i)));
             }
             bills.add(bills.get(getInstance().getApplicationComponent().SharedPreferenceModel().getIntData(DEFAULT_BILL_ID.getValue()) - 1));
         }
-        for (int i = 0; i < bills.size(); i++) {
+        for (int i = 0; i < bills.size() - 1; i++) {
             addFragment(CardFragment.newInstance(bills.get(i)));
         }
         addFragment(CardEmptyFragment.newInstance());
@@ -79,7 +80,11 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         notifyDataSetChanged();
     }
 
-    public String getCurrentBillId(int position) {
-        return bills.get(position).getBillId();
+    public boolean isEmpty() {
+        return bills.isEmpty();
+    }
+
+    public String getCurrentId(int position) {
+        return bills.get(position).getId();
     }
 }

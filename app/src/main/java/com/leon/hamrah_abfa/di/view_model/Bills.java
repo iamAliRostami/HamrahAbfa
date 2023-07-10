@@ -5,7 +5,7 @@ import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
 import java.util.ArrayList;
 
 public class Bills {
-    public ArrayList<BillCardViewModel> bills;
+    public ArrayList<BillCardViewModel> billDtos;
     public int status;
     public String message;
     public String generationDateTime;

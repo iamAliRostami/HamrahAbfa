@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.utils.mobile_account;
+package com.leon.hamrah_abfa.requests.mobile_account;
 
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
@@ -17,12 +17,12 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class AskVerificationCodeRequest {
+public class VerifyReceivedCodeRequest {
     private final Context context;
     private final ICallback callback;
     private final PreLoginViewModel preLogin;
 
-    public AskVerificationCodeRequest(Context context, PreLoginViewModel preLogin, ICallback callback) {
+    public VerifyReceivedCodeRequest(Context context, PreLoginViewModel preLogin, ICallback callback) {
         this.context = context;
         this.preLogin = preLogin;
         this.callback = callback;
@@ -32,23 +32,26 @@ public class AskVerificationCodeRequest {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<PreLoginViewModel> call = iAbfaService.preLogin(preLogin);
-        return HttpClientWrapper.callHttpAsync(context, call, new AskVerificationCodeSuccessful(callback),
-                new AskVerificationCodeIncomplete(context, callback), new AskVerificationCodeFailed(context, callback));
+        final Call<PreLoginViewModel> call = iAbfaService.verifyCode(preLogin);
+        return HttpClientWrapper.callHttpAsync(context, call, new VerifyCodeSuccessful(callback, context),
+                new VerifyCodeIncomplete(context, callback), new VerifyCodeFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(String id, long remainedSeconds);
+
+        void succeed(String token, String failureMessage, boolean result);
 
         void changeUI(boolean done);
     }
 }
 
-class AskVerificationCodeSuccessful implements ICallbackSucceed<PreLoginViewModel> {
-    private final AskVerificationCodeRequest.ICallback callback;
+class VerifyCodeSuccessful implements ICallbackSucceed<PreLoginViewModel> {
+    private final VerifyReceivedCodeRequest.ICallback callback;
+    private final Context context;
 
-    public AskVerificationCodeSuccessful(AskVerificationCodeRequest.ICallback callback) {
+    public VerifyCodeSuccessful(VerifyReceivedCodeRequest.ICallback callback, Context context) {
         this.callback = callback;
+        this.context = context;
     }
 
     @Override
@@ -56,17 +59,19 @@ class AskVerificationCodeSuccessful implements ICallbackSucceed<PreLoginViewMode
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
-            callback.succeed(response.body().getId(), response.body().getRemainedSeconds());
+            if (response.body().isResult())
+                callback.succeed(response.body().getToken(), response.body().getFailureMessage(), response.body().isResult());
+            else warning(context, response.body().getFailureMessage()).show();
         }
 
     }
 }
 
-class AskVerificationCodeIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
+class VerifyCodeIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
     private final Context context;
-    private final AskVerificationCodeRequest.ICallback callback;
+    private final VerifyReceivedCodeRequest.ICallback callback;
 
-    public AskVerificationCodeIncomplete(Context context, AskVerificationCodeRequest.ICallback callback) {
+    public VerifyCodeIncomplete(Context context, VerifyReceivedCodeRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -79,11 +84,11 @@ class AskVerificationCodeIncomplete implements ICallbackIncomplete<PreLoginViewM
     }
 }
 
-class AskVerificationCodeFailed implements ICallbackFailure {
+class VerifyCodeFailed implements ICallbackFailure {
     private final Context context;
-    private final AskVerificationCodeRequest.ICallback callback;
+    private final VerifyReceivedCodeRequest.ICallback callback;
 
-    public AskVerificationCodeFailed(Context context, AskVerificationCodeRequest.ICallback callback) {
+    public VerifyCodeFailed(Context context, VerifyReceivedCodeRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

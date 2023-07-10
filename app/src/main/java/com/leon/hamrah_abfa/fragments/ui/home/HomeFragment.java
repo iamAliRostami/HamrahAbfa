@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.fragments.ui.home;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
 
 import android.app.Activity;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,8 +51,14 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         return binding.getRoot();
     }
 
-    private void initialize() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         initializeViewPager();
+    }
+
+    private void initialize() {
+        callback.createCardPagerAdapter();
         initializeGridView();
     }
 
@@ -75,6 +82,8 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                if (callback.isEmpty())
+                    return;
                 if (position == 0) {
                     startActivity(createIntent(PayBillActivity.class));
                 } else if (position == 1) {
@@ -155,7 +164,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private Intent createIntent(Class<?> cls) {
         final Intent intent = new Intent(requireContext(), cls);
-        intent.putExtra(BILL_ID.getValue(), callback.getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(ID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
         return intent;
     }
 
@@ -172,12 +181,15 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     public interface ICallback {
+        void createCardPagerAdapter();
+
+        String getCurrentId(int position);
+
         CardPagerAdapter getCardPagerAdapter();
 
-//        void createCardPagerAdapter();
-
-        String getCurrentBillId(int position);
 
         void setPosition(int position);
+
+        boolean isEmpty();
     }
 }

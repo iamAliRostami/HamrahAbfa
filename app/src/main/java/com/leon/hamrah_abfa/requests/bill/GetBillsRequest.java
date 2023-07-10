@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.utils.bill;
+package com.leon.hamrah_abfa.requests.bill;
 
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
@@ -38,7 +38,7 @@ public class GetBillsRequest {
     public interface ICallback {
         void succeed(Bills bills);
 
-        void changeUI(boolean done);
+        void changeUI(boolean show);
     }
 }
 
@@ -54,7 +54,8 @@ class GetBillsSuccessful implements ICallbackSucceed<Bills> {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
-            callback.succeed(response.body());
+            if (response.body().billDtos != null)
+                callback.succeed(response.body());
         }
     }
 }

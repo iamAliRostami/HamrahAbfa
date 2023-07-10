@@ -3,7 +3,6 @@ package com.leon.hamrah_abfa.fragments.bottom_sheets;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.FULL_NAME;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.warning;
@@ -21,12 +20,9 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
 import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
-import com.leon.hamrah_abfa.utils.bill.AddBillRequest;
+import com.leon.hamrah_abfa.requests.bill.AddBillRequest;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class SubmitInfoFragment extends BaseBottomSheetFragment {
     private final BillCardViewModel viewModel = new BillCardViewModel();
@@ -63,7 +59,7 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         super.onClick(v);
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (viewModel.getBillId()==null||viewModel.getBillId().isEmpty()) {
+            if (viewModel.getBillId() == null || viewModel.getBillId().isEmpty()) {
                 warning(requireContext(), getString(R.string.enter_bill_id)).show();
                 binding.editTextBillId.setError(getString(R.string.enter_bill_id));
                 binding.editTextBillId.requestFocus();
@@ -103,6 +99,7 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     }
 
     private void progressStatus(boolean hide) {
+        setCancelable(hide);
         if (hide) {
             binding.buttonSubmit.setVisibility(View.VISIBLE);
             binding.lottieAnimationView.setVisibility(View.GONE);
@@ -121,14 +118,12 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebtString()).concat(",");
-        String fullName = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(FULL_NAME.getValue()).concat(bill.getFullName()).concat(",");
 
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(FULL_NAME.getValue(), fullName);
 
         if (callback != null) callback.updateCard();
         dismiss();
