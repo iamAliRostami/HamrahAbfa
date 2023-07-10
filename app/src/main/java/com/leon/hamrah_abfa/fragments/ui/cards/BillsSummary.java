@@ -1,10 +1,8 @@
-package com.leon.hamrah_abfa.di.view_model;
-
-import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
+package com.leon.hamrah_abfa.fragments.ui.cards;
 
 import java.util.ArrayList;
 
-public class Bills {
+public class BillsSummary {
     public ArrayList<BillCardViewModel> billDtos;
     public int status;
     public String message;

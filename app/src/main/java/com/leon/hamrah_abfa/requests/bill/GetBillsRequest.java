@@ -6,7 +6,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.di.view_model.Bills;
+import com.leon.hamrah_abfa.fragments.ui.cards.BillsSummary;
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -30,19 +30,19 @@ public class GetBillsRequest {
         callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<Bills> call = iAbfaService.getBills();
+        final Call<BillsSummary> call = iAbfaService.getBills();
         return HttpClientWrapper.callHttpAsync(context, call, new GetBillsSuccessful(callback),
                 new GetBillsIncomplete(context, callback), new GetBillsFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(Bills bills);
+        void succeed(BillsSummary bills);
 
         void changeUI(boolean show);
     }
 }
 
-class GetBillsSuccessful implements ICallbackSucceed<Bills> {
+class GetBillsSuccessful implements ICallbackSucceed<BillsSummary> {
     private final GetBillsRequest.ICallback callback;
 
     public GetBillsSuccessful(GetBillsRequest.ICallback callback) {
@@ -50,7 +50,7 @@ class GetBillsSuccessful implements ICallbackSucceed<Bills> {
     }
 
     @Override
-    public void executeCompleted(Response<Bills> response) {
+    public void executeCompleted(Response<BillsSummary> response) {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
@@ -60,7 +60,7 @@ class GetBillsSuccessful implements ICallbackSucceed<Bills> {
     }
 }
 
-class GetBillsIncomplete implements ICallbackIncomplete<Bills> {
+class GetBillsIncomplete implements ICallbackIncomplete<BillsSummary> {
     private final Context context;
     private final GetBillsRequest.ICallback callback;
 
@@ -70,7 +70,7 @@ class GetBillsIncomplete implements ICallbackIncomplete<Bills> {
     }
 
     @Override
-    public void executeDismissed(Response<Bills> response) {
+    public void executeDismissed(Response<BillsSummary> response) {
         callback.changeUI(false);
         //TODO
         warning(context, "dismissed").show();

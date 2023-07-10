@@ -37,7 +37,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
-import com.leon.hamrah_abfa.di.view_model.Bills;
+import com.leon.hamrah_abfa.fragments.ui.cards.BillsSummary;
 import com.leon.hamrah_abfa.enums.BundleEnum;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
@@ -208,7 +208,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     private void requestBills() {
         boolean isOnline = new GetBillsRequest(this, new GetBillsRequest.ICallback() {
             @Override
-            public void succeed(Bills billsInfo) {
+            public void succeed(BillsSummary billsInfo) {
                 String billsId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
                 ArrayList<String> billIds = new ArrayList<>(Arrays.asList(billsId.split(",")));
                 for (int i = 0; i < billsInfo.billDtos.size(); i++) {
@@ -250,7 +250,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
     }
 
-    private void editData(Bills billInfo) {
+    private void editData(BillsSummary billInfo) {
         String debt = "";
         String alias = "";
         String id = "";

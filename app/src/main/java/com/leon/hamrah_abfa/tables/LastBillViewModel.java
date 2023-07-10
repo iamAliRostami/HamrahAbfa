@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.di.view_model;
+package com.leon.hamrah_abfa.tables;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;

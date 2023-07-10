@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.infrastructure;
 
-import com.leon.hamrah_abfa.di.view_model.Bills;
-import com.leon.hamrah_abfa.di.view_model.LastBillViewModel;
+import com.leon.hamrah_abfa.fragments.ui.cards.BillsSummary;
+import com.leon.hamrah_abfa.tables.LastBillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
 
@@ -19,7 +19,7 @@ public interface IAbfaService {
     Call<PreLoginViewModel> verifyCode(@Body PreLoginViewModel preLogin);
 
     @GET("KontoriNew/V1/MobileBill/Get")
-    Call<Bills> getBills();
+    Call<BillsSummary> getBills();
 
     @POST("kontoriNew/V1/MobileBill/Add")
     Call<BillCardViewModel> addBill(@Body BillCardViewModel bill);
