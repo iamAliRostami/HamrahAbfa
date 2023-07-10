@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.ui.cards;
+package com.leon.hamrah_abfa.fragments.cards;
 
 import java.util.ArrayList;
 

@@ -1,9 +1,9 @@
 package com.leon.hamrah_abfa.infrastructure;
 
-import com.leon.hamrah_abfa.fragments.ui.cards.BillsSummary;
+import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.tables.LastBillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
-import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
+import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

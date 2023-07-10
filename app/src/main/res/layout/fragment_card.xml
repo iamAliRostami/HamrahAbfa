@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel" />
+            type="com.leon.hamrah_abfa.fragments.cards.BillCardViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background_card"
-        tools:context=".fragments.ui.cards.CardFragment">
+        tools:context=".fragments.cards.CardFragment">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_logo"

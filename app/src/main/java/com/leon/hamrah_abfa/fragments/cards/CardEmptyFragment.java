@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.ui.cards;
+package com.leon.hamrah_abfa.fragments.cards;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;

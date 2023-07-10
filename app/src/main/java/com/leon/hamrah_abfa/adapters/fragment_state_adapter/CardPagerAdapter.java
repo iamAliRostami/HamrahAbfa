@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
-import com.leon.hamrah_abfa.fragments.ui.cards.CardEmptyFragment;
-import com.leon.hamrah_abfa.fragments.ui.cards.CardFragment;
+import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
+import com.leon.hamrah_abfa.fragments.cards.CardEmptyFragment;
+import com.leon.hamrah_abfa.fragments.cards.CardFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

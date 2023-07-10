@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentSubmitInfoBottomBinding;
-import com.leon.hamrah_abfa.fragments.ui.cards.BillCardViewModel;
+import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.requests.bill.AddBillRequest;
 
 import org.jetbrains.annotations.NotNull;
