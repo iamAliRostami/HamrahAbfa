@@ -30,6 +30,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     public CardPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
         String ids = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue());
+        String billsId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
         ArrayList<String> id = new ArrayList<>(Arrays.asList(ids.split(",")));
         ArrayList<String> billId = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
         ArrayList<String> alias = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).split(",")));

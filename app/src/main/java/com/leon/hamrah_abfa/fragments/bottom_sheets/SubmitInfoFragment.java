@@ -5,6 +5,7 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.toast.RTLToast.success;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -64,16 +65,9 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
                 binding.editTextBillId.setError(getString(R.string.enter_bill_id));
                 binding.editTextBillId.requestFocus();
             } else {
-//                final ArrayList<String> billIds = new ArrayList<>(Arrays.asList(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).split(",")));
-//                for (int i = 0; i < billIds.size(); i++) {
-//                    if (billIds.get(i).equals(viewModel.getBillId())) {
-//                        warning(requireContext(), getString(R.string.bill_id_repetitive)).show();
-//                        return;
-//                    }
-//                }
                 //TODO
-                if (viewModel.getAlias() == null || viewModel.getAlias().isEmpty())
-                    viewModel.setAlias(viewModel.getBillId());
+//                if (viewModel.getAlias() == null || viewModel.getAlias().isEmpty())
+//                    viewModel.setAlias(viewModel.getBillId());
                 requestAddBill();
 
             }
@@ -126,6 +120,7 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
 
         if (callback != null) callback.updateCard();
+        success(requireContext(), getString(R.string.ensheab_has_been_added)).show();
         dismiss();
     }
 

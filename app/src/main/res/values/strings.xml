@@ -244,4 +244,5 @@
     <string name="track_number_is_copied">شماره پیگیری در کلیپ بورد ذخیره شد</string>
     <string name="payment_succeed">پرداخت با موفقیت انجام شد</string>
     <string name="there_is_no_bill">اشتراکی وارد نشده است</string>
+    <string name="ensheab_has_been_added">افزودن انشعاب با موفقیت انجام شد</string>
 </resources>

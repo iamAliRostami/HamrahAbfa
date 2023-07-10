@@ -37,22 +37,20 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
-import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.enums.BundleEnum;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
-import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
+import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
-    private ActivityMainBinding binding;
     private CardPagerAdapter cardPagerAdapter;
+    private ActivityMainBinding binding;
+    private DialogFragment fragment;
     private int position;
 
     @Override
@@ -62,7 +60,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         //TODO
         initializeSplash();
         // TODO
-//        createCardPagerAdapter();
         initializeBottomSheet();
         binding.floatButtonAdd.setOnClickListener(this);
         final ImageView imageViewSetting = findViewById(R.id.image_view_setting);
@@ -209,20 +206,12 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         boolean isOnline = new GetBillsRequest(this, new GetBillsRequest.ICallback() {
             @Override
             public void succeed(BillsSummary billsInfo) {
-                String billsId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-                ArrayList<String> billIds = new ArrayList<>(Arrays.asList(billsId.split(",")));
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), "");
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
                 for (int i = 0; i < billsInfo.billDtos.size(); i++) {
-                    if (billsId.length() == 0)
-                        insertData(billsInfo.billDtos.get(i));
-                    else {
-                        for (int j = 0; j < billIds.size(); j++) {
-                            if (billIds.get(j).equals(billsInfo.billDtos.get(i).getBillId())) {
-                                editData(billsInfo);
-                            } else {
-                                insertData(billsInfo.billDtos.get(i));
-                            }
-                        }
-                    }
+                    insertData(billsInfo.billDtos.get(i));
                 }
                 updateCard();
             }
@@ -235,14 +224,26 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         progressStatus(isOnline);
     }
 
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
+    }
+
     private void insertData(BillCardViewModel bill) {
-        //TODO
         bill.setDebtString(String.valueOf(bill.getDebt()));
         String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).concat(bill.getId()).concat(",");
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebtString()).concat(",");
-
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
@@ -260,27 +261,11 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             alias = alias.concat(billInfo.billDtos.get(i).getAlias()).concat(",");
             id = id.concat(billInfo.billDtos.get(i).getId()).concat(",");
         }
-
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
     }
 
-    private DialogFragment fragment;
-
-    private void progressStatus(boolean show) {
-        if (show) {
-            if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
-                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
-            }
-        } else {
-            if (fragment != null) {
-                fragment.dismiss();
-                fragment = null;
-            }
-        }
-    }
 
     @Override
     public void createCardPagerAdapter() {
@@ -297,7 +282,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         this.position = position;
     }
 
-    //TODO
     @Override
     public boolean isEmpty() {
         if (cardPagerAdapter.isEmpty()) {

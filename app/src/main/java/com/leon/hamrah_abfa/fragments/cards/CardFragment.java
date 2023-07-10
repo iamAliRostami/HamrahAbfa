@@ -38,8 +38,8 @@ public class CardFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            viewModel = new BillCardViewModel(getArguments().getString(BILL_ID.getValue()),
-                    getArguments().getString(ID.getValue()), getArguments().getString(ALIAS.getValue()),
+            viewModel = new BillCardViewModel(getArguments().getString(ID.getValue()),
+                    getArguments().getString(BILL_ID.getValue()),getArguments().getString(ALIAS.getValue()),
                     getArguments().getString(DEBT.getValue()));
         }
     }

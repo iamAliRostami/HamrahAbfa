@@ -22,8 +22,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public final class APIClientModel {
     private final TimeUnit TIME_UNIT = TimeUnit.SECONDS;
     private final boolean RETRY_ENABLED = false;
-    private final long READ_TIMEOUT = 120;
-    private final long WRITE_TIMEOUT = 60;
+    private final long READ_TIMEOUT = 20;
+    private final long WRITE_TIMEOUT = 10;
     private final long CONNECT_TIMEOUT = 10;
     @Inject
     OkHttpClient okHttpClient;
