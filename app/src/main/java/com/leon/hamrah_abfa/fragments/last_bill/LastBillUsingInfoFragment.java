@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.last_bill;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.databinding.FragmentLastBillUsingInfoBinding;
+import com.leon.hamrah_abfa.fragments.mobile.MobileSubmitFragment;
+
 
 public class LastBillUsingInfoFragment extends Fragment {
-    private FragmentLastBillUsingInfoBinding binding;
+
+    private ICallback callback;
 
     public LastBillUsingInfoFragment() {
     }
@@ -28,12 +33,16 @@ public class LastBillUsingInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentLastBillUsingInfoBinding.inflate(inflater, container, false);
-        initialize();
+        FragmentLastBillUsingInfoBinding binding = FragmentLastBillUsingInfoBinding.inflate(inflater, container, false);
+        binding.setViewModel(callback.getBillViewModel());
         return binding.getRoot();
     }
-
-    private void initialize() {
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+    public interface ICallback {
+        BillViewModel getBillViewModel();
     }
 }

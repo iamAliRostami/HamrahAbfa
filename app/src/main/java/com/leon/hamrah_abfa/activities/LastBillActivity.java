@@ -13,17 +13,20 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityLastBillBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillEnsheabInfoFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillItemsFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillReadingInfoFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillSummaryFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillUsingInfoFragment;
-import com.leon.hamrah_abfa.requests.bill.GetLastRequest;
-import com.leon.hamrah_abfa.tables.LastBillViewModel;
+import com.leon.hamrah_abfa.requests.bill.GetBillRequest;
 
-public class LastBillActivity extends BaseActivity {
+public class LastBillActivity extends BaseActivity implements LastBillSummaryFragment.ICallback,
+        LastBillItemsFragment.ICallback,LastBillReadingInfoFragment.ICallback,
+        LastBillUsingInfoFragment.ICallback,LastBillEnsheabInfoFragment.ICallback{
     private ActivityLastBillBinding binding;
     private DialogFragment fragment;
+    private BillViewModel bill;
     private String id;
     private int zoneId;
 
@@ -41,10 +44,10 @@ public class LastBillActivity extends BaseActivity {
     }
 
     private void requestBills() {
-        GetLastRequest.ICallback callback = new GetLastRequest.ICallback() {
+        GetBillRequest.ICallback callback = new GetBillRequest.ICallback() {
             @Override
-            public void succeed(LastBillViewModel bill) {
-                initializeFrameLayouts();
+            public void succeed(BillViewModel bill) {
+                initializeFrameLayouts(bill);
             }
 
             @Override
@@ -55,10 +58,10 @@ public class LastBillActivity extends BaseActivity {
         progressStatus(getBillRequest(callback).request());
     }
 
-    private GetLastRequest getBillRequest(GetLastRequest.ICallback callback) {
+    private GetBillRequest getBillRequest(GetBillRequest.ICallback callback) {
         if (zoneId == 0)
-            return new GetLastRequest(this, callback, id);
-        else return new GetLastRequest(this, callback, id, zoneId);
+            return new GetBillRequest(this, callback, id);
+        else return new GetBillRequest(this, callback, id, zoneId);
     }
 
     private void progressStatus(boolean show) {
@@ -83,7 +86,8 @@ public class LastBillActivity extends BaseActivity {
         binding.linearLayoutReadingInfo.setOnClickListener(this);
     }
 
-    private void initializeFrameLayouts() {
+    private void initializeFrameLayouts(BillViewModel bill) {
+        this.bill = bill;
         getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutSummary.getId(),
                 LastBillSummaryFragment.newInstance()).commitNow();
         getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsingInfo.getId(),
@@ -186,5 +190,10 @@ public class LastBillActivity extends BaseActivity {
         binding.relativeLayoutEnsheabInfo.setBackgroundResource(R.color.light_gray);
         binding.relativeLayoutSummary.setBackgroundResource(R.color.light_gray);
         binding.relativeLayoutItems.setBackgroundResource(R.color.light_gray);
+    }
+
+    @Override
+    public BillViewModel getBillViewModel() {
+        return bill;
     }
 }

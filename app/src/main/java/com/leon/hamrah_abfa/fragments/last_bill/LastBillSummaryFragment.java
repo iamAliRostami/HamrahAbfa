@@ -1,18 +1,20 @@
 package com.leon.hamrah_abfa.fragments.last_bill;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.leon.hamrah_abfa.databinding.FragmentLastBillSummaryBinding;
 
 public class LastBillSummaryFragment extends Fragment {
-    private FragmentLastBillSummaryBinding binding;
+    private ICallback callback;
+
     public LastBillSummaryFragment() {
     }
 
@@ -28,12 +30,16 @@ public class LastBillSummaryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding =  FragmentLastBillSummaryBinding.inflate(inflater, container, false);
-        initialize();
+        FragmentLastBillSummaryBinding binding = FragmentLastBillSummaryBinding.inflate(inflater, container, false);
+        binding.setViewModel(callback.getBillViewModel());
         return binding.getRoot();
     }
-
-    private void initialize() {
-
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+    public interface ICallback {
+        BillViewModel getBillViewModel();
     }
 }

@@ -4,7 +4,7 @@ import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
-import com.leon.hamrah_abfa.tables.LastBillViewModel;
+import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,10 +26,10 @@ public interface IAbfaService {
     Call<BillCardViewModel> addBill(@Body BillCardViewModel bill);
 
     @GET("/KontoriNew/V1/MobileBill/GetLast/{id}")
-    Call<LastBillViewModel> getLast(@Path("id") String id);
+    Call<BillViewModel> getLast(@Path("id") String id);
 
     @GET("/KontoriNew/V1/MobileBill/GetThis/{zoneId}/{id}")
-    Call<LastBillViewModel> getThis(@Path("id") String id, @Path("zoneId") int zoneId);
+    Call<BillViewModel> getThis(@Path("id") String id, @Path("zoneId") int zoneId);
 
     @GET("/KontoriNew/V1/MobileBill/GetKardex/{id}")
     Call<Kardex> getKardex(@Path("id") String id);

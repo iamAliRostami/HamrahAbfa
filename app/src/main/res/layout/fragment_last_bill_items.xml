@@ -1,190 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".fragments.last_bill.LastBillItemsFragment">
+<layout>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tiny_dp"
-        android:background="@color/light" />
+    <data>
 
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.last_bill.BillViewModel" />
+    </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_31"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_baha"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_feed_in" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_baha_title"
-            style="@style/TitleBill"
-            android:text="@string/baha_ab" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_baha"
-            style="@style/TextItem.LastBill"
-            android:text="@string/baha_ab" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_32"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_31">
+        tools:context=".fragments.last_bill.LastBillItemsFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_dafe"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_waste_water" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tiny_dp"
+            android:background="@color/light" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_dafe_title"
-            style="@style/TitleBill"
-            android:layout_toEndOf="@id/image_view_zone"
-            android:text="@string/baha_dafe" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_dafe"
-            style="@style/TextItem.LastBill"
-            android:text="@string/baha_dafe" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_33"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_32">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_baha"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_feed_in" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_tax"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_tax" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_baha_title"
+                style="@style/TitleBill"
+                android:text="@string/baha_ab" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_tax_title"
-            style="@style/TitleBill"
-            android:text="@string/tax" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_baha"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.abBaha}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_tax"
-            style="@style/TextItem.LastBill"
-            android:text="@string/tax" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_31">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_34"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_33">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_dafe"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_waste_water" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_taklif"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_law" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_dafe_title"
+                style="@style/TitleBill"
+                android:layout_toEndOf="@id/image_view_zone"
+                android:text="@string/baha_dafe" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_taklif_title"
-            style="@style/TitleBill"
-            android:text="@string/taklif" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_dafe"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.karmozdFazelab}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_taklif"
-            style="@style/TextItem.LastBill"
-            android:text="@string/taklif" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_33"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_32">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_35"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_34">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_tax"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_tax" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_kahande"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_recycling" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_tax_title"
+                style="@style/TitleBill"
+                android:text="@string/tax" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_kahande_title"
-            style="@style/TitleBill"
-            android:text="@string/kahande" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_tax"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.maliat}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_kahande"
-            style="@style/TextItem.LastBill"
-            android:text="@string/kahande" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_34"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_33">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_36"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_35">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_taklif"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_law" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_total"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_sigma" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_taklif_title"
+                style="@style/TitleBill"
+                android:text="@string/taklif" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_total_title"
-            style="@style/TitleBill"
-            android:text="@string/total" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_taklif"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.budget}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_total"
-            style="@style/TextItem.LastBill"
-            android:text="@string/total" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_35"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_34">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_37"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_36">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_kahande"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_recycling" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_discount"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_discount" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_kahande_title"
+                style="@style/TitleBill"
+                android:text="@string/kahande" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_discount_title"
-            style="@style/TitleBill"
-            android:text="@string/discount" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_kahande"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.lavazemKahande}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_discount"
-            style="@style/TextItem.LastBill"
-            android:text="@string/discount" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_36"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_35">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_38"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_37">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_total"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_sigma" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_debt"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_debt" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_total_title"
+                android:text="@string/total"
+                style="@style/TitleBill"/>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_debt_title"
-            style="@style/TitleBill"
-            android:text="@string/debt" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_total"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.jam}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_debt"
-            style="@style/TextItem.LastBill"
-            android:text="@string/debt" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</RelativeLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_37"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_36">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_discount"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_discount" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_discount_title"
+                android:text="@string/discount"
+                style="@style/TitleBill"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_discount"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.taxfif}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_38"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_37">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_debt"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_debt" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_debt_title"
+                style="@style/TitleBill"
+                android:text="@string/debt" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_debt"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.preBedOrBes}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</layout>

@@ -1,105 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/light_gray"
-    tools:context=".fragments.last_bill.LastBillSummaryFragment">
+<layout>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tiny_dp"
-        android:background="@color/light" />
+    <data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_11"
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.last_bill.BillViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/divider">
+        android:background="@color/light_gray"
+        tools:context=".fragments.last_bill.LastBillSummaryFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_owner"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_manager" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tiny_dp"
+            android:background="@color/light" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_owner_title"
-            style="@style/TitleBill"
-            android:text="@string/dear_user" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_owner"
-            style="@style/TextItem.LastBill"
-            android:text="@string/dear_user" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_owner"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_manager" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_11">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_owner_title"
+                style="@style/TitleBill"
+                android:text="@string/dear_user" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_bill_id"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_bill_id" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_owner"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.fullName}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_bill_id_title"
-            style="@style/TitleBill"
-            android:layout_toEndOf="@id/image_view_zone"
-            android:text="@string/bill_id" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_11">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_bill_id"
-            style="@style/TextItem.LastBill"
-            android:text="@string/bill_id" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_bill_id"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_bill_id" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_12">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_bill_id_title"
+                style="@style/TitleBill"
+                android:layout_toEndOf="@id/image_view_zone"
+                android:text="@string/bill_id" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_bill_price"
-            style="@style/ImageItemStyle"
-            android:tint="@color/dark"
-            android:src="@drawable/ic_bill_price" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_bill_id"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.billId}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_bill_price_title"
-            style="@style/TitleBill"
-            android:text="@string/bill_price" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_12">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_bill_price"
-            style="@style/TextItem.LastBill"
-            android:text="@string/bill_price" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_bill_price"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_bill_price"
+                android:tint="@color/dark" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_14"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_13">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_bill_price_title"
+                style="@style/TitleBill"
+                android:text="@string/bill_price" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_dead_line"
-            style="@style/ImageItemStyle"
-            android:tint="@color/dark"
-            android:src="@drawable/ic_deadline" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_bill_price"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.payable}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_dead_line_title"
-            style="@style/TitleBill"
-            android:text="@string/deadline" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_13">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_dead_line"
-            style="@style/TextItem.LastBill"
-            android:text="@string/deadline" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</RelativeLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_dead_line"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_deadline"
+                android:tint="@color/dark" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_dead_line_title"
+                style="@style/TitleBill"
+                android:text="@string/deadline" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_dead_line"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.deadLine}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</layout>

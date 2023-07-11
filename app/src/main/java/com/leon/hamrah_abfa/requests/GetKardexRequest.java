@@ -12,7 +12,6 @@ import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
-import com.leon.hamrah_abfa.tables.LastBillViewModel;
 
 import retrofit2.Call;
 import retrofit2.Response;

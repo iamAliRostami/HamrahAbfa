@@ -1,11 +1,11 @@
-package com.leon.hamrah_abfa.tables;
+package com.leon.hamrah_abfa.fragments.last_bill;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.leon.hamrah_abfa.BR;
 
-public class LastBillViewModel extends BaseObservable {
+public class BillViewModel extends BaseObservable {
     private String id;
     private int zoneId;
     private String zoneTitle;
@@ -147,6 +147,11 @@ public class LastBillViewModel extends BaseObservable {
     @Bindable
     public String getMasrafLiter() {
         return masrafLiter;
+    }
+
+    @Bindable
+    public String getMasrafM3() {
+        return String.valueOf(Integer.parseInt(masrafLiter) * 1000);
     }
 
     @Bindable

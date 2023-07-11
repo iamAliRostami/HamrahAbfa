@@ -1,145 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".fragments.last_bill.LastBillEnsheabInfoFragment">
+<layout>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tiny_dp"
-        android:background="@color/light" />
+    <data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_31"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.last_bill.BillViewModel" />
+    </data>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_karbari"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_using" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_karbari_title"
-            style="@style/TitleBill"
-            android:text="@string/karbari" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_karbari"
-            style="@style/TextItem.LastBill"
-            android:text="@string/karbari" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_32"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_31">
+        tools:context=".fragments.last_bill.LastBillEnsheabInfoFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_ahad_maskooni"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_maskooni" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tiny_dp"
+            android:background="@color/light" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_dafe_title"
-            style="@style/TitleBill"
-            android:text="@string/ahad_maskooni" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_dafe"
-            style="@style/TextItem.LastBill"
-            android:text="@string/ahad_maskooni" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_karbari"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_using" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_33"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_32">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_karbari_title"
+                style="@style/TitleBill"
+                android:text="@string/karbari" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_ahad_non_maskooni"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_market" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_karbari"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.karbariTitle}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_ahad_non_maskooni_title"
-            style="@style/TitleBill"
-            android:text="@string/ahad_non_maskooni" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_31">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_ahad_non_maskooni"
-            style="@style/TextItem.LastBill"
-            android:text="@string/ahad_non_maskooni" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_ahad_maskooni"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_maskooni" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_34"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_33">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_dafe_title"
+                style="@style/TitleBill"
+                android:text="@string/ahad_maskooni" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_zarfiat"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_contract" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_dafe"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.ahadMaskooni}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_zarfiat_title"
-            style="@style/TitleBill"
-            android:text="@string/zarfiat" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_33"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_32">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_zarfiat"
-            style="@style/TextItem.LastBill"
-            android:text="@string/zarfiat" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_ahad_non_maskooni"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_market" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_35"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_34">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_ahad_non_maskooni_title"
+                style="@style/TitleBill"
+                android:text="@string/ahad_non_maskooni" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_qotr"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_diameter_1" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_ahad_non_maskooni"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.ahadNonMaskooni}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_qotr_title"
-            style="@style/TitleBill"
-            android:text="@string/qotr" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_34"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_33">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_qotr"
-            style="@style/TextItem.LastBill"
-            android:text="@string/qotr" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_zarfiat"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_contract" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_36"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout_35">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_zarfiat_title"
+                style="@style/TitleBill"
+                android:text="@string/zarfiat" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_total"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_radius" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_zarfiat"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.zarfiatQarardadi}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_qotr_siphon_title"
-            style="@style/TitleBill"
-            android:text="@string/qotr_siphon" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_35"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_34">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_qotr_siphon"
-            style="@style/TextItem.LastBill"
-            android:text="@string/qotr_siphon" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_qotr"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_diameter_1" />
 
-</RelativeLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_qotr_title"
+                style="@style/TitleBill"
+                android:text="@string/qotr" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_qotr"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.qotr}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_36"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_layout_35">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_total"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_radius" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_qotr_siphon_title"
+                style="@style/TitleBill"
+                android:text="@string/qotr_siphon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_qotr_siphon"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.qotrSifoon}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+</layout>

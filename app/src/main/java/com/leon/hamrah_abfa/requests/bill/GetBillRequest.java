@@ -11,25 +11,25 @@ import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
-import com.leon.hamrah_abfa.tables.LastBillViewModel;
+import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class GetLastRequest {
+public class GetBillRequest {
     private final Context context;
     private final ICallback callback;
     private final String id;
     private int zoneId;
 
-    public GetLastRequest(Context context, ICallback callback, String id) {
+    public GetBillRequest(Context context, ICallback callback, String id) {
         this.context = context;
         this.callback = callback;
         this.id = id;
     }
 
-    public GetLastRequest(Context context, ICallback callback, String id, int zoneId) {
+    public GetBillRequest(Context context, ICallback callback, String id, int zoneId) {
         this.context = context;
         this.callback = callback;
         this.id = id;
@@ -40,31 +40,31 @@ public class GetLastRequest {
         callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<LastBillViewModel> call;
+        final Call<BillViewModel> call;
         if (zoneId == 0)
             call = iAbfaService.getLast(id);
         else
             call = iAbfaService.getThis(id, zoneId);
-        return HttpClientWrapper.callHttpAsync(context, call, new GetLastBillSuccessful(callback),
-                new GetLastBillIncomplete(context, callback), new GetLastBillFailed(context, callback));
+        return HttpClientWrapper.callHttpAsync(context, call, new GetBillSuccessful(callback),
+                new GetBillIncomplete(context, callback), new GetBillFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(LastBillViewModel bill);
+        void succeed(BillViewModel bill);
 
         void changeUI(boolean show);
     }
 }
 
-class GetLastBillSuccessful implements ICallbackSucceed<LastBillViewModel> {
-    private final GetLastRequest.ICallback callback;
+class GetBillSuccessful implements ICallbackSucceed<BillViewModel> {
+    private final GetBillRequest.ICallback callback;
 
-    public GetLastBillSuccessful(GetLastRequest.ICallback callback) {
+    public GetBillSuccessful(GetBillRequest.ICallback callback) {
         this.callback = callback;
     }
 
     @Override
-    public void executeCompleted(Response<LastBillViewModel> response) {
+    public void executeCompleted(Response<BillViewModel> response) {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
@@ -73,28 +73,28 @@ class GetLastBillSuccessful implements ICallbackSucceed<LastBillViewModel> {
     }
 }
 
-class GetLastBillIncomplete implements ICallbackIncomplete<LastBillViewModel> {
+class GetBillIncomplete implements ICallbackIncomplete<BillViewModel> {
     private final Context context;
-    private final GetLastRequest.ICallback callback;
+    private final GetBillRequest.ICallback callback;
 
-    public GetLastBillIncomplete(Context context, GetLastRequest.ICallback callback) {
+    public GetBillIncomplete(Context context, GetBillRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
 
     @Override
-    public void executeDismissed(Response<LastBillViewModel> response) {
+    public void executeDismissed(Response<BillViewModel> response) {
         callback.changeUI(false);
         //TODO
         warning(context, "dismissed").show();
     }
 }
 
-class GetLastBillFailed implements ICallbackFailure {
+class GetBillFailed implements ICallbackFailure {
     private final Context context;
-    private final GetLastRequest.ICallback callback;
+    private final GetBillRequest.ICallback callback;
 
-    public GetLastBillFailed(Context context, GetLastRequest.ICallback callback) {
+    public GetBillFailed(Context context, GetBillRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

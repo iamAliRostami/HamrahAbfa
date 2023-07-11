@@ -1,80 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".fragments.last_bill.LastBillUsingInfoFragment">
+<layout>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tiny_dp"
-        android:background="@color/light_gray" />
+    <data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_21"
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.last_bill.BillViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/divider">
+        tools:context=".fragments.last_bill.LastBillUsingInfoFragment">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_m3"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_m3" />
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tiny_dp"
+            android:background="@color/light_gray" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_m3_title"
-            style="@style/TitleBill"
-            android:text="@string/using_m3" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_m3"
-            style="@style/TextItem.LastBill"
-            android:text="@string/using_m3" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_m3"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_m3" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_22"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_21">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_m3_title"
+                style="@style/TitleBill"
+                android:text="@string/using_m3" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_liter"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_meter" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_m3"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.masrafM3}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_liter_title"
-            style="@style/TitleBill"
-            android:text="@string/using_liter" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_21">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_liter"
-            style="@style/TextItem.LastBill"
-            android:text="@string/using_liter" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_liter"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_meter" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_23"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_layout_22">
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_liter_title"
+                style="@style/TitleBill"
+                android:text="@string/using_liter" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_view_average"
-            style="@style/ImageItemStyle"
-            android:src="@drawable/ic_average" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_liter"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.masrafLiter}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_average_title"
-            style="@style/TitleBill"
-            android:text="@string/using_average" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_22">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_average"
-            style="@style/TextItem.LastBill"
-            android:text="@string/using_average" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_average"
+                style="@style/ImageItemStyle"
+                android:src="@drawable/ic_average" />
 
-</RelativeLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_average_title"
+                style="@style/TitleBill"
+                android:text="@string/using_average" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_average"
+                style="@style/TextItem.LastBill"
+                android:text="@{viewModel.masrafAverage}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+</layout>
