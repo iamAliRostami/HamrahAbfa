@@ -1,22 +1,29 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.view.View;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityLastBillBinding;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillEnsheabInfoFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillItemsFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillReadingInfoFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillSummaryFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillUsingInfoFragment;
+import com.leon.hamrah_abfa.requests.bill.GetLastBillRequest;
+import com.leon.hamrah_abfa.tables.LastBillViewModel;
 
 public class LastBillActivity extends BaseActivity {
     private ActivityLastBillBinding binding;
     private String id;
+    private DialogFragment fragment;
 
     @Override
     protected void initialize() {
@@ -26,8 +33,38 @@ public class LastBillActivity extends BaseActivity {
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
+        requestBills();
         initializeFrameLayouts();
         setOnClickListener();
+    }
+
+    private void requestBills() {
+        boolean isOnline = new GetLastBillRequest(this, new GetLastBillRequest.ICallback() {
+            @Override
+            public void succeed(LastBillViewModel bills) {
+
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, id).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void setOnClickListener() {

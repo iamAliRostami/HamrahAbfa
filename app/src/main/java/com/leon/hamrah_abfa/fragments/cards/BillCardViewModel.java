@@ -19,7 +19,7 @@ public class BillCardViewModel extends BaseObservable {
 
 
     public BillCardViewModel(String id, String billId, String alias, String debt) {
-        setId(alias);
+        setId(id);
         setBillId(billId);
         setAlias(alias);
         setDebtString(debt);
