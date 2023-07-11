@@ -5,6 +5,7 @@ public enum BundleEnum {
     OWNER("owner"),
     BILL_ID("bill id"),
     ID("id"),
+    ZONE_ID("zone_id"),
     LAST_PAGE("last page"),
     SERVICE_TYPE("service type"),
     LATITUDE("latitude"),

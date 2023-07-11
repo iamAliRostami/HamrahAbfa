@@ -43,10 +43,10 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
 //            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
 //        else
 //            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
-        holder.textViewPrice.setText(payments.get(position).price);
+        holder.textViewPrice.setText(payments.get(position).amount);
         holder.textViewBank.setText(payments.get(position).bank);
-        holder.textViewPaymentType.setText(payments.get(position).paymentType);
-        holder.textViewDate.setText(payments.get(position).date);
+        holder.textViewPaymentType.setText(payments.get(position).method);
+        holder.textViewDate.setText(payments.get(position).day);
 
         if (!payments.get(position).submitType)
             holder.imageViewSubmitType.setImageResource(R.drawable.ic_disapproval);

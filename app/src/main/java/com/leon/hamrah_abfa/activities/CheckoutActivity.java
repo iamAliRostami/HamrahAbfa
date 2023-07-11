@@ -1,9 +1,12 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -12,23 +15,65 @@ import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityCheckoutBinding;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillFragment;
+import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
+import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentViewModel;
+import com.leon.hamrah_abfa.fragments.checkout.Kardex;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.requests.GetKardexRequest;
+
+import java.util.ArrayList;
 
 public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         CheckoutBillFragment.ICallback, CheckoutPaymentFragment.ICallback {
+    private final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
+    private final ArrayList<CheckoutPaymentViewModel> payments = new ArrayList<>();
     private ActivityCheckoutBinding binding;
-    private String billId;
+    private DialogFragment fragment;
+    private String id;
 
     @Override
     protected void initialize() {
         binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
+            id = getIntent().getExtras().getString(ID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
-        initializeViewPager();
+        requestBills();
+
         initializeTabLayout();
+    }
+
+    private void requestBills() {
+        boolean isOnline = new GetKardexRequest(this, new GetKardexRequest.ICallback() {
+            @Override
+            public void succeed(Kardex kardex) {
+                bills.addAll(kardex.bills);
+                payments.addAll(kardex.payments);
+                initializeViewPager();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, id).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void initializeViewPager() {
@@ -78,7 +123,17 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
     }
 
     @Override
-    public String getBillId() {
-        return billId;
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public ArrayList<CheckoutBillViewModel> getBills() {
+        return bills;
+    }
+
+    @Override
+    public ArrayList<CheckoutPaymentViewModel> getPayments() {
+        return payments;
     }
 }

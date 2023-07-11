@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ZONE_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -17,12 +18,13 @@ import com.leon.hamrah_abfa.fragments.last_bill.LastBillItemsFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillReadingInfoFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillSummaryFragment;
 import com.leon.hamrah_abfa.fragments.last_bill.LastBillUsingInfoFragment;
-import com.leon.hamrah_abfa.requests.bill.GetLastBillRequest;
+import com.leon.hamrah_abfa.requests.bill.GetLastRequest;
 import com.leon.hamrah_abfa.tables.LastBillViewModel;
 
 public class LastBillActivity extends BaseActivity {
     private ActivityLastBillBinding binding;
     private String id;
+    private int zoneId;
     private DialogFragment fragment;
 
     @Override
@@ -30,6 +32,7 @@ public class LastBillActivity extends BaseActivity {
         binding = ActivityLastBillBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             id = getIntent().getExtras().getString(ID.getValue());
+            zoneId = getIntent().getExtras().getInt(ZONE_ID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
@@ -39,7 +42,25 @@ public class LastBillActivity extends BaseActivity {
     }
 
     private void requestBills() {
-        boolean isOnline = new GetLastBillRequest(this, new GetLastBillRequest.ICallback() {
+        boolean isOnline;
+        isOnline = getBillRequest().request();
+        progressStatus(isOnline);
+    }
+
+    private GetLastRequest getBillRequest() {
+        if (zoneId == 0)
+            return new GetLastRequest(this, new GetLastRequest.ICallback() {
+                @Override
+                public void succeed(LastBillViewModel bills) {
+
+                }
+
+                @Override
+                public void changeUI(boolean done) {
+                    progressStatus(done);
+                }
+            }, id);
+        else return new GetLastRequest(this, new GetLastRequest.ICallback() {
             @Override
             public void succeed(LastBillViewModel bills) {
 
@@ -49,8 +70,7 @@ public class LastBillActivity extends BaseActivity {
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, id).request();
-        progressStatus(isOnline);
+        }, id, zoneId);
     }
 
     private void progressStatus(boolean show) {

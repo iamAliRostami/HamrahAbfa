@@ -1,26 +1,19 @@
 package com.leon.hamrah_abfa.fragments.checkout;
 
 public class CheckoutBillViewModel {
-    public final String price;
-    public final String dateEnd;
-    public final String dateStart;
-    public int days;
-    public final int usage;
+    public String amount;
+    public String day;
+    public String duration;
+    public String usage;
+    public int zoneId;
     public int usageType;
 
-    public CheckoutBillViewModel(String dateStart, String dateEnd, String price, int usage) {
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
+    public CheckoutBillViewModel(String day, String amount, String usage, String duration, int usageType) {
+        this.amount = amount;
+        this.duration = duration;
+        this.day = day;
         this.usage = usage;
-        this.price = price;
-    }
 
-    public CheckoutBillViewModel(String dateStart, String dateEnd, String price, int usage,int days,int usageType) {
-        this.price = price;
-        this.days = days;
-        this.dateEnd = dateEnd;
-        this.usage = usage;
         this.usageType = usageType;
-        this.dateStart = dateStart;
     }
 }

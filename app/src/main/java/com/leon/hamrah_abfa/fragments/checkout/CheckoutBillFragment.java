@@ -1,7 +1,11 @@
 package com.leon.hamrah_abfa.fragments.checkout;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ZONE_ID;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.leon.hamrah_abfa.activities.LastBillActivity;
 import com.leon.hamrah_abfa.adapters.recycler_view.CheckoutBillAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentCheckoutBillBinding;
@@ -53,8 +58,8 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
     private void initializeRecyclerView() {
         final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
         for (int i = 0; i < 50; i++)
-            bills.add(new CheckoutBillViewModel("1402/12/12", "12/12/12", "1234567890", 125, 38, i % 3));
-        adapter = new CheckoutBillAdapter(requireContext(), bills);
+            bills.add(new CheckoutBillViewModel("1402/12/12", "1234567890", "125", "38", i % 3));
+        adapter = new CheckoutBillAdapter(requireContext(), callback.getBills());
         binding.recyclerViewCheckoutBill.setAdapter(adapter);
         binding.recyclerViewCheckoutBill.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -65,7 +70,10 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
                 binding.recyclerViewCheckoutBill, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent intent = new Intent(requireContext(), LastBillActivity.class);
+                intent.putExtra(ID.getValue(), callback.getId());
+                intent.putExtra(ZONE_ID.getValue(), adapter.getZoneId(position));
+                startActivity(intent);
             }
 
             @Override
@@ -103,6 +111,8 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
     }
 
     public interface ICallback {
-        String getBillId();
+        String getId();
+
+        ArrayList<CheckoutBillViewModel> getBills();
     }
 }

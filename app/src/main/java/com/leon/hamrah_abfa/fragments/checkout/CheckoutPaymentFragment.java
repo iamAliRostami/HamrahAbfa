@@ -55,26 +55,9 @@ public class CheckoutPaymentFragment extends Fragment implements View.OnClickLis
         for (int i = 0; i < 50; i++)
             payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", i % 2 == 0));
 
-        adapter = new CheckoutPaymentAdapter(requireContext(), payments);
+        adapter = new CheckoutPaymentAdapter(requireContext(), callback.getPayments());
         binding.recyclerViewCheckoutPayment.setAdapter(adapter);
         binding.recyclerViewCheckoutPayment.setLayoutManager(new LinearLayoutManager(requireContext()));
-        setRecyclerViewListener();
-    }
-
-    private void setRecyclerViewListener() {
-        final RecyclerItemClickListener listener = new RecyclerItemClickListener(requireContext(),
-                binding.recyclerViewCheckoutPayment, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-        });
-        binding.recyclerViewCheckoutPayment.addOnItemTouchListener(listener);
     }
 
     @Override
@@ -104,6 +87,8 @@ public class CheckoutPaymentFragment extends Fragment implements View.OnClickLis
 
 
     public interface ICallback {
-        String getBillId();
+        String getId();
+
+        ArrayList<CheckoutPaymentViewModel> getPayments();
     }
 }
