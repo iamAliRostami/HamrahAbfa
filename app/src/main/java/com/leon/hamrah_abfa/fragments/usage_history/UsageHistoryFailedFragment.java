@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.usage_history;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +19,10 @@ import com.leon.hamrah_abfa.databinding.FragmentUsageHistoryFailedBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsageHistoryFailedFragment extends Fragment  implements ChipGroup.OnCheckedStateChangeListener {
+public class UsageHistoryFailedFragment extends Fragment implements ChipGroup.OnCheckedStateChangeListener {
     private FragmentUsageHistoryFailedBinding binding;
     private UsageHistoryFailedAdapter adapter;
+    private ICallback callback;
 
     public UsageHistoryFailedFragment() {
     }
@@ -46,10 +49,7 @@ public class UsageHistoryFailedFragment extends Fragment  implements ChipGroup.O
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<UsageHistoryViewModel> usageHistory = new ArrayList<>();
-        for (int i = 0; i < 50; i++)
-            usageHistory.add(new UsageHistoryViewModel("12/12/12", "145","مصرف بالا",true));
-        adapter = new UsageHistoryFailedAdapter(requireContext(), usageHistory);
+        adapter = new UsageHistoryFailedAdapter(requireContext(), callback.getUnsuccessBills());
         binding.recyclerViewUsageFailed.setAdapter(adapter);
         binding.recyclerViewUsageFailed.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
@@ -63,8 +63,20 @@ public class UsageHistoryFailedFragment extends Fragment  implements ChipGroup.O
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public interface ICallback {
+        String getId();
+
+        ArrayList<AttemptViewModel> getUnsuccessBills();
     }
 }

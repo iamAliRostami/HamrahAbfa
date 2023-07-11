@@ -5,6 +5,7 @@ import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
+import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -33,5 +34,8 @@ public interface IAbfaService {
 
     @GET("/KontoriNew/V1/MobileBill/GetKardex/{id}")
     Call<Kardex> getKardex(@Path("id") String id);
+
+    @GET("/KontoriNew/V1/MobileBill/GetAttempts/{id}")
+    Call<Attempt> getAttempts(@Path("id") String id);
 }
 

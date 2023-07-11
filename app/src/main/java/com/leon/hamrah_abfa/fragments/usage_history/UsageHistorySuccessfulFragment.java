@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.usage_history;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.leon.hamrah_abfa.adapters.recycler_view.UsageHistoryAdapter;
-import com.leon.hamrah_abfa.adapters.recycler_view.UsageHistoryFailedAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentUsageHistorySuccessfulBinding;
+import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
 public class UsageHistorySuccessfulFragment extends Fragment implements ChipGroup.OnCheckedStateChangeListener {
     private FragmentUsageHistorySuccessfulBinding binding;
     private UsageHistoryAdapter adapter;
+    private ICallback callback;
 
     public UsageHistorySuccessfulFragment() {
     }
@@ -47,10 +50,7 @@ public class UsageHistorySuccessfulFragment extends Fragment implements ChipGrou
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<UsageHistoryViewModel> usageHistory = new ArrayList<>();
-        for (int i = 0; i < 50; i++)
-            usageHistory.add(new UsageHistoryViewModel("12/12/12", "145","4523655233"));
-        adapter = new UsageHistoryAdapter(requireContext(), usageHistory);
+        adapter = new UsageHistoryAdapter(requireContext(), callback.getSuccessBills());
         binding.recyclerViewUsageSuccessful.setAdapter(adapter);
         binding.recyclerViewUsageSuccessful.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
@@ -64,9 +64,21 @@ public class UsageHistorySuccessfulFragment extends Fragment implements ChipGrou
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public interface ICallback {
+        String getId();
+
+        ArrayList<AttemptViewModel> getSuccessBills();
     }
 
 }

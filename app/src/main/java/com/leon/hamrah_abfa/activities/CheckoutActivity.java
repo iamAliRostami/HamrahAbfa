@@ -20,7 +20,7 @@ import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
-import com.leon.hamrah_abfa.requests.GetKardexRequest;
+import com.leon.hamrah_abfa.requests.bill.GetKardexRequest;
 
 import java.util.ArrayList;
 

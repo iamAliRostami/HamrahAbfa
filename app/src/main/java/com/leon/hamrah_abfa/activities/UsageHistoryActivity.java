@@ -1,9 +1,13 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -11,25 +15,64 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityUsageHistoryBinding;
-import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillFragment;
-import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
+import com.leon.hamrah_abfa.fragments.usage_history.AttemptViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.UsageHistoryFailedFragment;
 import com.leon.hamrah_abfa.fragments.usage_history.UsageHistorySuccessfulFragment;
+import com.leon.hamrah_abfa.requests.GetUsageHistoryRequest;
 
-public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTabSelectedListener{
+import java.util.ArrayList;
+
+public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
+        UsageHistorySuccessfulFragment.ICallback, UsageHistoryFailedFragment.ICallback {
     private ActivityUsageHistoryBinding binding;
-    private String billId;
+    private String id;
+    private DialogFragment fragment;
+    private final ArrayList<AttemptViewModel> successAttempts = new ArrayList<>();
+    private final ArrayList<AttemptViewModel> unsuccessAttempts = new ArrayList<>();
 
     @Override
     protected void initialize() {
         binding = ActivityUsageHistoryBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
+            id = getIntent().getExtras().getString(UUID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
-        initializeViewPager();
+        requestAttempts();
         initializeTabLayout();
+    }
+
+    private void requestAttempts() {
+        boolean isOnline = new GetUsageHistoryRequest(this, new GetUsageHistoryRequest.ICallback() {
+            @Override
+            public void succeed(Attempt attempt) {
+                successAttempts.addAll(attempt.successBills);
+                unsuccessAttempts.addAll(attempt.unsuccessBills);
+                initializeViewPager();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, id).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void initializeViewPager() {
@@ -76,6 +119,20 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
 
     @Override
     public void onClick(View v) {
+    }
 
+    @Override
+    public ArrayList<AttemptViewModel> getUnsuccessBills() {
+        return unsuccessAttempts;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<AttemptViewModel> getSuccessBills() {
+        return successAttempts;
     }
 }
