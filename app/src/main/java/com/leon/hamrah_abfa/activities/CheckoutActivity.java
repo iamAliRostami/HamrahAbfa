@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -36,7 +36,7 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
     protected void initialize() {
         binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            id = getIntent().getExtras().getString(ID.getValue());
+            id = getIntent().getExtras().getString(UUID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());

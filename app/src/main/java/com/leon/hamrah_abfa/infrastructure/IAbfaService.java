@@ -29,7 +29,7 @@ public interface IAbfaService {
     Call<BillViewModel> getLast(@Path("id") String id);
 
     @GET("/KontoriNew/V1/MobileBill/GetThis/{zoneId}/{id}")
-    Call<BillViewModel> getThis(@Path("id") String id, @Path("zoneId") int zoneId);
+    Call<BillViewModel> getThis(@Path("id") int id, @Path("zoneId") int zoneId);
 
     @GET("/KontoriNew/V1/MobileBill/GetKardex/{id}")
     Call<Kardex> getKardex(@Path("id") String id);

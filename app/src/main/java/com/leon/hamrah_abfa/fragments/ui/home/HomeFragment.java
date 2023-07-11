@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.fragments.ui.home;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
 
 import android.app.Activity;
@@ -164,7 +164,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     private Intent createIntent(Class<?> cls) {
         final Intent intent = new Intent(requireContext(), cls);
-        intent.putExtra(ID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(UUID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
         return intent;
     }
 

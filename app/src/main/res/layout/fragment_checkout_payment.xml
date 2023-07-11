@@ -14,12 +14,6 @@
         android:paddingStart="@dimen/medium_dp"
         android:paddingEnd="@dimen/medium_dp">
 
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:id="@+id/image_view_info"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="@dimen/small_dp"-->
-<!--            android:src="@drawable/ic_info" />-->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_animation_view_info"
             app:lottie_autoPlay="true"
@@ -36,7 +30,6 @@
             android:layout_toEndOf="@id/lottie_animation_view_info"
             android:text="@string/description_payments"
             android:textAppearance="@style/TextStyleSmall.Bold" />
-
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -77,13 +70,13 @@
                     style="@style/Chip.Filter"
                     android:text="30" />
 
-                <com.google.android.material.chip.Chip
-                    style="@style/Chip.Filter"
-                    android:text="40" />
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    style="@style/Chip.Filter"-->
+<!--                    android:text="40" />-->
 
-                <com.google.android.material.chip.Chip
-                    style="@style/Chip.Filter"
-                    android:text="50" />
+<!--                <com.google.android.material.chip.Chip-->
+<!--                    style="@style/Chip.Filter"-->
+<!--                    android:text="50" />-->
             </com.google.android.material.chip.ChipGroup>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

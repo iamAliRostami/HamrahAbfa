@@ -245,4 +245,7 @@
     <string name="payment_succeed">پرداخت با موفقیت انجام شد</string>
     <string name="there_is_no_bill">اشتراکی وارد نشده است</string>
     <string name="ensheab_has_been_added">افزودن انشعاب با موفقیت انجام شد</string>
+
+    <string name="payment_site">https://crm.abfaesfahan.ir/%s/Bill</string>
+
 </resources>

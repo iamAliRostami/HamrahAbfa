@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.ZONE_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
@@ -22,20 +23,22 @@ import com.leon.hamrah_abfa.fragments.last_bill.LastBillUsingInfoFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillRequest;
 
 public class LastBillActivity extends BaseActivity implements LastBillSummaryFragment.ICallback,
-        LastBillItemsFragment.ICallback,LastBillReadingInfoFragment.ICallback,
-        LastBillUsingInfoFragment.ICallback,LastBillEnsheabInfoFragment.ICallback{
+        LastBillItemsFragment.ICallback, LastBillReadingInfoFragment.ICallback,
+        LastBillUsingInfoFragment.ICallback, LastBillEnsheabInfoFragment.ICallback {
     private ActivityLastBillBinding binding;
     private DialogFragment fragment;
     private BillViewModel bill;
-    private String id;
+    private String uuid;
     private int zoneId;
+    private int id;
 
     @Override
     protected void initialize() {
         binding = ActivityLastBillBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            id = getIntent().getExtras().getString(ID.getValue());
+            uuid = getIntent().getExtras().getString(UUID.getValue());
             zoneId = getIntent().getExtras().getInt(ZONE_ID.getValue());
+            id = getIntent().getExtras().getInt(ID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
@@ -60,7 +63,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
 
     private GetBillRequest getBillRequest(GetBillRequest.ICallback callback) {
         if (zoneId == 0)
-            return new GetBillRequest(this, callback, id);
+            return new GetBillRequest(this, callback, uuid);
         else return new GetBillRequest(this, callback, id, zoneId);
     }
 

@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.last_bill;
 
+import android.annotation.SuppressLint;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -30,19 +32,19 @@ public class BillViewModel extends BaseObservable {
     private String masraf;
     private String masrafLiter;
     private String masrafAverage;
-    private String abBaha;
-    private String karmozdFazelab;
-    private String maliat;
-    private String budget;
-    private String lavazemKahande;
-    private String jam;
-    private String taxfif;
-    private String preBedOrBes;
-    private String payable;
+    private long abBaha;
+    private long karmozdFazelab;
+    private long maliat;
+    private long budget;
+    private long lavazemKahande;
+    private long jam;
+    private long taxfif;
+    private long preBedOrBes;
+    private long payable;
     private String deadLine;
     private String days;
     private String billId;
-    private int payId;
+    private long payId;
     private String barCode;
     private boolean isPayed;
     private String payDate;
@@ -161,47 +163,54 @@ public class BillViewModel extends BaseObservable {
 
     @Bindable
     public String getAbBaha() {
-        return abBaha;
+        return String.format("%,d", abBaha);
     }
 
     @Bindable
     public String getKarmozdFazelab() {
-        return karmozdFazelab;
+        return String.format("%,d", karmozdFazelab);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getMaliat() {
-        return maliat;
+        return String.format("%,d", maliat);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getBudget() {
-        return budget;
+        return String.format("%,d", budget);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getLavazemKahande() {
-        return lavazemKahande;
+        return String.format("%,d", lavazemKahande);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getJam() {
-        return jam;
+        return String.format("%,d", jam);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getTaxfif() {
-        return taxfif;
+        return String.format("%,d", taxfif);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getPreBedOrBes() {
-        return preBedOrBes;
+        return String.format("%,d", preBedOrBes);
     }
 
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getPayable() {
-        return payable;
+        return String.format("%,d", payable);
     }
 
     @Bindable
@@ -209,7 +218,7 @@ public class BillViewModel extends BaseObservable {
         return deadLine;
     }
 
-    public int getPayId() {
+    public long getPayId() {
         return payId;
     }
 
@@ -372,47 +381,47 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.masrafAverage);
     }
 
-    public void setAbBaha(String abBaha) {
+    public void setAbBaha(long abBaha) {
         this.abBaha = abBaha;
         notifyPropertyChanged(BR.abBaha);
     }
 
-    public void setKarmozdFazelab(String karmozdFazelab) {
+    public void setKarmozdFazelab(long karmozdFazelab) {
         this.karmozdFazelab = karmozdFazelab;
         notifyPropertyChanged(BR.karmozdFazelab);
     }
 
-    public void setMaliat(String maliat) {
+    public void setMaliat(long maliat) {
         this.maliat = maliat;
         notifyPropertyChanged(BR.maliat);
     }
 
-    public void setBudget(String budget) {
+    public void setBudget(long budget) {
         this.budget = budget;
         notifyPropertyChanged(BR.budget);
     }
 
-    public void setLavazemKahande(String lavazemKahande) {
+    public void setLavazemKahande(long lavazemKahande) {
         this.lavazemKahande = lavazemKahande;
         notifyPropertyChanged(BR.lavazemKahande);
     }
 
-    public void setJam(String jam) {
+    public void setJam(long jam) {
         this.jam = jam;
         notifyPropertyChanged(BR.jam);
     }
 
-    public void setTaxfif(String taxfif) {
+    public void setTaxfif(long taxfif) {
         this.taxfif = taxfif;
         notifyPropertyChanged(BR.taxfif);
     }
 
-    public void setPreBedOrBes(String preBedOrBes) {
+    public void setPreBedOrBes(long preBedOrBes) {
         this.preBedOrBes = preBedOrBes;
         notifyPropertyChanged(BR.preBedOrBes);
     }
 
-    public void setPayable(String payable) {
+    public void setPayable(long payable) {
         this.payable = payable;
         notifyPropertyChanged(BR.payable);
     }
@@ -422,7 +431,7 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.deadLine);
     }
 
-    public void setPayId(int payId) {
+    public void setPayId(long payId) {
         this.payId = payId;
     }
 

@@ -14,13 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.leon.hamrah_abfa.adapters.recycler_view.CheckoutPaymentAdapter;
-import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentCheckoutPaymentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckoutPaymentFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedStateChangeListener {
+public class CheckoutPaymentFragment extends Fragment implements ChipGroup.OnCheckedStateChangeListener {
     private FragmentCheckoutPaymentBinding binding;
     private CheckoutPaymentAdapter adapter;
     private ICallback callback;
@@ -51,18 +50,9 @@ public class CheckoutPaymentFragment extends Fragment implements View.OnClickLis
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<CheckoutPaymentViewModel> payments = new ArrayList<>();
-        for (int i = 0; i < 50; i++)
-            payments.add(new CheckoutPaymentViewModel("12/12/12", "122222", "اینترنتی", "مهر اقتصاد", i % 2 == 0));
-
         adapter = new CheckoutPaymentAdapter(requireContext(), callback.getPayments());
         binding.recyclerViewCheckoutPayment.setAdapter(adapter);
         binding.recyclerViewCheckoutPayment.setLayoutManager(new LinearLayoutManager(requireContext()));
-    }
-
-    @Override
-    public void onClick(View v) {
-        final int id = v.getId();
     }
 
     @Override

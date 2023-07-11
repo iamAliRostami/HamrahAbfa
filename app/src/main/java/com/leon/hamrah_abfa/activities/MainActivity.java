@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
-import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
@@ -41,7 +40,6 @@ import com.leon.hamrah_abfa.enums.BundleEnum;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
-import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
@@ -105,7 +103,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         } else if (id == R.id.image_view_notification) {
             final Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
             //TODO
-            intent.putExtra(BundleEnum.ID.getValue(), getCurrentId(position));
+            intent.putExtra(BundleEnum.UUID.getValue(), getCurrentId(position));
             startActivity(intent);
         }
     }
@@ -113,6 +111,8 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     private final Animation.AnimationListener animationTypoListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
+            if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue()))
+                requestBills();
         }
 
         @Override
@@ -127,9 +127,9 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
                 //TODO
                 submitMobileActivityResultLauncher.launch(intent);
-            } else {
+            } /*else {
                 requestBills();
-            }
+            }*/
         }
 
         @Override
@@ -225,17 +225,17 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     }
 
     private void progressStatus(boolean show) {
-        if (show) {
-            if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
-                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
-            }
-        } else {
-            if (fragment != null) {
-                fragment.dismiss();
-                fragment = null;
-            }
-        }
+//        if (show) {
+//            if (fragment == null) {
+//                fragment = WaitingFragment.newInstance();
+//                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+//            }
+//        } else {
+//            if (fragment != null) {
+//                fragment.dismiss();
+//                fragment = null;
+//            }
+//        }
     }
 
     private void insertData(BillCardViewModel bill) {

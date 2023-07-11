@@ -37,6 +37,7 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
         return position;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull CheckoutBillViewHolder holder, int position) {
         final CheckoutBillViewModel bill = bills.get(position);
@@ -45,7 +46,8 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
         else if (bill.usageType == 1)
             holder.imageViewUsageType.setImageResource(R.drawable.ic_low);
         holder.textViewTo.setText(bill.day);
-        holder.textViewPrice.setText(bill.amount);
+
+        holder.textViewPrice.setText(String.format("%,d", bill.amount));
         holder.textViewDays.setText(String.valueOf(bill.duration));
         holder.textViewUsage.setText(String.valueOf(bill.usage));
     }
@@ -63,5 +65,8 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
 
     public int getZoneId(int position) {
         return bills.get(position).zoneId;
+    }
+    public int getId(int position) {
+        return bills.get(position).id;
     }
 }

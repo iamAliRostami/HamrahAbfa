@@ -5,13 +5,14 @@ import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
+import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
-import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -20,16 +21,17 @@ import retrofit2.Retrofit;
 public class GetBillRequest {
     private final Context context;
     private final ICallback callback;
-    private final String id;
+    private String uuid;
     private int zoneId;
+    private int id;
 
-    public GetBillRequest(Context context, ICallback callback, String id) {
+    public GetBillRequest(Context context, ICallback callback, String uuid) {
         this.context = context;
         this.callback = callback;
-        this.id = id;
+        this.uuid = uuid;
     }
 
-    public GetBillRequest(Context context, ICallback callback, String id, int zoneId) {
+    public GetBillRequest(Context context, ICallback callback, int id, int zoneId) {
         this.context = context;
         this.callback = callback;
         this.id = id;
@@ -42,7 +44,7 @@ public class GetBillRequest {
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<BillViewModel> call;
         if (zoneId == 0)
-            call = iAbfaService.getLast(id);
+            call = iAbfaService.getLast(uuid);
         else
             call = iAbfaService.getThis(id, zoneId);
         return HttpClientWrapper.callHttpAsync(context, call, new GetBillSuccessful(callback),
@@ -102,6 +104,7 @@ class GetBillFailed implements ICallbackFailure {
     @Override
     public void executeFailed(Throwable t) {
         callback.changeUI(false);
+        Log.e("error", t.toString());
         //TODO
         error(context, "failed").show();
     }

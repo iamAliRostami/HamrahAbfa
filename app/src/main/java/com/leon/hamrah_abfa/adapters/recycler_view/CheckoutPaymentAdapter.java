@@ -37,18 +37,16 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
         return position;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull CheckoutPaymentViewHolder holder, int position) {
-//        if (position % 2 == 0)
-//            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill_light);
-//        else
-//            holder.relativeLayout.setBackgroundResource(R.drawable.background_last_bill);
-        holder.textViewPrice.setText(payments.get(position).amount);
-        holder.textViewBank.setText(payments.get(position).bank);
-        holder.textViewPaymentType.setText(payments.get(position).method);
-        holder.textViewDate.setText(payments.get(position).day);
+        CheckoutPaymentViewModel payment = payments.get(position);
+        holder.textViewPrice.setText(String.format("%,d", payment.amount));
+        holder.textViewBank.setText(payment.bank);
+        holder.textViewPaymentType.setText(payment.method);
+        holder.textViewDate.setText(payment.day);
 
-        if (!payments.get(position).submitType)
+        if (payments.get(position).isTemp)
             holder.imageViewSubmitType.setImageResource(R.drawable.ic_disapproval);
 
     }

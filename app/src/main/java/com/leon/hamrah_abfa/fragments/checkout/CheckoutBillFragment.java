@@ -25,7 +25,7 @@ import com.leon.hamrah_abfa.databinding.FragmentCheckoutBillBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckoutBillFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedStateChangeListener {
+public class CheckoutBillFragment extends Fragment implements ChipGroup.OnCheckedStateChangeListener {
     private FragmentCheckoutBillBinding binding;
     private CheckoutBillAdapter adapter;
     private ICallback callback;
@@ -56,9 +56,6 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
-        for (int i = 0; i < 50; i++)
-            bills.add(new CheckoutBillViewModel("1402/12/12", "1234567890", "125", "38", i % 3));
         adapter = new CheckoutBillAdapter(requireContext(), callback.getBills());
         binding.recyclerViewCheckoutBill.setAdapter(adapter);
         binding.recyclerViewCheckoutBill.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -71,7 +68,7 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(requireContext(), LastBillActivity.class);
-                intent.putExtra(ID.getValue(), callback.getId());
+                intent.putExtra(ID.getValue(), adapter.getId(position));
                 intent.putExtra(ZONE_ID.getValue(), adapter.getZoneId(position));
                 startActivity(intent);
             }
@@ -82,11 +79,6 @@ public class CheckoutBillFragment extends Fragment implements View.OnClickListen
             }
         });
         binding.recyclerViewCheckoutBill.addOnItemTouchListener(listener);
-    }
-
-    @Override
-    public void onClick(View v) {
-        final int id = v.getId();
     }
 
 
