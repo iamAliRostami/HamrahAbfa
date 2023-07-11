@@ -50,7 +50,7 @@ public class GetLastRequest {
     }
 
     public interface ICallback {
-        void succeed(LastBillViewModel bills);
+        void succeed(LastBillViewModel bill);
 
         void changeUI(boolean show);
     }

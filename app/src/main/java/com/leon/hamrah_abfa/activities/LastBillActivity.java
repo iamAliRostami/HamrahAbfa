@@ -23,9 +23,9 @@ import com.leon.hamrah_abfa.tables.LastBillViewModel;
 
 public class LastBillActivity extends BaseActivity {
     private ActivityLastBillBinding binding;
+    private DialogFragment fragment;
     private String id;
     private int zoneId;
-    private DialogFragment fragment;
 
     @Override
     protected void initialize() {
@@ -37,40 +37,28 @@ public class LastBillActivity extends BaseActivity {
         }
         setContentView(binding.getRoot());
         requestBills();
-        initializeFrameLayouts();
         setOnClickListener();
     }
 
     private void requestBills() {
-        boolean isOnline;
-        isOnline = getBillRequest().request();
-        progressStatus(isOnline);
-    }
-
-    private GetLastRequest getBillRequest() {
-        if (zoneId == 0)
-            return new GetLastRequest(this, new GetLastRequest.ICallback() {
-                @Override
-                public void succeed(LastBillViewModel bills) {
-
-                }
-
-                @Override
-                public void changeUI(boolean done) {
-                    progressStatus(done);
-                }
-            }, id);
-        else return new GetLastRequest(this, new GetLastRequest.ICallback() {
+        GetLastRequest.ICallback callback = new GetLastRequest.ICallback() {
             @Override
-            public void succeed(LastBillViewModel bills) {
-
+            public void succeed(LastBillViewModel bill) {
+                initializeFrameLayouts();
             }
 
             @Override
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, id, zoneId);
+        };
+        progressStatus(getBillRequest(callback).request());
+    }
+
+    private GetLastRequest getBillRequest(GetLastRequest.ICallback callback) {
+        if (zoneId == 0)
+            return new GetLastRequest(this, callback, id);
+        else return new GetLastRequest(this, callback, id, zoneId);
     }
 
     private void progressStatus(boolean show) {
