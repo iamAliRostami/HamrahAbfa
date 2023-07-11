@@ -63,8 +63,7 @@
 
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Filter"
-                    android:text="20"
-                    app:chipIcon="@drawable/ic_delete_1" />
+                    android:text="20" />
 
                 <com.google.android.material.chip.Chip
                     style="@style/Chip.Filter"
