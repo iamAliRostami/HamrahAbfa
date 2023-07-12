@@ -5,7 +5,6 @@ import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
@@ -95,6 +94,5 @@ class GetFAQFailed implements ICallbackFailure {
         callback.changeUI(false);
         //TODO
         error(context, "failed").show();
-        Log.e("error", t.toString());
     }
 }
