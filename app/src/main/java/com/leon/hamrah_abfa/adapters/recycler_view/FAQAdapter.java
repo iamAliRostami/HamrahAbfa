@@ -15,11 +15,9 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQViewModel;
 import java.util.ArrayList;
 
 public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
-
     private final ArrayList<ContactFAQViewModel> faq;
     public final LayoutInflater inflater;
     private Integer selectedServices = null;
-
     public FAQAdapter(Context context, ArrayList<ContactFAQViewModel> faq) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.faq = new ArrayList<>(faq);
@@ -37,10 +35,10 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FAQViewHolder holder, int position) {
-        holder.textViewQuestion.setText(faq.get(position).question);
+        holder.textViewQuestion.setText(faq.get(position).q);
         holder.textViewQuestion.setSelected(true);
         if (selectedServices != null && selectedServices == position)
-            holder.textViewAnswer.setText(faq.get(position).answer);
+            holder.textViewAnswer.setText(faq.get(position).a);
     }
 
     @Override
