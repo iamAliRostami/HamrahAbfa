@@ -47,6 +47,31 @@ public class HttpClientWrapper {
         return isOnline;
     }
 
+    public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,
+                                                  ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
+        boolean isOnline = isNetworkAvailable(context);
+
+        call.enqueue(new Callback<T>() {
+            @Override
+            public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
+                if (response.isSuccessful()) {
+                    ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
+                } else {
+                    ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
+                call.cancel();
+                ((Activity) context).runOnUiThread(() -> error.executeFailed(t));
+            }
+        });
+        if (!isOnline)
+            warning(context, R.string.turn_internet_on).show();
+        return isOnline;
+    }
+
     public static <T> void callHttpAsync(Context context, Call<T> call, ICallback<T> callback) {
         if (isNetworkAvailable(context)) {
             call.enqueue(new Callback<T>() {

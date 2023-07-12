@@ -248,5 +248,6 @@
     <string name="ensheab_has_been_added">افزودن انشعاب با موفقیت انجام شد</string>
 
     <string name="payment_site">https://crm.abfaesfahan.ir/%s/Bill</string>
+    <string name="cache_folder">responses</string>
 
 </resources>

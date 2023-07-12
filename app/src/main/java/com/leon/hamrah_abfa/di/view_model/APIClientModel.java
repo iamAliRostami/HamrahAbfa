@@ -3,17 +3,25 @@ package com.leon.hamrah_abfa.di.view_model;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.TOKEN;
 import static com.leon.hamrah_abfa.helpers.DifferentCompanyManager.getBaseUrl;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
+
+import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.leon.hamrah_abfa.R;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -48,8 +56,8 @@ public final class APIClientModel {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient.Builder().readTimeout(READ_TIMEOUT, TIME_UNIT)
                     .writeTimeout(WRITE_TIMEOUT, TIME_UNIT).connectTimeout(CONNECT_TIMEOUT, TIME_UNIT)
-                    .addInterceptor(getToken())
-                    .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(getInterceptor()).build();
+                    .retryOnConnectionFailure(RETRY_ENABLED)
+                    .addInterceptor(getToken()).addInterceptor(getInterceptor()).build();
         }
         return okHttpClient;
     }
@@ -60,8 +68,8 @@ public final class APIClientModel {
         if (timeDivider == 1 || timeDivider <= 0) return getHttpClient();
         return new OkHttpClient.Builder().readTimeout(READ_TIMEOUT / timeDivider, TIME_UNIT)
                 .writeTimeout(WRITE_TIMEOUT / timeDivider, TIME_UNIT)
-                .connectTimeout(CONNECT_TIMEOUT, TIME_UNIT).addInterceptor(getInterceptor())
-                .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(getInterceptor()).build();
+                .connectTimeout(CONNECT_TIMEOUT, TIME_UNIT).retryOnConnectionFailure(RETRY_ENABLED)
+                .addInterceptor(getInterceptor()).addInterceptor(getInterceptor()).build();
     }
 
     @Inject
@@ -69,8 +77,8 @@ public final class APIClientModel {
         if (readTimeout <= 1 || writeTimeout <= 1 || connectTimeout <= 1) return getHttpClient();
         return new OkHttpClient.Builder().readTimeout(readTimeout, TIME_UNIT)
                 .writeTimeout(writeTimeout, TIME_UNIT).connectTimeout(connectTimeout, TIME_UNIT)
-                .addInterceptor(getToken())
-                .retryOnConnectionFailure(RETRY_ENABLED).addInterceptor(getInterceptor()).build();
+                .retryOnConnectionFailure(RETRY_ENABLED)
+                .addInterceptor(getToken()).addInterceptor(getInterceptor()).build();
     }
 
     private Interceptor getToken() {
@@ -92,6 +100,95 @@ public final class APIClientModel {
         }
         return retrofit;
     }
+
+    @Inject
+    public Retrofit getClientCached(Context context) {
+        int cacheSize = 50 * 1024 * 1024;// 50 MB
+        File httpCacheDirectory = new File(context.getCacheDir(), context.getString(R.string.cache_folder));
+        Cache cache = new Cache(httpCacheDirectory, cacheSize);
+
+        final Interceptor OFFLINE_INTERCEPTOR = chain -> {
+            Request request = chain.request();
+
+            if (!isNetworkAvailable(context)) {
+                int maxStale = 60 * 10;
+                request = request.newBuilder()
+                        .cacheControl(CacheControl.FORCE_CACHE)
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+//                        .header("Cache-Control", "public, only-if-cached, max-age=" + maxStale)
+                        .build();
+            }
+            else
+                request.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
+
+            return chain.proceed(request);
+        };
+
+
+        return new Retrofit.Builder().baseUrl(getBaseUrl())
+                .client(new OkHttpClient.Builder().readTimeout(READ_TIMEOUT, TIME_UNIT)
+                        .writeTimeout(WRITE_TIMEOUT, TIME_UNIT).connectTimeout(CONNECT_TIMEOUT, TIME_UNIT)
+                        .retryOnConnectionFailure(RETRY_ENABLED)
+//
+//                        .addInterceptor(chain -> {
+//                            Response originalResponse = chain.proceed(chain.request());
+//                            if (isNetworkAvailable(context)) {
+//                                int maxAge = 60; // read from cache for 1 minute
+//                                return originalResponse.newBuilder()
+//                                        .header("Cache-Control", "public, max-age=" + maxAge)
+//                                        .build();
+//                            } else {
+//                                int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+//                                return originalResponse.newBuilder()
+//                                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+//                                        .build();
+//                            }
+//                        })
+
+
+                        .addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
+                        .addInterceptor(OFFLINE_INTERCEPTOR)
+
+                        .addInterceptor(getToken()).addInterceptor(getInterceptor())
+
+
+                        .cache(cache)
+
+
+                        .build())
+                .addConverterFactory(GsonConverterFactory.create(getInstance().getApplicationComponent().Gson()))
+                .addConverterFactory(ScalarsConverterFactory.create()).build();
+    }
+
+
+    private static final Interceptor REWRITE_RESPONSE_INTERCEPTOR = chain -> {
+        Response originalResponse = chain.proceed(chain.request());
+        String cacheControl = originalResponse.header("Cache-Control");
+
+        if (cacheControl == null || cacheControl.contains("no-store") || cacheControl.contains("no-cache") ||
+                cacheControl.contains("must-revalidate") || cacheControl.contains("max-age=0")) {
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", "public, max-age=" + 10)
+                    .build();
+        } else {
+            return originalResponse;
+        }
+    };
+
+//    private static final Interceptor OFFLINE_INTERCEPTOR = chain -> {
+//        Request request = chain.request();
+//
+//        if (!isNetworkAvailable(MyApplication.getInstance())) {
+//            Log.d("TAG", "rewriting request");
+//
+//            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
+//            request = request.newBuilder()
+//                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+//                    .build();
+//        }
+//
+//        return chain.proceed(request);
+//    };
 
     @Inject
     public Retrofit getClient(int timeDivider) {
@@ -120,6 +217,4 @@ public final class APIClientModel {
         if (gson == null) gson = new GsonBuilder().setLenient().create();
         return gson;
     }
-
-
 }

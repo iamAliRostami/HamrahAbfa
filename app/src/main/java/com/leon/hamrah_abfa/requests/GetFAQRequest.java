@@ -32,10 +32,16 @@ public class GetFAQRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+//        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+
+
+
+        final Retrofit retrofit = getInstance().getApplicationComponent().NetworkHelperModel().getClientCached(context);
+
+
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<ContactFAQ> call = iAbfaService.getFAQ();
-        return HttpClientWrapper.callHttpAsync(context, call, new GetFAQSuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCached(context, call, new GetFAQSuccessful(callback),
                 new GetFAQIncomplete(context, callback), new GetFAQFailed(context, callback));
     }
 
