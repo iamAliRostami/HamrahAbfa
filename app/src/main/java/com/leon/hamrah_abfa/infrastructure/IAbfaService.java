@@ -42,7 +42,6 @@ public interface IAbfaService {
     @GET("/KontoriNew/V1/MobileBill/GetAttempts/{id}")
     Call<Attempt> getAttempts(@Path("id") String id);
 
-
     @GET("/KontoriNew/V1/ContactAbfa/Get")
     Call<ContactFAQ> getFAQ();
 }
