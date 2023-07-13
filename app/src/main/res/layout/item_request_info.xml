@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_key"
+        style="@style/TitleBill"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextStyleLarge.Bold" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_value"
+        style="@style/TextItem.LastBill"
+        android:textAppearance="@style/TextStyleLarge.Bold" />
+</androidx.appcompat.widget.LinearLayoutCompat>

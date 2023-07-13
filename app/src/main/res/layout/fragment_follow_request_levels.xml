@@ -34,7 +34,7 @@
             android:textAppearance="@style/TextStyleLarge.Bold" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_track_number"
+            android:id="@+id/text_view_track"
             style="@style/TextItem.LastBill"
             android:text="12345678"
             android:textAppearance="@style/TextStyleLarge.Bold" />
