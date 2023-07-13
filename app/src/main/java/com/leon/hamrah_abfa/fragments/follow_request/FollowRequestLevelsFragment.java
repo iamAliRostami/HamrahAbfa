@@ -20,7 +20,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestLevelAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestLevelsBinding;
-import com.leon.hamrah_abfa.tables.RequestLevel;
 
 import java.util.ArrayList;
 
@@ -85,16 +84,16 @@ public class FollowRequestLevelsFragment extends BottomSheetDialogFragment {
     private void initializeRecyclerView() {
         final ArrayList<RequestLevel> requestLevels = new ArrayList<>();
 
-        requestLevels.add(new RequestLevel(1, "ثبت درخواست", "12/12/12", true, false));
-        requestLevels.add(new RequestLevel(2, "ثبت ارزیاب", "12/12/12", true, false));
-        requestLevels.add(new RequestLevel(3, "بررسی مدارک", "12/12/12", true, false));
-        requestLevels.add(new RequestLevel(4, "مرحله 1", "12/12/12", false, true));
-        requestLevels.add(new RequestLevel(5, "مرحله 2", "12/12/12", false, false));
-        requestLevels.add(new RequestLevel(6, "مرحله 3", "12/12/12", false, false));
-        requestLevels.add(new RequestLevel(7, "مرحله 4", "12/12/12", false, false));
-        requestLevels.add(new RequestLevel(8, "مرحله 5", "12/12/12", false, false));
-        requestLevels.add(new RequestLevel(9, "مرحله 6", "12/12/12", false, false));
-        requestLevels.add(new RequestLevel(10, "مرحله 7", "12/12/12", false, false));
+        requestLevels.add(new RequestLevel(1, "ثبت درخواست", "12/12/12"));
+        requestLevels.add(new RequestLevel(2, "ثبت ارزیاب", "12/12/12"));
+        requestLevels.add(new RequestLevel(3, "بررسی مدارک", "12/12/12"));
+        requestLevels.add(new RequestLevel(4, "مرحله 1", "12/12/12"));
+        requestLevels.add(new RequestLevel(5, "مرحله 2", "12/12/12"));
+        requestLevels.add(new RequestLevel(6, "مرحله 3", "12/12/12"));
+        requestLevels.add(new RequestLevel(7, "مرحله 4", "12/12/12"));
+        requestLevels.add(new RequestLevel(8, "مرحله 5", "12/12/12"));
+        requestLevels.add(new RequestLevel(9, "مرحله 6", "12/12/12"));
+        requestLevels.add(new RequestLevel(10, "مرحله 7", "12/12/12"));
 
         final RequestLevelAdapter adapter = new RequestLevelAdapter(requireContext(), requestLevels);
         binding.recyclerViewLevel.setAdapter(adapter);

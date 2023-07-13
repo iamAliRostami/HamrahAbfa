@@ -10,22 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.RequestViewHolder;
-import com.leon.hamrah_abfa.tables.Request;
+import com.leon.hamrah_abfa.fragments.follow_request.RequestInfo;
 
 import java.util.ArrayList;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
-    private final ArrayList<Request> requests = new ArrayList<>();
+    private final ArrayList<RequestInfo> requests = new ArrayList<>();
     private final TypedArray icons;
     private final LayoutInflater inflater;
 
-    public RequestAdapter(Context context, ArrayList<Request> requests) {
+    public RequestAdapter(Context context, ArrayList<RequestInfo> requests) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.icons = context.getResources().obtainTypedArray(R.array.services_main_icons);
-        setRequests(requests);
-    }
-
-    private void setRequests(ArrayList<Request> requests) {
         this.requests.addAll(requests);
     }
 
@@ -37,10 +33,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
-        holder.textViewDate.setText(requests.get(position).getDate());
-        holder.textViewTrackNumber.setText(requests.get(position).getTrackNumber());
-        holder.textViewRequestType.setText(requests.get(position).getTitle());
-        holder.imageViewRequest.setImageDrawable(icons.getDrawable(requests.get(position).getServiceType()));
+        holder.textViewDate.setText(requests.get(position).jalaliDay);
+        holder.textViewTrackNumber.setText(requests.get(position).trackNumber);
+        holder.textViewRequestType.setText(requests.get(position).requestTitle);
+        holder.imageViewRequest.setImageDrawable(icons.getDrawable(requests.get(position).requestType));
 //        holder.imageViewDetail.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

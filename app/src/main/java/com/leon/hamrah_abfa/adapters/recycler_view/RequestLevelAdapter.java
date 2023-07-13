@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.RequestLevelViewHolder;
-import com.leon.hamrah_abfa.tables.RequestLevel;
+import com.leon.hamrah_abfa.fragments.follow_request.RequestLevel;
 
 import java.util.ArrayList;
 
@@ -26,9 +26,9 @@ public class RequestLevelAdapter extends RecyclerView.Adapter<RequestLevelViewHo
     @NonNull
     @Override
     public RequestLevelViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (requestLevels.get(viewType).isCurrentLevel())
+        if (requestLevels.get(viewType).flowState==0)
             return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_current_level, parent, false));
-        else if (!requestLevels.get(viewType).isDoneLevel()) {
+        else if (requestLevels.get(viewType).flowState==1) {
             return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_waiting_level, parent, false));
         }
         return new RequestLevelViewHolder(inflater.inflate(R.layout.item_request_done_level, parent, false));
@@ -42,8 +42,8 @@ public class RequestLevelAdapter extends RecyclerView.Adapter<RequestLevelViewHo
     @Override
     public void onBindViewHolder(@NonNull RequestLevelViewHolder holder, int position) {
         holder.textViewLevel.setText(String.valueOf(position));
-        holder.textViewDate.setText(requestLevels.get(position).getDate());
-        holder.textViewTitle.setText(requestLevels.get(position).getTitle());
+        holder.textViewTitle.setText(requestLevels.get(position).flowTitle);
+        holder.textViewDate.setText(requestLevels.get(position).jalaliDay);
     }
 
     @Override

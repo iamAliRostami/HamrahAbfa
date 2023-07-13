@@ -1,9 +1,10 @@
 package com.leon.hamrah_abfa.fragments.follow_request;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.FINISHED;
 import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_LEVEL;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,32 +18,24 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestListBinding;
-import com.leon.hamrah_abfa.tables.Request;
+import com.leon.toast.RTLToast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class FollowRequestListFragment extends Fragment implements View.OnClickListener {
+public class FollowRequestListUnfinishedFragment extends Fragment implements View.OnClickListener {
     private FragmentFollowRequestListBinding binding;
-    private boolean finished;
+    private ICallback callback;
 
-    public FollowRequestListFragment() {
+    public FollowRequestListUnfinishedFragment() {
     }
 
-    public static FollowRequestListFragment newInstance(boolean finished) {
-        final FollowRequestListFragment fragment = new FollowRequestListFragment();
-        final Bundle args = new Bundle();
-        args.putBoolean(FINISHED.getValue(), finished);
-        fragment.setArguments(args);
-        return fragment;
+    public static FollowRequestListUnfinishedFragment newInstance() {
+        return new FollowRequestListUnfinishedFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            finished = getArguments().getBoolean(FINISHED.getValue());
-        }
     }
 
     @Override
@@ -58,16 +51,16 @@ public class FollowRequestListFragment extends Fragment implements View.OnClickL
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<Request> requests = new ArrayList<>(Arrays.asList(
-                new Request(requireContext(), 0, "121212", "12/12/12/"),
-                new Request(requireContext(), 1, "121212", "12/12/12/"),
-                new Request(requireContext(), 2, "121212", "12/12/12/"),
-                new Request(requireContext(), 1, "121212", "12/12/12/"),
-                new Request(requireContext(), 1, "121212", "12/12/12/"),
-                new Request(requireContext(), 2, "121212", "12/12/12/")
-        ));
-        final RequestAdapter adapter = new RequestAdapter(requireContext(), requests);
-        binding.recyclerViewRequest.setAdapter(adapter);
+//        final ArrayList<Request> requests = new ArrayList<>(Arrays.asList(
+//                new Request(requireContext(), 0, "121212", "12/12/12/"),
+//                new Request(requireContext(), 1, "121212", "12/12/12/"),
+//                new Request(requireContext(), 2, "121212", "12/12/12/"),
+//                new Request(requireContext(), 1, "121212", "12/12/12/"),
+//                new Request(requireContext(), 1, "121212", "12/12/12/"),
+//                new Request(requireContext(), 2, "121212", "12/12/12/")
+//        ));
+//        final RequestAdapter adapter = new RequestAdapter(requireContext(), callback.getRequestInfoUnfinished());
+        binding.recyclerViewRequest.setAdapter(callback.getUnfinishedAdapter());
         binding.recyclerViewRequest.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewRequest.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(),
                 binding.recyclerViewRequest, new RecyclerItemClickListener.OnItemClickListener() {
@@ -87,14 +80,27 @@ public class FollowRequestListFragment extends Fragment implements View.OnClickL
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.float_button_search) {
 
-        }
+
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity)
+            callback = (ICallback) context;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public interface ICallback {
+        ArrayList<RequestInfo> getRequestInfoUnfinished();
+        RequestAdapter getUnfinishedAdapter();
+
     }
 }

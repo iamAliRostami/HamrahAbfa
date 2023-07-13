@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
-import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_TRACK;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -12,22 +11,31 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.RequestAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
-import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFragment;
+import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFinishedFragment;
+import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListUnfinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestTrackFragment;
+import com.leon.hamrah_abfa.fragments.follow_request.RequestInfo;
+import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
 
-public class FollowRequestActivity extends BaseActivity implements TabLayout.OnTabSelectedListener {
+import java.util.ArrayList;
+
+public class FollowRequestActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
+        FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback {
     private ActivityFollowRequestBinding binding;
-    private String billId;
-    private boolean lastPage;
+    private RequestInfoAll requestInfo = new RequestInfoAll();
+    private RequestAdapter adapterFinished;
+    private RequestAdapter adapterUnfinished;
+
+    private String uuid;
 
     @Override
     protected void initialize() {
         binding = ActivityFollowRequestBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
-            lastPage = getIntent().getExtras().getBoolean(LAST_PAGE.getValue());
+            uuid = getIntent().getExtras().getString(UUID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
@@ -38,9 +46,11 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void initializeViewPager() {
+        adapterFinished = new RequestAdapter(this, requestInfo.finisheds);
+        adapterUnfinished = new RequestAdapter(this, requestInfo.unfinisheds);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-        adapter.addFragment(FollowRequestListFragment.newInstance(false));
-        adapter.addFragment(FollowRequestListFragment.newInstance(true));
+        adapter.addFragment(FollowRequestListUnfinishedFragment.newInstance());
+        adapter.addFragment(FollowRequestListFinishedFragment.newInstance());
         binding.viewPager.setAdapter(adapter);
     }
 
@@ -85,5 +95,25 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    @Override
+    public ArrayList<RequestInfo> getRequestInfoUnfinished() {
+        return requestInfo.finisheds;
+    }
+
+    @Override
+    public ArrayList<RequestInfo> getRequestInfoFinished() {
+        return requestInfo.unfinisheds;
+    }
+
+    @Override
+    public RequestAdapter getFinishedAdapter() {
+        return adapterFinished;
+    }
+
+    @Override
+    public RequestAdapter getUnfinishedAdapter() {
+        return adapterUnfinished;
     }
 }

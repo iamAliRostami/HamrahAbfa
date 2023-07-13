@@ -149,10 +149,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         } else if (position == 4) {
             startActivity(createIntent(CheckoutActivity.class));
         } else if (position == 5) {
-            final Intent intent = createIntent(FollowRequestActivity.class);
-            intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
-                    (callback.getCardPagerAdapter().getItemCount() - 1));
-            startActivity(intent);
+            startActivity( createIntent(FollowRequestActivity.class));
         } else if (position == 6) {
             startActivity(createIntent(LastBillActivity.class));
         } else if (position == 7) {
