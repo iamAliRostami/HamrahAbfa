@@ -2,10 +2,12 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_TRACK;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -14,11 +16,13 @@ import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListUnfinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestTrackFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.RequestInfo;
 import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
+import com.leon.hamrah_abfa.requests.GetMasterHistoryRequest;
 
 import java.util.ArrayList;
 
@@ -28,6 +32,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     private ActivityFollowRequestBinding binding;
     private RequestAdapter adapterUnfinished;
     private RequestAdapter adapterFinished;
+    private DialogFragment fragment;
     private String uuid;
 
     @Override
@@ -40,8 +45,39 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
         setContentView(binding.getRoot());
 
         binding.floatButtonSearch.setOnClickListener(this);
-        initializeViewPager();
+//        initializeViewPager();
+        requestMasterHistory();
         initializeTabLayout();
+    }
+
+    private void requestMasterHistory() {
+        boolean isOnline = new GetMasterHistoryRequest(this, new GetMasterHistoryRequest.ICallback() {
+            @Override
+            public void succeed(RequestInfoAll requestInfoAll) {
+                requestInfo = requestInfoAll;
+                initializeViewPager();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, uuid).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void initializeViewPager() {

@@ -8,7 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
-import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
+import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -18,12 +18,12 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class GetUsageHistoryRequest {
+public class GetMasterHistoryRequest {
     private final Context context;
     private final ICallback callback;
     private final String id;
 
-    public GetUsageHistoryRequest(Context context, ICallback callback, String id) {
+    public GetMasterHistoryRequest(Context context, ICallback callback, String id) {
         this.context = context;
         this.callback = callback;
         this.id = id;
@@ -33,27 +33,27 @@ public class GetUsageHistoryRequest {
         callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<Attempt> call = iAbfaService.getAttempts(id);
-        return HttpClientWrapper.callHttpAsync(context, call, new UsageHistorySuccessful(callback),
-                new UsageHistoryIncomplete(context, callback), new UsageHistoryFailed(context, callback));
+        final Call<RequestInfoAll> call = iAbfaService.getMasterHistory(id);
+        return HttpClientWrapper.callHttpAsync(context, call, new MasterHistorySuccessful(callback),
+                new MasterHistoryIncomplete(context, callback), new MasterHistoryFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(Attempt kardex);
+        void succeed(RequestInfoAll requestInfo);
 
         void changeUI(boolean show);
     }
 }
 
-class UsageHistorySuccessful implements ICallbackSucceed<Attempt> {
-    private final GetUsageHistoryRequest.ICallback callback;
+class MasterHistorySuccessful implements ICallbackSucceed<RequestInfoAll> {
+    private final GetMasterHistoryRequest.ICallback callback;
 
-    public UsageHistorySuccessful(GetUsageHistoryRequest.ICallback callback) {
+    public MasterHistorySuccessful(GetMasterHistoryRequest.ICallback callback) {
         this.callback = callback;
     }
 
     @Override
-    public void executeCompleted(Response<Attempt> response) {
+    public void executeCompleted(Response<RequestInfoAll> response) {
         if (response.body() != null) {
             callback.succeed(response.body());
         }
@@ -61,28 +61,28 @@ class UsageHistorySuccessful implements ICallbackSucceed<Attempt> {
     }
 }
 
-class UsageHistoryIncomplete implements ICallbackIncomplete<Attempt> {
+class MasterHistoryIncomplete implements ICallbackIncomplete<RequestInfoAll> {
     private final Context context;
-    private final GetUsageHistoryRequest.ICallback callback;
+    private final GetMasterHistoryRequest.ICallback callback;
 
-    public UsageHistoryIncomplete(Context context, GetUsageHistoryRequest.ICallback callback) {
+    public MasterHistoryIncomplete(Context context, GetMasterHistoryRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
 
     @Override
-    public void executeDismissed(Response<Attempt> response) {
+    public void executeDismissed(Response<RequestInfoAll> response) {
         //TODO
         callback.changeUI(false);
         warning(context, "dismissed").show();
     }
 }
 
-class UsageHistoryFailed implements ICallbackFailure {
+class MasterHistoryFailed implements ICallbackFailure {
     private final Context context;
-    private final GetUsageHistoryRequest.ICallback callback;
+    private final GetMasterHistoryRequest.ICallback callback;
 
-    public UsageHistoryFailed(Context context, GetUsageHistoryRequest.ICallback callback) {
+    public MasterHistoryFailed(Context context, GetMasterHistoryRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

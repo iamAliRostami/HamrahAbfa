@@ -41,8 +41,8 @@ public class GetFAQRequest {
 
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<ContactFAQ> call = iAbfaService.getFAQ();
-        return HttpClientWrapper.callHttpAsyncCached(context, call, new GetFAQSuccessful(callback),
-                new GetFAQIncomplete(context, callback), new GetFAQFailed(context, callback));
+        return HttpClientWrapper.callHttpAsyncCached(context, call, new FAQSuccessful(callback),
+                new FAQIncomplete(context, callback), new FAQFailed(context, callback));
     }
 
     public interface ICallback {
@@ -52,10 +52,10 @@ public class GetFAQRequest {
     }
 }
 
-class GetFAQSuccessful implements ICallbackSucceed<ContactFAQ> {
+class FAQSuccessful implements ICallbackSucceed<ContactFAQ> {
     private final GetFAQRequest.ICallback callback;
 
-    public GetFAQSuccessful(GetFAQRequest.ICallback callback) {
+    public FAQSuccessful(GetFAQRequest.ICallback callback) {
         this.callback = callback;
     }
 
@@ -68,12 +68,12 @@ class GetFAQSuccessful implements ICallbackSucceed<ContactFAQ> {
     }
 }
 
-class GetFAQIncomplete implements ICallbackIncomplete<ContactFAQ> {
+class FAQIncomplete implements ICallbackIncomplete<ContactFAQ> {
 
     private final Context context;
     private final GetFAQRequest.ICallback callback;
 
-    public GetFAQIncomplete(Context context, GetFAQRequest.ICallback callback) {
+    public FAQIncomplete(Context context, GetFAQRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -85,11 +85,11 @@ class GetFAQIncomplete implements ICallbackIncomplete<ContactFAQ> {
     }
 }
 
-class GetFAQFailed implements ICallbackFailure {
+class FAQFailed implements ICallbackFailure {
     private final Context context;
     private final GetFAQRequest.ICallback callback;
 
-    public GetFAQFailed(Context context, GetFAQRequest.ICallback callback) {
+    public FAQFailed(Context context, GetFAQRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

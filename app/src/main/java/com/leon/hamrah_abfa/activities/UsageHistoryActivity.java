@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;

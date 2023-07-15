@@ -4,12 +4,10 @@ import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
-import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQViewModel;
+import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
-
-import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -44,5 +42,9 @@ public interface IAbfaService {
 
     @GET("/KontoriNew/V1/ContactAbfa/Get")
     Call<ContactFAQ> getFAQ();
+
+    @GET("/KontoriNew/V1/MobileRequest/MasterHistory/{id}")
+    Call<RequestInfoAll> getMasterHistory(@Path("id") String id);
+
 }
 

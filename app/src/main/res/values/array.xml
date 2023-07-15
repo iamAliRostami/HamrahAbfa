@@ -27,14 +27,14 @@
 
     <string-array name="services_main_menu">
         <item>@string/account_sale</item>
-        <item>@string/ab_baha</item>
         <item>@string/service_after_sale</item>
+        <item>@string/ab_baha</item>
     </string-array>
 
     <array name="services_main_icons">
         <item>@drawable/service_main_account_sale</item>
-        <item>@drawable/service_main_ab_baha</item>
         <item>@drawable/service_main_after_sale</item>
+        <item>@drawable/service_main_ab_baha</item>
     </array>
 
     <string-array name="services_sale_menu">

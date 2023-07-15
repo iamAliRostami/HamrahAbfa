@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -31,12 +32,18 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
         return new RequestViewHolder(inflater.inflate(R.layout.item_request, parent, false));
     }
 
+    //    جدید
+//            پس
+//    آب
     @Override
+
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         holder.textViewDate.setText(requests.get(position).jalaliDay);
         holder.textViewTrackNumber.setText(requests.get(position).trackNumber);
         holder.textViewRequestType.setText(requests.get(position).requestTitle);
-        holder.imageViewRequest.setImageDrawable(icons.getDrawable(requests.get(position).requestType));
+
+        holder.imageViewRequest.setImageDrawable(icons.getDrawable((int) (Math.log(requests.get(position).requestType) / Math.log(2))));
+//        holder.imageViewRequest.setImageDrawable(icons.getDrawable(requests.get(position).requestType));
 //        holder.imageViewDetail.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
