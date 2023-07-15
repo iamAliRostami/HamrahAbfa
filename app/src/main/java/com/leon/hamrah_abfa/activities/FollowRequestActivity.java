@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_TRACK;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
+import static com.leon.toast.RTLToast.warning;
 
 import android.view.View;
 
@@ -27,13 +28,15 @@ import com.leon.hamrah_abfa.requests.follow_request.GetMasterHistoryRequest;
 import java.util.ArrayList;
 
 public class FollowRequestActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
-        FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback {
+        FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback,
+        FollowRequestTrackFragment.ICallback {
     private MasterHistory requestInfo = new MasterHistory();
     private ActivityFollowRequestBinding binding;
     private RequestHistoryAdapter adapterUnfinished;
     private RequestHistoryAdapter adapterFinished;
     private DialogFragment fragment;
     private String uuid;
+    private String filterValue = "";
 
     @Override
     protected void initialize() {
@@ -159,5 +162,40 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public int getFinishedTrackNumber(int position) {
         return adapterFinished.getTrackNumber(position);
+    }
+
+    @Override
+    public void filter() {
+        ArrayList<RequestInfo> requestFinishedTemp = new ArrayList<>();
+        for (RequestInfo info : requestInfo.finisheds) {
+            String trackNumber = String.valueOf(info.trackNumber);
+            if (trackNumber.toLowerCase().contains(filterValue.toLowerCase()))
+                requestFinishedTemp.add(info);
+        }
+
+        ArrayList<RequestInfo> requestUnfinishedTemp = new ArrayList<>();
+        for (RequestInfo info : requestInfo.unfinisheds) {
+            String trackNumber = String.valueOf(info.trackNumber);
+            if (trackNumber.toLowerCase().contains(filterValue.toLowerCase()))
+                requestUnfinishedTemp.add(info);
+        }
+
+        if (!requestUnfinishedTemp.isEmpty()) {
+            adapterUnfinished.filterList(requestUnfinishedTemp);
+        } else if (!requestFinishedTemp.isEmpty()) {
+            adapterFinished.filterList(requestFinishedTemp);
+        } else {
+            warning(this, R.string.not_found).show();
+        }
+    }
+
+    @Override
+    public String getFilterValue() {
+        return filterValue;
+    }
+
+    @Override
+    public void setFilterValue(String filterValue) {
+        this.filterValue = filterValue;
     }
 }

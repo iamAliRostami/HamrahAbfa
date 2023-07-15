@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
@@ -54,5 +55,12 @@ public class RequestHistoryAdapter extends RecyclerView.Adapter<RequestViewHolde
 
     public int getTrackNumber(int position) {
         return requests.get(position).trackNumber;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(ArrayList<RequestInfo> requestInfoTemp) {
+        requests.clear();
+        requests.addAll(requestInfoTemp);
+        notifyDataSetChanged();
     }
 }

@@ -49,16 +49,15 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_track_number"
             style="@style/TextInput"
-            android:inputType="number"
-            android:text="@={viewModel.mobile}" />
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_search"
         style="@style/ButtonSubmit"
-        android:text="@string/search"
         android:layout_marginTop="@dimen/large_dp"
         android:layout_marginBottom="@dimen/large_dp"
+        android:text="@string/search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
