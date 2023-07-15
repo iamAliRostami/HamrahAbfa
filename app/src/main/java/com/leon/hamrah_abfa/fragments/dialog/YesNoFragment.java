@@ -53,6 +53,7 @@ public class YesNoFragment extends DialogFragment implements View.OnClickListene
             viewModel = new YesNoViewModel(getArguments().getString(TITLE.getValue()),
                     getArguments().getString(QUESTION.getValue()), getArguments().getString(YEY.getValue()),
                     getArguments().getString(NO.getValue()), getArguments().getInt(DRAWABLE.getValue()));
+            getArguments().clear();
         }
     }
 

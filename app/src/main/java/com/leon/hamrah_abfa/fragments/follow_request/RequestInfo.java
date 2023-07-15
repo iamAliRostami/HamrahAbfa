@@ -4,6 +4,6 @@ public class RequestInfo {
     public String id;
     public String requestTitle;
     public String jalaliDay;
-    public String trackNumber;
+    public int trackNumber;
     public int requestType;
 }

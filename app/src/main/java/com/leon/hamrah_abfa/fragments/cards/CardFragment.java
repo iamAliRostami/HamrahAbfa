@@ -45,6 +45,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
             viewModel = new BillCardViewModel(getArguments().getString(ID.getValue()),
                     getArguments().getString(BILL_ID.getValue()), getArguments().getString(ALIAS.getValue()),
                     getArguments().getString(DEBT.getValue()));
+            getArguments().clear();
         }
     }
 

@@ -49,23 +49,15 @@ public class FollowRequestListFinishedFragment extends Fragment implements View.
     }
 
     private void initializeRecyclerView() {
-//        final ArrayList<Request> requests = new ArrayList<>(Arrays.asList(
-//                new Request(requireContext(), 0, "121212", "12/12/12/"),
-//                new Request(requireContext(), 1, "121212", "12/12/12/"),
-//                new Request(requireContext(), 2, "121212", "12/12/12/"),
-//                new Request(requireContext(), 1, "121212", "12/12/12/"),
-//                new Request(requireContext(), 1, "121212", "12/12/12/"),
-//                new Request(requireContext(), 2, "121212", "12/12/12/")
-//        ));
-//        final RequestAdapter adapter = new RequestAdapter(requireContext(), callback.getRequestInfoFinished());
         binding.recyclerViewRequest.setAdapter(callback.getFinishedAdapter());
         binding.recyclerViewRequest.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.recyclerViewRequest.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(),
                 binding.recyclerViewRequest, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+
                 showFragmentDialogOnce(view.getContext(), FOLLOW_REQUEST_LEVEL.getValue(),
-                        FollowRequestLevelsFragment.newInstance());
+                        FollowRequestLevelsFragment.newInstance(callback.getFinishedTrackNumber(position)));
             }
 
             @Override
@@ -100,5 +92,6 @@ public class FollowRequestListFinishedFragment extends Fragment implements View.
         ArrayList<RequestInfo> getRequestInfoFinished();
 
         RequestAdapter getFinishedAdapter();
+        int getFinishedTrackNumber(int position);
     }
 }

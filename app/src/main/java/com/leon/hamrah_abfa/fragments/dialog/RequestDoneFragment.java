@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -52,6 +51,7 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
         if (getArguments() != null) {
             trackNumber = getArguments().getString(TRACK_NUMBER.getValue());
             textButton = getArguments().getString(TEXT_BUTTON.getValue());
+            getArguments().clear();
         }
     }
 
@@ -82,6 +82,7 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
             success(requireContext(), R.string.track_number_is_copied).show();
         }
     }
+
     @Override
     public void onResume() {
         if (getDialog() != null) {

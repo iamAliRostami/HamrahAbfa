@@ -4,9 +4,10 @@ import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
-import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
-import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
+import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
+import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
+import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
 import retrofit2.Call;
@@ -44,7 +45,11 @@ public interface IAbfaService {
     Call<ContactFAQ> getFAQ();
 
     @GET("/KontoriNew/V1/MobileRequest/MasterHistory/{id}")
-    Call<RequestInfoAll> getMasterHistory(@Path("id") String id);
+    Call<MasterHistory> getMasterHistory(@Path("id") String id);
+
+
+    @GET("/KontoriNew/V1/MobileRequest/DetailsHistory/{trackNumber}")
+    Call<DetailHistory> getDetailHistory(@Path("trackNumber") int trackNumber);
 
 }
 

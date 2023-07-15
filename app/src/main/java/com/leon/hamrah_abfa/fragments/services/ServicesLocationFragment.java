@@ -63,6 +63,7 @@ public class ServicesLocationFragment extends BaseBottomSheetFragment implements
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()), getArguments().getDouble(LONGITUDE.getValue()));
+            getArguments().clear();
         }
     }
     @Override

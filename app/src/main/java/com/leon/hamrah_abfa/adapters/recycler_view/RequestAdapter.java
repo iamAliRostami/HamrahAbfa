@@ -2,7 +2,6 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -17,8 +16,8 @@ import java.util.ArrayList;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
     private final ArrayList<RequestInfo> requests = new ArrayList<>();
-    private final TypedArray icons;
     private final LayoutInflater inflater;
+    private final TypedArray icons;
 
     public RequestAdapter(Context context, ArrayList<RequestInfo> requests) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,9 +38,8 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
 
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {
         holder.textViewDate.setText(requests.get(position).jalaliDay);
-        holder.textViewTrackNumber.setText(requests.get(position).trackNumber);
+        holder.textViewTrackNumber.setText(String.valueOf(requests.get(position).trackNumber));
         holder.textViewRequestType.setText(requests.get(position).requestTitle);
-
         holder.imageViewRequest.setImageDrawable(icons.getDrawable((int) (Math.log(requests.get(position).requestType) / Math.log(2))));
 //        holder.imageViewRequest.setImageDrawable(icons.getDrawable(requests.get(position).requestType));
 //        holder.imageViewDetail.setOnClickListener(new View.OnClickListener() {
@@ -55,5 +53,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
     @Override
     public int getItemCount() {
         return requests.size();
+    }
+
+    public int getTrackNumber(int position) {
+        return requests.get(position).trackNumber;
     }
 }

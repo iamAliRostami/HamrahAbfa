@@ -23,9 +23,9 @@
         android:layout_marginTop="@dimen/xlarge_dp"
         android:layout_marginEnd="@dimen/large_dp"
         android:layout_marginBottom="@dimen/xlarge_dp"
+        android:background="@drawable/background_white_blue"
         android:paddingStart="@dimen/medium_dp"
-        android:paddingEnd="@dimen/medium_dp"
-        android:background="@drawable/background_white_blue">
+        android:paddingEnd="@dimen/medium_dp">
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TitleBill"
@@ -36,7 +36,6 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_track"
             style="@style/TextItem.LastBill"
-            android:text="12345678"
             android:textAppearance="@style/TextStyleLarge.Bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

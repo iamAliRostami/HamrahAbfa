@@ -53,6 +53,7 @@ public class HelpViewPagerFragment extends Fragment {
             viewModel.setContent(getArguments().getString(CONTENT.getValue()));
             viewModel.setBgColor(getArguments().getInt(BACKGROUND_COLOR.getValue()));
             viewModel.setAnimSrc(getArguments().getInt(ANIM.getValue()));
+            getArguments().clear();
         }
     }
 

@@ -62,6 +62,7 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         if (getArguments() != null) {
             point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()),
                     getArguments().getDouble(LONGITUDE.getValue()));
+            getArguments().clear();
         }
     }
 

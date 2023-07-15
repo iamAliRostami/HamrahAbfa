@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests;
+package com.leon.hamrah_abfa.requests.follow_request;
 
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
@@ -8,7 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
-import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
+import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -33,19 +33,19 @@ public class GetMasterHistoryRequest {
         callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<RequestInfoAll> call = iAbfaService.getMasterHistory(id);
+        final Call<MasterHistory> call = iAbfaService.getMasterHistory(id);
         return HttpClientWrapper.callHttpAsync(context, call, new MasterHistorySuccessful(callback),
                 new MasterHistoryIncomplete(context, callback), new MasterHistoryFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(RequestInfoAll requestInfo);
+        void succeed(MasterHistory requestInfo);
 
         void changeUI(boolean show);
     }
 }
 
-class MasterHistorySuccessful implements ICallbackSucceed<RequestInfoAll> {
+class MasterHistorySuccessful implements ICallbackSucceed<MasterHistory> {
     private final GetMasterHistoryRequest.ICallback callback;
 
     public MasterHistorySuccessful(GetMasterHistoryRequest.ICallback callback) {
@@ -53,7 +53,7 @@ class MasterHistorySuccessful implements ICallbackSucceed<RequestInfoAll> {
     }
 
     @Override
-    public void executeCompleted(Response<RequestInfoAll> response) {
+    public void executeCompleted(Response<MasterHistory> response) {
         if (response.body() != null) {
             callback.succeed(response.body());
         }
@@ -61,7 +61,7 @@ class MasterHistorySuccessful implements ICallbackSucceed<RequestInfoAll> {
     }
 }
 
-class MasterHistoryIncomplete implements ICallbackIncomplete<RequestInfoAll> {
+class MasterHistoryIncomplete implements ICallbackIncomplete<MasterHistory> {
     private final Context context;
     private final GetMasterHistoryRequest.ICallback callback;
 
@@ -71,7 +71,7 @@ class MasterHistoryIncomplete implements ICallbackIncomplete<RequestInfoAll> {
     }
 
     @Override
-    public void executeDismissed(Response<RequestInfoAll> response) {
+    public void executeDismissed(Response<MasterHistory> response) {
         //TODO
         callback.changeUI(false);
         warning(context, "dismissed").show();

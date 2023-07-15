@@ -46,6 +46,7 @@ public class PayBillSucceedFragment extends DialogFragment implements View.OnCli
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             trackNumber = getArguments().getString(TRACK_NUMBER.getValue());
+            getArguments().clear();
         }
     }
 

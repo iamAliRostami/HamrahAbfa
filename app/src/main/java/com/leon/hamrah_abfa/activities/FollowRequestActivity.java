@@ -20,15 +20,15 @@ import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListUnfinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestTrackFragment;
+import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.RequestInfo;
-import com.leon.hamrah_abfa.fragments.follow_request.RequestInfoAll;
-import com.leon.hamrah_abfa.requests.GetMasterHistoryRequest;
+import com.leon.hamrah_abfa.requests.follow_request.GetMasterHistoryRequest;
 
 import java.util.ArrayList;
 
 public class FollowRequestActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback {
-    private RequestInfoAll requestInfo = new RequestInfoAll();
+    private MasterHistory requestInfo = new MasterHistory();
     private ActivityFollowRequestBinding binding;
     private RequestAdapter adapterUnfinished;
     private RequestAdapter adapterFinished;
@@ -45,7 +45,6 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
         setContentView(binding.getRoot());
 
         binding.floatButtonSearch.setOnClickListener(this);
-//        initializeViewPager();
         requestMasterHistory();
         initializeTabLayout();
     }
@@ -53,7 +52,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     private void requestMasterHistory() {
         boolean isOnline = new GetMasterHistoryRequest(this, new GetMasterHistoryRequest.ICallback() {
             @Override
-            public void succeed(RequestInfoAll requestInfoAll) {
+            public void succeed(MasterHistory requestInfoAll) {
                 requestInfo = requestInfoAll;
                 initializeViewPager();
             }
@@ -150,5 +149,15 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public RequestAdapter getUnfinishedAdapter() {
         return adapterUnfinished;
+    }
+
+    @Override
+    public int getUnfinishedTrackNumber(int position) {
+        return adapterUnfinished.getTrackNumber(position);
+    }
+
+    @Override
+    public int getFinishedTrackNumber(int position) {
+        return adapterFinished.getTrackNumber(position);
     }
 }

@@ -58,6 +58,7 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()), getArguments().getDouble(LONGITUDE.getValue()));
+            getArguments().clear();
         }
     }
 
