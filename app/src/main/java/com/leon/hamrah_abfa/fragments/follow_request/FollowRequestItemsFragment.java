@@ -5,12 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestItemsBinding;
-import com.leon.hamrah_abfa.databinding.FragmentLastBillItemsBinding;
 
 public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
     private FragmentFollowRequestItemsBinding binding;
@@ -26,7 +22,8 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
     protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentFollowRequestItemsBinding.inflate(inflater, container, false);
         initialize();
-        return binding.getRoot();    }
+        return binding.getRoot();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +33,7 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
     private void initialize() {
 
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

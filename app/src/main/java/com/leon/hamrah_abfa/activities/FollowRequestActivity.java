@@ -24,11 +24,10 @@ import java.util.ArrayList;
 
 public class FollowRequestActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback {
-    private ActivityFollowRequestBinding binding;
     private RequestInfoAll requestInfo = new RequestInfoAll();
-    private RequestAdapter adapterFinished;
+    private ActivityFollowRequestBinding binding;
     private RequestAdapter adapterUnfinished;
-
+    private RequestAdapter adapterFinished;
     private String uuid;
 
     @Override

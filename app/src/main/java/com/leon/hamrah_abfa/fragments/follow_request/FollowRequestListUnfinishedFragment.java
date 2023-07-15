@@ -14,11 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestListBinding;
-import com.leon.toast.RTLToast;
 
 import java.util.ArrayList;
 
@@ -100,6 +98,7 @@ public class FollowRequestListUnfinishedFragment extends Fragment implements Vie
 
     public interface ICallback {
         ArrayList<RequestInfo> getRequestInfoUnfinished();
+
         RequestAdapter getUnfinishedAdapter();
 
     }
