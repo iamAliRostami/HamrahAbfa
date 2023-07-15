@@ -14,12 +14,12 @@ import com.leon.hamrah_abfa.fragments.follow_request.RequestInfo;
 
 import java.util.ArrayList;
 
-public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
+public class RequestHistoryAdapter extends RecyclerView.Adapter<RequestViewHolder> {
     private final ArrayList<RequestInfo> requests = new ArrayList<>();
     private final LayoutInflater inflater;
     private final TypedArray icons;
 
-    public RequestAdapter(Context context, ArrayList<RequestInfo> requests) {
+    public RequestHistoryAdapter(Context context, ArrayList<RequestInfo> requests) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.icons = context.getResources().obtainTypedArray(R.array.services_main_icons);
         this.requests.addAll(requests);
@@ -31,9 +31,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestViewHolder> {
         return new RequestViewHolder(inflater.inflate(R.layout.item_request, parent, false));
     }
 
-    //    جدید
-//            پس
-//    آب
     @Override
 
     public void onBindViewHolder(@NonNull RequestViewHolder holder, int position) {

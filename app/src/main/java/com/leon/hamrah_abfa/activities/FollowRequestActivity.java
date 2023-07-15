@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
-import com.leon.hamrah_abfa.adapters.recycler_view.RequestAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.RequestHistoryAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
@@ -30,8 +30,8 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
         FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback {
     private MasterHistory requestInfo = new MasterHistory();
     private ActivityFollowRequestBinding binding;
-    private RequestAdapter adapterUnfinished;
-    private RequestAdapter adapterFinished;
+    private RequestHistoryAdapter adapterUnfinished;
+    private RequestHistoryAdapter adapterFinished;
     private DialogFragment fragment;
     private String uuid;
 
@@ -80,8 +80,8 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void initializeViewPager() {
-        adapterFinished = new RequestAdapter(this, requestInfo.finisheds);
-        adapterUnfinished = new RequestAdapter(this, requestInfo.unfinisheds);
+        adapterFinished = new RequestHistoryAdapter(this, requestInfo.finisheds);
+        adapterUnfinished = new RequestHistoryAdapter(this, requestInfo.unfinisheds);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         adapter.addFragment(FollowRequestListUnfinishedFragment.newInstance());
         adapter.addFragment(FollowRequestListFinishedFragment.newInstance());
@@ -142,12 +142,12 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     }
 
     @Override
-    public RequestAdapter getFinishedAdapter() {
+    public RequestHistoryAdapter getFinishedAdapter() {
         return adapterFinished;
     }
 
     @Override
-    public RequestAdapter getUnfinishedAdapter() {
+    public RequestHistoryAdapter getUnfinishedAdapter() {
         return adapterUnfinished;
     }
 

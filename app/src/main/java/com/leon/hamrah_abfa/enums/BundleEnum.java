@@ -6,6 +6,7 @@ public enum BundleEnum {
     BILL_ID("bill id"),
     UUID("uuid"),
     ID("id"),
+    NAME("name"),
     ZONE_ID("zone_id"),
     LAST_PAGE("last page"),
     SERVICE_TYPE("service type"),

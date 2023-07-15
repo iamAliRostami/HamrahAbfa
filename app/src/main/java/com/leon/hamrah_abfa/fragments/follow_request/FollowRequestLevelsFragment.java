@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.follow_request;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.TRACK_NUMBER;
+import static com.leon.hamrah_abfa.enums.FragmentTags.FOLLOW_REQUEST_ITEM;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -23,7 +24,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.adapters.recycler_view.RequestLevelAdapter;
+import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
+import com.leon.hamrah_abfa.adapters.recycler_view.RequestDetailAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestLevelsBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.requests.follow_request.GetDetailHistoryRequest;
@@ -34,6 +36,7 @@ public class FollowRequestLevelsFragment extends BottomSheetDialogFragment {
     private FragmentFollowRequestLevelsBinding binding;
     private DialogFragment fragment;
     private int trackNumber;
+    private RequestDetailAdapter adapter;
 
     public FollowRequestLevelsFragment() {
     }
@@ -114,22 +117,25 @@ public class FollowRequestLevelsFragment extends BottomSheetDialogFragment {
         }
     }
 
-    private void initializeRecyclerView(ArrayList<RequestLevel> detailHistory) {
-//        final ArrayList<RequestLevel> requestLevels = new ArrayList<>();
-//        requestLevels.add(new RequestLevel(1, "ثبت درخواست", "12/12/12"));
-//        requestLevels.add(new RequestLevel(2, "ثبت ارزیاب", "12/12/12"));
-//        requestLevels.add(new RequestLevel(3, "بررسی مدارک", "12/12/12"));
-//        requestLevels.add(new RequestLevel(4, "مرحله 1", "12/12/12"));
-//        requestLevels.add(new RequestLevel(5, "مرحله 2", "12/12/12"));
-//        requestLevels.add(new RequestLevel(6, "مرحله 3", "12/12/12"));
-//        requestLevels.add(new RequestLevel(7, "مرحله 4", "12/12/12"));
-//        requestLevels.add(new RequestLevel(8, "مرحله 5", "12/12/12"));
-//        requestLevels.add(new RequestLevel(9, "مرحله 6", "12/12/12"));
-//        requestLevels.add(new RequestLevel(10, "مرحله 7", "12/12/12"));
-
-        final RequestLevelAdapter adapter = new RequestLevelAdapter(requireContext(), detailHistory);
+    private void initializeRecyclerView(ArrayList<RequestDetail> detailHistory) {
+        /*final RequestDetailAdapter */
+        adapter = new RequestDetailAdapter(requireContext(), detailHistory);
         binding.recyclerViewLevel.setAdapter(adapter);
         binding.recyclerViewLevel.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.recyclerViewLevel.addOnItemTouchListener(new RecyclerItemClickListener(requireContext(),
+                binding.recyclerViewLevel, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                if (adapter.getId(position) != null)
+                    showFragmentDialogOnce(view.getContext(), FOLLOW_REQUEST_ITEM.getValue(),
+                            FollowRequestItemsFragment.newInstance(adapter.getId(position), adapter.getTitle(position)));
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     @NonNull

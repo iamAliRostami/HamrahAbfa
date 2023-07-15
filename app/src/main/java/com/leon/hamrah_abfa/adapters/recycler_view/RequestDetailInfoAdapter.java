@@ -9,16 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.RequestInfoViewHolder;
-import com.leon.hamrah_abfa.fragments.follow_request.TrackItemsInfo;
+import com.leon.hamrah_abfa.fragments.follow_request.TrackItemInfo;
 
-public class RequestInfoAdapter extends RecyclerView.Adapter<RequestInfoViewHolder> {
-    private final TrackItemsInfo trackItemsInfo;
+import java.util.ArrayList;
+
+public class RequestDetailInfoAdapter extends RecyclerView.Adapter<RequestInfoViewHolder> {
+    private final ArrayList<TrackItemInfo> trackItems = new ArrayList<>();
 
     private final LayoutInflater inflater;
 
-    public RequestInfoAdapter(Context context, TrackItemsInfo trackItemsInfo) {
+    public RequestDetailInfoAdapter(Context context, ArrayList<TrackItemInfo> trackItems) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.trackItemsInfo = trackItemsInfo;
+        this.trackItems.addAll(trackItems);
     }
 
     @NonNull
@@ -26,6 +28,7 @@ public class RequestInfoAdapter extends RecyclerView.Adapter<RequestInfoViewHold
     public RequestInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new RequestInfoViewHolder(inflater.inflate(R.layout.item_request_info, parent, false));
     }
+
     @Override
     public int getItemViewType(int position) {
         return position;
@@ -33,12 +36,13 @@ public class RequestInfoAdapter extends RecyclerView.Adapter<RequestInfoViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RequestInfoViewHolder holder, int position) {
-        holder.textViewKey.setText(trackItemsInfo.trackItems.get(position).key);
-        holder.textViewValue.setText(trackItemsInfo.trackItems.get(position).value);
+        holder.textViewKey.setText(trackItems.get(position).key.trim());
+        if (trackItems.get(position).value != null)
+            holder.textViewValue.setText(trackItems.get(position).value.trim());
     }
 
     @Override
     public int getItemCount() {
-        return trackItemsInfo.trackItems.size();
+        return trackItems.size();
     }
 }

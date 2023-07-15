@@ -15,18 +15,21 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_track"
+            android:id="@+id/text_view_title"
             style="@style/TitleBill"
             android:layout_weight="1"
-            android:text="@string/track_number"
             android:textAppearance="@style/TextStyleLarge.Bold" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_level"
-            style="@style/TextItem.LastBill"
-            android:text="12345678"
-            android:textAppearance="@style/TextStyleLarge.Bold" />
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/text_view_level"-->
+<!--            style="@style/TextItem.LastBill"-->
+<!--            android:text="12345678"-->
+<!--            android:textAppearance="@style/TextStyleLarge.Bold" />-->
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_arrow_down"
+            style="@style/ImageArrowStyle"
+            android:src="@drawable/arrow_down" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
