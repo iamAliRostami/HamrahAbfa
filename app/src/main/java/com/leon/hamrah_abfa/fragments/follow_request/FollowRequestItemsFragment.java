@@ -5,14 +5,21 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.NAME;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestDetailInfoAdapter;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentFollowRequestItemsBinding;
@@ -97,7 +104,20 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
         binding.recyclerViewInfo.setLayoutManager(new LinearLayoutManager(requireContext()));
 
     }
-
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Dialog FollowRequestLevelsDialog = super.onCreateDialog(savedInstanceState);
+        FollowRequestLevelsDialog.setOnShowListener(dialog -> {
+            final BottomSheetDialog bottomDialog = (BottomSheetDialog) dialog;
+            final FrameLayout bottomSheet = bottomDialog.findViewById(com.google.android.material.R.id.design_bottom_sheet);
+            if (bottomSheet != null) {
+                final DisplayMetrics displayMetrics = requireActivity().getResources().getDisplayMetrics();
+                BottomSheetBehavior.from(bottomSheet).setPeekHeight((int) (displayMetrics.heightPixels * 0.8));
+            }
+        });
+        return FollowRequestLevelsDialog;
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

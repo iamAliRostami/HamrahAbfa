@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:paddingStart="@dimen/xlarge_dp"
+    android:paddingEnd="@dimen/xlarge_dp"
     android:layout_height="match_parent"
-    android:paddingStart="@dimen/large_dp"
-    android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.follow_request.FollowRequestItemsFragment">
 
@@ -16,15 +16,9 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
-            style="@style/TitleBill"
+            style="@style/Title.Bottom"
             android:layout_weight="1"
             android:textAppearance="@style/TextStyleLarge.Bold" />
-
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/text_view_level"-->
-<!--            style="@style/TextItem.LastBill"-->
-<!--            android:text="12345678"-->
-<!--            android:textAppearance="@style/TextStyleLarge.Bold" />-->
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_arrow_down"
@@ -34,6 +28,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_info"
+        android:layout_marginStart="@dimen/large_dp"
+        android:layout_marginEnd="@dimen/large_dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/linear_layout_title"

@@ -21,12 +21,15 @@ public class RequestDetailInfoAdapter extends RecyclerView.Adapter<RequestInfoVi
     public RequestDetailInfoAdapter(Context context, ArrayList<TrackItemInfo> trackItems) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.trackItems.addAll(trackItems);
+//        this.trackItems.addAll(trackItems);
     }
 
     @NonNull
     @Override
     public RequestInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RequestInfoViewHolder(inflater.inflate(R.layout.item_request_info, parent, false));
+        if (viewType%2==0)
+            return new RequestInfoViewHolder(inflater.inflate(R.layout.item_request_info, parent, false));
+        return new RequestInfoViewHolder(inflater.inflate(R.layout.item_request_info_light, parent, false));
     }
 
     @Override
@@ -37,7 +40,7 @@ public class RequestDetailInfoAdapter extends RecyclerView.Adapter<RequestInfoVi
     @Override
     public void onBindViewHolder(@NonNull RequestInfoViewHolder holder, int position) {
         holder.textViewKey.setText(trackItems.get(position).key.trim());
-        if (trackItems.get(position).value != null)
+        if (trackItems.get(position).value != null && !trackItems.get(position).value.isEmpty())
             holder.textViewValue.setText(trackItems.get(position).value.trim());
     }
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/medium_dp"
-    android:background="@drawable/background_last_bill"
+    android:background="@drawable/background_last_bill_light"
     android:orientation="vertical"
     android:paddingTop="@dimen/medium_dp">
 
