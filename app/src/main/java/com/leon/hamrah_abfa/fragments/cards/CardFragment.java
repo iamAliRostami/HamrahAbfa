@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
@@ -64,8 +65,19 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.text_view_pay) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
-            startActivity(browserIntent);
+            try {
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.intent.setPackage("com.android.chrome");
+                customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                customTabsIntent.launchUrl(requireContext(), Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
+            } catch (Exception e) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                browserIntent.setData(Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
+                startActivity(browserIntent);
+            }
+
         }
     }
 }
