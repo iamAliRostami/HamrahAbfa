@@ -11,10 +11,12 @@ import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 public class ChangeMobileViewModel extends VerificationViewModel {
     private String newMobile;
     private String billId;
+    private String billAccountId;
 
-    public ChangeMobileViewModel(String billId) {
+    public ChangeMobileViewModel(String billId, String billAccountId) {
         setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setBillId(billId);
+        setBillAccountId(billAccountId);
     }
 
 
@@ -36,5 +38,13 @@ public class ChangeMobileViewModel extends VerificationViewModel {
     public void setNewMobile(String newMobile) {
         this.newMobile = newMobile;
         notifyPropertyChanged(BR.newMobile);
+    }
+
+    public String getBillAccountId() {
+        return billAccountId;
+    }
+
+    public void setBillAccountId(String billAccountId) {
+        this.billAccountId = billAccountId;
     }
 }

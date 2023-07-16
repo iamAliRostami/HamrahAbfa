@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +36,7 @@ import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.TileAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentHomeBinding;
 
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private ICallback callback;
 
@@ -86,29 +85,28 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 if (callback.isEmpty())
                     return;
                 if (position == 0) {
-                    startActivity(createIntent(PayBillActivity.class));
+                    startActivity(createIntent(PayBillActivity.class, position));
                 } else if (position == 1) {
-                    Intent intent = createIntent(SetCounterNumberActivity.class);
-                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(position));
-                    startActivity(intent);
-//                    startActivity(createIntent(SetCounterNumberActivity.class));
+                    startActivity(createIntent(SetCounterNumberActivity.class, position));
                 } else if (position == 2) {
-                    startActivity(createIntent(UsageHistoryActivity.class));
+                    startActivity(createIntent(UsageHistoryActivity.class, position));
                 } else if (position == 3) {
-                    startActivity(createIntent(CutOffActivity.class));
+                    startActivity(createIntent(CutOffActivity.class, position));
                 } else if (position == 4) {
-                    startActivity(createIntent(CheckoutActivity.class));
+                    startActivity(createIntent(CheckoutActivity.class, position));
                 } else if (position == 5) {
-                    final Intent intent = createIntent(FollowRequestActivity.class);
+                    final Intent intent = createIntent(FollowRequestActivity.class, position);
                     intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
                             (callback.getCardPagerAdapter().getItemCount() - 1));
                     startActivity(intent);
                 } else if (position == 6) {
-                    startActivity(createIntent(LastBillActivity.class));
+                    startActivity(createIntent(LastBillActivity.class, position));
                 } else if (position == 7) {
-                    startActivity(createIntent(ChangeMobileActivity.class));
+                    Intent intent = createIntent(ChangeMobileActivity.class, position);
+                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(position));
+                    startActivity(intent);
                 } else if (position == 8) {
-                    startActivity(createIntent(ContactUsActivity.class));
+                    startActivity(createIntent(ContactUsActivity.class, position));
                 }
             }
 
@@ -142,30 +140,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         binding.viewPagerCard.setPageTransformer(cpt);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == 0) {
-            startActivity(createIntent(PayBillActivity.class));
-        } else if (position == 1) {
-            startActivity(createIntent(SetCounterNumberActivity.class));
-        } else if (position == 2) {
-        } else if (position == 3) {
-        } else if (position == 4) {
-            startActivity(createIntent(CheckoutActivity.class));
-        } else if (position == 5) {
-            startActivity(createIntent(FollowRequestActivity.class));
-        } else if (position == 6) {
-            startActivity(createIntent(LastBillActivity.class));
-        } else if (position == 7) {
-            startActivity(createIntent(ChangeMobileActivity.class));
-        } else if (position == 8) {
-            startActivity(createIntent(ContactUsActivity.class));
-        }
-    }
-
-    private Intent createIntent(Class<?> cls) {
+    private Intent createIntent(Class<?> cls, int position) {
         final Intent intent = new Intent(requireContext(), cls);
         intent.putExtra(UUID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(position));
         return intent;
     }
 
