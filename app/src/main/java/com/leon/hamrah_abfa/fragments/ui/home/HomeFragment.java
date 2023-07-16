@@ -102,9 +102,9 @@ public class HomeFragment extends Fragment {
                 } else if (position == 6) {
                     startActivity(createIntent(LastBillActivity.class));
                 } else if (position == 7) {
-                    Intent intent = createIntent(ChangeMobileActivity.class);
-                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
-                    startActivity(intent);
+//                    Intent intent = createIntent(ChangeMobileActivity.class);
+//                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
+                    startActivity(createIntent(ChangeMobileActivity.class));
                 } else if (position == 8) {
                     startActivity(createIntent(ContactUsActivity.class));
                 }
