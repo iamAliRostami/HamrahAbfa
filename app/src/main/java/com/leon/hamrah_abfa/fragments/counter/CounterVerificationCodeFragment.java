@@ -194,7 +194,6 @@ public class CounterVerificationCodeFragment extends Fragment implements
 //                binding.textViewTryAgain.setVisibility(View.VISIBLE);
 //                binding.imageViewRightArrow.setVisibility(View.VISIBLE);
             }
-
         }.start();
     }
 

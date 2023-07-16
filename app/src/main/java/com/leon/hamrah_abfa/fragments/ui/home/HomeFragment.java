@@ -1,7 +1,8 @@
 package com.leon.hamrah_abfa.fragments.ui.home;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 
 import android.app.Activity;
 import android.content.Context;
@@ -87,7 +88,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 if (position == 0) {
                     startActivity(createIntent(PayBillActivity.class));
                 } else if (position == 1) {
-                    startActivity(createIntent(SetCounterNumberActivity.class));
+                    Intent intent = createIntent(SetCounterNumberActivity.class);
+                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(position));
+                    startActivity(intent);
+//                    startActivity(createIntent(SetCounterNumberActivity.class));
                 } else if (position == 2) {
                     startActivity(createIntent(UsageHistoryActivity.class));
                 } else if (position == 3) {
@@ -149,7 +153,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         } else if (position == 4) {
             startActivity(createIntent(CheckoutActivity.class));
         } else if (position == 5) {
-            startActivity( createIntent(FollowRequestActivity.class));
+            startActivity(createIntent(FollowRequestActivity.class));
         } else if (position == 6) {
             startActivity(createIntent(LastBillActivity.class));
         } else if (position == 7) {

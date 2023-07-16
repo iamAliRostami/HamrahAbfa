@@ -7,6 +7,7 @@ import static com.leon.toast.RTLToast.warning;
 import android.content.Context;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
+import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -20,11 +21,11 @@ import retrofit2.Retrofit;
 public class AskVerificationCodeRequest {
     private final Context context;
     private final ICallback callback;
-    private final PreLoginViewModel preLogin;
+    private final VerificationViewModel verification;
 
-    public AskVerificationCodeRequest(Context context, PreLoginViewModel preLogin, ICallback callback) {
+    public AskVerificationCodeRequest(Context context, VerificationViewModel verification, ICallback callback) {
         this.context = context;
-        this.preLogin = preLogin;
+        this.verification = verification;
         this.callback = callback;
     }
 
@@ -32,7 +33,7 @@ public class AskVerificationCodeRequest {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<PreLoginViewModel> call = iAbfaService.preLogin(preLogin);
+        final Call<PreLoginViewModel> call = iAbfaService.preLogin(verification);
         return HttpClientWrapper.callHttpAsync(context, call, new VerificationCodeSuccessful(callback),
                 new VerificationCodeIncomplete(context, callback), new VerificationCodeFailed(context, callback));
     }

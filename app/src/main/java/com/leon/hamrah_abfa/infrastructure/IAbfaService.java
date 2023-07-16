@@ -1,10 +1,10 @@
 package com.leon.hamrah_abfa.infrastructure;
 
+import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
-import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
@@ -20,10 +20,10 @@ import retrofit2.http.Path;
 
 public interface IAbfaService {
     @POST("kontoriNew/V1/MobileAccount/PreLogin")
-    Call<PreLoginViewModel> preLogin(@Body PreLoginViewModel preLogin);
+    Call<PreLoginViewModel> preLogin(@Body VerificationViewModel preLogin);
 
     @POST("kontoriNew/V1/MobileAccount/VerifyCode")
-    Call<PreLoginViewModel> verifyCode(@Body PreLoginViewModel preLogin);
+    Call<PreLoginViewModel> verifyCode(@Body VerificationViewModel preLogin);
 
     @GET("KontoriNew/V1/MobileBill/Get")
     Call<BillsSummary> getBills();
@@ -57,7 +57,7 @@ public interface IAbfaService {
 
 
     @POST("kontoriNew/V1/Verification/Code")
-    Call<CounterViewModel> askVerificationCode(@Body CounterViewModel counter);
+    Call<VerificationViewModel> askVerificationCode(@Body VerificationViewModel verification);
 
 }
 

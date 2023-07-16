@@ -86,4 +86,7 @@ public class CardPagerAdapter extends FragmentStateAdapter {
     public String getCurrentId(int position) {
         return bills.get(position).getId();
     }
+    public String getCurrentBillId(int position) {
+        return bills.get(position).getBillId();
+    }
 }

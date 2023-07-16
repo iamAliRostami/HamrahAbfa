@@ -5,14 +5,14 @@ import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
-import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
-import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
+import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -21,11 +21,11 @@ import retrofit2.Retrofit;
 public class AskVerificationCodeRequest {
     private final Context context;
     private final ICallback callback;
-    private final CounterViewModel counter;
+    private final VerificationViewModel verificationViewModel;
 
-    public AskVerificationCodeRequest(Context context, CounterViewModel counter, ICallback callback) {
+    public AskVerificationCodeRequest(Context context, VerificationViewModel verificationViewModel, ICallback callback) {
         this.context = context;
-        this.counter = counter;
+        this.verificationViewModel = verificationViewModel;
         this.callback = callback;
     }
 
@@ -33,7 +33,7 @@ public class AskVerificationCodeRequest {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<CounterViewModel> call = iAbfaService.askVerificationCode(counter);
+        final Call<VerificationViewModel> call = iAbfaService.askVerificationCode(verificationViewModel);
         return HttpClientWrapper.callHttpAsync(context, call, new VerificationCodeSuccessful(callback),
                 new VerificationCodeIncomplete(context, callback), new VerificationCodeFailed(context, callback));
     }
@@ -45,7 +45,7 @@ public class AskVerificationCodeRequest {
     }
 }
 
-class VerificationCodeSuccessful implements ICallbackSucceed<CounterViewModel> {
+class VerificationCodeSuccessful implements ICallbackSucceed<VerificationViewModel> {
     private final AskVerificationCodeRequest.ICallback callback;
 
     public VerificationCodeSuccessful(AskVerificationCodeRequest.ICallback callback) {
@@ -53,7 +53,7 @@ class VerificationCodeSuccessful implements ICallbackSucceed<CounterViewModel> {
     }
 
     @Override
-    public void executeCompleted(Response<CounterViewModel> response) {
+    public void executeCompleted(Response<VerificationViewModel> response) {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
@@ -63,7 +63,7 @@ class VerificationCodeSuccessful implements ICallbackSucceed<CounterViewModel> {
     }
 }
 
-class VerificationCodeIncomplete implements ICallbackIncomplete<CounterViewModel> {
+class VerificationCodeIncomplete implements ICallbackIncomplete<VerificationViewModel> {
     private final Context context;
     private final AskVerificationCodeRequest.ICallback callback;
 
@@ -73,7 +73,7 @@ class VerificationCodeIncomplete implements ICallbackIncomplete<CounterViewModel
     }
 
     @Override
-    public void executeDismissed(Response<CounterViewModel> response) {
+    public void executeDismissed(Response<VerificationViewModel> response) {
         callback.changeUI(true);
         //TODO
         warning(context, "dismissed").show();
@@ -92,6 +92,7 @@ class VerificationCodeFailed implements ICallbackFailure {
     @Override
     public void executeFailed(Throwable t) {
         callback.changeUI(true);
+        Log.e("error", t.toString());
         //TODO
         error(context, "failed").show();
     }

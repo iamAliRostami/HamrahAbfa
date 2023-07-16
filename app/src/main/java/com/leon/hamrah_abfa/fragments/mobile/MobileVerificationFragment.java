@@ -189,9 +189,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     }
 
     private void startCounter() {
-        callback.getViewModel().setCounterVisibility(View.VISIBLE);
-        callback.getViewModel().setTryAgainVisibility(View.GONE);
-        callback.getViewModel().setArrowVisibility(View.GONE);
         new CountDownTimer(callback.getViewModel().getRemainedSeconds() * 1000, 1000) {
 
             @SuppressLint("SetTextI18n")
@@ -200,7 +197,6 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
             }
 
             public void onFinish() {
-
                 binding.textViewCounter.setVisibility(View.GONE);
                 binding.textViewTryAgain.setVisibility(View.VISIBLE);
                 binding.imageViewRightArrow.setVisibility(View.VISIBLE);

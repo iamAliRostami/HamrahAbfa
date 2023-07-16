@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_VERIFICATION_CODE_FRAGMENT;
 
@@ -22,7 +23,8 @@ public class SetCounterNumberActivity extends BaseActivity implements CounterBas
     protected void initialize() {
         binding = ActivitySetCounterNumberBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            viewModel = new CounterViewModel(getIntent().getExtras().getString(BILL_ID.getValue()));
+            viewModel = new CounterViewModel(getIntent().getExtras().getString(BILL_ID.getValue()),
+                    getIntent().getExtras().getString(UUID.getValue()));
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
