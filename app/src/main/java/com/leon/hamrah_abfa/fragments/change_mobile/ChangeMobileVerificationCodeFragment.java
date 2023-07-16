@@ -163,7 +163,10 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
     }
 
     private void startCounter() {
-        new CountDownTimer(10000, 1000) {
+        binding.textViewCounter.setVisibility(View.VISIBLE);
+        binding.textViewTryAgain.setVisibility(View.GONE);
+        binding.imageViewRight.setVisibility(View.GONE);
+        new CountDownTimer(callback.getViewModel().getRemainedSeconds(), 1000) {
 
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {

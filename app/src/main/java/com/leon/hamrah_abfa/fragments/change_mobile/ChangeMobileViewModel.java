@@ -3,41 +3,20 @@ package com.leon.hamrah_abfa.fragments.change_mobile;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
-import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.leon.hamrah_abfa.BR;
+import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 
-public class ChangeMobileViewModel extends BaseObservable {
-    private String oldMobile;
+public class ChangeMobileViewModel extends VerificationViewModel {
     private String newMobile;
-    private String verificationCode;
     private String billId;
 
     public ChangeMobileViewModel(String billId) {
-        setOldMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
+        setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setBillId(billId);
     }
 
-    @Bindable
-    public String getOldMobile() {
-        return oldMobile;
-    }
-
-    public void setOldMobile(String oldMobile) {
-        this.oldMobile = oldMobile;
-        notifyPropertyChanged(BR.mobile);
-    }
-
-    @Bindable
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-        notifyPropertyChanged(BR.verificationCode);
-    }
 
     @Bindable
     public String getBillId() {

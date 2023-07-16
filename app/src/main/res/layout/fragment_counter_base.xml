@@ -115,12 +115,6 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!--        <com.google.android.material.button.MaterialButton-->
-        <!--            android:id="@+id/button_submit"-->
-        <!--            style="@style/ButtonSubmit"-->
-        <!--            android:layout_alignParentBottom="true"-->
-        <!--            android:layout_marginTop="@dimen/large_dp"-->
-        <!--            android:text="@string/confirm" />-->
         <RelativeLayout
             android:id="@+id/relative_layout_submit"
             android:layout_width="match_parent"

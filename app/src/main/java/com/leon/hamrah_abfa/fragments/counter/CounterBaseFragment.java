@@ -69,7 +69,7 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
                 new AskVerificationCodeRequest.ICallback() {
                     @Override
                     public void succeed(String id, long remainedSeconds) {
-                        callback.editCounterViewModel(id, remainedSeconds);
+                        callback.editViewModel(id, remainedSeconds);
                         callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
                     }
 
@@ -116,12 +116,11 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
         if (context instanceof Activity) callback = (ICallback) context;
     }
 
-
     public interface ICallback {
         CounterViewModel getViewModel();
 
         void displayView(int position);
 
-        void editCounterViewModel(String id, long remainedSeconds);
+        void editViewModel(String id, long remainedSeconds);
     }
 }
