@@ -13,6 +13,8 @@ import static com.leon.hamrah_abfa.utils.ShowFragment.addFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -34,12 +36,14 @@ import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,
         ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback {
+    private final ForbiddenViewModel viewModel = new ForbiddenViewModel();
     private ActivityContactUsBinding binding;
     private ImageViewAdapter adapter;
-    private final ForbiddenViewModel viewModel = new ForbiddenViewModel();
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityContactUsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         displayView(CONTACT_BASE_FRAGMENT);

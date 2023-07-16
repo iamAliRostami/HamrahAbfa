@@ -4,6 +4,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.helpers.Constants.CUT_OFF_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.setFragment;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import com.leon.hamrah_abfa.R;
@@ -16,8 +18,10 @@ public class CutOffActivity extends BaseActivity implements CutOffBaseFragment.I
     private ActivityCutOffBinding binding;
     private CutOffViewModel viewModel;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityCutOffBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             viewModel = new CutOffViewModel(getIntent().getExtras().getString(BILL_ID.getValue()));

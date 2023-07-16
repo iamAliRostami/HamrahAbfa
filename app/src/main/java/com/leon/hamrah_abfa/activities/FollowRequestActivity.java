@@ -6,6 +6,8 @@ import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -31,15 +33,17 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
         FollowRequestListFinishedFragment.ICallback, FollowRequestListUnfinishedFragment.ICallback,
         FollowRequestTrackFragment.ICallback {
     private MasterHistory requestInfo = new MasterHistory();
-    private ActivityFollowRequestBinding binding;
     private RequestHistoryAdapter adapterUnfinished;
     private RequestHistoryAdapter adapterFinished;
+    private ActivityFollowRequestBinding binding;
     private DialogFragment fragment;
-    private String uuid;
     private String filterValue = "";
+    private String uuid;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityFollowRequestBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             uuid = getIntent().getExtras().getString(UUID.getValue());
@@ -126,12 +130,10 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
     }
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
     }
 
     @Override
@@ -178,12 +180,13 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
             if (trackNumber.toLowerCase().contains(filterValue.toLowerCase()))
                 requestUnfinishedTemp.add(info);
         }
-
         if (!requestUnfinishedTemp.isEmpty()) {
             adapterUnfinished.filterList(requestUnfinishedTemp);
-        } else if (!requestFinishedTemp.isEmpty()) {
+        }
+        if (!requestFinishedTemp.isEmpty()) {
             adapterFinished.filterList(requestFinishedTemp);
-        } else {
+        }
+        if (requestUnfinishedTemp.isEmpty() && requestFinishedTemp.isEmpty()) {
             warning(this, R.string.not_found).show();
         }
     }

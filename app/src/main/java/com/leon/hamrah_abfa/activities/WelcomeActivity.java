@@ -4,7 +4,9 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -19,7 +21,10 @@ import com.leon.hamrah_abfa.databinding.ActivityWelcomeBinding;
 public class WelcomeActivity extends BaseActivity {
     private ActivityWelcomeBinding binding;
 
+    @SuppressLint("SourceLockedOrientationActivity")
+    @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());

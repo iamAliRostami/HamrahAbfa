@@ -9,10 +9,15 @@ import static com.leon.hamrah_abfa.helpers.Constants.THEME_LIGHT;
 import static com.leon.hamrah_abfa.helpers.Constants.TOAST_TEXT_SIZE;
 import static com.leon.toast.RTLToast.Config;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
+import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 

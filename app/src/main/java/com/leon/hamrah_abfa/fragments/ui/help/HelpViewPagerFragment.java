@@ -4,7 +4,6 @@ import static android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD;
 import static com.leon.hamrah_abfa.enums.BundleEnum.ANIM;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BACKGROUND_COLOR;
 import static com.leon.hamrah_abfa.enums.BundleEnum.CONTENT;
-import static com.leon.hamrah_abfa.enums.BundleEnum.LOGO;
 import static com.leon.hamrah_abfa.enums.BundleEnum.POSITION;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TITLE;
 
@@ -28,14 +27,13 @@ public class HelpViewPagerFragment extends Fragment {
     public HelpViewPagerFragment() {
     }
 
-    public static HelpViewPagerFragment newInstance(int position, String title, String content,/*int logo,*/
+    public static HelpViewPagerFragment newInstance(int position, String title, String content,
                                                     int anim, int bgColor) {
         final HelpViewPagerFragment fragment = new HelpViewPagerFragment();
         final Bundle args = new Bundle();
         args.putInt(POSITION.getValue(), position);
         args.putString(TITLE.getValue(), title);
         args.putString(CONTENT.getValue(), content);
-//        args.putInt(LOGO.getValue(), logo);
         args.putInt(ANIM.getValue(), anim);
         args.putInt(BACKGROUND_COLOR.getValue(), bgColor);
         fragment.setArguments(args);
@@ -46,8 +44,6 @@ public class HelpViewPagerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-//            viewModel.setLogo(getArguments().getInt(LOGO.getValue()));
-//            viewModel.setLogoDrawable(ContextCompat.getDrawable(requireContext(), getArguments().getInt(LOGO.getValue())));
             viewModel.setTitle(getArguments().getString(TITLE.getValue()));
             viewModel.setPosition(getArguments().getInt(POSITION.getValue()));
             viewModel.setContent(getArguments().getString(CONTENT.getValue()));

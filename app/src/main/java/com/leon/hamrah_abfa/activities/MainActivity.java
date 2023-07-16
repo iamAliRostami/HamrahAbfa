@@ -12,9 +12,11 @@ import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -49,15 +51,14 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
     private CardPagerAdapter cardPagerAdapter;
     private ActivityMainBinding binding;
-    private DialogFragment fragment;
     private int position;
-    private Context context;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        context = this;
         //TODO
         initializeSplash();
         // TODO

@@ -3,7 +3,9 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.VERIFICATION_FRAGMENT;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -21,8 +23,10 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
     private final PreLoginViewModel viewModel = new PreLoginViewModel();
     private ActivityMobileSubmitBinding binding;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityMobileSubmitBinding.inflate(getLayoutInflater());

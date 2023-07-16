@@ -7,7 +7,9 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -23,8 +25,10 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     private ActivitySettingBinding binding;
     private boolean isChange = false;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         if (getIntent().getExtras() != null) {

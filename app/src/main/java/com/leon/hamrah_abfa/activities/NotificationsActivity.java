@@ -3,6 +3,8 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
@@ -32,8 +34,10 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityNotificationsBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             billId = getIntent().getExtras().getString(BILL_ID.getValue());

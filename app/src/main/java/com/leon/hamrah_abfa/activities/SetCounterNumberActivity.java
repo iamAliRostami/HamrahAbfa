@@ -5,6 +5,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_VERIFICATION_CODE_FRAGMENT;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import com.leon.hamrah_abfa.R;
@@ -19,8 +21,10 @@ public class SetCounterNumberActivity extends BaseActivity implements CounterBas
     private CounterViewModel viewModel;
     private ActivitySetCounterNumberBinding binding;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivitySetCounterNumberBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             viewModel = new CounterViewModel(getIntent().getExtras().getString(BILL_ID.getValue()),

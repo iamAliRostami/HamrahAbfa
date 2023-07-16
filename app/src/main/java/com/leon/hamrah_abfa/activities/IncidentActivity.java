@@ -5,6 +5,8 @@ import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_COMPLETE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -24,8 +26,10 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
     private ImageViewAdapter adapter;
     private final IncidentViewModel viewModel = new IncidentViewModel();
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityIncidentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         displayView(INCIDENT_BASE_FRAGMENT);

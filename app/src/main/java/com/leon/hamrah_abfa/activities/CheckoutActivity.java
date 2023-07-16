@@ -4,6 +4,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -26,14 +28,16 @@ import java.util.ArrayList;
 
 public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         CheckoutBillFragment.ICallback, CheckoutPaymentFragment.ICallback {
-    private final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
     private final ArrayList<CheckoutPaymentViewModel> payments = new ArrayList<>();
+    private final ArrayList<CheckoutBillViewModel> bills = new ArrayList<>();
     private ActivityCheckoutBinding binding;
     private DialogFragment fragment;
     private String id;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityCheckoutBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             id = getIntent().getExtras().getString(UUID.getValue());
@@ -105,12 +109,10 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
     }
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
     }
 
     @Override

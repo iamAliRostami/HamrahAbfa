@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.fragments.ui.home;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
-import static com.leon.hamrah_abfa.enums.BundleEnum.LAST_PAGE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 
 import android.app.Activity;
@@ -82,6 +81,9 @@ public class HomeFragment extends Fragment {
                 binding.recyclerViewMenu, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                if (position == 8) {
+                    startActivity(createIntent(ContactUsActivity.class));
+                }
                 if (callback.isEmpty())
                     return;
                 if (position == 0) {
@@ -95,18 +97,11 @@ public class HomeFragment extends Fragment {
                 } else if (position == 4) {
                     startActivity(createIntent(CheckoutActivity.class));
                 } else if (position == 5) {
-                    final Intent intent = createIntent(FollowRequestActivity.class);
-                    intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
-                            (callback.getCardPagerAdapter().getItemCount() - 1));
-                    startActivity(intent);
+                    startActivity(createIntent(FollowRequestActivity.class));
                 } else if (position == 6) {
                     startActivity(createIntent(LastBillActivity.class));
                 } else if (position == 7) {
-//                    Intent intent = createIntent(ChangeMobileActivity.class);
-//                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
                     startActivity(createIntent(ChangeMobileActivity.class));
-                } else if (position == 8) {
-                    startActivity(createIntent(ContactUsActivity.class));
                 }
             }
 
@@ -115,11 +110,9 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
     }
 
     private void initializeViewPager() {
-//        callback.createCardPagerAdapter();
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
         binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -165,7 +158,6 @@ public class HomeFragment extends Fragment {
         String getCurrentId(int position);
 
         CardPagerAdapter getCardPagerAdapter();
-
 
         void setPosition(int position);
 

@@ -8,6 +8,8 @@ import static com.leon.hamrah_abfa.helpers.Constants.SMALL;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.info;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;

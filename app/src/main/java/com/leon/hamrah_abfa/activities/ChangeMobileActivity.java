@@ -6,6 +6,8 @@ import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.setFragment;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import com.leon.hamrah_abfa.R;
@@ -14,7 +16,6 @@ import com.leon.hamrah_abfa.databinding.ActivityChangeMobileBinding;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileBaseFragment;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileVerificationCodeFragment;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
-import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 
 public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBaseFragment.ICallback,
         ChangeMobileVerificationCodeFragment.ICallback {
@@ -22,11 +23,12 @@ public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBa
     private ActivityChangeMobileBinding binding;
     private ChangeMobileViewModel viewModel;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityChangeMobileBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-//            viewModel = new ChangeMobileViewModel(getIntent().getExtras().getString(BILL_ID.getValue()));
             viewModel = new ChangeMobileViewModel(getIntent().getExtras().getString(BILL_ID.getValue()),
                     getIntent().getExtras().getString(UUID.getValue()));
             getIntent().getExtras().clear();

@@ -13,16 +13,6 @@ public class HelpViewModel extends BaseObservable {
     private String title;
     private String content;
 
-    //    private Drawable logoDrawable;
-//    @Bindable
-//    public Drawable getLogoDrawable() {
-//        return logoDrawable;
-//    }
-//
-//    public void setLogoDrawable(Drawable logoDrawable) {
-//        this.logoDrawable = logoDrawable;
-//        notifyPropertyChanged(BR.logoDrawable);
-//    }
     @Bindable
     public int getPosition() {
         return position;

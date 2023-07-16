@@ -8,6 +8,8 @@ import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGME
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_SUBMIT_INFORMATION_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.view.View;
 
@@ -38,8 +40,10 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
     private ActivityServiceBinding binding;
     private ServicesIntroductionBaseAdapter adapter;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityServiceBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             viewModel = new ServicesViewModel(this, getIntent().getExtras().getInt(SERVICE_TYPE.getValue()),

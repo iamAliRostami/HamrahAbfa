@@ -2,6 +2,8 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.helpers.Constants.PAY_BILL_BASE_FRAGMENT;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import com.leon.hamrah_abfa.R;
@@ -12,8 +14,10 @@ import com.leon.hamrah_abfa.fragments.pay_bill.PayBillBaseFragment;
 public class PayBillActivity extends BaseActivity implements PayBillBaseFragment.ICallback {
     private ActivityPayBillBinding binding;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityPayBillBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         displayView(PAY_BILL_BASE_FRAGMENT);

@@ -4,6 +4,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -31,8 +33,10 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
     private final ArrayList<AttemptViewModel> successAttempts = new ArrayList<>();
     private final ArrayList<AttemptViewModel> unsuccessAttempts = new ArrayList<>();
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityUsageHistoryBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             id = getIntent().getExtras().getString(UUID.getValue());

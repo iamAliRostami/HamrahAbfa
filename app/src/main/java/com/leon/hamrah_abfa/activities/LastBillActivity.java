@@ -6,6 +6,8 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.ZONE_ID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -32,8 +34,10 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
     private int zoneId;
     private int id;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void initialize() {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityLastBillBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             uuid = getIntent().getExtras().getString(UUID.getValue());
