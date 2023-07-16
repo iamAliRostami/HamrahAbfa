@@ -54,4 +54,9 @@ public class SetCounterNumberActivity extends BaseActivity implements CounterBas
         return viewModel;
     }
 
+    @Override
+    public void editCounterViewModel(String id, long remainedSeconds) {
+        viewModel.setId(id);
+        viewModel.setRemainedSeconds(remainedSeconds);
+    }
 }

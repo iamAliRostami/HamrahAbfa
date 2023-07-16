@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.fragments.mobile;
 
-import static android.app.Activity.RESULT_OK;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.TOKEN;
 import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
@@ -9,7 +8,6 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -94,12 +92,12 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                         binding.editText3.getEditableText().toString() +
                         binding.editText4.getEditableText().toString();
                 callback.getViewModel().setSubmitCode(verificationCode);
-                request();
+                requestVerifyCode();
             }
         }
     }
 
-    private void request() {
+    private void requestVerifyCode() {
         boolean isOnline = new VerifyReceivedCodeRequest(getContext(), callback.getViewModel(),
                 new VerifyReceivedCodeRequest.ICallback() {
                     @Override
@@ -109,7 +107,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
                                 callback.getViewModel().getMobile());
                         getInstance().getApplicationComponent().SharedPreferenceModel().putData(TOKEN.getValue(),
                                 callback.getViewModel().getToken());
-                       callback.setResult();
+                        callback.setResult();
                     }
 
                     @Override

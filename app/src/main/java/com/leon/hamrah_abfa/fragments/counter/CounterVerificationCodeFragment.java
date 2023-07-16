@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.fragments.counter;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
-import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
@@ -77,12 +77,10 @@ public class CounterVerificationCodeFragment extends Fragment implements
                 confirmCode();
             }
         } else if (id == R.id.text_view_try_again) {
-            binding.textViewCounter.setVisibility(View.VISIBLE);
-            binding.textViewTryAgain.setVisibility(View.GONE);
-            binding.imageViewRight.setVisibility(View.GONE);
-            startCounter();
+            //TODO
+            callback.displayView(COUNTER_BASE_FRAGMENT);
         } else if (id == R.id.image_view_edit) {
-            callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
+            callback.displayView(COUNTER_BASE_FRAGMENT);
         }
     }
 
@@ -162,17 +160,39 @@ public class CounterVerificationCodeFragment extends Fragment implements
     }
 
     private void startCounter() {
-        new CountDownTimer(10000, 1000) {
+//        new CountDownTimer(10000, 1000) {
+//
+//            @SuppressLint("SetTextI18n")
+//            public void onTick(long millisUntilFinished) {
+//                binding.textViewCounter.setText(millisUntilFinished / 1000 + " : " + millisUntilFinished / (1000 * 60));
+//            }
+//
+//            public void onFinish() {
+//                binding.textViewCounter.setVisibility(View.GONE);
+//                binding.textViewTryAgain.setVisibility(View.VISIBLE);
+//                binding.imageViewRight.setVisibility(View.VISIBLE);
+//            }
+//
+//        }.start();
+
+
+        binding.textViewCounter.setVisibility(View.VISIBLE);
+        binding.textViewTryAgain.setVisibility(View.GONE);
+        binding.imageViewRight.setVisibility(View.GONE);
+        new CountDownTimer(callback.getViewModel().getRemainedSeconds() * 1000, 1000) {
 
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
-                binding.textViewCounter.setText(millisUntilFinished / 1000 + " : " + millisUntilFinished / (1000 * 60));
+                binding.textViewCounter.setText(String.valueOf(millisUntilFinished / 1000));
             }
 
             public void onFinish() {
                 binding.textViewCounter.setVisibility(View.GONE);
                 binding.textViewTryAgain.setVisibility(View.VISIBLE);
                 binding.imageViewRight.setVisibility(View.VISIBLE);
+//                binding.textViewCounter.setVisibility(View.GONE);
+//                binding.textViewTryAgain.setVisibility(View.VISIBLE);
+//                binding.imageViewRightArrow.setVisibility(View.VISIBLE);
             }
 
         }.start();

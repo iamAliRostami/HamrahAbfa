@@ -18,10 +18,10 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
             style="@style/CardStyle"
-            android:layout_margin="0dp"
             android:layout_width="match_parent"
-            android:layout_above="@id/button_submit"
-            android:layout_alignParentTop="true">
+            android:layout_above="@id/relative_layout_submit"
+            android:layout_alignParentTop="true"
+            android:layout_margin="0dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -35,9 +35,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="@dimen/large_dp"
-                    android:padding="@dimen/xlarge_dp"
                     android:src="@drawable/home_meter_1" />
 
+                <!--                android:layout_margin="@dimen/large_dp"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/xlarge_dp"
@@ -115,11 +115,33 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_submit"
-            style="@style/ButtonSubmit"
-            android:layout_marginTop="@dimen/large_dp"
+        <!--        <com.google.android.material.button.MaterialButton-->
+        <!--            android:id="@+id/button_submit"-->
+        <!--            style="@style/ButtonSubmit"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            android:layout_marginTop="@dimen/large_dp"-->
+        <!--            android:text="@string/confirm" />-->
+        <RelativeLayout
+            android:id="@+id/relative_layout_submit"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
             android:layout_alignParentBottom="true"
-            android:text="@string/confirm" />
+            android:layout_centerHorizontal="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonSubmit"
+                android:layout_alignParentBottom="true"
+                android:text="@string/submit" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/waiting_dots" />
+        </RelativeLayout>
     </RelativeLayout>
 </layout>

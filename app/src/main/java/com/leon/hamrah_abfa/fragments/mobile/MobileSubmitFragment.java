@@ -52,7 +52,7 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
         final int id = v.getId();
         if (id == R.id.image_view_submit) {
             if (!mobileValidation()) {
-                request();
+                requestVerificationCode();
             }
         }
     }
@@ -76,7 +76,7 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
         return cancel;
     }
 
-    private void request() {
+    private void requestVerificationCode() {
         boolean isOnline = new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
                 new AskVerificationCodeRequest.ICallback() {
                     @Override

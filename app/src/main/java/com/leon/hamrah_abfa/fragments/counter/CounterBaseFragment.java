@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
+import com.leon.hamrah_abfa.requests.AskVerificationCodeRequest;
 
 public class CounterBaseFragment extends Fragment implements View.OnClickListener {
     private ICallback callback;
@@ -57,10 +58,39 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
                     binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
                     binding.editTextCounterNumber.requestFocus();
                 } else {
-
-                    callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
+                    requestVerificationCode();
                 }
             }
+        }
+    }
+
+    private void requestVerificationCode() {
+        boolean isOnline = new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
+                new AskVerificationCodeRequest.ICallback() {
+                    @Override
+                    public void succeed(String id, long remainedSeconds) {
+                        callback.editCounterViewModel(id, remainedSeconds);
+                        callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
+                    }
+
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }).request();
+        progressStatus(!isOnline);
+    }
+
+    private void progressStatus(boolean hide) {
+        //TODO
+        if (hide) {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
+        } else {
+            binding.buttonSubmit.setVisibility(View.GONE);
+            binding.lottieAnimationView.playAnimation();
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -91,5 +121,7 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
         CounterViewModel getViewModel();
 
         void displayView(int position);
+
+        void editCounterViewModel(String id, long remainedSeconds);
     }
 }
