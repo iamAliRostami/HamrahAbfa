@@ -5,7 +5,7 @@
     <string name="exit_by_press_again">لطفا جهت خروج، دکمه\u200cی بازگشت را مجدد کلیک کنید</string>
     <string name="delete_by_press_again">لطفا جهت حذف، دکمه را مجدد کلیک کنید</string>
     <string name="return_by_press_again">لطفا جهت بازگشت به صفحه\u200cی پیشین، دکمه\u200cی بازگشت را مجدد کلیک کنید</string>
-    <string name="skip">نادیده بگیر</string>
+    <string name="skip">برو بعدی</string>
     <string name="done">انجام شد</string>
     <string name="waiting">لطفا صبر کنید…</string>
     <!--    <string name="turn_internet_on">اینترنت وصل نیست، اینترنت بی\u200cسیم یا همراه خود را روشن کنید</string>-->
@@ -45,7 +45,8 @@
     <string name="pay_bill">پرداخت قبض</string>
     <string name="counter_number_submit">اعلام کارکرد کنتور</string>
     <string name="history_usage">سوابق کارکرد</string>
-    <string name="protest_submit">اعلام قطعی آب</string>
+<!--    <string name="protest_submit">اعلام قطعی آب</string>-->
+    <string name="protest_submit">شهروند مروج</string>
     <string name="cart">صورت\u200cحساب</string>
     <string name="requests">درخواست\u200cها</string>
     <string name="last_bills">قبض آخر</string>

@@ -85,28 +85,28 @@ public class HomeFragment extends Fragment {
                 if (callback.isEmpty())
                     return;
                 if (position == 0) {
-                    startActivity(createIntent(PayBillActivity.class, position));
+                    startActivity(createIntent(PayBillActivity.class));
                 } else if (position == 1) {
-                    startActivity(createIntent(SetCounterNumberActivity.class, position));
+                    startActivity(createIntent(SetCounterNumberActivity.class));
                 } else if (position == 2) {
-                    startActivity(createIntent(UsageHistoryActivity.class, position));
+                    startActivity(createIntent(UsageHistoryActivity.class));
                 } else if (position == 3) {
-                    startActivity(createIntent(CutOffActivity.class, position));
+                    startActivity(createIntent(CutOffActivity.class));
                 } else if (position == 4) {
-                    startActivity(createIntent(CheckoutActivity.class, position));
+                    startActivity(createIntent(CheckoutActivity.class));
                 } else if (position == 5) {
-                    final Intent intent = createIntent(FollowRequestActivity.class, position);
+                    final Intent intent = createIntent(FollowRequestActivity.class);
                     intent.putExtra(LAST_PAGE.getValue(), binding.viewPagerCard.getCurrentItem() ==
                             (callback.getCardPagerAdapter().getItemCount() - 1));
                     startActivity(intent);
                 } else if (position == 6) {
-                    startActivity(createIntent(LastBillActivity.class, position));
+                    startActivity(createIntent(LastBillActivity.class));
                 } else if (position == 7) {
-                    Intent intent = createIntent(ChangeMobileActivity.class, position);
-                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(position));
+                    Intent intent = createIntent(ChangeMobileActivity.class);
+                    intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
                     startActivity(intent);
                 } else if (position == 8) {
-                    startActivity(createIntent(ContactUsActivity.class, position));
+                    startActivity(createIntent(ContactUsActivity.class));
                 }
             }
 
@@ -140,10 +140,10 @@ public class HomeFragment extends Fragment {
         binding.viewPagerCard.setPageTransformer(cpt);
     }
 
-    private Intent createIntent(Class<?> cls, int position) {
+    private Intent createIntent(Class<?> cls) {
         final Intent intent = new Intent(requireContext(), cls);
         intent.putExtra(UUID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
-        intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(position));
+        intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
         return intent;
     }
 
