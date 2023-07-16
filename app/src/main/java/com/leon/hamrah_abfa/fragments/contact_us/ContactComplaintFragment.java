@@ -39,7 +39,7 @@ import com.leon.hamrah_abfa.BuildConfig;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentContactComplaintBinding;
-import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
+import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 
 import java.io.File;
 import java.io.IOException;
@@ -100,8 +100,8 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
                 warning(requireContext(), R.string.field_complaint_description).show();
             } else {
                 requireActivity().getSupportFragmentManager().popBackStack();
-                showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
-                        getString(R.string.main_page), new RequestDoneFragment.IClickListener() {
+                showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), TrackDoneRequestFragment.newInstance("123456",
+                        getString(R.string.main_page), new TrackDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
                                 dialogFragment.dismiss();

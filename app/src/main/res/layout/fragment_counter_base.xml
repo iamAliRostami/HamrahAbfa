@@ -89,7 +89,7 @@
                         style="@style/TextInput"
                         android:inputType="number"
                         android:maxLength="7"
-                        android:text="@={viewModel.counterNumber}" />
+                        android:text="@={viewModel.counterClaim}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

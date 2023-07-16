@@ -2,11 +2,13 @@ package com.leon.hamrah_abfa.fragments.counter;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -22,12 +24,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.tasks.Task;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterVerificationCodeBinding;
-import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
+import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
+import com.leon.hamrah_abfa.requests.counter.GenerateBillRequest;
+import com.leon.hamrah_abfa.utils.SMSReceiver;
 
-public class CounterVerificationCodeFragment extends Fragment implements
-        TextWatcher, View.OnKeyListener, View.OnClickListener {
+public class CounterVerificationCodeFragment extends Fragment implements TextWatcher,
+        View.OnKeyListener, View.OnClickListener, SMSReceiver.OTPReceiveListener {
+    private SMSReceiver smsReceiver = new SMSReceiver();
     private FragmentCounterVerificationCodeBinding binding;
     private ICallback callback;
 
@@ -53,6 +61,7 @@ public class CounterVerificationCodeFragment extends Fragment implements
 
     private void initialize() {
         startCounter();
+        startSMSListener();
         binding.textViewMobile.setText(callback.getViewModel().getMobile());
         binding.textViewMobile.setSelected(true);
         binding.textViewTryAgain.setOnClickListener(this);
@@ -74,7 +83,13 @@ public class CounterVerificationCodeFragment extends Fragment implements
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (checkInputs()) {
-                confirmCode();
+//                confirmCode();
+                String submitCode = binding.editText1.getEditableText().toString() +
+                        binding.editText2.getEditableText().toString() +
+                        binding.editText3.getEditableText().toString() +
+                        binding.editText4.getEditableText().toString();
+                callback.getViewModel().setSubmitCode(submitCode);
+                generateBillRequest();
             }
         } else if (id == R.id.text_view_try_again) {
             //TODO
@@ -84,20 +99,55 @@ public class CounterVerificationCodeFragment extends Fragment implements
         }
     }
 
-    private void confirmCode() {
+    private void generateBillRequest() {
+        boolean isOnline = new GenerateBillRequest(getContext(), callback.getViewModel(),
+                new GenerateBillRequest.ICallback() {
+                    @Override
+                    public void succeed(String message) {
+//                        callback.editViewModel(id, remainedSeconds);
+//                        callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
+                        confirmCode(message);
+                        callback.getViewModel().setMessage(message);
+                        callback.getViewModel().setCounterClaim("");
+                    }
+
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }).request();
+        progressStatus(!isOnline);
+    }
+
+    private void progressStatus(boolean hide) {
+        //TODO
+        if (hide) {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
+        } else {
+            binding.buttonSubmit.setVisibility(View.GONE);
+            binding.lottieAnimationView.playAnimation();
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void confirmCode(String message) {
         showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456", getString(R.string.create_bill),
-                        new RequestDoneFragment.IClickListener() {
+                MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page),
+                        new MessageDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
-                                requireActivity().finish();
+                                dialogFragment.dismiss();
+                                callback.displayView(COUNTER_BASE_FRAGMENT);
                             }
 
                             @Override
                             public void no(DialogFragment dialogFragment) {
 
                             }
-                        }));
+                        }
+                ));
     }
 
     private boolean checkInputs() {
@@ -195,6 +245,59 @@ public class CounterVerificationCodeFragment extends Fragment implements
 //                binding.imageViewRightArrow.setVisibility(View.VISIBLE);
             }
         }.start();
+    }
+
+    private void startSMSListener() {
+        try {
+            smsReceiver.setOTPListener(this);
+
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION);
+            requireActivity().registerReceiver(smsReceiver, intentFilter);
+
+            SmsRetrieverClient client = SmsRetriever.getClient(requireActivity());
+
+            Task<Void> task = client.startSmsRetriever();
+            task.addOnSuccessListener(aVoid -> {
+            });
+
+            task.addOnFailureListener(Throwable::printStackTrace);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onOTPReceived(String otp) {
+        otp = otp.substring(otp.lastIndexOf(":") + 1, otp.lastIndexOf("\n"));
+        callback.getViewModel().setVerificationCode(otp);
+        binding.editText1.setText(otp.split("")[0]);
+        binding.editText2.setText(otp.split("")[1]);
+        binding.editText3.setText(otp.split("")[2]);
+        binding.editText4.setText(otp.split("")[3]);
+
+        if (smsReceiver != null) {
+            requireActivity().unregisterReceiver(smsReceiver);
+            smsReceiver = null;
+        }
+    }
+
+    @Override
+    public void onOTPTimeOut() {
+        callback.displayView(SUBMIT_PHONE_FRAGMENT);
+    }
+
+    @Override
+    public void onOTPReceivedError(String error) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (smsReceiver != null) {
+            requireActivity().unregisterReceiver(smsReceiver);
+        }
     }
 
     @Override

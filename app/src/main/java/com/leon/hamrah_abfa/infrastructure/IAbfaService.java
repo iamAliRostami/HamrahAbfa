@@ -5,9 +5,10 @@ import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
+import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
-import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
+import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
@@ -55,9 +56,12 @@ public interface IAbfaService {
     @GET("/KontoriNew/V1/MobileRequest/DetailsInState/{id}")
     Call<DetailHistoryItem> getDetailHistoryItem(@Path("id") String id);
 
-
     @POST("kontoriNew/V1/Verification/Code")
     Call<VerificationViewModel> askVerificationCode(@Body VerificationViewModel verification);
+
+
+    @POST("kontoriNew/V1/MobileBill/Generate")
+    Call<CounterViewModel> generateBill(@Body CounterViewModel counter);
 
 }
 

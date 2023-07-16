@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dialog"
+    tools:context=".fragments.dialog.TrackDoneRequestFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/CardStyle"
+        android:layout_width="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/large_dp"
+            android:paddingStart="@dimen/xlarge_dp"
+            android:paddingEnd="@dimen/xlarge_dp">
+
+            <!--                <androidx.appcompat.widget.AppCompatImageView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:src="@drawable/ic_done" />-->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lottie_animation"
+                style="@style/AnimationDialog"
+                app:lottie_rawRes="@raw/successfully_done_1" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_title"
+                android:layout_gravity="center"
+                style="@style/Title"
+                android:text="@string/request_submitted" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_tin"
+                style="@style/TitleSubmitInfo"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_return"
+                style="@style/ButtonSubmit"
+                android:layout_marginTop="@dimen/medium_dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.appcompat.widget.LinearLayoutCompat>

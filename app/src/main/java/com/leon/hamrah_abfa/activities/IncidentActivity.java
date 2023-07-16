@@ -13,7 +13,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityIncidentBinding;
-import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
+import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.incident.IncidentBaseFragment;
 import com.leon.hamrah_abfa.fragments.incident.IncidentCompleteFragment;
 import com.leon.hamrah_abfa.fragments.incident.IncidentViewModel;
@@ -48,8 +48,8 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
 
     @Override
     public void confirm() {
-        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
-                getString(R.string.main_page), new RequestDoneFragment.IClickListener() {
+        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), TrackDoneRequestFragment.newInstance("123456",
+                getString(R.string.main_page), new TrackDoneRequestFragment.IClickListener() {
                     @Override
                     public void yes(DialogFragment dialogFragment) {
                         finish();

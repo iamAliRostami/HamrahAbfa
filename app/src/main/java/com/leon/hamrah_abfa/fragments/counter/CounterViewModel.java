@@ -13,7 +13,7 @@ import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 
 public class CounterViewModel extends VerificationViewModel {
     private String billId;
-    private String counterNumber;
+    private String counterClaim;
     private String billAccountId;
     @SuppressLint("DefaultLocale")
     public CounterViewModel(String billId, String billAccountId) {
@@ -35,13 +35,13 @@ public class CounterViewModel extends VerificationViewModel {
     }
 
     @Bindable
-    public String getCounterNumber() {
-        return counterNumber;
+    public String getCounterClaim() {
+        return counterClaim;
     }
 
-    public void setCounterNumber(String counterNumber) {
-        this.counterNumber = counterNumber;
-        notifyPropertyChanged(BR.counterNumber);
+    public void setCounterClaim(String counterClaim) {
+        this.counterClaim = counterClaim;
+        notifyPropertyChanged(BR.counterClaim);
     }
 
     public String getBillAccountId() {

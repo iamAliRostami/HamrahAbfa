@@ -33,10 +33,6 @@ public class PreLoginViewModel extends VerificationViewModel {
         }
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public boolean isResult() {
         return result;
     }

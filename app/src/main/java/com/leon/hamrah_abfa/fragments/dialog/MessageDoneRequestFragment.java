@@ -2,11 +2,7 @@ package com.leon.hamrah_abfa.fragments.dialog;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.TEXT_BUTTON;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TRACK_NUMBER;
-import static com.leon.toast.RTLToast.success;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,27 +15,27 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentRequestDoneBinding;
+import com.leon.hamrah_abfa.databinding.FragmentMessageDoneRequestBinding;
 
-public class RequestDoneFragment extends DialogFragment implements View.OnClickListener {
-    private FragmentRequestDoneBinding binding;
+public class MessageDoneRequestFragment extends DialogFragment implements View.OnClickListener {
+    private FragmentMessageDoneRequestBinding binding;
     private String trackNumber;
     private String textButton;
     private IClickListener listener;
 
-    public RequestDoneFragment() {
+    public MessageDoneRequestFragment() {
     }
 
-    public RequestDoneFragment(IClickListener listener) {
+    public MessageDoneRequestFragment(IClickListener listener) {
         this.listener = listener;
     }
 
-    public static RequestDoneFragment newInstance(String trackNumber, String textButton,
-                                                  IClickListener listener) {
-        final Bundle args = new Bundle();
+    public static MessageDoneRequestFragment newInstance(String trackNumber, String textButton,
+                                                         IClickListener listener) {
+        Bundle args = new Bundle();
         args.putString(TRACK_NUMBER.getValue(), trackNumber);
         args.putString(TEXT_BUTTON.getValue(), textButton);
-        final RequestDoneFragment fragment = new RequestDoneFragment(listener);
+        MessageDoneRequestFragment fragment = new MessageDoneRequestFragment(listener);
         fragment.setArguments(args);
         fragment.setCancelable(false);
         return fragment;
@@ -58,16 +54,15 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentRequestDoneBinding.inflate(inflater, container, false);
+        binding = FragmentMessageDoneRequestBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
 
     private void initialize() {
-        binding.textViewTrackNumber.setText(trackNumber);
+        binding.textViewTin.setText(trackNumber);
         binding.buttonReturn.setText(textButton);
         binding.buttonReturn.setOnClickListener(this);
-        binding.linearLayoutCopy.setOnClickListener(this);
     }
 
     @Override
@@ -75,11 +70,6 @@ public class RequestDoneFragment extends DialogFragment implements View.OnClickL
         final int id = v.getId();
         if (id == R.id.button_return) {
             listener.yes(this);
-        } else if (id == R.id.linear_layout_copy) {
-            final ClipboardManager clipboard = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-            final ClipData clip = ClipData.newPlainText(getString(R.string.track_number), trackNumber);
-            clipboard.setPrimaryClip(clip);
-            success(requireContext(), R.string.track_number_is_copied).show();
         }
     }
 

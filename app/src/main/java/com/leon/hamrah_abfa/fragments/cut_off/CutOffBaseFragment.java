@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCutOffBaseBinding;
-import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
+import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 
 public class CutOffBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentCutOffBaseBinding binding;
@@ -63,8 +63,8 @@ public class CutOffBaseFragment extends Fragment implements View.OnClickListener
 
     private void confirmCode() {
         showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                RequestDoneFragment.newInstance("123456", getString(R.string.return_home),
-                        new RequestDoneFragment.IClickListener() {
+                TrackDoneRequestFragment.newInstance("123456", getString(R.string.return_home),
+                        new TrackDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
                                 requireActivity().finish();

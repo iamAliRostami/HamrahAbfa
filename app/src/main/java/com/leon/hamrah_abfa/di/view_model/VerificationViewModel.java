@@ -6,16 +6,16 @@ import androidx.databinding.Bindable;
 import com.leon.hamrah_abfa.BR;
 
 public class VerificationViewModel extends BaseObservable {
-    String verificationId;
-    long remainedSeconds;
-    String mobile;
-    String customSerial;
-    String verificationCode;
-    int status;
-    public String message;
-    String generationDateTime;
+    private String verificationId;
+    private long remainedSeconds;
+    private String mobile;
+    private String customSerial;
+    private int status;
+    private String message;
+    private String generationDateTime;
     private String submitCode;
-    boolean isValid;
+    private String verificationCode;
+    private boolean isValid;
 
 
     @Bindable
@@ -26,16 +26,6 @@ public class VerificationViewModel extends BaseObservable {
     public void setMobile(String mobile) {
         this.mobile = mobile;
         notifyPropertyChanged(BR.mobile);
-    }
-
-    @Bindable
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-        notifyPropertyChanged(BR.verificationCode);
     }
 
     public String getVerificationId() {
@@ -100,5 +90,13 @@ public class VerificationViewModel extends BaseObservable {
 
     public void setSubmitCode(String submitCode) {
         this.submitCode = submitCode;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 }

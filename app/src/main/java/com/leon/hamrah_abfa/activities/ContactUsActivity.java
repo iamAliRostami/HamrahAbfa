@@ -30,7 +30,7 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenCompleteFragmen
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhonebookFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
-import com.leon.hamrah_abfa.fragments.dialog.RequestDoneFragment;
+import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,
         ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback {
@@ -86,8 +86,8 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
     public void confirm() {
         viewModel.resetViewModel();
         getSupportFragmentManager().popBackStack();
-        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), RequestDoneFragment.newInstance("123456",
-                getString(R.string.main_page), new RequestDoneFragment.IClickListener() {
+        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), TrackDoneRequestFragment.newInstance("123456",
+                getString(R.string.main_page), new TrackDoneRequestFragment.IClickListener() {
                     @Override
                     public void yes(DialogFragment dialogFragment) {
                         dialogFragment.dismiss();

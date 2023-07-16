@@ -17,10 +17,11 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
 import com.leon.hamrah_abfa.requests.AskVerificationCodeRequest;
+import com.leon.hamrah_abfa.utils.SMSReceiver;
 
-public class CounterBaseFragment extends Fragment implements View.OnClickListener {
-    private ICallback callback;
+public class CounterBaseFragment extends Fragment implements View.OnClickListener{
     private FragmentCounterBaseBinding binding;
+    private ICallback callback;
 
     public CounterBaseFragment() {
     }
@@ -52,8 +53,8 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (mobileValidation()) {
-                if (callback.getViewModel().getCounterNumber() == null ||
-                        callback.getViewModel().getCounterNumber().isEmpty()) {
+                if (callback.getViewModel().getCounterClaim() == null ||
+                        callback.getViewModel().getCounterClaim().isEmpty()) {
                     warning(requireContext(), getString(R.string.enter_counter_number)).show();
                     binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
                     binding.editTextCounterNumber.requestFocus();
