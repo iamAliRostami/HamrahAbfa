@@ -42,16 +42,9 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            String test = getArguments().getString(ID.getValue());
-            test = getArguments().getString(BILL_ID.getValue());
-            test = getArguments().getString(ALIAS.getValue());
-            test = getArguments().getString(DEBT.getValue());
-
-
             viewModel = new BillCardViewModel(getArguments().getString(ID.getValue()),
                     getArguments().getString(BILL_ID.getValue()), getArguments().getString(ALIAS.getValue()),
                     getArguments().getString(DEBT.getValue()));
-            getArguments().clear();
         }
     }
 
