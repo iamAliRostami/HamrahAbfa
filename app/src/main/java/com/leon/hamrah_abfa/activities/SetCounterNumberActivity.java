@@ -58,7 +58,7 @@ public class SetCounterNumberActivity extends BaseActivity implements CounterBas
 
     @Override
     public void editViewModel(String id, long remainedSeconds) {
-        viewModel.setId(id);
+        viewModel.setVerificationId(id);
         viewModel.setRemainedSeconds(remainedSeconds);
     }
 }

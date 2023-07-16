@@ -60,7 +60,7 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
 
     @Override
     public void editPreLoginViewModel(String id, long remainedSeconds) {
-        viewModel.setId(id);
+        viewModel.setVerificationId(id);
         viewModel.setRemainedSeconds(remainedSeconds);
     }
 

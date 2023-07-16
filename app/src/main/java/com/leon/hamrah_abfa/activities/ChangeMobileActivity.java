@@ -51,7 +51,7 @@ public class ChangeMobileActivity extends BaseActivity implements ChangeMobileBa
 
     @Override
     public void editViewModel(String id, long remainedSeconds) {
-        viewModel.setId(id);
+        viewModel.setVerificationId(id);
         viewModel.setRemainedSeconds(remainedSeconds);
     }
 

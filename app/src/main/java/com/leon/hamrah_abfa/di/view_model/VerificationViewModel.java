@@ -6,7 +6,7 @@ import androidx.databinding.Bindable;
 import com.leon.hamrah_abfa.BR;
 
 public class VerificationViewModel extends BaseObservable {
-    String id;
+    String verificationId;
     long remainedSeconds;
     String mobile;
     String customSerial;
@@ -38,12 +38,12 @@ public class VerificationViewModel extends BaseObservable {
         notifyPropertyChanged(BR.verificationCode);
     }
 
-    public String getId() {
-        return id;
+    public String getVerificationId() {
+        return verificationId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setVerificationId(String verificationId) {
+        this.verificationId = verificationId;
     }
 
     public long getRemainedSeconds() {

@@ -57,7 +57,7 @@ class VerificationCodeSuccessful implements ICallbackSucceed<VerificationViewMod
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
-            callback.succeed(response.body().getId(), response.body().getRemainedSeconds());
+            callback.succeed(response.body().getVerificationId(), response.body().getRemainedSeconds());
         }
 
     }
