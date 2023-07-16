@@ -63,12 +63,9 @@ public class WelcomeActivity extends BaseActivity {
         if (id == R.id.button_skip) {
             binding.viewPagerWelcome.setCurrentItem(binding.viewPagerWelcome.getCurrentItem() + 1);
         } else if (id == R.id.button_done) {
-            getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
             //TODO permanent redirect
-            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
-                startActivity(intent);
-            }
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
             finish();
         }
     }

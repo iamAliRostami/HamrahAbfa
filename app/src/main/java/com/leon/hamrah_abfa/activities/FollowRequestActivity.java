@@ -172,7 +172,6 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
             if (trackNumber.toLowerCase().contains(filterValue.toLowerCase()))
                 requestFinishedTemp.add(info);
         }
-
         ArrayList<RequestInfo> requestUnfinishedTemp = new ArrayList<>();
         for (RequestInfo info : requestInfo.unfinisheds) {
             String trackNumber = String.valueOf(info.trackNumber);

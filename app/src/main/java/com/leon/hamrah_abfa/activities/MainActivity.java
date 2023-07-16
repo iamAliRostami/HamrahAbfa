@@ -13,6 +13,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.animation.Animator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.WindowManager;
@@ -50,11 +51,13 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     private ActivityMainBinding binding;
     private DialogFragment fragment;
     private int position;
+    private Context context;
 
     @Override
     protected void initialize() {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        context = this;
         //TODO
         initializeSplash();
         // TODO
@@ -122,14 +125,13 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
                 final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-                startActivity(intent);
+                welcomeActivityResultLauncher.launch(intent);
             } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                final Intent intent = new Intent(getApplicationContext(), MobileSubmitActivity.class);
                 //TODO
+                Intent intent = new Intent(MainActivity.this, MobileSubmitActivity.class);
                 submitMobileActivityResultLauncher.launch(intent);
-            } /*else {
-                requestBills();
-            }*/
+
+            }
         }
 
         @Override
@@ -167,6 +169,16 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     requestBills();
+                }
+            });
+    final ActivityResultLauncher<Intent> welcomeActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
+                    if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                        Intent intent = new Intent(MainActivity.this, MobileSubmitActivity.class);
+                        submitMobileActivityResultLauncher.launch(intent);
+                    }
                 }
             });
     final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
