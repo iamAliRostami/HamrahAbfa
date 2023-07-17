@@ -16,6 +16,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityCheckoutBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
@@ -55,7 +56,6 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
             public void succeed(Kardex kardex) {
                 bills.addAll(kardex.bills);
                 payments.addAll(kardex.payments);
-                initializeViewPager();
             }
 
             @Override
@@ -73,6 +73,7 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
+            initializeViewPager();
             if (fragment != null) {
                 fragment.dismiss();
                 fragment = null;
@@ -82,8 +83,15 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
 
     private void initializeViewPager() {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-        adapter.addFragment(CheckoutBillFragment.newInstance());
-        adapter.addFragment(CheckoutPaymentFragment.newInstance());
+        if (bills.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else
+            adapter.addFragment(CheckoutBillFragment.newInstance());
+        if (payments.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapter.addFragment(CheckoutPaymentFragment.newInstance());
+        }
         binding.viewPager.setAdapter(adapter);
     }
 

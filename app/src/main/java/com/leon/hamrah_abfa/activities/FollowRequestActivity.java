@@ -19,6 +19,7 @@ import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestHistoryAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListUnfinishedFragment;
@@ -61,7 +62,6 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
             @Override
             public void succeed(MasterHistory requestInfoAll) {
                 requestInfo = requestInfoAll;
-                initializeViewPager();
             }
 
             @Override
@@ -79,6 +79,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
+            initializeViewPager();
             if (fragment != null) {
                 fragment.dismiss();
                 fragment = null;
@@ -87,11 +88,20 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void initializeViewPager() {
-        adapterFinished = new RequestHistoryAdapter(this, requestInfo.finisheds);
-        adapterUnfinished = new RequestHistoryAdapter(this, requestInfo.unfinisheds);
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-        adapter.addFragment(FollowRequestListUnfinishedFragment.newInstance());
-        adapter.addFragment(FollowRequestListFinishedFragment.newInstance());
+        if (requestInfo.unfinisheds.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapterUnfinished = new RequestHistoryAdapter(this, requestInfo.unfinisheds);
+            adapter.addFragment(FollowRequestListUnfinishedFragment.newInstance());
+        }
+
+        if (requestInfo.finisheds.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapterFinished = new RequestHistoryAdapter(this, requestInfo.finisheds);
+            adapter.addFragment(FollowRequestListFinishedFragment.newInstance());
+        }
         binding.viewPager.setAdapter(adapter);
     }
 

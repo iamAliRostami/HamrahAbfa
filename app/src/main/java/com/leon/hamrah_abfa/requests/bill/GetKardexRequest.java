@@ -53,11 +53,10 @@ class GetKardexSuccessful implements ICallbackSucceed<Kardex> {
 
     @Override
     public void executeCompleted(Response<Kardex> response) {
-        callback.changeUI(false);
         if (response.body() != null) {
-            callback.changeUI(true);
             callback.succeed(response.body());
         }
+        callback.changeUI(false);
     }
 }
 
