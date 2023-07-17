@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.requests.change_mobile;
 
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
@@ -13,13 +14,8 @@ import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
+import com.leon.hamrah_abfa.utils.APIError;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -81,28 +77,11 @@ class ChangeMobileIncomplete implements ICallbackIncomplete<ChangeMobileViewMode
     @Override
     public void executeDismissed(Response<ChangeMobileViewModel> response) {
         callback.changeUI(true);
-//        if (response.body() != null) {
-//            if (response.body().getStatus() == 400) {
-//                warning(context, response.body().getMessage()).show();
-//            }
-//
-//            return;
-//        }
-
-        if (response.code() == 400) {
-            try (ResponseBody errorBody = response.errorBody()) {
-                if (errorBody != null) {
-                    JSONObject jObjError = new JSONObject(errorBody.string());
-                    String error = jObjError.getString("message");
-                    warning(context, error).show();
-                    return;
-                }
-            } catch (IOException | JSONException e) {
-                // TODO
-                e.printStackTrace();
-            }
+        APIError error = parseError(response);
+        if (error.status() == 400) {
+            warning(context, error.message()).show();
+            return;
         }
-
         //TODO
         warning(context, "dismissed").show();
     }

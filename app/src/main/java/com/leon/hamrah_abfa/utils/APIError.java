@@ -1,18 +1,18 @@
 package com.leon.hamrah_abfa.utils;
 
 public class APIError {
-
-    private int statusCode;
+    private int status;
     private String message;
 
     public APIError() {
     }
 
     public int status() {
-        return statusCode;
+        return status;
     }
 
     public String message() {
         return message;
     }
+
 }
