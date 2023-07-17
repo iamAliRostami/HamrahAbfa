@@ -16,6 +16,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityUsageHistoryBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 import com.leon.hamrah_abfa.fragments.usage_history.AttemptViewModel;
@@ -53,7 +54,6 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
             public void succeed(Attempt attempt) {
                 successAttempts.addAll(attempt.successBills);
                 unsuccessAttempts.addAll(attempt.unsuccessBills);
-                initializeViewPager();
             }
 
             @Override
@@ -71,6 +71,7 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
+            initializeViewPager();
             if (fragment != null) {
                 fragment.dismiss();
                 fragment = null;
@@ -80,8 +81,15 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
 
     private void initializeViewPager() {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-        adapter.addFragment(UsageHistorySuccessfulFragment.newInstance());
-        adapter.addFragment(UsageHistoryFailedFragment.newInstance());
+        if (successAttempts.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapter.addFragment(UsageHistorySuccessfulFragment.newInstance());
+        }if (unsuccessAttempts.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapter.addFragment(UsageHistoryFailedFragment.newInstance());
+        }
         binding.viewPager.setAdapter(adapter);
     }
 
