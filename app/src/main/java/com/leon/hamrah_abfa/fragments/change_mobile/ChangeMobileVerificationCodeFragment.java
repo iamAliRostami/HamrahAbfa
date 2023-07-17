@@ -24,7 +24,8 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentChangeMobileVerificationCodeBinding;
-import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
+import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
+import com.leon.hamrah_abfa.requests.change_mobile.ChangeMobileRequest;
 
 public class ChangeMobileVerificationCodeFragment extends Fragment implements TextWatcher,
         View.OnKeyListener, View.OnClickListener {
@@ -75,25 +76,59 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (checkInputs()) {
-                confirmCode();
+                String submitCode = binding.editText1.getEditableText().toString() +
+                        binding.editText2.getEditableText().toString() +
+                        binding.editText3.getEditableText().toString() +
+                        binding.editText4.getEditableText().toString();
+                callback.getViewModel().setSubmitCode(submitCode);
+                changeMobileRequest();
             }
         } else if (id == R.id.text_view_try_again) {
-            binding.textViewCounter.setVisibility(View.VISIBLE);
-            binding.textViewTryAgain.setVisibility(View.GONE);
-            binding.imageViewRight.setVisibility(View.GONE);
+            callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
             startCounter();
         } else if (id == R.id.image_view_edit) {
             callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
         }
     }
 
-    private void confirmCode() {
+    private void changeMobileRequest() {
+        boolean isOnline = new ChangeMobileRequest(getContext(), callback.getViewModel(),
+                new ChangeMobileRequest.ICallback() {
+                    @Override
+                    public void succeed(String message) {
+                        responseMessage(message);
+                        callback.getViewModel().setMessage(message);
+                        callback.getViewModel().setNewMobile("");
+                    }
+
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }).request();
+        progressStatus(!isOnline);
+    }
+
+    private void progressStatus(boolean hide) {
+        if (hide) {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
+        } else {
+            binding.buttonSubmit.setVisibility(View.GONE);
+            binding.lottieAnimationView.playAnimation();
+            binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void responseMessage(String message) {
         showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                TrackDoneRequestFragment.newInstance("123456", getString(R.string.return_home),
-                        new TrackDoneRequestFragment.IClickListener() {
+                MessageDoneRequestFragment.newInstance(message, getString(R.string.return_home),
+                        new MessageDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
-                                requireActivity().finish();
+                                dialogFragment.dismiss();
+                                callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
                             }
 
                             @Override

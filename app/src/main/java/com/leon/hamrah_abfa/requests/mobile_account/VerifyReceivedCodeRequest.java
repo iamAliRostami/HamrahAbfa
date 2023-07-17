@@ -81,6 +81,12 @@ class VerifyCodeIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
     public void executeDismissed(Response<PreLoginViewModel> response) {
         callback.changeUI(true);
         //TODO
+        if (response.body() != null) {
+            if (response.body().getStatus() == 400) {
+                warning(context, response.body().getMessage()).show();
+            }
+            return;
+        }
         warning(context, "dismissed").show();
     }
 }

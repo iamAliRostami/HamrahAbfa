@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests.counter;
+package com.leon.hamrah_abfa.requests.change_mobile;
 
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
@@ -8,7 +8,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
-import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
+import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -24,14 +24,14 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class GenerateBillRequest {
+public class ChangeMobileRequest {
     private final Context context;
     private final ICallback callback;
-    private final CounterViewModel counter;
+    private final ChangeMobileViewModel changeMobile;
 
-    public GenerateBillRequest(Context context, CounterViewModel counter, ICallback callback) {
+    public ChangeMobileRequest(Context context, ChangeMobileViewModel changeMobile, ICallback callback) {
         this.context = context;
-        this.counter = counter;
+        this.changeMobile = changeMobile;
         this.callback = callback;
     }
 
@@ -39,9 +39,9 @@ public class GenerateBillRequest {
         callback.changeUI(false);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<CounterViewModel> call = iAbfaService.generateBill(counter);
-        return HttpClientWrapper.callHttpAsync(context, call, new GenerateBillSuccessful(callback),
-                new GenerateBillIncomplete(context, callback), new GenerateBillFailed(context, callback));
+        final Call<ChangeMobileViewModel> call = iAbfaService.changeMobile(changeMobile);
+        return HttpClientWrapper.callHttpAsync(context, call, new ChangeMobileSuccessful(callback),
+                new ChangeMobileIncomplete(context, callback), new ChangeMobileFailed(context, callback));
     }
 
     public interface ICallback {
@@ -51,15 +51,15 @@ public class GenerateBillRequest {
     }
 }
 
-class GenerateBillSuccessful implements ICallbackSucceed<CounterViewModel> {
-    private final GenerateBillRequest.ICallback callback;
+class ChangeMobileSuccessful implements ICallbackSucceed<ChangeMobileViewModel> {
+    private final ChangeMobileRequest.ICallback callback;
 
-    public GenerateBillSuccessful(GenerateBillRequest.ICallback callback) {
+    public ChangeMobileSuccessful(ChangeMobileRequest.ICallback callback) {
         this.callback = callback;
     }
 
     @Override
-    public void executeCompleted(Response<CounterViewModel> response) {
+    public void executeCompleted(Response<ChangeMobileViewModel> response) {
         callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
@@ -69,23 +69,23 @@ class GenerateBillSuccessful implements ICallbackSucceed<CounterViewModel> {
     }
 }
 
-class GenerateBillIncomplete implements ICallbackIncomplete<CounterViewModel> {
+class ChangeMobileIncomplete implements ICallbackIncomplete<ChangeMobileViewModel> {
     private final Context context;
-    private final GenerateBillRequest.ICallback callback;
+    private final ChangeMobileRequest.ICallback callback;
 
-    public GenerateBillIncomplete(Context context, GenerateBillRequest.ICallback callback) {
+    public ChangeMobileIncomplete(Context context, ChangeMobileRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
 
     @Override
-    public void executeDismissed(Response<CounterViewModel> response) {
+    public void executeDismissed(Response<ChangeMobileViewModel> response) {
         callback.changeUI(true);
-        //TODO
 //        if (response.body() != null) {
 //            if (response.body().getStatus() == 400) {
 //                warning(context, response.body().getMessage()).show();
 //            }
+//
 //            return;
 //        }
 
@@ -102,15 +102,17 @@ class GenerateBillIncomplete implements ICallbackIncomplete<CounterViewModel> {
                 e.printStackTrace();
             }
         }
+
+        //TODO
         warning(context, "dismissed").show();
     }
 }
 
-class GenerateBillFailed implements ICallbackFailure {
+class ChangeMobileFailed implements ICallbackFailure {
     private final Context context;
-    private final GenerateBillRequest.ICallback callback;
+    private final ChangeMobileRequest.ICallback callback;
 
-    public GenerateBillFailed(Context context, GenerateBillRequest.ICallback callback) {
+    public ChangeMobileFailed(Context context, ChangeMobileRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

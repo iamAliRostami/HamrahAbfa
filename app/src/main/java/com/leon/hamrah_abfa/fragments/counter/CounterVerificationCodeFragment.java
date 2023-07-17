@@ -83,7 +83,6 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (checkInputs()) {
-//                confirmCode();
                 String submitCode = binding.editText1.getEditableText().toString() +
                         binding.editText2.getEditableText().toString() +
                         binding.editText3.getEditableText().toString() +
@@ -92,7 +91,6 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
                 generateBillRequest();
             }
         } else if (id == R.id.text_view_try_again) {
-            //TODO
             callback.displayView(COUNTER_BASE_FRAGMENT);
         } else if (id == R.id.image_view_edit) {
             callback.displayView(COUNTER_BASE_FRAGMENT);
@@ -104,9 +102,7 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
                 new GenerateBillRequest.ICallback() {
                     @Override
                     public void succeed(String message) {
-//                        callback.editViewModel(id, remainedSeconds);
-//                        callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
-                        confirmCode(message);
+                        responseMessage(message);
                         callback.getViewModel().setMessage(message);
                         callback.getViewModel().setCounterClaim("");
                     }
@@ -120,7 +116,6 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
     }
 
     private void progressStatus(boolean hide) {
-        //TODO
         if (hide) {
             binding.buttonSubmit.setVisibility(View.VISIBLE);
             binding.lottieAnimationView.setVisibility(View.GONE);
@@ -132,7 +127,7 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
         }
     }
 
-    private void confirmCode(String message) {
+    private void responseMessage(String message) {
         showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
                 MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page),
                         new MessageDoneRequestFragment.IClickListener() {
@@ -210,22 +205,6 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
     }
 
     private void startCounter() {
-//        new CountDownTimer(10000, 1000) {
-//
-//            @SuppressLint("SetTextI18n")
-//            public void onTick(long millisUntilFinished) {
-//                binding.textViewCounter.setText(millisUntilFinished / 1000 + " : " + millisUntilFinished / (1000 * 60));
-//            }
-//
-//            public void onFinish() {
-//                binding.textViewCounter.setVisibility(View.GONE);
-//                binding.textViewTryAgain.setVisibility(View.VISIBLE);
-//                binding.imageViewRight.setVisibility(View.VISIBLE);
-//            }
-//
-//        }.start();
-
-
         binding.textViewCounter.setVisibility(View.VISIBLE);
         binding.textViewTryAgain.setVisibility(View.GONE);
         binding.imageViewRight.setVisibility(View.GONE);
@@ -240,9 +219,6 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
                 binding.textViewCounter.setVisibility(View.GONE);
                 binding.textViewTryAgain.setVisibility(View.VISIBLE);
                 binding.imageViewRight.setVisibility(View.VISIBLE);
-//                binding.textViewCounter.setVisibility(View.GONE);
-//                binding.textViewTryAgain.setVisibility(View.VISIBLE);
-//                binding.imageViewRightArrow.setVisibility(View.VISIBLE);
             }
         }.start();
     }

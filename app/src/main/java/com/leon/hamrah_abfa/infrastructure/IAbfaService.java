@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.infrastructure;
 import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
+import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
@@ -44,16 +45,16 @@ public interface IAbfaService {
     @GET("/KontoriNew/V1/MobileBill/GetAttempts/{id}")
     Call<Attempt> getAttempts(@Path("id") String id);
 
-    @GET("/KontoriNew/V1/ContactAbfa/Get")
+    @GET("KontoriNew/V1/ContactAbfa/Faq")
     Call<ContactFAQ> getFAQ();
 
-    @GET("/KontoriNew/V1/MobileRequest/MasterHistory/{id}")
+    @GET("KontoriNew/V1/MobileRequest/MasterHistory/{id}")
     Call<MasterHistory> getMasterHistory(@Path("id") String id);
 
-    @GET("/KontoriNew/V1/MobileRequest/DetailsHistory/{trackNumber}")
+    @GET("KontoriNew/V1/MobileRequest/DetailsHistory/{trackNumber}")
     Call<DetailHistory> getDetailHistory(@Path("trackNumber") int trackNumber);
 
-    @GET("/KontoriNew/V1/MobileRequest/DetailsInState/{id}")
+    @GET("KontoriNew/V1/MobileRequest/DetailsInState/{id}")
     Call<DetailHistoryItem> getDetailHistoryItem(@Path("id") String id);
 
     @POST("kontoriNew/V1/Verification/Code")
@@ -62,6 +63,9 @@ public interface IAbfaService {
 
     @POST("kontoriNew/V1/MobileBill/Generate")
     Call<CounterViewModel> generateBill(@Body CounterViewModel counter);
+
+    @POST("KontoriNew/V1/MobileRequest/ChangeMobile")
+    Call<ChangeMobileViewModel> changeMobile(@Body ChangeMobileViewModel changeMobile);
 
 }
 
