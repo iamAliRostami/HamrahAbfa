@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
@@ -36,6 +37,7 @@ public class AppSignatureHashHelper extends ContextWrapper {
             // Get all package details
             String packageName = getPackageName();
             PackageManager packageManager = getPackageManager();
+            @SuppressLint("PackageManagerGetSignatures")
             Signature[] signatures = packageManager.getPackageInfo(packageName,
                     PackageManager.GET_SIGNATURES).signatures;
 
