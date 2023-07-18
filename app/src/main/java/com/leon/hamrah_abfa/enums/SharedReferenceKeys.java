@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.enums;
 public enum SharedReferenceKeys {
     ACCOUNT("account"),
     MOBILE("mobile_1111111111111111111111111111111"),
+    OLD_MOBILE("old_mobile_1111111111111111111111111111111"),
     BILL_ID("bill_id_88888888888888888888888888"),
     ID("id_88888888888888888888888888"),
     ALIAS("alias_88888888888888888888888888"),

@@ -250,5 +250,8 @@
 
     <string name="payment_site">https://crm.abfaesfahan.ir/%s/Bill</string>
     <string name="cache_folder">responses</string>
+    <string name="expired_access">دسترسی شما به دلایل امنیتی باطل شده است، مجددا وارد شوید</string>
+    <string name="login_again">ورود دوباره</string>
+    <string name="security_error">خطای امنیتی</string>
 
 </resources>

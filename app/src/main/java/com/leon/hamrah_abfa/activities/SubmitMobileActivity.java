@@ -13,15 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.leon.hamrah_abfa.base_items.BaseActivity;
-import com.leon.hamrah_abfa.databinding.ActivityMobileSubmitBinding;
+import com.leon.hamrah_abfa.databinding.ActivitySubmitMobileBinding;
 import com.leon.hamrah_abfa.fragments.mobile.MobileSubmitFragment;
 import com.leon.hamrah_abfa.fragments.mobile.MobileVerificationFragment;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 
-public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFragment.ICallback,
+public class SubmitMobileActivity extends BaseActivity implements MobileSubmitFragment.ICallback,
         MobileVerificationFragment.ICallback {
     private final PreLoginViewModel viewModel = new PreLoginViewModel();
-    private ActivityMobileSubmitBinding binding;
+    private ActivitySubmitMobileBinding binding;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -29,7 +29,7 @@ public class MobileSubmitActivity extends BaseActivity implements MobileSubmitFr
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        binding = ActivityMobileSubmitBinding.inflate(getLayoutInflater());
+        binding = ActivitySubmitMobileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         displayView(SUBMIT_PHONE_FRAGMENT);
     }

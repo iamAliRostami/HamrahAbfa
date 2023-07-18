@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
@@ -21,12 +22,12 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
-import com.leon.hamrah_abfa.fragments.services.ServicesLocationFragment;
-import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
+import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceFormFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceIntroductionFragment;
 import com.leon.hamrah_abfa.fragments.services.ServiceSubmitInformationFragment;
+import com.leon.hamrah_abfa.fragments.services.ServicesLocationFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 
 import org.osmdroid.util.GeoPoint;
@@ -47,7 +48,7 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
         binding = ActivityServiceBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
             viewModel = new ServicesViewModel(this, getIntent().getExtras().getInt(SERVICE_TYPE.getValue()),
-                    getIntent().getExtras().getString(BILL_ID.getValue()));
+                    getIntent().getExtras().getString(BILL_ID.getValue()), getIntent().getExtras().getString(UUID.getValue()));
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());

@@ -14,7 +14,6 @@ import static com.leon.toast.RTLToast.warning;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.view.View;
@@ -26,7 +25,6 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -129,7 +127,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 welcomeActivityResultLauncher.launch(intent);
             } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 //TODO
-                Intent intent = new Intent(MainActivity.this, MobileSubmitActivity.class);
+                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
                 submitMobileActivityResultLauncher.launch(intent);
 
             }
@@ -177,7 +175,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
                     if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                        Intent intent = new Intent(MainActivity.this, MobileSubmitActivity.class);
+                        Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
                         submitMobileActivityResultLauncher.launch(intent);
                     }
                 }
@@ -263,22 +261,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
     }
-
-    private void editData(BillsSummary billInfo) {
-        String debt = "";
-        String alias = "";
-        String id = "";
-        for (int i = 0; i < billInfo.billDtos.size(); i++) {
-            billInfo.billDtos.get(i).setDebtString(String.valueOf(billInfo.billDtos.get(i).getDebt()));
-            debt = debt.concat(billInfo.billDtos.get(i).getDebtString()).concat(",");
-            alias = alias.concat(billInfo.billDtos.get(i).getAlias()).concat(",");
-            id = id.concat(billInfo.billDtos.get(i).getId()).concat(",");
-        }
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
-    }
-
 
     @Override
     public void createCardPagerAdapter() {

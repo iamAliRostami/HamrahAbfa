@@ -16,7 +16,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityCheckoutBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.NotFoundFragment;
+import com.leon.hamrah_abfa.fragments.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;

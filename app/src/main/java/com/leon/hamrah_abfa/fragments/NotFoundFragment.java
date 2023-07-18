@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.bottom_sheets;
+package com.leon.hamrah_abfa.fragments;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentNotFoundBinding;
 
 public class NotFoundFragment extends Fragment {

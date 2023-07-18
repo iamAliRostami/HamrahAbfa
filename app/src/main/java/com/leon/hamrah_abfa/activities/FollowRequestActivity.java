@@ -19,7 +19,7 @@ import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RequestHistoryAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityFollowRequestBinding;
-import com.leon.hamrah_abfa.fragments.bottom_sheets.NotFoundFragment;
+import com.leon.hamrah_abfa.fragments.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListFinishedFragment;
 import com.leon.hamrah_abfa.fragments.follow_request.FollowRequestListUnfinishedFragment;

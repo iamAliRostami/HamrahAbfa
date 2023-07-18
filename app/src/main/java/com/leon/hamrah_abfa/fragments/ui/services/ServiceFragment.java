@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.fragments.ui.services;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 
 import android.app.Activity;
 import android.content.Context;
@@ -71,16 +72,14 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
 
     @Override
     public void onItemClick(View view, int position) {
-//        itemClick(view, position);
         if (callback.isEmpty())
             return;
         final Intent intent = new Intent(view.getContext(), ServiceActivity.class);
-        intent.putExtra(BILL_ID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
+//        intent.putExtra(BILL_ID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(UUID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
+        intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));
         intent.putExtra(SERVICE_TYPE.getValue(), position);
         startActivity(intent);
-    }
-
-    private void itemClick(View view, int position) {
     }
 
     @Override

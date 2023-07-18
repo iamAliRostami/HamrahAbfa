@@ -20,6 +20,7 @@ import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
 public class ServicesViewModel extends BaseObservable {
+    private String id;
     private String address;
     private String billId;
     private ArrayList<String> selectedServices;
@@ -32,7 +33,8 @@ public class ServicesViewModel extends BaseObservable {
     private GeoPoint point;
     private Bitmap bitmapLocation;
 
-    public ServicesViewModel(Context context, int serviceType, String billId) {
+    public ServicesViewModel(Context context, int serviceType, String billId, String id) {
+        this.id = id;
         setBillId(billId);
         setServiceType(serviceType);
         setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));

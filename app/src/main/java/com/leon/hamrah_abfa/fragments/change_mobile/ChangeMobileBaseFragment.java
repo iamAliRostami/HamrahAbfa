@@ -52,7 +52,6 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (mobileValidation()) {
-                callback.displayView(CHANGE_MOBILE_VERIFICATION_CODE_FRAGMENT);
                 requestVerificationCode();
             }
         }
