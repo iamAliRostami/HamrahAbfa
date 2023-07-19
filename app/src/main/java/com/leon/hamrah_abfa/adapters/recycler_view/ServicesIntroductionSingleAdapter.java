@@ -22,11 +22,9 @@ public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseA
     @NonNull
     @Override
     public ServiceIntroductionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (selectedServices != null && selectedServices == viewType) {
-            return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
-        } else {
-            return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service, parent, false));
-        }
+        return new ServiceIntroductionViewHolder(inflater.inflate((selectedServices != null &&
+                selectedServices == viewType) ? R.layout.item_service_collapsed_selected :
+                R.layout.item_service, parent, false));
     }
 
     @Override

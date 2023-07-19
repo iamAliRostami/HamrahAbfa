@@ -65,9 +65,6 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
                 binding.editTextBillId.setError(getString(R.string.enter_bill_id));
                 binding.editTextBillId.requestFocus();
             } else {
-                //TODO
-//                if (viewModel.getAlias() == null || viewModel.getAlias().isEmpty())
-//                    viewModel.setAlias(viewModel.getBillId());
                 requestAddBill();
 
             }
@@ -106,7 +103,6 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     }
 
     private void insertData(BillCardViewModel bill) {
-        //TODO
         bill.setDebtString(String.valueOf(bill.getDebt()));
         String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).concat(bill.getId()).concat(",");
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");

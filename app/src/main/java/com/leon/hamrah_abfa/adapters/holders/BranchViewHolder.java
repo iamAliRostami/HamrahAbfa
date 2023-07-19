@@ -17,7 +17,7 @@ public class BranchViewHolder extends RecyclerView.ViewHolder {
     public final TextView textViewManager;
     public final TextView textViewFinancialCode;
     public final TextView textViewZone;
-    public final TextView textViewPhone1;
+    public final TextView textViewPhone;
     public final TextView textViewFax;
     public final TextView textViewPostal;
     public final TextView textViewAddress;
@@ -31,7 +31,7 @@ public class BranchViewHolder extends RecyclerView.ViewHolder {
         textViewManager = itemView.findViewById(R.id.text_view_manager);
         textViewZone = itemView.findViewById(R.id.text_view_zone);
         textViewFinancialCode = itemView.findViewById(R.id.text_view_financial);
-        textViewPhone1 = itemView.findViewById(R.id.text_view_phone_1);
+        textViewPhone = itemView.findViewById(R.id.text_view_phone);
         textViewFax = itemView.findViewById(R.id.text_view_fax);
         textViewPostal = itemView.findViewById(R.id.text_view_postal);
         textViewAddress = itemView.findViewById(R.id.text_view_address);

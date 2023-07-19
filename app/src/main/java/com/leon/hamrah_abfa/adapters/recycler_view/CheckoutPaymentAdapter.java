@@ -27,9 +27,8 @@ public class CheckoutPaymentAdapter extends RecyclerView.Adapter<CheckoutPayment
     @NonNull
     @Override
     public CheckoutPaymentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (getItemViewType(viewType) % 2 == 0)
-            return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment_light, parent, false));
-        return new CheckoutPaymentViewHolder(inflater.inflate(R.layout.item_checkout_payment, parent, false));
+        return new CheckoutPaymentViewHolder(inflater.inflate(getItemViewType(viewType) % 2 == 0 ?
+                R.layout.item_checkout_payment_light : R.layout.item_checkout_payment, parent, false));
     }
 
     @Override

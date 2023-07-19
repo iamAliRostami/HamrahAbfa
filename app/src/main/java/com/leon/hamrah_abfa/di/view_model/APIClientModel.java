@@ -103,11 +103,27 @@ public final class APIClientModel {
 
     @Inject
     public Retrofit getClientCached(Context context) {
+
         int cacheSize = 50 * 1024 * 1024;// 50 MB
         File httpCacheDirectory = new File(context.getCacheDir(), context.getString(R.string.cache_folder));
         Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
-        final Interceptor OFFLINE_INTERCEPTOR = chain -> {
+
+        return new Retrofit.Builder().baseUrl(getBaseUrl())
+                .client(new OkHttpClient.Builder().readTimeout(READ_TIMEOUT, TIME_UNIT)
+                        .writeTimeout(WRITE_TIMEOUT, TIME_UNIT).connectTimeout(CONNECT_TIMEOUT, TIME_UNIT)
+                        .retryOnConnectionFailure(RETRY_ENABLED)
+                        .addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
+                        .addInterceptor(getOfflineInterceptor(context))
+                        .addInterceptor(getToken()).addInterceptor(getInterceptor())
+                        .cache(cache)
+                        .build())
+                .addConverterFactory(GsonConverterFactory.create(getInstance().getApplicationComponent().Gson()))
+                .addConverterFactory(ScalarsConverterFactory.create()).build();
+    }
+
+    private Interceptor getOfflineInterceptor(Context context) {
+        return chain -> {
             Request request = chain.request();
 
             if (!isNetworkAvailable(context)) {
@@ -117,49 +133,12 @@ public final class APIClientModel {
                         .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
 //                        .header("Cache-Control", "public, only-if-cached, max-age=" + maxStale)
                         .build();
-            }
-            else
+            } else
                 request.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
 
             return chain.proceed(request);
         };
-
-
-        return new Retrofit.Builder().baseUrl(getBaseUrl())
-                .client(new OkHttpClient.Builder().readTimeout(READ_TIMEOUT, TIME_UNIT)
-                        .writeTimeout(WRITE_TIMEOUT, TIME_UNIT).connectTimeout(CONNECT_TIMEOUT, TIME_UNIT)
-                        .retryOnConnectionFailure(RETRY_ENABLED)
-//
-//                        .addInterceptor(chain -> {
-//                            Response originalResponse = chain.proceed(chain.request());
-//                            if (isNetworkAvailable(context)) {
-//                                int maxAge = 60; // read from cache for 1 minute
-//                                return originalResponse.newBuilder()
-//                                        .header("Cache-Control", "public, max-age=" + maxAge)
-//                                        .build();
-//                            } else {
-//                                int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
-//                                return originalResponse.newBuilder()
-//                                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-//                                        .build();
-//                            }
-//                        })
-
-
-                        .addNetworkInterceptor(REWRITE_RESPONSE_INTERCEPTOR)
-                        .addInterceptor(OFFLINE_INTERCEPTOR)
-
-                        .addInterceptor(getToken()).addInterceptor(getInterceptor())
-
-
-                        .cache(cache)
-
-
-                        .build())
-                .addConverterFactory(GsonConverterFactory.create(getInstance().getApplicationComponent().Gson()))
-                .addConverterFactory(ScalarsConverterFactory.create()).build();
     }
-
 
     private static final Interceptor REWRITE_RESPONSE_INTERCEPTOR = chain -> {
         Response originalResponse = chain.proceed(chain.request());
@@ -174,21 +153,6 @@ public final class APIClientModel {
             return originalResponse;
         }
     };
-
-//    private static final Interceptor OFFLINE_INTERCEPTOR = chain -> {
-//        Request request = chain.request();
-//
-//        if (!isNetworkAvailable(MyApplication.getInstance())) {
-//            Log.d("TAG", "rewriting request");
-//
-//            int maxStale = 60 * 60 * 24 * 28; // tolerate 4-weeks stale
-//            request = request.newBuilder()
-//                    .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
-//                    .build();
-//        }
-//
-//        return chain.proceed(request);
-//    };
 
     @Inject
     public Retrofit getClient(int timeDivider) {

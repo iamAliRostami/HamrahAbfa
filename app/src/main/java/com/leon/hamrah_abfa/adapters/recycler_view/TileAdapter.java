@@ -2,13 +2,10 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
@@ -31,13 +28,11 @@ public class TileAdapter extends RecyclerView.Adapter<TileViewHolder> {
     @NonNull
     @Override
     public TileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tile, parent, false);
         return new TileViewHolder(inflater.inflate(R.layout.item_tile, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull TileViewHolder holder, int position) {
-//        holder.imageViewLogo.setImageResource(tileItem.getImageResId());
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
         holder.textViewTitle.setSelected(true);

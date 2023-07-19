@@ -17,7 +17,8 @@ import java.util.ArrayList;
 public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
     private final ArrayList<ContactFAQViewModel> faq;
     public final LayoutInflater inflater;
-    private Integer selectedServices = null;
+    private Integer selectedFAQ = null;
+
     public FAQAdapter(Context context, ArrayList<ContactFAQViewModel> faq) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.faq = new ArrayList<>(faq);
@@ -26,18 +27,15 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
     @NonNull
     @Override
     public FAQViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (selectedServices != null && selectedServices == viewType) {
-            return new FAQViewHolder(inflater.inflate(R.layout.item_faq_collapsed, parent, false));
-        } else {
-            return new FAQViewHolder(inflater.inflate(R.layout.item_faq, parent, false));
-        }
+        return new FAQViewHolder(inflater.inflate((selectedFAQ != null && selectedFAQ == viewType) ?
+                R.layout.item_faq_collapsed : R.layout.item_faq, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull FAQViewHolder holder, int position) {
         holder.textViewQuestion.setText(faq.get(position).q);
         holder.textViewQuestion.setSelected(true);
-        if (selectedServices != null && selectedServices == position)
+        if (selectedFAQ != null && selectedFAQ == position)
             holder.textViewAnswer.setText(faq.get(position).a);
     }
 
@@ -52,13 +50,13 @@ public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
     }
 
     public void updateSelectedService(int position) {
-        if (selectedServices == null) {
-            selectedServices = position;
-        } else if (selectedServices == position) {
-            selectedServices = null;
+        if (selectedFAQ == null) {
+            selectedFAQ = position;
+        } else if (selectedFAQ == position) {
+            selectedFAQ = null;
         } else {
-            final int temp = selectedServices;
-            selectedServices = position;
+            final int temp = selectedFAQ;
+            selectedFAQ = position;
             notifyItemChanged(temp);
         }
         notifyItemChanged(position);

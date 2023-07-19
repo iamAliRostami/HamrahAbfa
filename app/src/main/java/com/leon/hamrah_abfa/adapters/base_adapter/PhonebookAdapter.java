@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.PhonebookViewHolder;
-import com.leon.hamrah_abfa.fragments.contact_us.BranchViewModel;
 import com.leon.hamrah_abfa.fragments.contact_us.PhonebookViewModel;
 
 import java.util.ArrayList;
@@ -45,11 +44,11 @@ public class PhonebookAdapter extends BaseAdapter {
         final PhonebookViewHolder holder = new PhonebookViewHolder(view);
         holder.textViewTitle.setText(phoneBook.get(position).getTitle());
         holder.textViewTitle.setSelected(true);
-
         holder.textViewPhoneNumber.setText(phoneBook.get(position).getPhoneNumber());
         holder.textViewPhoneNumber.setSelected(true);
         return view;
     }
+
     @SuppressLint("NotifyDataSetChanged")
     public void filterList(ArrayList<PhonebookViewModel> phonebook) {
         this.phoneBook.clear();

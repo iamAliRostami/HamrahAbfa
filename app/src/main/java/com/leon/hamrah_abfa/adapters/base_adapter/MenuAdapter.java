@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +19,13 @@ public class MenuAdapter extends BaseAdapter {
     private final ArrayList<String> titles;
     private final TypedArray drawable;
     private final LayoutInflater inflater;
-    private final int height;
 
     public MenuAdapter(Context context, int titleIds, int drawableIds) {
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.titles = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(titleIds)));
         this.drawable = context.getResources().obtainTypedArray(drawableIds);
-
         final DisplayMetrics displaymetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-
-
-//        height = displaymetrics.heightPixels / (titles.size() / 3);
-
-        height = context.getResources().getDisplayMetrics().widthPixels / 3;
-//        Log.e("height 12", String.valueOf(height));
     }
 
     @Override
@@ -60,8 +51,6 @@ public class MenuAdapter extends BaseAdapter {
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
         holder.textViewTitle.setSelected(true);
-//        holder.cardView.setMinimumHeight(height);
-//        holder.cardView.heigh;
         return view;
     }
 }

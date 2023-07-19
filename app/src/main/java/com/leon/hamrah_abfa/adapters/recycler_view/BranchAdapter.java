@@ -47,7 +47,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchViewHolder> {
         if (selectedServices != null && selectedServices == position) {
             holder.textViewManager.setText(branches.get(position).getManager());
             holder.textViewFax.setText(branches.get(position).getFax());
-            holder.textViewPhone1.setText(branches.get(position).getPhone1());
+            holder.textViewPhone.setText(branches.get(position).getPhone1());
             holder.textViewPostal.setText(branches.get(position).getPostal());
             holder.textViewAddress.setText(branches.get(position).getAddress());
             holder.textViewZone.setText(branches.get(position).getZone());

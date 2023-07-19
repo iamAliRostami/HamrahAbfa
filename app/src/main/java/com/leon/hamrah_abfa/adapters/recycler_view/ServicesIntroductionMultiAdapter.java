@@ -16,6 +16,7 @@ import java.util.Collections;
 public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAdapter {
     private final ArrayList<Integer> selectedServicesId;
     private Integer collapsedPosition;
+
     public ServicesIntroductionMultiAdapter(Context context, int titleIds, int introductionIds,
                                             int serviceId, int drawableIds) {
         super(context, titleIds, introductionIds, serviceId, drawableIds);
@@ -25,7 +26,8 @@ public class ServicesIntroductionMultiAdapter extends ServicesIntroductionBaseAd
     @NonNull
     @Override
     public ServiceIntroductionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service_collapsed_selected, parent, false));
+        return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service_collapsed_selected,
+                parent, false));
     }
 
     @Override

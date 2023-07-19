@@ -27,9 +27,9 @@ public class UsageHistoryFailedAdapter extends RecyclerView.Adapter<UsageHistory
     @NonNull
     @Override
     public UsageHistoryFailedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (getItemViewType(viewType) % 2 == 0)
-            return new UsageHistoryFailedViewHolder(inflater.inflate(R.layout.item_usage_failed_history, parent, false));
-        return new UsageHistoryFailedViewHolder(inflater.inflate(R.layout.item_usage_history_failed_light, parent, false));
+
+        return new UsageHistoryFailedViewHolder(inflater.inflate(viewType % 2 == 0 ?
+                R.layout.item_usage_failed_history : R.layout.item_usage_history_failed_light, parent, false));
     }
 
     @Override

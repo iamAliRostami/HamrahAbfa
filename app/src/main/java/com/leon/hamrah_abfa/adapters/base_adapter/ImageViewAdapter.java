@@ -30,7 +30,7 @@ public class ImageViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = convertView;
         if (view == null) {
-            view = inflater.inflate(R.layout.item_image, null);
+            view = inflater.inflate(R.layout.item_image, parent, false);
         }
         final ImageViewHolder holder = new ImageViewHolder(view);
         if (bitmaps.isEmpty() || position == bitmaps.size()) {
@@ -68,6 +68,6 @@ public class ImageViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position/*bitmaps.size() + 1*/;
+        return position;
     }
 }

@@ -20,12 +20,11 @@ public class FAQViewHolder extends RecyclerView.ViewHolder {
 
     public FAQViewHolder(View view) {
         super(view);
-        textViewQuestion = view.findViewById(R.id.text_view_question);
-        imageViewArrow = view.findViewById(R.id.image_view_arrow);
-
-        cardView = view.findViewById(R.id.contribute_card);
-        textViewAnswer = view.findViewById(R.id.text_view_answer);
         viewDivider = view.findViewById(R.id.divider);
+        cardView = view.findViewById(R.id.contribute_card);
         relativeLayout = view.findViewById(R.id.relative_layout);
+        imageViewArrow = view.findViewById(R.id.image_view_arrow);
+        textViewAnswer = view.findViewById(R.id.text_view_answer);
+        textViewQuestion = view.findViewById(R.id.text_view_question);
     }
 }

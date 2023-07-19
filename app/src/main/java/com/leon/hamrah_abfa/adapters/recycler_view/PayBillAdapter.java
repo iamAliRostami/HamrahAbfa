@@ -41,12 +41,9 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
             holder.relativeLayoutContent.setBackgroundResource(R.drawable.background_pay_bill);
             holder.imageView.setImageResource(R.drawable.ic_plus);
         }
-//        holder.textViewNickname.setChecked(payBills.get(position).selected);
         holder.textViewNickname.setText(payBills.get(position).nickName);
-
         holder.textViewDeadline.setText(payBills.get(position).deadline);
         holder.textViewPrice.setText(payBills.get(position).debt);
-
         holder.relativeLayoutContent.setOnClickListener(this);
         holder.textViewNickname.setOnClickListener(this);
     }

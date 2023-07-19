@@ -122,7 +122,7 @@
             android:text="@string/phone" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/text_view_phone_1"
+            android:id="@+id/text_view_phone"
             style="@style/TextItem.Branch"
             android:layout_below="@id/text_view_financial"
             android:layout_alignParentEnd="true"
@@ -133,21 +133,21 @@
             android:id="@+id/image_view_fax"
             style="@style/ImageItemStyle"
             android:layout_above="@id/text_view_postal"
-            android:layout_below="@id/text_view_phone_1"
+            android:layout_below="@id/text_view_phone"
             android:src="@drawable/ic_fax" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_fax_title"
             style="@style/TitleBranch"
             android:layout_above="@id/text_view_postal"
-            android:layout_below="@id/text_view_phone_1"
+            android:layout_below="@id/text_view_phone"
             android:layout_toEndOf="@id/image_view_fax"
             android:text="@string/fax" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_fax"
             style="@style/TextItem.Branch"
-            android:layout_below="@id/text_view_phone_1"
+            android:layout_below="@id/text_view_phone"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/text_view_zone_title"
             android:text="@string/fax" />

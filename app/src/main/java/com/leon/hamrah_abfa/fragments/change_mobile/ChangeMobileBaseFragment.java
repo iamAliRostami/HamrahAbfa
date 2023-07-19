@@ -56,6 +56,7 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
             }
         }
     }
+
     private void requestVerificationCode() {
         boolean isOnline = new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
                 new AskVerificationCodeRequest.ICallback() {
@@ -74,7 +75,6 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
     }
 
     private void progressStatus(boolean hide) {
-        //TODO
         if (hide) {
             binding.buttonSubmit.setVisibility(View.VISIBLE);
             binding.lottieAnimationView.setVisibility(View.GONE);
@@ -85,6 +85,7 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
             binding.lottieAnimationView.setVisibility(View.VISIBLE);
         }
     }
+
     private boolean mobileValidation() {
         boolean cancel = false;
         if (callback.getViewModel().getNewMobile() == null || callback.getViewModel().getNewMobile().isEmpty()) {
@@ -97,7 +98,7 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
             binding.editTextNewMobile.setError(getString(R.string.mobile_error));
             binding.editTextNewMobile.requestFocus();
             cancel = true;
-        }else if (callback.getViewModel().getNewMobile().equals(callback.getViewModel().getMobile())){
+        } else if (callback.getViewModel().getNewMobile().equals(callback.getViewModel().getMobile())) {
             warning(requireContext(), getString(R.string.repetitive_mobile)).show();
             binding.editTextNewMobile.setError(getString(R.string.repetitive_mobile));
             binding.editTextNewMobile.requestFocus();

@@ -15,21 +15,18 @@ import java.util.ArrayList;
 
 public class RequestDetailInfoAdapter extends RecyclerView.Adapter<RequestInfoViewHolder> {
     private final ArrayList<TrackItemInfo> trackItems = new ArrayList<>();
-
     private final LayoutInflater inflater;
 
     public RequestDetailInfoAdapter(Context context, ArrayList<TrackItemInfo> trackItems) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.trackItems.addAll(trackItems);
-//        this.trackItems.addAll(trackItems);
     }
 
     @NonNull
     @Override
     public RequestInfoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType%2==0)
-            return new RequestInfoViewHolder(inflater.inflate(R.layout.item_request_info, parent, false));
-        return new RequestInfoViewHolder(inflater.inflate(R.layout.item_request_info_light, parent, false));
+        return new RequestInfoViewHolder(inflater.inflate(viewType % 2 == 0 ?
+                R.layout.item_request_info : R.layout.item_request_info_light, parent, false));
     }
 
     @Override

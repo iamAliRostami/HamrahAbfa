@@ -17,7 +17,6 @@ public class VerificationViewModel extends BaseObservable {
     private String verificationCode;
     private boolean isValid;
 
-
     @Bindable
     public String getMobile() {
         return mobile;

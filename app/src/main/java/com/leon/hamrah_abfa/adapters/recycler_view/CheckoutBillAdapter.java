@@ -27,9 +27,8 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
     @NonNull
     @Override
     public CheckoutBillViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (getItemViewType(viewType) % 2 == 0)
-            return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill_light, parent, false));
-        return new CheckoutBillViewHolder(inflater.inflate(R.layout.item_checkout_bill, parent, false));
+        return new CheckoutBillViewHolder(inflater.inflate(getItemViewType(viewType) % 2 == 0 ?
+                R.layout.item_checkout_bill_light : R.layout.item_checkout_bill, parent, false));
     }
 
     @Override
@@ -66,6 +65,7 @@ public class CheckoutBillAdapter extends RecyclerView.Adapter<CheckoutBillViewHo
     public int getZoneId(int position) {
         return bills.get(position).zoneId;
     }
+
     public int getId(int position) {
         return bills.get(position).id;
     }

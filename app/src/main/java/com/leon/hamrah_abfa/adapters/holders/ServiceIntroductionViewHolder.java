@@ -29,23 +29,4 @@ public class ServiceIntroductionViewHolder extends RecyclerView.ViewHolder {
         viewDivider = view.findViewById(R.id.divider);
         relativeLayout = view.findViewById(R.id.relative_layout);
     }
-
-    public ServiceIntroductionViewHolder(View view, int position, IClickListener listener) {
-        super(view);
-        cardView = view.findViewById(R.id.contribute_card);
-        textViewTitle = view.findViewById(R.id.text_view_title);
-        textViewIntroduction = view.findViewById(R.id.text_view_introduction);
-        imageViewLogo = view.findViewById(R.id.image_view_icon);
-        viewDivider = view.findViewById(R.id.divider);
-        relativeLayout = view.findViewById(R.id.relative_layout);
-
-        imageViewArrow = view.findViewById(R.id.image_view_arrow);
-        textViewTitle.setOnClickListener(v -> listener.collapse(position));
-    }
-
-    public interface IClickListener {
-        void collapse(int position);
-
-        void selectItem(String result);
-    }
 }

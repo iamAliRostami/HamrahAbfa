@@ -3,7 +3,6 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -29,8 +28,7 @@ public class ServicesMainAdapter extends RecyclerView.Adapter<ServiceMainViewHol
     @NonNull
     @Override
     public ServiceMainViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = inflater.inflate(R.layout.item_service_main,parent,false);
-        return new ServiceMainViewHolder(view);
+        return new ServiceMainViewHolder(inflater.inflate(R.layout.item_service_main, parent, false));
     }
 
     @Override

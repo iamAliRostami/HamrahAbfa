@@ -17,7 +17,6 @@ public class SharedPreferenceModule {
     public SharedPreferenceModule(Context context, SharedReferenceNames name) {
         sharedPreference = new SharedPreferenceModel(context, name.getValue());
     }
-
     @Singleton
     @Provides
     public SharedPreferenceModel providesSharedPreferenceModel() {

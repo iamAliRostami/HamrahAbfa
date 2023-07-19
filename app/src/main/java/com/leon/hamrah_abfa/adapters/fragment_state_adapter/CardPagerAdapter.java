@@ -62,10 +62,6 @@ public class CardPagerAdapter extends FragmentStateAdapter {
         fragmentList.add(fragment);
     }
 
-    public void addFragment(Fragment fragment, int position) {
-        fragmentList.add(position, fragment);
-    }
-
     @SuppressLint("NotifyDataSetChanged")
     public void update() {
         final String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue());
