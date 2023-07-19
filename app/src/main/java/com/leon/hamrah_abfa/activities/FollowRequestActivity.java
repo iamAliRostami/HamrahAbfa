@@ -51,7 +51,6 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
-
         binding.floatButtonSearch.setOnClickListener(this);
         requestMasterHistory();
         initializeTabLayout();

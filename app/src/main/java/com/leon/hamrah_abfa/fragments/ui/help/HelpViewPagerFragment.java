@@ -2,7 +2,6 @@ package com.leon.hamrah_abfa.fragments.ui.help;
 
 import static android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD;
 import static com.leon.hamrah_abfa.enums.BundleEnum.ANIM;
-import static com.leon.hamrah_abfa.enums.BundleEnum.BACKGROUND_COLOR;
 import static com.leon.hamrah_abfa.enums.BundleEnum.CONTENT;
 import static com.leon.hamrah_abfa.enums.BundleEnum.POSITION;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TITLE;
@@ -28,14 +27,13 @@ public class HelpViewPagerFragment extends Fragment {
     }
 
     public static HelpViewPagerFragment newInstance(int position, String title, String content,
-                                                    int anim, int bgColor) {
+                                                    int anim) {
         final HelpViewPagerFragment fragment = new HelpViewPagerFragment();
         final Bundle args = new Bundle();
         args.putInt(POSITION.getValue(), position);
+        args.putInt(ANIM.getValue(), anim);
         args.putString(TITLE.getValue(), title);
         args.putString(CONTENT.getValue(), content);
-        args.putInt(ANIM.getValue(), anim);
-        args.putInt(BACKGROUND_COLOR.getValue(), bgColor);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,11 +42,10 @@ public class HelpViewPagerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            viewModel.setTitle(getArguments().getString(TITLE.getValue()));
             viewModel.setPosition(getArguments().getInt(POSITION.getValue()));
-            viewModel.setContent(getArguments().getString(CONTENT.getValue()));
-            viewModel.setBgColor(getArguments().getInt(BACKGROUND_COLOR.getValue()));
             viewModel.setAnimSrc(getArguments().getInt(ANIM.getValue()));
+            viewModel.setTitle(getArguments().getString(TITLE.getValue()));
+            viewModel.setContent(getArguments().getString(CONTENT.getValue()));
             getArguments().clear();
         }
     }

@@ -14,12 +14,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySubmitMobileBinding;
-import com.leon.hamrah_abfa.fragments.mobile.MobileSubmitFragment;
-import com.leon.hamrah_abfa.fragments.mobile.MobileVerificationFragment;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
+import com.leon.hamrah_abfa.fragments.mobile.SubmitMobileFragment;
+import com.leon.hamrah_abfa.fragments.mobile.VerificationMobileFragment;
 
-public class SubmitMobileActivity extends BaseActivity implements MobileSubmitFragment.ICallback,
-        MobileVerificationFragment.ICallback {
+public class SubmitMobileActivity extends BaseActivity implements SubmitMobileFragment.ICallback,
+        VerificationMobileFragment.ICallback {
     private final PreLoginViewModel viewModel = new PreLoginViewModel();
     private ActivitySubmitMobileBinding binding;
 
@@ -37,14 +37,13 @@ public class SubmitMobileActivity extends BaseActivity implements MobileSubmitFr
     @Override
     public void displayView(int position) {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//        ft.setCustomAnimations(R.animator.enter, R.animator.exit,
-//                R.animator.pop_enter, R.animator.pop_exit);
         ft.replace(binding.containerBody.getId(), getFragment(position), Integer.toString(position));
         if (position != SUBMIT_PHONE_FRAGMENT) {
             ft.addToBackStack(null);
         }
         ft.commitAllowingStateLoss();
-        runOnUiThread(() -> getFragmentManager().executePendingTransactions());
+        runOnUiThread(() -> getSupportFragmentManager().executePendingTransactions());
+
     }
 
     @Override
@@ -55,10 +54,10 @@ public class SubmitMobileActivity extends BaseActivity implements MobileSubmitFr
     private Fragment getFragment(int position) {
         switch (position) {
             case VERIFICATION_FRAGMENT:
-                return MobileVerificationFragment.newInstance();
+                return VerificationMobileFragment.newInstance();
             case SUBMIT_PHONE_FRAGMENT:
             default:
-                return MobileSubmitFragment.newInstance();
+                return SubmitMobileFragment.newInstance();
         }
     }
 

@@ -5,8 +5,6 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OLD_MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.error;
@@ -47,14 +45,10 @@ public class ErrorUtils {
     public static void expiredToken(Context context) {
         error(context, R.string.expired_access).show();
 
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(OLD_MOBILE.getValue(),
-                getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), "");
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), "");
-
 
         showFragmentDialogOnce(context, ASK_YES_NO.getValue(),
                 YesNoFragment.newInstance(R.drawable.setting_logout, context.getString(R.string.security_error),
@@ -63,7 +57,6 @@ public class ErrorUtils {
                             @Override
                             public void yes(DialogFragment fragment) {
                                 Intent startActivity = new Intent(context, MainActivity.class);
-
                                 int pendingIntentId = 123456;
                                 PendingIntent pendingIntent = PendingIntent.getActivity(context, pendingIntentId, startActivity,
                                         PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE);
@@ -78,7 +71,5 @@ public class ErrorUtils {
                             }
                         })
         );
-
-
     }
 }

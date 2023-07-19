@@ -34,7 +34,7 @@ public class ServicesViewModel extends BaseObservable {
     private Bitmap bitmapLocation;
 
     public ServicesViewModel(Context context, int serviceType, String billId, String id) {
-        this.id = id;
+        setId(id);
         setBillId(billId);
         setServiceType(serviceType);
         setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
@@ -157,5 +157,9 @@ public class ServicesViewModel extends BaseObservable {
     public void setBitmapLocation(Bitmap bitmapLocation) {
         this.bitmapLocation = bitmapLocation;
         notifyPropertyChanged(BR.bitmapLocation);
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

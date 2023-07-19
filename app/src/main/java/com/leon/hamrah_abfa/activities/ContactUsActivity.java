@@ -75,7 +75,6 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
         return viewModel;
     }
 
-
     @Override
     public ImageViewAdapter getImageViewAdapter() {
         return adapter;
@@ -87,10 +86,10 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
     }
 
     @Override
-    public void confirm() {
+    public void confirm(String trackNumber) {
         viewModel.resetViewModel();
         getSupportFragmentManager().popBackStack();
-        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), TrackDoneRequestFragment.newInstance("123456",
+        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), TrackDoneRequestFragment.newInstance(trackNumber,
                 getString(R.string.main_page), new TrackDoneRequestFragment.IClickListener() {
                     @Override
                     public void yes(DialogFragment dialogFragment) {

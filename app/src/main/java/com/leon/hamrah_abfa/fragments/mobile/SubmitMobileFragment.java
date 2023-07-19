@@ -15,18 +15,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentMobileSubmitBinding;
+import com.leon.hamrah_abfa.databinding.FragmentSubmitMobileBinding;
 import com.leon.hamrah_abfa.requests.mobile_account.AskVerificationCodeRequest;
 
-public class MobileSubmitFragment extends Fragment implements View.OnClickListener {
-    private FragmentMobileSubmitBinding binding;
+public class SubmitMobileFragment extends Fragment implements View.OnClickListener {
+    private FragmentSubmitMobileBinding binding;
     private ICallback callback;
 
-    public MobileSubmitFragment() {
+    public SubmitMobileFragment() {
     }
 
-    public static MobileSubmitFragment newInstance() {
-        return new MobileSubmitFragment();
+    public static SubmitMobileFragment newInstance() {
+        return new SubmitMobileFragment();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MobileSubmitFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentMobileSubmitBinding.inflate(inflater, container, false);
+        binding = FragmentSubmitMobileBinding.inflate(inflater, container, false);
         binding.setViewModel(callback.getViewModel());
         initialize();
         return binding.getRoot();

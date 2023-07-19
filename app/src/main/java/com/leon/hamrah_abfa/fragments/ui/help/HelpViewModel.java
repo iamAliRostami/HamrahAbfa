@@ -7,8 +7,6 @@ import com.leon.hamrah_abfa.BR;
 
 public class HelpViewModel extends BaseObservable {
     private int position;
-    private int bgColor;
-    private int logo;
     private int animSrc;
     private String title;
     private String content;
@@ -41,26 +39,6 @@ public class HelpViewModel extends BaseObservable {
     public void setContent(String content) {
         this.content = content;
         notifyPropertyChanged(BR.content);
-    }
-
-    @Bindable
-    public int getBgColor() {
-        return bgColor;
-    }
-
-    public void setBgColor(int bgColor) {
-        this.bgColor = bgColor;
-        notifyPropertyChanged(BR.bgColor);
-    }
-
-    @Bindable
-    public int getLogo() {
-        return logo;
-    }
-
-    public void setLogo(int logo) {
-        this.logo = logo;
-        notifyPropertyChanged(BR.logo);
     }
 
     @Bindable

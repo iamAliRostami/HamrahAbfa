@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
@@ -54,9 +53,6 @@ public class WelcomeActivity extends BaseActivity {
                     constraintSet.connect(R.id.view, ConstraintSet.TOP, R.id.button_skip, ConstraintSet.TOP, 0);
                 }
                 constraintSet.applyTo(binding.layoutSkip);
-                //TODO
-                binding.layoutSkip.setBackgroundColor(adapter.getBgColors(position));
-
             }
         });
         binding.indicator.setupWithViewPager(binding.viewPagerWelcome);

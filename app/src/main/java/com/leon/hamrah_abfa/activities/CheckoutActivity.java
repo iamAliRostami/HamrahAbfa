@@ -99,7 +99,6 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.bills)).setIcon(R.drawable.ic_bill));
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(getString(R.string.payments)).setIcon(R.drawable.ic_paid_bill));
         binding.tabLayout.setSelectedTabIndicator(R.drawable.cat_tabs_rounded_line_indicator);
-
         binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {

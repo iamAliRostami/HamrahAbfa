@@ -27,21 +27,21 @@ import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
 import com.google.android.gms.tasks.Task;
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentMobileVerificationBinding;
+import com.leon.hamrah_abfa.databinding.FragmentVerificationMobileBinding;
 import com.leon.hamrah_abfa.requests.mobile_account.VerifyReceivedCodeRequest;
 import com.leon.hamrah_abfa.utils.SMSReceiver;
 
-public class MobileVerificationFragment extends Fragment implements View.OnClickListener,
+public class VerificationMobileFragment extends Fragment implements View.OnClickListener,
         TextWatcher, View.OnKeyListener, SMSReceiver.OTPReceiveListener {
     private SMSReceiver smsReceiver = new SMSReceiver();
-    private FragmentMobileVerificationBinding binding;
+    private FragmentVerificationMobileBinding binding;
     private ICallback callback;
 
-    public MobileVerificationFragment() {
+    public VerificationMobileFragment() {
     }
 
-    public static MobileVerificationFragment newInstance() {
-        return new MobileVerificationFragment();
+    public static VerificationMobileFragment newInstance() {
+        return new VerificationMobileFragment();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class MobileVerificationFragment extends Fragment implements View.OnClick
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentMobileVerificationBinding.inflate(inflater, container, false);
+        binding = FragmentVerificationMobileBinding.inflate(inflater, container, false);
         binding.setViewModel(callback.getViewModel());
         initialize();
         return binding.getRoot();

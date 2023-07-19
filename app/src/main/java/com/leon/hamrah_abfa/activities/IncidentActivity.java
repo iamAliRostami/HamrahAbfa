@@ -42,7 +42,6 @@ public class IncidentActivity extends BaseActivity implements IncidentBaseFragme
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override

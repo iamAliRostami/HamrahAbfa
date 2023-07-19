@@ -85,7 +85,8 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
             adapter.addFragment(NotFoundFragment.newInstance());
         } else {
             adapter.addFragment(UsageHistorySuccessfulFragment.newInstance());
-        }if (unsuccessAttempts.isEmpty()) {
+        }
+        if (unsuccessAttempts.isEmpty()) {
             adapter.addFragment(NotFoundFragment.newInstance());
         } else {
             adapter.addFragment(UsageHistoryFailedFragment.newInstance());
@@ -115,12 +116,10 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
 
     @Override
     public void onTabUnselected(TabLayout.Tab tab) {
-
     }
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
-
     }
 
     @Override

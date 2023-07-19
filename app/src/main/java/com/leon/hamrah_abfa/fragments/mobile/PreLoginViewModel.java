@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.fragments.mobile;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.OLD_MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
@@ -22,8 +21,8 @@ public class PreLoginViewModel extends VerificationViewModel {
     public PreLoginViewModel() {
         setCustomSerial(String.format("! %s @ %s # %s $ %s ^ %s & %d * %s _", Build.BRAND, Build.HARDWARE,
                 Build.MANUFACTURER, Build.USER, Build.DEVICE, Build.VERSION.SDK_INT, Build.VERSION.RELEASE));
-        if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(OLD_MOBILE.getValue()))
-            setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(OLD_MOBILE.getValue()));
+        if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue()))
+            setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
     }
 
     @Bindable

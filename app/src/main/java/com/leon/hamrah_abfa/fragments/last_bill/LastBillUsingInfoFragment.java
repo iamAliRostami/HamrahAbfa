@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.databinding.FragmentLastBillUsingInfoBinding;
-import com.leon.hamrah_abfa.fragments.mobile.MobileSubmitFragment;
 
 
 public class LastBillUsingInfoFragment extends Fragment {

@@ -107,7 +107,7 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            callback.confirm();
+            callback.confirm("1212");
         } else if (id == R.id.button_previous) {
             requireActivity().getSupportFragmentManager().popBackStack();
         } else if (id == R.id.image_view_current_location) {
@@ -191,6 +191,6 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
 
         void setImageViewAdapter(ImageViewAdapter adapter);
 
-        void confirm();
+        void confirm(String trackNumber);
     }
 }

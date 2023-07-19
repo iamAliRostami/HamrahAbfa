@@ -61,9 +61,9 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            callback.submitInformation();
+            callback.submitInformation("12345");
         } else if (id == R.id.button_previous) {
-            callback.displayView(SERVICE_FORM_FRAGMENT,false);
+            callback.displayView(SERVICE_FORM_FRAGMENT, false);
         } else if (id == R.id.image_view_location) {
             showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
                     ServicesLocationFragment.newInstance(callback.getServicesViewModel().getPoint()));
@@ -77,11 +77,10 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     }
 
     public interface ICallback {
-        ServicesViewModel getServicesViewModel();
+        ServicesViewModel getServicesViewModel();//
 
-        //        void backToServiceForm();
-//
-        void submitInformation();
+        void submitInformation(String trackNumber);
+
         void displayView(int position, boolean next);
     }
 }

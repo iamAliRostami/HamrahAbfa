@@ -47,8 +47,10 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityServiceBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            viewModel = new ServicesViewModel(this, getIntent().getExtras().getInt(SERVICE_TYPE.getValue()),
-                    getIntent().getExtras().getString(BILL_ID.getValue()), getIntent().getExtras().getString(UUID.getValue()));
+            viewModel = new ServicesViewModel(this,
+                    getIntent().getExtras().getInt(SERVICE_TYPE.getValue()),
+                    getIntent().getExtras().getString(BILL_ID.getValue()),
+                    getIntent().getExtras().getString(UUID.getValue()));
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
@@ -78,11 +80,10 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
         viewModel.setSelectedServicesId(selectedServicesId);
     }
 
-
     @Override
-    public void submitInformation() {
+    public void submitInformation(String trackNumber) {
         showFragmentDialogOnce(this, REQUEST_DONE.getValue(),
-                TrackDoneRequestFragment.newInstance("123456", getString(R.string.main_page),
+                TrackDoneRequestFragment.newInstance(trackNumber, getString(R.string.main_page),
                         new TrackDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
@@ -91,7 +92,6 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
 
                             @Override
                             public void no(DialogFragment dialogFragment) {
-
                             }
                         }));
     }
@@ -135,6 +135,5 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
         if (next)
             binding.stepper.go(binding.stepper.getCurrentStep() + 1, true);
         else binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
-
     }
 }

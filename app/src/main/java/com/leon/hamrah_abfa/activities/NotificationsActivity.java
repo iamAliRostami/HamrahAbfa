@@ -107,14 +107,14 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     public void setUnseenNotificationNumber() {
-        final BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
+        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
         badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
     }
 
     @Override
     public void setUnseenNewsNumber() {
-        final BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
+        BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
         badgeDrawable.setVisible(true);
         badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
     }
