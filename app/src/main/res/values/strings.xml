@@ -103,6 +103,8 @@
     <string name="confirm_information">تایید اطلاعات</string>
     <string name="submit_location">ثبت محل</string>
     <string name="locate_address">نشانی روی نقشه مشخص نشده است</string>
+    <string name="incorrect_postal_code_format">فرمت کد پستی صحیح نیست</string>
+    <string name="incorrect_nation_code_format">فرمت کد ملی صحیح نیست</string>
     <string name="incorrect_bill_id_format">فرمت شناسه قبض صحیح نیست</string>
     <string name="incorrect_mobile_format">فرمت موبایل صحیح نیست</string>
     <string name="fill_in_address">نشانی را وارد کنید</string>
@@ -253,5 +255,12 @@
     <string name="expired_access">دسترسی شما به دلایل امنیتی باطل شده است، مجددا وارد شوید</string>
     <string name="login_again">ورود دوباره</string>
     <string name="security_error">خطای امنیتی</string>
+    <string name="nation_code">کد ملی</string>
+    <string name="first_name">نام</string>
+    <string name="sure_name">نام خانوادگی</string>
+    <string name="fill_in_all">همه ی فیلدها را پر کنید</string>
+    <string name="fill_in_first_name">نام را وارد کنید</string>
+    <string name="fill_in_sure_name">نام خانوادگی را وارد کنید</string>
+    <string name="neighbour_bill_id">شناسه قبض همسایه</string>
 
 </resources>

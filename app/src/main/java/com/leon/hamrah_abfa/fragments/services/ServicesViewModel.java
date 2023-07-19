@@ -22,7 +22,12 @@ import java.util.ArrayList;
 public class ServicesViewModel extends BaseObservable {
     private String id;
     private String address;
+    private String firstName;
+    private String sureName;
+    private String nationId;
     private String billId;
+    private String neighbourBillId;
+    private String postalCode;
     private ArrayList<String> selectedServices;
     private ArrayList<Integer> selectedServicesId;
     private String mobile;
@@ -32,10 +37,13 @@ public class ServicesViewModel extends BaseObservable {
     private int srcIcon;
     private GeoPoint point;
     private Bitmap bitmapLocation;
+    private String x;
+    private String y;
 
     public ServicesViewModel(Context context, int serviceType, String billId, String id) {
         setId(id);
         setBillId(billId);
+        setNeighbourBillId(billId);
         setServiceType(serviceType);
         setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
         setTitle(context.getResources().getStringArray(R.array.services_main_menu)[getServiceType()]);
@@ -52,6 +60,16 @@ public class ServicesViewModel extends BaseObservable {
     public void setBillId(String billId) {
         this.billId = billId;
         notifyPropertyChanged(BR.billId);
+    }
+
+    @Bindable
+    public String getNeighbourBillId() {
+        return neighbourBillId;
+    }
+
+    public void setNeighbourBillId(String neighbourBillId) {
+        this.neighbourBillId = neighbourBillId;
+        notifyPropertyChanged(BR.neighbourBillId);
     }
 
     @Bindable
@@ -161,5 +179,61 @@ public class ServicesViewModel extends BaseObservable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Bindable
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+        notifyPropertyChanged(BR.postalCode);
+    }
+
+    @Bindable
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+        notifyPropertyChanged(BR.firstName);
+    }
+
+    @Bindable
+    public String getSureName() {
+        return sureName;
+    }
+
+    public void setSureName(String sureName) {
+        this.sureName = sureName;
+        notifyPropertyChanged(BR.sureName);
+    }
+
+    @Bindable
+    public String getNationId() {
+        return nationId;
+    }
+
+    public void setNationId(String nationId) {
+        this.nationId = nationId;
+        notifyPropertyChanged(BR.nationId);
+    }
+
+    public String getX() {
+        return x;
+    }
+
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    public String getY() {
+        return y;
+    }
+
+    public void setY(String y) {
+        this.y = y;
     }
 }

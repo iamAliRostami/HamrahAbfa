@@ -12,7 +12,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.services.ServiceSubmitInformationFragment">
+        tools:context=".fragments.services.buy.ServiceSubmitInformationFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"
@@ -62,6 +62,77 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_manager" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/first_name" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:gravity="end"
+                                android:text="@{viewModel.firstName}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_manager" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/sure_name" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:gravity="end"
+                                android:text="@{viewModel.sureName}" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_financial_code" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/nation_code" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:gravity="end"
+                                android:text="@{viewModel.nationId}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
                         <androidx.appcompat.widget.LinearLayoutCompat
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -100,12 +171,12 @@
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/TitleSubmitInfo"
-                                android:text="@string/bill_id" />
+                                android:text="@string/neighbour_bill_id" />
 
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/TextSubmitInfo"
                                 android:gravity="end"
-                                android:text="@{viewModel.billId}" />
+                                android:text="@{viewModel.neighbourBillId}" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <RelativeLayout
@@ -145,6 +216,29 @@
                                 android:layout_below="@id/divider" />
 
                         </RelativeLayout>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_postal" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/postal_code" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:gravity="end"
+                                android:text="@{viewModel.postalCode}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <RelativeLayout
                             android:layout_width="match_parent"

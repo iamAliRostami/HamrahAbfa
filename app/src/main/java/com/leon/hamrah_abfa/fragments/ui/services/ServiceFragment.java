@@ -22,6 +22,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ServiceActivity;
+import com.leon.hamrah_abfa.activities.ServiceBuyActivity;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesMainAdapter;
@@ -74,7 +75,10 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
     public void onItemClick(View view, int position) {
         if (callback.isEmpty())
             return;
-        final Intent intent = new Intent(view.getContext(), ServiceActivity.class);
+        Intent intent;
+        if (position == 0)
+            intent = new Intent(view.getContext(), ServiceBuyActivity.class);
+        else intent = new Intent(view.getContext(), ServiceActivity.class);
 //        intent.putExtra(BILL_ID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
         intent.putExtra(UUID.getValue(), callback.getCurrentId(binding.viewPagerCard.getCurrentItem()));
         intent.putExtra(BILL_ID.getValue(), callback.getCardPagerAdapter().getCurrentBillId(binding.viewPagerCard.getCurrentItem()));

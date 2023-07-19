@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
+import com.leon.hamrah_abfa.databinding.FragmentServicesMapBinding;
 
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
@@ -33,7 +33,7 @@ import org.osmdroid.views.overlay.Marker;
 
 public class ServicesLocationDialogFragment extends DialogFragment implements View.OnClickListener, MapEventsReceiver {
 
-    private FragmentServicesLocationBinding binding;
+    private FragmentServicesMapBinding binding;
     private ICallback callback;
     private GeoPoint point;
 
@@ -65,7 +65,7 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentServicesLocationBinding.inflate(inflater, container, false);
+        binding = FragmentServicesMapBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }

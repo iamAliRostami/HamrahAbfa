@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.services;
+package com.leon.hamrah_abfa.fragments.services.after;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
@@ -18,7 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceFormBinding;
-import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
+import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
+import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.util.GeoPoint;
@@ -54,16 +55,16 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         binding.buttonNext.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
         binding.imageViewLocation.setOnClickListener(this);
-        binding.imageViewLocation.setOnLongClickListener(v -> {
-            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
-                    ServicesLocationDialogFragment.newInstance(callback.getServicesViewModel().getPoint()));
-            return false;
-        });
+//        binding.imageViewLocation.setOnLongClickListener(v -> {
+//            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
+//                    ServicesLocationDialogFragment.newInstance(callback.getServicesViewModel().getPoint()));
+//            return false;
+//        });
     }
 
     @Override
-    public void onClick(View v) {
-        final int id = v.getId();
+    public void onClick(View view) {
+        int id = view.getId();
         if (id == R.id.button_next) {
             if (checkInputs())
                 callback.displayView(SERVICE_SUBMIT_INFORMATION_FRAGMENT, true);
@@ -71,13 +72,17 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
             callback.displayView(SERVICE_INTRODUCTION_FRAGMENT, false);
         } else if (id == R.id.image_view_location) {
             showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
-                    ServicesLocationFragment.newInstance(callback.getServicesViewModel().getPoint()));
+                    ServicesMapFragment.newInstance(callback.getServicesViewModel().getPoint()));
         }
     }
 
     private boolean checkInputs() {
-        if (callback.getServicesViewModel().getBitmapLocation() == null) {
-            warning(requireContext(), R.string.locate_address).show();
+        if (callback.getServicesViewModel().getMobile() == null ||
+                callback.getServicesViewModel().getMobile().length() < 11 ||
+                !callback.getServicesViewModel().getMobile().substring(0, 2).contains("09")) {
+            warning(requireContext(), R.string.incorrect_mobile_format).show();
+            binding.editTextMobile.setError(getString(R.string.incorrect_mobile_format));
+            binding.editTextMobile.requestFocus();
             return false;
         }
         if (callback.getServicesViewModel().getBillId() == null ||
@@ -88,19 +93,15 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
             binding.editTextBillId.requestFocus();
             return false;
         }
-        if (callback.getServicesViewModel().getMobile() == null ||
-                callback.getServicesViewModel().getMobile().length() < 11 ||
-                !callback.getServicesViewModel().getMobile().substring(0, 2).contains("09")) {
-            warning(requireContext(), R.string.incorrect_mobile_format).show();
-            binding.editTextMobile.setError(getString(R.string.incorrect_mobile_format));
-            binding.editTextMobile.requestFocus();
-            return false;
-        }
         if (callback.getServicesViewModel().getAddress() == null ||
                 callback.getServicesViewModel().getAddress().isEmpty()) {
             warning(requireContext(), R.string.fill_in_address).show();
             binding.editTextAddress.setError(getString(R.string.fill_in_address));
             binding.editTextAddress.requestFocus();
+            return false;
+        }
+        if (callback.getServicesViewModel().getBitmapLocation() == null) {
+            warning(requireContext(), R.string.locate_address).show();
             return false;
         }
         return true;
@@ -123,10 +124,6 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     }
 
     public interface ICallback {
-//        void submitUserInfo();
-//
-//        void backToServices();
-
         ServicesViewModel getServicesViewModel();
 
         void displayView(int position, boolean next);

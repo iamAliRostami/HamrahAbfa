@@ -1,6 +1,6 @@
-package com.leon.hamrah_abfa.fragments.services;
+package com.leon.hamrah_abfa.fragments.services.buy;
 
-import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_PERSONAL_INFORMATION_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -20,6 +20,7 @@ import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionMultiAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.ServicesIntroductionSingleAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentServiceIntroductionBinding;
+import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 
 import java.util.ArrayList;
 
@@ -104,7 +105,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
         if (id == R.id.button_submit) {
             if (!callback.getAdapter().selectedServiceId().isEmpty()) {
                 callback.setServices(callback.getAdapter().selectedServiceId(), callback.getAdapter().selectedServiceTitle());
-                callback.displayView(SERVICE_FORM_FRAGMENT,true);
+                callback.displayView(SERVICE_PERSONAL_INFORMATION_FRAGMENT);
             } else {
                 warning(requireContext(), R.string.choose_a_service).show();
             }
@@ -126,6 +127,6 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
         ServicesViewModel getServicesViewModel();
 
         void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle);
-        void displayView(int position, boolean next);
+        void displayView(int position);
     }
 }

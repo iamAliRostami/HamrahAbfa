@@ -4,8 +4,9 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SERVICE_TYPE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
-import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_LOCATION_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_PERSONAL_INFORMATION_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_SUBMIT_INFORMATION_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -26,17 +27,18 @@ import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.fragments.services.after.ServiceFormFragment;
-import com.leon.hamrah_abfa.fragments.services.after.ServiceIntroductionFragment;
-import com.leon.hamrah_abfa.fragments.services.after.ServiceSubmitInformationFragment;
+import com.leon.hamrah_abfa.fragments.services.buy.ServiceIntroductionFragment;
+import com.leon.hamrah_abfa.fragments.services.buy.ServiceLocationFragment;
+import com.leon.hamrah_abfa.fragments.services.buy.ServicePersonalFragment;
+import com.leon.hamrah_abfa.fragments.services.buy.ServiceSubmitInformationFragment;
 
 import org.osmdroid.util.GeoPoint;
 
 import java.util.ArrayList;
 
-public class ServiceActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
+public class ServiceBuyActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
         ServiceSubmitInformationFragment.ICallback, ServicesLocationDialogFragment.ICallback,
-        ServiceFormFragment.ICallback, ServicesMapFragment.ICallback {
+        ServiceLocationFragment.ICallback, ServicePersonalFragment.ICallback, ServicesMapFragment.ICallback {
     private ServicesViewModel viewModel;
     private ActivityServiceBinding binding;
     private ServicesIntroductionBaseAdapter adapter;
@@ -54,9 +56,9 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
-        getSupportFragmentManager().beginTransaction().add(binding.fragmentServices.getId(),
-                ServiceIntroductionFragment.newInstance()).commit();
+        displayView(SERVICE_INTRODUCTION_FRAGMENT);
     }
+
 
     @Override
     public ServicesIntroductionBaseAdapter getAdapter() {
@@ -73,6 +75,7 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
         return viewModel;
     }
 
+
     @Override
     protected String getExitMessage() {
         return getString(R.string.return_by_press_again);
@@ -80,30 +83,43 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
-    public void displayView(int position, boolean next) {
+    public void displayView(int position) {
         if (position == SERVICE_INTRODUCTION_FRAGMENT) {
             getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                     ServiceIntroductionFragment.newInstance()).commit();
-        } else if (position == SERVICE_FORM_FRAGMENT) {
+            binding.stepper.go(0, true);
+        } else if (position == SERVICE_PERSONAL_INFORMATION_FRAGMENT) {
             getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
-                    ServiceFormFragment.newInstance()).commit();
+                    ServicePersonalFragment.newInstance()).commit();
+            binding.stepper.go(1, true);
+        } else if (position == SERVICE_LOCATION_FRAGMENT) {
+            getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
+                    ServiceLocationFragment.newInstance()).commit();
+            binding.stepper.go(1, true);
         } else if (position == SERVICE_SUBMIT_INFORMATION_FRAGMENT) {
             getSupportFragmentManager().beginTransaction().replace(binding.fragmentServices.getId(),
                     ServiceSubmitInformationFragment.newInstance()).commit();
+            binding.stepper.go(2, true);
         }
-        if (next)
-            binding.stepper.go(binding.stepper.getCurrentStep() + 1, true);
-        else binding.stepper.go(binding.stepper.getCurrentStep() - 1, true);
     }
 
     @Override
-    public void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
-        viewModel.setSelectedServices(selectedServicesTitle);
-        viewModel.setSelectedServicesId(selectedServicesId);
+    public void setLocation(Bitmap bitmapLocation, GeoPoint point) {
+        viewModel.setPoint(point);
+        viewModel.setX(String.valueOf(point.getLongitude()));
+        viewModel.setY(String.valueOf(point.getLatitude()));
+        viewModel.setBitmapLocation(bitmapLocation.copy(Bitmap.Config.ARGB_8888, true));
+        //TODO
+        final Fragment fragment = getSupportFragmentManager().findFragmentById(binding.fragmentServices.getId());
+        if (fragment != null) {
+            final FragmentTransaction transactionCurrent = getSupportFragmentManager().beginTransaction();
+            transactionCurrent.detach(fragment).commit();
+            final FragmentTransaction transactionNext = getSupportFragmentManager().beginTransaction();
+            transactionNext.attach(fragment).commit();
+        }
     }
 
     @Override
@@ -123,18 +139,8 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
     }
 
     @Override
-    public void setLocation(Bitmap bitmapLocation, GeoPoint point) {
-        viewModel.setPoint(point);
-        viewModel.setX(String.valueOf(point.getLongitude()));
-        viewModel.setY(String.valueOf(point.getLatitude()));
-        viewModel.setBitmapLocation(bitmapLocation.copy(Bitmap.Config.ARGB_8888, true));
-        //TODO
-        final Fragment fragment = getSupportFragmentManager().findFragmentById(binding.fragmentServices.getId());
-        if (fragment != null) {
-            final FragmentTransaction transactionCurrent = getSupportFragmentManager().beginTransaction();
-            transactionCurrent.detach(fragment).commit();
-            final FragmentTransaction transactionNext = getSupportFragmentManager().beginTransaction();
-            transactionNext.attach(fragment).commit();
-        }
+    public void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
+        viewModel.setSelectedServices(selectedServicesTitle);
+        viewModel.setSelectedServicesId(selectedServicesId);
     }
 }

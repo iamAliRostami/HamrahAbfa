@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.services.ServicesViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.services.after.ServiceSubmitInformationFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
+            style="@style/CardStyle.NoMargin"
+            android:layout_above="@id/linear_layout_buttons"
+            android:layout_alignParentTop="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/medium_dp"
+                        android:src="@drawable/ic_tick" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        style="@style/Title"
+                        android:layout_gravity="center"
+                        android:text="@string/confirm_information"
+                        android:textAppearance="@style/TextStyleMedium" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/tiny_dp"
+                    android:layout_below="@id/image_view_icon"
+                    android:background="@color/light_gray" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium_dp"
+                    android:layout_marginEnd="@dimen/medium_dp"
+                    android:layout_marginBottom="@dimen/medium_dp">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_mobile" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/mobile" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:gravity="end"
+                                android:text="@{viewModel.mobile}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_bill_id" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:text="@string/bill_id" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:gravity="end"
+                                android:text="@{viewModel.billId}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/image_view_service"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/medium_dp"
+                                android:src="@drawable/ic_services" />
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TitleSubmitInfo"
+                                android:layout_above="@id/divider"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@id/image_view_service"
+                                android:gravity="center_vertical"
+                                android:text="@string/services" />
+
+                            <View
+                                android:id="@+id/divider"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/tiny_dp"
+                                android:layout_below="@id/image_view_service"
+                                android:background="@color/light_gray" />
+
+                            <com.google.android.material.chip.ChipGroup
+
+                                android:id="@+id/chip_group_services"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/divider" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:layout_marginBottom="@dimen/small_dp"
+                            android:background="@drawable/background_confirm">
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:id="@+id/linear_layout_address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/image_view_address"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/medium_dp"
+                                    android:src="@drawable/ic_address_tick" />
+
+                                <com.google.android.material.textview.MaterialTextView
+                                    android:id="@+id/text_view_address_title"
+                                    style="@style/TitleSubmitInfo"
+                                    android:layout_toEndOf="@id/image_view_address"
+                                    android:text="@string/address" />
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                style="@style/TextSubmitInfo"
+                                android:layout_marginTop="@dimen/medium_dp"
+                                android:layout_marginBottom="@dimen/medium_dp"
+                                android:layout_toEndOf="@id/linear_layout_address"
+                                android:lineSpacingExtra="@dimen/small_dp"
+                                android:text="@{viewModel.address}" />
+                        </RelativeLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/border_dotted_gray"
+                            android:src="@drawable/ic_raw_map" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_confirm"
+                style="@style/ButtonSubmit.Dual"
+                android:text="@string/confirm" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_previous"
+                style="@style/ButtonCancel.Dual"
+                android:text="@string/previous" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+</layout>

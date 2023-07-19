@@ -26,7 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
-import com.leon.hamrah_abfa.databinding.FragmentServicesLocationBinding;
+import com.leon.hamrah_abfa.databinding.FragmentServicesMapBinding;
 import com.leon.hamrah_abfa.utils.GpsTracker;
 
 import org.osmdroid.api.IMapController;
@@ -37,20 +37,20 @@ import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
 
-public class ServicesLocationFragment extends BaseBottomSheetFragment implements MapEventsReceiver {
-    private FragmentServicesLocationBinding binding;
+public class ServicesMapFragment extends BaseBottomSheetFragment implements MapEventsReceiver {
+    private FragmentServicesMapBinding binding;
     private ICallback callback;
     private GeoPoint point;
 
-    public ServicesLocationFragment() {
+    public ServicesMapFragment() {
     }
 
-    public static ServicesLocationFragment newInstance() {
-        return new ServicesLocationFragment();
+    public static ServicesMapFragment newInstance() {
+        return new ServicesMapFragment();
     }
 
-    public static ServicesLocationFragment newInstance(GeoPoint point) {
-        final ServicesLocationFragment fragment = new ServicesLocationFragment();
+    public static ServicesMapFragment newInstance(GeoPoint point) {
+        final ServicesMapFragment fragment = new ServicesMapFragment();
         final Bundle bundle = new Bundle();
         bundle.putDouble(LATITUDE.getValue(), point.getLatitude());
         bundle.putDouble(LONGITUDE.getValue(), point.getLongitude());
@@ -66,9 +66,10 @@ public class ServicesLocationFragment extends BaseBottomSheetFragment implements
             getArguments().clear();
         }
     }
+
     @Override
     protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
-        binding = FragmentServicesLocationBinding.inflate(inflater, container, false);
+        binding = FragmentServicesMapBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }
@@ -85,6 +86,7 @@ public class ServicesLocationFragment extends BaseBottomSheetFragment implements
         binding.imageViewArrowDown.setOnClickListener(this);
 
     }
+
     private void initializeMap() {
         Configuration.getInstance().load(requireContext(), PreferenceManager.getDefaultSharedPreferences(requireContext()));
         binding.mapView.getZoomController().
@@ -110,6 +112,7 @@ public class ServicesLocationFragment extends BaseBottomSheetFragment implements
             dismiss();
         }
     }
+
     private void showCurrentLocation() {
         final GpsTracker gpsTracker = new GpsTracker(requireContext());
         if (!gpsTracker.canGetLocation()) {
