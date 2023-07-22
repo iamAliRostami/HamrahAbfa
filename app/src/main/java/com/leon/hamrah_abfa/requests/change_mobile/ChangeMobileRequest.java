@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests.change_mobile;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.toast.RTLToast.error;
@@ -8,7 +9,6 @@ import static com.leon.toast.RTLToast.warning;
 import android.content.Context;
 import android.util.Log;
 
-import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -36,7 +36,7 @@ public class ChangeMobileRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<ChangeMobileViewModel> call = iAbfaService.changeMobile(changeMobile);
-        return HttpClientWrapper.callHttpAsync(context, call, new ChangeMobileSuccessful(callback),
+        return callHttpAsync(context, call, new ChangeMobileSuccessful(callback),
                 new ChangeMobileIncomplete(context, callback), new ChangeMobileFailed(context, callback));
     }
 

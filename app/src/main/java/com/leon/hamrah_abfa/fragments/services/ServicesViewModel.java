@@ -20,7 +20,7 @@ import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
 public class ServicesViewModel extends BaseObservable {
-    private String id;
+    private transient String id;
     private String address;
     private String firstName;
     private String sureName;
@@ -28,17 +28,22 @@ public class ServicesViewModel extends BaseObservable {
     private String billId;
     private String neighbourBillId;
     private String postalCode;
-    private ArrayList<String> selectedServices;
-    private ArrayList<Integer> selectedServicesId;
+    private transient ArrayList<String> selectedServices;
+    private transient ArrayList<Integer> selectedServicesId;
     private String mobile;
-    private String title;
-    private int serviceType;
-    private TypedArray iconDrawable;
-    private int srcIcon;
-    private GeoPoint point;
-    private Bitmap bitmapLocation;
+    private transient String title;
+    private transient int serviceType;
+    private transient TypedArray iconDrawable;
+    private transient int srcIcon;
+    private transient GeoPoint point;
+    private transient Bitmap bitmapLocation;
     private String x;
     private String y;
+
+    private String message;
+    private String generationDateTime;
+    private String verificationCode;
+    private boolean isValid;
 
     public ServicesViewModel(Context context, int serviceType, String billId, String id) {
         setId(id);

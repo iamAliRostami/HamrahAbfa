@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests.bill;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
@@ -7,7 +8,6 @@ import static com.leon.toast.RTLToast.warning;
 import android.content.Context;
 import android.util.Log;
 
-import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -47,7 +47,7 @@ public class GetBillRequest {
             call = iAbfaService.getLast(uuid);
         else
             call = iAbfaService.getThis(id, zoneId);
-        return HttpClientWrapper.callHttpAsync(context, call, new GetBillSuccessful(callback),
+        return callHttpAsync(context, call, new GetBillSuccessful(callback),
                 new GetBillIncomplete(context, callback), new GetBillFailed(context, callback));
     }
 

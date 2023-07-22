@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests.counter;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.toast.RTLToast.error;
@@ -36,7 +37,7 @@ public class GenerateBillRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<CounterViewModel> call = iAbfaService.generateBill(counter);
-        return HttpClientWrapper.callHttpAsync(context, call, new GenerateBillSuccessful(callback),
+        return callHttpAsync(context, call, new GenerateBillSuccessful(callback),
                 new GenerateBillIncomplete(context, callback), new GenerateBillFailed(context, callback));
     }
 

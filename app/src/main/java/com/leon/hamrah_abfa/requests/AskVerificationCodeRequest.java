@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
@@ -34,7 +35,7 @@ public class AskVerificationCodeRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<VerificationViewModel> call = iAbfaService.askVerificationCode(verificationViewModel);
-        return HttpClientWrapper.callHttpAsync(context, call, new VerificationCodeSuccessful(callback),
+        return callHttpAsync(context, call, new VerificationCodeSuccessful(callback),
                 new VerificationCodeIncomplete(context, callback), new VerificationCodeFailed(context, callback));
     }
 

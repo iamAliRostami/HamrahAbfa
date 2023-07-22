@@ -1,12 +1,12 @@
 package com.leon.hamrah_abfa.requests;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsyncCached;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
@@ -32,16 +32,10 @@ public class GetFAQRequest {
 
     public boolean request() {
         callback.changeUI(true);
-//        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-
-
-
-        final Retrofit retrofit = getInstance().getApplicationComponent().NetworkHelperModel().getClientCached(context);
-
-
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<ContactFAQ> call = iAbfaService.getFAQ();
-        return HttpClientWrapper.callHttpAsyncCached(context, call, new FAQSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().NetworkHelperModel().getClientCached(context);
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<ContactFAQ> call = iAbfaService.getFAQ();
+        return callHttpAsyncCached(context, call, new FAQSuccessful(callback),
                 new FAQIncomplete(context, callback), new FAQFailed(context, callback));
     }
 

@@ -12,6 +12,7 @@ import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
 import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
+import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
 import retrofit2.Call;
@@ -60,12 +61,15 @@ public interface IAbfaService {
     @POST("kontoriNew/V1/Verification/Code")
     Call<VerificationViewModel> askVerificationCode(@Body VerificationViewModel verification);
 
-
     @POST("kontoriNew/V1/MobileBill/Generate")
     Call<CounterViewModel> generateBill(@Body CounterViewModel counter);
 
     @POST("KontoriNew/V1/MobileRequest/ChangeMobile")
     Call<ChangeMobileViewModel> changeMobile(@Body ChangeMobileViewModel changeMobile);
+
+
+    @POST("KontoriNew/V1/MobileRequest/New")
+    Call<ServicesViewModel> requestNew(@Body ServicesViewModel service);
 
 }
 

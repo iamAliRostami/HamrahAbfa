@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.services.buy;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -12,17 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.chip.Chip;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceSubmitBuyInfoBinding;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
+import com.leon.hamrah_abfa.requests.services.ServiceNewRequest;
 
 public class ServiceSubmitInformationFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceSubmitBuyInfoBinding binding;
     private ICallback callback;
+    private DialogFragment fragment;
 
     public ServiceSubmitInformationFragment() {
     }
@@ -63,12 +68,43 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            callback.submitInformation("12345");
+            requestNewService();
+//            callback.submitInformation("12345");
         } else if (id == R.id.button_previous) {
             callback.displayView(SERVICE_FORM_FRAGMENT);
         } else if (id == R.id.image_view_location) {
             showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
                     ServicesMapFragment.newInstance(callback.getServicesViewModel().getPoint()));
+        }
+    }
+
+    private void requestNewService() {
+
+        boolean isOnline = new ServiceNewRequest(requireContext(), new ServiceNewRequest.ICallback() {
+            @Override
+            public void succeed(ServicesViewModel service) {
+
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, callback.getServicesViewModel()).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
         }
     }
 

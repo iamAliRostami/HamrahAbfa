@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests.follow_request;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
@@ -7,7 +8,6 @@ import static com.leon.toast.RTLToast.warning;
 import android.content.Context;
 import android.util.Log;
 
-import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -34,7 +34,7 @@ public class GetDetailHistoryRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<DetailHistory> call = iAbfaService.getDetailHistory(trackNumber);
-        return HttpClientWrapper.callHttpAsync(context, call, new DetailHistorySuccessful(callback),
+        return callHttpAsync(context, call, new DetailHistorySuccessful(callback),
                 new DetailHistoryIncomplete(context, callback), new DetailHistoryFailed(context, callback));
     }
 

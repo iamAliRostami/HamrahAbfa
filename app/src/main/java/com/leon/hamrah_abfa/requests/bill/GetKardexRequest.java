@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests.bill;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
@@ -33,7 +34,7 @@ public class GetKardexRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<Kardex> call = iAbfaService.getKardex(id);
-        return HttpClientWrapper.callHttpAsync(context, call, new GetKardexSuccessful(callback),
+        return callHttpAsync(context, call, new GetKardexSuccessful(callback),
                 new GetKardexIncomplete(context, callback), new GetKardexFailed(context, callback));
     }
 

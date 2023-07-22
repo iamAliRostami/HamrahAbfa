@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests.follow_request;
+package com.leon.hamrah_abfa.requests.services;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -6,9 +6,8 @@ import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
+import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -18,42 +17,42 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class GetMasterHistoryRequest {
+public class ServiceNewRequest {
     private final Context context;
     private final ICallback callback;
-    private final String id;
+    private final ServicesViewModel service;
 
-    public GetMasterHistoryRequest(Context context, ICallback callback, String id) {
+    public ServiceNewRequest(Context context, ICallback callback, ServicesViewModel service) {
         this.context = context;
         this.callback = callback;
-        this.id = id;
+        this.service = service;
     }
 
     public boolean request() {
         callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<MasterHistory> call = iAbfaService.getMasterHistory(id);
-        return callHttpAsync(context, call, new MasterHistorySuccessful(callback),
-                new MasterHistoryIncomplete(context, callback), new MasterHistoryFailed(context, callback));
+        final Call<ServicesViewModel> call = iAbfaService.requestNew(service);
+        return callHttpAsync(context, call, new ServiceNewSuccessful(callback),
+                new ServiceNewIncomplete(context, callback), new ServiceNewFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(MasterHistory requestInfo);
+        void succeed(ServicesViewModel service);
 
         void changeUI(boolean show);
     }
 }
 
-class MasterHistorySuccessful implements ICallbackSucceed<MasterHistory> {
-    private final GetMasterHistoryRequest.ICallback callback;
+class ServiceNewSuccessful implements ICallbackSucceed<ServicesViewModel> {
+    private final ServiceNewRequest.ICallback callback;
 
-    public MasterHistorySuccessful(GetMasterHistoryRequest.ICallback callback) {
+    public ServiceNewSuccessful(ServiceNewRequest.ICallback callback) {
         this.callback = callback;
     }
 
     @Override
-    public void executeCompleted(Response<MasterHistory> response) {
+    public void executeCompleted(Response<ServicesViewModel> response) {
         if (response.body() != null) {
             callback.succeed(response.body());
         }
@@ -61,37 +60,37 @@ class MasterHistorySuccessful implements ICallbackSucceed<MasterHistory> {
     }
 }
 
-class MasterHistoryIncomplete implements ICallbackIncomplete<MasterHistory> {
-    private final Context context;
-    private final GetMasterHistoryRequest.ICallback callback;
+class ServiceNewIncomplete implements ICallbackIncomplete<ServicesViewModel> {
 
-    public MasterHistoryIncomplete(Context context, GetMasterHistoryRequest.ICallback callback) {
+    private final Context context;
+    private final ServiceNewRequest.ICallback callback;
+
+    public ServiceNewIncomplete(Context context, ServiceNewRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
 
     @Override
-    public void executeDismissed(Response<MasterHistory> response) {
-        //TODO
+    public void executeDismissed(Response<ServicesViewModel> response) {
         callback.changeUI(false);
         warning(context, "dismissed").show();
     }
 }
 
-class MasterHistoryFailed implements ICallbackFailure {
+class ServiceNewFailed implements ICallbackFailure {
     private final Context context;
-    private final GetMasterHistoryRequest.ICallback callback;
+    private final ServiceNewRequest.ICallback callback;
 
-    public MasterHistoryFailed(Context context, GetMasterHistoryRequest.ICallback callback) {
+    public ServiceNewFailed(Context context, ServiceNewRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
 
     @Override
     public void executeFailed(Throwable t) {
+
         callback.changeUI(false);
         //TODO
         error(context, "failed").show();
-        Log.e("error", t.toString());
     }
 }

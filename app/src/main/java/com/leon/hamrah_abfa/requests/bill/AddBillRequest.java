@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.requests.bill;
 
+import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.toast.RTLToast.error;
@@ -35,7 +36,7 @@ public class AddBillRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<BillCardViewModel> call = iAbfaService.addBill(bill);
-        return HttpClientWrapper.callHttpAsync(context, call, new AddBillSuccessful(callback),
+        return callHttpAsync(context, call, new AddBillSuccessful(callback),
                 new AddBillIncomplete(context, callback), new AddBillFailed(context, callback));
     }
 
