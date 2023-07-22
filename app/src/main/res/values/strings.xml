@@ -262,5 +262,6 @@
     <string name="fill_in_first_name">نام را وارد کنید</string>
     <string name="fill_in_sure_name">نام خانوادگی را وارد کنید</string>
     <string name="neighbour_bill_id">شناسه قبض همسایه</string>
+    <string name="notification_won_t_send">اعلان ارسال نخواهد شد</string>
 
 </resources>

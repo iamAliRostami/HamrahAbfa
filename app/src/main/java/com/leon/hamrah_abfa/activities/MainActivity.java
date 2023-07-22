@@ -11,11 +11,14 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -25,6 +28,7 @@ import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -44,6 +48,7 @@ import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
+import com.leon.hamrah_abfa.utils.Scheduler;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
@@ -58,6 +63,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
+        startService();
         initializeSplash();
         // TODO
         initializeBottomSheet();
@@ -67,6 +73,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         final ImageView imageViewNotification = findViewById(R.id.image_view_notification);
         imageViewNotification.setOnClickListener(this);
     }
+
 
     private void initializeBottomSheet() {
         final AppBarConfiguration appBar = new AppBarConfiguration.Builder(R.id.navigation_home,
@@ -163,30 +170,55 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
         }
     };
-    final ActivityResultLauncher<Intent> submitMobileActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    requestBills();
+
+    private void startService() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                Scheduler.scheduleNotification(this, 0, 0);
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        } else {
+            Scheduler.scheduleNotification(this, 13, 28);
+        }
+    }
+
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    startService();
+                } else {
+                    warning(this, R.string.notification_won_t_send).show();
                 }
             });
-    final ActivityResultLauncher<Intent> welcomeActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
-                    if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                        Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
-                        submitMobileActivityResultLauncher.launch(intent);
-                    }
-                }
-            });
-    final ActivityResultLauncher<Intent> settingActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    final Intent intent = getIntent();
-                    finish();
-                    startActivity(intent);
-                }
-            });
+    private final ActivityResultLauncher<Intent> submitMobileActivityResultLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            requestBills();
+                        }
+                    });
+    private final ActivityResultLauncher<Intent> welcomeActivityResultLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
+                            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
+                                submitMobileActivityResultLauncher.launch(intent);
+                            }
+                        }
+                    });
+    private final ActivityResultLauncher<Intent> settingActivityResultLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            final Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
 
     @Override
     protected String getExitMessage() {
