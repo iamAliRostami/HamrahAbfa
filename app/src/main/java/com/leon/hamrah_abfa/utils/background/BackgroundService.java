@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.helpers;
+package com.leon.hamrah_abfa.utils.background;
 
 import android.Manifest;
 import android.app.NotificationChannel;
@@ -30,7 +30,7 @@ public class BackgroundService extends Service {
         // ...
 
         // Create and show the notification with the result
-        String channelId = getString(R.string.app_name); // Replace with your channel ID
+        String channelId = getString(R.string.app_name).concat(" new"); // Replace with your channel ID
         String title = "Your Title"; // Replace with the notification title
         String message = "Your message goes here"; // Replace with the notification message
 
@@ -80,8 +80,6 @@ public class BackgroundService extends Service {
             return;
         }
         notificationManager.notify(1001, builder.build());
-
-
     }
 
     @Nullable
