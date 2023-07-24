@@ -1,8 +1,7 @@
 package com.leon.hamrah_abfa.fragments.services.buy;
 
-import static com.leon.hamrah_abfa.enums.FragmentTags.SERVICE_LOCATION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
-import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_FORM_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SERVICE_LOCATION_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.app.Activity;
@@ -20,7 +19,6 @@ import com.google.android.material.chip.Chip;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentServiceSubmitBuyInfoBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
-import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.requests.services.ServiceNewRequest;
 
@@ -69,12 +67,8 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
         final int id = v.getId();
         if (id == R.id.button_confirm) {
             requestNewService();
-//            callback.submitInformation("12345");
         } else if (id == R.id.button_previous) {
-            callback.displayView(SERVICE_FORM_FRAGMENT);
-        } else if (id == R.id.image_view_location) {
-            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
-                    ServicesMapFragment.newInstance(callback.getServicesViewModel().getPoint()));
+            callback.displayView(SERVICE_LOCATION_FRAGMENT);
         }
     }
 
