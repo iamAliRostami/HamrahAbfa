@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.fragments.dialog;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.MESSAGE;
 import static com.leon.hamrah_abfa.enums.BundleEnum.TEXT_BUTTON;
-import static com.leon.hamrah_abfa.enums.BundleEnum.TRACK_NUMBER;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,7 +19,7 @@ import com.leon.hamrah_abfa.databinding.FragmentMessageDoneRequestBinding;
 
 public class MessageDoneRequestFragment extends DialogFragment implements View.OnClickListener {
     private FragmentMessageDoneRequestBinding binding;
-    private String trackNumber;
+    private String message;
     private String textButton;
     private IClickListener listener;
 
@@ -33,7 +33,7 @@ public class MessageDoneRequestFragment extends DialogFragment implements View.O
     public static MessageDoneRequestFragment newInstance(String trackNumber, String textButton,
                                                          IClickListener listener) {
         Bundle args = new Bundle();
-        args.putString(TRACK_NUMBER.getValue(), trackNumber);
+        args.putString(MESSAGE.getValue(), trackNumber);
         args.putString(TEXT_BUTTON.getValue(), textButton);
         MessageDoneRequestFragment fragment = new MessageDoneRequestFragment(listener);
         fragment.setArguments(args);
@@ -45,7 +45,7 @@ public class MessageDoneRequestFragment extends DialogFragment implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            trackNumber = getArguments().getString(TRACK_NUMBER.getValue());
+            message = getArguments().getString(MESSAGE.getValue());
             textButton = getArguments().getString(TEXT_BUTTON.getValue());
             getArguments().clear();
         }
@@ -60,7 +60,7 @@ public class MessageDoneRequestFragment extends DialogFragment implements View.O
     }
 
     private void initialize() {
-        binding.textViewTin.setText(trackNumber);
+        binding.textViewTin.setText(message);
         binding.buttonReturn.setText(textButton);
         binding.buttonReturn.setOnClickListener(this);
     }

@@ -23,6 +23,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ServicesIntroductionBaseAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
+import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
 import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
@@ -123,10 +124,10 @@ public class ServiceBuyActivity extends BaseActivity implements ServiceIntroduct
     }
 
     @Override
-    public void submitInformation(String trackNumber) {
+    public void submitInformation(String message) {
         showFragmentDialogOnce(this, REQUEST_DONE.getValue(),
-                TrackDoneRequestFragment.newInstance(trackNumber, getString(R.string.main_page),
-                        new TrackDoneRequestFragment.IClickListener() {
+                MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page),
+                        new MessageDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
                                 finish();

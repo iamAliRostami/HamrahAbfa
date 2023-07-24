@@ -16,6 +16,7 @@ public enum BundleEnum {
     MOBILE("mobile"),
     SHOW_PRE_FRAGMENT("show pre fragment"),
     TRACK_NUMBER("track number"),
+    MESSAGE("message"),
     FINISHED("finished"),
     TEXT_BUTTON("text button"),
     POSITION("position"),
