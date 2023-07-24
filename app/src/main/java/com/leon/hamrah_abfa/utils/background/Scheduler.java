@@ -1,36 +1,34 @@
 package com.leon.hamrah_abfa.utils.background;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+
+import static com.leon.hamrah_abfa.helpers.Constants.CHECK_INTERVAL;
+import static com.leon.hamrah_abfa.helpers.Constants.HOUR_OF_DAY;
+import static com.leon.hamrah_abfa.helpers.Constants.MINUTE;
+
 import android.content.Context;
-import android.content.Intent;
+
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 public class Scheduler {
 
-    public static void scheduleNotification(Context context, int hourOfDay, int minute) {
+    public static void scheduleBackgroundTask(Context context) {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        calendar.set(Calendar.MINUTE, minute);
-
-        Intent intent = new Intent(context, BackgroundService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        calendar.set(Calendar.HOUR_OF_DAY, HOUR_OF_DAY);
+        calendar.set(Calendar.MINUTE, MINUTE);
+        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
         }
+        long delayInMillis = calendar.getTimeInMillis() - System.currentTimeMillis();
+        PeriodicWorkRequest periodicWorkRequest =
+//                new PeriodicWorkRequest.Builder(NotificationWorker.class, CHECK_INTERVAL, TimeUnit.HOURS)
+                new PeriodicWorkRequest.Builder(NotificationWorker.class, 1, TimeUnit.MINUTES)
+                        .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS)
+                        .build();
+        WorkManager.getInstance(context).enqueue(periodicWorkRequest);
     }
 
-
-    public static void scheduleAlarm(Context context, long triggerAtMillis) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
-            Intent intent = new Intent(context, AlarmReceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
-        }
-    }
 }

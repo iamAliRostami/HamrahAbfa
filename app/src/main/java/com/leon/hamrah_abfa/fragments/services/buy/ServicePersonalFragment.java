@@ -76,9 +76,9 @@ public class ServicePersonalFragment extends Fragment implements View.OnClickLis
             binding.editTextSureName.setError(getString(R.string.fill_in_sure_name));
             binding.editTextSureName.requestFocus();
         }
-        if (callback.getServicesViewModel().getNationId() == null ||
-                callback.getServicesViewModel().getNationId().isEmpty() ||
-                callback.getServicesViewModel().getNationId().length() < 10) {
+        if (callback.getServicesViewModel().getNationalId() == null ||
+                callback.getServicesViewModel().getNationalId().isEmpty() ||
+                callback.getServicesViewModel().getNationalId().length() < 10) {
             warning(requireContext(), R.string.incorrect_nation_code_format).show();
             binding.editTextNationCode.setError(getString(R.string.incorrect_nation_code_format));
             binding.editTextNationCode.requestFocus();

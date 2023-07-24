@@ -7,7 +7,11 @@ import java.util.regex.Pattern;
 public class Constants {
     public static final String DB_NAME = "Database_5";
     public static final String FONT_NAME = "fonts/iranian_sans_b.ttf";
-    public static final long DELAY = 1;
+
+    public static final int CHECK_INTERVAL = 24 * 60 * 60 * 1000;
+    public static final int DELAY = 10;
+    public static final int HOUR_OF_DAY = 13;
+    public static final int MINUTE = 57;
     public static final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;
     public static final long MIN_TIME_BW_UPDATES = 100;
     public static final int TOAST_TEXT_SIZE = 15;

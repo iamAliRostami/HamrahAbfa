@@ -24,7 +24,7 @@ public class ServicesViewModel extends BaseObservable {
     private String address;
     private String firstName;
     private String sureName;
-    private String nationId;
+    private String nationalId;
     private String billId;
     private String neighbourBillId;
     private String postalCode;
@@ -217,13 +217,13 @@ public class ServicesViewModel extends BaseObservable {
     }
 
     @Bindable
-    public String getNationId() {
-        return nationId;
+    public String getNationalId() {
+        return nationalId;
     }
 
-    public void setNationId(String nationId) {
-        this.nationId = nationId;
-        notifyPropertyChanged(BR.nationId);
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+        notifyPropertyChanged(BR.nationalId);
     }
 
     public String getX() {

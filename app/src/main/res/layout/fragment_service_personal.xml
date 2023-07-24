@@ -92,7 +92,7 @@
                             style="@style/TextInput"
                             android:inputType="number"
                             android:maxLength="10"
-                            android:text="@={viewModel.nationId}" />
+                            android:text="@={viewModel.nationalId}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout

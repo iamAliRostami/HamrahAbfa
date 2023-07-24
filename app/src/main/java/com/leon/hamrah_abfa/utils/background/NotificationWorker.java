@@ -46,7 +46,6 @@ public class NotificationWorker extends Worker {
             // TODO: Send the request to the server
             // You can use Retrofit, Volley, or any other library to send the request.
             Log.e("here", "success");
-//            success(getApplicationContext(), "jesus").show();
             showNotification("success");
             return Result.success();
         } else {
@@ -56,12 +55,8 @@ public class NotificationWorker extends Worker {
             int i = inputData.getInt(ATTEMPT_COUNT.getValue(), 0);
             if (!hasRetriedOnce) {
                 Log.e("here", "retry ".concat(String.valueOf(i)));
-//            warning(getApplicationContext(), "jesus").show();
-//                rescheduleWithBackoff();
-                // If internet is not available, reschedule the task after one hour
                 showNotification("retry ".concat(String.valueOf(i)));
                 rescheduleWithDelay(); // Set the flag to true for the retry
-
                 return Result.retry();
             } else {
                 Log.e("here", "failure ".concat(String.valueOf(i)));
@@ -91,38 +86,12 @@ public class NotificationWorker extends Worker {
         WorkManager.getInstance(getApplicationContext()).enqueue(retryWorkRequest);
     }
 
-    private void rescheduleWithBackoff() {
-        // Calculate the backoff duration for retrying the task (exponential backoff)
-        long backoffDelayMillis = (long) Math.pow(2, getRunAttemptCount()) * 1000;
-
-        // Create a new Data object to store the backoff delay and attempt count
-        Data retryData = new Data.Builder()
-                .putLong("backoff_delay", backoffDelayMillis)
-                .putInt("attempt_count", getRunAttemptCount() + 1)
-                .build();
-
-        // Create a OneTimeWorkRequest for the retry task with backoff delay
-        OneTimeWorkRequest retryWorkRequest =
-                new OneTimeWorkRequest.Builder(NotificationWorker.class)
-                        .setInputData(retryData)
-                        .setInitialDelay(backoffDelayMillis, TimeUnit.MILLISECONDS)
-                        .build();
-
-        // Enqueue the retry work request with WorkManager
-        WorkManager.getInstance(getApplicationContext()).enqueue(retryWorkRequest);
-    }
-
     private void showNotification(String message) {
 
         String channelId = getApplicationContext().getString(R.string.app_name); // Replace with your channel ID
         String title = "Your Title"; // Replace with the notification title
-//        String message = "Your message goes here"; // Replace with the notification message
-
-
         // Create a pending intent to open the app when the notification is clicked
-        Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class); // Replace YourActivity with the activity you want to open
-
-
+        Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getApplicationContext().getString(R.string.app_name);
             String description = getApplicationContext().getString(R.string.app_name);

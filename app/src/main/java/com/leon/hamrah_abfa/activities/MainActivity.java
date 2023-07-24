@@ -9,17 +9,13 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
-import static com.leon.hamrah_abfa.utils.background.Scheduler.scheduleAlarm;
-import static com.leon.hamrah_abfa.utils.background.Scheduler.scheduleNotification;
+import static com.leon.hamrah_abfa.utils.background.Scheduler.scheduleBackgroundTask;
 import static com.leon.toast.RTLToast.warning;
 
 import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -38,8 +34,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
 
 import com.google.android.material.shape.MaterialShapeDrawable;
 import com.google.android.material.shape.RelativeCornerSize;
@@ -55,12 +49,6 @@ import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
-import com.leon.hamrah_abfa.utils.background.MyForegroundService;
-import com.leon.hamrah_abfa.utils.background.NotificationWorker;
-import com.leon.hamrah_abfa.utils.background.Scheduler;
-
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
@@ -75,12 +63,8 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
-        scheduledAlarm();
+        startScheduledBackgroundTask();
 
-//        scheduleAlarmAndTriggerTask();
-//        startService();
-//        scheduleBackgroundTask();
-//        startScheduledBackgroundTask();
         initializeSplash();
         // TODO
         initializeBottomSheet();
@@ -91,6 +75,18 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         imageViewNotification.setOnClickListener(this);
     }
 
+    private void startScheduledBackgroundTask() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                scheduleBackgroundTask(this);
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        } else {
+            scheduleBackgroundTask(this);
+        }
+    }
 
     private void initializeBottomSheet() {
         final AppBarConfiguration appBar = new AppBarConfiguration.Builder(R.id.navigation_home,
@@ -187,108 +183,10 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
         }
     };
-    public void scheduledAlarm()
-    {
-
-//        startService(new Intent(this, MyForegroundService.class));
-
-
-        // Construct an intent that will execute the AlarmReceiver
-        Intent intent = new Intent(getApplicationContext(), MyForegroundService.class);
-        // Create a PendingIntent to be triggered when the alarm goes off
-        final PendingIntent pIntent = PendingIntent.getBroadcast(
-                this, 1212, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        // Setup periodic alarm every every half hour from this point onwards
-        long firstMillis = System.currentTimeMillis(); // alarm is set right away
-        AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
-        // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, (long) (1000 * 60), pIntent);
-
-
-
-    }
-
-    private void startScheduledBackgroundTask() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED) {
-//                Scheduler.scheduleNotification(this, 0, 0);
-                scheduleBackgroundTask();
-            } else {
-                requestPermissionLauncher1.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        } else {
-//            Scheduler.scheduleNotification(this, 13, 28);
-            scheduleBackgroundTask();
-        }
-    }
-    private void scheduleBackgroundTask() {
-        // Set the time for the task (in this example, it's set to 8:00 AM)
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 13);
-        calendar.set(Calendar.MINUTE, 4);
-
-        // Check if the time has already passed for today. If yes, schedule it for the next day.
-        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
-//            calendar.add(Calendar.DAY_OF_YEAR, 1);
-            calendar.add(Calendar.MINUTE, 1);
-        }
-
-        // Calculate the delay until the task should run
-        long delayInMillis = calendar.getTimeInMillis() - System.currentTimeMillis();
-
-        // Create a PeriodicWorkRequest to schedule the task periodically
-        PeriodicWorkRequest periodicWorkRequest =
-//                new PeriodicWorkRequest.Builder(NotificationWorker.class, 24, TimeUnit.HOURS)
-        new PeriodicWorkRequest.Builder(NotificationWorker.class, 1, TimeUnit.MINUTES)
-                        .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS)
-                        .build();
-
-        // Enqueue the work request with WorkManager
-        WorkManager.getInstance(this).enqueue(periodicWorkRequest);
-    }
-
-    private void scheduleAlarmAndTriggerTask() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        // Set the time for the alarm (in this example, it's set to 8:00 AM)
-        calendar.set(Calendar.HOUR_OF_DAY, 14);
-        calendar.set(Calendar.MINUTE, 10);
-        calendar.set(Calendar.SECOND, 0);
-        // Check if the time has already passed for today. If yes, schedule it for the next day.
-        if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
-//            calendar.add(Calendar.DAY_OF_YEAR, 1);
-            calendar.add(Calendar.MINUTE, 1);
-        }
-        // Schedule the alarm
-        scheduleAlarm(this, calendar.getTimeInMillis());
-    }
-
-    private void startService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                scheduleNotification(this, 14, 4);
-            } else {
-                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
-            }
-        } else {
-            scheduleNotification(this, 14, 4);
-        }
-    }
-    private final ActivityResultLauncher<String> requestPermissionLauncher1 =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    scheduleBackgroundTask();
-                } else {
-                    warning(this, R.string.notification_won_t_send).show();
-                }
-            });
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    startService();
+                    scheduleBackgroundTask(this);
                 } else {
                     warning(this, R.string.notification_won_t_send).show();
                 }

@@ -148,8 +148,5 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <service android:name=".utils.background.BackgroundService" />
-        <service android:name=".utils.background.MyForegroundService" />
-
     </application>
 </manifest>

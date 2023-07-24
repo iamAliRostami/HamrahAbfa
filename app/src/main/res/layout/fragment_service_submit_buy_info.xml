@@ -130,7 +130,7 @@
                             <com.google.android.material.textview.MaterialTextView
                                 style="@style/TextSubmitInfo"
                                 android:gravity="end"
-                                android:text="@{viewModel.nationId}" />
+                                android:text="@{viewModel.nationalId}" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <androidx.appcompat.widget.LinearLayoutCompat
