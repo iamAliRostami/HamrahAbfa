@@ -49,12 +49,12 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
         binding.imageViewLocation.setImageBitmap(callback.getServicesViewModel().getBitmapLocation());
         binding.buttonConfirm.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
-        for (int i = 0; i < callback.getServicesViewModel().getSelectedServices().size(); i++) {
+        for (int i = 0; i < callback.getServicesViewModel().getSelectedServicesString().size(); i++) {
             final Chip chip = new Chip(requireContext());
             chip.setCloseIconVisible(false);
             chip.setTextAppearance(R.style.ChipTextAppearance);
             chip.setChipBackgroundColorResource(R.color.light);
-            chip.setText(callback.getServicesViewModel().getSelectedServices().get(i));
+            chip.setText(callback.getServicesViewModel().getSelectedServicesString().get(i));
             binding.chipGroupServices.addView(chip);
         }
     }

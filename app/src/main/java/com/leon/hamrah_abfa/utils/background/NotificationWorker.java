@@ -29,6 +29,7 @@ import androidx.work.WorkerParameters;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.MainActivity;
 
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 public class NotificationWorker extends Worker {
@@ -87,8 +88,9 @@ public class NotificationWorker extends Worker {
     }
 
     private void showNotification(String message) {
-
-        String channelId = getApplicationContext().getString(R.string.app_name); // Replace with your channel ID
+        Calendar calendar = Calendar.getInstance();
+        //TODO
+        String channelId = getApplicationContext().getString(R.string.app_name).concat(String.valueOf(calendar.getTimeInMillis())); // Replace with your channel ID
         String title = "Your Title"; // Replace with the notification title
         // Create a pending intent to open the app when the notification is clicked
         Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);

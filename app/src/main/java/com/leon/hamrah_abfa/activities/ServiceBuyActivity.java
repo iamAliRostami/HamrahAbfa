@@ -25,7 +25,6 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityServiceBinding;
 import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.dialog.ServicesLocationDialogFragment;
-import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.services.buy.ServiceIntroductionFragment;
@@ -141,7 +140,7 @@ public class ServiceBuyActivity extends BaseActivity implements ServiceIntroduct
 
     @Override
     public void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
-        viewModel.setSelectedServices(selectedServicesTitle);
-        viewModel.setSelectedServicesId(selectedServicesId);
+        viewModel.setSelectedServicesString(selectedServicesTitle);
+        viewModel.setSelectedServices(selectedServicesId);
     }
 }

@@ -102,8 +102,8 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
 
     @Override
     public void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle) {
-        viewModel.setSelectedServices(selectedServicesTitle);
-        viewModel.setSelectedServicesId(selectedServicesId);
+        viewModel.setSelectedServicesString(selectedServicesTitle);
+        viewModel.setSelectedServices(selectedServicesId);
     }
 
     @Override

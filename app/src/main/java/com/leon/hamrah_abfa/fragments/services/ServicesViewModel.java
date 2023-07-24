@@ -28,8 +28,8 @@ public class ServicesViewModel extends BaseObservable {
     private String billId;
     private String neighbourBillId;
     private String postalCode;
-    private transient ArrayList<String> selectedServices;
-    private transient ArrayList<Integer> selectedServicesId;
+    private transient ArrayList<String> selectedServicesString;
+    private transient ArrayList<Integer> selectedServices;
     private String mobile;
     private transient String title;
     private transient int serviceType;
@@ -78,23 +78,23 @@ public class ServicesViewModel extends BaseObservable {
     }
 
     @Bindable
-    public ArrayList<String> getSelectedServices() {
-        return selectedServices;
+    public ArrayList<String> getSelectedServicesString() {
+        return selectedServicesString;
     }
 
-    public void setSelectedServices(ArrayList<String> selectedServices) {
-        this.selectedServices = selectedServices;
+    public void setSelectedServicesString(ArrayList<String> selectedServicesString) {
+        this.selectedServicesString = selectedServicesString;
         notifyPropertyChanged(BR.selectedServices);
     }
 
     @Bindable
-    public ArrayList<Integer> getSelectedServicesId() {
-        return selectedServicesId;
+    public ArrayList<Integer> getSelectedServices() {
+        return selectedServices;
     }
 
-    public void setSelectedServicesId(ArrayList<Integer> selectedServicesId) {
-        this.selectedServicesId = selectedServicesId;
-        notifyPropertyChanged(BR.selectedServicesId);
+    public void setSelectedServices(ArrayList<Integer> selectedServices) {
+        this.selectedServices = selectedServices;
+        notifyPropertyChanged(BR.selectedServices);
     }
 
     @Bindable
