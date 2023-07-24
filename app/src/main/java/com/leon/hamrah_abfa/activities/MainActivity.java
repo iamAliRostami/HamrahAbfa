@@ -64,7 +64,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         setContentView(binding.getRoot());
         //TODO
         startScheduledBackgroundTask();
-
         initializeSplash();
         // TODO
         initializeBottomSheet();
