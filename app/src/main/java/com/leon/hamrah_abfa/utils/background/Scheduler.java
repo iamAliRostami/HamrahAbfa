@@ -23,11 +23,9 @@ public class Scheduler {
             calendar.add(Calendar.DAY_OF_YEAR, 1);
         }
         long delayInMillis = calendar.getTimeInMillis() - System.currentTimeMillis();
-        PeriodicWorkRequest periodicWorkRequest =
-//                new PeriodicWorkRequest.Builder(NotificationWorker.class, CHECK_INTERVAL, TimeUnit.HOURS)
-                new PeriodicWorkRequest.Builder(NotificationWorker.class, 1, TimeUnit.MINUTES)
-                        .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS)
-                        .build();
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest
+                .Builder(NotificationWorker.class, CHECK_INTERVAL, TimeUnit.MILLISECONDS)
+                .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS).build();
         WorkManager.getInstance(context).enqueue(periodicWorkRequest);
     }
 

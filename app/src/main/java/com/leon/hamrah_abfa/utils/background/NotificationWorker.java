@@ -70,7 +70,7 @@ public class NotificationWorker extends Worker {
 
     private void rescheduleWithDelay() {
         // Calculate the delay in milliseconds
-        long delayMillis = TimeUnit.SECONDS.toMillis(DELAY);
+//        long delayMillis = TimeUnit.HOURS.toMillis(DELAY);
         // Create a new Data object with the retry flag
         Data retryData = new Data.Builder()
                 .putBoolean(HAS_RETRY_ONCE.getValue(), true)
@@ -81,7 +81,7 @@ public class NotificationWorker extends Worker {
         OneTimeWorkRequest retryWorkRequest =
                 new OneTimeWorkRequest.Builder(NotificationWorker.class)
                         .setInputData(retryData)
-                        .setInitialDelay(delayMillis, TimeUnit.MILLISECONDS)
+                        .setInitialDelay(DELAY, TimeUnit.MILLISECONDS)
                         .build();
         // Enqueue the retry work request with WorkManager
         WorkManager.getInstance(getApplicationContext()).enqueue(retryWorkRequest);
