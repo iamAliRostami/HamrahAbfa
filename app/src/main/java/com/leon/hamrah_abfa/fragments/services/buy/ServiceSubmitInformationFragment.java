@@ -77,8 +77,7 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
         boolean isOnline = new ServiceNewRequest(requireContext(), new ServiceNewRequest.ICallback() {
             @Override
             public void succeed(ServicesViewModel service) {
-//TODO
-                callback.submitInformation("message");
+                callback.submitInformation(service.getTrackNumber());
             }
 
             @Override
@@ -112,7 +111,7 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     public interface ICallback {
         ServicesViewModel getServicesViewModel();//
 
-        void submitInformation(String message);
+        void submitInformation(String trackNumber);
 
         void displayView(int position);
     }

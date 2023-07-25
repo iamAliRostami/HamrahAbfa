@@ -34,7 +34,7 @@ import org.osmdroid.util.GeoPoint;
 
 import java.util.ArrayList;
 
-public class ServiceActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
+public class ServiceAfterActivity extends BaseActivity implements ServiceIntroductionFragment.ICallback,
         ServiceSubmitInformationFragment.ICallback, ServicesLocationDialogFragment.ICallback,
         ServiceFormFragment.ICallback, ServicesMapFragment.ICallback {
     private ServicesViewModel viewModel;
@@ -113,6 +113,7 @@ public class ServiceActivity extends BaseActivity implements ServiceIntroduction
                         new TrackDoneRequestFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
+                                dialogFragment.dismiss();
                                 finish();
                             }
 

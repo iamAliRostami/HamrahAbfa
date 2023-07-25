@@ -67,9 +67,11 @@ public interface IAbfaService {
     @POST("KontoriNew/V1/MobileRequest/ChangeMobile")
     Call<ChangeMobileViewModel> changeMobile(@Body ChangeMobileViewModel changeMobile);
 
-
     @POST("KontoriNew/V1/MobileRequest/New")
     Call<ServicesViewModel> requestNew(@Body ServicesViewModel service);
+
+    @POST("KontoriNew/V1/MobileRequest/AS")
+    Call<ServicesViewModel> requestAfter(@Body ServicesViewModel service);
 
 }
 

@@ -20,7 +20,8 @@ import org.osmdroid.util.GeoPoint;
 import java.util.ArrayList;
 
 public class ServicesViewModel extends BaseObservable {
-    private transient String id;
+    private String billAccountId;
+    private String trackNumber;
     private String address;
     private String firstName;
     private String sureName;
@@ -43,10 +44,16 @@ public class ServicesViewModel extends BaseObservable {
     private String message;
     private String generationDateTime;
     private String verificationCode;
+    private int status;
     private boolean isValid;
 
-    public ServicesViewModel(Context context, int serviceType, String billId, String id) {
-        setId(id);
+    public ServicesViewModel(Context context, int serviceType, String billId, String billAccountId) {
+        setFirstName("تست");
+        setSureName("تست");
+        setNationalId("1111111111");
+        setPostalCode("0000000000");
+        setAddress("تست");
+        setBillAccountId(billAccountId);
         setBillId(billId);
         setNeighbourBillId(billId);
         setServiceType(serviceType);
@@ -182,8 +189,8 @@ public class ServicesViewModel extends BaseObservable {
         notifyPropertyChanged(BR.bitmapLocation);
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setBillAccountId(String billAccountId) {
+        this.billAccountId = billAccountId;
     }
 
     @Bindable
@@ -240,5 +247,17 @@ public class ServicesViewModel extends BaseObservable {
 
     public void setY(String y) {
         this.y = y;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public String getTrackNumber() {
+        return trackNumber;
     }
 }
