@@ -30,7 +30,7 @@ public class ServicesViewModel extends BaseObservable {
     private String neighbourBillId;
     private String postalCode;
     private transient ArrayList<String> selectedServicesString;
-    private transient ArrayList<Integer> selectedServices;
+    private ArrayList<Integer> selectedServices;
     private String mobile;
     private transient String title;
     private transient int serviceType;
@@ -40,6 +40,8 @@ public class ServicesViewModel extends BaseObservable {
     private transient Bitmap bitmapLocation;
     private String x;
     private String y;
+    private String empty;
+    private String counterNumber;
 
     private String message;
     private String generationDateTime;
@@ -259,5 +261,25 @@ public class ServicesViewModel extends BaseObservable {
 
     public String getTrackNumber() {
         return trackNumber;
+    }
+
+    @Bindable
+    public String getEmpty() {
+        return empty;
+    }
+
+    public void setEmpty(String empty) {
+        this.empty = empty;
+        notifyPropertyChanged(BR.empty);
+    }
+
+    @Bindable
+    public String getCounterNumber() {
+        return counterNumber;
+    }
+
+    public void setCounterNumber(String counterNumber) {
+        this.counterNumber = counterNumber;
+        notifyPropertyChanged(BR.counterNumber);
     }
 }

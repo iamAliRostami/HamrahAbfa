@@ -76,21 +76,64 @@
                                 android:text="@={viewModel.mobile}" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/text_layout_bill_id"
-                            style="@style/TextInputLayout"
-                            android:layout_marginTop="@dimen/small_dp"
-                            android:hint="@string/bill_id"
-                            app:counterMaxLength="13">
-                            <!--                        android:text="@={viewModel.billId}"-->
-                            <!--min 5-->
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/edit_text_bill_id"
-                                style="@style/TextInput"
-                                android:inputType="number"
-                                android:maxLength="13"
-                                android:text="@={viewModel.billId}" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_layout_bill_id"
+                                style="@style/TextInputLayout"
+                                android:layout_width="0dp"
+                                android:layout_marginTop="@dimen/small_dp"
+                                android:layout_weight="2"
+                                android:hint="@string/bill_id"
+                                app:counterMaxLength="13">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_text_bill_id"
+                                    style="@style/TextInput"
+                                    android:inputType="number"
+                                    android:maxLength="13"
+                                    android:text="@={viewModel.billId}" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_layout_counter_number"
+                                style="@style/TextInputLayout"
+                                android:layout_width="0dp"
+                                android:layout_marginStart="@dimen/medium_dp"
+                                android:layout_marginTop="@dimen/small_dp"
+                                android:layout_weight="1"
+                                android:hint="@string/counter_number"
+                                android:visibility="gone">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_text_counter_number"
+                                    style="@style/TextInput"
+                                    android:inputType="number"
+                                    android:maxLength="5"
+                                    android:text="@={viewModel.counterNumber}" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/text_layout_empty"
+                                style="@style/TextInputLayout"
+                                android:layout_width="0dp"
+                                android:layout_marginStart="@dimen/medium_dp"
+                                android:layout_marginTop="@dimen/small_dp"
+                                android:layout_weight="1"
+                                android:hint="@string/empty"
+                                android:visibility="gone">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_text_empty"
+                                    style="@style/TextInput"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:text="@={viewModel.empty}" />
+                            </com.google.android.material.textfield.TextInputLayout>
+                        </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/text_layout_address"

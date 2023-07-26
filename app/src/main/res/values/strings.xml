@@ -263,5 +263,7 @@
     <string name="fill_in_sure_name">نام خانوادگی را وارد کنید</string>
     <string name="neighbour_bill_id">شناسه قبض همسایه</string>
     <string name="notification_won_t_send">اعلان ارسال نخواهد شد</string>
+    <string name="empty">واحد خالی</string>
+    <string name="fill_in_empty">تعداد واحد خالی را وارد کنید</string>
 
 </resources>

@@ -50,6 +50,16 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
+
+        if (callback.getServicesViewModel().getSelectedServices().get(0) ==
+                getResources().getIntArray(R.array.services_ab_baha_id)[4]) {
+            binding.textLayoutEmpty.setVisibility(View.VISIBLE);
+        }
+        if (callback.getServicesViewModel().getSelectedServices().get(0) ==
+                getResources().getIntArray(R.array.services_ab_baha_id)[5]) {
+            binding.textLayoutCounterNumber.setVisibility(View.VISIBLE);
+        }
+
         if (callback.getServicesViewModel().getBitmapLocation() != null)
             binding.imageViewLocation.setImageBitmap(callback.getServicesViewModel().getBitmapLocation());
         binding.buttonNext.setOnClickListener(this);
@@ -103,6 +113,31 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         if (callback.getServicesViewModel().getBitmapLocation() == null) {
             warning(requireContext(), R.string.locate_address).show();
             return false;
+        }
+        return checkExceptions();
+    }
+
+    private boolean checkExceptions() {
+        if (callback.getServicesViewModel().getSelectedServices().get(0) ==
+                getResources().getIntArray(R.array.services_ab_baha_id)[4]) {
+            if (callback.getServicesViewModel().getEmpty() == null ||
+                    callback.getServicesViewModel().getEmpty().isEmpty()) {
+                warning(requireContext(), R.string.fill_in_empty).show();
+                binding.editTextEmpty.setError(getString(R.string.fill_in_empty));
+                binding.editTextEmpty.requestFocus();
+                return false;
+            }
+        }
+
+        if (callback.getServicesViewModel().getSelectedServices().get(0) ==
+                getResources().getIntArray(R.array.services_ab_baha_id)[5]) {
+            if (callback.getServicesViewModel().getCounterNumber() == null ||
+                    callback.getServicesViewModel().getCounterNumber().isEmpty()) {
+                warning(requireContext(), R.string.enter_counter_number).show();
+                binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
+                binding.editTextCounterNumber.requestFocus();
+                return false;
+            }
         }
         return true;
     }

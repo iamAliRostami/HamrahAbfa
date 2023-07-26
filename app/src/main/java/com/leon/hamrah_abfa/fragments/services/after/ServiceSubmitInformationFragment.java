@@ -22,7 +22,8 @@ import com.leon.hamrah_abfa.databinding.FragmentServiceSubmitInfoBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.requests.ServiceASRequest;
+import com.leon.hamrah_abfa.requests.services.ServiceAbRequest;
+import com.leon.hamrah_abfa.requests.services.ServiceASRequest;
 
 public class ServiceSubmitInformationFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceSubmitInfoBinding binding;
@@ -68,8 +69,10 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-//            callback.submitInformation("12345");
-            requestAService();
+            if (callback.getServicesViewModel().getServiceType() == 1)
+                requestASService();
+            else if (callback.getServicesViewModel().getServiceType() == 2)
+                requestAbService();
         } else if (id == R.id.button_previous) {
             callback.displayView(SERVICE_FORM_FRAGMENT, false);
         } else if (id == R.id.image_view_location) {
@@ -78,9 +81,26 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
         }
     }
 
-    private void requestAService() {
+    private void requestASService() {
 
         boolean isOnline = new ServiceASRequest(requireContext(), new ServiceASRequest.ICallback() {
+            @Override
+            public void succeed(ServicesViewModel service) {
+//TODO
+                callback.submitInformation(service.getTrackNumber());
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, callback.getServicesViewModel()).request();
+        progressStatus(isOnline);
+    }
+
+    private void requestAbService() {
+
+        boolean isOnline = new ServiceAbRequest(requireContext(), new ServiceAbRequest.ICallback() {
             @Override
             public void succeed(ServicesViewModel service) {
 //TODO
