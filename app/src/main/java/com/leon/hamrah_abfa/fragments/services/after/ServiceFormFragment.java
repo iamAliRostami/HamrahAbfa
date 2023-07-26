@@ -65,11 +65,6 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
         binding.buttonNext.setOnClickListener(this);
         binding.buttonPrevious.setOnClickListener(this);
         binding.imageViewLocation.setOnClickListener(this);
-//        binding.imageViewLocation.setOnLongClickListener(v -> {
-//            showFragmentDialogOnce(requireContext(), SERVICE_LOCATION.getValue(),
-//                    ServicesLocationDialogFragment.newInstance(callback.getServicesViewModel().getPoint()));
-//            return false;
-//        });
     }
 
     @Override
