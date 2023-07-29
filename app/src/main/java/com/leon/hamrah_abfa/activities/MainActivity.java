@@ -16,6 +16,10 @@ import android.Manifest;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -63,6 +67,13 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
+
+
+
+
+
+
+
         startScheduledBackgroundTask();
         initializeSplash();
         // TODO

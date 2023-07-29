@@ -2,13 +2,13 @@ package com.leon.hamrah_abfa.requests.bill;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -80,10 +80,12 @@ class AddBillIncomplete implements ICallbackIncomplete<BillCardViewModel> {
         APIError error = parseError(response);
         if (error.status() == 400) {
             warning(context, error.message()).show();
-            return;
+        } else if (error.status() == 401) {
+            expiredToken(context);
+        } else {
+            //TODO
+            warning(context, "dismissed").show();
         }
-        //TODO
-        warning(context, "dismissed").show();
     }
 }
 

@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.requests.services;
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.error;
@@ -13,7 +14,6 @@ import android.content.Context;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.dialog.MessageErrorRequestFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
@@ -87,7 +87,9 @@ class ServiceAbIncomplete implements ICallbackIncomplete<ServicesViewModel> {
             showFragmentDialogOnce(context, REQUEST_DONE.getValue(),
                     MessageErrorRequestFragment.newInstance(error.message(), context.getString(R.string.close),
                             DialogFragment::dismiss));
-//            warning(context, error.message()).show();
+            return;
+        } else if (error.status() == 401) {
+            expiredToken(context);
             return;
         }
         warning(context, "dismissed").show();

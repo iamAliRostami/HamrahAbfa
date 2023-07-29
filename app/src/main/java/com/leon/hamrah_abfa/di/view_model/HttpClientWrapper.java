@@ -1,7 +1,11 @@
 package com.leon.hamrah_abfa.di.view_model;
 
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
+import static com.leon.hamrah_abfa.utils.ShowFragment.dismissDialog;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -14,6 +18,7 @@ import com.leon.hamrah_abfa.infrastructure.ICallback;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
+import com.leon.hamrah_abfa.utils.APIError;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +36,7 @@ public class HttpClientWrapper {
                     if (response.isSuccessful()) {
                         ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
                     } else {
-                        ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
+                            ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
                     }
                 }
 
@@ -45,6 +50,20 @@ public class HttpClientWrapper {
             warning(context, R.string.turn_internet_on).show();
         }
         return isOnline;
+    }
+
+    private static <T> boolean failedExecution(Context context, Response<T> response) {
+        try {
+            APIError error = parseError(response);
+            if (error.status() == 401) {
+                dismissDialog(context, WAITING.getValue());
+                expiredToken(context);
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,

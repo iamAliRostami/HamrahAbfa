@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.dialog.YesNoViewModel" />
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/card_view_content"
+        style="@style/CardStyle"
+        android:layout_margin="@dimen/large_dp"
+        android:background="@drawable/background_dialog"
+        tools:context=".fragments.dialog.YesNoFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/image_view_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/medium_dp"
+                    app:imageResource="@{viewModel.drawable}" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Title"
+                    android:layout_gravity="center"
+                    android:text="@{viewModel.title}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tiny_dp"
+                android:layout_below="@id/image_view_icon"
+                android:background="@color/light_gray" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextItem"
+                android:layout_gravity="center"
+                android:text="@{viewModel.question}" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_yes"
+                style="@style/ButtonSubmit"
+                android:layout_margin="@dimen/medium_dp"
+                android:text="@{viewModel.yes}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

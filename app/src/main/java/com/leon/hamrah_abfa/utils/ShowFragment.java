@@ -33,4 +33,12 @@ public class ShowFragment {
         final FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(id, fragment).addToBackStack(null).commit();
     }
+
+    public static void dismissDialog(Context context, String tag) {
+        Fragment prev = ((AppCompatActivity) context).getSupportFragmentManager().findFragmentByTag(tag);
+        if (prev != null) {
+            DialogFragment df = (DialogFragment) prev;
+            df.dismiss();
+        }
+    }
 }

@@ -2,6 +2,8 @@ package com.leon.hamrah_abfa.requests;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsyncCached;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
@@ -13,6 +15,7 @@ import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
+import com.leon.hamrah_abfa.utils.APIError;
 
 import java.util.ArrayList;
 
@@ -75,7 +78,12 @@ class FAQIncomplete implements ICallbackIncomplete<ContactFAQ> {
     @Override
     public void executeDismissed(Response<ContactFAQ> response) {
         callback.changeUI(false);
-        warning(context, "dismissed").show();
+        APIError error = parseError(response);
+        if (error.status() == 401) {
+            expiredToken(context);
+        } else {
+            warning(context, "dismissed").show();
+        }
     }
 }
 
