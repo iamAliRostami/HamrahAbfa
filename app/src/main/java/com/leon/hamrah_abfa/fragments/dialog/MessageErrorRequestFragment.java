@@ -16,26 +16,27 @@ import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentMessageDoneRequestBinding;
+import com.leon.hamrah_abfa.databinding.FragmentMessageErrorRequestBinding;
 
-public class MessageDoneRequestFragment extends DialogFragment implements View.OnClickListener {
-    private FragmentMessageDoneRequestBinding binding;
+public class MessageErrorRequestFragment extends DialogFragment implements View.OnClickListener {
+    private FragmentMessageErrorRequestBinding binding;
     private String message;
     private String textButton;
     private IClickListener listener;
 
-    public MessageDoneRequestFragment() {
+    public MessageErrorRequestFragment() {
     }
 
-    public MessageDoneRequestFragment(IClickListener listener) {
+    public MessageErrorRequestFragment(IClickListener listener) {
         this.listener = listener;
     }
 
-    public static MessageDoneRequestFragment newInstance(String trackNumber, String textButton,
-                                                         IClickListener listener) {
+    public static MessageErrorRequestFragment newInstance(String trackNumber, String textButton,
+                                                          IClickListener listener) {
         Bundle args = new Bundle();
         args.putString(MESSAGE.getValue(), trackNumber);
         args.putString(TEXT_BUTTON.getValue(), textButton);
-        MessageDoneRequestFragment fragment = new MessageDoneRequestFragment(listener);
+        MessageErrorRequestFragment fragment = new MessageErrorRequestFragment(listener);
         fragment.setArguments(args);
         fragment.setCancelable(false);
         return fragment;
@@ -54,7 +55,7 @@ public class MessageDoneRequestFragment extends DialogFragment implements View.O
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentMessageDoneRequestBinding.inflate(inflater, container, false);
+        binding = FragmentMessageErrorRequestBinding.inflate(inflater, container, false);
         initialize();
         return binding.getRoot();
     }

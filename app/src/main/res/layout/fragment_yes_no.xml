@@ -14,8 +14,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card_view_content"
         style="@style/CardStyle"
-        android:background="@drawable/background_dialog"
         android:layout_margin="@dimen/large_dp"
+        android:background="@drawable/background_dialog"
         tools:context=".fragments.dialog.YesNoFragment">
 
         <androidx.appcompat.widget.LinearLayoutCompat

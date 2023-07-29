@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialog"
-    tools:context=".fragments.dialog.MessageDoneRequestFragment">
+    tools:context=".fragments.dialog.MessageErrorRequestFragment">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/CardStyle"
@@ -22,18 +22,13 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottie_animation"
                 style="@style/AnimationDialog"
-                app:lottie_rawRes="@raw/successfully_done_1" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/text_view_title"
-                style="@style/Title"
-                android:layout_gravity="center"
-                android:text="@string/request_submitted" />
-
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/info" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_tin"
-                style="@style/TitleSubmitInfo" />
+                style="@style/Title"
+                android:layout_width="match_parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_return"

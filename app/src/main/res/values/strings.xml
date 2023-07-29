@@ -265,5 +265,6 @@
     <string name="notification_won_t_send">اعلان ارسال نخواهد شد</string>
     <string name="empty">واحد خالی</string>
     <string name="fill_in_empty">تعداد واحد خالی را وارد کنید</string>
+    <string name="close">بستن</string>
 
 </resources>

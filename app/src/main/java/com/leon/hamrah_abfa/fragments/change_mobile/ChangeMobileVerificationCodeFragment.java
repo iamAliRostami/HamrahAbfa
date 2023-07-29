@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
@@ -124,17 +123,9 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
     private void responseMessage(String message) {
         showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
                 MessageDoneRequestFragment.newInstance(message, getString(R.string.return_home),
-                        new MessageDoneRequestFragment.IClickListener() {
-                            @Override
-                            public void yes(DialogFragment dialogFragment) {
-                                dialogFragment.dismiss();
-                                callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
-                            }
-
-                            @Override
-                            public void no(DialogFragment dialogFragment) {
-
-                            }
+                        dialogFragment -> {
+                            dialogFragment.dismiss();
+                            callback.displayView(CHANGE_MOBILE_BASE_FRAGMENT);
                         }));
     }
 
