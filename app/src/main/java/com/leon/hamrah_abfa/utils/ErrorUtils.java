@@ -30,11 +30,13 @@ public class ErrorUtils {
     public static APIError parseError(Response<?> response) {
         Converter<ResponseBody, APIError> converter = getInstance().getApplicationComponent().Retrofit()
                 .responseBodyConverter(APIError.class, new Annotation[0]);
-        try (ResponseBody errorBody = response.errorBody()) {
+//        try (ResponseBody errorBody = response.errorBody()) {
+        try {
+            ResponseBody errorBody = response.errorBody();
             if (errorBody != null) {
                 return converter.convert(errorBody);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             return new APIError();
         }
         return new APIError();
@@ -46,11 +48,11 @@ public class ErrorUtils {
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(OLD_MOBILE.getValue(),
                 getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));
-//        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), "");
-//        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), "");
-//        getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
-//        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
-//        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), "");
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), "");
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
 
         showFragmentDialogOnce(context, ASK_YES_NO.getValue(),
                 InfoYesFragment.newInstance(R.drawable.setting_logout, context.getString(R.string.security_error),
