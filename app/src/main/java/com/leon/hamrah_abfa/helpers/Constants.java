@@ -9,7 +9,7 @@ public class Constants {
     public static final String FONT_NAME = "fonts/iranian_sans_b.ttf";
 
     public static final int CHECK_INTERVAL = 24 * 60 * 60 * 1000;
-    public static final int DELAY = 60*60*1000;
+    public static final int DELAY = 60 * 60 * 1000;
     public static final int HOUR_OF_DAY = 8;
     public static final int MINUTE = 0;
     public static final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;
@@ -36,6 +36,7 @@ public class Constants {
     public static final int CONTACT_FORBIDDEN_FRAGMENT = 16;
     public static final int CONTACT_PHONEBOOK_FRAGMENT = 17;
     public static final int CONTACT_FORBIDDEN_COMPLETE_FRAGMENT = 18;
+    public static final int CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT = 21;
     public static final int PAY_BILL_BASE_FRAGMENT = 19;
     public static final int CUT_OFF_BASE_FRAGMENT = 20;
     public static final int MAX_IMAGE_SIZE = 100000;

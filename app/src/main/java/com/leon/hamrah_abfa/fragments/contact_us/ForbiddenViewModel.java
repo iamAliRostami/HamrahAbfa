@@ -1,21 +1,38 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
+import android.graphics.Bitmap;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.leon.hamrah_abfa.BR;
 
+import java.util.ArrayList;
+
+import okhttp3.MultipartBody;
+
 public class ForbiddenViewModel extends BaseObservable {
     private String description;
     private String postalCode;
-    private String preBillId;
-    private String nextBillId;
+    private String preEshterak;
+    private String nextEshterak;
+    private String x;
+    private String y;
+//    private String gisAccuracy;
+    private String tedadVahed;
 
+    public ArrayList<MultipartBody.Part> file = new ArrayList<>();
+    private String message;
+    private String generationDateTime;
+    private int status;
+    private boolean isValid;
     public void resetViewModel() {
         setDescription("");
         setPostalCode("");
-        setPreBillId("");
-        setNextBillId("");
+        setPreEshterak("");
+        setNextEshterak("");
+        setTedadVahed("");
+        file = new ArrayList<>();
     }
 
     @Bindable
@@ -39,22 +56,48 @@ public class ForbiddenViewModel extends BaseObservable {
     }
 
     @Bindable
-    public String getPreBillId() {
-        return preBillId;
+    public String getPreEshterak() {
+        return preEshterak;
     }
 
-    public void setPreBillId(String preBillId) {
-        this.preBillId = preBillId;
-        notifyPropertyChanged(BR.preBillId);
+    public void setPreEshterak(String preEshterak) {
+        this.preEshterak = preEshterak;
+        notifyPropertyChanged(BR.preEshterak);
     }
 
     @Bindable
-    public String getNextBillId() {
-        return nextBillId;
+    public String getNextEshterak() {
+        return nextEshterak;
     }
 
-    public void setNextBillId(String nextBillId) {
-        this.nextBillId = nextBillId;
-        notifyPropertyChanged(BR.nextBillId);
+    public void setNextEshterak(String nextEshterak) {
+        this.nextEshterak = nextEshterak;
+        notifyPropertyChanged(BR.nextEshterak);
+    }
+
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    public void setY(String y) {
+        this.y = y;
+    }
+
+//    public void setGisAccuracy(String gisAccuracy) {
+//        this.gisAccuracy = gisAccuracy;
+//    }
+
+    @Bindable
+    public String getTedadVahed() {
+        return tedadVahed;
+    }
+
+    public void setTedadVahed(String tedadVahed) {
+        this.tedadVahed = tedadVahed;
+        notifyPropertyChanged(BR.tedadVahed);
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

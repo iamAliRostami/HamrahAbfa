@@ -76,6 +76,7 @@ public class ContactBaseFragment extends Fragment implements AdapterView.OnItemC
         } else if (position == 3) {
             callback.displayView(CONTACT_BRANCH_FRAGMENT);
         } else if (position == 4) {
+            callback.getForbiddenViewModel().resetViewModel();
             callback.displayView(CONTACT_FORBIDDEN_FRAGMENT);
         } else if (position == 5) {
             callback.displayView(CONTACT_PHONEBOOK_FRAGMENT);
@@ -90,5 +91,7 @@ public class ContactBaseFragment extends Fragment implements AdapterView.OnItemC
 
     public interface ICallback {
         void displayView(int position);
+
+        ForbiddenViewModel getForbiddenViewModel();
     }
 }

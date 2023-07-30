@@ -6,6 +6,7 @@ import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
+import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
@@ -75,6 +76,10 @@ public interface IAbfaService {
 
     @POST("KontoriNew/V1/MobileRequest/AbBaha")
     Call<ServicesViewModel> requestAb(@Body ServicesViewModel service);
+
+
+    @POST("KontoriNew/V1/ForbiddenMobile/Single")
+    Call<ForbiddenViewModel> forbidden(@Body ForbiddenViewModel forbidden);
 
 }
 

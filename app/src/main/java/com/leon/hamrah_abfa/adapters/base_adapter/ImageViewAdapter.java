@@ -16,7 +16,7 @@ import com.leon.hamrah_abfa.adapters.holders.ImageViewHolder;
 import java.util.ArrayList;
 
 public class ImageViewAdapter extends BaseAdapter {
-    final ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    private final ArrayList<Bitmap> bitmaps = new ArrayList<>();
     private final LayoutInflater inflater;
     private long lastClickTime = 0;
     private final Context context;
@@ -69,5 +69,9 @@ public class ImageViewAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public ArrayList<Bitmap> getBitmaps() {
+        return bitmaps;
     }
 }

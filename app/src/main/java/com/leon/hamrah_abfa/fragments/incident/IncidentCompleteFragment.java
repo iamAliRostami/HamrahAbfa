@@ -2,8 +2,8 @@ package com.leon.hamrah_abfa.fragments.incident;
 
 import static com.leon.hamrah_abfa.helpers.Constants.INCIDENT_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
-import static com.leon.hamrah_abfa.utils.FileCustomize.createImageFile;
-import static com.leon.hamrah_abfa.utils.FileCustomize.prepareImage;
+import static com.leon.hamrah_abfa.utils.FileCustomizer.createImageFile;
+import static com.leon.hamrah_abfa.utils.FileCustomizer.prepareImage;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCameraPermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;

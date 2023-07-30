@@ -6,9 +6,11 @@ import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_BRANCH_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_COMPLAINT_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FAQ_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.addFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
@@ -29,13 +31,16 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactComplaintFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenBaseFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenCompleteFragment;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenInfoFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhonebookFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
+import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
 import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,
-        ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback {
+        ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback,
+        ContactForbiddenInfoFragment.ICallback {
     private final ForbiddenViewModel viewModel = new ForbiddenViewModel();
     private ActivityContactUsBinding binding;
     private ImageViewAdapter adapter;
@@ -65,6 +70,8 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
             replaceFragment(this, binding.fragmentContact.getId(), ContactPhonebookFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_COMPLETE_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenCompleteFragment.newInstance());
+        } else if (position == CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT) {
+            replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenInfoFragment.newInstance());
         } else {
             addFragment(this, binding.fragmentContact.getId(), ContactBaseFragment.newInstance());
         }
@@ -86,21 +93,17 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
     }
 
     @Override
-    public void confirm(String trackNumber) {
+    public void confirm(String message) {
         viewModel.resetViewModel();
-        getSupportFragmentManager().popBackStack();
-        showFragmentDialogOnce(this, REQUEST_DONE.getValue(), TrackDoneRequestFragment.newInstance(trackNumber,
-                getString(R.string.main_page), new TrackDoneRequestFragment.IClickListener() {
-                    @Override
-                    public void yes(DialogFragment dialogFragment) {
-                        dialogFragment.dismiss();
-                    }
 
-                    @Override
-                    public void no(DialogFragment dialogFragment) {
-
-                    }
-                }));
+        showFragmentDialogOnce(this, REQUEST_DONE.getValue(),
+                MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page),
+                        dialogFragment -> {
+                            getSupportFragmentManager().popBackStack();
+                            getSupportFragmentManager().popBackStack();
+                            dialogFragment.dismiss();
+                        }
+                ));
     }
 
     @Override

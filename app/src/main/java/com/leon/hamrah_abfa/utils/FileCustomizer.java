@@ -14,11 +14,17 @@ import com.leon.hamrah_abfa.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
-public class FileCustomize {
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
+public class FileCustomizer {
     @SuppressLint({"SimpleDateFormat"})
     public static File createImageFile(Context context) throws IOException {
         final String timeStamp = new SimpleDateFormat(context.getString(R.string.save_format_name)).format(new Date());
@@ -73,5 +79,33 @@ public class FileCustomize {
         final Matrix matrix = new Matrix();
         matrix.postRotate(angle);
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public static MultipartBody.Part bitmapToFile(Bitmap bitmap, Context context) {
+        final String timeStamp = (new SimpleDateFormat(context.getString(R.string.save_format_name))).format(new Date());
+        final String fileNameToSave = "JPEG_" + new Random().nextInt() + "_" + timeStamp + ".jpg";
+        final File f = new File(context.getCacheDir(), fileNameToSave);
+        try {
+            if (!f.createNewFile()) return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            final byte[] bitmapData = compressBitmapToByte(bitmap);
+            final FileOutputStream fos = new FileOutputStream(f);
+            fos.write(bitmapData);
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(f, MediaType.parse("image/jpeg"));
+        return MultipartBody.Part.createFormData("File", f.getName(), requestBody);
+    }
+    public static byte[] compressBitmapToByte(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        return stream.toByteArray();
     }
 }

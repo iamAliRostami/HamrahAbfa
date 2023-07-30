@@ -1,9 +1,12 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
-import static com.leon.hamrah_abfa.utils.FileCustomize.createImageFile;
-import static com.leon.hamrah_abfa.utils.FileCustomize.prepareImage;
+import static com.leon.hamrah_abfa.utils.FileCustomizer.bitmapToFile;
+import static com.leon.hamrah_abfa.utils.FileCustomizer.createImageFile;
+import static com.leon.hamrah_abfa.utils.FileCustomizer.prepareImage;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCameraPermission;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
 import static com.leon.toast.RTLToast.warning;
@@ -12,6 +15,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -20,19 +24,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.RelativeLayout;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.BuildConfig;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentContactForbiddenCompleteBinding;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.requests.ForbiddenRequest;
 import com.leon.hamrah_abfa.utils.GpsTracker;
 
 import org.osmdroid.api.IMapController;
@@ -49,6 +54,7 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     private long lastClickTime = 0;
     private File fileImage = null;
     private ICallback callback;
+    private DialogFragment fragment;
 
     public ContactForbiddenCompleteFragment() {
     }
@@ -71,14 +77,6 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     }
 
     private void initialize() {
-
-//        final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-//                RelativeLayout.LayoutParams.MATCH_PARENT,
-//                requireContext().getResources().getDisplayMetrics().widthPixels/2
-//                /*requireActivity().getWindowManager().getDefaultDisplay().getWidth() / 2*/);
-//        binding.relativeLayoutMap.setLayoutParams(params);
-
-
         initializeMap();
         initializeGridView();
         binding.buttonConfirm.setOnClickListener(this);
@@ -107,11 +105,46 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_confirm) {
-            callback.confirm("1212");
+            callback.getForbiddenViewModel().setX(String.valueOf(binding.mapView.getMapCenter().getLongitude()));
+            callback.getForbiddenViewModel().setY(String.valueOf(binding.mapView.getMapCenter().getLatitude()));
+            for (Bitmap bitmap : callback.getImageViewAdapter().getBitmaps()) {
+                callback.getForbiddenViewModel().file.add(bitmapToFile(bitmap, requireContext()));
+            }
+            requestForbidden();
         } else if (id == R.id.button_previous) {
             requireActivity().getSupportFragmentManager().popBackStack();
         } else if (id == R.id.image_view_current_location) {
             showCurrentLocation();
+        }
+    }
+
+    private void requestForbidden() {
+        boolean isOnline = new ForbiddenRequest(requireContext(), new ForbiddenRequest.ICallback() {
+            @Override
+            public void succeed(ForbiddenViewModel service) {
+                //TODO
+                callback.confirm(service.getMessage());
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, callback.getForbiddenViewModel()).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
         }
     }
 

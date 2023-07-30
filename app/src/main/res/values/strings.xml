@@ -266,5 +266,7 @@
     <string name="empty">واحد خالی</string>
     <string name="fill_in_empty">تعداد واحد خالی را وارد کنید</string>
     <string name="close">بستن</string>
+    <string name="tedad_vahed">تعداد واحد</string>
+    <string name="enter_tedad_vahed">تعداد واحد را وارد کنید</string>
 
 </resources>
