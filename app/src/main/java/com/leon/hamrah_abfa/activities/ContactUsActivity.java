@@ -10,7 +10,6 @@ import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_DESCRIPTI
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
-import static com.leon.hamrah_abfa.helpers.Constants.COUNTER_BASE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.addFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.replaceFragment;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
@@ -36,7 +35,6 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactPhonebookFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
-import com.leon.hamrah_abfa.fragments.dialog.TrackDoneRequestFragment;
 
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,
         ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback,
@@ -96,15 +94,10 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
     public void confirm(String message) {
         viewModel.resetViewModel();
         adapter = new ImageViewAdapter(this);
-
+        getSupportFragmentManager().popBackStack();
+        getSupportFragmentManager().popBackStack();
         showFragmentDialogOnce(this, REQUEST_DONE.getValue(),
-                MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page),
-                        dialogFragment -> {
-                            getSupportFragmentManager().popBackStack();
-                            getSupportFragmentManager().popBackStack();
-                            dialogFragment.dismiss();
-                        }
-                ));
+                MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page), DialogFragment::dismiss));
     }
 
     @Override
