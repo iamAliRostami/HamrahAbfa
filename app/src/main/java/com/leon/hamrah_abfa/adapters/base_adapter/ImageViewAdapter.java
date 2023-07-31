@@ -16,13 +16,14 @@ import com.leon.hamrah_abfa.adapters.holders.ImageViewHolder;
 import java.util.ArrayList;
 
 public class ImageViewAdapter extends BaseAdapter {
-    private final ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    private final ArrayList<Bitmap> bitmaps;
     private final LayoutInflater inflater;
     private long lastClickTime = 0;
     private final Context context;
 
     public ImageViewAdapter(Context context) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.bitmaps = new ArrayList<>();
         this.context = context;
     }
 

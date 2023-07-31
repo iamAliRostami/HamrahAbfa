@@ -16,10 +16,16 @@ import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
+import java.util.ArrayList;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface IAbfaService {
@@ -78,8 +84,20 @@ public interface IAbfaService {
     Call<ServicesViewModel> requestAb(@Body ServicesViewModel service);
 
 
-    @POST("KontoriNew/V1/ForbiddenMobile/Single")
-    Call<ForbiddenViewModel> forbidden(@Body ForbiddenViewModel forbidden);
+//    @POST("KontoriNew/V1/ForbiddenMobile/Single")
+//    Call<ForbiddenViewModel> forbidden(@Body ForbiddenViewModel forbidden);
 
+
+    @Multipart
+    @POST("KontoriNew/V1/ForbiddenMobile/Single")
+    Call<ForbiddenViewModel> forbidden(
+            @Part ArrayList<MultipartBody.Part> files,
+            @Part("Description") RequestBody Description,
+            @Part("PreEshterak") RequestBody preEshterak,
+            @Part("NextEshterak") RequestBody nextEshterak,
+            @Part("PostalCode") RequestBody postalCode,
+            @Part("TedadVahed") RequestBody TedadVahed,
+            @Part("x") RequestBody x,
+            @Part("y") RequestBody y);
 }
 

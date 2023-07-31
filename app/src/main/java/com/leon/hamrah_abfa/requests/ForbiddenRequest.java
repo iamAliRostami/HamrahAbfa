@@ -23,6 +23,8 @@ import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
 import com.leon.hamrah_abfa.utils.APIError;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -42,7 +44,16 @@ public class ForbiddenRequest {
         callback.changeUI(true);
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden);
+        final Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden.file,
+                RequestBody.create(forbidden.getDescription(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getNextEshterak(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getPostalCode(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getTedadVahed(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getX(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getY(), MediaType.parse("text/plain"))
+
+        );
         return callHttpAsync(context, call, new ForbiddenSuccessful(callback),
                 new ForbiddenIncomplete(context, callback), new ForbiddenFailed(context, callback));
     }

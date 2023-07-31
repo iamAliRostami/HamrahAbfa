@@ -188,10 +188,10 @@
     <string name="enter_forbidden_description">توضیح غیرمجاز را ارائه دهید</string>
     <string name="enter_postal_code">کد پستی را وارد کنید</string>
     <string name="pre_account">اشتراک قبلی</string>
-    <string name="enter_pre">شناسه قبض اشتراک قبلی را وارد کنید</string>
+    <string name="enter_pre">اشتراک قبلی را وارد کنید</string>
     <string name="enter_nick_name">جهت نمایش به عنوان نام مستعار، عنوان انشعاب را وارد کنید</string>
     <string name="next_account">اشتراک بعدی</string>
-    <string name="enter_next">شناسه قبض اشتراک بعدی را وارد کنید</string>
+    <string name="enter_next">اشتراک بعدی را وارد کنید</string>
     <string name="deadline">مهلت پرداخت</string>
     <string name="bills">قبض\u200cها</string>
     <string name="payments">پرداخت\u200cها</string>
@@ -268,5 +268,6 @@
     <string name="close">بستن</string>
     <string name="tedad_vahed">تعداد واحد</string>
     <string name="enter_tedad_vahed">تعداد واحد را وارد کنید</string>
+    <string name="incorrect_esherak">فرمت اشتراک صحیح نیست</string>
 
 </resources>

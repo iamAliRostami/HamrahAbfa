@@ -83,9 +83,13 @@ public class ForbiddenViewModel extends BaseObservable {
         this.y = y;
     }
 
-//    public void setGisAccuracy(String gisAccuracy) {
-//        this.gisAccuracy = gisAccuracy;
-//    }
+    public String getX() {
+        return x;
+    }
+
+    public String getY() {
+        return y;
+    }
 
     @Bindable
     public String getTedadVahed() {

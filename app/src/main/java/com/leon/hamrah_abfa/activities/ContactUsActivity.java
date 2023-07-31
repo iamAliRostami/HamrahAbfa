@@ -95,6 +95,7 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
     @Override
     public void confirm(String message) {
         viewModel.resetViewModel();
+        adapter = new ImageViewAdapter(this);
 
         showFragmentDialogOnce(this, REQUEST_DONE.getValue(),
                 MessageDoneRequestFragment.newInstance(message, getString(R.string.main_page),

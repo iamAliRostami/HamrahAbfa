@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
+import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
 import android.content.Context;
@@ -55,10 +56,38 @@ public class ContactForbiddenInfoFragment extends Fragment implements View.OnCli
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_next) {
-            callback.displayView(CONTACT_FORBIDDEN_COMPLETE_FRAGMENT);
+            if (checkInputs())
+                callback.displayView(CONTACT_FORBIDDEN_COMPLETE_FRAGMENT);
         } else if (id == R.id.button_previous) {
             requireActivity().getSupportFragmentManager().popBackStack();
         }
+    }
+
+    private boolean checkInputs() {
+        if (callback.getForbiddenViewModel().getPostalCode() != null &&
+                !callback.getForbiddenViewModel().getPostalCode().isEmpty() &&
+                callback.getForbiddenViewModel().getPostalCode().length() < 10) {
+            warning(requireContext(), R.string.incorrect_postal_code_format).show();
+            binding.editTextPostal.setError(getString(R.string.incorrect_postal_code_format));
+            binding.editTextPostal.requestFocus();
+            return false;
+        } else if (callback.getForbiddenViewModel().getPreEshterak() != null &&
+                !callback.getForbiddenViewModel().getPreEshterak().isEmpty() &&
+                callback.getForbiddenViewModel().getPreEshterak().length() < 8) {
+            warning(requireContext(), R.string.incorrect_esherak).show();
+            binding.editTextPre.setError(getString(R.string.incorrect_esherak));
+            binding.editTextPre.requestFocus();
+            return false;
+        } else if (callback.getForbiddenViewModel().getNextEshterak() != null &&
+                !callback.getForbiddenViewModel().getNextEshterak().isEmpty() &&
+                callback.getForbiddenViewModel().getNextEshterak().length() < 8) {
+            warning(requireContext(), R.string.incorrect_esherak).show();
+            binding.editTextNext.setError(getString(R.string.incorrect_esherak));
+            binding.editTextNext.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
     public interface ICallback {
