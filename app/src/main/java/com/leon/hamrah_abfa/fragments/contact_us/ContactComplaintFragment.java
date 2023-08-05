@@ -91,7 +91,6 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
         boolean isOnline = new GetComplaintsTypes(requireContext(), new GetComplaintsTypes.ICallback() {
             @Override
             public void succeed(ArrayList<FeedbackType> feedbackType) {
-                //TODO
                 ContactComplaintFragment.this.feedbackType.addAll(feedbackType);
             }
 
@@ -131,6 +130,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
             showMenu(binding.editTextIncidentType);
         } else if (id == R.id.button_submit) {
             if (checkInput()) {
+                viewModel.file.clear();
                 for (Bitmap bitmap : adapter.getBitmaps()) {
                     viewModel.file.add(bitmapToFile(bitmap, requireContext()));
                 }
@@ -138,7 +138,6 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
                 viewModel.setSolution("");
                 requestRegisterFeedback();
             }
-
         }
     }
 

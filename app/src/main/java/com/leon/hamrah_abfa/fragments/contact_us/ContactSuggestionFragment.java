@@ -88,7 +88,6 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
         boolean isOnline = new GetSuggestionsTypes(requireContext(), new GetSuggestionsTypes.ICallback() {
             @Override
             public void succeed(ArrayList<FeedbackType> feedbackType) {
-                //TODO
                 ContactSuggestionFragment.this.feedbackType.addAll(feedbackType);
             }
 
