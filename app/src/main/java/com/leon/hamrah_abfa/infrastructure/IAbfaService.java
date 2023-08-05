@@ -58,6 +58,13 @@ public interface IAbfaService {
     @GET("KontoriNew/V1/ContactAbfa/Faq")
     Call<ContactFAQ> getFAQ();
 
+
+    @GET("KontoriNew/V1/ContactAbfa/Zone")
+    Call<ContactFAQ> getZone();
+
+    @GET("KontoriNew/V1/ContactAbfa/Tel")
+    Call<ContactFAQ> getTel();
+
     @GET("KontoriNew/V1/MobileRequest/MasterHistory/{id}")
     Call<MasterHistory> getMasterHistory(@Path("id") String id);
 
@@ -85,17 +92,6 @@ public interface IAbfaService {
     @POST("KontoriNew/V1/MobileRequest/AbBaha")
     Call<ServicesViewModel> requestAb(@Body ServicesViewModel service);
 
-    @Multipart
-    @POST("KontoriNew/V1/ForbiddenMobile/Single")
-    Call<ForbiddenViewModel> forbidden(@Part ArrayList<MultipartBody.Part> files,
-                                       @Part("Description") RequestBody description,
-                                       @Part("PreEshterak") RequestBody preEshterak,
-                                       @Part("NextEshterak") RequestBody nextEshterak,
-                                       @Part("PostalCode") RequestBody postalCode,
-                                       @Part("TedadVahed") RequestBody TedadVahed,
-                                       @Part("x") RequestBody x,
-                                       @Part("y") RequestBody y);
-
 
     @GET("KontoriNew/V1/MobileFeedbackType/Complaints")
     Call<ArrayList<FeedbackType>> getComplaintsTypes();
@@ -111,5 +107,16 @@ public interface IAbfaService {
                                              @Part("Solution") RequestBody solution,
                                              @Part("FeedbackTypeId") RequestBody feedbackTypeId,
                                              @Part("InComplaint") RequestBody inComplaint);
+
+    @Multipart
+    @POST("KontoriNew/V1/ForbiddenMobile/Single")
+    Call<ForbiddenViewModel> forbidden(@Part ArrayList<MultipartBody.Part> files,
+                                       @Part("Description") RequestBody description,
+                                       @Part("PreEshterak") RequestBody preEshterak,
+                                       @Part("NextEshterak") RequestBody nextEshterak,
+                                       @Part("PostalCode") RequestBody postalCode,
+                                       @Part("TedadVahed") RequestBody TedadVahed,
+                                       @Part("x") RequestBody x,
+                                       @Part("y") RequestBody y);
 }
 
