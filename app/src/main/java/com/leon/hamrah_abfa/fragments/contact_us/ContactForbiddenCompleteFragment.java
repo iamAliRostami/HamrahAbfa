@@ -37,7 +37,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentContactForbiddenCompleteBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
-import com.leon.hamrah_abfa.requests.ForbiddenRequest;
+import com.leon.hamrah_abfa.requests.contact_us.ForbiddenRequest;
 import com.leon.hamrah_abfa.utils.GpsTracker;
 
 import org.osmdroid.api.IMapController;

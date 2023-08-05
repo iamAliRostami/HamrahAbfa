@@ -18,7 +18,6 @@ public class ForbiddenViewModel extends BaseObservable {
     private String nextEshterak;
     private String x;
     private String y;
-//    private String gisAccuracy;
     private String tedadVahed;
 
     public ArrayList<MultipartBody.Part> file = new ArrayList<>();

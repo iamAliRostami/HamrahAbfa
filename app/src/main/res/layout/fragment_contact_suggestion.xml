@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.contact_us.SuggestionViewModel" />
+            type="com.leon.hamrah_abfa.fragments.contact_us.FeedbackViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -74,8 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:inputType="none"
-                        android:text="@={viewModel.suggestionType}" />
+                        android:inputType="none" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -116,7 +115,7 @@
                         android:lines="2"
                         android:maxLength="1000"
                         android:maxLines="2"
-                        android:text="@={viewModel.proposal}" />
+                        android:text="@={viewModel.solution}" />
                 </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

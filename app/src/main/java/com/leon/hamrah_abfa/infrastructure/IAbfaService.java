@@ -6,6 +6,8 @@ import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
+import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
+import com.leon.hamrah_abfa.fragments.contact_us.FeedbackViewModel;
 import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
@@ -83,21 +85,31 @@ public interface IAbfaService {
     @POST("KontoriNew/V1/MobileRequest/AbBaha")
     Call<ServicesViewModel> requestAb(@Body ServicesViewModel service);
 
-
-//    @POST("KontoriNew/V1/ForbiddenMobile/Single")
-//    Call<ForbiddenViewModel> forbidden(@Body ForbiddenViewModel forbidden);
-
-
     @Multipart
     @POST("KontoriNew/V1/ForbiddenMobile/Single")
-    Call<ForbiddenViewModel> forbidden(
-            @Part ArrayList<MultipartBody.Part> files,
-            @Part("Description") RequestBody Description,
-            @Part("PreEshterak") RequestBody preEshterak,
-            @Part("NextEshterak") RequestBody nextEshterak,
-            @Part("PostalCode") RequestBody postalCode,
-            @Part("TedadVahed") RequestBody TedadVahed,
-            @Part("x") RequestBody x,
-            @Part("y") RequestBody y);
+    Call<ForbiddenViewModel> forbidden(@Part ArrayList<MultipartBody.Part> files,
+                                       @Part("Description") RequestBody description,
+                                       @Part("PreEshterak") RequestBody preEshterak,
+                                       @Part("NextEshterak") RequestBody nextEshterak,
+                                       @Part("PostalCode") RequestBody postalCode,
+                                       @Part("TedadVahed") RequestBody TedadVahed,
+                                       @Part("x") RequestBody x,
+                                       @Part("y") RequestBody y);
+
+
+    @GET("KontoriNew/V1/MobileFeedbackType/Complaints")
+    Call<ArrayList<FeedbackType>> getComplaintsTypes();
+
+
+    @GET("KontoriNew/V1/MobileFeedbackType/Suggestions")
+    Call<ArrayList<FeedbackType>> getSuggestionsTypes();
+
+    @Multipart
+    @POST("KontoriNew/V1/FeedbackMobile/Register")
+    Call<FeedbackViewModel> registerFeedback(@Part ArrayList<MultipartBody.Part> files,
+                                             @Part("Description") RequestBody description,
+                                             @Part("Solution") RequestBody solution,
+                                             @Part("FeedbackTypeId") RequestBody feedbackTypeId,
+                                             @Part("InComplaint") RequestBody inComplaint);
 }
 

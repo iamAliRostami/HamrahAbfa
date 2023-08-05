@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests;
+package com.leon.hamrah_abfa.requests.contact_us;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
@@ -16,7 +16,6 @@ import androidx.fragment.app.DialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.dialog.MessageErrorRequestFragment;
-import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;

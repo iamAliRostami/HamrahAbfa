@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests;
+package com.leon.hamrah_abfa.requests.contact_us;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsyncCached;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
