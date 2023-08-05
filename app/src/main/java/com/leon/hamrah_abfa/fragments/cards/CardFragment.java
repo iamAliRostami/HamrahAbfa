@@ -33,7 +33,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         args.putString(ID.getValue(), bill.getId());
         args.putString(BILL_ID.getValue(), bill.getBillId());
         args.putString(ALIAS.getValue(), bill.getAlias());
-        args.putString(DEBT.getValue(), bill.getDebtString());
+        args.putString(DEBT.getValue(), bill.getDebt());
         fragment.setArguments(args);
         return fragment;
     }

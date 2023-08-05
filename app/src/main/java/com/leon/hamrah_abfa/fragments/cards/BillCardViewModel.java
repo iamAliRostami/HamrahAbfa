@@ -1,5 +1,7 @@
 package com.leon.hamrah_abfa.fragments.cards;
 
+import android.annotation.SuppressLint;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
@@ -10,8 +12,8 @@ public class BillCardViewModel extends BaseObservable {
     private String billId;
     private String alias;
     //TODO
-    private long debt;
-    private String debtString;
+//    private long debt;
+    private String debt;
     private int status;
     private String message;
     private String generationDateTime;
@@ -22,8 +24,7 @@ public class BillCardViewModel extends BaseObservable {
         setId(id);
         setBillId(billId);
         setAlias(alias);
-        setDebtString(debt);
-        setDebt(Long.parseLong(debt));
+        setDebt(debt);
     }
 
     public BillCardViewModel() {
@@ -50,22 +51,24 @@ public class BillCardViewModel extends BaseObservable {
     }
 
     @Bindable
-    public String getDebtString() {
-        return debtString;
-    }
-
-    public void setDebtString(String debtString) {
-        this.debtString = debtString;
-        notifyPropertyChanged(BR.debtString);
-    }
-
-    public long getDebt() {
+    public String getDebt() {
         return debt;
     }
 
-    public void setDebt(long debt) {
+    public void setDebt(String debt) {
         this.debt = debt;
+        notifyPropertyChanged(BR.debt);
     }
+
+    @SuppressLint("DefaultLocale")
+    @Bindable
+    public String getDebtFormatted() {
+        return String.format("%,d", Long.parseLong(getDebt()));
+    }
+//
+//    public void setDebt(long debt) {
+//        this.debt = debt;
+//    }
 
     public String getId() {
         return id;
