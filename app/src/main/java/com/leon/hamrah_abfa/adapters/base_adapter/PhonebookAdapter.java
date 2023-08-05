@@ -44,7 +44,7 @@ public class PhonebookAdapter extends BaseAdapter {
         final PhonebookViewHolder holder = new PhonebookViewHolder(view);
         holder.textViewTitle.setText(phoneBook.get(position).getTitle());
         holder.textViewTitle.setSelected(true);
-        holder.textViewPhoneNumber.setText(phoneBook.get(position).getPhoneNumber());
+        holder.textViewPhoneNumber.setText(phoneBook.get(position).getNumber());
         holder.textViewPhoneNumber.setSelected(true);
         return view;
     }

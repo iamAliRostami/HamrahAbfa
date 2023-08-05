@@ -2,18 +2,18 @@ package com.leon.hamrah_abfa.fragments.contact_us;
 
 public class PhonebookViewModel {
     private final String title;
-    private final String phoneNumber;
+    private final String number;
 
-    public PhonebookViewModel(String title, String phoneNumber) {
+    public PhonebookViewModel(String title, String number) {
         this.title = title;
-        this.phoneNumber = phoneNumber;
+        this.number = number;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getNumber() {
+        return number;
     }
 }

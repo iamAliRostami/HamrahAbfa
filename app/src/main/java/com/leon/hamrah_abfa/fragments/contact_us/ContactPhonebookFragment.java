@@ -2,7 +2,9 @@ package com.leon.hamrah_abfa.fragments.contact_us;
 
 import static android.Manifest.permission.CALL_PHONE;
 import static android.content.Context.CLIPBOARD_SERVICE;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.utils.PermissionManager.checkCallPhonePermission;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
 import static com.leon.toast.RTLToast.warning;
@@ -22,18 +24,22 @@ import android.widget.AdapterView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.PhonebookAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentContactPhonebookBinding;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.requests.contact_us.GetTelRequest;
 
 import java.util.ArrayList;
 
 public class ContactPhonebookFragment extends Fragment implements AdapterView.OnItemClickListener,
         AdapterView.OnItemLongClickListener, TextWatcher {
     private FragmentContactPhonebookBinding binding;
-    private final ArrayList<PhonebookViewModel> phonebook = new ArrayList<>();
+    private final ContactPhoneBook phonebook = new ContactPhoneBook();
+    private DialogFragment fragment;
     private PhonebookAdapter adapter;
 
     public ContactPhonebookFragment() {
@@ -57,22 +63,44 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     }
 
     private void initialize() {
-        initializeGridView();
+        requestTel();
         binding.editTextSearch.addTextChangedListener(this);
     }
 
+    private void requestTel() {
+        boolean isOnline = new GetTelRequest(requireContext(), new GetTelRequest.ICallback() {
+
+            @Override
+            public void succeed(ArrayList<PhonebookViewModel> phonebook) {
+                ContactPhonebookFragment.this.phonebook.telInfoDtos.addAll(phonebook);
+                initializeGridView();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
+    }
+
     private void initializeGridView() {
-        phonebook.add(new PhonebookViewModel("مدیر شماره یک", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره دو", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره سه", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره چهار", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره پنج", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره شش", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره هفت", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره هشت", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره نه", "03133333333"));
-        phonebook.add(new PhonebookViewModel("مدیر شماره ده", "03133333333"));
-        adapter = new PhonebookAdapter(requireContext(), phonebook);
+
+        adapter = new PhonebookAdapter(requireContext(), phonebook.telInfoDtos);
         binding.gridViewPhones.setAdapter(adapter);
         binding.gridViewPhones.setOnItemClickListener(this);
         binding.gridViewPhones.setOnItemLongClickListener(this);
@@ -81,7 +109,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (checkCallPhonePermission(requireActivity())) {
-            call(phonebook.get(position).getPhoneNumber());
+            call(phonebook.telInfoDtos.get(position).getNumber());
         } else {
             requestCallPhonePermissionLauncher.launch(CALL_PHONE);
         }
@@ -90,7 +118,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(CLIPBOARD_SERVICE);
-        final ClipData clip = ClipData.newPlainText("phonebook", phonebook.get(position).getPhoneNumber());
+        final ClipData clip = ClipData.newPlainText("phonebook", phonebook.telInfoDtos.get(position).getNumber());
         clipboard.setPrimaryClip(clip);
         success(requireContext(), getString(R.string.saved_in_clipboard)).show();
         return true;
@@ -125,7 +153,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     public void afterTextChanged(Editable s) {
         if (binding.editTextSearch.getEditableText() == s) {
             if (s.toString().length() == 0) {
-                adapter.filterList(phonebook);
+                adapter.filterList(phonebook.telInfoDtos);
                 return;
             }
             filter(s.toString());
@@ -134,7 +162,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
 
     private void filter(String text) {
         final ArrayList<PhonebookViewModel> phonebookTemp = new ArrayList<>();
-        for (PhonebookViewModel phone : this.phonebook) {
+        for (PhonebookViewModel phone : phonebook.telInfoDtos) {
             if (phone.getTitle().toLowerCase().contains(text.toLowerCase()))
                 phonebookTemp.add(phone);
         }
