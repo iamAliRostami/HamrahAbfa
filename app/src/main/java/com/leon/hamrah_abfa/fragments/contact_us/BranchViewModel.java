@@ -3,31 +3,33 @@ package com.leon.hamrah_abfa.fragments.contact_us;
 import org.osmdroid.util.GeoPoint;
 
 public class BranchViewModel {
-    private final String name;
-    private final String manager;
-    private final String zone;
-    private final String phone1;
-    private final String financialCode;
+    private final String zoneTitle;
+    private final String economicalCode;
+    private final String phone;
     private final String fax;
+    private final String zone;
     private final String address;
-    private final String postal;
+    private final String postalCode;
+    private String x;
+    private String y;
     private final GeoPoint point;
+    private final String manager;
 
-    public BranchViewModel(String name, String manager, String zone, String financialCode,
-                           String phone1, String fax, String address, String postal, GeoPoint point) {
-        this.name = name;
+    public BranchViewModel(String zoneTitle, String manager, String zone, String economicalCode,
+                           String phone, String fax, String address, String postalCode, GeoPoint point) {
+        this.zoneTitle = zoneTitle;
         this.manager = manager;
         this.zone = zone;
-        this.financialCode = financialCode;
-        this.phone1 = phone1;
+        this.economicalCode = economicalCode;
+        this.phone = phone;
         this.fax = fax;
         this.address = address;
-        this.postal = postal;
+        this.postalCode = postalCode;
         this.point = point;
     }
 
-    public String getName() {
-        return name;
+    public String getZoneTitle() {
+        return zoneTitle;
     }
 
     public String getManager() {
@@ -38,8 +40,8 @@ public class BranchViewModel {
         return zone;
     }
 
-    public String getPhone1() {
-        return phone1;
+    public String getPhone() {
+        return phone;
     }
 
     public String getFax() {
@@ -50,15 +52,15 @@ public class BranchViewModel {
         return address;
     }
 
-    public String getPostal() {
-        return postal;
+    public String getPostalCode() {
+        return postalCode;
     }
 
     public GeoPoint getPoint() {
         return point;
     }
 
-    public String getFinancialCode() {
-        return financialCode;
+    public String getEconomicalCode() {
+        return economicalCode;
     }
 }

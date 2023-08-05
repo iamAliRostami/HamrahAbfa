@@ -14,9 +14,7 @@ public class BranchViewHolder extends RecyclerView.ViewHolder {
     public final LottieAnimationView animationView;
     public final ImageView imageViewArrow;
     public final TextView textViewName;
-    public final TextView textViewManager;
     public final TextView textViewFinancialCode;
-    public final TextView textViewZone;
     public final TextView textViewPhone;
     public final TextView textViewFax;
     public final TextView textViewPostal;
@@ -28,8 +26,6 @@ public class BranchViewHolder extends RecyclerView.ViewHolder {
         imageViewArrow = itemView.findViewById(R.id.image_view_arrow);
 
         textViewName = itemView.findViewById(R.id.text_view_name);
-        textViewManager = itemView.findViewById(R.id.text_view_manager);
-        textViewZone = itemView.findViewById(R.id.text_view_zone);
         textViewFinancialCode = itemView.findViewById(R.id.text_view_financial);
         textViewPhone = itemView.findViewById(R.id.text_view_phone);
         textViewFax = itemView.findViewById(R.id.text_view_fax);

@@ -56,7 +56,6 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_dafe_title"
                 style="@style/TitleBill"
-                android:layout_toEndOf="@id/image_view_zone"
                 android:text="@string/baha_dafe" />
 
             <com.google.android.material.textview.MaterialTextView

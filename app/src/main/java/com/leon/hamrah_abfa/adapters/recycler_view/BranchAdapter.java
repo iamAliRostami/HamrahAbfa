@@ -40,18 +40,16 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BranchViewHolder holder, int position) {
-        holder.textViewName.setText(branches.get(position).getName());
+        holder.textViewName.setText(branches.get(position).getZoneTitle());
         holder.textViewName.setSelected(true);
         holder.textViewName.setOnClickListener(v -> updateSelectedService(position));
         holder.imageViewArrow.setOnClickListener(v -> updateSelectedService(position));
         if (selectedServices != null && selectedServices == position) {
-            holder.textViewManager.setText(branches.get(position).getManager());
             holder.textViewFax.setText(branches.get(position).getFax());
-            holder.textViewPhone.setText(branches.get(position).getPhone1());
-            holder.textViewPostal.setText(branches.get(position).getPostal());
+            holder.textViewPhone.setText(branches.get(position).getPhone());
+            holder.textViewPostal.setText(branches.get(position).getPostalCode());
             holder.textViewAddress.setText(branches.get(position).getAddress());
-            holder.textViewZone.setText(branches.get(position).getZone());
-            holder.textViewFinancialCode.setText(branches.get(position).getFinancialCode());
+            holder.textViewFinancialCode.setText(branches.get(position).getEconomicalCode());
             holder.animationView.setOnClickListener(v -> showFragmentDialogOnce(inflater.getContext(), BRANCH_LOCATION.getValue(),
                     ContactBranchLocationFragment.newInstance(branches.get(position).getPoint())));
         }

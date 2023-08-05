@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.fragments.contact_us;
 
-import static com.leon.hamrah_abfa.helpers.Constants.POINT;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
 import android.os.Bundle;
@@ -11,19 +12,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.recycler_view.BranchAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentContactBranchBinding;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.requests.contact_us.GetZoneRequest;
 
 import java.util.ArrayList;
 
 public class ContactBranchFragment extends Fragment implements TextWatcher {
     private FragmentContactBranchBinding binding;
+    private final ContactBranch branch = new ContactBranch();
+    private DialogFragment fragment;
     private BranchAdapter adapter;
-    private final ArrayList<BranchViewModel> branches = new ArrayList<>();
 
     public ContactBranchFragment() {
     }
@@ -46,39 +51,44 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
     }
 
     private void initialize() {
-        initializeRecyclerView();
+        requestZone();
         binding.editTextSearch.addTextChangedListener(this);
     }
 
+    private void requestZone() {
+        boolean isOnline = new GetZoneRequest(requireContext(), new GetZoneRequest.ICallback() {
+
+            @Override
+            public void succeed(ArrayList<BranchViewModel> branches) {
+                branch.zoneInfoDtos.addAll(branches);
+                initializeRecyclerView();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
+    }
+
     private void initializeRecyclerView() {
-        branches.add(new BranchViewModel("منطقه یک", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه دو", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه سه", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه چهار", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه پنج", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه شش", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه هفت", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه هشت", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        branches.add(new BranchViewModel("منطقه نه", "رضا رضایی", "منطقه یک", "8521479630",
-                "03133333333", "03133333333", "اصفهان - خیابان اصفهان - کوچه اصفهان - پلاک اصفهان",
-                "1234567890", POINT));
-        adapter = new BranchAdapter(requireContext(), branches);
+
+        adapter = new BranchAdapter(requireContext(), branch.zoneInfoDtos);
         binding.recyclerViewBranch.setAdapter(adapter);
         binding.recyclerViewBranch.setLayoutManager(new LinearLayoutManager(requireContext()));
     }
@@ -97,7 +107,7 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
     public void afterTextChanged(Editable s) {
         if (binding.editTextSearch.getEditableText() == s) {
             if (s.toString().length() == 0) {
-                adapter.filterList(branches);
+                adapter.filterList(branch.zoneInfoDtos);
                 return;
             }
             filter(s.toString());
@@ -106,8 +116,8 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
 
     private void filter(String text) {
         final ArrayList<BranchViewModel> branchesTemp = new ArrayList<>();
-        for (BranchViewModel branch : branches) {
-            if (branch.getName().toLowerCase().contains(text.toLowerCase()))
+        for (BranchViewModel branch : branch.zoneInfoDtos) {
+            if (branch.getZoneTitle().toLowerCase().contains(text.toLowerCase()))
                 branchesTemp.add(branch);
         }
         if (branchesTemp.isEmpty()) {

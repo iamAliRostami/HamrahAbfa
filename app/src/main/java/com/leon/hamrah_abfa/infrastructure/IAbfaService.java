@@ -5,6 +5,7 @@ import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
+import com.leon.hamrah_abfa.fragments.contact_us.ContactBranch;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhoneBook;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
@@ -61,7 +62,7 @@ public interface IAbfaService {
 
 
     @GET("KontoriNew/V1/ContactAbfa/Zone")
-    Call<ContactFAQ> getZone();
+    Call<ContactBranch> getZone();
 
     @GET("KontoriNew/V1/ContactAbfa/Tel")
     Call<ContactPhoneBook> getTel();
