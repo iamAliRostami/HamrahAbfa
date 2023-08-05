@@ -47,11 +47,11 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
     public ContactBranchLocationFragment() {
     }
 
-    public static ContactBranchLocationFragment newInstance(GeoPoint point) {
+    public static ContactBranchLocationFragment newInstance(double x, double y) {
         final ContactBranchLocationFragment fragment = new ContactBranchLocationFragment();
         final Bundle args = new Bundle();
-        args.putDouble(LONGITUDE.getValue(), point.getLongitude());
-        args.putDouble(LATITUDE.getValue(), point.getLatitude());
+        args.putDouble(LONGITUDE.getValue(), x);
+        args.putDouble(LATITUDE.getValue(), y);
         fragment.setArguments(args);
         return fragment;
     }
