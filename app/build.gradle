@@ -152,9 +152,11 @@ dependencies {
 //    implementation 'com.google.android.gms:play-services-auth:11.6.0'
 
 
+//    implementation 'com.github.NsAveek:GraphView:0.1.0'
+
+
+
     implementation project(':toast')
-    implementation project(':spinkit')
-    implementation project(':versatileprogressbar')
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {

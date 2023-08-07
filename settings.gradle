@@ -20,5 +20,3 @@ dependencyResolutionManagement {
 rootProject.name = "Hamrah Abfa"
 include ':app'
 include ':toast'
-include ':spinkit'
-include ':versatileprogressbar'

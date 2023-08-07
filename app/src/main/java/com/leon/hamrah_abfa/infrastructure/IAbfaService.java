@@ -18,6 +18,7 @@ import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
 import java.util.ArrayList;
@@ -120,5 +121,7 @@ public interface IAbfaService {
                                        @Part("TedadVahed") RequestBody TedadVahed,
                                        @Part("x") RequestBody x,
                                        @Part("y") RequestBody y);
-}
 
+    @GET("KontoriNew/V1/MobileBill/GetBillSummary/{id}")
+    Call<BillSummary> getBillSummary(@Path("id") String id);
+}

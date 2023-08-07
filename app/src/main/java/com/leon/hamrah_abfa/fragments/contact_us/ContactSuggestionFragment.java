@@ -167,6 +167,9 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
             warning(requireContext(), R.string.field_complaint_description).show();
             return false;
         }
+        if (viewModel.getSolution()==null||viewModel.getSolution().isEmpty()){
+            viewModel.setSolution("");
+        }
         return true;
     }
 
