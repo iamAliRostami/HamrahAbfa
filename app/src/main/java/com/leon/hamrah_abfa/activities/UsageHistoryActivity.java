@@ -16,7 +16,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityUsageHistoryBinding;
-import com.leon.hamrah_abfa.fragments.NotFoundFragment;
+import com.leon.hamrah_abfa.fragments.citizen.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 import com.leon.hamrah_abfa.fragments.usage_history.AttemptViewModel;

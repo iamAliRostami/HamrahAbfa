@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginStart="@dimen/large_dp"
     android:layout_marginEnd="@dimen/large_dp"
+    android:layout_marginBottom="@dimen/medium_dp"
     android:orientation="vertical"
     tools:context=".fragments.citizen.ContactForbiddenCompleteFragment">
 

@@ -3,22 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/large_dp"
     tools:context=".fragments.citizen.CitizenListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_menu"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/button_submit"
-        android:layout_marginBottom="@dimen/medium_dp"
-        android:nestedScrollingEnabled="true"
-        tools:listitem="@layout/item_service" />
+        android:layout_height="500dp"
+        android:background="@drawable/background_submit_top" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_submit"
-        style="@style/ButtonSubmit"
-        android:layout_alignParentBottom="true"
-        android:text="@string/next_level" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/xlarge_dp"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/xlarge_dp"
+        android:src="@drawable/ic_citizen" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_view_content"
+        style="@style/CardViewBottom"
+        android:layout_below="@id/image_view_logo">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/medium_dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/button_submit"
+                android:layout_marginBottom="@dimen/medium_dp"
+                android:nestedScrollingEnabled="true"
+                tools:listitem="@layout/item_service" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_submit"
+                style="@style/ButtonSubmit"
+                android:layout_alignParentBottom="true"
+                android:text="@string/next_level" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

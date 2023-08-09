@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments;
+package com.leon.hamrah_abfa.fragments.citizen;
 
 import android.os.Bundle;
 

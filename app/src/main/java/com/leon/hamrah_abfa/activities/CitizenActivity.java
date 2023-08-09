@@ -18,11 +18,14 @@ import android.view.View;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.leon.hamrah_abfa.CitizenBaseFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.CitizenAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityCitizenBinding;
+import com.leon.hamrah_abfa.fragments.citizen.CitizenCompleteFragment;
+import com.leon.hamrah_abfa.fragments.citizen.CitizenInfoFragment;
 import com.leon.hamrah_abfa.fragments.citizen.CitizenListFragment;
 import com.leon.hamrah_abfa.fragments.citizen.ContactForbiddenBaseFragment;
 import com.leon.hamrah_abfa.fragments.citizen.ContactForbiddenCompleteFragment;
@@ -53,7 +56,6 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
     @Override
     public void displayView(int position) {
         if (position == CITIZEN_LIST_FRAGMENT) {
-//            setFragment(this, binding.fragmentCitizen.getId(), CitizenListFragment.newInstance());
             adapter = new CitizenAdapter(this, R.array.citizen_menu, R.array.citizen_introduction,
                     R.array.citizen_icons);
             addFragment(this, binding.fragmentCitizen.getId(), CitizenListFragment.newInstance());
@@ -62,11 +64,13 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
             if (viewModel.getType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(0))) {
                 replaceFragment(this, binding.fragmentCitizen.getId(), ContactForbiddenBaseFragment.newInstance());
             } else {
-
+                replaceFragment(this, binding.fragmentCitizen.getId(), CitizenBaseFragment.newInstance());
             }
         } else if (position == CITIZEN_ACCOUNT_FRAGMENT) {
+            replaceFragment(this, binding.fragmentCitizen.getId(), CitizenInfoFragment.newInstance());
 
         } else if (position == CITIZEN_COMPLETE_FRAGMENT) {
+            replaceFragment(this, binding.fragmentCitizen.getId(), CitizenCompleteFragment.newInstance());
 
         } else if (position == CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT) {
             replaceFragment(this, binding.fragmentCitizen.getId(), ContactForbiddenInfoFragment.newInstance());
