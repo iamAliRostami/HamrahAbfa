@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.contact_us;
+package com.leon.hamrah_abfa.fragments.citizen;
 
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
@@ -56,8 +56,18 @@ public class ContactForbiddenInfoFragment extends Fragment implements View.OnCli
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_next) {
-            if (checkInputs())
+            if (checkInputs()) {
+                if (callback.getForbiddenViewModel().getPostalCode() == null ||
+                        callback.getForbiddenViewModel().getPostalCode().isEmpty())
+                    callback.getForbiddenViewModel().setPostalCode("");
+                if (callback.getForbiddenViewModel().getNextEshterak() == null ||
+                        callback.getForbiddenViewModel().getNextEshterak().isEmpty())
+                    callback.getForbiddenViewModel().setNextEshterak("");
+                if (callback.getForbiddenViewModel().getPreEshterak() == null ||
+                        callback.getForbiddenViewModel().getPreEshterak().isEmpty())
+                    callback.getForbiddenViewModel().setPreEshterak("");
                 callback.displayView(CONTACT_FORBIDDEN_COMPLETE_FRAGMENT);
+            }
         } else if (id == R.id.button_previous) {
             requireActivity().getSupportFragmentManager().popBackStack();
         }

@@ -1,6 +1,4 @@
-package com.leon.hamrah_abfa.fragments.contact_us;
-
-import android.graphics.Bitmap;
+package com.leon.hamrah_abfa.fragments.citizen;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
@@ -19,18 +17,21 @@ public class ForbiddenViewModel extends BaseObservable {
     private String x;
     private String y;
     private String tedadVahed;
+    private String type;
 
     public ArrayList<MultipartBody.Part> file = new ArrayList<>();
     private String message;
     private String generationDateTime;
     private int status;
     private boolean isValid;
+
     public void resetViewModel() {
         setDescription("");
         setPostalCode("");
         setPreEshterak("");
         setNextEshterak("");
         setTedadVahed("");
+        setType("");
         file = new ArrayList<>();
     }
 
@@ -102,5 +103,13 @@ public class ForbiddenViewModel extends BaseObservable {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

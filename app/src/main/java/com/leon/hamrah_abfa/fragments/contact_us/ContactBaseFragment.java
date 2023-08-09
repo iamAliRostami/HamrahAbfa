@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentContactBaseBinding;
+import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 
 public class ContactBaseFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
     private FragmentContactBaseBinding binding;

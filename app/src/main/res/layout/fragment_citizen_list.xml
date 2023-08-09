@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/large_dp"
+    tools:context=".fragments.citizen.CitizenListFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/button_submit"
+        android:layout_marginBottom="@dimen/medium_dp"
+        android:nestedScrollingEnabled="true"
+        tools:listitem="@layout/item_service" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_submit"
+        style="@style/ButtonSubmit"
+        android:layout_alignParentBottom="true"
+        android:text="@string/next_level" />
+
+</RelativeLayout>

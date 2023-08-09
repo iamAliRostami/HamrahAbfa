@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.contact_us;
+package com.leon.hamrah_abfa.fragments.citizen;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.helpers.Constants.POINT;
@@ -85,8 +85,8 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     }
 
     private void initializeGridView() {
-        if (callback.getImageViewAdapter() == null)
-            callback.setImageViewAdapter(new ImageViewAdapter(requireContext()));
+//        if (callback.getImageViewAdapter() == null)
+//            callback.setImageViewAdapter(new ImageViewAdapter(requireContext()));
         binding.gridViewImages.setAdapter(callback.getImageViewAdapter());
         binding.gridViewImages.setOnItemClickListener(this);
     }
@@ -224,6 +224,6 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
 
         void setImageViewAdapter(ImageViewAdapter adapter);
 
-        void confirm(String trackNumber);
+        void confirm(String message);
     }
 }

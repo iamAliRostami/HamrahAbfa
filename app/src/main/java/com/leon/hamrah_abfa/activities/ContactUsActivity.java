@@ -28,12 +28,12 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactBaseFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactBranchFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactComplaintFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQFragment;
-import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenBaseFragment;
-import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenCompleteFragment;
-import com.leon.hamrah_abfa.fragments.contact_us.ContactForbiddenInfoFragment;
+import com.leon.hamrah_abfa.fragments.citizen.ContactForbiddenBaseFragment;
+import com.leon.hamrah_abfa.fragments.citizen.ContactForbiddenCompleteFragment;
+import com.leon.hamrah_abfa.fragments.citizen.ContactForbiddenInfoFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhonebookFragment;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactSuggestionFragment;
-import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
+import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
 
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,

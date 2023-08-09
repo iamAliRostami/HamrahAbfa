@@ -258,4 +258,23 @@
         <item>@drawable/notification_debt_1</item>
         <item>@drawable/notification_debt_2</item>
     </array>
+
+
+
+    <string-array name="citizen_menu">
+        <item>غیرمجاز</item>
+        <item>مصرف بی رویه</item>
+        <item>پمپ غیرمجاز</item>
+    </string-array>
+    <array name="citizen_icons">
+        <item>@drawable/ic_forbidden</item>
+        <item>@drawable/citizen_waste</item>
+        <item>@drawable/citizen_pomp</item>
+    </array>
+
+    <string-array name="citizen_introduction">
+        <item>غیرمجاز</item>
+        <item>مصرف بی رویه</item>
+        <item>پمپ غیرمجاز</item>
+    </string-array>
 </resources>

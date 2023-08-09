@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.fragments.contact_us;
+package com.leon.hamrah_abfa.fragments.citizen;
 
 import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
@@ -56,6 +56,9 @@ public class ContactForbiddenBaseFragment extends Fragment implements View.OnCli
                 warning(requireContext(), R.string.enter_forbidden_description).show();
                 return;
             }
+            if (callback.getForbiddenViewModel().getTedadVahed() == null ||
+                    callback.getForbiddenViewModel().getTedadVahed().isEmpty())
+                callback.getForbiddenViewModel().setTedadVahed("");
             callback.displayView(CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT);
         }
     }

@@ -38,7 +38,10 @@ public class Constants {
     public static final int CONTACT_FORBIDDEN_COMPLETE_FRAGMENT = 18;
     public static final int CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT = 21;
     public static final int PAY_BILL_BASE_FRAGMENT = 19;
-    public static final int CUT_OFF_BASE_FRAGMENT = 20;
+    public static final int CITIZEN_LIST_FRAGMENT = 20;
+    public static final int CITIZEN_BASE_FRAGMENT = 24;
+    public static final int CITIZEN_ACCOUNT_FRAGMENT = 25;
+    public static final int CITIZEN_COMPLETE_FRAGMENT = 26;
     public static final int MAX_IMAGE_SIZE = 100000;
     public static final int THEME_DARK = -1;
     public static final int THEME_DEFAULT = 0;

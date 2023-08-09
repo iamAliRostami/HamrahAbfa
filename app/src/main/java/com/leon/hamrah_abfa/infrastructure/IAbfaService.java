@@ -10,7 +10,7 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhoneBook;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackViewModel;
-import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
+import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;

@@ -14,7 +14,7 @@ import android.content.Context;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.fragments.contact_us.ForbiddenViewModel;
+import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.dialog.MessageErrorRequestFragment;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;

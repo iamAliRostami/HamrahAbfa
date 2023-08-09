@@ -269,5 +269,6 @@
     <string name="tedad_vahed">تعداد واحد</string>
     <string name="enter_tedad_vahed">تعداد واحد را وارد کنید</string>
     <string name="incorrect_esherak">فرمت اشتراک صحیح نیست</string>
+    <string name="choose_a_option">یکی از گزینه ها را انتخاب کنید</string>
 
 </resources>
