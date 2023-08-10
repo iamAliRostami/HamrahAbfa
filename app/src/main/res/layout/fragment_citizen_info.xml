@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.citizen.CitizenInfoFragment">
+<layout>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginStart="@dimen/large_dp"
+        android:layout_marginEnd="@dimen/large_dp"
+        android:layout_marginBottom="@dimen/medium_dp"
+        tools:context=".fragments.citizen.CitizenInfoFragment">
 
-</FrameLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_animation_view_complaint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/card_view_content"
+            android:layout_alignParentTop="true"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/forbidden" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content"
+            style="@style/CardStyle.NoMargin"
+            android:layout_above="@id/linear_layout_buttons"
+            android:layout_centerHorizontal="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/large_dp">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_animation_view_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/info" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_view_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/small_dp"
+                    android:layout_toEndOf="@id/lottie_animation_view_info"
+                    android:text="@string/forbidden_description_1"
+                    android:textAppearance="@style/TextStyleSmall.Bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_postal"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_view_description"
+                    android:layout_centerInParent="true"
+                    android:hint="@string/postal_code"
+                    app:helperText="@string/enter_postal_code">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_postal"
+                        style="@style/TextInput"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:text="@={viewModel.postalCode}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_pre"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_layout_postal"
+                    android:layout_alignParentEnd="true"
+                    android:hint="@string/pre_account"
+                    app:counterMaxLength="11"
+                    app:helperText="@string/enter_pre">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_pre"
+                        style="@style/TextInput"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:text="@={viewModel.preEshterak}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/text_layout_next"
+                    style="@style/TextInputLayout"
+                    android:layout_below="@id/text_layout_pre"
+                    android:layout_alignParentEnd="true"
+                    android:hint="@string/next_account"
+                    app:counterMaxLength="11"
+                    app:helperText="@string/enter_next">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_text_next"
+                        style="@style/TextInput"
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:text="@={viewModel.nextEshterak}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button_next"
+                style="@style/ButtonSubmit.Dual"
+                android:text="@string/next_level" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_previous"
+                style="@style/ButtonCancel.Dual"
+                android:text="@string/previous" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </RelativeLayout>
+</layout>

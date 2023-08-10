@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/large_dp"
+    android:layout_marginEnd="@dimen/large_dp"
+    android:layout_marginBottom="@dimen/medium_dp"
+    android:orientation="vertical"
     tools:context=".fragments.citizen.CitizenCompleteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation_view_complaint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/location" />
 
-</FrameLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_map_title"
+        style="@style/TitleHelp"
+        android:layout_below="@id/lottie_animation_view_complaint"
+        android:text="@string/submit_location" />
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_map"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@id/grid_view_images"
+        android:layout_below="@id/text_view_map_title"
+        android:layout_marginTop="@dimen/medium_dp"
+        android:layout_marginBottom="@dimen/medium_dp"
+        android:layout_weight="1"
+        android:background="@drawable/border_dotted_gray">
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/map_pointer" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_current_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/medium_dp"
+            android:src="@drawable/ic_current_location" />
+    </RelativeLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_image_title"
+        style="@style/TitleHelp"
+        android:layout_above="@id/grid_view_images"
+        android:text="@string/upload_image" />
+
+    <GridView
+        android:id="@+id/grid_view_images"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linear_layout_buttons"
+        android:layout_marginTop="@dimen/medium_dp"
+        android:layout_marginBottom="@dimen/medium_dp"
+        android:background="@drawable/background_incident_field"
+        android:numColumns="5"
+        tools:listitem="@layout/item_image" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_confirm"
+            style="@style/ButtonSubmit.Dual"
+            android:text="@string/confirm" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_previous"
+            style="@style/ButtonCancel.Dual"
+            android:text="@string/previous" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

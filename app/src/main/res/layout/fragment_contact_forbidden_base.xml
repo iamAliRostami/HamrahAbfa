@@ -57,11 +57,11 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_postal"
-                    style="@style/TextInputLayout"
+                    style="@style/MenuLayout"
                     android:layout_below="@id/text_view_description"
                     android:layout_centerInParent="true"
-                    android:hint="@string/tedad_vahed"
-                    app:helperText="@string/enter_tedad_vahed">
+                    android:hint="@string/report_type"
+                    app:helperText="@string/enter_report_type">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_text_postal"

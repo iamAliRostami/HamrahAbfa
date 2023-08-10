@@ -38,7 +38,8 @@ import java.util.Arrays;
 
 public class CitizenActivity extends BaseActivity implements CitizenListFragment.ICallback,
         ContactBaseFragment.ICallback, ContactForbiddenBaseFragment.ICallback,
-        ContactForbiddenCompleteFragment.ICallback, ContactForbiddenInfoFragment.ICallback {
+        ContactForbiddenCompleteFragment.ICallback, ContactForbiddenInfoFragment.ICallback,
+        CitizenBaseFragment.ICallback, CitizenInfoFragment.ICallback, CitizenCompleteFragment.ICallback {
     private ActivityCitizenBinding binding;
     private final ForbiddenViewModel viewModel = new ForbiddenViewModel();
     private ImageViewAdapter imageAdapter;
@@ -68,10 +69,8 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
             }
         } else if (position == CITIZEN_ACCOUNT_FRAGMENT) {
             replaceFragment(this, binding.fragmentCitizen.getId(), CitizenInfoFragment.newInstance());
-
         } else if (position == CITIZEN_COMPLETE_FRAGMENT) {
             replaceFragment(this, binding.fragmentCitizen.getId(), CitizenCompleteFragment.newInstance());
-
         } else if (position == CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT) {
             replaceFragment(this, binding.fragmentCitizen.getId(), ContactForbiddenInfoFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_COMPLETE_FRAGMENT) {

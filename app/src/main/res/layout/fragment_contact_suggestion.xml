@@ -65,8 +65,6 @@
                     android:id="@+id/menu"
                     style="@style/MenuLayout"
                     android:layout_below="@id/text_view_description"
-                    android:layout_marginTop="@dimen/medium_dp"
-                    android:layout_marginBottom="@dimen/medium_dp"
                     android:hint="@string/suggestion_type">
 
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView

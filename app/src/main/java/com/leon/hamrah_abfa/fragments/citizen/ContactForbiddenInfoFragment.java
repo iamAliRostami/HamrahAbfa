@@ -46,11 +46,6 @@ public class ContactForbiddenInfoFragment extends Fragment implements View.OnCli
         binding.buttonPrevious.setOnClickListener(this);
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof Activity) callback = (ICallback) context;
-    }
 
     @Override
     public void onClick(View v) {
@@ -96,10 +91,14 @@ public class ContactForbiddenInfoFragment extends Fragment implements View.OnCli
             binding.editTextNext.requestFocus();
             return false;
         }
-
         return true;
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
     public interface ICallback {
         void displayView(int position);
 
