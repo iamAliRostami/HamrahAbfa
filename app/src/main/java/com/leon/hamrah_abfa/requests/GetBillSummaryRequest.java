@@ -10,7 +10,7 @@ import static com.leon.toast.RTLToast.warning;
 import android.content.Context;
 
 import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardViewModel;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardSummaryViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -27,10 +27,12 @@ public class GetBillSummaryRequest {
 
     private final Context context;
     private final ICallback callback;
+    private final String id;
 
-    public GetBillSummaryRequest(Context context, ICallback callback) {
+    public GetBillSummaryRequest(Context context, ICallback callback, String id) {
         this.context = context;
         this.callback = callback;
+        this.id = id;
     }
 
     public boolean request() {
@@ -38,13 +40,13 @@ public class GetBillSummaryRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         //TODO
-        Call<BillSummary> call = iAbfaService.getBillSummary("d6685f04-c2ab-4ac4-87d6-0a8769786ac5");
+        Call<BillSummary> call = iAbfaService.getBillSummary(id);
         return callHttpAsync(context, call, new BillSummarySuccessful(callback),
                 new BillSummaryIncomplete(context, callback), new BillSummaryFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(ArrayList<DashboardViewModel> billSummary);
+        void succeed(ArrayList<DashboardSummaryViewModel> billSummary);
 
         void changeUI(boolean show);
     }

@@ -11,9 +11,9 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardFragment"
+        android:name="com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardBaseFragment"
         android:label="@string/dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard_base" />
     <fragment
         android:id="@+id/navigation_incident"
         android:name="com.leon.hamrah_abfa.fragments.ui.incident.IncidentFragment"

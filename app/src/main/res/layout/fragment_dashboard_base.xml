@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/large_dp"
+    tools:context=".fragments.ui.dashboard.DashboardBaseFragment">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_card"
+        style="@style/CardStyleViewPager" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_animation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/text_view_dashboard"
+        android:layout_below="@id/view_pager_card"
+        android:layout_marginTop="@dimen/xlarge_dp"
+        android:scaleType="fitStart"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/dashboard"
+        app:lottie_repeatMode="reverse" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_view_dashboard"
+        style="@style/Title"
+        android:layout_above="@id/button_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/xlarge_dp"
+        android:layout_marginBottom="@dimen/xlarge_dp"
+        android:text="@string/dashboard_description" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_start"
+        style="@style/ButtonSubmit"
+        android:layout_alignParentBottom="true"
+        android:text="@string/start" />
+</RelativeLayout>

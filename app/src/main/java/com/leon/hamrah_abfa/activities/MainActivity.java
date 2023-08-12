@@ -46,12 +46,13 @@ import com.leon.hamrah_abfa.enums.BundleEnum;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardBaseFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
-        SubmitInfoFragment.ICallback, ServiceFragment.ICallback {
+        SubmitInfoFragment.ICallback, ServiceFragment.ICallback, DashboardBaseFragment.ICallback {
     private CardPagerAdapter cardPagerAdapter;
     private ActivityMainBinding binding;
     private int position;
@@ -63,13 +64,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //TODO
-
-
-
-
-
-
-
         startScheduledBackgroundTask();
         initializeSplash();
         // TODO

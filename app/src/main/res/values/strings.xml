@@ -274,5 +274,6 @@
     <string name="report_type">نوع گزارش</string>
     <string name="enter_report_type">نوع گزارش را وارد کنید</string>
     <string name="enter_status">وضعیت را وارد کنید</string>
+    <string name="dashboard_description">توضیح داشبورد</string>
 
 </resources>
