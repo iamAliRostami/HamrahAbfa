@@ -3,10 +3,12 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.helpers.Constants.FONT_NAME;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
@@ -93,5 +95,10 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public Typeface getTypeface() {
+        return Typeface.createFromAsset(getAssets(), FONT_NAME);
     }
 }

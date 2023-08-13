@@ -7,12 +7,13 @@
     tools:context=".fragments.dashboard.DashboardSummaryFragment">
 
     <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart1"
+        android:id="@+id/chart_bar"
+        android:background="@color/light_gray"
         android:layout_width="match_parent"
         android:layout_height="400dp" />
 
     <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart2"
+        android:id="@+id/chart_line"
         android:layout_width="match_parent"
         android:layout_height="400dp" />
 </androidx.appcompat.widget.LinearLayoutCompat>
