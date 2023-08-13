@@ -56,15 +56,15 @@
                     android:textAppearance="@style/TextStyleSmall.Bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/text_layout_postal"
-                    style="@style/MenuLayout"
+                    android:id="@+id/text_layout_tedad"
+                    style="@style/TextInputLayout"
                     android:layout_below="@id/text_view_description"
                     android:layout_centerInParent="true"
-                    android:hint="@string/report_type"
-                    app:helperText="@string/enter_report_type">
+                    android:hint="@string/tedad_vahed"
+                    app:helperText="@string/enter_tedad_vahed">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_text_postal"
+                        android:id="@+id/edit_text_tedad"
                         style="@style/TextInput"
                         android:inputType="number"
                         android:maxLength="2"
@@ -74,7 +74,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_description"
                     style="@style/TextInputLayout"
-                    android:layout_below="@id/text_layout_postal"
+                    android:layout_below="@id/text_layout_tedad"
                     android:hint="@string/description"
                     app:counterEnabled="true"
                     app:counterMaxLength="1000"

@@ -22,10 +22,14 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.databinding.FragmentCitizenBaseBinding;
 import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class CitizenBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentCitizenBaseBinding binding;
     private ICallback callback;
+    private ArrayList<String> titles = new ArrayList<>();
 
     public CitizenBaseFragment() {
     }
@@ -49,6 +53,17 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
+        if (callback.getForbiddenViewModel().getType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(1))) {
+            titles.add("شستشوی معابر");
+            titles.add("نشت کولر");
+            titles.add("آبیاری فضای سبز");
+            titles.add("پر سازی استخر");
+            titles.add("شستشوی خودرو");
+            titles.add("شستشوی فرش");
+        } else {
+            titles.add("پمپ مستقیم به شبکه");
+            titles.add("سایر");
+        }
         binding.buttonNext.setOnClickListener(this);
         binding.editTextType.setOnClickListener(this);
     }
@@ -83,10 +98,8 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
 
     private void showMenu(View v) {
         final PopupMenu popup = new PopupMenu(requireActivity(), v, Gravity.TOP);
-//        for (int i = 0; i < feedbackType.size(); i++)
-        popup.getMenu().add("title1");
-        popup.getMenu().add("title2");
-        popup.getMenu().add("title3");
+        for (int i = 0; i < titles.size(); i++)
+            popup.getMenu().add(titles.get(i));
         if (popup.getMenu() instanceof MenuBuilder) {
             final MenuBuilder menuBuilder = (MenuBuilder) popup.getMenu();
             //noinspection RestrictedApi
