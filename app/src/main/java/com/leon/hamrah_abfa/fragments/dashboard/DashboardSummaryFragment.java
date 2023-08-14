@@ -33,7 +33,6 @@ import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardSummaryViewModel;
 import java.util.ArrayList;
 
 public class DashboardSummaryFragment extends Fragment {
-
     private FragmentDashboardSummaryBinding binding;
     private ICallback callback;
     private String[] billSummaryDays;
@@ -80,14 +79,18 @@ public class DashboardSummaryFragment extends Fragment {
 //            barEntries.add(new BarEntry(i, i*10));
         }
         designLineChart();
-        setData(entries);
+        setLineData(entries);
 
         designBarChart();
-        setData1(barEntries);
+        setBarData(barEntries);
     }
 
     private void designLineChart() {
-        binding.chartLine.getDescription().setText("میانگین مصرف دوره\u200cای");
+        binding.chartLine.setNoDataText(getString(R.string.no_data_found));
+        binding.chartLine.setNoDataTextColor(R.color.dark_gray);
+        binding.chartLine.setNoDataTextTypeface(callback.getTypeface());
+
+        binding.chartLine.getDescription().setText(getString(R.string.chart_rate_avg_description));
         binding.chartLine.getDescription().setXOffset(10f);
         binding.chartLine.getDescription().setYOffset(10f);
         binding.chartLine.getDescription().setTextColor(R.color.dark_gray);
@@ -122,7 +125,7 @@ public class DashboardSummaryFragment extends Fragment {
         yAxisRight.setTypeface(callback.getTypeface());
         yAxisRight.setDrawLimitLinesBehindData(true);
 
-        LimitLine limitLine = new LimitLine(callback.getBillSummary().maxValue, "حد بالای مصرف");
+        LimitLine limitLine = new LimitLine(callback.getBillSummary().maxValue, getString(R.string.chart_rate_avg_max));
         limitLine.setLineColor(R.color.dark_gray);
         limitLine.setLineWidth(2f);
         limitLine.enableDashedLine(10f, 10f, 0f);
@@ -158,7 +161,7 @@ public class DashboardSummaryFragment extends Fragment {
 //        binding.chartLine.setData(lineData);
     }
 
-    private void setData(ArrayList<Entry> values) {
+    private void setLineData(ArrayList<Entry> values) {
 
         LineDataSet dataSet;
 
@@ -170,7 +173,7 @@ public class DashboardSummaryFragment extends Fragment {
             binding.chartLine.getData().notifyDataChanged();
             binding.chartLine.notifyDataSetChanged();
         } else {
-            dataSet = new LineDataSet(values, "میانگین مصرف");
+            dataSet = new LineDataSet(values, getString(R.string.chart_rate_avg));
             dataSet.enableDashedLine(10f, 5f, 0f);
 
             dataSet.setColors(R.color.dark_gray);
@@ -214,6 +217,10 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     private void designBarChart() {
+        binding.chartBar.setNoDataText(getString(R.string.no_data_found));
+        binding.chartBar.setNoDataTextColor(R.color.dark_gray);
+        binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
+
         binding.chartBar.getDescription().setEnabled(false);
         binding.chartBar.setDragEnabled(false);
         binding.chartBar.setScaleEnabled(false);
@@ -264,7 +271,7 @@ public class DashboardSummaryFragment extends Fragment {
 //        binding.chartBar.setData(data);
     }
 
-    private void setData1(ArrayList<BarEntry> values) {
+    private void setBarData(ArrayList<BarEntry> values) {
         BarDataSet dataSet;
         if (binding.chartBar.getData() != null &&
                 binding.chartBar.getData().getDataSetCount() > 0) {
@@ -274,10 +281,9 @@ public class DashboardSummaryFragment extends Fragment {
             binding.chartBar.notifyDataSetChanged();
 
         } else {
-            dataSet = new BarDataSet(values, "میانگین مصرف");
+            dataSet = new BarDataSet(values, getString(R.string.chart_rate_avg));
             dataSet.setColors(R.color.purple_7001, R.color.dark_gray, R.color.purple_7002, R.color.dark);
             dataSet.setStackLabels(billSummaryDays);
-
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataSet);
@@ -304,7 +310,6 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     public interface ICallback {
-        //        ArrayList<DashboardSummaryViewModel> getBillSummary();
         BillSummary getBillSummary();
 
         Typeface getTypeface();

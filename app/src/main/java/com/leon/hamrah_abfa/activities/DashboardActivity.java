@@ -15,20 +15,22 @@ import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityDashboardBinding;
+import com.leon.hamrah_abfa.fragments.dashboard.DashboardCounterFragment;
 import com.leon.hamrah_abfa.fragments.dashboard.DashboardSummaryFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardSummaryViewModel;
-import com.leon.hamrah_abfa.requests.GetBillSummaryRequest;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStats;
+import com.leon.hamrah_abfa.requests.GetCounterStatRequest;
+import com.leon.hamrah_abfa.requests.dashboard.GetBillSummaryRequest;
 
-import java.util.ArrayList;
-
-public class DashboardActivity extends BaseActivity implements DashboardSummaryFragment.ICallback {
+public class DashboardActivity extends BaseActivity implements DashboardSummaryFragment.ICallback,
+        DashboardCounterFragment.ICallback {
     private ActivityDashboardBinding binding;
     private DialogFragment fragment;
     private String billId;
     private String uuid;
     private BillSummary billSummary;
+    private CounterStats counterStats;
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -60,6 +62,23 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
             }
         }, uuid).request();
         progressStatus(isOnline);
+        requestCounterStat();
+    }
+
+    private void requestCounterStat() {
+        boolean isOnline = new GetCounterStatRequest(this, new GetCounterStatRequest.ICallback() {
+
+            @Override
+            public void succeed(CounterStats counterStat) {
+                showCounterStat(counterStat);
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, uuid).request();
+        progressStatus(isOnline);
     }
 
     private void progressStatus(boolean show) {
@@ -83,6 +102,13 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
 
     }
 
+    private void showCounterStat(CounterStats counterStats) {
+        this.counterStats = counterStats;
+        getSupportFragmentManager().beginTransaction().replace(binding.fragmentCounter.getId(),
+                DashboardCounterFragment.newInstance()).commitNow();
+
+    }
+
     @Override
     public BillSummary getBillSummary() {
         return billSummary;
@@ -101,5 +127,10 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     @Override
     public Typeface getTypeface() {
         return Typeface.createFromAsset(getAssets(), FONT_NAME);
+    }
+
+    @Override
+    public CounterStats getCounterStat() {
+        return counterStats;
     }
 }

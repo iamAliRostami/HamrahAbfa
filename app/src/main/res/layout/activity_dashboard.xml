@@ -14,5 +14,11 @@
             android:id="@+id/fragment_summary"
             style="@style/FragmentContainerStyle"
             android:layout_margin="@dimen/medium_dp" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_counter"
+            style="@style/FragmentContainerStyle"
+            android:layout_below="@id/fragment_summary"
+            android:layout_margin="@dimen/medium_dp" />
     </RelativeLayout>
 </ScrollView>

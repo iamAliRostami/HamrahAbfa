@@ -2,8 +2,6 @@ package com.leon.hamrah_abfa.fragments.ui.dashboard;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
-import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
-import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +13,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -25,10 +22,6 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.DashboardActivity;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentDashboardBaseBinding;
-import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
-import com.leon.hamrah_abfa.requests.GetBillSummaryRequest;
-
-import java.util.ArrayList;
 
 public class DashboardBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentDashboardBaseBinding binding;

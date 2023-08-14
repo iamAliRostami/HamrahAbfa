@@ -5,12 +5,12 @@ import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
+import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactBranch;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQ;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactPhoneBook;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackViewModel;
-import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
@@ -19,6 +19,7 @@ import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStats;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
 import java.util.ArrayList;
@@ -124,4 +125,7 @@ public interface IAbfaService {
 
     @GET("KontoriNew/V1/MobileBill/GetBillSummary/{id}")
     Call<BillSummary> getBillSummary(@Path("id") String id);
+
+    @GET("KontoriNew/V1/MobileBill/GetCounterStat/{id}")
+    Call<CounterStats> getCounterStat(@Path("id") String id);
 }

@@ -172,6 +172,7 @@
     <string name="road_internal">مسیریابی داخلی</string>
     <string name="gps_is_not_available">دستگاه شما مجهز به مسیریاب نیست.</string>
     <string name="not_found">موردی یافت نشد</string>
+    <string name="no_data_found">داده\u200cای یافت نشد</string>
     <string name="call_permission_granted">دسترسی تماس داده شد</string>
     <string name="call_permission_unavailable">دسترسی تماس داده نشد</string>
     <string name="saved_in_clipboard">در کلیپ برد ذخیره شد</string>
@@ -275,5 +276,8 @@
     <string name="enter_report_type">نوع گزارش را وارد کنید</string>
     <string name="enter_status">وضعیت را وارد کنید</string>
     <string name="dashboard_description">توضیح داشبورد</string>
-
+    <string name="chart_rate_avg">میانگین مصرف دوره\u200cای</string>
+    <string name="chart_rate_avg_description">توضیح میانگین مصرف دوره\u200cای</string>
+    <string name="chart_rate_avg_max">بیشترین مصرف مورد انتظار</string>
+    <string name="counter_state">وضعیت قرائت</string>
 </resources>
