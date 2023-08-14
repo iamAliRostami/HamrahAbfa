@@ -76,8 +76,6 @@ public class DashboardSummaryFragment extends Fragment {
             billSummaryRates[i] = billSummary.get(i).getRate();
             entries.add(new BarEntry(i, billSummary.get(i).getRate()));
             barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
-
-
 //            entries.add(new BarEntry(i, i*10));
 //            barEntries.add(new BarEntry(i, i*10));
         }
@@ -194,12 +192,20 @@ public class DashboardSummaryFragment extends Fragment {
             dataSet.setDrawFilled(true);
             dataSet.setFillFormatter((dataSet1, dataProvider) -> binding.chartLine.getAxisLeft().getAxisMinimum());
 
+
             dataSet.setFillColor(R.color.light_gray);
 
             ArrayList<ILineDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataSet);
 
             LineData data = new LineData(dataSets);
+            data.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+//                    return super.getFormattedValue((int) value);
+                    return String.valueOf((int) value);
+                }
+            });
             data.setValueTextColor(R.color.dark);
             data.setValueTypeface(callback.getTypeface());
 
@@ -277,6 +283,13 @@ public class DashboardSummaryFragment extends Fragment {
             dataSets.add(dataSet);
 
             BarData data = new BarData(dataSets);
+            data.setValueFormatter(new ValueFormatter() {
+                @Override
+                public String getFormattedValue(float value) {
+                    return String.valueOf((int) value);
+//                    return super.getFormattedValue((int) value);
+                }
+            });
             data.setValueTypeface(callback.getTypeface());
             binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
             binding.chartBar.setNoDataTextColor(R.color.dark);
