@@ -46,7 +46,7 @@ public class GetBillSummaryRequest {
     }
 
     public interface ICallback {
-        void succeed(ArrayList<DashboardSummaryViewModel> billSummary);
+        void succeed(BillSummary billSummary);
 
         void changeUI(boolean show);
     }
@@ -62,7 +62,7 @@ class BillSummarySuccessful implements ICallbackSucceed<BillSummary> {
     @Override
     public void executeCompleted(Response<BillSummary> response) {
         if (response.body() != null) {
-            callback.succeed(response.body().billSummaryWrapper);
+            callback.succeed(response.body());
         }
         callback.changeUI(false);
     }

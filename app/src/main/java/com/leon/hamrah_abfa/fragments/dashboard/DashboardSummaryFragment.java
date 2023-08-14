@@ -2,7 +2,7 @@ package com.leon.hamrah_abfa.fragments.dashboard;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.DashPathEffect;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.github.mikephil.charting.animation.ChartAnimator;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -23,15 +23,14 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.interfaces.dataprovider.LineDataProvider;
-import com.github.mikephil.charting.renderer.LineChartRenderer;
-import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentDashboardSummaryBinding;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardSummaryViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DashboardSummaryFragment extends Fragment {
 
@@ -67,38 +66,162 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     private void initializeChart() {
-        billSummaryRates = new float[callback.getBillSummary().size()];
-        billSummaryDays = new String[callback.getBillSummary().size()];
-        ArrayList<DashboardSummaryViewModel> billSummary = callback.getBillSummary();
-        List<Entry> yValues = new ArrayList<>();
-        ArrayList<BarEntry> values = new ArrayList<>();
+        billSummaryRates = new float[callback.getBillSummary().billSummaryWrapper.size()];
+        billSummaryDays = new String[callback.getBillSummary().billSummaryWrapper.size()];
+        ArrayList<DashboardSummaryViewModel> billSummary = callback.getBillSummary().billSummaryWrapper;
+        ArrayList<Entry> entries = new ArrayList<>();
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
         for (int i = 0; i < billSummary.size(); i++) {
             billSummaryDays[i] = billSummary.get(i).getDay();
             billSummaryRates[i] = billSummary.get(i).getRate();
-            yValues.add(new BarEntry(i, billSummary.get(i).getRate()));
-            values.add(new BarEntry(i, billSummary.get(i).getRate()));
+            entries.add(new BarEntry(i, billSummary.get(i).getRate()));
+            barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
+
+
+//            entries.add(new BarEntry(i, i*10));
+//            barEntries.add(new BarEntry(i, i*10));
         }
-        setDataLine(yValues);
-        setDataBar(values);
+        designLineChart();
+        setData(entries);
+
+        designBarChart();
+        setData1(barEntries);
     }
 
-    private void setDataLine(List<Entry> yValues) {
-        LineDataSet dataSet = new LineDataSet(yValues, "میانگین مصرف");
-        dataSet.setColors(R.color.dark_gray);
-        dataSet.setCircleColor(R.color.purple_7001);
-        LineData lineChart = new LineData(dataSet);
-        lineChart.setValueTextColor(R.color.dark);
-        lineChart.setValueTypeface(callback.getTypeface());
+    private void designLineChart() {
+        binding.chartLine.getDescription().setText("میانگین مصرف دوره\u200cای");
+        binding.chartLine.getDescription().setXOffset(10f);
+        binding.chartLine.getDescription().setYOffset(10f);
+        binding.chartLine.getDescription().setTextColor(R.color.dark_gray);
+        binding.chartLine.getDescription().setTypeface(callback.getTypeface());
+
+        binding.chartLine.setDragEnabled(false);
+        binding.chartLine.setScaleEnabled(false);
+        binding.chartLine.setPinchZoom(false);
 
         XAxis xAxis = binding.chartLine.getXAxis();
+        xAxis.setDrawLimitLinesBehindData(true);
         xAxis.setTypeface(callback.getTypeface());
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(true);
-
         xAxis.setLabelRotationAngle(-45);
         xAxis.setGranularity(1f);
         xAxis.setTypeface(callback.getTypeface());
+        xAxis.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return billSummaryDays[(int) value];
+            }
+        });
+        binding.chartLine.getXAxis().setSpaceMax(0.2f);
+        binding.chartLine.getXAxis().setSpaceMin(0.2f);
 
+        YAxis yAxisLeft = binding.chartLine.getAxisLeft();
+        yAxisLeft.setTypeface(callback.getTypeface());
+        yAxisLeft.setDrawLimitLinesBehindData(true);
+
+        YAxis yAxisRight = binding.chartLine.getAxisRight();
+        yAxisRight.setTypeface(callback.getTypeface());
+        yAxisRight.setDrawLimitLinesBehindData(true);
+
+        LimitLine limitLine = new LimitLine(callback.getBillSummary().maxValue, "حد بالای مصرف");
+        limitLine.setLineColor(R.color.dark_gray);
+        limitLine.setLineWidth(2f);
+        limitLine.enableDashedLine(10f, 10f, 0f);
+        limitLine.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
+        limitLine.setTextSize(10f);
+        limitLine.setTypeface(callback.getTypeface());
+
+        yAxisLeft.addLimitLine(limitLine);
+
+        yAxisRight.setAxisMinimum(0f);
+        yAxisLeft.setAxisMinimum(0f);
+
+        Legend legend = binding.chartLine.getLegend();
+        legend.setWordWrapEnabled(true);
+        legend.setTextSize(10);
+        legend.setTypeface(callback.getTypeface());
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setDrawInside(false);
+        legend.setForm(Legend.LegendForm.LINE);
+//        binding.chartLine.invalidate();
+
+        binding.chartLine.animateXY(1500, 1500);
+        binding.chartLine.setExtraOffsets(5f, 0f, 5f, 10f);
+
+//        LineDataSet dataSet = new LineDataSet(values, "میانگین مصرف");
+//        dataSet.setColors(R.color.dark_gray);
+//        dataSet.setCircleColor(R.color.purple_7001);
+//        LineData lineData = new LineData(dataSet);
+//        lineData.setValueTextColor(R.color.dark);
+//        lineData.setValueTypeface(callback.getTypeface());
+//        binding.chartLine.setData(lineData);
+    }
+
+    private void setData(ArrayList<Entry> values) {
+
+        LineDataSet dataSet;
+
+        if (binding.chartLine.getData() != null &&
+                binding.chartLine.getData().getDataSetCount() > 0) {
+            dataSet = (LineDataSet) binding.chartLine.getData().getDataSetByIndex(0);
+            dataSet.setValues(values);
+            dataSet.notifyDataSetChanged();
+            binding.chartLine.getData().notifyDataChanged();
+            binding.chartLine.notifyDataSetChanged();
+        } else {
+            dataSet = new LineDataSet(values, "میانگین مصرف");
+            dataSet.enableDashedLine(10f, 5f, 0f);
+
+            dataSet.setColors(R.color.dark_gray);
+            dataSet.setCircleColor(R.color.purple_7001);
+
+            dataSet.setLineWidth(1f);
+            dataSet.setCircleRadius(3f);
+
+            dataSet.setDrawCircleHole(true);
+
+            dataSet.setFormLineWidth(1f);
+            dataSet.setFormLineDashEffect(new DashPathEffect(new float[]{10f, 5f}, 0f));
+            dataSet.setFormSize(15.f);
+
+            dataSet.setValueTextSize(9f);
+
+            dataSet.enableDashedHighlightLine(10f, 5f, 0f);
+
+            dataSet.setDrawFilled(true);
+            dataSet.setFillFormatter((dataSet1, dataProvider) -> binding.chartLine.getAxisLeft().getAxisMinimum());
+
+            dataSet.setFillColor(R.color.light_gray);
+
+            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
+            dataSets.add(dataSet);
+
+            LineData data = new LineData(dataSets);
+            data.setValueTextColor(R.color.dark);
+            data.setValueTypeface(callback.getTypeface());
+
+            binding.chartLine.setData(data);
+        }
+    }
+
+    private void designBarChart() {
+        binding.chartBar.getDescription().setEnabled(false);
+        binding.chartBar.setDragEnabled(false);
+        binding.chartBar.setScaleEnabled(false);
+        binding.chartBar.setPinchZoom(false);
+
+
+        XAxis xAxis = binding.chartBar.getXAxis();
+        xAxis.setDrawLimitLinesBehindData(false);
+        xAxis.setTypeface(callback.getTypeface());
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setDrawGridLines(false);
+        xAxis.setLabelRotationAngle(-45);
+        xAxis.setGranularity(1f);
+        xAxis.setTypeface(callback.getTypeface());
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -106,43 +229,59 @@ public class DashboardSummaryFragment extends Fragment {
             }
         });
 
-
-        YAxis yAxisLeft = binding.chartLine.getAxisLeft();
+        YAxis yAxisLeft = binding.chartBar.getAxisLeft();
         yAxisLeft.setTypeface(callback.getTypeface());
-        YAxis yAxisRight = binding.chartLine.getAxisRight();
-        yAxisRight.setTypeface(callback.getTypeface());
-        binding.chartLine.setData(lineChart);
-        binding.chartLine.setExtraOffsets(5f, 0f, 5f, 10f);
-        binding.chartLine.getXAxis().setSpaceMin(0.2f);
-        binding.chartLine.getXAxis().setSpaceMax(0.2f);
-        binding.chartLine.getDescription().setText("میانگین مصرف دوره\u200cای");
-        binding.chartLine.getDescription().setXOffset(10f);
-        binding.chartLine.getDescription().setYOffset(10f);
-        binding.chartLine.getDescription().setTextColor(R.color.dark_gray);
-        binding.chartLine.getDescription().setTypeface(callback.getTypeface());
+        yAxisLeft.setDrawLimitLinesBehindData(true);
 
-        Legend l = binding.chartLine.getLegend();
-        l.setWordWrapEnabled(true);
-        l.setTextSize(10);
-        l.setTypeface(callback.getTypeface());
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
-        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setDrawInside(false);
-        l.setForm(Legend.LegendForm.NONE);
-        binding.chartLine.invalidate();
+        YAxis yAxisRight = binding.chartBar.getAxisRight();
+        yAxisRight.setTypeface(callback.getTypeface());
+        yAxisRight.setDrawLimitLinesBehindData(true);
+
+        Legend legend = binding.chartBar.getLegend();
+        legend.setWordWrapEnabled(true);
+        legend.setTextSize(10);
+        legend.setTypeface(callback.getTypeface());
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        legend.setDrawInside(false);
+        legend.setForm(Legend.LegendForm.SQUARE);
+
+        binding.chartBar.animateXY(1500, 1500);
+        binding.chartBar.setExtraOffsets(5f, 0f, 5f, 10f);
+
+
+//        BarData data = new BarData(dataSet);
+//        data.setValueTypeface(callback.getTypeface());
+//        binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
+//        binding.chartBar.setNoDataTextColor(R.color.dark);
+//        binding.chartBar.setData(data);
     }
 
-    private void setDataBar(ArrayList<BarEntry> values) {
-        BarDataSet dataSet = new BarDataSet(values, "میانگین مصرف");
-        dataSet.setColors(R.color.purple_7001, R.color.dark_gray, R.color.purple_7002, R.color.dark);
-        dataSet.setStackLabels(billSummaryDays);
+    private void setData1(ArrayList<BarEntry> values) {
+        BarDataSet dataSet;
+        if (binding.chartBar.getData() != null &&
+                binding.chartBar.getData().getDataSetCount() > 0) {
+            dataSet = (BarDataSet) binding.chartBar.getData().getDataSetByIndex(0);
+            dataSet.setValues(values);
+            binding.chartBar.getData().notifyDataChanged();
+            binding.chartBar.notifyDataSetChanged();
 
-        BarData data = new BarData(dataSet);
-        data.setValueTypeface(callback.getTypeface());
-        binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
-        binding.chartBar.setNoDataTextColor(R.color.dark);
-        binding.chartBar.setData(data);
+        } else {
+            dataSet = new BarDataSet(values, "میانگین مصرف");
+            dataSet.setColors(R.color.purple_7001, R.color.dark_gray, R.color.purple_7002, R.color.dark);
+            dataSet.setStackLabels(billSummaryDays);
+
+
+            ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+            dataSets.add(dataSet);
+
+            BarData data = new BarData(dataSets);
+            data.setValueTypeface(callback.getTypeface());
+            binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
+            binding.chartBar.setNoDataTextColor(R.color.dark);
+            binding.chartBar.setData(data);
+        }
     }
 
     @Override
@@ -152,7 +291,8 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     public interface ICallback {
-        ArrayList<DashboardSummaryViewModel> getBillSummary();
+        //        ArrayList<DashboardSummaryViewModel> getBillSummary();
+        BillSummary getBillSummary();
 
         Typeface getTypeface();
     }

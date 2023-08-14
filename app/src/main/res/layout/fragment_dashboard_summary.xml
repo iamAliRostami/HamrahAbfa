@@ -2,13 +2,12 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".fragments.dashboard.DashboardSummaryFragment">
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart_bar"
-        android:background="@color/light_gray"
         android:layout_width="match_parent"
         android:layout_height="400dp" />
 

@@ -17,6 +17,7 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityDashboardBinding;
 import com.leon.hamrah_abfa.fragments.dashboard.DashboardSummaryFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardSummaryViewModel;
 import com.leon.hamrah_abfa.requests.GetBillSummaryRequest;
 
@@ -27,7 +28,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     private DialogFragment fragment;
     private String billId;
     private String uuid;
-    private ArrayList<DashboardSummaryViewModel> billSummary = new ArrayList<>();
+    private BillSummary billSummary;
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -49,7 +50,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         boolean isOnline = new GetBillSummaryRequest(this, new GetBillSummaryRequest.ICallback() {
 
             @Override
-            public void succeed(ArrayList<DashboardSummaryViewModel> billSummary) {
+            public void succeed(BillSummary billSummary) {
                 showBillSummary(billSummary);
             }
 
@@ -75,15 +76,15 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         }
     }
 
-    private void showBillSummary(ArrayList<DashboardSummaryViewModel> billSummary) {
-        this.billSummary.addAll(billSummary);
+    private void showBillSummary(BillSummary billSummary) {
+        this.billSummary = billSummary;
         getSupportFragmentManager().beginTransaction().replace(binding.fragmentSummary.getId(),
                 DashboardSummaryFragment.newInstance()).commitNow();
 
     }
 
     @Override
-    public ArrayList<DashboardSummaryViewModel> getBillSummary() {
+    public BillSummary getBillSummary() {
         return billSummary;
     }
 

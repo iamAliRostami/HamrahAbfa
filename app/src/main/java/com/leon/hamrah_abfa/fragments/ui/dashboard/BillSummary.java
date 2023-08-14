@@ -4,4 +4,5 @@ import java.util.ArrayList;
 
 public class BillSummary {
     public ArrayList<DashboardSummaryViewModel> billSummaryWrapper = new ArrayList<>();
+    public int maxValue;
 }
