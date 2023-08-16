@@ -7,6 +7,7 @@ import com.leon.hamrah_abfa.BR;
 
 public class VerificationViewModel extends BaseObservable {
     private String verificationId;
+    private String deviceInfo;
     private long remainedSeconds;
     private String mobile;
     private String customSerial;
@@ -97,5 +98,7 @@ public class VerificationViewModel extends BaseObservable {
 
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
+    }public void setDeviceInfo(String deviceInfo) {
+        this.deviceInfo = deviceInfo;
     }
 }
