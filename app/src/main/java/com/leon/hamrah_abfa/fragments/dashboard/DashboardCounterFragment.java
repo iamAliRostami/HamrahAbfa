@@ -22,8 +22,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentDashboardCounterBinding;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStat;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStats;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,9 +59,9 @@ public class DashboardCounterFragment extends Fragment {
         designPieChart();
         if (!callback.getCounterStat().counterStatWrapper.isEmpty()) {
             ArrayList<PieEntry> entries = new ArrayList<>();
-            ArrayList<CounterStat> counterStats = callback.getCounterStat().counterStatWrapper;
-            for (int i = 0; i < counterStats.size(); i++) {
-                entries.add(new PieEntry(counterStats.get(i).count, counterStats.get(i).title));
+            ArrayList<Counter> counters = callback.getCounterStat().counterStatWrapper;
+            for (int i = 0; i < counters.size(); i++) {
+                entries.add(new PieEntry(counters.get(i).count, counters.get(i).title));
             }
             setPieChartData(entries);
         } else {
@@ -138,7 +136,6 @@ public class DashboardCounterFragment extends Fragment {
                     ContextCompat.getColor(requireContext(), R.color.purple_7001));
         }
         dataSet.setColors(colors, 75);
-//        dataSet.setColors(colors);
 
         dataSet.setValueLinePart1OffsetPercentage(80.f);
         dataSet.setValueLinePart1Length(0.2f);

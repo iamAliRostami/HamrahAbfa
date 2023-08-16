@@ -12,14 +12,15 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactPhoneBook;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackViewModel;
 import com.leon.hamrah_abfa.fragments.counter.CounterViewModel;
+import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
 import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStats;
+import com.leon.hamrah_abfa.fragments.dashboard.SummaryStats;
+import com.leon.hamrah_abfa.fragments.dashboard.CounterStats;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
 import java.util.ArrayList;
@@ -124,8 +125,12 @@ public interface IAbfaService {
                                        @Part("y") RequestBody y);
 
     @GET("KontoriNew/V1/MobileBill/GetBillSummary/{id}")
-    Call<BillSummary> getBillSummary(@Path("id") String id);
+    Call<SummaryStats> getBillSummary(@Path("id") String id);
 
     @GET("KontoriNew/V1/MobileBill/GetCounterStat/{id}")
     Call<CounterStats> getCounterStat(@Path("id") String id);
+
+
+    @GET("KontoriNew/V1/MobileBill/GetPaymentStat/{id}")
+    Call<PaymentStats> getPaymentStat(@Path("id") String id);
 }

@@ -281,4 +281,6 @@
     <string name="chart_rate_avg_max">بیشترین مصرف مورد انتظار</string>
     <string name="counter_state">وضعیت قرائت</string>
     <string name="payment_state">وضعیت پرداخت</string>
+    <string name="chart_payment_description">توضیح نمودار پرداخت</string>
+    <string name="chart_payment">نمودار پرداخت</string>
 </resources>

@@ -28,8 +28,6 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentDashboardSummaryBinding;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardSummaryViewModel;
 
 import java.util.ArrayList;
 
@@ -70,12 +68,12 @@ public class DashboardSummaryFragment extends Fragment {
         designBarChart();
         if (!callback.getBillSummary().billSummaryWrapper.isEmpty()) {
             billSummaryDays = new String[callback.getBillSummary().billSummaryWrapper.size()];
-            ArrayList<DashboardSummaryViewModel> billSummary = callback.getBillSummary().billSummaryWrapper;
+            ArrayList<Summary> billSummary = callback.getBillSummary().billSummaryWrapper;
             ArrayList<Entry> entries = new ArrayList<>();
             ArrayList<BarEntry> barEntries = new ArrayList<>();
             for (int i = 0; i < billSummary.size(); i++) {
                 billSummaryDays[i] = billSummary.get(i).getDay();
-                entries.add(new BarEntry(i, billSummary.get(i).getRate()));
+                entries.add(new Entry(i, billSummary.get(i).getRate()));
                 barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
 //            entries.add(new BarEntry(i, i*10));
 //            barEntries.add(new BarEntry(i, i*10));
@@ -100,6 +98,8 @@ public class DashboardSummaryFragment extends Fragment {
         binding.chartLine.getDescription().setYOffset(10f);
         binding.chartLine.getDescription().setTextColor(R.color.dark_gray);
         binding.chartLine.getDescription().setTypeface(callback.getTypeface());
+
+        binding.chartLine.setExtraOffsets(5f, 0f, 5f, 10f);
 
         binding.chartLine.setDragEnabled(false);
         binding.chartLine.setScaleEnabled(false);
@@ -155,7 +155,6 @@ public class DashboardSummaryFragment extends Fragment {
 //        binding.chartLine.invalidate();
 
         binding.chartLine.animateXY(1500, 1500);
-        binding.chartLine.setExtraOffsets(5f, 0f, 5f, 10f);
 
 //        LineDataSet dataSet = new LineDataSet(values, "میانگین مصرف");
 //        dataSet.setColors(R.color.dark_gray);
@@ -231,6 +230,7 @@ public class DashboardSummaryFragment extends Fragment {
         binding.chartBar.setScaleEnabled(false);
         binding.chartBar.setPinchZoom(false);
 
+        binding.chartBar.setExtraOffsets(5f, 0f, 5f, 10f);
 
         XAxis xAxis = binding.chartBar.getXAxis();
         xAxis.setDrawLimitLinesBehindData(false);
@@ -255,6 +255,8 @@ public class DashboardSummaryFragment extends Fragment {
         yAxisRight.setTypeface(callback.getTypeface());
         yAxisRight.setDrawLimitLinesBehindData(true);
 
+        binding.chartBar.animateXY(1500, 1500);
+
         Legend legend = binding.chartBar.getLegend();
         legend.setWordWrapEnabled(true);
         legend.setTextSize(10);
@@ -264,9 +266,6 @@ public class DashboardSummaryFragment extends Fragment {
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         legend.setDrawInside(false);
         legend.setForm(Legend.LegendForm.SQUARE);
-
-        binding.chartBar.animateXY(1500, 1500);
-        binding.chartBar.setExtraOffsets(5f, 0f, 5f, 10f);
 
 
 //        BarData data = new BarData(dataSet);
@@ -288,7 +287,6 @@ public class DashboardSummaryFragment extends Fragment {
         } else {
             dataSet = new BarDataSet(values, getString(R.string.chart_rate_avg));
             dataSet.setColors(R.color.purple_7001, R.color.dark_gray, R.color.purple_7002, R.color.dark);
-            dataSet.setStackLabels(billSummaryDays);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(dataSet);
@@ -302,8 +300,6 @@ public class DashboardSummaryFragment extends Fragment {
                 }
             });
             data.setValueTypeface(callback.getTypeface());
-            binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
-            binding.chartBar.setNoDataTextColor(R.color.dark);
             binding.chartBar.setData(data);
         }
     }
@@ -315,7 +311,7 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     public interface ICallback {
-        BillSummary getBillSummary();
+        SummaryStats getBillSummary();
 
         Typeface getTypeface();
     }

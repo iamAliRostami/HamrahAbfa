@@ -9,7 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.fragments.dashboard.SummaryStats;
+import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -20,13 +20,13 @@ import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class GetBillSummaryRequest {
+public class GetPaymentStatRequest {
 
     private final Context context;
     private final ICallback callback;
     private final String id;
 
-    public GetBillSummaryRequest(Context context, ICallback callback, String id) {
+    public GetPaymentStatRequest(Context context, ICallback callback, String id) {
         this.context = context;
         this.callback = callback;
         this.id = id;
@@ -34,30 +34,29 @@ public class GetBillSummaryRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        //TODO
-        Call<SummaryStats> call = iAbfaService.getBillSummary(id);
-        return callHttpAsync(context, call, new BillSummarySuccessful(callback),
-                new BillSummaryIncomplete(context, callback), new BillSummaryFailed(context, callback));
+        Call<PaymentStats> call = iAbfaService.getPaymentStat(id);
+        return callHttpAsync(context, call, new BillPaymentSuccessful(callback),
+                new BillPaymentIncomplete(context, callback), new BillPaymentFailed(context, callback));
     }
 
     public interface ICallback {
-        void succeed(SummaryStats summaryStats);
+        void succeed(PaymentStats paymentStats);
 
         void changeUI(boolean show);
     }
 }
 
-class BillSummarySuccessful implements ICallbackSucceed<SummaryStats> {
-    private final GetBillSummaryRequest.ICallback callback;
+class BillPaymentSuccessful implements ICallbackSucceed<PaymentStats> {
+    private final GetPaymentStatRequest.ICallback callback;
 
-    public BillSummarySuccessful(GetBillSummaryRequest.ICallback callback) {
+    public BillPaymentSuccessful(GetPaymentStatRequest.ICallback callback) {
         this.callback = callback;
     }
 
     @Override
-    public void executeCompleted(Response<SummaryStats> response) {
+    public void executeCompleted(Response<PaymentStats> response) {
         if (response.body() != null) {
             callback.succeed(response.body());
         }
@@ -65,18 +64,18 @@ class BillSummarySuccessful implements ICallbackSucceed<SummaryStats> {
     }
 }
 
-class BillSummaryIncomplete implements ICallbackIncomplete<SummaryStats> {
+class BillPaymentIncomplete implements ICallbackIncomplete<PaymentStats> {
 
     private final Context context;
-    private final GetBillSummaryRequest.ICallback callback;
+    private final GetPaymentStatRequest.ICallback callback;
 
-    public BillSummaryIncomplete(Context context, GetBillSummaryRequest.ICallback callback) {
+    public BillPaymentIncomplete(Context context, GetPaymentStatRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
 
     @Override
-    public void executeDismissed(Response<SummaryStats> response) {
+    public void executeDismissed(Response<PaymentStats> response) {
         callback.changeUI(false);
         APIError error = parseError(response);
         if (error.status() == 401) {
@@ -87,11 +86,11 @@ class BillSummaryIncomplete implements ICallbackIncomplete<SummaryStats> {
     }
 }
 
-class BillSummaryFailed implements ICallbackFailure {
+class BillPaymentFailed implements ICallbackFailure {
     private final Context context;
-    private final GetBillSummaryRequest.ICallback callback;
+    private final GetPaymentStatRequest.ICallback callback;
 
-    public BillSummaryFailed(Context context, GetBillSummaryRequest.ICallback callback) {
+    public BillPaymentFailed(Context context, GetPaymentStatRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

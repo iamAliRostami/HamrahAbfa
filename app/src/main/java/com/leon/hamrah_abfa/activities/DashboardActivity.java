@@ -16,22 +16,26 @@ import androidx.fragment.app.DialogFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityDashboardBinding;
+import com.leon.hamrah_abfa.fragments.dashboard.CounterStats;
 import com.leon.hamrah_abfa.fragments.dashboard.DashboardCounterFragment;
+import com.leon.hamrah_abfa.fragments.dashboard.DashboardPaymentFragment;
 import com.leon.hamrah_abfa.fragments.dashboard.DashboardSummaryFragment;
+import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
+import com.leon.hamrah_abfa.fragments.dashboard.SummaryStats;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.BillSummary;
-import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStats;
-import com.leon.hamrah_abfa.requests.GetCounterStatRequest;
 import com.leon.hamrah_abfa.requests.dashboard.GetBillSummaryRequest;
+import com.leon.hamrah_abfa.requests.dashboard.GetCounterStatRequest;
+import com.leon.hamrah_abfa.requests.dashboard.GetPaymentStatRequest;
 
 public class DashboardActivity extends BaseActivity implements DashboardSummaryFragment.ICallback,
-        DashboardCounterFragment.ICallback {
+        DashboardCounterFragment.ICallback, DashboardPaymentFragment.ICallback {
     private ActivityDashboardBinding binding;
     private DialogFragment fragment;
     private String billId;
     private String uuid;
-    private BillSummary billSummary = new BillSummary();
+    private SummaryStats summaryStats = new SummaryStats();
     private CounterStats counterStats = new CounterStats();
+    private PaymentStats paymentStats = new PaymentStats();
 
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -48,6 +52,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         setOnClickListener();
         showBillSummary(true);
         showCounterStat(true);
+        showPaymentStat(true);
         requestSummaryBill();
 
     }
@@ -62,8 +67,8 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         boolean isOnline = new GetBillSummaryRequest(this, new GetBillSummaryRequest.ICallback() {
 
             @Override
-            public void succeed(BillSummary billSummary) {
-                DashboardActivity.this.billSummary = billSummary;
+            public void succeed(SummaryStats billSummary) {
+                DashboardActivity.this.summaryStats = billSummary;
                 showBillSummary(false);
             }
 
@@ -83,6 +88,23 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
             public void succeed(CounterStats counterStats) {
                 DashboardActivity.this.counterStats = counterStats;
                 showCounterStat(false);
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }, uuid).request();
+        progressStatus(isOnline);
+        requestPaymentStat();
+    }
+
+    private void requestPaymentStat() {
+        boolean isOnline = new GetPaymentStatRequest(this, new GetPaymentStatRequest.ICallback() {
+            @Override
+            public void succeed(PaymentStats paymentStats) {
+                DashboardActivity.this.paymentStats = paymentStats;
+                showPaymentStat(false);
             }
 
             @Override
@@ -111,19 +133,23 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         switchSummary(v);
         getSupportFragmentManager().beginTransaction().add(binding.fragmentSummary.getId(),
                 DashboardSummaryFragment.newInstance()).commitNow();
-
     }
 
     private void showCounterStat(boolean v) {
         switchCounter(v);
         getSupportFragmentManager().beginTransaction().add(binding.fragmentCounter.getId(),
                 DashboardCounterFragment.newInstance()).commitNow();
+    }
 
+    private void showPaymentStat(boolean v) {
+        switchPayment(v);
+        getSupportFragmentManager().beginTransaction().add(binding.fragmentPayment.getId(),
+                DashboardPaymentFragment.newInstance()).commitNow();
     }
 
     @Override
-    public BillSummary getBillSummary() {
-        return billSummary;
+    public SummaryStats getBillSummary() {
+        return summaryStats;
     }
 
     @Override
@@ -181,5 +207,10 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     @Override
     public CounterStats getCounterStat() {
         return counterStats;
+    }
+
+    @Override
+    public PaymentStats getPaymentStats() {
+        return paymentStats;
     }
 }

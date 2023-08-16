@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests;
+package com.leon.hamrah_abfa.requests.dashboard;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -9,7 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.fragments.ui.dashboard.CounterStats;
+import com.leon.hamrah_abfa.fragments.dashboard.CounterStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
@@ -38,8 +38,8 @@ public class GetCounterStatRequest {
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         //TODO
         Call<CounterStats> call = iAbfaService.getCounterStat(id);
-        return callHttpAsync(context, call, new BillSummarySuccessful(callback),
-                new BillSummaryIncomplete(context, callback), new BillSummaryFailed(context, callback));
+        return callHttpAsync(context, call, new BillCounterStatSuccessful(callback),
+                new BillCounterStatIncomplete(context, callback), new BillCounterStatFailed(context, callback));
     }
 
     public interface ICallback {
@@ -49,10 +49,10 @@ public class GetCounterStatRequest {
     }
 }
 
-class BillSummarySuccessful implements ICallbackSucceed<CounterStats> {
+class BillCounterStatSuccessful implements ICallbackSucceed<CounterStats> {
     private final GetCounterStatRequest.ICallback callback;
 
-    public BillSummarySuccessful(GetCounterStatRequest.ICallback callback) {
+    public BillCounterStatSuccessful(GetCounterStatRequest.ICallback callback) {
         this.callback = callback;
     }
 
@@ -65,12 +65,12 @@ class BillSummarySuccessful implements ICallbackSucceed<CounterStats> {
     }
 }
 
-class BillSummaryIncomplete implements ICallbackIncomplete<CounterStats> {
+class BillCounterStatIncomplete implements ICallbackIncomplete<CounterStats> {
 
     private final Context context;
     private final GetCounterStatRequest.ICallback callback;
 
-    public BillSummaryIncomplete(Context context, GetCounterStatRequest.ICallback callback) {
+    public BillCounterStatIncomplete(Context context, GetCounterStatRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }
@@ -87,11 +87,11 @@ class BillSummaryIncomplete implements ICallbackIncomplete<CounterStats> {
     }
 }
 
-class BillSummaryFailed implements ICallbackFailure {
+class BillCounterStatFailed implements ICallbackFailure {
     private final Context context;
     private final GetCounterStatRequest.ICallback callback;
 
-    public BillSummaryFailed(Context context, GetCounterStatRequest.ICallback callback) {
+    public BillCounterStatFailed(Context context, GetCounterStatRequest.ICallback callback) {
         this.context = context;
         this.callback = callback;
     }

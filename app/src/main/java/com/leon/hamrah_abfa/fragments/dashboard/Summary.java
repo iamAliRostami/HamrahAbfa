@@ -1,6 +1,6 @@
-package com.leon.hamrah_abfa.fragments.ui.dashboard;
+package com.leon.hamrah_abfa.fragments.dashboard;
 
-public class DashboardSummaryViewModel {
+public class Summary {
     private String id;
     private String zoneId;
     private float amount;
