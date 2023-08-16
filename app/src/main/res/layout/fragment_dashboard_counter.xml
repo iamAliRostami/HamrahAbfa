@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/light_blue"
+    android:background="@color/light"
     tools:context=".fragments.dashboard.DashboardCounterFragment">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/chart_pie"
+    <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="@dimen/tiny_dp"
+        android:background="@color/light_gray" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/chart_pie"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="@dimen/medium_dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.components.Legend;
@@ -36,7 +37,6 @@ public class DashboardSummaryFragment extends Fragment {
     private FragmentDashboardSummaryBinding binding;
     private ICallback callback;
     private String[] billSummaryDays;
-    private float[] billSummaryRates;
 
     public DashboardSummaryFragment() {
     }
@@ -65,24 +65,29 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     private void initializeChart() {
-        billSummaryRates = new float[callback.getBillSummary().billSummaryWrapper.size()];
-        billSummaryDays = new String[callback.getBillSummary().billSummaryWrapper.size()];
-        ArrayList<DashboardSummaryViewModel> billSummary = callback.getBillSummary().billSummaryWrapper;
-        ArrayList<Entry> entries = new ArrayList<>();
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-        for (int i = 0; i < billSummary.size(); i++) {
-            billSummaryDays[i] = billSummary.get(i).getDay();
-            billSummaryRates[i] = billSummary.get(i).getRate();
-            entries.add(new BarEntry(i, billSummary.get(i).getRate()));
-            barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
+
+        designLineChart();
+        designBarChart();
+        if (!callback.getBillSummary().billSummaryWrapper.isEmpty()) {
+            billSummaryDays = new String[callback.getBillSummary().billSummaryWrapper.size()];
+            ArrayList<DashboardSummaryViewModel> billSummary = callback.getBillSummary().billSummaryWrapper;
+            ArrayList<Entry> entries = new ArrayList<>();
+            ArrayList<BarEntry> barEntries = new ArrayList<>();
+            for (int i = 0; i < billSummary.size(); i++) {
+                billSummaryDays[i] = billSummary.get(i).getDay();
+                entries.add(new BarEntry(i, billSummary.get(i).getRate()));
+                barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
 //            entries.add(new BarEntry(i, i*10));
 //            barEntries.add(new BarEntry(i, i*10));
+            }
+            setLineData(entries);
+            setBarData(barEntries);
+        } else {
+            ViewGroup.LayoutParams params = new LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT,
+                    LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+            binding.chartLine.setLayoutParams(params);
+            binding.chartBar.setLayoutParams(params);
         }
-        designLineChart();
-        setLineData(entries);
-
-        designBarChart();
-        setBarData(barEntries);
     }
 
     private void designLineChart() {

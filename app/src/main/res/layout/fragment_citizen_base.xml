@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/large_dp"
-        tools:context=".CitizenBaseFragment">
+        tools:context=".fragments.citizen.CitizenBaseFragment">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_animation_view_complaint"

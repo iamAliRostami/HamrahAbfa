@@ -30,7 +30,6 @@ public class TileAdapter extends RecyclerView.Adapter<TileViewHolder> {
     public TileViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new TileViewHolder(inflater.inflate(R.layout.item_tile, parent, false));
     }
-
     @Override
     public void onBindViewHolder(@NonNull TileViewHolder holder, int position) {
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));

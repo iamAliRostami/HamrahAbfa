@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa;
+package com.leon.hamrah_abfa.fragments.citizen;
 
 import static com.leon.hamrah_abfa.helpers.Constants.CITIZEN_ACCOUNT_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
@@ -19,8 +19,8 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
+import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCitizenBaseBinding;
-import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

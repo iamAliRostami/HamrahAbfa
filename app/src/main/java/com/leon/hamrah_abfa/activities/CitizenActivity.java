@@ -18,12 +18,12 @@ import android.view.View;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.leon.hamrah_abfa.CitizenBaseFragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.ImageViewAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.CitizenAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityCitizenBinding;
+import com.leon.hamrah_abfa.fragments.citizen.CitizenBaseFragment;
 import com.leon.hamrah_abfa.fragments.citizen.CitizenCompleteFragment;
 import com.leon.hamrah_abfa.fragments.citizen.CitizenInfoFragment;
 import com.leon.hamrah_abfa.fragments.citizen.CitizenListFragment;

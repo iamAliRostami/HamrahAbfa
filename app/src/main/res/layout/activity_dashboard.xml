@@ -4,21 +4,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_blue"
+    android:paddingStart="@dimen/large_dp"
+    android:paddingEnd="@dimen/large_dp"
     tools:context=".activities.DashboardActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_summary"
-            style="@style/FragmentContainerStyle"
-            android:layout_margin="@dimen/medium_dp" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content_summary"
+            style="@style/CardStyleLastBill">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_counter"
-            style="@style/FragmentContainerStyle"
-            android:layout_below="@id/fragment_summary"
-            android:layout_margin="@dimen/medium_dp" />
+            <RelativeLayout
+                android:id="@+id/relative_layout_summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_summary"
+                        style="@style/ImageItemStyle"
+                        android:src="@drawable/ic_summary" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_summary"
+                        style="@style/TextItem.SingleLine"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="@string/chart_rate_avg" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_arrow_summary"
+                        style="@style/ImageArrowStyle"
+                        android:src="@drawable/arrow_up" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_summary"
+                    style="@style/FragmentContainerStyle"
+                    android:layout_below="@id/linear_layout_summary"
+                    android:layout_margin="0dp" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content_counter"
+            style="@style/CardStyleLastBill"
+            android:layout_below="@id/card_view_content_summary">
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_counter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_counter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_counter"
+                        style="@style/ImageItemStyle"
+                        android:src="@drawable/ic_analytics" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_counter"
+                        style="@style/TextItem.SingleLine"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="@string/counter_state" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_arrow_counter"
+                        style="@style/ImageArrowStyle"
+                        android:src="@drawable/arrow_up" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_counter"
+                    style="@style/FragmentContainerStyle"
+                    android:layout_below="@id/linear_layout_counter"
+                    android:layout_margin="0dp" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
 </ScrollView>

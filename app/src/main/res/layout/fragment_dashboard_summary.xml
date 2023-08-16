@@ -3,17 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/light_gray"
     android:orientation="vertical"
-    android:background="@color/light_blue"
     tools:context=".fragments.dashboard.DashboardSummaryFragment">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tiny_dp"
+        android:background="@color/light" />
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart_bar"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:layout_marginBottom="@dimen/medium_dp" />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart_line"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="300dp"
+        android:layout_marginBottom="@dimen/medium_dp" />
 </androidx.appcompat.widget.LinearLayoutCompat>
