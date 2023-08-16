@@ -1,25 +1,29 @@
 package com.leon.hamrah_abfa.tables;
 
 public class ActiveSession {
-    private String deviceName;
+    private String id;
+    private String deviceInfo;
+    private String ip;
+    private String insertDayJalali;
+    private String insertTime;
+
     private String mobile;
     private String lastLogin;
-    private String ip;
 
 
-    public ActiveSession(String deviceName, String mobile, String lastLogin, String ip) {
-        this.deviceName = deviceName;
+    public ActiveSession(String deviceInfo, String mobile, String lastLogin, String ip) {
+        this.deviceInfo = deviceInfo;
         this.mobile = mobile;
         this.lastLogin = lastLogin;
         this.ip = ip;
     }
 
-    public String getDeviceName() {
-        return deviceName;
+    public String getDeviceInfo() {
+        return deviceInfo;
     }
 
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
+    public void setDeviceInfo(String deviceInfo) {
+        this.deviceInfo = deviceInfo;
     }
 
     public String getMobile() {
@@ -46,4 +50,11 @@ public class ActiveSession {
         this.ip = ip;
     }
 
+    public String getInsertDayJalali() {
+        return insertDayJalali;
+    }
+
+    public String getInsertTime() {
+        return insertTime;
+    }
 }

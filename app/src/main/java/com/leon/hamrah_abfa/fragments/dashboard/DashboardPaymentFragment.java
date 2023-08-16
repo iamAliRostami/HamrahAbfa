@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,8 +55,8 @@ public class DashboardPaymentFragment extends Fragment {
 
     private void initializeChart() {
         designPieChart();
-
-        setData(12, 24);
+        if (!callback.getPaymentStats().payDeadlineKeys.isEmpty())
+            setData();
 
     }
 
@@ -67,7 +68,8 @@ public class DashboardPaymentFragment extends Fragment {
         binding.chartHorizontalBar.getDescription().setText(getString(R.string.chart_payment_description));
         binding.chartHorizontalBar.getDescription().setXOffset(10f);
         binding.chartHorizontalBar.getDescription().setYOffset(10f);
-        binding.chartHorizontalBar.getDescription().setTextColor(R.color.dark_gray);
+        binding.chartHorizontalBar.getDescription().setTextColor(R.color.dark);
+        binding.chartHorizontalBar.getDescription().setTextSize(10f);
         binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
 
         binding.chartHorizontalBar.setExtraOffsets(5f, 0f, 5f, 10f);
@@ -83,16 +85,23 @@ public class DashboardPaymentFragment extends Fragment {
 
         XAxis xAxis = binding.chartHorizontalBar.getXAxis();
         xAxis.setTypeface(callback.getTypeface());
+        xAxis.setDrawLimitLinesBehindData(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawLimitLinesBehindData(false);
-        xAxis.setDrawAxisLine(true);
-        xAxis.setDrawGridLines(false);
+        xAxis.setDrawGridLines(true);
+//        xAxis.setDrawLimitLinesBehindData(false);
+//        xAxis.setDrawAxisLine(true);
+//        xAxis.setDrawGridLines(false);
         xAxis.setGranularity(1f);
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-//                Log.e("value", String.valueOf(value));
-                return String.valueOf((int) value);
+                Log.e("index", String.valueOf(value));
+//                return super.getFormattedValue(value);
+                try {
+                    return callback.getPaymentStats().payDeadlineKeys.get((int) value);
+                } catch (Exception e) {
+                    return "";
+                }
             }
         });
 
@@ -112,13 +121,16 @@ public class DashboardPaymentFragment extends Fragment {
         yAxisRight.setDrawAxisLine(true);
         yAxisRight.setDrawGridLines(false);
 
+
+        binding.chartHorizontalBar.getXAxis().setSpaceMin(2f);
+
         binding.chartHorizontalBar.setFitBars(true);
 
         binding.chartHorizontalBar.animateXY(1500, 1500);
 
         Legend legend = binding.chartHorizontalBar.getLegend();
         legend.setWordWrapEnabled(true);
-        legend.setTextSize(10);
+        legend.setTextSize(10f);
         legend.setTypeface(callback.getTypeface());
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
@@ -129,13 +141,12 @@ public class DashboardPaymentFragment extends Fragment {
     }
 
 
-    private void setData(int count, float range) {
+    private void setData() {
 
         ArrayList<BarEntry> values = new ArrayList<>();
 
-        for (int i = 0; i < count; i++) {
-            float val = (float) (Math.random() * range - range / 2);
-            values.add(new BarEntry(i, val));
+        for (int i = 0; i < callback.getPaymentStats().payDeadlineKeys.size(); i++) {
+            values.add(new BarEntry(i, callback.getPaymentStats().payDeadlineValues.get(i)));
         }
 
         BarDataSet dataSet;
@@ -160,8 +171,9 @@ public class DashboardPaymentFragment extends Fragment {
             data.setValueFormatter(new ValueFormatter() {
                 @Override
                 public String getFormattedValue(float value) {
-                    return String.format("%s روز %s از مهلت پرداخت", (int) value, value > 0 ? "پس" : "پیش");
-//                    return super.getFormattedValue((int) value);
+
+//                    return String.format("%s روز %s از مهلت پرداخت", (int) value, value > 0 ? "پس" : "پیش");
+                    return String.valueOf(value > 0 ? (int) value : (int) -value);
                 }
             });
             binding.chartHorizontalBar.setData(data);

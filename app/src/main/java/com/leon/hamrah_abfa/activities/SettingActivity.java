@@ -64,10 +64,14 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
             showFragmentDialogOnce(this, ACTIVE_SESSION.getValue(), ActiveSessionFragment.newInstance());
         } else if (position == 1) {
             showFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
-        } else if (position ==2) {
-            final Intent intent = new Intent(this,WelcomeActivity.class);
+        } else if (position == 2) {
+            final Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void requestLoginHistory() {
+
     }
 
     private void setResult() {

@@ -33,7 +33,7 @@ public class ActiveSessionAdapter extends RecyclerView.Adapter<ActiveSessionView
         holder.textViewIP.setText(activeSessions.get(position).getIp());
         holder.textViewMobile.setText(activeSessions.get(position).getMobile());
         holder.textViewLastLogin.setText(activeSessions.get(position).getLastLogin());
-        holder.textViewDevice.setText(activeSessions.get(position).getDeviceName());
+        holder.textViewDevice.setText(activeSessions.get(position).getDeviceInfo());
     }
 
     @Override

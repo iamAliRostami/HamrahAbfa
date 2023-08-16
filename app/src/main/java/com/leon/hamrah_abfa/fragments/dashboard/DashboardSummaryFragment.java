@@ -63,7 +63,6 @@ public class DashboardSummaryFragment extends Fragment {
     }
 
     private void initializeChart() {
-
         designLineChart();
         designBarChart();
         if (!callback.getBillSummary().billSummaryWrapper.isEmpty()) {
