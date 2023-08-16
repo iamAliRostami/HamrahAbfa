@@ -53,7 +53,6 @@
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content_counter"
             style="@style/CardStyleLastBill"
@@ -73,7 +72,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/image_view_counter"
                         style="@style/ImageItemStyle"
-                        android:src="@drawable/ic_analytics" />
+                        android:src="@drawable/ic_terms_and_conditions" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/text_view_counter"
@@ -92,6 +91,48 @@
                     android:id="@+id/fragment_counter"
                     style="@style/FragmentContainerStyle"
                     android:layout_below="@id/linear_layout_counter"
+                    android:layout_margin="0dp" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_content_payment"
+            style="@style/CardStyleLastBill"
+            android:layout_below="@id/card_view_content_counter">
+
+            <RelativeLayout
+                android:id="@+id/relative_layout_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_gray">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linear_layout_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_payment"
+                        style="@style/ImageItemStyle"
+                        android:src="@drawable/ic_analytics" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_view_payment"
+                        style="@style/TextItem.SingleLine"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="@string/payment_state" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/image_view_arrow_payment"
+                        style="@style/ImageArrowStyle"
+                        android:src="@drawable/arrow_up" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_payment"
+                    style="@style/FragmentContainerStyle"
+                    android:layout_below="@id/linear_layout_payment"
                     android:layout_margin="0dp" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

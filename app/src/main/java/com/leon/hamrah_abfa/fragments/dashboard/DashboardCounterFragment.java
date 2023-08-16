@@ -133,7 +133,6 @@ public class DashboardCounterFragment extends Fragment {
         TypedArray drawable = getResources().obtainTypedArray(R.array.pie_colors);
         for (int i = 0; i < entries.size(); i++) {
             long time = Calendar.getInstance().getTimeInMillis();
-
             colors[i] = drawable.getColor((int) (time %
                             (new Random().nextInt(getResources().getIntArray(R.array.pie_colors).length) + 1)),
                     ContextCompat.getColor(requireContext(), R.color.purple_7001));

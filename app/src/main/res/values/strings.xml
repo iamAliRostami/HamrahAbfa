@@ -280,4 +280,5 @@
     <string name="chart_rate_avg_description">توضیح میانگین مصرف دوره\u200cای</string>
     <string name="chart_rate_avg_max">بیشترین مصرف مورد انتظار</string>
     <string name="counter_state">وضعیت قرائت</string>
+    <string name="payment_state">وضعیت پرداخت</string>
 </resources>

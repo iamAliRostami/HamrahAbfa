@@ -55,6 +55,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     private void setOnClickListener() {
         binding.linearLayoutSummary.setOnClickListener(this);
         binding.linearLayoutCounter.setOnClickListener(this);
+        binding.linearLayoutPayment.setOnClickListener(this);
     }
 
     private void requestSummaryBill() {
@@ -137,6 +138,8 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
             switchSummary(binding.fragmentSummary.getVisibility() == View.VISIBLE);
         } else if (id == R.id.linear_layout_counter) {
             switchCounter(binding.fragmentCounter.getVisibility() == View.VISIBLE);
+        } else if (id == R.id.linear_layout_payment) {
+            switchPayment(binding.fragmentPayment.getVisibility() == View.VISIBLE);
         }
     }
 
@@ -157,6 +160,16 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         } else {
             binding.fragmentCounter.setVisibility(View.VISIBLE);
             binding.imageViewArrowCounter.setImageResource(R.drawable.arrow_up);
+        }
+    }
+
+    private void switchPayment(boolean v) {
+        if (v) {
+            binding.fragmentPayment.setVisibility(View.GONE);
+            binding.imageViewArrowPayment.setImageResource(R.drawable.arrow_down);
+        } else {
+            binding.fragmentPayment.setVisibility(View.VISIBLE);
+            binding.imageViewArrowPayment.setImageResource(R.drawable.arrow_up);
         }
     }
 
