@@ -205,6 +205,7 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
         }.start();
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private void startSMSListener() {
         try {
             smsReceiver.setOTPListener(this);

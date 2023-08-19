@@ -214,6 +214,7 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
         }.start();
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private void startSMSListener() {
         try {
             smsReceiver.setOTPListener(this);
