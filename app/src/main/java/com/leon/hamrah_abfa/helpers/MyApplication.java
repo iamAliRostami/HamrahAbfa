@@ -13,7 +13,6 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.StrictMode;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
@@ -54,12 +53,11 @@ public class MyApplication extends Application {
             addresses = InetAddress.getAllByName("iran.ir");
             for (InetAddress address : addresses) {
                 if (address.isReachable(timeout)) {
-                    Log.e("connection", "connected");
                     return true;
                 }
             }
         } catch (Exception e) {
-            Log.e("error", e.toString());
+            e.printStackTrace();
         }
         return false;
     }
