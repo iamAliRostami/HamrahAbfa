@@ -28,7 +28,7 @@ public class News {
     public boolean seen;
 
     @Ignore
-    public News(int id, @NonNull String billId, String summary, String title, String text, String date, int category) {
+    public News(int id, @NonNull String billId, String title, String summary, String text, String date, int category) {
         this.id = id;
         this.billId = billId;
         this.summary = summary;
@@ -36,16 +36,17 @@ public class News {
         this.text = text;
         this.date = date;
         this.category = category;
+        this.imageAddress = "test";
     }
 
-    public News(int id, @NonNull String billId, String title, String summary, String text, String date, String imageAddress, int category) {
+    public News(int id, @NonNull String billId, String title, String summary, String text, String date, int category, String imageAddress) {
         this.id = id;
         this.billId = billId;
         this.summary = summary;
         this.title = title;
         this.text = text;
         this.date = date;
-        this.imageAddress = imageAddress;
         this.category = category;
+        this.imageAddress = imageAddress;
     }
 }

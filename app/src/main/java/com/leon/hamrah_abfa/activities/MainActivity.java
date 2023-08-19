@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
@@ -125,7 +126,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         } else if (id == R.id.image_view_notification) {
             final Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
             //TODO
-            intent.putExtra(BundleEnum.UUID.getValue(), getCurrentId(position));
+            intent.putExtra(UUID.getValue(), getCurrentId(position));
             startActivity(intent);
         }
     }

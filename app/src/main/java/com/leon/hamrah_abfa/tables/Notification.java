@@ -28,7 +28,7 @@ public class Notification {
     public boolean seen;
 
     @Ignore
-    public Notification(int id, @NonNull String billId, String summary,String title,  String text, String date, int category) {
+    public Notification(int id, @NonNull String billId, String title,String summary,  String text, String date, int category) {
         this.id = id;
         this.billId = billId;
         this.summary = summary;
@@ -36,9 +36,10 @@ public class Notification {
         this.text = text;
         this.date = date;
         this.category = category;
+        this.imageAddress = "test";
     }
 
-    public Notification(int id, @NonNull String billId, String title, String summary, String text, String date, String imageAddress, int category) {
+    public Notification(int id, @NonNull String billId, String title, String summary, String text, String date, int category, String imageAddress) {
         this.id = id;
         this.billId = billId;
         this.summary = summary;

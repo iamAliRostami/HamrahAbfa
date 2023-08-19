@@ -1,6 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
+import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
@@ -27,7 +27,7 @@ import java.util.Arrays;
 public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         NotificationFragment.ICallback, NewsFragment.ICallback {
     private ActivityNotificationsBinding binding;
-    private String billId;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityNotificationsBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
+            id = getIntent().getExtras().getString(UUID.getValue());
             getIntent().getExtras().clear();
         }
         setContentView(binding.getRoot());
@@ -52,32 +52,32 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     private void insertData() {
 //        int id, String summary, String title, String text, String date, int category
         final ArrayList<News> news = new ArrayList<>(Arrays.asList(
-                new News(12, billId, "خلاصه 1", "خبر 1", "این متن خبر یک است.", "12/12/12", 1),
-                new News(13, billId, "خلاصه 2", "خبر 11", "این متن خبر دو است.", "12/12/12", 2),
-                new News(14, billId, "خلاصه 3", "خبر 12", "این متن خبر سه است.", "12/12/12", 3),
-                new News(15, billId, "خلاصه 4", "خبر 13", "این متن خبر چهار است.", "12/12/12", 4),
-                new News(22, billId, "خلاصه 5", "خبر 14", "این متن خبر پنج است.", "12/12/12", 5),
-                new News(32, billId, "خلاصه 6", "خبر 15", "این متن خبر شش است.", "12/12/12", 4),
-                new News(42, billId, "خلاصه 7", "خبر 16", "این متن خبر هفت است.", "12/12/12", 5),
-                new News(52, billId, "خلاصه 8", "خبر 17", "این متن خبر هشت است.", "12/12/12", 3),
-                new News(17, billId, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 2),
-                new News(86, billId, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
-                new News(86, billId, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
-                new News(21, billId, "خلاصه 10", "خبر 19", "این متن خبر ده است.", "12/12/12", 1)));
-        getInstance().getApplicationComponent().MyDatabase().newsDao().insertNews(news);
+                new News(12, id, "خلاصه 1", "خبر 1", "این متن خبر یک است.", "12/12/12", 1),
+                new News(13, id, "خلاصه 2", "خبر 11", "این متن خبر دو است.", "12/12/12", 2),
+                new News(14, id, "خلاصه 3", "خبر 12", "این متن خبر سه است.", "12/12/12", 3),
+                new News(15, id, "خلاصه 4", "خبر 13", "این متن خبر چهار است.", "12/12/12", 4),
+                new News(22, id, "خلاصه 5", "خبر 14", "این متن خبر پنج است.", "12/12/12", 5),
+                new News(32, id, "خلاصه 6", "خبر 15", "این متن خبر شش است.", "12/12/12", 4),
+                new News(42, id, "خلاصه 7", "خبر 16", "این متن خبر هفت است.", "12/12/12", 5),
+                new News(52, id, "خلاصه 8", "خبر 17", "این متن خبر هشت است.", "12/12/12", 3),
+                new News(17, id, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 2),
+                new News(86, id, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
+                new News(86, id, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
+                new News(21, id, "خلاصه 10", "خبر 19", "این متن خبر ده است.", "12/12/12", 1)));
         final ArrayList<Notification> notifications = new ArrayList<>(Arrays.asList(
-                new Notification(12, billId, "خلاصه 1", "نوتیف 1", "این متن نوتیف یک است.", "12/12/12", 1),
-                new Notification(13, billId, "خلاصه 2", "نوتیف 11", "این متن نوتیف دو است.", "12/12/12", 3),
-                new Notification(14, billId, "خلاصه 3", "نوتیف 12", "این متن نوتیف سه است.", "12/12/12", 2),
-                new Notification(15, billId, "خلاصه 4", "نوتیف 13", "این متن نوتیف چهار است.", "12/12/12", 4),
-                new Notification(22, billId, "خلاصه 5", "نوتیف 14", "این متن نوتیف پنج است.", "12/12/12", 5),
-                new Notification(32, billId, "خلاصه 6", "نوتیف 15", "این متن نوتیف شش است.", "12/12/12", 5),
-                new Notification(42, billId, "خلاصه 7", "نوتیف 16", "این متن نوتیف هفت است.", "12/12/12", 4),
-                new Notification(52, billId, "خلاصه 8", "نوتیف 17", "این متن نوتیف هشت است.", "12/12/12", 3),
-                new Notification(17, billId, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 3),
-                new Notification(86, billId, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
-                new Notification(86, billId, "خلاصه 10", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
-                new Notification(21, billId, "خلاصه 11", "نوتیف 19", "این متن نوتیف ده است.", "12/12/12", 1)));
+                new Notification(12, id, "خلاصه 1", "نوتیف 1", "این متن نوتیف یک است.", "12/12/12", 1),
+                new Notification(13, id, "خلاصه 2", "نوتیف 11", "این متن نوتیف دو است.", "12/12/12", 3),
+                new Notification(14, id, "خلاصه 3", "نوتیف 12", "این متن نوتیف سه است.", "12/12/12", 2),
+                new Notification(15, id, "خلاصه 4", "نوتیف 13", "این متن نوتیف چهار است.", "12/12/12", 4),
+                new Notification(22, id, "خلاصه 5", "نوتیف 14", "این متن نوتیف پنج است.", "12/12/12", 5),
+                new Notification(32, id, "خلاصه 6", "نوتیف 15", "این متن نوتیف شش است.", "12/12/12", 5),
+                new Notification(42, id, "خلاصه 7", "نوتیف 16", "این متن نوتیف هفت است.", "12/12/12", 4),
+                new Notification(52, id, "خلاصه 8", "نوتیف 17", "این متن نوتیف هشت است.", "12/12/12", 3),
+                new Notification(17, id, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 3),
+                new Notification(86, id, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
+                new Notification(86, id, "خلاصه 10", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
+                new Notification(21, id, "خلاصه 11", "نوتیف 19", "این متن نوتیف ده است.", "12/12/12", 1)));
+        getInstance().getApplicationComponent().MyDatabase().newsDao().insertNews(news);
         getInstance().getApplicationComponent().MyDatabase().notificationDao().insertNotifications(notifications);
     }
 
@@ -109,14 +109,14 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     public void setUnseenNotificationNumber() {
         BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(billId, false));
+        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(id, false));
     }
 
     @Override
     public void setUnseenNewsNumber() {
         BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
         badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(billId, false));
+        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(id, false));
     }
 
     @Override
@@ -134,8 +134,8 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     @Override
-    public String getBillId() {
-        return billId;
+    public String getId() {
+        return id;
     }
 
     @Override

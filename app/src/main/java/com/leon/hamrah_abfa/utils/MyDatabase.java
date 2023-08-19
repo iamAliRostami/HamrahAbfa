@@ -19,7 +19,7 @@ public abstract class MyDatabase extends RoomDatabase {
 
     public abstract NewsDao newsDao();
 
-    public static final Migration MIGRATION_2_3 = new Migration(2, 3) {
+    public static final Migration MIGRATION_2_3 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
 //            database.execSQL("ALTER TABLE 'News' ADD COLUMN 'test' INTEGER NOT NULL DEFAULT 0");

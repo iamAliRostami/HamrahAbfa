@@ -5,7 +5,7 @@ import org.osmdroid.util.GeoPoint;
 import java.util.regex.Pattern;
 
 public class Constants {
-    public static final String DB_NAME = "Database_5";
+    public static final String DB_NAME = "Database_6";
     public static final String FONT_NAME = "fonts/iranian_sans_b.ttf";
 
     public static final int CHECK_INTERVAL = 24 * 60 * 60 * 1000;

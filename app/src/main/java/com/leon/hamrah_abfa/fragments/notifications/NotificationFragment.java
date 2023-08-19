@@ -42,7 +42,7 @@ public class NotificationFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        adapter = new NotificationAdapter(requireContext(), callback.getBillId());
+        adapter = new NotificationAdapter(requireContext(), callback.getId());
         binding.recyclerViewNotifications.setAdapter(adapter);
         binding.recyclerViewNotifications.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -80,7 +80,7 @@ public class NotificationFragment extends Fragment {
     }
 
     public interface ICallback {
-        String getBillId();
+        String getId();
 
         void setUnseenNotificationNumber();
     }

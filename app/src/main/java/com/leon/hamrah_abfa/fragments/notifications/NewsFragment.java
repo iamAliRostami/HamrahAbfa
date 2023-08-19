@@ -47,7 +47,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        adapter = new NewsAdapter(requireContext(), callback.getBillId());
+        adapter = new NewsAdapter(requireContext(), callback.getId());
         binding.recyclerViewNews.setAdapter(adapter);
         binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -85,7 +85,7 @@ public class NewsFragment extends Fragment {
     }
 
     public interface ICallback {
-        String getBillId();
+        String getId();
 
         void setUnseenNewsNumber();
     }
