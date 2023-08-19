@@ -12,6 +12,8 @@ import static com.leon.toast.RTLToast.Config;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.StrictMode;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
@@ -25,8 +27,11 @@ import com.leon.hamrah_abfa.di.module.SharedPreferenceModule;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
+import java.net.InetAddress;
+
 public class MyApplication extends Application {
     private static ApplicationComponent applicationComponent;
+    private static boolean serverPing;
     private static MyApplication instance = null;
 
     @Override
@@ -37,8 +42,27 @@ public class MyApplication extends Application {
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
                 .setTextSize(TOAST_TEXT_SIZE).apply();
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
+        serverPing = checkServerConnection();
     }
 
+    public static boolean checkServerConnection() {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        int timeout = 1000;
+        InetAddress[] addresses;
+        try {
+            addresses = InetAddress.getAllByName("iran.ir");
+            for (InetAddress address : addresses) {
+                if (address.isReachable(timeout)) {
+                    Log.e("connection", "connected");
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            Log.e("error", e.toString());
+        }
+        return false;
+    }
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -85,5 +109,9 @@ public class MyApplication extends Application {
                 .withLogs().withAppVersion(BuildConfig.VERSION_NAME).build();
         YandexMetrica.activate(this, config);
         YandexMetrica.enableActivityAutoTracking(getInstance());
+    }
+
+    public static boolean hasServerPing() {
+        return serverPing;
     }
 }

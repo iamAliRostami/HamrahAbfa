@@ -283,4 +283,5 @@
     <string name="payment_state">وضعیت پرداخت</string>
     <string name="chart_payment_description">توضیح نمودار پرداخت</string>
     <string name="chart_payment">نمودار پرداخت</string>
+    <string name="error_ping">لطفا در ساعات اداری فردا مجددا تلاش کنید</string>
 </resources>

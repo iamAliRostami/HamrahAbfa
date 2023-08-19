@@ -2,6 +2,7 @@ package com.leon.hamrah_abfa.di.view_model;
 
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.helpers.MyApplication.hasServerPing;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
@@ -19,6 +20,7 @@ import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
 import com.leon.hamrah_abfa.utils.APIError;
+import com.leon.toast.RTLToast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,46 +32,36 @@ public class HttpClientWrapper {
                                             ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
         boolean isOnline = isNetworkAvailable(context);
         if (isOnline) {
-            call.enqueue(new Callback<T>() {
-                @Override
-                public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
-                    if (response.isSuccessful()) {
-                        ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
-                    } else {
+            isOnline = hasServerPing();
+            if (isOnline) {
+                call.enqueue(new Callback<T>() {
+                    @Override
+                    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
+                        if (response.isSuccessful()) {
+                            ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
+                        } else {
                             ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
-                    call.cancel();
-                    ((Activity) context).runOnUiThread(() -> error.executeFailed(t));
-                }
-            });
+                    @Override
+                    public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
+                        call.cancel();
+                        ((Activity) context).runOnUiThread(() -> error.executeFailed(t));
+                    }
+                });
+            } else {
+                RTLToast.error(context, R.string.error_ping).show();
+            }
         } else {
             warning(context, R.string.turn_internet_on).show();
         }
         return isOnline;
     }
 
-    private static <T> boolean failedExecution(Context context, Response<T> response) {
-        try {
-            APIError error = parseError(response);
-            if (error.status() == 401) {
-                dismissDialog(context, WAITING.getValue());
-                expiredToken(context);
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
 
     public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,
                                                   ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
-        boolean isOnline = isNetworkAvailable(context);
-
         call.enqueue(new Callback<T>() {
             @Override
             public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -86,9 +78,27 @@ public class HttpClientWrapper {
                 ((Activity) context).runOnUiThread(() -> error.executeFailed(t));
             }
         });
+        boolean isOnline = isNetworkAvailable(context);
         if (!isOnline)
             warning(context, R.string.turn_internet_on).show();
+        isOnline = hasServerPing();
+        if (!hasServerPing())
+            RTLToast.error(context, R.string.error_ping).show();
         return isOnline;
+    }
+
+    private static <T> boolean failedExecution(Context context, Response<T> response) {
+        try {
+            APIError error = parseError(response);
+            if (error.status() == 401) {
+                dismissDialog(context, WAITING.getValue());
+                expiredToken(context);
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     public static <T> void callHttpAsync(Context context, Call<T> call, ICallback<T> callback) {
