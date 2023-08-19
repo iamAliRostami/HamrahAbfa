@@ -29,7 +29,7 @@ import java.util.Arrays;
 public class CitizenBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentCitizenBaseBinding binding;
     private ICallback callback;
-    private ArrayList<String> titles = new ArrayList<>();
+    private final ArrayList<String> titles = new ArrayList<>();
 
     public CitizenBaseFragment() {
     }

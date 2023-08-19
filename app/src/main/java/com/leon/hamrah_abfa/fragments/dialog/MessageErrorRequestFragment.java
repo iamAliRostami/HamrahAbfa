@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.databinding.FragmentMessageDoneRequestBinding;
 import com.leon.hamrah_abfa.databinding.FragmentMessageErrorRequestBinding;
 
 public class MessageErrorRequestFragment extends DialogFragment implements View.OnClickListener {

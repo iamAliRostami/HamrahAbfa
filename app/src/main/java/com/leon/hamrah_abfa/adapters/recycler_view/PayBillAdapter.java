@@ -58,10 +58,6 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         return payBills.size();
     }
 
-    //    @Override
-//    public int getItemViewType(int position) {
-//        return super.getItemViewType(position);
-//    }
     @Override
     public int getItemViewType(int position) {
         return position;

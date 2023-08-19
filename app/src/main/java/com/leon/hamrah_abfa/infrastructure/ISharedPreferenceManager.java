@@ -4,6 +4,7 @@ public interface ISharedPreferenceManager {
     void putData(String key, String value);
 
     void putData(String key, int value);
+
     void putData(String key, long value);
 
     void putData(String key, boolean value);
@@ -24,6 +25,4 @@ public interface ISharedPreferenceManager {
 
     long getLongData(String key);
 
-//    void putFontStyle(FontStyle style);
-//    FontStyle getFontStyle();
 }

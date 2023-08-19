@@ -17,9 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCounterBaseBinding;
 import com.leon.hamrah_abfa.requests.AskVerificationCodeRequest;
-import com.leon.hamrah_abfa.utils.SMSReceiver;
 
-public class CounterBaseFragment extends Fragment implements View.OnClickListener{
+public class CounterBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentCounterBaseBinding binding;
     private ICallback callback;
 

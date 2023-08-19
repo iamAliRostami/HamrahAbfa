@@ -18,8 +18,6 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.leon.hamrah_abfa.R;
@@ -57,11 +55,6 @@ public class DashboardPaymentFragment extends Fragment {
 
     private void initializeChart() {
         designHorizontalBarChart();
-//        designBarChart();
-//        for (int i = 0; i < 10; i++) {
-//            callback.getPaymentStats().payDeadlineKeys.add("12/12/12");
-//            callback.getPaymentStats().payDeadlineValues.add(i);
-//        }
         callback.getPaymentStats().totalBills = 10;
         if (!callback.getPaymentStats().payDeadlineKeys.isEmpty()) {
             ArrayList<BarEntry> barEntries = new ArrayList<>();
@@ -85,10 +78,6 @@ public class DashboardPaymentFragment extends Fragment {
         binding.chartHorizontalBar.getDescription().setTextSize(10f);
         binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
 
-//        binding.chartHorizontalBar.setDragEnabled(false);
-//        binding.chartHorizontalBar.setScaleEnabled(false);
-//        binding.chartHorizontalBar.setPinchZoom(false);
-
         binding.chartHorizontalBar.setExtraOffsets(5f, 0f, 5f, 10f);
 
         binding.chartHorizontalBar.setDrawBarShadow(true);
@@ -101,9 +90,6 @@ public class DashboardPaymentFragment extends Fragment {
         xAxis.setDrawLimitLinesBehindData(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-
-//        xAxis.setGranularity(0.5f);
-//        xAxis.setGranularityEnabled(true);
 
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
@@ -121,12 +107,6 @@ public class DashboardPaymentFragment extends Fragment {
 
         YAxis yAxisLeft = binding.chartHorizontalBar.getAxisLeft();
         yAxisLeft.setTypeface(callback.getTypeface());
-//        yAxisLeft.setValueFormatter(new ValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value) {
-//                return super.getFormattedValue(value);
-//            }
-//        });
         yAxisLeft.setDrawAxisLine(true);
         yAxisLeft.setDrawGridLines(true);
 

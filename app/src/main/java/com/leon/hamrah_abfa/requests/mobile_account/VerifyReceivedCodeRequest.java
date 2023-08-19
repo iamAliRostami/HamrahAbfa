@@ -3,7 +3,6 @@ package com.leon.hamrah_abfa.requests.mobile_account;
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.showFailedMessage;
-import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;

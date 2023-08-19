@@ -16,12 +16,12 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityCheckoutBinding;
-import com.leon.hamrah_abfa.fragments.citizen.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentFragment;
 import com.leon.hamrah_abfa.fragments.checkout.CheckoutPaymentViewModel;
 import com.leon.hamrah_abfa.fragments.checkout.Kardex;
+import com.leon.hamrah_abfa.fragments.citizen.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.requests.bill.GetKardexRequest;
 

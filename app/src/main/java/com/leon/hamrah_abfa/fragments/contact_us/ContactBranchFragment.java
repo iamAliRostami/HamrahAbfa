@@ -25,8 +25,8 @@ import com.leon.hamrah_abfa.requests.contact_us.GetZoneRequest;
 import java.util.ArrayList;
 
 public class ContactBranchFragment extends Fragment implements TextWatcher {
-    private FragmentContactBranchBinding binding;
     private final ContactBranch branch = new ContactBranch();
+    private FragmentContactBranchBinding binding;
     private DialogFragment fragment;
     private BranchAdapter adapter;
 

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import okhttp3.MultipartBody;
 
 public class ForbiddenViewModel extends BaseObservable {
+    public ArrayList<MultipartBody.Part> file = new ArrayList<>();
     private String description;
     private String postalCode;
     private String preEshterak;
@@ -18,8 +19,6 @@ public class ForbiddenViewModel extends BaseObservable {
     private String y;
     private String tedadVahed;
     private String type;
-
-    public ArrayList<MultipartBody.Part> file = new ArrayList<>();
     private String message;
     private String generationDateTime;
     private int status;
@@ -75,20 +74,20 @@ public class ForbiddenViewModel extends BaseObservable {
         notifyPropertyChanged(BR.nextEshterak);
     }
 
-    public void setX(String x) {
-        this.x = x;
-    }
-
-    public void setY(String y) {
-        this.y = y;
-    }
-
     public String getX() {
         return x;
     }
 
+    public void setX(String x) {
+        this.x = x;
+    }
+
     public String getY() {
         return y;
+    }
+
+    public void setY(String y) {
+        this.y = y;
     }
 
     @Bindable

@@ -19,9 +19,9 @@ import java.util.ArrayList;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
 
     private final LayoutInflater inflater;
-    private ArrayList<Notification> notifications;
     private final TypedArray icons;
     private final String billId;
+    private ArrayList<Notification> notifications;
 
 
     public NotificationAdapter(Context context, String billId) {

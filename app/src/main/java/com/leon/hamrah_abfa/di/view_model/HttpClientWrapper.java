@@ -34,7 +34,7 @@ public class HttpClientWrapper {
         if (isOnline) {
             isOnline = hasServerPing();
             if (isOnline) {
-                call.enqueue(new Callback<T>() {
+                call.enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
                         if (response.isSuccessful()) {
@@ -62,7 +62,7 @@ public class HttpClientWrapper {
 
     public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,
                                                   ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
-        call.enqueue(new Callback<T>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
                 if (response.isSuccessful()) {
@@ -103,7 +103,7 @@ public class HttpClientWrapper {
 
     public static <T> void callHttpAsync(Context context, Call<T> call, ICallback<T> callback) {
         if (isNetworkAvailable(context)) {
-            call.enqueue(new Callback<T>() {
+            call.enqueue(new Callback<>() {
                 @Override
                 public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
                     if (response.isSuccessful()) {

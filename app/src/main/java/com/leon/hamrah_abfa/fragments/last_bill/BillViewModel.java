@@ -66,8 +66,16 @@ public class BillViewModel extends BaseObservable {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public int getZoneId() {
         return zoneId;
+    }
+
+    public void setZoneId(int zoneId) {
+        this.zoneId = zoneId;
     }
 
     @Bindable
@@ -75,13 +83,25 @@ public class BillViewModel extends BaseObservable {
         return zoneTitle;
     }
 
+    public void setZoneTitle(String zoneTitle) {
+        this.zoneTitle = zoneTitle;
+    }
+
     @Bindable
     public String getFullName() {
         return fullName;
     }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public int getKarbariId() {
         return karbariId;
+    }
+
+    public void setKarbariId(int karbariId) {
+        this.karbariId = karbariId;
     }
 
     @Bindable
@@ -89,9 +109,18 @@ public class BillViewModel extends BaseObservable {
         return karbariTitle;
     }
 
+    public void setKarbariTitle(String karbariTitle) {
+        this.karbariTitle = karbariTitle;
+    }
+
     @Bindable
     public String getAhadMaskooni() {
         return ahadMaskooni;
+    }
+
+    public void setAhadMaskooni(String ahadMaskooni) {
+        this.ahadMaskooni = ahadMaskooni;
+        notifyPropertyChanged(BR.ahadMaskooni);
     }
 
     @Bindable
@@ -99,8 +128,17 @@ public class BillViewModel extends BaseObservable {
         return zarfiatQarardadi;
     }
 
+    public void setZarfiatQarardadi(String zarfiatQarardadi) {
+        this.zarfiatQarardadi = zarfiatQarardadi;
+        notifyPropertyChanged(BR.zarfiatQarardadi);
+    }
+
     public int getQotrId() {
         return qotrId;
+    }
+
+    public void setQotrId(int qotrId) {
+        this.qotrId = qotrId;
     }
 
     @Bindable
@@ -108,8 +146,16 @@ public class BillViewModel extends BaseObservable {
         return qotr;
     }
 
+    public void setQotr(String qotr) {
+        this.qotr = qotr;
+    }
+
     public int getQotrSifoonId() {
         return qotrSifoonId;
+    }
+
+    public void setQotrSifoonId(int qotrSifoonId) {
+        this.qotrSifoonId = qotrSifoonId;
     }
 
     @Bindable
@@ -117,8 +163,16 @@ public class BillViewModel extends BaseObservable {
         return qotrSifoon;
     }
 
+    public void setQotrSifoon(String qotrSifoon) {
+        this.qotrSifoon = qotrSifoon;
+    }
+
     public int getCounterStateId() {
         return counterStateId;
+    }
+
+    public void setCounterStateId(int counterStateId) {
+        this.counterStateId = counterStateId;
     }
 
     @Bindable
@@ -126,9 +180,17 @@ public class BillViewModel extends BaseObservable {
         return preCounterReadingDate;
     }
 
+    public void setPreCounterReadingDate(String preCounterReadingDate) {
+        this.preCounterReadingDate = preCounterReadingDate;
+    }
+
     @Bindable
     public String getCurrentCounterReadingDate() {
         return currentCounterReadingDate;
+    }
+
+    public void setCurrentCounterReadingDate(String currentCounterReadingDate) {
+        this.currentCounterReadingDate = currentCounterReadingDate;
     }
 
     @Bindable
@@ -136,9 +198,18 @@ public class BillViewModel extends BaseObservable {
         return preCounterNumber;
     }
 
+    public void setPreCounterNumber(String preCounterNumber) {
+        this.preCounterNumber = preCounterNumber;
+    }
+
     @Bindable
     public String getCurrentCounterNumber() {
         return currentCounterNumber;
+    }
+
+    public void setCurrentCounterNumber(String currentCounterNumber) {
+        this.currentCounterNumber = currentCounterNumber;
+        notifyPropertyChanged(BR.currentCounterNumber);
     }
 
     @Bindable
@@ -146,9 +217,18 @@ public class BillViewModel extends BaseObservable {
         return masraf;
     }
 
+    public void setMasraf(String masraf) {
+        this.masraf = masraf;
+    }
+
     @Bindable
     public String getMasrafLiter() {
         return masrafLiter;
+    }
+
+    public void setMasrafLiter(String masrafLiter) {
+        this.masrafLiter = masrafLiter;
+        notifyPropertyChanged(BR.masrafLiter);
     }
 
     @Bindable
@@ -161,14 +241,31 @@ public class BillViewModel extends BaseObservable {
         return masrafAverage;
     }
 
+    public void setMasrafAverage(String masrafAverage) {
+        this.masrafAverage = masrafAverage;
+        notifyPropertyChanged(BR.masrafAverage);
+    }
+
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getAbBaha() {
         return String.format("%,d", abBaha);
     }
 
+    public void setAbBaha(long abBaha) {
+        this.abBaha = abBaha;
+        notifyPropertyChanged(BR.abBaha);
+    }
+
+    @SuppressLint("DefaultLocale")
     @Bindable
     public String getKarmozdFazelab() {
         return String.format("%,d", karmozdFazelab);
+    }
+
+    public void setKarmozdFazelab(long karmozdFazelab) {
+        this.karmozdFazelab = karmozdFazelab;
+        notifyPropertyChanged(BR.karmozdFazelab);
     }
 
     @SuppressLint("DefaultLocale")
@@ -177,10 +274,20 @@ public class BillViewModel extends BaseObservable {
         return String.format("%,d", maliat);
     }
 
+    public void setMaliat(long maliat) {
+        this.maliat = maliat;
+        notifyPropertyChanged(BR.maliat);
+    }
+
     @SuppressLint("DefaultLocale")
     @Bindable
     public String getBudget() {
         return String.format("%,d", budget);
+    }
+
+    public void setBudget(long budget) {
+        this.budget = budget;
+        notifyPropertyChanged(BR.budget);
     }
 
     @SuppressLint("DefaultLocale")
@@ -189,10 +296,20 @@ public class BillViewModel extends BaseObservable {
         return String.format("%,d", lavazemKahande);
     }
 
+    public void setLavazemKahande(long lavazemKahande) {
+        this.lavazemKahande = lavazemKahande;
+        notifyPropertyChanged(BR.lavazemKahande);
+    }
+
     @SuppressLint("DefaultLocale")
     @Bindable
     public String getJam() {
         return String.format("%,d", jam);
+    }
+
+    public void setJam(long jam) {
+        this.jam = jam;
+        notifyPropertyChanged(BR.jam);
     }
 
     @SuppressLint("DefaultLocale")
@@ -201,10 +318,20 @@ public class BillViewModel extends BaseObservable {
         return String.format("%,d", taxfif);
     }
 
+    public void setTaxfif(long taxfif) {
+        this.taxfif = taxfif;
+        notifyPropertyChanged(BR.taxfif);
+    }
+
     @SuppressLint("DefaultLocale")
     @Bindable
     public String getPreBedOrBes() {
         return String.format("%,d", preBedOrBes);
+    }
+
+    public void setPreBedOrBes(long preBedOrBes) {
+        this.preBedOrBes = preBedOrBes;
+        notifyPropertyChanged(BR.preBedOrBes);
     }
 
     @SuppressLint("DefaultLocale")
@@ -213,217 +340,14 @@ public class BillViewModel extends BaseObservable {
         return String.format("%,d", payable);
     }
 
-    @Bindable
-    public String getDeadLine() {
-        return deadLine;
-    }
-
-    public long getPayId() {
-        return payId;
-    }
-
-    public String getBarCode() {
-        return barCode;
-    }
-
-    public boolean getIsPayed() {
-        return isPayed;
-    }
-
-    @Bindable
-    public String getPayDate() {
-        return payDate;
-    }
-
-    public int getPayBankId() {
-        return payBankId;
-    }
-
-    @Bindable
-    public String getPayBank() {
-        return payBank;
-    }
-
-    public int getPayTypeId() {
-        return payTypeId;
-    }
-
-    @Bindable
-    public String getPayType() {
-        return payType;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    @Bindable
-    public String getCounterState() {
-        return counterState;
-    }
-
-    @Bindable
-    public String getPayablePersian() {
-        return payablePersian;
-    }
-
-    @Bindable
-    public String getAbonmanAb() {
-        return abonmanAb;
-    }
-
-    @Bindable
-    public String getAbonmanFa() {
-        return abonmanFa;
-    }
-
-    @Bindable
-    public String getTabsare3() {
-        return tabsare3;
-    }
-
-    @Bindable
-    public String getJalaliDate() {
-        return jalaliDate;
-    }
-
-    @Bindable
-    public String getEmpty() {
-        return empty;
-    }
-
-    public boolean getIsFree() {
-        return isFree;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setZoneId(int zoneId) {
-        this.zoneId = zoneId;
-    }
-
-    public void setZoneTitle(String zoneTitle) {
-        this.zoneTitle = zoneTitle;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setKarbariId(int karbariId) {
-        this.karbariId = karbariId;
-    }
-
-    public void setKarbariTitle(String karbariTitle) {
-        this.karbariTitle = karbariTitle;
-    }
-
-    public void setAhadMaskooni(String ahadMaskooni) {
-        this.ahadMaskooni = ahadMaskooni;
-        notifyPropertyChanged(BR.ahadMaskooni);
-    }
-
-    public void setZarfiatQarardadi(String zarfiatQarardadi) {
-        this.zarfiatQarardadi = zarfiatQarardadi;
-        notifyPropertyChanged(BR.zarfiatQarardadi);
-    }
-
-    public void setQotrId(int qotrId) {
-        this.qotrId = qotrId;
-    }
-
-    public void setQotr(String qotr) {
-        this.qotr = qotr;
-    }
-
-    public void setQotrSifoonId(int qotrSifoonId) {
-        this.qotrSifoonId = qotrSifoonId;
-    }
-
-    public void setQotrSifoon(String qotrSifoon) {
-        this.qotrSifoon = qotrSifoon;
-    }
-
-    public void setCounterStateId(int counterStateId) {
-        this.counterStateId = counterStateId;
-    }
-
-    public void setPreCounterReadingDate(String preCounterReadingDate) {
-        this.preCounterReadingDate = preCounterReadingDate;
-    }
-
-    public void setCurrentCounterReadingDate(String currentCounterReadingDate) {
-        this.currentCounterReadingDate = currentCounterReadingDate;
-    }
-
-    public void setPreCounterNumber(String preCounterNumber) {
-        this.preCounterNumber = preCounterNumber;
-    }
-
-    public void setCurrentCounterNumber(String currentCounterNumber) {
-        this.currentCounterNumber = currentCounterNumber;
-        notifyPropertyChanged(BR.currentCounterNumber);
-    }
-
-    public void setMasraf(String masraf) {
-        this.masraf = masraf;
-    }
-
-    public void setMasrafLiter(String masrafLiter) {
-        this.masrafLiter = masrafLiter;
-        notifyPropertyChanged(BR.masrafLiter);
-    }
-
-    public void setMasrafAverage(String masrafAverage) {
-        this.masrafAverage = masrafAverage;
-        notifyPropertyChanged(BR.masrafAverage);
-    }
-
-    public void setAbBaha(long abBaha) {
-        this.abBaha = abBaha;
-        notifyPropertyChanged(BR.abBaha);
-    }
-
-    public void setKarmozdFazelab(long karmozdFazelab) {
-        this.karmozdFazelab = karmozdFazelab;
-        notifyPropertyChanged(BR.karmozdFazelab);
-    }
-
-    public void setMaliat(long maliat) {
-        this.maliat = maliat;
-        notifyPropertyChanged(BR.maliat);
-    }
-
-    public void setBudget(long budget) {
-        this.budget = budget;
-        notifyPropertyChanged(BR.budget);
-    }
-
-    public void setLavazemKahande(long lavazemKahande) {
-        this.lavazemKahande = lavazemKahande;
-        notifyPropertyChanged(BR.lavazemKahande);
-    }
-
-    public void setJam(long jam) {
-        this.jam = jam;
-        notifyPropertyChanged(BR.jam);
-    }
-
-    public void setTaxfif(long taxfif) {
-        this.taxfif = taxfif;
-        notifyPropertyChanged(BR.taxfif);
-    }
-
-    public void setPreBedOrBes(long preBedOrBes) {
-        this.preBedOrBes = preBedOrBes;
-        notifyPropertyChanged(BR.preBedOrBes);
-    }
-
     public void setPayable(long payable) {
         this.payable = payable;
         notifyPropertyChanged(BR.payable);
+    }
+
+    @Bindable
+    public String getDeadLine() {
+        return deadLine;
     }
 
     public void setDeadLine(String deadLine) {
@@ -431,16 +355,33 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.deadLine);
     }
 
+    public long getPayId() {
+        return payId;
+    }
+
     public void setPayId(long payId) {
         this.payId = payId;
+    }
+
+    public String getBarCode() {
+        return barCode;
     }
 
     public void setBarCode(String barCode) {
         this.barCode = barCode;
     }
 
+    public boolean getIsPayed() {
+        return isPayed;
+    }
+
     public void setIsPayed(boolean isPayed) {
         this.isPayed = isPayed;
+    }
+
+    @Bindable
+    public String getPayDate() {
+        return payDate;
     }
 
     public void setPayDate(String payDate) {
@@ -448,8 +389,17 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.payDate);
     }
 
+    public int getPayBankId() {
+        return payBankId;
+    }
+
     public void setPayBankId(int payBankId) {
         this.payBankId = payBankId;
+    }
+
+    @Bindable
+    public String getPayBank() {
+        return payBank;
     }
 
     public void setPayBank(String payBank) {
@@ -457,8 +407,17 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.payBank);
     }
 
+    public int getPayTypeId() {
+        return payTypeId;
+    }
+
     public void setPayTypeId(int payTypeId) {
         this.payTypeId = payTypeId;
+    }
+
+    @Bindable
+    public String getPayType() {
+        return payType;
     }
 
     public void setPayType(String payType) {
@@ -466,16 +425,35 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.payType);
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Bindable
+    public String getCounterState() {
+        return counterState;
     }
 
     public void setCounterState(String counterState) {
         this.counterState = counterState;
     }
 
+    @Bindable
+    public String getPayablePersian() {
+        return payablePersian;
+    }
+
     public void setPayablePersian(String payablePersian) {
         this.payablePersian = payablePersian;
+    }
+
+    @Bindable
+    public String getAbonmanAb() {
+        return abonmanAb;
     }
 
     public void setAbonmanAb(String abonmanAb) {
@@ -483,9 +461,19 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.abonmanAb);
     }
 
+    @Bindable
+    public String getAbonmanFa() {
+        return abonmanFa;
+    }
+
     public void setAbonmanFa(String abonmanFa) {
         this.abonmanFa = abonmanFa;
         notifyPropertyChanged(BR.abonmanFa);
+    }
+
+    @Bindable
+    public String getTabsare3() {
+        return tabsare3;
     }
 
     public void setTabsare3(String tabsare3) {
@@ -493,14 +481,28 @@ public class BillViewModel extends BaseObservable {
         notifyPropertyChanged(BR.tabsare3);
     }
 
+    @Bindable
+    public String getJalaliDate() {
+        return jalaliDate;
+    }
+
     public void setJalaliDate(String jalaliDate) {
         this.jalaliDate = jalaliDate;
         notifyPropertyChanged(BR.jalaliDate);
     }
 
+    @Bindable
+    public String getEmpty() {
+        return empty;
+    }
+
     public void setEmpty(String empty) {
         this.empty = empty;
         notifyPropertyChanged(BR.empty);
+    }
+
+    public boolean getIsFree() {
+        return isFree;
     }
 
     public void setIsFree(boolean isFree) {

@@ -15,6 +15,7 @@ public class CounterViewModel extends VerificationViewModel {
     private String billId;
     private String counterClaim;
     private String billAccountId;
+
     @SuppressLint("DefaultLocale")
     public CounterViewModel(String billId, String billAccountId) {
         setMobile(getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()));

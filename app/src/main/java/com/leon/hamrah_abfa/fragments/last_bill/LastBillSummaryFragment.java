@@ -34,11 +34,13 @@ public class LastBillSummaryFragment extends Fragment {
         binding.setViewModel(callback.getBillViewModel());
         return binding.getRoot();
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof Activity) callback = (ICallback) context;
     }
+
     public interface ICallback {
         BillViewModel getBillViewModel();
     }

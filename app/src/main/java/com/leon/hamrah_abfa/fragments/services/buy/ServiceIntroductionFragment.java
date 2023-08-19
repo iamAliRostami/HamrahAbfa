@@ -66,9 +66,10 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
                 case 2:
                     callback.setAdapter(new ServicesIntroductionSingleAdapter(requireContext(), R.array.services_ab_baha_menu,
                             R.array.services_ab_baha_introduction, R.array.services_ab_baha_id, R.array.services_ab_baha_icons));
-                     break;
-                case 1:  callback.setAdapter(new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
-                        R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons));
+                    break;
+                case 1:
+                    callback.setAdapter(new ServicesIntroductionMultiAdapter(requireContext(), R.array.services_after_sale_menu,
+                            R.array.services_after_sale_introduction, R.array.services_after_sale_id, R.array.services_after_sale_icons));
 
                     break;
                 case 0:
@@ -127,6 +128,7 @@ public class ServiceIntroductionFragment extends Fragment implements View.OnClic
         ServicesViewModel getServicesViewModel();
 
         void setServices(ArrayList<Integer> selectedServicesId, ArrayList<String> selectedServicesTitle);
+
         void displayView(int position);
     }
 }

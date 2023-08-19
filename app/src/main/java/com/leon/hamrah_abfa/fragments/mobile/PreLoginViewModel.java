@@ -40,20 +40,20 @@ public class PreLoginViewModel extends VerificationViewModel {
         return result;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public String getFailureMessage() {
-        return failureMessage;
-    }
-
     public void setResult(boolean result) {
         this.result = result;
     }
 
+    public String getToken() {
+        return token;
+    }
+
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getFailureMessage() {
+        return failureMessage;
     }
 
     public void setFailureMessage(String failureMessage) {

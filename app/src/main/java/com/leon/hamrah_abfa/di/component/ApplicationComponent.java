@@ -30,5 +30,6 @@ public interface ApplicationComponent {
     Retrofit Retrofit();
 
     APIClientModel NetworkHelperModel();
+
     HttpLoggingInterceptor HttpLoggingInterceptor();
 }

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 
-public class NewsViewHolder extends RecyclerView.ViewHolder{
+public class NewsViewHolder extends RecyclerView.ViewHolder {
     public final ImageView imageView;
     public final TextView textViewDots;
     public final TextView textViewDate;

@@ -43,7 +43,6 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
-import com.leon.hamrah_abfa.enums.BundleEnum;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
@@ -54,8 +53,95 @@ import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback, DashboardBaseFragment.ICallback {
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    scheduleBackgroundTask(this);
+                } else {
+                    warning(this, R.string.notification_won_t_send).show();
+                }
+            });
+    private final ActivityResultLauncher<Intent> submitMobileActivityResultLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            requestBills();
+                        }
+                    });
+    private final ActivityResultLauncher<Intent> welcomeActivityResultLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
+                            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
+                                submitMobileActivityResultLauncher.launch(intent);
+                            }
+                        }
+                    });
+    private final ActivityResultLauncher<Intent> settingActivityResultLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            final Intent intent = getIntent();
+                            finish();
+                            startActivity(intent);
+                        }
+                    });
     private CardPagerAdapter cardPagerAdapter;
     private ActivityMainBinding binding;
+    private final Animation.AnimationListener animationTypoListener = new Animation.AnimationListener() {
+        @Override
+        public void onAnimationStart(Animation animation) {
+            if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue()))
+                requestBills();
+        }
+
+        @Override
+        public void onAnimationEnd(Animation animation) {
+            binding.imageViewLogo.setVisibility(View.GONE);
+            binding.container.setVisibility(View.VISIBLE);
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
+                final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+                welcomeActivityResultLauncher.launch(intent);
+            } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                //TODO
+                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
+                submitMobileActivityResultLauncher.launch(intent);
+            }
+        }
+
+        @Override
+        public void onAnimationRepeat(Animation animation) {
+
+        }
+    };
+    private final Animator.AnimatorListener animatorLottieListener = new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(@NonNull Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationEnd(@NonNull Animator animation) {
+            binding.relativeLayoutSplash.setVisibility(View.GONE);
+            binding.imageViewLogo.setVisibility(View.VISIBLE);
+            final Animation animationFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+            animationFadeOut.setAnimationListener(animationTypoListener);
+            binding.imageViewLogo.startAnimation(animationFadeOut);
+        }
+
+        @Override
+        public void onAnimationCancel(@NonNull Animator animation) {
+
+        }
+
+        @Override
+        public void onAnimationRepeat(@NonNull Animator animation) {
+
+        }
+    };
     private int position;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -130,95 +216,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             startActivity(intent);
         }
     }
-
-    private final Animation.AnimationListener animationTypoListener = new Animation.AnimationListener() {
-        @Override
-        public void onAnimationStart(Animation animation) {
-            if (getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue()))
-                requestBills();
-        }
-
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            binding.imageViewLogo.setVisibility(View.GONE);
-            binding.container.setVisibility(View.VISIBLE);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            if (/*  TODO true ||*/getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_FIRST.getValue(), true)) {
-                final Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-                welcomeActivityResultLauncher.launch(intent);
-            } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                //TODO
-                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
-                submitMobileActivityResultLauncher.launch(intent);
-            }
-        }
-
-        @Override
-        public void onAnimationRepeat(Animation animation) {
-
-        }
-    };
-
-    private final Animator.AnimatorListener animatorLottieListener = new Animator.AnimatorListener() {
-        @Override
-        public void onAnimationStart(@NonNull Animator animation) {
-
-        }
-
-        @Override
-        public void onAnimationEnd(@NonNull Animator animation) {
-            binding.relativeLayoutSplash.setVisibility(View.GONE);
-            binding.imageViewLogo.setVisibility(View.VISIBLE);
-            final Animation animationFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
-            animationFadeOut.setAnimationListener(animationTypoListener);
-            binding.imageViewLogo.startAnimation(animationFadeOut);
-        }
-
-        @Override
-        public void onAnimationCancel(@NonNull Animator animation) {
-
-        }
-
-        @Override
-        public void onAnimationRepeat(@NonNull Animator animation) {
-
-        }
-    };
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    scheduleBackgroundTask(this);
-                } else {
-                    warning(this, R.string.notification_won_t_send).show();
-                }
-            });
-    private final ActivityResultLauncher<Intent> submitMobileActivityResultLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                    result -> {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            requestBills();
-                        }
-                    });
-    private final ActivityResultLauncher<Intent> welcomeActivityResultLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                    result -> {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
-                            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
-                                submitMobileActivityResultLauncher.launch(intent);
-                            }
-                        }
-                    });
-    private final ActivityResultLauncher<Intent> settingActivityResultLauncher =
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                    result -> {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            final Intent intent = getIntent();
-                            finish();
-                            startActivity(intent);
-                        }
-                    });
 
     @Override
     protected String getExitMessage() {

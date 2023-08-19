@@ -71,8 +71,6 @@ public class DashboardSummaryFragment extends Fragment {
             for (int i = 0; i < billSummary.size(); i++) {
                 entries.add(new Entry(i, billSummary.get(i).getRate()));
                 barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
-//            entries.add(new BarEntry(i, i*10));
-//            barEntries.add(new BarEntry(i, i*10));
             }
             setLineData(entries);
             setBarData(barEntries);
@@ -152,13 +150,6 @@ public class DashboardSummaryFragment extends Fragment {
 
         binding.chartLine.animateXY(1500, 1500);
 
-//        LineDataSet dataSet = new LineDataSet(values, "میانگین مصرف");
-//        dataSet.setColors(R.color.dark_gray);
-//        dataSet.setCircleColor(R.color.purple_7001);
-//        LineData lineData = new LineData(dataSet);
-//        lineData.setValueTextColor(R.color.dark);
-//        lineData.setValueTypeface(callback.getTypeface());
-//        binding.chartLine.setData(lineData);
     }
 
     private void setLineData(ArrayList<Entry> values) {
@@ -263,11 +254,6 @@ public class DashboardSummaryFragment extends Fragment {
         legend.setForm(Legend.LegendForm.SQUARE);
 
 
-//        BarData data = new BarData(dataSet);
-//        data.setValueTypeface(callback.getTypeface());
-//        binding.chartBar.setNoDataTextTypeface(callback.getTypeface());
-//        binding.chartBar.setNoDataTextColor(R.color.dark);
-//        binding.chartBar.setData(data);
     }
 
     private void setBarData(ArrayList<BarEntry> values) {

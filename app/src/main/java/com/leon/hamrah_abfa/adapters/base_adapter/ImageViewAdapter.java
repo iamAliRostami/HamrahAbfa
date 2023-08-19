@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class ImageViewAdapter extends BaseAdapter {
     private final ArrayList<Bitmap> bitmaps;
     private final LayoutInflater inflater;
-    private long lastClickTime = 0;
     private final Context context;
+    private long lastClickTime = 0;
 
     public ImageViewAdapter(Context context) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

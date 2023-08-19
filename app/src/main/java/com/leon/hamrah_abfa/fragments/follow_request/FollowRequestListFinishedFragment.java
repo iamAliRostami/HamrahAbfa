@@ -92,6 +92,7 @@ public class FollowRequestListFinishedFragment extends Fragment implements View.
         ArrayList<RequestInfo> getRequestInfoFinished();
 
         RequestHistoryAdapter getFinishedAdapter();
+
         int getFinishedTrackNumber(int position);
     }
 }

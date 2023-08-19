@@ -92,15 +92,6 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
         mapController.setCenter(point);
 //TODO
 
-//        if (getLocationTracker(activity).getCurrentLocation() != null) {
-//            startPoint = new GeoPoint(getLocationTracker(activity).getCurrentLocation().getLatitude(),
-//                    getLocationTracker(activity).getCurrentLocation().getLongitude());
-//            mapController.setCenter(startPoint);
-//        }
-//        final MyLocationNewOverlay locationOverlay =
-//                new MyLocationNewOverlay(new GpsMyLocationProvider(requireContext()), binding.mapView);
-//        locationOverlay.enableMyLocation();
-//        binding.mapView.getOverlays().add(locationOverlay);
         binding.mapView.getOverlays().add(new MapEventsOverlay(this));
     }
 
@@ -155,10 +146,6 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
         if (context instanceof Activity) callback = (ICallback) context;
     }
 
-    public interface ICallback {
-        void setLocation(Bitmap location, GeoPoint point);
-    }
-
     public void onPause() {
         super.onPause();
         binding.mapView.onPause();
@@ -174,5 +161,9 @@ public class ServicesLocationDialogFragment extends DialogFragment implements Vi
         }
         super.onResume();
         binding.mapView.onResume();
+    }
+
+    public interface ICallback {
+        void setLocation(Bitmap location, GeoPoint point);
     }
 }

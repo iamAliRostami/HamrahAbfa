@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.leon.hamrah_abfa.R;
 
 public class RequestInfoViewHolder extends RecyclerView.ViewHolder {
-    public TextView textViewKey;
-    public TextView textViewValue;
+    public final TextView textViewKey;
+    public final TextView textViewValue;
 
     public RequestInfoViewHolder(@NonNull View itemView) {
         super(itemView);

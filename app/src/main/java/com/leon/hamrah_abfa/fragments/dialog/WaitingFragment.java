@@ -14,7 +14,6 @@ import androidx.fragment.app.DialogFragment;
 import com.leon.hamrah_abfa.databinding.FragmentWaitingBinding;
 
 public class WaitingFragment extends DialogFragment {
-    private FragmentWaitingBinding binding;
 
     public WaitingFragment() {
     }
@@ -31,7 +30,7 @@ public class WaitingFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentWaitingBinding.inflate(inflater, container, false);
+        com.leon.hamrah_abfa.databinding.FragmentWaitingBinding binding = FragmentWaitingBinding.inflate(inflater, container, false);
         if (getDialog() != null) {
             getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }

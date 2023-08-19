@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -25,11 +26,11 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.dialog.YesNoFragment;
 
 public class GpsTracker extends Service implements LocationListener {
-    private Location location;
     private final Context context;
+    protected LocationManager locationManager;
+    private Location location;
     private double latitude;
     private double longitude;
-    protected LocationManager locationManager;
     private boolean canGetLocation = false;
 
     public GpsTracker(Context context) {
@@ -126,15 +127,15 @@ public class GpsTracker extends Service implements LocationListener {
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(@NonNull Location location) {
     }
 
     @Override
-    public void onProviderDisabled(String provider) {
+    public void onProviderDisabled(@NonNull String provider) {
     }
 
     @Override
-    public void onProviderEnabled(String provider) {
+    public void onProviderEnabled(@NonNull String provider) {
     }
 
     @Override

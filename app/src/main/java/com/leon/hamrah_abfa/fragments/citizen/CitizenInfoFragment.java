@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.fragments.citizen;
 
 import static com.leon.hamrah_abfa.helpers.Constants.CITIZEN_COMPLETE_FRAGMENT;
-import static com.leon.hamrah_abfa.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -68,6 +67,7 @@ public class CitizenInfoFragment extends Fragment implements View.OnClickListene
             requireActivity().getSupportFragmentManager().popBackStack();
         }
     }
+
     private boolean checkInputs() {
         if (callback.getForbiddenViewModel().getPostalCode() != null &&
                 !callback.getForbiddenViewModel().getPostalCode().isEmpty() &&
@@ -93,6 +93,7 @@ public class CitizenInfoFragment extends Fragment implements View.OnClickListene
         }
         return true;
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

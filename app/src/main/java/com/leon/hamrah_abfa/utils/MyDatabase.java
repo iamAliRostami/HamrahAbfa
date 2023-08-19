@@ -15,10 +15,6 @@ import com.leon.hamrah_abfa.tables.dao.UserDao;
 @Database(entities = {User.class, Notification.class, News.class}, version = 1, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
 
-    public abstract UserDao userDao();
-
-    public abstract NewsDao newsDao();
-
     public static final Migration MIGRATION_2_3 = new Migration(1, 2) {
         @Override
         public void migrate(SupportSQLiteDatabase database) {
@@ -28,6 +24,10 @@ public abstract class MyDatabase extends RoomDatabase {
             database.execSQL("ALTER TABLE t1_backup RENAME TO News");
         }
     };
+
+    public abstract UserDao userDao();
+
+    public abstract NewsDao newsDao();
 
     public abstract NotificationDao notificationDao();
 }

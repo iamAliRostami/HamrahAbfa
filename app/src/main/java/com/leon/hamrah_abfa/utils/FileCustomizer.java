@@ -7,7 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
+import androidx.exifinterface.media.ExifInterface;
 import android.os.Environment;
 
 import com.leon.hamrah_abfa.R;
@@ -103,6 +103,7 @@ public class FileCustomizer {
         RequestBody requestBody = RequestBody.create(f, MediaType.parse("image/jpeg"));
         return MultipartBody.Part.createFormData("File", f.getName(), requestBody);
     }
+
     public static byte[] compressBitmapToByte(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);

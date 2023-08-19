@@ -50,11 +50,6 @@ public class ServicesViewModel extends BaseObservable {
     private boolean isValid;
 
     public ServicesViewModel(Context context, int serviceType, String billId, String billAccountId) {
-//        setFirstName("تست");
-//        setSureName("تست");
-//        setNationalId("1111111111");
-//        setPostalCode("0000000000");
-//        setAddress("تست");
         setBillAccountId(billAccountId);
         setBillId(billId);
         setNeighbourBillId(billId);

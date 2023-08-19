@@ -15,7 +15,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.leon.hamrah_abfa.adapters.recycler_view.UsageHistoryAdapter;
 import com.leon.hamrah_abfa.databinding.FragmentUsageHistorySuccessfulBinding;
-import com.leon.hamrah_abfa.fragments.checkout.CheckoutBillViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

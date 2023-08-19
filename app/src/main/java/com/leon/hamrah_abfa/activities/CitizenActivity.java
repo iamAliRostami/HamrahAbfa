@@ -40,8 +40,8 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
         ContactBaseFragment.ICallback, ContactForbiddenBaseFragment.ICallback,
         ContactForbiddenCompleteFragment.ICallback, ContactForbiddenInfoFragment.ICallback,
         CitizenBaseFragment.ICallback, CitizenInfoFragment.ICallback, CitizenCompleteFragment.ICallback {
-    private ActivityCitizenBinding binding;
     private final ForbiddenViewModel viewModel = new ForbiddenViewModel();
+    private ActivityCitizenBinding binding;
     private ImageViewAdapter imageAdapter;
     private CitizenAdapter adapter;
 

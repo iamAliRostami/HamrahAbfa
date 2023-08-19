@@ -22,7 +22,6 @@ import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentContactFaqBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.requests.contact_us.GetFAQRequest;
-import com.leon.hamrah_abfa.requests.contact_us.GetTelRequest;
 
 import java.util.ArrayList;
 

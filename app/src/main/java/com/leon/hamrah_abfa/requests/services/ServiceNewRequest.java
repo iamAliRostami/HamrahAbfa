@@ -7,7 +7,6 @@ import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.showFailedMessage;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
-import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;

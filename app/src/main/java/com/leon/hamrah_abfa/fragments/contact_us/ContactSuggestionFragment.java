@@ -48,12 +48,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ContactSuggestionFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
-    private FragmentContactSuggestionBinding binding;
     private final FeedbackViewModel viewModel = new FeedbackViewModel();
+    private final ArrayList<FeedbackType> feedbackType = new ArrayList<>();
+    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
+                }
+            });
+    private FragmentContactSuggestionBinding binding;
     private ImageViewAdapter adapter;
     private long lastClickTime = 0;
-    private final ArrayList<FeedbackType> feedbackType = new ArrayList<>();
     private File fileImage = null;
+    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    try {
+                        adapter.addItem(prepareImage(fileImage));
+                    } catch (IOException e) {
+                        error(requireContext(), e.getMessage()).show();
+                    }
+                }
+            });
     private DialogFragment fragment;
 
     public ContactSuggestionFragment() {
@@ -167,7 +185,7 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
             warning(requireContext(), R.string.field_complaint_description).show();
             return false;
         }
-        if (viewModel.getSolution()==null||viewModel.getSolution().isEmpty()){
+        if (viewModel.getSolution() == null || viewModel.getSolution().isEmpty()) {
             viewModel.setSolution("");
         }
         return true;
@@ -227,26 +245,5 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
             error(requireContext(), e.getMessage()).show();
         }
     }
-
-    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    try {
-                        adapter.addItem(prepareImage(fileImage));
-                    } catch (IOException e) {
-                        error(requireContext(), e.getMessage()).show();
-                    }
-                }
-            });
-
-
-    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
-                }
-            });
 
 }

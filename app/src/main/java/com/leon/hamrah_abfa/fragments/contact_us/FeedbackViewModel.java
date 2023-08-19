@@ -10,17 +10,15 @@ import java.util.ArrayList;
 import okhttp3.MultipartBody;
 
 public class FeedbackViewModel extends BaseObservable {
+    public final ArrayList<MultipartBody.Part> file = new ArrayList<>();
     private String description;
     private String solution;
     private Integer feedbackTypeId;
     private boolean inComplaint;
-
     private String message;
     private String generationDateTime;
     private int status;
     private boolean isValid;
-
-    public ArrayList<MultipartBody.Part> file = new ArrayList<>();
 
     @Bindable
     public String getDescription() {

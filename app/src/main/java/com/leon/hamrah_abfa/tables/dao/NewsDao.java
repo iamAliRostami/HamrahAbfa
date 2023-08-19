@@ -19,7 +19,7 @@ public interface NewsDao {
     List<News> getNewsBillId(String billId);
 
     @Query("SELECT COUNT(*) FROM News WHERE billId = :billId AND seen = :seen")
-    int getUnseenNewsNumber(String billId,boolean seen);
+    int getUnseenNewsNumber(String billId, boolean seen);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNews(News news);

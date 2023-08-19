@@ -33,17 +33,6 @@ public class MyApplication extends Application {
     private static boolean serverPing;
     private static MyApplication instance = null;
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        setApplicationComponent();
-        setDefaultNightMode();
-        Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
-                .setTextSize(TOAST_TEXT_SIZE).apply();
-        if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
-        serverPing = checkServerConnection();
-    }
-
     public static boolean checkServerConnection() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -60,6 +49,28 @@ public class MyApplication extends Application {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static MyApplication getInstance() {
+        if (instance == null) {
+            instance = new MyApplication();
+        }
+        return instance;
+    }
+
+    public static boolean hasServerPing() {
+        return serverPing;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        setApplicationComponent();
+        setDefaultNightMode();
+        Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
+                .setTextSize(TOAST_TEXT_SIZE).apply();
+        if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
+        serverPing = checkServerConnection();
     }
 
     @Override
@@ -94,22 +105,11 @@ public class MyApplication extends Application {
         return applicationComponent;
     }
 
-    public static MyApplication getInstance() {
-        if (instance == null) {
-            instance = new MyApplication();
-        }
-        return instance;
-    }
-
     protected void setupYandex() {
         final String YANDEX_API_KEY = "0f22d2c8-1621-4448-b0db-267ab4131561";
         final YandexMetricaConfig config = YandexMetricaConfig.newConfigBuilder(YANDEX_API_KEY)
                 .withLogs().withAppVersion(BuildConfig.VERSION_NAME).build();
         YandexMetrica.activate(this, config);
         YandexMetrica.enableActivityAutoTracking(getInstance());
-    }
-
-    public static boolean hasServerPing() {
-        return serverPing;
     }
 }

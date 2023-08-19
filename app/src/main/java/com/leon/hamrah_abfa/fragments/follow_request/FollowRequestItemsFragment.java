@@ -37,7 +37,7 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
     public FollowRequestItemsFragment() {
     }
 
-    public static FollowRequestItemsFragment newInstance(String id,String name) {
+    public static FollowRequestItemsFragment newInstance(String id, String name) {
         FollowRequestItemsFragment fragment = new FollowRequestItemsFragment();
         final Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -104,6 +104,7 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
         binding.recyclerViewInfo.setLayoutManager(new LinearLayoutManager(requireContext()));
 
     }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -118,6 +119,7 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
         });
         return FollowRequestLevelsDialog;
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

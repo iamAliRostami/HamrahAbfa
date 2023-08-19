@@ -28,11 +28,11 @@ import java.util.ArrayList;
 
 public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
         UsageHistorySuccessfulFragment.ICallback, UsageHistoryFailedFragment.ICallback {
+    private final ArrayList<AttemptViewModel> successAttempts = new ArrayList<>();
+    private final ArrayList<AttemptViewModel> unsuccessAttempts = new ArrayList<>();
     private ActivityUsageHistoryBinding binding;
     private String id;
     private DialogFragment fragment;
-    private final ArrayList<AttemptViewModel> successAttempts = new ArrayList<>();
-    private final ArrayList<AttemptViewModel> unsuccessAttempts = new ArrayList<>();
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -138,7 +138,7 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
 
     @Override
     public String getId() {
-        return null;
+        return id;
     }
 
     @Override

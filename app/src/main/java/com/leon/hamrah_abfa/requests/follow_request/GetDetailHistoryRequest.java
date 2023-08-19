@@ -5,11 +5,9 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.showFailedMessage;
-import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistory;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;

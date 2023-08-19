@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class ActiveSessionFragment extends BaseBottomSheetFragment {
     private FragmentActiveSessionBinding binding;
+
     public ActiveSessionFragment() {
     }
 
@@ -27,6 +28,7 @@ public class ActiveSessionFragment extends BaseBottomSheetFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
+
     @Override
     protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentActiveSessionBinding.inflate(inflater, container, false);

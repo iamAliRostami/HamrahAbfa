@@ -50,10 +50,28 @@ import java.io.IOException;
 
 public class CitizenCompleteFragment extends Fragment implements View.OnClickListener,
         AdapterView.OnItemClickListener {
+    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
+                }
+            });
     private FragmentCitizenCompleteBinding binding;
     private long lastClickTime = 0;
     private File fileImage = null;
     private ICallback callback;
+    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    try {
+                        callback.getImageViewAdapter().addItem(prepareImage(fileImage));
+                    } catch (IOException e) {
+                        error(requireContext(), e.getMessage()).show();
+                    }
+                }
+            });
     private DialogFragment fragment;
 
     public CitizenCompleteFragment() {
@@ -85,8 +103,6 @@ public class CitizenCompleteFragment extends Fragment implements View.OnClickLis
     }
 
     private void initializeGridView() {
-//        if (callback.getImageViewAdapter() == null)
-//            callback.setImageViewAdapter(new ImageViewAdapter(requireContext()));
         binding.gridViewImages.setAdapter(callback.getImageViewAdapter());
         binding.gridViewImages.setOnItemClickListener(this);
     }
@@ -188,26 +204,6 @@ public class CitizenCompleteFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    try {
-                        callback.getImageViewAdapter().addItem(prepareImage(fileImage));
-                    } catch (IOException e) {
-                        error(requireContext(), e.getMessage()).show();
-                    }
-                }
-            });
-
-
-    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
-                }
-            });
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

@@ -23,6 +23,7 @@ import java.util.ArrayList;
 public class FollowRequestListUnfinishedFragment extends Fragment implements View.OnClickListener {
     private FragmentFollowRequestListBinding binding;
     private ICallback callback;
+
     public FollowRequestListUnfinishedFragment() {
     }
 
@@ -90,6 +91,7 @@ public class FollowRequestListUnfinishedFragment extends Fragment implements Vie
         ArrayList<RequestInfo> getRequestInfoUnfinished();
 
         RequestHistoryAdapter getUnfinishedAdapter();
+
         int getUnfinishedTrackNumber(int position);
 
     }

@@ -15,8 +15,8 @@ import com.leon.hamrah_abfa.fragments.contact_us.ContactFAQViewModel;
 import java.util.ArrayList;
 
 public class FAQAdapter extends RecyclerView.Adapter<FAQViewHolder> {
-    private final ArrayList<ContactFAQViewModel> faq;
     public final LayoutInflater inflater;
+    private final ArrayList<ContactFAQViewModel> faq;
     private Integer selectedFAQ = null;
 
     public FAQAdapter(Context context, ArrayList<ContactFAQViewModel> faq) {

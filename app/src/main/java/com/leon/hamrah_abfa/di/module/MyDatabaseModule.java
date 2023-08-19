@@ -18,6 +18,7 @@ public class MyDatabaseModule {
     public MyDatabaseModule(Context context) {
         this.database = getInstance(context).getMyDatabase();
     }
+
     @Singleton
     @Provides
     public MyDatabase providesMyDatabase() {

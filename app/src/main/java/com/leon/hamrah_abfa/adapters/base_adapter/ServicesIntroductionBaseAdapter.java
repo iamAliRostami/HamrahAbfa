@@ -18,12 +18,6 @@ public abstract class ServicesIntroductionBaseAdapter extends RecyclerView.Adapt
     public final TypedArray drawable;
     public final int[] servicesId;
 
-    public abstract void updateSelectedService(int position);
-
-    public abstract ArrayList<Integer> selectedServiceId();
-
-    public abstract ArrayList<String> selectedServiceTitle();
-
     public ServicesIntroductionBaseAdapter(Context context, int titleIds, int introductionIds,
                                            int serviceId, int drawableIds) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -33,6 +27,11 @@ public abstract class ServicesIntroductionBaseAdapter extends RecyclerView.Adapt
         this.drawable = context.getResources().obtainTypedArray(drawableIds);
     }
 
+    public abstract void updateSelectedService(int position);
+
+    public abstract ArrayList<Integer> selectedServiceId();
+
+    public abstract ArrayList<String> selectedServiceTitle();
 
     @Override
     public int getItemCount() {

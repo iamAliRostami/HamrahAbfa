@@ -37,8 +37,16 @@ import java.util.ArrayList;
 
 public class ContactPhonebookFragment extends Fragment implements AdapterView.OnItemClickListener,
         AdapterView.OnItemLongClickListener, TextWatcher {
-    private FragmentContactPhonebookBinding binding;
     private final ContactPhoneBook phonebook = new ContactPhoneBook();
+    private final ActivityResultLauncher<String> requestCallPhonePermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.call_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.call_permission_unavailable)).show();
+                }
+            });
+    private FragmentContactPhonebookBinding binding;
     private DialogFragment fragment;
     private PhonebookAdapter adapter;
 
@@ -129,15 +137,6 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
         intent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(intent);
     }
-
-    private final ActivityResultLauncher<String> requestCallPhonePermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.call_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.call_permission_unavailable)).show();
-                }
-            });
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {

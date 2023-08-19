@@ -22,8 +22,8 @@ import com.leon.hamrah_abfa.databinding.FragmentServiceSubmitInfoBinding;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesMapFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
-import com.leon.hamrah_abfa.requests.services.ServiceAbRequest;
 import com.leon.hamrah_abfa.requests.services.ServiceASRequest;
+import com.leon.hamrah_abfa.requests.services.ServiceAbRequest;
 
 public class ServiceSubmitInformationFragment extends Fragment implements View.OnClickListener {
     private FragmentServiceSubmitInfoBinding binding;

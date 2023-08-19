@@ -65,10 +65,6 @@ public class BillCardViewModel extends BaseObservable {
     public String getDebtFormatted() {
         return String.format("%,d", Long.parseLong(getDebt()));
     }
-//
-//    public void setDebt(long debt) {
-//        this.debt = debt;
-//    }
 
     public String getId() {
         return id;

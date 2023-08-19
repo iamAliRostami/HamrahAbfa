@@ -43,10 +43,28 @@ import java.io.File;
 import java.io.IOException;
 
 public class IncidentCompleteFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
+                }
+            });
     private FragmentIncidentCompleteBinding binding;
     private ICallback callback;
     private long lastClickTime = 0;
     private File fileImage = null;
+    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    try {
+                        callback.getImageViewAdapter().addItem(prepareImage(fileImage));
+                    } catch (IOException e) {
+                        error(requireContext(), e.getMessage()).show();
+                    }
+                }
+            });
 
     public IncidentCompleteFragment() {
     }
@@ -142,41 +160,7 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
         } catch (IOException e) {
             error(requireContext(), e.getMessage()).show();
         }
-/*        if (getContext() != null && cameraIntent.resolveActivity(requireContext().getPackageManager()) != null) {
-//            try {
-//                fileImage = createImageFile(requireContext());
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(requireContext(),
-//                        BuildConfig.APPLICATION_ID.concat(".provider"), fileImage));
-//                cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-//                cameraResultLauncher.launch(cameraIntent);
-//            } catch (IOException e) {
-//                error(requireContext(), e.getMessage()).show();
-//            }
-//        } else {
-//            error(requireContext(), "صفحه ی عکس را بسته و مجددا باز کنید.").show();
-       }*/
-}
-
-    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    try {
-                        callback.getImageViewAdapter().addItem(prepareImage(fileImage));
-                    } catch (IOException e) {
-                        error(requireContext(), e.getMessage()).show();
-                    }
-                }
-            });
-
-
-    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
-                }
-            });
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -192,6 +176,7 @@ public class IncidentCompleteFragment extends Fragment implements View.OnClickLi
         void setImageViewAdapter(ImageViewAdapter adapter);
 
         void displayView(int position);
+
         void confirm();
     }
 }

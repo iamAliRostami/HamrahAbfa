@@ -18,9 +18,9 @@ import java.util.ArrayList;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     private final LayoutInflater inflater;
-    private ArrayList<News> news;
     private final TypedArray icons;
     private final String billId;
+    private ArrayList<News> news;
 
 
     public NewsAdapter(Context context, String billId) {

@@ -22,9 +22,9 @@ import com.leon.hamrah_abfa.fragments.incident.IncidentViewModel;
 
 public class IncidentActivity extends BaseActivity implements IncidentBaseFragment.ICallback,
         IncidentCompleteFragment.ICallback {
+    private final IncidentViewModel viewModel = new IncidentViewModel();
     private ActivityIncidentBinding binding;
     private ImageViewAdapter adapter;
-    private final IncidentViewModel viewModel = new IncidentViewModel();
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override

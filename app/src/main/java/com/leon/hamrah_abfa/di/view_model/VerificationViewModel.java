@@ -98,7 +98,9 @@ public class VerificationViewModel extends BaseObservable {
 
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
-    }public void setDeviceInfo(String deviceInfo) {
+    }
+
+    public void setDeviceInfo(String deviceInfo) {
         this.deviceInfo = deviceInfo;
     }
 }

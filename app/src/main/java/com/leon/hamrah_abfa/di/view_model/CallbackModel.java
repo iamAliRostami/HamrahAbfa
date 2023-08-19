@@ -23,7 +23,7 @@ public class CallbackModel<T> implements Callback<T> {
     }
 
     public CallbackModel(Context context, ICallbackSucceed<T> succeed, ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
-        this.callback = new Callback<T>() {
+        this.callback = new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
                 if (response.isSuccessful()) {
@@ -40,6 +40,7 @@ public class CallbackModel<T> implements Callback<T> {
             }
         };
     }
+
     public CallbackModel(Context context, ICallback<T> callback) {
         this.callback = new Callback<T>() {
             @Override
@@ -58,6 +59,7 @@ public class CallbackModel<T> implements Callback<T> {
             }
         };
     }
+
     public void cancel() {
         canceled = true;
         callback = null;

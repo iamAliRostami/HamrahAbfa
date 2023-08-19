@@ -10,21 +10,20 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "News", indices = {@Index(value = {"customId"}, unique = true),
         @Index(value = {"id", "billId"}, unique = true)})
 public class News {
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "customId")
-    public int customId;
     @ColumnInfo(name = "id")
     public final int id;
     public final int category;
     public final String summary;
     public final String title;
     public final String text;
-    public String imageAddress;
-
     @ColumnInfo(name = "billId")
     @NonNull
     public final String billId;
     public final String date;
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "customId")
+    public int customId;
+    public String imageAddress;
     public boolean seen;
 
     @Ignore
@@ -36,7 +35,6 @@ public class News {
         this.text = text;
         this.date = date;
         this.category = category;
-        this.imageAddress = "test";
     }
 
     public News(int id, @NonNull String billId, String title, String summary, String text, String date, int category, String imageAddress) {

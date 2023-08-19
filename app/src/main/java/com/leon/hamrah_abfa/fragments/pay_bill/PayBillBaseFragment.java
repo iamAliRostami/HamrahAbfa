@@ -1,8 +1,8 @@
 package com.leon.hamrah_abfa.fragments.pay_bill;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;

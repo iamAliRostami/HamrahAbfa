@@ -24,7 +24,6 @@ import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.PopupMenu;
@@ -37,9 +36,17 @@ import com.leon.hamrah_abfa.databinding.FragmentIncidentBaseBinding;
 import java.io.IOException;
 
 public class IncidentBaseFragment extends Fragment implements View.OnClickListener {
+    private final Handler handler = new Handler();
+    private final ActivityResultLauncher<String> requestRecordPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.voice_recorder_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.voice_recorder_permission_unavailable)).show();
+                }
+            });
     private FragmentIncidentBaseBinding binding;
     private boolean recording, playing, ready = true;
-    private final Handler handler = new Handler();
     private ICallback callback;
     private long lastClickTime = 0;
 
@@ -86,7 +93,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.edit_text_incident_type) {
-            showMenu(binding.editTextIncidentType, R.menu.incident_menu);
+            showMenu(binding.editTextIncidentType);
         } else if (id == R.id.image_view_mic_play_pause) {
             if (checkRecorderPermission(requireContext())) {
                 if (ready) {
@@ -258,18 +265,10 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
                 handler.postDelayed(this, 200);
         }
     };
-    private final ActivityResultLauncher<String> requestRecordPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.voice_recorder_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.voice_recorder_permission_unavailable)).show();
-                }
-            });
 
-    private void showMenu(View v, @MenuRes int menuRes) {
+    private void showMenu(View v) {
         final PopupMenu popup = new PopupMenu(requireActivity(), v, Gravity.TOP);
-        popup.getMenuInflater().inflate(menuRes, popup.getMenu());
+        popup.getMenuInflater().inflate(R.menu.incident_menu, popup.getMenu());
         if (popup.getMenu() instanceof MenuBuilder) {
             final MenuBuilder menuBuilder = (MenuBuilder) popup.getMenu();
             //noinspection RestrictedApi
@@ -284,7 +283,7 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
             }
         }
         popup.setOnMenuItemClickListener(menuItem -> {
-            ((TextView)v).setText(menuItem.getTitle());
+            ((TextView) v).setText(menuItem.getTitle());
             return true;
         });
         popup.show();
@@ -302,4 +301,6 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
         //        void nextPage();
         void displayView(int position);
     }
+
+
 }
