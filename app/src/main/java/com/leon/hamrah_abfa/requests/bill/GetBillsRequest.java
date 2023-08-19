@@ -97,7 +97,5 @@ class GetBillsFailed implements ICallbackFailure {
     @Override
     public void executeFailed(Throwable t) {
         callback.changeUI(false);
-        //TODO
-        error(context, "failed").show();
     }
 }

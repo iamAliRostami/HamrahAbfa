@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
+import static com.leon.hamrah_abfa.utils.ErrorUtils.showFailedMessage;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
@@ -102,8 +103,6 @@ class ChangeMobileFailed implements ICallbackFailure {
     @Override
     public void executeFailed(Throwable t) {
         callback.changeUI(true);
-        Log.e("error", t.toString());
-        //TODO
-        error(context, "failed").show();
+        showFailedMessage(t, context);
     }
 }
