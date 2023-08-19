@@ -34,7 +34,6 @@ import java.util.ArrayList;
 public class DashboardSummaryFragment extends Fragment {
     private FragmentDashboardSummaryBinding binding;
     private ICallback callback;
-    private String[] billSummaryDays;
 
     public DashboardSummaryFragment() {
     }
@@ -66,12 +65,10 @@ public class DashboardSummaryFragment extends Fragment {
         designLineChart();
         designBarChart();
         if (!callback.getBillSummary().billSummaryWrapper.isEmpty()) {
-            billSummaryDays = new String[callback.getBillSummary().billSummaryWrapper.size()];
             ArrayList<Summary> billSummary = callback.getBillSummary().billSummaryWrapper;
             ArrayList<Entry> entries = new ArrayList<>();
             ArrayList<BarEntry> barEntries = new ArrayList<>();
             for (int i = 0; i < billSummary.size(); i++) {
-                billSummaryDays[i] = billSummary.get(i).getDay();
                 entries.add(new Entry(i, billSummary.get(i).getRate()));
                 barEntries.add(new BarEntry(i, billSummary.get(i).getRate()));
 //            entries.add(new BarEntry(i, i*10));
@@ -115,7 +112,7 @@ public class DashboardSummaryFragment extends Fragment {
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return billSummaryDays[(int) value];
+                return callback.getBillSummary().billSummaryWrapper.get((int) value).getDay();
             }
         });
         binding.chartLine.getXAxis().setSpaceMax(0.2f);
@@ -232,17 +229,16 @@ public class DashboardSummaryFragment extends Fragment {
         binding.chartBar.setExtraOffsets(5f, 0f, 5f, 10f);
 
         XAxis xAxis = binding.chartBar.getXAxis();
-        xAxis.setDrawLimitLinesBehindData(false);
         xAxis.setTypeface(callback.getTypeface());
+        xAxis.setDrawLimitLinesBehindData(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
         xAxis.setLabelRotationAngle(-45);
         xAxis.setGranularity(1f);
-        xAxis.setTypeface(callback.getTypeface());
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return billSummaryDays[(int) value];
+                return callback.getBillSummary().billSummaryWrapper.get((int) value).getDay();
             }
         });
 
@@ -282,7 +278,6 @@ public class DashboardSummaryFragment extends Fragment {
             dataSet.setValues(values);
             binding.chartBar.getData().notifyDataChanged();
             binding.chartBar.notifyDataSetChanged();
-
         } else {
             dataSet = new BarDataSet(values, getString(R.string.chart_rate_avg));
             dataSet.setColors(R.color.purple_7001, R.color.dark_gray, R.color.purple_7002, R.color.dark);

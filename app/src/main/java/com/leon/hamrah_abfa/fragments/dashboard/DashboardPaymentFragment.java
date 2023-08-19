@@ -18,6 +18,8 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.leon.hamrah_abfa.R;
@@ -54,13 +56,24 @@ public class DashboardPaymentFragment extends Fragment {
     }
 
     private void initializeChart() {
-        designPieChart();
-        if (!callback.getPaymentStats().payDeadlineKeys.isEmpty())
-            setData();
+        designHorizontalBarChart();
+//        designBarChart();
+//        for (int i = 0; i < 10; i++) {
+//            callback.getPaymentStats().payDeadlineKeys.add("12/12/12");
+//            callback.getPaymentStats().payDeadlineValues.add(i);
+//        }
+        callback.getPaymentStats().totalBills = 10;
+        if (!callback.getPaymentStats().payDeadlineKeys.isEmpty()) {
+            ArrayList<BarEntry> barEntries = new ArrayList<>();
+            for (int i = 0; i < callback.getPaymentStats().payDeadlineValues.size(); i++) {
+                barEntries.add(new BarEntry(i, callback.getPaymentStats().payDeadlineValues.get(i)));
+            }
+            setData(barEntries);
+        }
 
     }
 
-    private void designPieChart() {
+    private void designHorizontalBarChart() {
         binding.chartHorizontalBar.setNoDataText(getString(R.string.no_data_found));
         binding.chartHorizontalBar.setNoDataTextColor(R.color.dark_gray);
         binding.chartHorizontalBar.setNoDataTextTypeface(callback.getTypeface());
@@ -72,26 +85,26 @@ public class DashboardPaymentFragment extends Fragment {
         binding.chartHorizontalBar.getDescription().setTextSize(10f);
         binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
 
+//        binding.chartHorizontalBar.setDragEnabled(false);
+//        binding.chartHorizontalBar.setScaleEnabled(false);
+//        binding.chartHorizontalBar.setPinchZoom(false);
+
         binding.chartHorizontalBar.setExtraOffsets(5f, 0f, 5f, 10f);
 
-        binding.chartHorizontalBar.setDrawBarShadow(false);
+        binding.chartHorizontalBar.setDrawBarShadow(true);
         binding.chartHorizontalBar.setDrawValueAboveBar(true);
 
-        binding.chartHorizontalBar.setDragEnabled(false);
-        binding.chartHorizontalBar.setScaleEnabled(false);
-        binding.chartHorizontalBar.setPinchZoom(false);
-
-        binding.chartHorizontalBar.setDrawGridBackground(false);
+//        binding.chartHorizontalBar.setDrawGridBackground(false);
 
         XAxis xAxis = binding.chartHorizontalBar.getXAxis();
         xAxis.setTypeface(callback.getTypeface());
-        xAxis.setDrawLimitLinesBehindData(true);
+        xAxis.setDrawLimitLinesBehindData(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setDrawGridLines(true);
-//        xAxis.setDrawLimitLinesBehindData(false);
-//        xAxis.setDrawAxisLine(true);
-//        xAxis.setDrawGridLines(false);
-        xAxis.setGranularity(1f);
+        xAxis.setDrawGridLines(false);
+
+//        xAxis.setGranularity(0.5f);
+//        xAxis.setGranularityEnabled(true);
+
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -104,6 +117,7 @@ public class DashboardPaymentFragment extends Fragment {
                 }
             }
         });
+        xAxis.setAxisMinValue(1f);
 
         YAxis yAxisLeft = binding.chartHorizontalBar.getAxisLeft();
         yAxisLeft.setTypeface(callback.getTypeface());
@@ -140,17 +154,8 @@ public class DashboardPaymentFragment extends Fragment {
         legend.setXEntrySpace(4f);
     }
 
-
-    private void setData() {
-
-        ArrayList<BarEntry> values = new ArrayList<>();
-
-        for (int i = 0; i < callback.getPaymentStats().payDeadlineKeys.size(); i++) {
-            values.add(new BarEntry(i, callback.getPaymentStats().payDeadlineValues.get(i)));
-        }
-
+    private void setData(ArrayList<BarEntry> values) {
         BarDataSet dataSet;
-
         if (binding.chartHorizontalBar.getData() != null &&
                 binding.chartHorizontalBar.getData().getDataSetCount() > 0) {
             dataSet = (BarDataSet) binding.chartHorizontalBar.getData().getDataSetByIndex(0);
@@ -165,9 +170,8 @@ public class DashboardPaymentFragment extends Fragment {
             dataSets.add(dataSet);
 
             BarData data = new BarData(dataSets);
-            data.setValueTypeface(callback.getTypeface());
-//            data.setValueTextSize(10f);
-//            data.setBarWidth(barWidth);
+
+
             data.setValueFormatter(new ValueFormatter() {
                 @Override
                 public String getFormattedValue(float value) {
@@ -176,7 +180,9 @@ public class DashboardPaymentFragment extends Fragment {
                     return String.valueOf(value > 0 ? (int) value : (int) -value);
                 }
             });
+            data.setValueTypeface(callback.getTypeface());
             binding.chartHorizontalBar.setData(data);
+            binding.chartHorizontalBar.invalidate();
         }
     }
 
