@@ -2,11 +2,14 @@ package com.leon.hamrah_abfa.di.view_model;
 
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.helpers.MyApplication.checkServerConnection;
 import static com.leon.hamrah_abfa.helpers.MyApplication.hasServerPing;
+import static com.leon.hamrah_abfa.helpers.MyApplication.setServerPing;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
 import static com.leon.hamrah_abfa.utils.ShowFragment.dismissDialog;
+import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -20,7 +23,6 @@ import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
 import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
 import com.leon.hamrah_abfa.utils.APIError;
-import com.leon.toast.RTLToast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,11 +31,10 @@ import retrofit2.Response;
 public class HttpClientWrapper {
 
     public static <T> boolean callHttpAsync(Context context, Call<T> call, ICallbackSucceed<T> succeed,
-                                            ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
+                                            ICallbackIncomplete<T> incomplete, ICallbackFailure failure) {
         boolean isOnline = isNetworkAvailable(context);
         if (isOnline) {
-            isOnline = hasServerPing();
-            if (isOnline) {
+            if (hasServerPing()) {
                 call.enqueue(new Callback<>() {
                     @Override
                     public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -47,11 +48,13 @@ public class HttpClientWrapper {
                     @Override
                     public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
                         call.cancel();
-                        ((Activity) context).runOnUiThread(() -> error.executeFailed(t));
+                        ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
                     }
                 });
             } else {
-                RTLToast.error(context, R.string.error_ping).show();
+                isOnline = false;
+                setServerPing(checkServerConnection());
+                error(context, R.string.error_ping).show();
             }
         } else {
             warning(context, R.string.turn_internet_on).show();
@@ -61,7 +64,7 @@ public class HttpClientWrapper {
 
 
     public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,
-                                                  ICallbackIncomplete<T> incomplete, ICallbackFailure error) {
+                                                  ICallbackIncomplete<T> incomplete, ICallbackFailure failure) {
         call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
@@ -75,16 +78,19 @@ public class HttpClientWrapper {
             @Override
             public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
                 call.cancel();
-                ((Activity) context).runOnUiThread(() -> error.executeFailed(t));
+                ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
             }
         });
-        boolean isOnline = isNetworkAvailable(context);
-        if (!isOnline)
+        if (!isNetworkAvailable(context)) {
             warning(context, R.string.turn_internet_on).show();
-        isOnline = hasServerPing();
-        if (!hasServerPing())
-            RTLToast.error(context, R.string.error_ping).show();
-        return isOnline;
+            return false;
+        }
+        if (!hasServerPing()) {
+            setServerPing(checkServerConnection());
+            error(context, R.string.error_ping).show();
+            return false;
+        }
+        return true;
     }
 
     private static <T> boolean failedExecution(Context context, Response<T> response) {

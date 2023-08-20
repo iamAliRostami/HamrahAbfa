@@ -61,6 +61,9 @@ public class MyApplication extends Application {
     public static boolean hasServerPing() {
         return serverPing;
     }
+    public static void setServerPing(boolean serverPing) {
+        MyApplication.serverPing = serverPing;
+    }
 
     @Override
     public void onCreate() {
@@ -70,7 +73,7 @@ public class MyApplication extends Application {
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
                 .setTextSize(TOAST_TEXT_SIZE).apply();
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
-        serverPing = checkServerConnection();
+        setServerPing(checkServerConnection());
     }
 
     @Override
