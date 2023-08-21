@@ -73,10 +73,10 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                     result -> {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), false);
-                            if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
-                                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
-                                submitMobileActivityResultLauncher.launch(intent);
-                            }
+                        }
+                        if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
+                            Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
+                            submitMobileActivityResultLauncher.launch(intent);
                         }
                     });
     private final ActivityResultLauncher<Intent> settingActivityResultLauncher =

@@ -1,5 +1,6 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.BundleEnum.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SHOW_PRE_FRAGMENT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
@@ -65,7 +66,8 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
         } else if (position == 1) {
             showFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
         } else if (position == 2) {
-            final Intent intent = new Intent(this, WelcomeActivity.class);
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            intent.putExtra(IS_FIRST.getValue(), false);
             startActivity(intent);
         }
     }

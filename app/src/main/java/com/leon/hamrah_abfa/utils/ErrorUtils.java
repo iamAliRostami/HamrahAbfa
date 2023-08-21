@@ -17,12 +17,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 
-import androidx.fragment.app.DialogFragment;
-
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.dialog.InfoYesFragment;
 
 import java.lang.annotation.Annotation;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 
 import okhttp3.ResponseBody;
@@ -44,6 +43,19 @@ public class ErrorUtils {
         }
         return new APIError();
     }
+    public static String getFailedMessage(Throwable throwable, Context context) {
+        String errorMessage;
+        if (throwable instanceof SocketTimeoutException) {
+            errorMessage = context.getString(R.string.error_connection);
+        } else if (throwable instanceof SocketException) {
+            //TODO
+            errorMessage = context.getString(R.string.connection_lost);
+        } else {
+            errorMessage = context.getString(R.string.error_other);
+        }
+        return errorMessage;
+    }
+
 
     public static void expiredToken(Context context) {
         error(context, R.string.expired_access).show();
@@ -74,16 +86,6 @@ public class ErrorUtils {
                             context.startActivity(mainIntent);
                             Runtime.getRuntime().exit(0);
                         }));
-    }
-
-    public static String getFailedMessage(Throwable throwable, Context context) {
-        String errorMessage;
-        if (throwable instanceof SocketTimeoutException) {
-            errorMessage = context.getString(R.string.error_connection);
-        } else {
-            errorMessage = context.getString(R.string.error_other);
-        }
-        return errorMessage;
     }
 
     public static void showFailedMessage(Throwable throwable, Context context) {

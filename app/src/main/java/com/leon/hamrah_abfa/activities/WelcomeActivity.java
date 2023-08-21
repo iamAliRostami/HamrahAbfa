@@ -16,9 +16,11 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.WelcomePagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityWelcomeBinding;
+import com.leon.hamrah_abfa.enums.BundleEnum;
 
 public class WelcomeActivity extends BaseActivity {
     private ActivityWelcomeBinding binding;
+    private boolean isFirst = true;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -27,6 +29,9 @@ public class WelcomeActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityWelcomeBinding.inflate(getLayoutInflater());
+        if (getIntent().getExtras() != null) {
+            isFirst = getIntent().getExtras().getBoolean(BundleEnum.IS_FIRST.getValue());
+        }
         setContentView(binding.getRoot());
         initializeViewPager();
         binding.buttonSkip.setOnClickListener(this);
@@ -79,6 +84,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), true);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_FIRST.getValue(), isFirst);
     }
 }

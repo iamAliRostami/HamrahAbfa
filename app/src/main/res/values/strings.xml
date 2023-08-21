@@ -228,8 +228,8 @@
     <string name="qotr_siphon">قطر سیفون</string>
     <string name="save_bill">ذخیره قبض</string>
     <string name="share_bill">همرسانی قبض</string>
-    <string name="description_payments">توضیح پرداخت\u200cها</string>
-    <string name="description_bill">توضیح قبض\u200cها</string>
+    <string name="description_payments">پرداخت\u200cهای پیشین</string>
+    <string name="description_bill">قبض\u200cهای آب\u200cبهای پیشین صادر شده</string>
     <string name="number_type">تعداد</string>
     <string name="from">از</string>
     <string name="to_date">تا تاریخ</string>
@@ -245,7 +245,8 @@
     <string name="successful">موفق</string>
     <string name="failed">ناموفق</string>
     <string name="status">وضعیت</string>
-    <string name="description_usage_history">توضیح سوابق کارکرد</string>
+    <string name="description_usage_history">سابقه\u200cی موفق خوداظهاری رقم کنتور</string>
+    <string name="description_usage_history_failed">سابقه\u200cی ناموفق خوداظهاری رقم کنتور</string>
     <string name="track_number_is_copied">شماره پیگیری در کلیپ بورد ذخیره شد</string>
     <string name="payment_succeed">پرداخت با موفقیت انجام شد</string>
     <string name="there_is_no_bill">اشتراکی وارد نشده است</string>
@@ -287,4 +288,5 @@
     <string name="error_connection">خطا در دریافت اطلاعات، مجددا تلاش کنید</string>
     <string name="error_other">خظای ناشناخته رخ داد، لحظاتی دیگر تلاش کنید</string>
     <string name="dots">…</string>
+    <string name="connection_lost">ارتباط برقرار نشد</string>
 </resources>

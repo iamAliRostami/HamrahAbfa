@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -22,17 +23,37 @@ public class ServicesIntroductionSingleAdapter extends ServicesIntroductionBaseA
     @NonNull
     @Override
     public ServiceIntroductionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ServiceIntroductionViewHolder(inflater.inflate((selectedServices != null &&
-                selectedServices == viewType) ? R.layout.item_service_collapsed_selected :
-                R.layout.item_service, parent, false));
+//        return new ServiceIntroductionViewHolder(inflater.inflate((selectedServices != null &&
+//                selectedServices == viewType) ? R.layout.item_service_collapsed_selected :
+//                R.layout.item_service, parent, false));
+        return new ServiceIntroductionViewHolder(inflater.inflate(R.layout.item_service_collapsed_selected,
+                parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ServiceIntroductionViewHolder holder, int position) {
         holder.imageViewLogo.setImageDrawable(drawable.getDrawable(position));
         holder.textViewTitle.setText(titles.get(position));
-        if (selectedServices != null && selectedServices == position)
-            holder.textViewIntroduction.setText(introduction.get(position));
+//        if (selectedServices != null && selectedServices == position)
+        holder.textViewIntroduction.setText(introduction.get(position));
+
+
+//        if (selectedServicesId.get(position) == 0) {
+//            holder.relativeLayout.setBackgroundResource(R.color.light);
+//        } else {
+//            holder.relativeLayout.setBackgroundResource(R.drawable.background_service_introduction);
+//        }
+        if (selectedServices != null && selectedServices == position) {
+            holder.textViewIntroduction.setVisibility(View.VISIBLE);
+            holder.imageViewArrow.setImageResource(R.drawable.arrow_up);
+            holder.viewDivider.setBackgroundResource(R.color.light_gray);
+            holder.relativeLayout.setBackgroundResource(R.drawable.background_service_introduction);
+        } else {
+            holder.textViewIntroduction.setVisibility(View.GONE);
+            holder.imageViewArrow.setImageResource(R.drawable.arrow_down);
+            holder.viewDivider.setBackgroundResource(android.R.color.transparent);
+            holder.relativeLayout.setBackgroundResource(R.color.light);
+        }
     }
 
     @Override

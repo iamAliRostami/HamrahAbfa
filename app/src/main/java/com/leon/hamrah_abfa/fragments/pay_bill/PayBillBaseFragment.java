@@ -1,9 +1,6 @@
 package com.leon.hamrah_abfa.fragments.pay_bill;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
-import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
@@ -25,9 +22,6 @@ import com.leon.hamrah_abfa.adapters.recycler_view.PayBillAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentPayBillBaseBinding;
 import com.leon.hamrah_abfa.fragments.dialog.PayBillSucceedFragment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class PayBillBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentPayBillBaseBinding binding;
@@ -62,21 +56,7 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<PayBillViewModel> payBill = new ArrayList<>();
-        final ArrayList<String> billIds = new ArrayList<>();
-        final ArrayList<String> nicknames = new ArrayList<>();
-        final String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
-        final String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
-        if (!billId.isEmpty()) {
-            billIds.addAll(Arrays.asList(billId.split(",")));
-        }
-        if (!nickname.isEmpty()) {
-            nicknames.addAll(Arrays.asList(nickname.split(",")));
-        }
-        for (int i = 0; i < billIds.size(); i++)
-            payBill.add(new PayBillViewModel(nicknames.get(i), String.valueOf((i + 1) * 9999000).concat(" ریال"),
-                    "12/12/12", billIds.get(i)));
-        adapter = new PayBillAdapter(requireContext(), payBill);
+        adapter = new PayBillAdapter(requireContext());
         binding.recyclerViewPayBill.setAdapter(adapter);
         binding.recyclerViewPayBill.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -110,7 +90,7 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
 
     @SuppressLint("DefaultLocale")
     private void setTextPrice() {
-        binding.textViewPrice.setText(String.format("(%d) ریال", adapter.getSelectedPrice()));
+        binding.textViewPrice.setText(String.format("(%,d) ریال", adapter.getSelectedPrice()));
     }
 
     @Override

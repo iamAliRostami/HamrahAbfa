@@ -1,5 +1,11 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +19,31 @@ import com.leon.hamrah_abfa.adapters.holders.PayBillViewHolder;
 import com.leon.hamrah_abfa.fragments.pay_bill.PayBillViewModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> implements View.OnClickListener {
-
     private final LayoutInflater inflater;
-    private final ArrayList<PayBillViewModel> payBills;
+    private final ArrayList<PayBillViewModel> payBills = new ArrayList<>();
     private int selectedNumber;
     private int selectedPrice;
 
-    public PayBillAdapter(Context context, ArrayList<PayBillViewModel> payBills) {
+    public PayBillAdapter(Context context) {
+        ArrayList<String> billIds = new ArrayList<>();
+        ArrayList<String> nicknames = new ArrayList<>();
+        ArrayList<String> debts = new ArrayList<>();
+        String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
+        String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
+        String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue());
+        if (!billId.isEmpty() && !nickname.isEmpty() && !debt.isEmpty()) {
+            billIds.addAll(Arrays.asList(billId.split(",")));
+            nicknames.addAll(Arrays.asList(nickname.split(",")));
+            debts.addAll(Arrays.asList(debt.split(",")));
+        }
+        //TODO
+        for (int i = 0; i < billIds.size(); i++) {
+            payBills.add(new PayBillViewModel(nicknames.get(i), debts.get(i), "12/12/12", billIds.get(i)));
+        }
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.payBills = new ArrayList<>(payBills);
     }
 
     @NonNull
@@ -32,6 +52,7 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         return new PayBillViewHolder(inflater.inflate(R.layout.item_pay_bill, parent, false));
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull PayBillViewHolder holder, int position) {
         if (payBills.get(position).selected) {
@@ -43,7 +64,7 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         }
         holder.textViewNickname.setText(payBills.get(position).nickName);
         holder.textViewDeadline.setText(payBills.get(position).deadline);
-        holder.textViewPrice.setText(payBills.get(position).debt);
+        holder.textViewPrice.setText(String.format("%,d ریال", Long.parseLong(payBills.get(position).debt)));
         holder.relativeLayoutContent.setOnClickListener(this);
         holder.textViewNickname.setOnClickListener(this);
     }
@@ -67,10 +88,10 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         payBills.get(position).selected = !payBills.get(position).selected;
         if (payBills.get(position).selected) {
             selectedNumber++;
-            selectedPrice += Integer.parseInt(payBills.get(position).debt.replace(" ریال", ""));
+            selectedPrice += Integer.parseInt(payBills.get(position).debt);
         } else {
             selectedNumber--;
-            selectedPrice -= Integer.parseInt(payBills.get(position).debt.replace(" ریال", ""));
+            selectedPrice -= Integer.parseInt(payBills.get(position).debt);
         }
         notifyItemChanged(position);
     }

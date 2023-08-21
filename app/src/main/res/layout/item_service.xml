@@ -32,5 +32,10 @@
             android:layout_centerVertical="true"
             android:src="@drawable/arrow_down"
             android:tint="@color/dark_gray" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_introduction"
+            style="@style/TextItem"
+            android:visibility="gone" />
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>
