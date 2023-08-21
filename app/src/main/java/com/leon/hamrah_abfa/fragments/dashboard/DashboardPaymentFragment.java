@@ -94,7 +94,7 @@ public class DashboardPaymentFragment extends Fragment {
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                Log.e("index", String.valueOf(value));
+//                Log.e("index", String.valueOf(value));
 //                return super.getFormattedValue(value);
                 try {
                     return callback.getPaymentStats().payDeadlineKeys.get((int) value);

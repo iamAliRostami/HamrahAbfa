@@ -86,15 +86,12 @@ public class DashboardCounterFragment extends Fragment {
         binding.chartPie.getDescription().setTypeface(callback.getTypeface());
 
         binding.chartPie.setExtraOffsets(5, 10, 5, 5);
+        binding.chartPie.setExtraOffsets(1000f, 0f, 10f, 0f);
 
         binding.chartPie.setDragDecelerationFrictionCoef(0.95f);
 
         binding.chartPie.setCenterTextTypeface(callback.getTypeface());
 
-        binding.chartPie.setExtraOffsets(10.f, 0.f, 10.f, 0.f);
-
-        binding.chartPie.setDrawHoleEnabled(true);
-        binding.chartPie.setHoleColor(Color.TRANSPARENT);
 
         binding.chartPie.setTransparentCircleColor(Color.WHITE);
         binding.chartPie.setTransparentCircleAlpha(110);
@@ -103,6 +100,9 @@ public class DashboardCounterFragment extends Fragment {
         binding.chartPie.setTransparentCircleRadius(61f);
 
         binding.chartPie.setDrawCenterText(true);
+
+        binding.chartPie.setDrawHoleEnabled(true);
+        binding.chartPie.setHoleColor(Color.TRANSPARENT);
 
         binding.chartPie.setRotationAngle(0);
         binding.chartPie.setRotationEnabled(true);
@@ -118,8 +118,12 @@ public class DashboardCounterFragment extends Fragment {
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.VERTICAL);
-        l.setDrawInside(true);
+        l.setDrawInside(false);
         l.setEnabled(true);
+
+        l.setXEntrySpace(70f);
+        l.setYEntrySpace(50f);
+
         l.setTypeface(callback.getTypeface());
     }
 

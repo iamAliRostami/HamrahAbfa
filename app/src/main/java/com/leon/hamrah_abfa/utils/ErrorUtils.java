@@ -17,6 +17,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 
+import androidx.fragment.app.DialogFragment;
+
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.fragments.dialog.InfoYesFragment;
 
@@ -71,8 +73,7 @@ public class ErrorUtils {
                             Intent mainIntent = Intent.makeRestartActivityTask(componentName);
                             context.startActivity(mainIntent);
                             Runtime.getRuntime().exit(0);
-                        })
-        );
+                        }));
     }
 
     public static String getFailedMessage(Throwable throwable, Context context) {
