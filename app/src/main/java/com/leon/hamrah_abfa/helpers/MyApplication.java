@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.helpers;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME_MODE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceNames.ACCOUNT;
 import static com.leon.hamrah_abfa.helpers.Constants.FONT_NAME;
+import static com.leon.hamrah_abfa.helpers.Constants.HOST_CHECK_CONNECTION;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DARK;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DEFAULT;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_LIGHT;
@@ -39,7 +40,7 @@ public class MyApplication extends Application {
         int timeout = 1000;
         InetAddress[] addresses;
         try {
-            addresses = InetAddress.getAllByName("iran.ir");
+            addresses = InetAddress.getAllByName(HOST_CHECK_CONNECTION);
             for (InetAddress address : addresses) {
                 if (address.isReachable(timeout)) {
                     return true;
@@ -61,6 +62,7 @@ public class MyApplication extends Application {
     public static boolean hasServerPing() {
         return serverPing;
     }
+
     public static void setServerPing(boolean serverPing) {
         MyApplication.serverPing = serverPing;
     }
@@ -72,8 +74,8 @@ public class MyApplication extends Application {
         setDefaultNightMode();
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
                 .setTextSize(TOAST_TEXT_SIZE).apply();
-        if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
         setServerPing(checkServerConnection());
+        if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
     }
 
     @Override
