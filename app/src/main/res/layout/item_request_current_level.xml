@@ -66,7 +66,6 @@
                     android:id="@+id/text_view_date"
                     style="@style/TextItem"
                     android:layout_weight="1"
-                    android:text="12/12/12"
                     android:textAllCaps="true" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

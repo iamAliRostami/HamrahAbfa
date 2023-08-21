@@ -286,4 +286,5 @@
     <string name="error_ping">لطفا در ساعات اداری فردا مجددا تلاش کنید</string>
     <string name="error_connection">خطا در دریافت اطلاعات، مجددا تلاش کنید</string>
     <string name="error_other">خظای ناشناخته رخ داد، لحظاتی دیگر تلاش کنید</string>
+    <string name="dots">…</string>
 </resources>

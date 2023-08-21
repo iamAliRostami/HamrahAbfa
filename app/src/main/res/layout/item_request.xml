@@ -46,7 +46,6 @@
                 style="@style/TextItem"
                 android:layout_gravity="start"
                 android:padding="0dp"
-                android:text="12/12/12"
                 android:textColor="@color/dark_gray" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>

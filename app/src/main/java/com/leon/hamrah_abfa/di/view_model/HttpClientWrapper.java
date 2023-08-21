@@ -62,7 +62,6 @@ public class HttpClientWrapper {
         return isOnline;
     }
 
-
     public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,
                                                   ICallbackIncomplete<T> incomplete, ICallbackFailure failure) {
         call.enqueue(new Callback<>() {
@@ -89,20 +88,6 @@ public class HttpClientWrapper {
             setServerPing(checkServerConnection());
             error(context, R.string.error_ping).show();
             return false;
-        }
-        return true;
-    }
-
-    private static <T> boolean failedExecution(Context context, Response<T> response) {
-        try {
-            APIError error = parseError(response);
-            if (error.status() == 401) {
-                dismissDialog(context, WAITING.getValue());
-                expiredToken(context);
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return true;
     }
@@ -136,5 +121,19 @@ public class HttpClientWrapper {
         } else {
             warning(context, R.string.turn_internet_on).show();
         }
+    }
+
+    private static <T> boolean failedExecution(Context context, Response<T> response) {
+        try {
+            APIError error = parseError(response);
+            if (error.status() == 401) {
+                dismissDialog(context, WAITING.getValue());
+                expiredToken(context);
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
