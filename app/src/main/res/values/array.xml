@@ -233,14 +233,6 @@
         <item>@string/help_content_incident</item>
     </string-array>
 
-    <integer-array name="welcome_icons">
-        <item>@drawable/help_service</item>
-        <item>@drawable/help_payment</item>
-        <item>@drawable/help_dashboard</item>
-        <item>@drawable/help_accidents</item>
-    </integer-array>
-
-
     <integer-array name="welcome_bg_colors">
         <item>@color/purple_7001</item>
         <item>@color/purple_7001</item>

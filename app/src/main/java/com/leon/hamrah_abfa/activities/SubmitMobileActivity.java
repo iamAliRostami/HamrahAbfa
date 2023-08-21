@@ -90,4 +90,8 @@ public class SubmitMobileActivity extends BaseActivity implements SubmitMobileFr
     public void onClick(View v) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
