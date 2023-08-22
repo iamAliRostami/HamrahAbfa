@@ -25,7 +25,7 @@
     <string name="record_voice">ضبط صدا</string>
     <string name="services">خدمات</string>
     <string name="incident">حوادث</string>
-    <string name="incident_description">توضیح حوادث.</string>
+    <string name="incident_description">در صورت بروز حادثه در کوتاه\u200cترین زمان نسبت به ثبت حادثه اقدام فرمایید\nهمکاران آب و فاضلاب در اسرع وقت با مشاهده\u200cی اعلام حادثه نسبت به اعزام و رفع مشکل اقدام خواهند کرد</string>
     <string name="incident_type">نوع حادثه</string>
     <string name="upload_image">بارگذاری عکس</string>
     <string name="submit">ثبت</string>
@@ -176,12 +176,12 @@
     <string name="call_permission_granted">دسترسی تماس داده شد</string>
     <string name="call_permission_unavailable">دسترسی تماس داده نشد</string>
     <string name="saved_in_clipboard">در کلیپ برد ذخیره شد</string>
-    <string name="complaint_description">توضیح شکایت.</string>
+    <string name="complaint_description">در صورت نارضایتی از ارائه\u200cی خدمات می\u200cتوانید شکایت خود را ارائه دهید.</string>
     <string name="complaint_type">نوع شکایت</string>
     <string name="enter_complaint_description">شرح شکایت را ارائه نمایید</string>
     <string name="choose_complaint_type">نوع شکایت را انتخاب کنید</string>
     <string name="field_complaint_description">توضیح را وارد کنید</string>
-    <string name="suggestion_description">توضیح انتقاد</string>
+    <string name="suggestion_description">با ثبت انتقاد خود به بهبود فرایند خدمت رسانی یاری نمایید</string>
     <string name="suggestion_type">نوع انتقاد</string>
     <string name="enter_your_proposal">راهکار پیشنهادی خود را ارائه دهید</string>
     <string name="proposal">راهکار پیشنهادی</string>
