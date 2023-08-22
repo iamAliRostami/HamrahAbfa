@@ -9,17 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.ActiveSessionViewHolder;
-import com.leon.hamrah_abfa.tables.ActiveSession;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionViewModel;
 
 import java.util.ArrayList;
 
 public class ActiveSessionAdapter extends RecyclerView.Adapter<ActiveSessionViewHolder> {
-    private final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
+    private final ArrayList<ActiveSessionViewModel> activeSessionViewModels = new ArrayList<>();
     private final LayoutInflater inflater;
 
-    public ActiveSessionAdapter(Context context, ArrayList<ActiveSession> activeSessions) {
+    public ActiveSessionAdapter(Context context, ArrayList<ActiveSessionViewModel> activeSessionViewModels) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.activeSessions.addAll(activeSessions);
+        this.activeSessionViewModels.addAll(activeSessionViewModels);
     }
 
     @NonNull
@@ -30,14 +30,17 @@ public class ActiveSessionAdapter extends RecyclerView.Adapter<ActiveSessionView
 
     @Override
     public void onBindViewHolder(@NonNull ActiveSessionViewHolder holder, int position) {
-        holder.textViewIP.setText(activeSessions.get(position).getIp());
-        holder.textViewMobile.setText(activeSessions.get(position).getMobile());
-        holder.textViewLastLogin.setText(activeSessions.get(position).getLastLogin());
-        holder.textViewDevice.setText(activeSessions.get(position).getDeviceInfo());
+        holder.textViewIP.setText(activeSessionViewModels.get(position).ip);
+        holder.textViewLastLogin.setText(String.format("%s - %s", activeSessionViewModels.get(position).insertDayJalali,
+                activeSessionViewModels.get(position).insertTime));
+        holder.textViewDevice.setText(activeSessionViewModels.get(position).deviceInfo);
+        holder.textViewValidate.setText(activeSessionViewModels.get(position).isValidated ?
+                inflater.getContext().getString(R.string.successful) :
+                inflater.getContext().getString(R.string.unsuccessful));
     }
 
     @Override
     public int getItemCount() {
-        return activeSessions.size();
+        return activeSessionViewModels.size();
     }
 }

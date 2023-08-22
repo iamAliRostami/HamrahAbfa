@@ -1,21 +1,24 @@
 package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.leon.hamrah_abfa.adapters.recycler_view.ActiveSessionAdapter;
 import com.leon.hamrah_abfa.base_items.BaseBottomSheetFragment;
 import com.leon.hamrah_abfa.databinding.FragmentActiveSessionBinding;
-import com.leon.hamrah_abfa.tables.ActiveSession;
 
 import java.util.ArrayList;
 
 public class ActiveSessionFragment extends BaseBottomSheetFragment {
     private FragmentActiveSessionBinding binding;
+    private ICallback callback;
 
     public ActiveSessionFragment() {
     }
@@ -37,16 +40,17 @@ public class ActiveSessionFragment extends BaseBottomSheetFragment {
     }
 
     private void initializeRecyclerView() {
-        final ArrayList<ActiveSession> activeSessions = new ArrayList<>();
-        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
-                "12.12.12.12"));
-        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
-                "12.12.12.12"));
-        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
-                "12.12.12.12"));
-        activeSessions.add(new ActiveSession("نام دستگاه", "09130000000", "12/12/12",
-                "12.12.12.12"));
-        binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), activeSessions));
+        binding.recyclerViewActiveSession.setAdapter(new ActiveSessionAdapter(requireContext(), callback.getMobileHistory().loginHistory));
         binding.recyclerViewActiveSession.setLayoutManager(new LinearLayoutManager(requireContext()));
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) callback = (ICallback) context;
+    }
+
+    public interface ICallback {
+        MobileHistory getMobileHistory();
     }
 }

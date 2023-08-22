@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SHOW_PRE_FRAGMENT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
@@ -14,16 +15,23 @@ import android.content.pm.ActivityInfo;
 import android.view.View;
 import android.widget.AdapterView;
 
+import androidx.fragment.app.DialogFragment;
+
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionFragment;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.MobileHistory;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.requests.GetMobileHistoryRequest;
 
 public class SettingActivity extends BaseActivity implements AdapterView.OnItemClickListener,
-        ThemeFragment.ICallback {
+        ThemeFragment.ICallback, ActiveSessionFragment.ICallback {
     private ActivitySettingBinding binding;
+    private DialogFragment fragment;
+    private MobileHistory mobileHistory;
     private boolean isChange = false;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -62,7 +70,7 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position == 0) {
-            showFragmentDialogOnce(this, ACTIVE_SESSION.getValue(), ActiveSessionFragment.newInstance());
+            requestLoginHistory();
         } else if (position == 1) {
             showFragmentDialogOnce(this, CHANGE_THEME.getValue(), ThemeFragment.newInstance());
         } else if (position == 2) {
@@ -73,7 +81,38 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     }
 
     private void requestLoginHistory() {
+        boolean isOnline = new GetMobileHistoryRequest(this, new GetMobileHistoryRequest.ICallback() {
 
+            @Override
+            public void succeed(MobileHistory mobileHistory) {
+                showMobileHistory(mobileHistory);
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }).request();
+        progressStatus(isOnline);
+    }
+
+    private void showMobileHistory(MobileHistory mobileHistory) {
+        this.mobileHistory = mobileHistory;
+        showFragmentDialogOnce(this, ACTIVE_SESSION.getValue(), ActiveSessionFragment.newInstance());
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void setResult() {
@@ -90,6 +129,11 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
             setResult();
             finish();
         }
+    }
+
+    @Override
+    public MobileHistory getMobileHistory() {
+        return mobileHistory;
     }
 
     @Override

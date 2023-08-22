@@ -289,4 +289,5 @@
     <string name="error_other">خظای ناشناخته رخ داد، لحظاتی دیگر تلاش کنید</string>
     <string name="dots">…</string>
     <string name="connection_lost">ارتباط برقرار نشد</string>
+    <string name="unsuccessful">ناموفق</string>
 </resources>

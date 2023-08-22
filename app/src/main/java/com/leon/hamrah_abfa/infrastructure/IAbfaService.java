@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.infrastructure;
 
 import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.MobileHistory;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
@@ -133,4 +134,8 @@ public interface IAbfaService {
 
     @GET("KontoriNew/V1/MobileBill/GetPaymentStat/{id}")
     Call<PaymentStats> getPaymentStat(@Path("id") String id);
+
+
+    @POST("KontoriNew/V1/MobileAccount/History")
+    Call<MobileHistory> mobileHistory();
 }
