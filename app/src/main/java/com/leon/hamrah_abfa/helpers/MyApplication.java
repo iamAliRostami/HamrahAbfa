@@ -8,6 +8,7 @@ import static com.leon.hamrah_abfa.helpers.Constants.THEME_DARK;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_DEFAULT;
 import static com.leon.hamrah_abfa.helpers.Constants.THEME_LIGHT;
 import static com.leon.hamrah_abfa.helpers.Constants.TOAST_TEXT_SIZE;
+import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
 import static com.leon.toast.RTLToast.Config;
 
 import android.app.Application;
@@ -31,7 +32,7 @@ import java.net.InetAddress;
 
 public class MyApplication extends Application {
     private static ApplicationComponent applicationComponent;
-    private static boolean serverPing;
+    private static boolean serverPing = true;
     private static MyApplication instance = null;
 
     public static boolean checkServerConnection() {
@@ -74,7 +75,8 @@ public class MyApplication extends Application {
         setDefaultNightMode();
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), FONT_NAME))
                 .setTextSize(TOAST_TEXT_SIZE).apply();
-        setServerPing(checkServerConnection());
+        if (isNetworkAvailable(this))
+            setServerPing(checkServerConnection());
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
     }
 
