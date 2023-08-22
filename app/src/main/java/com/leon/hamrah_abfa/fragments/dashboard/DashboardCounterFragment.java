@@ -85,8 +85,8 @@ public class DashboardCounterFragment extends Fragment {
         binding.chartPie.getDescription().setTextSize(10f);
         binding.chartPie.getDescription().setTypeface(callback.getTypeface());
 
-        binding.chartPie.setExtraOffsets(5, 10, 5, 5);
-        binding.chartPie.setExtraOffsets(1000f, 0f, 10f, 0f);
+//        binding.chartPie.setExtraOffsets(5, 10, 5, 5);
+        binding.chartPie.setExtraOffsets(10f, 0f, 10f, 0f);
 
         binding.chartPie.setDragDecelerationFrictionCoef(0.95f);
 
@@ -122,7 +122,7 @@ public class DashboardCounterFragment extends Fragment {
         l.setEnabled(true);
 
         l.setXEntrySpace(70f);
-        l.setYEntrySpace(50f);
+//        l.setYEntrySpace(50f);
 
         l.setTypeface(callback.getTypeface());
     }
