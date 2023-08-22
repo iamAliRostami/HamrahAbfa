@@ -53,6 +53,7 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         args.putDouble(LONGITUDE.getValue(), x);
         args.putDouble(LATITUDE.getValue(), y);
         fragment.setArguments(args);
+        fragment.setCancelable(false);
         return fragment;
     }
 
