@@ -54,6 +54,7 @@ public class ServicesMapFragment extends BaseBottomSheetFragment implements MapE
         final Bundle bundle = new Bundle();
         bundle.putDouble(LATITUDE.getValue(), point.getLatitude());
         bundle.putDouble(LONGITUDE.getValue(), point.getLongitude());
+        fragment.setCancelable(false);
         fragment.setArguments(bundle);
         return fragment;
     }
