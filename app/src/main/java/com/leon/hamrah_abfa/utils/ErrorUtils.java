@@ -15,6 +15,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.leon.hamrah_abfa.R;
@@ -43,6 +44,7 @@ public class ErrorUtils {
         }
         return new APIError();
     }
+
     public static String getFailedMessage(Throwable throwable, Context context) {
         String errorMessage;
         if (throwable instanceof SocketTimeoutException) {
@@ -79,6 +81,7 @@ public class ErrorUtils {
 //                            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 //                            alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
 //                            System.exit(0);
+
                             PackageManager packageManager = context.getPackageManager();
                             Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
                             ComponentName componentName = intent.getComponent();

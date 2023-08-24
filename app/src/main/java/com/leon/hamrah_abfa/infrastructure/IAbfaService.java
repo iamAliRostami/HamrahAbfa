@@ -21,6 +21,7 @@ import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
 import com.leon.hamrah_abfa.fragments.follow_request.MasterHistory;
 import com.leon.hamrah_abfa.fragments.last_bill.BillViewModel;
 import com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel;
+import com.leon.hamrah_abfa.fragments.notifications.Notifications;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 
@@ -131,11 +132,14 @@ public interface IAbfaService {
     @GET("KontoriNew/V1/MobileBill/GetCounterStat/{id}")
     Call<CounterStats> getCounterStat(@Path("id") String id);
 
-
     @GET("KontoriNew/V1/MobileBill/GetPaymentStat/{id}")
     Call<PaymentStats> getPaymentStat(@Path("id") String id);
 
-
     @POST("KontoriNew/V1/MobileAccount/History")
     Call<MobileHistory> mobileHistory();
+
+    @GET("KontoriNew/V1/CustomerNotification/Get")
+    Call<Notifications> getNotifications();
+    @GET("KontoriNew/V1/CustomerNotification/SetSeen/{id}")
+    Call<Notifications> setNotificationSeen(@Path("id") String id);
 }

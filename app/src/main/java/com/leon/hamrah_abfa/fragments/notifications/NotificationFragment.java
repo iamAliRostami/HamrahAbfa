@@ -17,6 +17,8 @@ import com.leon.hamrah_abfa.adapters.recycler_view.NotificationAdapter;
 import com.leon.hamrah_abfa.adapters.recycler_view.RecyclerItemClickListener;
 import com.leon.hamrah_abfa.databinding.FragmentNotificationBinding;
 
+import java.util.ArrayList;
+
 public class NotificationFragment extends Fragment {
     private FragmentNotificationBinding binding;
     private NotificationAdapter adapter;
@@ -83,5 +85,6 @@ public class NotificationFragment extends Fragment {
         String getId();
 
         void setUnseenNotificationNumber();
+        ArrayList<NotificationsViewModel> getNotifications();
     }
 }

@@ -1,6 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
+import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
@@ -31,6 +32,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -107,8 +109,11 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 welcomeActivityResultLauncher.launch(intent);
             } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 //TODO
-                Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
-                submitMobileActivityResultLauncher.launch(intent);
+                Fragment prev = getSupportFragmentManager().findFragmentByTag(ASK_YES_NO.getValue());
+                if (prev == null) {
+                    Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
+                    submitMobileActivityResultLauncher.launch(intent);
+                }
             }
         }
 

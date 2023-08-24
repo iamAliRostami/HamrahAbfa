@@ -1,19 +1,15 @@
 package com.leon.hamrah_abfa.fragments.notifications;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+public class NotificationsViewModel {
+    public String id;
+    public String insertDateTime;
+    public String billId;
+    public float trackNumber;
+    public String message;
+    public String title;
+    public float type;
+    public String imageAddress;
+    public String seenDateTime;
+    public boolean isNews;
 
-public class NotificationsViewModel extends ViewModel {
-
-    private final MutableLiveData<String> mText;
-
-    public NotificationsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
-    }
 }

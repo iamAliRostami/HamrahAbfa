@@ -1,13 +1,15 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.badge.BadgeDrawable;
@@ -16,8 +18,13 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.ViewPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityNotificationsBinding;
+import com.leon.hamrah_abfa.fragments.citizen.NotFoundFragment;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.notifications.NewsFragment;
 import com.leon.hamrah_abfa.fragments.notifications.NotificationFragment;
+import com.leon.hamrah_abfa.fragments.notifications.Notifications;
+import com.leon.hamrah_abfa.fragments.notifications.NotificationsViewModel;
+import com.leon.hamrah_abfa.requests.notification.GetNotificationRequest;
 import com.leon.hamrah_abfa.tables.News;
 import com.leon.hamrah_abfa.tables.Notification;
 
@@ -28,6 +35,8 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         NotificationFragment.ICallback, NewsFragment.ICallback {
     private ActivityNotificationsBinding binding;
     private String id;
+    private DialogFragment fragment;
+    private final ArrayList<NotificationsViewModel> notifications = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +48,41 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     protected void initialize() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityNotificationsBinding.inflate(getLayoutInflater());
-        if (getIntent().getExtras() != null) {
-            id = getIntent().getExtras().getString(UUID.getValue());
-            getIntent().getExtras().clear();
-        }
         setContentView(binding.getRoot());
-        insertData();
+//        insertData();
+        requestNotifications();
         initializeViewPager();
         initializeTabLayout();
+    }
+
+    private void requestNotifications() {
+        boolean isOnline = new GetNotificationRequest(this, new GetNotificationRequest.ICallback() {
+            @Override
+            public void succeed(Notifications notifications) {
+                NotificationsActivity.this.notifications.addAll(notifications.customerNotifications);
+                initializeViewPager();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }).request();
+        progressStatus(isOnline);
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void insertData() {
@@ -82,8 +118,12 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void initializeViewPager() {
-        final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
-        adapter.addFragment(NotificationFragment.newInstance());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
+        if (notifications.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapter.addFragment(NotificationFragment.newInstance());
+        }
         adapter.addFragment(NewsFragment.newInstance());
         binding.viewPager.setAdapter(adapter);
     }
@@ -137,7 +177,10 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     public String getId() {
         return id;
     }
-
+    @Override
+    public ArrayList<NotificationsViewModel> getNotifications() {
+        return notifications;
+    }
     @Override
     public void onClick(View v) {
     }
@@ -146,4 +189,6 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     protected String getExitMessage() {
         return null;
     }
+
+
 }
