@@ -5,6 +5,7 @@ public enum FragmentTags {
     SUBMIT_INFO("submit info"),
     ASK_YES_NO("ask yes no"),
     REQUEST_DONE("request done"),
+    MESSAGE_DETAIL("message detail"),
     BRANCH_LOCATION("branch location"),
     ACTIVE_SESSION("active session"),
     CHANGE_THEME("change theme"),

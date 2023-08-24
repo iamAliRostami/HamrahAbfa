@@ -1,7 +1,6 @@
 package com.leon.hamrah_abfa.adapters.recycler_view;
 
-import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
@@ -12,23 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.holders.NotificationViewHolder;
-import com.leon.hamrah_abfa.tables.Notification;
+import com.leon.hamrah_abfa.fragments.notifications.NotificationsViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
-
     private final LayoutInflater inflater;
     private final TypedArray icons;
-    private final String billId;
-    private ArrayList<Notification> notifications;
+    private final ArrayList<NotificationsViewModel> notifications;
 
-
-    public NotificationAdapter(Context context, String billId) {
+    public NotificationAdapter(Context context, ArrayList<NotificationsViewModel> notifications) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.icons = context.getResources().obtainTypedArray(R.array.notification_icons);
-        this.billId = billId;
-        setNotifications();
+        this.notifications = notifications;
     }
 
     @NonNull
@@ -39,12 +37,14 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
 
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
-        holder.imageView.setImageDrawable(icons.getDrawable(notifications.get(position).category - 1));
-        holder.textViewDate.setText(notifications.get(position).date);
-        holder.textViewTitle.setText(notifications.get(position).title);
-        holder.textViewSummary.setText(notifications.get(position).summary);
-        holder.relativeLayout.setBackgroundResource(notifications.get(position).seen ?
-                R.drawable.background_seen : R.drawable.background_white_blue);
+        //TODO
+        holder.imageView.setImageDrawable(icons.getDrawable(notifications.get(position).getType() - 1));
+        holder.textViewDate.setText(notifications.get(position).getInsertDateTime());
+        holder.textViewTitle.setText(notifications.get(position).getTitle());
+        holder.textViewSummary.setText(notifications.get(position).getMessage().substring(0,
+                Math.min(50, notifications.get(position).getMessage().length())));
+        holder.relativeLayout.setBackgroundResource(notifications.get(position).getSeenDateTime() == null ?
+                R.drawable.background_white_blue : R.drawable.background_seen);
     }
 
     @Override
@@ -52,16 +52,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         return notifications.size();
     }
 
-    public void setNotifications() {
-        notifications = new ArrayList<>(getInstance().getApplicationComponent().MyDatabase().notificationDao().getNotificationsByBillId(billId));
-    }
-
-    public Notification getNotification(int position) {
-        return notifications.get(position);
-    }
-
-    public void updateNotification(int position) {
-        notifications.get(position).seen = true;
+    public void updateNotificationSeen(int position) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy MM dd HH:mm:ss:SSS");
+        notifications.get(position).setSeenDateTime(dateFormatter.format(new Date(Calendar.getInstance().getTimeInMillis())));
         notifyItemChanged(position);
     }
 }

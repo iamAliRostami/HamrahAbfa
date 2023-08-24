@@ -249,7 +249,6 @@
         <item>@drawable/notification_debt_2</item>
     </array>
 
-
     <string-array name="citizen_menu">
         <item>غیرمجاز</item>
         <item>مصرف بی رویه</item>

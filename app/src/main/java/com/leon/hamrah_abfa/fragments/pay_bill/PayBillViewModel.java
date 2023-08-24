@@ -6,11 +6,13 @@ public class PayBillViewModel {
     public final String deadline;
     public final String billId;
     public boolean selected;
+    public boolean isPayed;
 
-    public PayBillViewModel(String nickName, String debt, String deadline, String billId) {
+    public PayBillViewModel(String nickName, String debt, String deadline, String billId,boolean isPayed) {
         this.nickName = nickName;
         this.debt = debt;
         this.deadline = deadline;
         this.billId = billId;
+        this.isPayed = isPayed;
     }
 }

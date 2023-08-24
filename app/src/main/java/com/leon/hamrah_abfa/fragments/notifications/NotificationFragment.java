@@ -1,7 +1,5 @@
 package com.leon.hamrah_abfa.fragments.notifications;
 
-import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
-
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -44,7 +42,7 @@ public class NotificationFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        adapter = new NotificationAdapter(requireContext(), callback.getId());
+        adapter = new NotificationAdapter(requireContext(), callback.getNotifications());
         binding.recyclerViewNotifications.setAdapter(adapter);
         binding.recyclerViewNotifications.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -55,10 +53,9 @@ public class NotificationFragment extends Fragment {
                 binding.recyclerViewNotifications, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                getInstance().getApplicationComponent().MyDatabase().notificationDao().updateOnOffLoadSeen(
-                        adapter.getNotification(position).customId, true);
-                callback.setUnseenNotificationNumber();
-                adapter.updateNotification(position);
+//                callback.setNotificationSeen(position);
+                callback.showMessageDialog(position);
+                adapter.updateNotificationSeen(position);
             }
 
             @Override
@@ -82,9 +79,10 @@ public class NotificationFragment extends Fragment {
     }
 
     public interface ICallback {
-        String getId();
+        void setNotificationSeen(int position);
 
-        void setUnseenNotificationNumber();
         ArrayList<NotificationsViewModel> getNotifications();
+
+        void showMessageDialog(int position);
     }
 }

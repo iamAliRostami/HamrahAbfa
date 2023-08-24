@@ -5,9 +5,11 @@ import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEADLINE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_FIRST;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_PAYED;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
@@ -254,6 +256,9 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
+                getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), "");
+//                getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_PAYED.getValue(), false);
                 for (int i = 0; i < billsInfo.billDtos.size(); i++) {
                     insertData(billsInfo.billDtos.get(i));
                 }
@@ -289,11 +294,22 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebt()).concat(",");
+        //TODO
+        String deadlines = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue())
+                .concat(
+                        bill.getDeadline() != null ? bill.getDeadline() : "-")
+
+                .concat(",");
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
+        //TODO
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), deadlines);
+
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_PAYED.getValue()
+                .concat(bill.getBillId()), bill.isPayed());
     }
 
     @Override

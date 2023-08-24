@@ -290,4 +290,6 @@
     <string name="dots">…</string>
     <string name="connection_lost">ارتباط برقرار نشد</string>
     <string name="unsuccessful">ناموفق</string>
+    <string name="seen_message">پیام خوانده شود؟</string>
+    <string name="no_debt">بدهی ندارد</string>
 </resources>

@@ -67,9 +67,12 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
                 binding.recyclerViewPayBill, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                adapter.updateSelectedBill(position);
-                setButtonText();
-                setTextPrice();
+                if (adapter.isPayed(position)) {
+                    warning(requireContext(), R.string.no_debt).show();
+                } else { adapter.updateSelectedBill(position);
+                    setButtonText();
+                    setTextPrice();
+                }
             }
 
             @Override

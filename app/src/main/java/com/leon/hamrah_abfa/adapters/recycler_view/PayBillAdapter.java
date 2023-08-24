@@ -2,7 +2,9 @@ package com.leon.hamrah_abfa.adapters.recycler_view;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEADLINE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_PAYED;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
@@ -31,17 +33,21 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         ArrayList<String> billIds = new ArrayList<>();
         ArrayList<String> nicknames = new ArrayList<>();
         ArrayList<String> debts = new ArrayList<>();
+        ArrayList<String> deadlines = new ArrayList<>();
         String nickname = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue());
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue());
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue());
+        String deadline = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue());
         if (!billId.isEmpty() && !nickname.isEmpty() && !debt.isEmpty()) {
             billIds.addAll(Arrays.asList(billId.split(",")));
             nicknames.addAll(Arrays.asList(nickname.split(",")));
             debts.addAll(Arrays.asList(debt.split(",")));
+            deadlines.addAll(Arrays.asList(deadline.split(",")));
         }
         //TODO
         for (int i = 0; i < billIds.size(); i++) {
-            payBills.add(new PayBillViewModel(nicknames.get(i), debts.get(i), "12/12/12", billIds.get(i)));
+            payBills.add(new PayBillViewModel(nicknames.get(i), debts.get(i), deadlines.get(i), billIds.get(i),
+                    getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_PAYED.getValue().concat(billIds.get(i)))));
         }
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -102,5 +108,9 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
 
     public int getSelectedPrice() {
         return selectedPrice;
+    }
+
+    public boolean isPayed(int position) {
+        return payBills.get(position).isPayed;
     }
 }

@@ -11,9 +11,9 @@ public class BillCardViewModel extends BaseObservable {
     private String id;
     private String billId;
     private String alias;
-    //TODO
-//    private long debt;
     private String debt;
+    private String deadline;
+    private boolean isPayed;
     private int status;
     private String message;
     private String generationDateTime;
@@ -104,5 +104,21 @@ public class BillCardViewModel extends BaseObservable {
 
     public void setValid(boolean valid) {
         isValid = valid;
+    }
+
+    public String getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public boolean isPayed() {
+        return isPayed;
+    }
+
+    public void setPayed(boolean payed) {
+        isPayed = payed;
     }
 }

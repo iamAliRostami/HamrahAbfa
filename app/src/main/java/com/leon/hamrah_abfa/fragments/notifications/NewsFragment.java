@@ -47,10 +47,10 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        adapter = new NewsAdapter(requireContext(), callback.getId());
-        binding.recyclerViewNews.setAdapter(adapter);
-        binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
-        setRecyclerViewListener();
+//        adapter = new NewsAdapter(requireContext(), callback.getId());
+//        binding.recyclerViewNews.setAdapter(adapter);
+//        binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
+//        setRecyclerViewListener();
     }
 
     private void setRecyclerViewListener() {
@@ -85,7 +85,6 @@ public class NewsFragment extends Fragment {
     }
 
     public interface ICallback {
-        String getId();
 
         void setUnseenNewsNumber();
     }

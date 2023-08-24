@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.leon.hamrah_abfa.fragments.notifications.NotificationsViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/large_dp"
+        android:paddingEnd="@dimen/large_dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        tools:context=".fragments.notifications.NotificationMessageDetailFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_title"
+                style="@style/Title.Bottom"
+                android:layout_weight="1"
+                android:text="@{viewModel.title}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_arrow_down"
+                style="@style/ImageArrowStyle"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_down" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_message"
+            android:layout_width="match_parent"
+            style="@style/TextHelper"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_title"
+            android:text="@{viewModel.message}" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_seen"
+            style="@style/ButtonSubmit"
+            android:layout_below="@id/text_view_message"
+            android:layout_marginTop="@dimen/large_dp"
+            android:layout_marginBottom="@dimen/large_dp"
+            android:text="@string/seen_message" />
+    </RelativeLayout>
+</layout>

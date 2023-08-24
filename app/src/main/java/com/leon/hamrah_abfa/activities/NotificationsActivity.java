@@ -1,7 +1,7 @@
 package com.leon.hamrah_abfa.activities;
 
+import static com.leon.hamrah_abfa.enums.FragmentTags.MESSAGE_DETAIL;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
-import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
@@ -22,21 +22,25 @@ import com.leon.hamrah_abfa.fragments.citizen.NotFoundFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.notifications.NewsFragment;
 import com.leon.hamrah_abfa.fragments.notifications.NotificationFragment;
+import com.leon.hamrah_abfa.fragments.notifications.NotificationMessageDetailFragment;
 import com.leon.hamrah_abfa.fragments.notifications.Notifications;
 import com.leon.hamrah_abfa.fragments.notifications.NotificationsViewModel;
 import com.leon.hamrah_abfa.requests.notification.GetNotificationRequest;
-import com.leon.hamrah_abfa.tables.News;
-import com.leon.hamrah_abfa.tables.Notification;
+import com.leon.hamrah_abfa.requests.notification.SetNotificationSeenRequest;
+import com.leon.hamrah_abfa.utils.ShowFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
-        NotificationFragment.ICallback, NewsFragment.ICallback {
+        NotificationFragment.ICallback, NewsFragment.ICallback, NotificationMessageDetailFragment.ICallback {
     private ActivityNotificationsBinding binding;
-    private String id;
     private DialogFragment fragment;
     private final ArrayList<NotificationsViewModel> notifications = new ArrayList<>();
+    private int unseenNotification;
+    private int unseenNews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
             @Override
             public void succeed(Notifications notifications) {
                 NotificationsActivity.this.notifications.addAll(notifications.customerNotifications);
+                setUnseenNotificationNumber();
                 initializeViewPager();
             }
 
@@ -83,38 +88,6 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
                 fragment = null;
             }
         }
-    }
-
-    private void insertData() {
-//        int id, String summary, String title, String text, String date, int category
-        final ArrayList<News> news = new ArrayList<>(Arrays.asList(
-                new News(12, id, "خلاصه 1", "خبر 1", "این متن خبر یک است.", "12/12/12", 1),
-                new News(13, id, "خلاصه 2", "خبر 11", "این متن خبر دو است.", "12/12/12", 2),
-                new News(14, id, "خلاصه 3", "خبر 12", "این متن خبر سه است.", "12/12/12", 3),
-                new News(15, id, "خلاصه 4", "خبر 13", "این متن خبر چهار است.", "12/12/12", 4),
-                new News(22, id, "خلاصه 5", "خبر 14", "این متن خبر پنج است.", "12/12/12", 5),
-                new News(32, id, "خلاصه 6", "خبر 15", "این متن خبر شش است.", "12/12/12", 4),
-                new News(42, id, "خلاصه 7", "خبر 16", "این متن خبر هفت است.", "12/12/12", 5),
-                new News(52, id, "خلاصه 8", "خبر 17", "این متن خبر هشت است.", "12/12/12", 3),
-                new News(17, id, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 2),
-                new News(86, id, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
-                new News(86, id, "خلاصه 9", "خبر 18", "این متن خبر نه است.", "12/12/12", 1),
-                new News(21, id, "خلاصه 10", "خبر 19", "این متن خبر ده است.", "12/12/12", 1)));
-        final ArrayList<Notification> notifications = new ArrayList<>(Arrays.asList(
-                new Notification(12, id, "خلاصه 1", "نوتیف 1", "این متن نوتیف یک است.", "12/12/12", 1),
-                new Notification(13, id, "خلاصه 2", "نوتیف 11", "این متن نوتیف دو است.", "12/12/12", 3),
-                new Notification(14, id, "خلاصه 3", "نوتیف 12", "این متن نوتیف سه است.", "12/12/12", 2),
-                new Notification(15, id, "خلاصه 4", "نوتیف 13", "این متن نوتیف چهار است.", "12/12/12", 4),
-                new Notification(22, id, "خلاصه 5", "نوتیف 14", "این متن نوتیف پنج است.", "12/12/12", 5),
-                new Notification(32, id, "خلاصه 6", "نوتیف 15", "این متن نوتیف شش است.", "12/12/12", 5),
-                new Notification(42, id, "خلاصه 7", "نوتیف 16", "این متن نوتیف هفت است.", "12/12/12", 4),
-                new Notification(52, id, "خلاصه 8", "نوتیف 17", "این متن نوتیف هشت است.", "12/12/12", 3),
-                new Notification(17, id, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 3),
-                new Notification(86, id, "خلاصه 9", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
-                new Notification(86, id, "خلاصه 10", "نوتیف 18", "این متن نوتیف نه است.", "12/12/12", 2),
-                new Notification(21, id, "خلاصه 11", "نوتیف 19", "این متن نوتیف ده است.", "12/12/12", 1)));
-        getInstance().getApplicationComponent().MyDatabase().newsDao().insertNews(news);
-        getInstance().getApplicationComponent().MyDatabase().notificationDao().insertNotifications(notifications);
     }
 
     private void initializeViewPager() {
@@ -145,24 +118,32 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         binding.tabLayout.addOnTabSelectedListener(this);
     }
 
-    @Override
     public void setUnseenNotificationNumber() {
+        unseenNotification = 0;
+        for (int i = 0; i < notifications.size(); i++) {
+            if (notifications.get(i).getSeenDateTime() == null)
+                unseenNotification++;
+        }
         BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(0).getOrCreateBadge();
-        badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().notificationDao().getUnseenNotificationNumber(id, false));
+        if (unseenNotification > 0) {
+            badgeDrawable.setVisible(true);
+            badgeDrawable.setNumber(unseenNotification);
+        }
     }
 
     @Override
     public void setUnseenNewsNumber() {
         BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
-        badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(getInstance().getApplicationComponent().MyDatabase().newsDao().getUnseenNewsNumber(id, false));
+        if (unseenNews > 0) {
+            badgeDrawable.setVisible(true);
+            badgeDrawable.setNumber(unseenNews);
+        }
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         binding.viewPager.setCurrentItem(tab.getPosition());
-        tab.removeBadge();
+//        tab.removeBadge();
     }
 
     @Override
@@ -174,13 +155,41 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     @Override
-    public String getId() {
-        return id;
-    }
-    @Override
     public ArrayList<NotificationsViewModel> getNotifications() {
         return notifications;
     }
+
+    @Override
+    public void setNotificationSeen(int position) {
+//        showMessageDialog(position);
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy MM dd HH:mm:ss:SSS");
+        notifications.get(position).setSeenDateTime(dateFormatter.format(new Date(Calendar.getInstance().getTimeInMillis())));
+//        setUnseenNotificationNumber();
+        requestSeenNotification(notifications.get(position).getId());
+    }
+
+    @Override
+    public NotificationsViewModel getNotification(int position) {
+        return notifications.get(position);
+    }
+
+    @Override
+    public void showMessageDialog(int position) {
+        showFragmentDialogOnce(this, MESSAGE_DETAIL.getValue(),
+                NotificationMessageDetailFragment.newInstance(position));
+    }
+
+    private void requestSeenNotification(String id) {
+        new SetNotificationSeenRequest(this, new SetNotificationSeenRequest.ICallback() {
+
+            @Override
+            public void succeed(Notifications notifications) {
+                setUnseenNotificationNumber();
+            }
+        }, id).request();
+    }
+
     @Override
     public void onClick(View v) {
     }
