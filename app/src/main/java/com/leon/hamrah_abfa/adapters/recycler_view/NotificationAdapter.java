@@ -42,7 +42,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         holder.textViewDate.setText(notifications.get(position).getInsertDateTime());
         holder.textViewTitle.setText(notifications.get(position).getTitle());
         holder.textViewSummary.setText(notifications.get(position).getMessage().substring(0,
-                Math.min(50, notifications.get(position).getMessage().length())));
+                Math.min(40, notifications.get(position).getMessage().length())).concat(inflater.getContext().getString(R.string.dots)));
         holder.relativeLayout.setBackgroundResource(notifications.get(position).getSeenDateTime() == null ?
                 R.drawable.background_white_blue : R.drawable.background_seen);
     }

@@ -39,11 +39,15 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_view_message"
-            android:layout_width="match_parent"
             style="@style/TextHelper"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/linear_layout_title"
-            android:text="@{viewModel.message}" />
+            android:background="@drawable/background_last_bill_light"
+            android:padding="@dimen/medium_dp"
+            android:text="@{viewModel.message}"
+            android:textSize="@dimen/font_large_value"
+            android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_seen"
