@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests;
+package com.leon.hamrah_abfa.requests.bill;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -9,7 +9,6 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -24,19 +23,19 @@ import retrofit2.Retrofit;
 public class RemoveBillRequest {
     private final Context context;
     private final ICallback callback;
-    private final BillCardViewModel bill;
+    private final String billId;
 
-    public RemoveBillRequest(Context context, ICallback callback, BillCardViewModel bill) {
+    public RemoveBillRequest(Context context, ICallback callback, String billId) {
         this.context = context;
         this.callback = callback;
-        this.bill = bill;
+        this.billId = billId;
     }
 
     public boolean request() {
-        callback.changeUI(false);
+        callback.changeUI(true);
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        Call<PaymentStats> call = iAbfaService.removeBill(bill.getId());
+        Call<PaymentStats> call = iAbfaService.removeBill(billId);
         return callHttpAsync(context, call, new RemoveBillSuccessful(callback),
                 new RemoveBillIncomplete(context, callback), new RemoveBillFailed(context, callback));
     }
@@ -76,7 +75,7 @@ class RemoveBillIncomplete implements ICallbackIncomplete<PaymentStats> {
 
     @Override
     public void executeDismissed(Response<PaymentStats> response) {
-        callback.changeUI(true);
+        callback.changeUI(false);
         APIError error = parseError(response);
         if (error.status() == 401) {
             expiredToken(context);
@@ -97,7 +96,7 @@ class RemoveBillFailed implements ICallbackFailure {
 
     @Override
     public void executeFailed(Throwable t) {
-        callback.changeUI(true);
+        callback.changeUI(false);
         showFailedMessage(t, context);
     }
 }

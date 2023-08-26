@@ -252,6 +252,7 @@
     <string name="there_is_no_bill">اشتراکی وارد نشده است</string>
     <string name="ensheab_has_been_added">افزودن انشعاب با موفقیت انجام شد</string>
     <string name="ensheab_has_been_edited">ویرایش انشعاب با موفقیت انجام شد</string>
+    <string name="ensheab_has_been_deleted">انشعاب با موفقیت حذف شد</string>
 
     <string name="payment_site">https://crm.abfaesfahan.ir/%s/Bill</string>
     <string name="cache_folder">responses</string>
@@ -294,4 +295,6 @@
     <string name="seen_message">تایید مشاهده</string>
     <string name="no_debt">بدهی ندارد</string>
     <string name="edit_account">ویرایش اشتراک</string>
+    <string name="delete_account">حذف اشتراک</string>
+    <string name="are_u_sure_deleting">آیا از حذف اطمینان دارید؟</string>
 </resources>

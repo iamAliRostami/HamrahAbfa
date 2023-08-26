@@ -49,7 +49,8 @@
 
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextItem"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:gravity="center"
                 android:text="@{viewModel.question}" />
 
             <androidx.appcompat.widget.LinearLayoutCompat

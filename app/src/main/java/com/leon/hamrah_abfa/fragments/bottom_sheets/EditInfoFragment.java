@@ -31,7 +31,7 @@ import java.util.Arrays;
 
 public class EditInfoFragment extends BaseBottomSheetFragment implements View.OnClickListener {
     private FragmentEditInfoBinding binding;
-    private SubmitInfoFragment.ICallback callback;
+    private ICallback callback;
     private final BillCardViewModel viewModel = new BillCardViewModel();
 
     public EditInfoFragment() {
@@ -131,7 +131,7 @@ public class EditInfoFragment extends BaseBottomSheetFragment implements View.On
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
-        if (context instanceof Activity) callback = (SubmitInfoFragment.ICallback) context;
+        if (context instanceof Activity) callback = (ICallback) context;
     }
 
     public interface ICallback {

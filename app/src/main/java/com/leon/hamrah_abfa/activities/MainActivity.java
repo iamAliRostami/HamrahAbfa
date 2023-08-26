@@ -52,6 +52,7 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.EditInfoFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
+import com.leon.hamrah_abfa.fragments.cards.CardFragment;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardBaseFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
@@ -59,7 +60,7 @@ import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback, DashboardBaseFragment.ICallback,
-        EditInfoFragment.ICallback {
+        EditInfoFragment.ICallback, CardFragment.ICallback {
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -312,7 +313,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebt()).concat(",");
         //TODO
-        String deadlines = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue())
+        String deadline = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue())
                 .concat(bill.getDeadline() != null ? bill.getDeadline() : "-").concat(",");
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
@@ -320,7 +321,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
         //TODO
-        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), deadlines);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), deadline);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_PAYED.getValue()
                 .concat(bill.getBillId()), bill.isPayed());
     }

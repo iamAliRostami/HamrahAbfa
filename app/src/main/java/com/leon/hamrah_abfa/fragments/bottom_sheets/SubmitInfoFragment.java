@@ -103,7 +103,9 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebt()).concat(",");
-        String deadline = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue()).concat(bill.getDeadline()).concat(",");
+
+        String deadline = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue())
+                .concat(bill.getDeadline() != null ? bill.getDeadline() : "-").concat(",");
 
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
