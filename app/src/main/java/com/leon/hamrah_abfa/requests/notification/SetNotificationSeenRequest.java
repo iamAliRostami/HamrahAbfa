@@ -35,8 +35,9 @@ public class SetNotificationSeenRequest {
         final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<Notifications> call = iAbfaService.setNotificationSeen(id);
-         callHttpAsync(context, call, new SeenNotificationSuccessful(callback),
-                new SeenNotificationIncomplete(context), new SeenNotificationFailed(context));
+        callback.succeed(new Notifications());
+//         callHttpAsync(context, call, new SeenNotificationSuccessful(callback),
+//                new SeenNotificationIncomplete(context), new SeenNotificationFailed(context));
     }
 
     public interface ICallback {

@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCardBinding;
+import com.leon.toast.RTLToast;
 
 
 public class CardFragment extends Fragment implements View.OnClickListener {
@@ -65,19 +66,22 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.text_view_pay) {
-            try {
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                CustomTabsIntent customTabsIntent = builder.build();
-                customTabsIntent.intent.setPackage("com.android.chrome");
-                customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                customTabsIntent.launchUrl(requireContext(), Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
-            } catch (Exception e) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                browserIntent.setData(Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
-                startActivity(browserIntent);
+            if (viewModel.isPayed()) {
+                RTLToast.warning(requireContext(), getString(R.string.no_debt)).show();
+            } else {
+                try {
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.intent.setPackage("com.android.chrome");
+                    customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    customTabsIntent.launchUrl(requireContext(), Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
+                } catch (Exception e) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                    browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    browserIntent.setData(Uri.parse(String.format(getString(R.string.payment_site), viewModel.getBillId())));
+                    startActivity(browserIntent);
+                }
             }
-
         }
     }
 }

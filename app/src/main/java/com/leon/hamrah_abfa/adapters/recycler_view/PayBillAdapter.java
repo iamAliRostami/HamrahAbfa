@@ -9,6 +9,7 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +47,8 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         }
         //TODO
         for (int i = 0; i < billIds.size(); i++) {
-            payBills.add(new PayBillViewModel(nicknames.get(i), debts.get(i), deadlines.get(i), billIds.get(i),
-                    getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_PAYED.getValue().concat(billIds.get(i)))));
+            if (!getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_PAYED.getValue().concat(billIds.get(i))))
+                payBills.add(new PayBillViewModel(nicknames.get(i), debts.get(i), deadlines.get(i), billIds.get(i)));
         }
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

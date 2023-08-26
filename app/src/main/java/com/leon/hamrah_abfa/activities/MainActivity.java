@@ -296,10 +296,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebt()).concat(",");
         //TODO
         String deadlines = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue())
-                .concat(
-                        bill.getDeadline() != null ? bill.getDeadline() : "-")
-
-                .concat(",");
+                .concat(bill.getDeadline() != null ? bill.getDeadline() : "-").concat(",");
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
@@ -307,7 +304,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
         //TODO
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), deadlines);
-
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_PAYED.getValue()
                 .concat(bill.getBillId()), bill.isPayed());
     }

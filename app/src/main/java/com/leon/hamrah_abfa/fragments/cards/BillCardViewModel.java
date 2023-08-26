@@ -1,5 +1,8 @@
 package com.leon.hamrah_abfa.fragments.cards;
 
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_PAYED;
+import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
+
 import android.annotation.SuppressLint;
 
 import androidx.databinding.BaseObservable;
@@ -25,6 +28,7 @@ public class BillCardViewModel extends BaseObservable {
         setBillId(billId);
         setAlias(alias);
         setDebt(debt);
+        setPayed(getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(IS_PAYED.getValue().concat(billId)));
     }
 
     public BillCardViewModel() {
