@@ -13,8 +13,8 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_PAYED;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
-import static com.leon.hamrah_abfa.utils.background.Scheduler.scheduleBackgroundTask;
 import static com.leon.hamrah_abfa.utils.background.Scheduler.backgroundTaskInTime;
+import static com.leon.hamrah_abfa.utils.background.Scheduler.scheduleBackgroundTask;
 import static com.leon.toast.RTLToast.warning;
 
 import android.Manifest;
@@ -48,6 +48,7 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.fragment_state_adapter.CardPagerAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.EditInfoFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
@@ -57,7 +58,8 @@ import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
-        SubmitInfoFragment.ICallback, ServiceFragment.ICallback, DashboardBaseFragment.ICallback {
+        SubmitInfoFragment.ICallback, ServiceFragment.ICallback, DashboardBaseFragment.ICallback,
+        EditInfoFragment.ICallback {
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
@@ -71,7 +73,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-//TODO
                             startBackgroundTask();
                             requestBills();
                         }
@@ -275,7 +276,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), "");
-//                getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_PAYED.getValue(), false);
                 for (int i = 0; i < billsInfo.billDtos.size(); i++) {
                     insertData(billsInfo.billDtos.get(i));
                 }

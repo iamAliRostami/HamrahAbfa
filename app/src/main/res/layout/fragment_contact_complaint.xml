@@ -60,7 +60,6 @@
                     android:id="@+id/menu"
                     style="@style/MenuLayout"
                     android:layout_below="@id/text_view_description"
-                    android:layout_marginTop="@dimen/large_dp"
                     android:layout_marginBottom="@dimen/large_dp"
                     android:hint="@string/complaint_type">
 

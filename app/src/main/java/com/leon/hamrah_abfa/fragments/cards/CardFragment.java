@@ -3,7 +3,9 @@ package com.leon.hamrah_abfa.fragments.cards;
 import static com.leon.hamrah_abfa.enums.BundleEnum.ALIAS;
 import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.DEBT;
+import static com.leon.hamrah_abfa.enums.FragmentTags.EDIT_INFO;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
+import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentCardBinding;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.EditInfoFragment;
 import com.leon.toast.RTLToast;
 
 
@@ -60,6 +63,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
 
     private void initialize() {
         binding.textViewPay.setOnClickListener(this);
+        binding.imageViewEdit.setOnClickListener(this);
     }
 
     @Override
@@ -82,6 +86,9 @@ public class CardFragment extends Fragment implements View.OnClickListener {
                     startActivity(browserIntent);
                 }
             }
+        } else if (id == R.id.image_view_edit) {
+            showFragmentDialogOnce(requireContext(), EDIT_INFO.getValue(), EditInfoFragment.newInstance(viewModel.getId(),
+                    viewModel.getBillId(), viewModel.getAlias()));
         }
     }
 }

@@ -2,8 +2,10 @@ package com.leon.hamrah_abfa.fragments.bottom_sheets;
 
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEADLINE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.IS_PAYED;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.toast.RTLToast.success;
 import static com.leon.toast.RTLToast.warning;
@@ -46,13 +48,8 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         binding = FragmentSubmitInfoBottomBinding.inflate(inflater, container, false);
         binding.setViewModel(viewModel);
-        initialize();
-        return binding.getRoot();
-    }
-
-    private void initialize() {
         binding.buttonSubmit.setOnClickListener(this);
-        binding.imageViewArrowDown.setOnClickListener(this);
+        return binding.getRoot();
     }
 
     @Override
@@ -66,10 +63,7 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
                 binding.editTextBillId.requestFocus();
             } else {
                 requestAddBill();
-
             }
-        } else if (id == R.id.image_view_arrow_down) {
-            dismiss();
         }
     }
 
@@ -109,12 +103,17 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
         String debt = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEBT.getValue()).concat(bill.getDebt()).concat(",");
+        String deadline = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue()).concat(bill.getDeadline()).concat(",");
 
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), alias);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), debt);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), deadline);
+
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(IS_PAYED.getValue()
+                .concat(bill.getBillId()), bill.isPayed());
 
         if (callback != null) callback.updateCard();
         success(requireContext(), getString(R.string.ensheab_has_been_added)).show();

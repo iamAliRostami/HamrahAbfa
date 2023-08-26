@@ -17,7 +17,7 @@
         android:paddingEnd="@dimen/large_dp"
         android:paddingBottom="@dimen/large_dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context=".fragments.bottom_sheets.SubmitInfoFragment">
+        tools:context=".fragments.bottom_sheets.EditInfoFragment">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_arrow_down"
@@ -30,16 +30,29 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_title"
             style="@style/Title.Bottom"
-            android:text="@string/account_submit"
-            app:layout_constraintBottom_toTopOf="@id/text_layout_account_title"
+            android:text="@string/edit_account"
+            app:layout_constraintBottom_toTopOf="@id/text_layout_bill_id"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout_bill_id"
+            style="@style/TextInputLayout"
+            android:hint="@string/bill_id"
+            app:layout_constraintBottom_toTopOf="@id/text_layout_account_title"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_bill_id"
+                style="@style/TextInput.Stable"
+                android:text="@={viewModel.billId}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_layout_account_title"
             style="@style/TextInputLayout"
             android:hint="@string/account_title"
             app:helperText="@string/enter_nick_name"
-            app:layout_constraintBottom_toTopOf="@id/text_layout_bill_id"
+            app:layout_constraintBottom_toTopOf="@id/relative_layout_submit"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -49,21 +62,6 @@
                 android:text="@={viewModel.alias}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_layout_bill_id"
-            style="@style/TextInputLayout"
-            android:hint="@string/bill_id"
-            app:counterMaxLength="11"
-            app:helperText="@string/enter_bill_id"
-            app:layout_constraintBottom_toTopOf="@id/relative_layout_submit"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_bill_id"
-                style="@style/TextInput"
-                android:inputType="number"
-                android:text="@={viewModel.billId}" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout
             android:id="@+id/relative_layout_submit"
@@ -76,7 +74,7 @@
                 android:id="@+id/button_submit"
                 style="@style/ButtonSubmit"
                 android:layout_alignParentBottom="true"
-                android:text="@string/sign_account" />
+                android:text="@string/edit_account" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottie_animation_view"

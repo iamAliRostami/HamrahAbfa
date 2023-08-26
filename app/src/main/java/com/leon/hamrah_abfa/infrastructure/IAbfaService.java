@@ -47,6 +47,12 @@ public interface IAbfaService {
     @GET("KontoriNew/V1/MobileBill/Get")
     Call<BillsSummary> getBills();
 
+    @GET("KontoriNew/V1/MobileBill/Remove/{id}")
+    Call<PaymentStats> removeBill(@Path("id") String id);
+
+    @POST("KontoriNew/V1/MobileBill/Edit")
+    Call<PaymentStats> editBill(@Body BillCardViewModel bill);
+
     @POST("kontoriNew/V1/MobileBill/Add")
     Call<BillCardViewModel> addBill(@Body BillCardViewModel bill);
 
@@ -64,7 +70,6 @@ public interface IAbfaService {
 
     @GET("KontoriNew/V1/ContactAbfa/Faq")
     Call<ContactFAQ> getFAQ();
-
 
     @GET("KontoriNew/V1/ContactAbfa/Zone")
     Call<ContactBranch> getZone();
@@ -140,6 +145,7 @@ public interface IAbfaService {
 
     @GET("KontoriNew/V1/CustomerNotification/Get")
     Call<Notifications> getNotifications();
+
     @GET("KontoriNew/V1/CustomerNotification/SetSeen/{id}")
     Call<Notifications> setNotificationSeen(@Path("id") String id);
 }
