@@ -28,19 +28,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public final class APIClientModel {
-    private static final Interceptor REWRITE_RESPONSE_INTERCEPTOR = chain -> {
-        Response originalResponse = chain.proceed(chain.request());
-        String cacheControl = originalResponse.header("Cache-Control");
-
-        if (cacheControl == null || cacheControl.contains("no-store") || cacheControl.contains("no-cache") ||
-                cacheControl.contains("must-revalidate") || cacheControl.contains("max-age=0")) {
-            return originalResponse.newBuilder()
-                    .header("Cache-Control", "public, max-age=" + 10)
-                    .build();
-        } else {
-            return originalResponse;
-        }
-    };
     private final TimeUnit TIME_UNIT = TimeUnit.SECONDS;
     private final boolean RETRY_ENABLED = false;
     private final long READ_TIMEOUT = 20;
@@ -54,6 +41,19 @@ public final class APIClientModel {
     Retrofit retrofit;
     @Inject
     HttpLoggingInterceptor interceptor;
+    private static final Interceptor REWRITE_RESPONSE_INTERCEPTOR = chain -> {
+        Response originalResponse = chain.proceed(chain.request());
+        String cacheControl = originalResponse.header("Cache-Control");
+
+        if (cacheControl == null || cacheControl.contains("no-store") || cacheControl.contains("no-cache") ||
+                cacheControl.contains("must-revalidate") || cacheControl.contains("max-age=0")) {
+            return originalResponse.newBuilder()
+                    .header("Cache-Control", "public, max-age=" + 10)
+                    .build();
+        } else {
+            return originalResponse;
+        }
+    };
 
     @Inject
     public HttpLoggingInterceptor getInterceptor() {
