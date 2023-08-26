@@ -124,6 +124,7 @@ public interface IAbfaService {
     @POST("KontoriNew/V1/ForbiddenMobile/Single")
     Call<ForbiddenViewModel> forbidden(@Part ArrayList<MultipartBody.Part> files,
                                        @Part("Description") RequestBody description,
+                                       @Part("Type") RequestBody type,
                                        @Part("PreEshterak") RequestBody preEshterak,
                                        @Part("NextEshterak") RequestBody nextEshterak,
                                        @Part("PostalCode") RequestBody postalCode,

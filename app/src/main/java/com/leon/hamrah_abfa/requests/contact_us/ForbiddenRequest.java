@@ -46,6 +46,7 @@ public class ForbiddenRequest {
         final Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden.file,
                 RequestBody.create(forbidden.getDescription(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getNextEshterak(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPostalCode(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getTedadVahed(), MediaType.parse("text/plain")),
