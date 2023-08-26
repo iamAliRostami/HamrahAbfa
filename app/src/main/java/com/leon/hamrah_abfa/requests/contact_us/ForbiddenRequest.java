@@ -45,7 +45,7 @@ public class ForbiddenRequest {
         final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         final Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden.file,
                 RequestBody.create(forbidden.getDescription(), MediaType.parse("text/plain")),
-                RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
+                RequestBody.create(forbidden.getType(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getNextEshterak(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPostalCode(), MediaType.parse("text/plain")),
