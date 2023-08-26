@@ -14,6 +14,7 @@ import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.MOBILE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.hamrah_abfa.utils.background.Scheduler.scheduleBackgroundTask;
+import static com.leon.hamrah_abfa.utils.background.Scheduler.backgroundTaskInTime;
 import static com.leon.toast.RTLToast.warning;
 
 import android.Manifest;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
+                    backgroundTaskInTime(this);
                     scheduleBackgroundTask(this);
                 } else {
                     warning(this, R.string.notification_won_t_send).show();
@@ -69,6 +71,8 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
                         if (result.getResultCode() == Activity.RESULT_OK) {
+//TODO
+                            startBackgroundTask();
                             requestBills();
                         }
                     });
@@ -179,6 +183,19 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             }
         } else {
             scheduleBackgroundTask(this);
+        }
+    }
+
+    private void startBackgroundTask() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                backgroundTaskInTime(this);
+            } else {
+                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        } else {
+            backgroundTaskInTime(this);
         }
     }
 

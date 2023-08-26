@@ -7,6 +7,7 @@ import static com.leon.hamrah_abfa.helpers.Constants.DELAY;
 import static com.leon.hamrah_abfa.utils.PermissionManager.isNetworkAvailable;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,7 +15,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -27,7 +27,8 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.leon.hamrah_abfa.R;
-import com.leon.hamrah_abfa.activities.MainActivity;
+import com.leon.hamrah_abfa.activities.NotificationsActivity;
+import com.leon.hamrah_abfa.requests.GetNotificationNumberRequest;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -45,27 +46,27 @@ public class NotificationWorker extends Worker {
     public Result doWork() {
         if (isNetworkAvailable(getApplicationContext())) {
             // TODO: Send the request to the server
-            // You can use Retrofit, Volley, or any other library to send the request.
-            Log.e("here", "success");
-            showNotification("success");
-            return Result.success();
+            if (requestNotificationNumber())
+                return Result.success();
+            return Result.retry();
         } else {
             // Check if the task has already been retried once
             Data inputData = getInputData();
             boolean hasRetriedOnce = inputData.getBoolean(HAS_RETRY_ONCE.getValue(), false);
-            int i = inputData.getInt(ATTEMPT_COUNT.getValue(), 0);
             if (!hasRetriedOnce) {
-                Log.e("here", "retry ".concat(String.valueOf(i)));
-                showNotification("retry ".concat(String.valueOf(i)));
                 rescheduleWithDelay(); // Set the flag to true for the retry
                 return Result.retry();
             } else {
-                Log.e("here", "failure ".concat(String.valueOf(i)));
-                showNotification("failure ".concat(String.valueOf(i)));
                 return Result.failure();
             }
         }
 
+    }
+
+    @SuppressLint("DefaultLocale")
+    private boolean requestNotificationNumber() {
+        return new GetNotificationNumberRequest(context, messageNumber ->
+                showNotification(String.format("شما %d پیام جدید دارید", messageNumber))).request();
     }
 
     private void rescheduleWithDelay() {
@@ -91,9 +92,9 @@ public class NotificationWorker extends Worker {
         Calendar calendar = Calendar.getInstance();
         //TODO
         String channelId = getApplicationContext().getString(R.string.app_name).concat(String.valueOf(calendar.getTimeInMillis())); // Replace with your channel ID
-        String title = "Your Title"; // Replace with the notification title
+        String title = getApplicationContext().getString(R.string.services);
         // Create a pending intent to open the app when the notification is clicked
-        Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent notificationIntent = new Intent(getApplicationContext(), NotificationsActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getApplicationContext().getString(R.string.app_name);
             String description = getApplicationContext().getString(R.string.app_name);
@@ -108,9 +109,10 @@ public class NotificationWorker extends Worker {
 
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), channelId)
-                .setSmallIcon(R.drawable.notification_bill)
+                .setSmallIcon(R.drawable.app_logo)
                 .setContentTitle(title)
                 .setContentText(message)
+                .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(message));

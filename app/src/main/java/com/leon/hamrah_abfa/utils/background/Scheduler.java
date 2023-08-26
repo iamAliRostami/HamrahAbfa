@@ -29,4 +29,12 @@ public class Scheduler {
         WorkManager.getInstance(context).enqueue(periodicWorkRequest);
     }
 
+
+    public static void backgroundTaskInTime(Context context) {
+        long delayInMillis = 0;
+        PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest
+                .Builder(NotificationWorker.class, CHECK_INTERVAL, TimeUnit.MILLISECONDS)
+                .setInitialDelay(delayInMillis, TimeUnit.MILLISECONDS).build();
+        WorkManager.getInstance(context).enqueue(periodicWorkRequest);
+    }
 }

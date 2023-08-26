@@ -10,8 +10,10 @@ public class Constants {
     public static final String HOST_CHECK_CONNECTION = "iran.ir";
     public static final int CHECK_INTERVAL = 24 * 60 * 60 * 1000;
     public static final int DELAY = 60 * 60 * 1000;
-    public static final int HOUR_OF_DAY = 8;
-    public static final int MINUTE = 0;
+//    public static final int HOUR_OF_DAY = 8;
+//public static final int MINUTE = 0;
+    public static final int HOUR_OF_DAY = 12;
+    public static final int MINUTE = 18;
     public static final float MIN_DISTANCE_CHANGE_FOR_UPDATES = 1;
     public static final long MIN_TIME_BW_UPDATES = 100;
     public static final int TOAST_TEXT_SIZE = 15;

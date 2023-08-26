@@ -62,6 +62,32 @@ public class HttpClientWrapper {
         return isOnline;
     }
 
+
+    public static <T> boolean callHttpAsyncBackground(Context context, Call<T> call, ICallbackSucceed<T> succeed) {
+        boolean isOnline = isNetworkAvailable(context);
+        if (isOnline) {
+            if (hasServerPing()) {
+                call.enqueue(new Callback<>() {
+                    @Override
+                    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
+                        if (response.isSuccessful()) {
+                            succeed.executeCompleted(response);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
+                        call.cancel();
+                    }
+                });
+            } else {
+                isOnline = false;
+                setServerPing(checkServerConnection());
+            }
+        }
+        return isOnline;
+    }
+
     public static <T> boolean callHttpAsyncCached(Context context, Call<T> call, ICallbackSucceed<T> succeed,
                                                   ICallbackIncomplete<T> incomplete, ICallbackFailure failure) {
         call.enqueue(new Callback<>() {
