@@ -44,7 +44,7 @@
 
     <string name="pay_bill">پرداخت قبض</string>
     <string name="counter_number_submit">اعلام کارکرد کنتور</string>
-    <string name="history_usage">سوابق کارکرد</string>
+    <string name="history_usage">سوابق خوداظهاری</string>
     <!--    <string name="protest_submit">اعلام قطعی آب</string>-->
     <string name="protest_submit">شهروند مروج</string>
     <string name="cart">صورت\u200cحساب</string>
@@ -290,7 +290,7 @@
     <string name="payment_state">وضعیت پرداخت</string>
     <string name="chart_payment_description">توضیح نمودار پرداخت</string>
     <string name="chart_payment">نمودار پرداخت</string>
-    <string name="error_ping">لطفا در ساعات اداری فردا مجددا تلاش کنید</string>
+    <string name="error_ping">در صورتی که فیلترشکن روشن دارید خاموش کنید، در غیر این صورت لطفا در ساعات اداری فردا مجددا تلاش کنید</string>
     <string name="error_connection">خطا در دریافت اطلاعات، مجددا تلاش کنید</string>
     <string name="error_other">خظای ناشناخته رخ داد، لحظاتی دیگر تلاش کنید</string>
     <string name="dots">…</string>

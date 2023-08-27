@@ -9,7 +9,7 @@ public class AttemptViewModel extends BaseObservable {
 
     private String counterNumber;
     private String jalaliDay;
-    private String amount;
+    private long amount;
     private String status;
 
     @Bindable
@@ -32,14 +32,8 @@ public class AttemptViewModel extends BaseObservable {
         notifyPropertyChanged(BR.jalaliDay);
     }
 
-    @Bindable
-    public String getAmount() {
+    public long getAmount() {
         return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-        notifyPropertyChanged(BR.amount);
     }
 
     @Bindable

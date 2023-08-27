@@ -36,11 +36,13 @@ public class UsageHistoryAdapter extends RecyclerView.Adapter<UsageHistoryViewHo
         return position;
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     public void onBindViewHolder(@NonNull UsageHistoryViewHolder holder, int position) {
         holder.textViewNumber.setText(usageHistory.get(position).getCounterNumber());
         holder.textViewDate.setText(usageHistory.get(position).getJalaliDay());
-        holder.textViewPrice.setText(usageHistory.get(position).getAmount());
+//        holder.textViewPrice.setText(usageHistory.get(position).getAmount());
+        holder.textViewPrice.setText(String.format("%,d",usageHistory.get(position).getAmount()));
 
     }
 
