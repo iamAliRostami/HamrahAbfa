@@ -8,6 +8,6 @@ public class PaymentStats {
     public float totalPayments;
     public float unpayedBills;
     public float payAverageTime;
-    public final ArrayList<Integer> payDeadlineValues = new ArrayList<>();
-    public final ArrayList<String> payDeadlineKeys = new ArrayList<>();
+    public ArrayList<Integer> payDeadlineValues;
+    public ArrayList<String> payDeadlineKeys;
 }

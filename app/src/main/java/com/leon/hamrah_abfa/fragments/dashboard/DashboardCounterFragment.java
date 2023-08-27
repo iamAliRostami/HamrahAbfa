@@ -57,7 +57,8 @@ public class DashboardCounterFragment extends Fragment {
 
     private void initializeChart() {
         designPieChart();
-        if (!callback.getCounterStat().counterStatWrapper.isEmpty()) {
+        if (callback.getCounterStat().counterStatWrapper != null &&
+                !callback.getCounterStat().counterStatWrapper.isEmpty()) {
             ArrayList<PieEntry> entries = new ArrayList<>();
             ArrayList<Counter> counters = callback.getCounterStat().counterStatWrapper;
             for (int i = 0; i < counters.size(); i++) {

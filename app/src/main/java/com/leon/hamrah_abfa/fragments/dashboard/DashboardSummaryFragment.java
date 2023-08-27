@@ -64,7 +64,8 @@ public class DashboardSummaryFragment extends Fragment {
     private void initializeChart() {
         designLineChart();
         designBarChart();
-        if (!callback.getBillSummary().billSummaryWrapper.isEmpty()) {
+        if (callback.getBillSummary().billSummaryWrapper != null &&
+                !callback.getBillSummary().billSummaryWrapper.isEmpty()) {
             ArrayList<Summary> billSummary = callback.getBillSummary().billSummaryWrapper;
             ArrayList<Entry> entries = new ArrayList<>();
             ArrayList<BarEntry> barEntries = new ArrayList<>();

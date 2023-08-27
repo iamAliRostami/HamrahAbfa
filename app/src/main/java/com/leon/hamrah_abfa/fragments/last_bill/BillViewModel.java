@@ -233,7 +233,7 @@ public class BillViewModel extends BaseObservable {
 
     @Bindable
     public String getMasrafM3() {
-        return String.valueOf(Integer.parseInt(masrafLiter) * 1000);
+        return String.valueOf(Integer.parseInt(masrafLiter) / 1000);
     }
 
     @Bindable

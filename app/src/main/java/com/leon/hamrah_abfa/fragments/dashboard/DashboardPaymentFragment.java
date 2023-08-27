@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,14 +55,16 @@ public class DashboardPaymentFragment extends Fragment {
     private void initializeChart() {
         designHorizontalBarChart();
         callback.getPaymentStats().totalBills = 10;
-        if (!callback.getPaymentStats().payDeadlineKeys.isEmpty()) {
+        if (callback.getPaymentStats().payDeadlineKeys != null &&
+                !callback.getPaymentStats().payDeadlineKeys.isEmpty() &&
+                callback.getPaymentStats().payDeadlineValues != null &&
+                !callback.getPaymentStats().payDeadlineValues.isEmpty()) {
             ArrayList<BarEntry> barEntries = new ArrayList<>();
             for (int i = 0; i < callback.getPaymentStats().payDeadlineValues.size(); i++) {
                 barEntries.add(new BarEntry(i, callback.getPaymentStats().payDeadlineValues.get(i)));
             }
             setData(barEntries);
         }
-
     }
 
     private void designHorizontalBarChart() {
@@ -94,8 +95,6 @@ public class DashboardPaymentFragment extends Fragment {
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-//                Log.e("index", String.valueOf(value));
-//                return super.getFormattedValue(value);
                 try {
                     return callback.getPaymentStats().payDeadlineKeys.get((int) value);
                 } catch (Exception e) {
