@@ -223,6 +223,7 @@
         <item>@string/help_services</item>
         <item>@string/help_payment</item>
         <item>@string/help_dashboard</item>
+        <item>@string/help_citizen</item>
         <item>@string/help_incident</item>
     </string-array>
 
@@ -230,6 +231,7 @@
         <item>@string/help_content_services</item>
         <item>@string/help_content_payment</item>
         <item>@string/help_content_dashboard</item>
+        <item>@string/help_content_citizen</item>
         <item>@string/help_content_incident</item>
     </string-array>
 

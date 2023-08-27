@@ -122,7 +122,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
 
     private void showRemoveDialog() {
         showFragmentDialogOnce(requireContext(), ASK_YES_NO.getValue(),
-                YesNoFragment.newInstance(R.drawable.home_last_bills, getString(R.string.delete_account),
+                YesNoFragment.newInstance(R.drawable.ic_delete_1, getString(R.string.delete_account),
                         getString(R.string.are_u_sure_deleting), getString(R.string.delete_account)
                         , getString(R.string.cancel), new YesNoFragment.IClickListener() {
                             @Override

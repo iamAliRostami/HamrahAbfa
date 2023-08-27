@@ -16,6 +16,7 @@ public class WelcomePagerAdapter extends FragmentStateAdapter {
             R.raw.online_assistant,
             R.raw.bill_payment,
             R.raw.data_dnalysis,
+            R.raw.citizen,
             R.raw.repairman_robot
     };
 
