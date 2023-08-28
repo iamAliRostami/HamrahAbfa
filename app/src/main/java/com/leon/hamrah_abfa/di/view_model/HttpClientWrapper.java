@@ -29,7 +29,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HttpClientWrapper {
-
     public static Call<?> call;
     public static boolean cancel;
 
