@@ -10,6 +10,7 @@ public enum FragmentTags {
     BRANCH_LOCATION("branch location"),
     ACTIVE_SESSION("active session"),
     CHANGE_THEME("change theme"),
+    MY_ACCOUNT("my account"),
     FOLLOW_REQUEST_TRACK("follow request track"),
     FOLLOW_REQUEST_LEVEL("follow request level"),
     FOLLOW_REQUEST_ITEM("follow request item"),

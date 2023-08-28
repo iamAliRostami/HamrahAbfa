@@ -3,6 +3,7 @@ package com.leon.hamrah_abfa.activities;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
+import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEADLINE;
@@ -35,6 +36,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -53,10 +55,13 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.cards.CardFragment;
+import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
+import com.leon.hamrah_abfa.fragments.dialog.YesNoFragment;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardBaseFragment;
 import com.leon.hamrah_abfa.fragments.ui.home.HomeFragment;
 import com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment;
 import com.leon.hamrah_abfa.requests.bill.GetBillsRequest;
+import com.leon.hamrah_abfa.requests.my_account.AddByMobileRequest;
 
 public class MainActivity extends BaseActivity implements HomeFragment.ICallback,
         SubmitInfoFragment.ICallback, ServiceFragment.ICallback, DashboardBaseFragment.ICallback,
@@ -74,10 +79,50 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            startBackgroundTask();
-                            requestBills();
+                            showSyncDialog();
+//                            startBackgroundTask();
+//                            //TODO show
+//                            if (getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(SYNCED.getValue(), true)) {
+//
+//                            } else {
+//                                requestBills();
+//                            }
                         }
                     });
+
+    private void showSyncDialog() {
+        showFragmentDialogOnce(this, ASK_YES_NO.getValue(),
+                YesNoFragment.newInstance(
+                        R.drawable.setting_logout, getString(R.string.connected_account), getString(R.string.are_u_sure_sync),
+                        getString(R.string.go_continue), getString(R.string.cancel), new YesNoFragment.IClickListener() {
+                            @Override
+                            public void yes(DialogFragment dialogFragment) {
+                                dialogFragment.dismiss();
+                                progressStatus(new AddByMobileRequest(MainActivity.this,
+                                        new AddByMobileRequest.ICallback() {
+                                            @Override
+                                            public void succeed() {
+//                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SYNCED.getValue(), false);
+                                                requestBills();
+                                            }
+
+                                            @Override
+                                            public void changeUI(boolean done) {
+                                                progressStatus(done);
+                                            }
+                                        }, getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(MOBILE.getValue()))
+                                        .request());
+                            }
+
+                            @Override
+                            public void no(DialogFragment dialogFragment) {
+                                dialogFragment.dismiss();
+                                requestBills();
+                            }
+                        })
+        );
+    }
+
     private final ActivityResultLauncher<Intent> welcomeActivityResultLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     result -> {
@@ -100,6 +145,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                     });
     private CardPagerAdapter cardPagerAdapter;
     private ActivityMainBinding binding;
+    private DialogFragment fragment;
     private final Animation.AnimationListener animationTypoListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
@@ -285,24 +331,22 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
             @Override
             public void changeUI(boolean done) {
-                progressStatus(done);
             }
         }).request();
-        progressStatus(isOnline);
     }
 
     private void progressStatus(boolean show) {
-//        if (show) {
-//            if (fragment == null) {
-//                fragment = WaitingFragment.newInstance();
-//                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
-//            }
-//        } else {
-//            if (fragment != null) {
-//                fragment.dismiss();
-//                fragment = null;
-//            }
-//        }
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(this, WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
     }
 
     private void insertData(BillCardViewModel bill) {

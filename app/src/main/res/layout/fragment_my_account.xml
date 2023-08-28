@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingStart="@dimen/large_dp"
+    android:paddingEnd="@dimen/large_dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.bottom_sheets.MyAccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_title"
+            style="@style/Title.Bottom"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/my_account" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view_arrow_down"
+            style="@style/ImageArrowStyle"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/arrow_down" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_sync"
+        style="@style/ButtonSubmit"
+        android:layout_below="@id/linear_layout_title"
+        android:text="@string/connected_account" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_exit"
+        style="@style/ButtonCancel"
+        android:layout_width="match_parent"
+        android:layout_below="@id/button_sync"
+        android:layout_marginTop="@dimen/large_dp"
+        android:layout_marginBottom="@dimen/large_dp"
+        android:background="@drawable/background_white_blue"
+        android:text="@string/exit_account" />
+</RelativeLayout>

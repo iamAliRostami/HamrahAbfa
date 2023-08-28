@@ -89,7 +89,7 @@
     <string name="help">راهنمای آبفا</string>
     <string name="update">بروزرسانی</string>
     <string name="share">اشتراک گذاری</string>
-    <string name="exit">حساب من</string>
+    <string name="my_account">حساب من</string>
 
 
     <string name="account_sale">فروش انشعاب</string>
@@ -185,7 +185,7 @@
     <string name="enter_complaint_description">شرح شکایت را ارائه نمایید</string>
     <string name="choose_complaint_type">نوع شکایت را انتخاب کنید</string>
     <string name="field_complaint_description">توضیح را وارد کنید</string>
-    <string name="suggestion_description">با ثبت انتقاد خود به بهبود فرایند خدمت رسانی یاری نمایید</string>
+    <string name="suggestion_description">با ثبت انتقاد خود به بهبود فرایند خدمت\u200cرسانی یاری نمایید</string>
     <string name="suggestion_type">نوع انتقاد</string>
     <string name="enter_your_proposal">راهکار پیشنهادی خود را ارائه دهید</string>
     <string name="proposal">راهکار پیشنهادی</string>
@@ -303,5 +303,11 @@
     <string name="are_u_sure_deleting">آیا از حذف اطمینان دارید؟</string>
     <string name="call">تماس</string>
     <string name="will_be_ok_soon">این بخش به زودی تکمیل خواهد شد</string>
-    <string name="reques_canceled">درخواست لغو شد</string>
+    <string name="request_canceled">درخواست لغو شد</string>
+    <string name="exit_account">خروج از حساب</string>
+    <string name="connected_account">اتصال اشتراک\u200cها</string>
+    <string name="yes">بله</string>
+    <string name="are_u_sure_sync">کلیه\u200cی اشتراک\u200cهای متصل به شماره موبایل شما اضافه خواهد شد، این درخواست ممکن است زمان\u200cبر باشد، لطفا تا پایان عملیات صبور باشید</string>
+    <string name="are_u_sure_remove">با تایید، کلیه\u200cی اشتراک\u200cهای متصل به شماره همراه شما حذف خواهند شد</string>
+
 </resources>

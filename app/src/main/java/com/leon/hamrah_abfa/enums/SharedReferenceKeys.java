@@ -15,6 +15,7 @@ public enum SharedReferenceKeys {
     TOKEN("token"),
     THEME_MODE("theme_mode_1111111111111111111111111111"),
     THEME("theme_1111111111111111111111"),
+    SYNCED("synced_1111111111111111111111"),
     IS_FIRST("is_first_111111111111111");
 
 

@@ -189,7 +189,7 @@
         <item>@string/help</item>
         <item>@string/update</item>
         <item>@string/share</item>
-        <item>@string/exit</item>
+        <item>@string/my_account</item>
     </string-array>
 
     <array name="setting_icons">

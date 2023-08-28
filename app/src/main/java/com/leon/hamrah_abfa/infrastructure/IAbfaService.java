@@ -47,6 +47,12 @@ public interface IAbfaService {
     @GET("KontoriNew/V1/MobileBill/Get")
     Call<BillsSummary> getBills();
 
+    @POST("KontoriNew/V1/MobileBill/AddByMobile/{mobile}")
+    Call<BillsSummary> addByMobile(@Path("mobile")String mobile);
+
+    @POST("kontoriNew/V1/MobileAccount/Remove")
+    Call<BillsSummary> removeMobile();
+
     @GET("KontoriNew/V1/MobileBill/Remove/{id}")
     Call<PaymentStats> removeBill(@Path("id") String id);
 

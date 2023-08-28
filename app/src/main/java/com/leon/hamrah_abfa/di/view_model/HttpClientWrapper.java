@@ -54,7 +54,7 @@ public class HttpClientWrapper {
                     @Override
                     public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
                         if (cancel) {
-                            warning(context, R.string.reques_canceled).show();
+                            warning(context, R.string.request_canceled).show();
                         } else {
                             call.cancel();
                             ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
@@ -89,7 +89,7 @@ public class HttpClientWrapper {
             @Override
             public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
                 if (cancel) {
-                    warning(context, R.string.reques_canceled).show();
+                    warning(context, R.string.request_canceled).show();
                 } else {
                     call.cancel();
                     ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));

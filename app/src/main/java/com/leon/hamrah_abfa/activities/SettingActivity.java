@@ -4,6 +4,7 @@ import static com.leon.hamrah_abfa.enums.BundleEnum.IS_FIRST;
 import static com.leon.hamrah_abfa.enums.BundleEnum.SHOW_PRE_FRAGMENT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
+import static com.leon.hamrah_abfa.enums.FragmentTags.MY_ACCOUNT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
@@ -23,6 +24,7 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivitySettingBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ActiveSessionFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.MobileHistory;
+import com.leon.hamrah_abfa.fragments.bottom_sheets.MyAccountFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.requests.GetMobileHistoryRequest;
@@ -77,6 +79,8 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
             Intent intent = new Intent(this, WelcomeActivity.class);
             intent.putExtra(IS_FIRST.getValue(), false);
             startActivity(intent);
+        } else if (position == 5) {
+            showFragmentDialogOnce(this, MY_ACCOUNT.getValue(), MyAccountFragment.newInstance());
         }
     }
 
