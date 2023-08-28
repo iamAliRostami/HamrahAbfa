@@ -60,7 +60,6 @@ public class ContactFAQFragment extends Fragment implements TextWatcher {
         boolean isOnline = new GetFAQRequest(requireContext(), new GetFAQRequest.ICallback() {
             @Override
             public void succeed(ArrayList<ContactFAQViewModel> faqs) {
-
                 initializeRecyclerView(faqs);
             }
 

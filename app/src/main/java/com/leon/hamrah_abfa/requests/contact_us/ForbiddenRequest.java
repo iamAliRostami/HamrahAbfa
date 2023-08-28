@@ -14,6 +14,7 @@ import android.content.Context;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel;
 import com.leon.hamrah_abfa.fragments.dialog.MessageErrorRequestFragment;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
@@ -41,9 +42,9 @@ public class ForbiddenRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden.file,
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden.file,
                 RequestBody.create(forbidden.getDescription(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getType(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
@@ -54,7 +55,7 @@ public class ForbiddenRequest {
                 RequestBody.create(forbidden.getY(), MediaType.parse("text/plain"))
 
         );
-        return callHttpAsync(context, call, new ForbiddenSuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new ForbiddenSuccessful(callback),
                 new ForbiddenIncomplete(context, callback), new ForbiddenFailed(context, callback));
     }
 

@@ -19,14 +19,25 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_incident"
         style="@style/Title"
-        android:layout_above="@id/button_start"
+        android:layout_above="@id/linear_layout_buttons"
         android:layout_marginTop="@dimen/xlarge_dp"
         android:layout_marginBottom="@dimen/xlarge_dp"
         android:text="@string/incident_description" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_start"
-        style="@style/ButtonSubmit"
-        android:layout_alignParentBottom="true"
-        android:text="@string/start" />
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linear_layout_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_start"
+            style="@style/ButtonSubmit.Dual"
+            android:text="@string/start" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_call"
+            style="@style/ButtonCancel.Dual"
+            android:text="@string/call" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </RelativeLayout>

@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.change_mobile.ChangeMobileViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -33,10 +34,10 @@ public class ChangeMobileRequest {
 
     public boolean request() {
         callback.changeUI(false);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<ChangeMobileViewModel> call = iAbfaService.changeMobile(changeMobile);
-        return callHttpAsync(context, call, new ChangeMobileSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<ChangeMobileViewModel> call = iAbfaService.changeMobile(changeMobile);
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new ChangeMobileSuccessful(callback),
                 new ChangeMobileIncomplete(context, callback), new ChangeMobileFailed(context, callback));
     }
 

@@ -107,7 +107,6 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     }
 
     private void initializeGridView() {
-
         adapter = new PhonebookAdapter(requireContext(), phonebook.telInfoDtos);
         binding.gridViewPhones.setAdapter(adapter);
         binding.gridViewPhones.setOnItemClickListener(this);

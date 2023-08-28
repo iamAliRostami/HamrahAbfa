@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -36,7 +37,7 @@ public class RemoveBillRequest {
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<PaymentStats> call = iAbfaService.removeBill(billId);
-        return callHttpAsync(context, call, new RemoveBillSuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new RemoveBillSuccessful(callback),
                 new RemoveBillIncomplete(context, callback), new RemoveBillFailed(context, callback));
     }
 

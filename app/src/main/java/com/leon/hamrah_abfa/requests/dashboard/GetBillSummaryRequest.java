@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.dashboard.SummaryStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -34,11 +35,10 @@ public class GetBillSummaryRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        //TODO
         Call<SummaryStats> call = iAbfaService.getBillSummary(id);
-        return callHttpAsync(context, call, new BillSummarySuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new BillSummarySuccessful(callback),
                 new BillSummaryIncomplete(context, callback), new BillSummaryFailed(context, callback));
     }
 

@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.follow_request.DetailHistoryItem;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -33,10 +34,10 @@ public class GetItemHistoryRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<DetailHistoryItem> call = iAbfaService.getDetailHistoryItem(id);
-        return callHttpAsync(context, call, new ItemHistorySuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<DetailHistoryItem> call = iAbfaService.getDetailHistoryItem(id);
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new ItemHistorySuccessful(callback),
                 new ItemHistoryIncomplete(context, callback), new ItemHistoryFailed(context, callback));
     }
 

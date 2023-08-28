@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -33,10 +34,10 @@ public class GetSuggestionsTypes {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<ArrayList<FeedbackType>> call = iAbfaService.getSuggestionsTypes();
-        return callHttpAsync(context, call, new SuggestionTypeSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<ArrayList<FeedbackType>> call = iAbfaService.getSuggestionsTypes();
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new SuggestionTypeSuccessful(callback),
                 new SuggestionTypeIncomplete(context, callback), new SuggestionTypeFailed(context, callback));
 
 

@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.requests;
 
-import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
@@ -9,6 +8,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -32,11 +32,11 @@ public class GetUsageHistoryRequest {
     }
 
     public boolean request() {
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<Attempt> call = iAbfaService.getAttempts(id);
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<Attempt> call = iAbfaService.getAttempts(id);
-        return callHttpAsync(context, call, new UsageHistorySuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new UsageHistorySuccessful(callback),
                 new UsageHistoryIncomplete(context, callback), new UsageHistoryFailed(context, callback));
     }
 

@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.di.view_model.VerificationViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -33,10 +34,10 @@ public class AskVerificationCodeRequest {
 
     public boolean request() {
         callback.changeUI(false);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<VerificationViewModel> call = iAbfaService.askVerificationCode(verificationViewModel);
-        return callHttpAsync(context, call, new VerificationCodeSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<VerificationViewModel> call = iAbfaService.askVerificationCode(verificationViewModel);
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new VerificationCodeSuccessful(callback),
                 new VerificationCodeIncomplete(context, callback), new VerificationCodeFailed(context, callback));
     }
 

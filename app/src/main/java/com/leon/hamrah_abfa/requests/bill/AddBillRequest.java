@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -33,10 +34,10 @@ public class AddBillRequest {
 
     public boolean request() {
         callback.changeUI(false);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<BillCardViewModel> call = iAbfaService.addBill(bill);
-        return callHttpAsync(context, call, new AddBillSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<BillCardViewModel> call = iAbfaService.addBill(bill);
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new AddBillSuccessful(callback),
                 new AddBillIncomplete(context, callback), new AddBillFailed(context, callback));
     }
 

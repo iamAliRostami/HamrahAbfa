@@ -9,7 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
-import com.leon.hamrah_abfa.fragments.bottom_sheets.MobileHistory;
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.notifications.Notifications;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -32,10 +32,10 @@ public class GetNotificationRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<Notifications> call = iAbfaService.getNotifications();
-        return callHttpAsync(context, call, new NotificationSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<Notifications> call = iAbfaService.getNotifications();
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new NotificationSuccessful(callback),
                 new NotificationIncomplete(context, callback), new NotificationFailed(context, callback));
     }
 

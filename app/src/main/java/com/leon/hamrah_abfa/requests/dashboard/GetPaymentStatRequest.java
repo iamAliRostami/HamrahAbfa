@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -37,7 +38,7 @@ public class GetPaymentStatRequest {
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<PaymentStats> call = iAbfaService.getPaymentStat(id);
-        return callHttpAsync(context, call, new BillPaymentSuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new BillPaymentSuccessful(callback),
                 new BillPaymentIncomplete(context, callback), new BillPaymentFailed(context, callback));
     }
 

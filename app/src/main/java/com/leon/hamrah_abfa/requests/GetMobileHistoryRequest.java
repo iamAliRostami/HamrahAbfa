@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.MobileHistory;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
 import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
@@ -31,10 +32,10 @@ public class GetMobileHistoryRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<MobileHistory> call = iAbfaService.mobileHistory();
-        return callHttpAsync(context, call, new MobileHistorySuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<MobileHistory> call = iAbfaService.mobileHistory();
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new MobileHistorySuccessful(callback),
                 new MobileHistoryIncomplete(context, callback), new MobileHistoryFailed(context, callback));
     }
 

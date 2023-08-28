@@ -14,6 +14,7 @@ import android.content.Context;
 import androidx.fragment.app.DialogFragment;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.dialog.MessageErrorRequestFragment;
 import com.leon.hamrah_abfa.fragments.services.ServicesViewModel;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
@@ -39,10 +40,10 @@ public class ServiceAbRequest {
 
     public boolean request() {
         callback.changeUI(true);
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<ServicesViewModel> call = iAbfaService.requestAb(service);
-        return callHttpAsync(context, call, new ServiceAbSuccessful(callback),
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<ServicesViewModel> call = iAbfaService.requestAb(service);
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new ServiceAbSuccessful(callback),
                 new ServiceAbIncomplete(context, callback), new ServiceAbFailed(context, callback));
     }
 

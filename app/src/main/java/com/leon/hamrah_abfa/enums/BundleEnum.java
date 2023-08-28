@@ -5,6 +5,7 @@ public enum BundleEnum {
     OWNER("owner"),
     BILL_ID("bill id"),
     UUID("uuid"),
+    CANCELABLE("cancelable"),
     IS_FIRST("is_first"),
     ID("id"),
     NAME("name"),

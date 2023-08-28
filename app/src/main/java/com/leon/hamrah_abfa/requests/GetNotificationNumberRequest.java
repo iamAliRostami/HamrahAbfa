@@ -23,9 +23,9 @@ public class GetNotificationNumberRequest {
     }
 
     public boolean request() {
-        final Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
-        final IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
-        final Call<Notifications> call = iAbfaService.getNotifications();
+        Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
+        IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
+        Call<Notifications> call = iAbfaService.getNotifications();
         return callHttpAsyncBackground(context, call, new NotificationNumberSuccessful(callback));
     }
 

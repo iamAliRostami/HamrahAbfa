@@ -9,6 +9,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.dashboard.PaymentStats;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
@@ -37,7 +38,7 @@ public class EditBillRequest {
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<PaymentStats> call = iAbfaService.editBill(bill);
-        return callHttpAsync(context, call, new EditBillSuccessful(callback),
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new EditBillSuccessful(callback),
                 new EditBillIncomplete(context, callback), new EditBillFailed(context, callback));
     }
 

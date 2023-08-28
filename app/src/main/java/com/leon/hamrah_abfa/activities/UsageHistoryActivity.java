@@ -54,7 +54,6 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
             public void succeed(Attempt attempt) {
                 successAttempts.addAll(attempt.successBills);
                 unsuccessAttempts.addAll(attempt.unsuccessBills);
-                //TODO
                 initializeViewPager();
             }
 
@@ -69,7 +68,7 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
     private void progressStatus(boolean show) {
         if (show) {
             if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
+                fragment = WaitingFragment.newInstance(this::initializeViewPager);
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
