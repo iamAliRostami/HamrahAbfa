@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingStart="@dimen/xlarge_dp"
-    android:paddingEnd="@dimen/xlarge_dp"
+    android:paddingStart="@dimen/large_dp"
+    android:paddingEnd="@dimen/large_dp"
     android:layout_height="match_parent"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".fragments.follow_request.FollowRequestItemsFragment">

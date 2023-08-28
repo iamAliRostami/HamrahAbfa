@@ -69,7 +69,8 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
             public void onItemClick(View view, int position) {
                 if (adapter.isPayed(position)) {
                     warning(requireContext(), R.string.no_debt).show();
-                } else { adapter.updateSelectedBill(position);
+                } else {
+                    adapter.updateSelectedBill(position);
                     setButtonText();
                     setTextPrice();
                 }
@@ -107,9 +108,11 @@ public class PayBillBaseFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_pay) {
-            warning(requireContext(), "پرداخت").show();
-            showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), PayBillSucceedFragment.newInstance("123456",
-                    DialogFragment::dismiss));
+
+            warning(requireContext(), R.string.will_be_ok_soon).show();
+//            warning(requireContext(), "پرداخت").show();
+//            showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(), PayBillSucceedFragment.newInstance("123456",
+//                    DialogFragment::dismiss));
         }
     }
 

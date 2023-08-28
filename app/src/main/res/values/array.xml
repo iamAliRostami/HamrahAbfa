@@ -273,8 +273,8 @@
 <!--        <item>@color/light</item>-->
         <item>@color/dark</item>
         <item>@color/purple_7002</item>
-        <item>@color/light_gray</item>
         <item>@color/dark_gray</item>
+        <item>@color/light_gray</item>
 <!--        <item>@color/light_blue</item>-->
     </integer-array>
 </resources>

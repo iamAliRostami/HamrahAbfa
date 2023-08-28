@@ -24,8 +24,6 @@ import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentDashboardCounterBinding;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
 
 public class DashboardCounterFragment extends Fragment {
     private FragmentDashboardCounterBinding binding;
@@ -130,9 +128,7 @@ public class DashboardCounterFragment extends Fragment {
         int[] colors = new int[entries.size()];
         TypedArray drawable = getResources().obtainTypedArray(R.array.pie_colors);
         for (int i = 0; i < entries.size(); i++) {
-            long time = Calendar.getInstance().getTimeInMillis();
-            colors[i] = drawable.getColor((int) (time %
-                            (new Random().nextInt(getResources().getIntArray(R.array.pie_colors).length) + 1)),
+            colors[i] = drawable.getColor(i % getResources().getIntArray(R.array.pie_colors).length,
                     ContextCompat.getColor(requireContext(), R.color.purple_7001));
         }
         dataSet.setColors(colors, 75);

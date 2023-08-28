@@ -99,7 +99,7 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
 
     private void showExitDialog() {
         showFragmentDialogOnce(requireContext(), ASK_YES_NO.getValue(),
-                YesNoFragment.newInstance(R.drawable.setting_logout, getString(R.string.exit_account),  getString(R.string.are_u_sure_remove),
+                YesNoFragment.newInstance(R.drawable.setting_logout, getString(R.string.exit_account), getString(R.string.are_u_sure_remove),
                         getString(R.string.go_continue), getString(R.string.cancel), new YesNoFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
@@ -115,6 +115,12 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
                                                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
                                                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), "");
                                                 getInstance().getApplicationComponent().SharedPreferenceModel().putData(MOBILE.getValue(), "");
+
+                                                try {
+                                                    Thread.sleep(1000);
+                                                } catch (InterruptedException e) {
+                                                    throw new RuntimeException(e);
+                                                }
                                                 restartApplication();
                                             }
 

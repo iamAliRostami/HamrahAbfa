@@ -60,9 +60,9 @@ class RemoveAccountSuccessful implements ICallbackSucceed<BillsSummary> {
         callback.changeUI(false);
         if (response.body() != null) {
             success(context, response.body().message).show();
-            callback.changeUI(true);
             //TODO restart application
             callback.succeed();
+            callback.changeUI(true);
         }
     }
 }
