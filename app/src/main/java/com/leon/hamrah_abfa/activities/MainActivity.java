@@ -286,7 +286,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         } else if (id == R.id.image_view_notification) {
             final Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
             //TODO
-            intent.putExtra(UUID.getValue(), getCurrentId(position));
+//            intent.putExtra(UUID.getValue(), getCurrentId(position));
             startActivity(intent);
         }
     }

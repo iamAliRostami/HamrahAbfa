@@ -150,8 +150,12 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
             else if (s == binding.editText3.getEditableText())
                 binding.editText4.requestFocus();
             else if (s == binding.editText4.getEditableText()) {
-                final InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                try {
+                    InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 binding.buttonSubmit.requestFocus();
             }
     }
