@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/large_dp"
             android:text="@string/skip"
-            android:textColor="@android:color/white"
+            android:textColor="@color/light_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/large_dp"
             android:text="@string/done"
-            android:textColor="@android:color/white"
+            android:textColor="@color/light_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

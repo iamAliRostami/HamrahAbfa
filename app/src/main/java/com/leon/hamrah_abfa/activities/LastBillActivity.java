@@ -54,7 +54,8 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
         GetBillRequest.ICallback callback = new GetBillRequest.ICallback() {
             @Override
             public void succeed(BillViewModel bill) {
-                initializeFrameLayouts(bill);
+                LastBillActivity.this.bill = bill;
+                initializeFrameLayouts();
             }
 
             @Override
@@ -74,7 +75,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
     private void progressStatus(boolean show) {
         if (show) {
             if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
+                fragment = WaitingFragment.newInstance(this::finish);
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
@@ -93,8 +94,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
         binding.linearLayoutReadingInfo.setOnClickListener(this);
     }
 
-    private void initializeFrameLayouts(BillViewModel bill) {
-        this.bill = bill;
+    private void initializeFrameLayouts() {
         getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutSummary.getId(),
                 LastBillSummaryFragment.newInstance()).commitNow();
         getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsingInfo.getId(),

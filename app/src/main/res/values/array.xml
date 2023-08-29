@@ -232,7 +232,8 @@
         <item>@string/help_content_payment</item>
         <item>@string/help_content_dashboard</item>
         <item>@string/help_content_citizen</item>
-        <item>@string/help_content_incident</item>
+        <item>@string/incident_description</item>
+<!--        <item>@string/help_content_incident</item>-->
     </string-array>
 
     <integer-array name="welcome_bg_colors">

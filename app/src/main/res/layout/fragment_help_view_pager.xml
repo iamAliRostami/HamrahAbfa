@@ -13,22 +13,10 @@
         android:id="@+id/relative_layout_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/light_blue"
         android:rotationY="180"
         tools:context=".fragments.ui.help.HelpViewPagerFragment">
 
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:id="@+id/image_view_logo"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_above="@id/linear_layout_content"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:layout_margin="@dimen/large_dp"-->
-<!--            android:contentDescription="@string/app_name"-->
-<!--            android:visibility="gone"-->
-<!--            app:imageResource="@{viewModel.logo}" />-->
-
-<!--        android:src="@{viewModel.logoDrawable}"-->
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_logo"
             android:layout_width="wrap_content"
@@ -59,7 +47,7 @@
                 android:gravity="center"
                 android:text="@{viewModel.title}"
                 android:textAppearance="@style/TextStyleLarge.Bold"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/light_gray" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/text_view_content"
@@ -70,7 +58,7 @@
                 android:lineSpacingExtra="@dimen/tiny_dp"
                 android:text="@{viewModel.content}"
                 android:textAlignment="gravity"
-                android:textColor="@android:color/white"
+                android:textColor="@color/light"
                 android:textSize="?attr/font_small"
                 tools:ignore="UnusedAttribute" />
         </androidx.appcompat.widget.LinearLayoutCompat>

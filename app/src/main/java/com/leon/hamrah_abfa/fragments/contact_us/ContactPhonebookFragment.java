@@ -95,7 +95,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     private void progressStatus(boolean show) {
         if (show) {
             if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
+                fragment = WaitingFragment.newInstance(this::initializeGridView);
                 showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
             }
         } else {
@@ -116,7 +116,8 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (checkCallPhonePermission(requireActivity())) {
-            call(phonebook.telInfoDtos.get(position).getNumber());
+            call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
+                    phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
         } else {
             requestCallPhonePermissionLauncher.launch(CALL_PHONE);
         }

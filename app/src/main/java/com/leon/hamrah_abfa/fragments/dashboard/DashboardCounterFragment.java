@@ -72,16 +72,16 @@ public class DashboardCounterFragment extends Fragment {
 
     private void designPieChart() {
         binding.chartPie.setNoDataText(getString(R.string.no_data_found));
-        binding.chartPie.setNoDataTextColor(R.color.dark_gray);
+        binding.chartPie.setNoDataTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
         binding.chartPie.setNoDataTextTypeface(callback.getTypeface());
 
         binding.chartPie.setUsePercentValues(true);
 
-        binding.chartPie.getDescription().setText(getString(R.string.counter_state));
+        binding.chartPie.getDescription().setText(getString(R.string.counter_state_description));
         binding.chartPie.getDescription().setXOffset(10f);
         binding.chartPie.getDescription().setYOffset(10f);
-        binding.chartPie.getDescription().setTextColor(R.color.dark_gray);
-        binding.chartPie.getDescription().setTextSize(10f);
+        binding.chartPie.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
+        binding.chartPie.getDescription().setTextSize(15f);
         binding.chartPie.getDescription().setTypeface(callback.getTypeface());
 
 //        binding.chartPie.setExtraOffsets(10f, 0f, 10f, 0f);

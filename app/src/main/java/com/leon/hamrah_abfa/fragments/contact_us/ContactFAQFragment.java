@@ -60,7 +60,8 @@ public class ContactFAQFragment extends Fragment implements TextWatcher {
         boolean isOnline = new GetFAQRequest(requireContext(), new GetFAQRequest.ICallback() {
             @Override
             public void succeed(ArrayList<ContactFAQViewModel> faqs) {
-                initializeRecyclerView(faqs);
+                ContactFAQFragment.this.faqs.addAll(faqs);
+                initializeRecyclerView();
             }
 
             @Override
@@ -74,7 +75,7 @@ public class ContactFAQFragment extends Fragment implements TextWatcher {
     private void progressStatus(boolean show) {
         if (show) {
             if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
+                fragment = WaitingFragment.newInstance(this::initializeRecyclerView);
                 showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
             }
         } else {
@@ -85,8 +86,7 @@ public class ContactFAQFragment extends Fragment implements TextWatcher {
         }
     }
 
-    private void initializeRecyclerView(ArrayList<ContactFAQViewModel> faqsTemp) {
-        faqs.addAll(faqsTemp);
+    private void initializeRecyclerView() {
         adapter = new FAQAdapter(requireContext(), faqs);
         binding.recyclerViewQuestion.setAdapter(adapter);
         binding.recyclerViewQuestion.setLayoutManager(new LinearLayoutManager(requireContext()));

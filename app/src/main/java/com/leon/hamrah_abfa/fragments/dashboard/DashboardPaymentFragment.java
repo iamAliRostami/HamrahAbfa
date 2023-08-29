@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.components.Legend;
@@ -54,29 +55,32 @@ public class DashboardPaymentFragment extends Fragment {
 
     private void initializeChart() {
         designHorizontalBarChart();
-        callback.getPaymentStats().totalBills = 10;
+//        callback.getPaymentStats().totalBills = 10;
         if (callback.getPaymentStats().payDeadlineKeys != null &&
                 !callback.getPaymentStats().payDeadlineKeys.isEmpty() &&
                 callback.getPaymentStats().payDeadlineValues != null &&
                 !callback.getPaymentStats().payDeadlineValues.isEmpty()) {
             ArrayList<BarEntry> barEntries = new ArrayList<>();
+//            callback.getPaymentStats().payDeadlineKeys.addAll(callback.getPaymentStats().payDeadlineKeys);
+//            callback.getPaymentStats().payDeadlineValues.addAll(callback.getPaymentStats().payDeadlineValues);
             for (int i = 0; i < callback.getPaymentStats().payDeadlineValues.size(); i++) {
                 barEntries.add(new BarEntry(i, callback.getPaymentStats().payDeadlineValues.get(i)));
             }
+//            barEntries.addAll(barEntries);
             setData(barEntries);
         }
     }
 
     private void designHorizontalBarChart() {
         binding.chartHorizontalBar.setNoDataText(getString(R.string.no_data_found));
-        binding.chartHorizontalBar.setNoDataTextColor(R.color.dark_gray);
+        binding.chartHorizontalBar.setNoDataTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
         binding.chartHorizontalBar.setNoDataTextTypeface(callback.getTypeface());
 
         binding.chartHorizontalBar.getDescription().setText(getString(R.string.chart_payment_description));
         binding.chartHorizontalBar.getDescription().setXOffset(10f);
         binding.chartHorizontalBar.getDescription().setYOffset(10f);
-        binding.chartHorizontalBar.getDescription().setTextColor(R.color.dark);
-        binding.chartHorizontalBar.getDescription().setTextSize(10f);
+        binding.chartHorizontalBar.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
+        binding.chartHorizontalBar.getDescription().setTextSize(15f);
         binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
 
         binding.chartHorizontalBar.setExtraOffsets(5f, 0f, 5f, 10f);
@@ -91,7 +95,7 @@ public class DashboardPaymentFragment extends Fragment {
         xAxis.setDrawLimitLinesBehindData(false);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines(false);
-
+        xAxis.setGranularity(1f);
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -102,7 +106,8 @@ public class DashboardPaymentFragment extends Fragment {
                 }
             }
         });
-        xAxis.setAxisMinValue(1f);
+        xAxis.setAxisMinValue(1.5f);
+//        xAxis.mAxisMinimum = 1.5f;
 
         YAxis yAxisLeft = binding.chartHorizontalBar.getAxisLeft();
         yAxisLeft.setTypeface(callback.getTypeface());
@@ -116,7 +121,6 @@ public class DashboardPaymentFragment extends Fragment {
 
 
         binding.chartHorizontalBar.getXAxis().setSpaceMin(2f);
-
         binding.chartHorizontalBar.setFitBars(true);
 
         binding.chartHorizontalBar.animateXY(1500, 1500);
@@ -154,7 +158,6 @@ public class DashboardPaymentFragment extends Fragment {
             data.setValueFormatter(new ValueFormatter() {
                 @Override
                 public String getFormattedValue(float value) {
-
 //                    return String.format("%s روز %s از مهلت پرداخت", (int) value, value > 0 ? "پس" : "پیش");
                     return String.valueOf(value > 0 ? (int) value : (int) -value);
                 }

@@ -30,7 +30,7 @@
         android:layout_above="@id/button_start"
         android:layout_marginTop="@dimen/xlarge_dp"
         android:layout_marginBottom="@dimen/xlarge_dp"
-        android:text="@string/dashboard_description" />
+        android:text="@string/help_content_dashboard" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_start"

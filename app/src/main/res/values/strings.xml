@@ -284,11 +284,12 @@
     <string name="enter_status">وضعیت را وارد کنید</string>
     <string name="dashboard_description">توضیح داشبورد</string>
     <string name="chart_rate_avg">میانگین مصرف دوره\u200cای</string>
-    <string name="chart_rate_avg_description">توضیح میانگین مصرف دوره\u200cای</string>
+    <string name="chart_rate_avg_description">میانگین مصرف دوره\u200cای</string>
     <string name="chart_rate_avg_max">بیشترین مصرف مورد انتظار</string>
     <string name="counter_state">وضعیت قرائت</string>
+    <string name="counter_state_description">نمایش میزان قرائت یا عدم قرائت در وضعیت\u200cهای مختلف کنتور</string>
     <string name="payment_state">وضعیت پرداخت</string>
-    <string name="chart_payment_description">توضیح نمودار پرداخت</string>
+    <string name="chart_payment_description">نمایش محدوده زمان پرداخت</string>
     <string name="chart_payment">نمودار پرداخت</string>
     <string name="error_ping">در صورتی که فیلترشکن روشن دارید خاموش کنید، در غیر این صورت لطفا در ساعات اداری فردا مجددا تلاش کنید</string>
     <string name="error_connection">خطا در دریافت اطلاعات، مجددا تلاش کنید</string>
