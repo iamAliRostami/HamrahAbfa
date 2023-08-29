@@ -50,9 +50,9 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         }
         setContentView(binding.getRoot());
         setOnClickListener();
-        showBillSummary(true);
-        showCounterStat(true);
-        showPaymentStat(true);
+        showBillSummary(false);
+        showCounterStat(false);
+        showPaymentStat(false);
         requestSummaryBill();
 
     }
@@ -64,55 +64,52 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     }
 
     private void requestSummaryBill() {
-        boolean isOnline = new GetBillSummaryRequest(this, new GetBillSummaryRequest.ICallback() {
+        progressStatus(new GetBillSummaryRequest(this, new GetBillSummaryRequest.ICallback() {
 
             @Override
             public void succeed(SummaryStats billSummary) {
                 DashboardActivity.this.summaryStats = billSummary;
-                showBillSummary(false);
+                showBillSummary(true);
             }
 
             @Override
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, uuid).request();
-        progressStatus(isOnline);
+        }, uuid).request());
         requestCounterStat();
     }
 
     private void requestCounterStat() {
-        boolean isOnline = new GetCounterStatRequest(this, new GetCounterStatRequest.ICallback() {
+        progressStatus(new GetCounterStatRequest(this, new GetCounterStatRequest.ICallback() {
 
             @Override
             public void succeed(CounterStats counterStats) {
                 DashboardActivity.this.counterStats = counterStats;
-                showCounterStat(false);
+                showCounterStat(true);
             }
 
             @Override
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, uuid).request();
-        progressStatus(isOnline);
+        }, uuid).request());
         requestPaymentStat();
     }
 
     private void requestPaymentStat() {
-        boolean isOnline = new GetPaymentStatRequest(this, new GetPaymentStatRequest.ICallback() {
+        progressStatus(new GetPaymentStatRequest(this, new GetPaymentStatRequest.ICallback() {
             @Override
             public void succeed(PaymentStats paymentStats) {
                 DashboardActivity.this.paymentStats = paymentStats;
-                showPaymentStat(false);
+                showPaymentStat(true);
             }
 
             @Override
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, uuid).request();
-        progressStatus(isOnline);
+        }, uuid).request());
     }
 
     private void progressStatus(boolean show) {
@@ -161,41 +158,41 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.linear_layout_summary) {
-            switchSummary(binding.fragmentSummary.getVisibility() == View.VISIBLE);
+            switchSummary(binding.fragmentSummary.getVisibility() != View.VISIBLE);
         } else if (id == R.id.linear_layout_counter) {
-            switchCounter(binding.fragmentCounter.getVisibility() == View.VISIBLE);
+            switchCounter(binding.fragmentCounter.getVisibility() != View.VISIBLE);
         } else if (id == R.id.linear_layout_payment) {
-            switchPayment(binding.fragmentPayment.getVisibility() == View.VISIBLE);
+            switchPayment(binding.fragmentPayment.getVisibility() != View.VISIBLE);
         }
     }
 
     private void switchSummary(boolean v) {
         if (v) {
-            binding.fragmentSummary.setVisibility(View.GONE);
-            binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
-        } else {
             binding.fragmentSummary.setVisibility(View.VISIBLE);
             binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_up);
+        } else {
+            binding.fragmentSummary.setVisibility(View.GONE);
+            binding.imageViewArrowSummary.setImageResource(R.drawable.arrow_down);
         }
     }
 
     private void switchCounter(boolean v) {
         if (v) {
-            binding.fragmentCounter.setVisibility(View.GONE);
-            binding.imageViewArrowCounter.setImageResource(R.drawable.arrow_down);
-        } else {
             binding.fragmentCounter.setVisibility(View.VISIBLE);
             binding.imageViewArrowCounter.setImageResource(R.drawable.arrow_up);
+        } else {
+            binding.fragmentCounter.setVisibility(View.GONE);
+            binding.imageViewArrowCounter.setImageResource(R.drawable.arrow_down);
         }
     }
 
     private void switchPayment(boolean v) {
         if (v) {
-            binding.fragmentPayment.setVisibility(View.GONE);
-            binding.imageViewArrowPayment.setImageResource(R.drawable.arrow_down);
-        } else {
             binding.fragmentPayment.setVisibility(View.VISIBLE);
             binding.imageViewArrowPayment.setImageResource(R.drawable.arrow_up);
+        } else {
+            binding.fragmentPayment.setVisibility(View.GONE);
+            binding.imageViewArrowPayment.setImageResource(R.drawable.arrow_down);
         }
     }
 

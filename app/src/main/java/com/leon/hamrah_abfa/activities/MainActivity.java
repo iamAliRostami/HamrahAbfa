@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
@@ -26,7 +25,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -82,12 +80,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             showSyncDialog();
                             startBackgroundTask();
-//                            //TODO show
-//                            if (getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(SYNCED.getValue(), true)) {
-//
-//                            } else {
-//                                requestBills();
-//                            }
                         }
                     });
 

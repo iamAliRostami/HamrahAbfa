@@ -83,6 +83,8 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 if (position == 8) {
                     startActivity(new Intent(requireContext(),ContactUsActivity.class));
+                } else if (position == 3) {
+                    startActivity(createIntent(CitizenActivity.class));
                 }
                 if (callback.isEmpty())
                     return;
@@ -92,8 +94,6 @@ public class HomeFragment extends Fragment {
                     startActivity(createIntent(SetCounterNumberActivity.class));
                 } else if (position == 2) {
                     startActivity(createIntent(UsageHistoryActivity.class));
-                } else if (position == 3) {
-                    startActivity(createIntent(CitizenActivity.class));
                 } else if (position == 4) {
                     startActivity(createIntent(CheckoutActivity.class));
                 } else if (position == 5) {

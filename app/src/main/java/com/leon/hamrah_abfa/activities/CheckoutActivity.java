@@ -69,7 +69,7 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
     private void progressStatus(boolean show) {
         if (show) {
             if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
+                fragment = WaitingFragment.newInstance(this::initializeViewPager);
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {

@@ -29,7 +29,9 @@ public class WaitingFragment extends DialogFragment {
     }
 
     public static WaitingFragment newInstance() {
-        return new WaitingFragment();
+        WaitingFragment waitingFragment = new WaitingFragment();
+        waitingFragment.setCancelable(false);
+        return waitingFragment;
     }
 
     public static WaitingFragment newInstance(ICancelListener cancelListener) {
