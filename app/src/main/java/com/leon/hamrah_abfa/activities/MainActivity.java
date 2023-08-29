@@ -331,12 +331,9 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             showFragmentDialogOnce(this, CHANGE_LOG.getValue(),
                     InfoYesFragment.newInstance(R.drawable.ic_info,
                             getString(R.string.changes), getString(R.string.changes_list), getString(R.string.go_continue),
-                            getString(R.string.go_continue), new InfoYesFragment.IClickListener() {
-                                @Override
-                                public void yes(DialogFragment dialogFragment) {
-                                    dialogFragment.dismiss();
-                                    getInstance().getApplicationComponent().SharedPreferenceModel().putData(CHANGES.getValue(), false);
-                                }
+                            getString(R.string.go_continue), dialogFragment -> {
+                                dialogFragment.dismiss();
+                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(CHANGES.getValue(), false);
                             })
             );
         }
