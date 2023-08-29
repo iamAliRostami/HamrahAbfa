@@ -82,9 +82,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (position == 8) {
-                    startActivity(new Intent(requireContext(),ContactUsActivity.class));
+                    startActivity(new Intent(requireContext(), ContactUsActivity.class));
                 } else if (position == 3) {
-                    startActivity(createIntent(CitizenActivity.class));
+                    startActivity(new Intent(requireContext(), CitizenActivity.class));
                 }
                 if (callback.isEmpty())
                     return;

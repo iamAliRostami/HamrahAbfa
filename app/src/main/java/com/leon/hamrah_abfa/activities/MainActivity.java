@@ -1,10 +1,12 @@
 package com.leon.hamrah_abfa.activities;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.ASK_YES_NO;
+import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_LOG;
 import static com.leon.hamrah_abfa.enums.FragmentTags.SUBMIT_INFO;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ALIAS;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.BILL_ID;
+import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.CHANGES;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEADLINE;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.DEBT;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.ID;
@@ -54,6 +56,7 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.cards.CardFragment;
+import com.leon.hamrah_abfa.fragments.dialog.InfoYesFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.fragments.dialog.YesNoFragment;
 import com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardBaseFragment;
@@ -85,8 +88,8 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
     private void showSyncDialog() {
         showFragmentDialogOnce(this, ASK_YES_NO.getValue(),
-                YesNoFragment.newInstance(
-                        R.drawable.setting_logout, getString(R.string.connected_account), getString(R.string.are_u_sure_sync),
+                YesNoFragment.newInstance(R.drawable.setting_logout,
+                        getString(R.string.connected_account), getString(R.string.are_u_sure_sync),
                         getString(R.string.go_continue), getString(R.string.cancel), new YesNoFragment.IClickListener() {
                             @Override
                             public void yes(DialogFragment dialogFragment) {
@@ -95,7 +98,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                                         new AddByMobileRequest.ICallback() {
                                             @Override
                                             public void succeed() {
-//                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SYNCED.getValue(), false);
                                                 requestBills();
                                             }
 
@@ -277,8 +279,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             settingActivityResultLauncher.launch(intent);
         } else if (id == R.id.image_view_notification) {
             final Intent intent = new Intent(getApplicationContext(), NotificationsActivity.class);
-            //TODO
-//            intent.putExtra(UUID.getValue(), getCurrentId(position));
             startActivity(intent);
         }
     }
@@ -327,6 +327,19 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
             public void changeUI(boolean done) {
             }
         }).request();
+        if (getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(CHANGES.getValue(), true)) {
+            showFragmentDialogOnce(this, CHANGE_LOG.getValue(),
+                    InfoYesFragment.newInstance(R.drawable.ic_info,
+                            getString(R.string.changes), getString(R.string.changes_list), getString(R.string.go_continue),
+                            getString(R.string.go_continue), new InfoYesFragment.IClickListener() {
+                                @Override
+                                public void yes(DialogFragment dialogFragment) {
+                                    dialogFragment.dismiss();
+                                    getInstance().getApplicationComponent().SharedPreferenceModel().putData(CHANGES.getValue(), false);
+                                }
+                            })
+            );
+        }
     }
 
     private void progressStatus(boolean show) {

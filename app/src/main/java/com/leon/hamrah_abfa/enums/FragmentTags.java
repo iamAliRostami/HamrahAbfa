@@ -15,6 +15,7 @@ public enum FragmentTags {
     FOLLOW_REQUEST_LEVEL("follow request level"),
     FOLLOW_REQUEST_ITEM("follow request item"),
     WAITING("waiting"),
+    CHANGE_LOG("change log"),
     SERVICE_LOCATION("service location");
 
 
