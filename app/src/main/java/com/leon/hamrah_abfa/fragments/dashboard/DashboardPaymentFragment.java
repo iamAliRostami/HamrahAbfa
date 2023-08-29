@@ -80,7 +80,7 @@ public class DashboardPaymentFragment extends Fragment {
         binding.chartHorizontalBar.getDescription().setXOffset(10f);
         binding.chartHorizontalBar.getDescription().setYOffset(10f);
         binding.chartHorizontalBar.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
-        binding.chartHorizontalBar.getDescription().setTextSize(15f);
+        binding.chartHorizontalBar.getDescription().setTextSize(12f);
         binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
 
         binding.chartHorizontalBar.setExtraOffsets(5f, 0f, 5f, 10f);

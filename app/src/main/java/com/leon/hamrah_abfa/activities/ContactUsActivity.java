@@ -41,7 +41,7 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
         ContactForbiddenInfoFragment.ICallback {
     private final ForbiddenViewModel viewModel = new ForbiddenViewModel();
     private ActivityContactUsBinding binding;
-    private ImageViewAdapter adapter;
+    private ImageViewAdapter imageAdapter;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -63,6 +63,7 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
         } else if (position == CONTACT_BRANCH_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactBranchFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_FRAGMENT) {
+            imageAdapter = new ImageViewAdapter(this);
             replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenBaseFragment.newInstance());
         } else if (position == CONTACT_PHONEBOOK_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactPhonebookFragment.newInstance());
@@ -82,18 +83,18 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
 
     @Override
     public ImageViewAdapter getImageViewAdapter() {
-        return adapter;
+        return imageAdapter;
     }
 
     @Override
     public void setImageViewAdapter(ImageViewAdapter adapter) {
-        this.adapter = adapter;
+        this.imageAdapter = adapter;
     }
 
     @Override
     public void confirm(String message) {
         viewModel.resetViewModel();
-        adapter = new ImageViewAdapter(this);
+        imageAdapter = new ImageViewAdapter(this);
         getSupportFragmentManager().popBackStack();
         getSupportFragmentManager().popBackStack();
         showFragmentDialogOnce(this, REQUEST_DONE.getValue(),

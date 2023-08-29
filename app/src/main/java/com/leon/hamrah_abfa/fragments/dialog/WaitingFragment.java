@@ -62,8 +62,8 @@ public class WaitingFragment extends DialogFragment {
     }
 
     @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
+    public void onCancel(@NonNull DialogInterface dialog) {
+        super.onCancel(dialog);
         if (cancelable) {
             HttpClientWrapper.cancel = true;
             if (HttpClientWrapper.call != null) {

@@ -90,7 +90,7 @@ public class DashboardSummaryFragment extends Fragment {
         binding.chartLine.setNoDataTextTypeface(callback.getTypeface());
 
         binding.chartLine.getDescription().setText(getString(R.string.chart_rate_avg_description));
-        binding.chartLine.getDescription().setTextSize(15f);
+        binding.chartLine.getDescription().setTextSize(12f);
         binding.chartLine.getDescription().setXOffset(10f);
         binding.chartLine.getDescription().setYOffset(10f);
         binding.chartLine.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
