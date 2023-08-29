@@ -116,8 +116,11 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (checkCallPhonePermission(requireActivity())) {
-            call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
-                    phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
+            if (phonebook.telInfoDtos.get(position).getNumber().indexOf("-") > 0)
+                call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
+                        phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
+            else
+                call(phonebook.telInfoDtos.get(position).getNumber());
         } else {
             requestCallPhonePermissionLauncher.launch(CALL_PHONE);
         }
