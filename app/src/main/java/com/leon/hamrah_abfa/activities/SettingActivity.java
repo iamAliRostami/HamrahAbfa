@@ -27,7 +27,7 @@ import com.leon.hamrah_abfa.fragments.bottom_sheets.MobileHistory;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.MyAccountFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.ThemeFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
-import com.leon.hamrah_abfa.requests.GetMobileHistoryRequest;
+import com.leon.hamrah_abfa.requests.my_account.GetMobileHistoryRequest;
 
 public class SettingActivity extends BaseActivity implements AdapterView.OnItemClickListener,
         ThemeFragment.ICallback, ActiveSessionFragment.ICallback {
