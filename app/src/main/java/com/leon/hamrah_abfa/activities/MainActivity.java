@@ -54,7 +54,6 @@ import com.leon.hamrah_abfa.databinding.ActivityMainBinding;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.EditInfoFragment;
 import com.leon.hamrah_abfa.fragments.bottom_sheets.SubmitInfoFragment;
 import com.leon.hamrah_abfa.fragments.cards.BillCardViewModel;
-import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.fragments.cards.CardFragment;
 import com.leon.hamrah_abfa.fragments.dialog.InfoYesFragment;
 import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
@@ -197,7 +196,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
 
         }
     };
-    private int position;
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
@@ -308,24 +306,17 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     }
 
     private void requestBills() {
-        new GetBillsRequest(this, new GetBillsRequest.ICallback() {
-            @Override
-            public void succeed(BillsSummary billsInfo) {
-                getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), "");
-                getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
-                getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
-                getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
-                getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
-                getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), "");
-                for (int i = 0; i < billsInfo.billDtos.size(); i++) {
-                    insertData(billsInfo.billDtos.get(i));
-                }
-                updateCard();
+        new GetBillsRequest(this, billsInfo -> {
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), "");
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), "");
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(ALIAS.getValue(), "");
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEBT.getValue(), "");
+            getInstance().getApplicationComponent().SharedPreferenceModel().putData(DEADLINE.getValue(), "");
+            for (int i = 0; i < billsInfo.billDtos.size(); i++) {
+                insertData(billsInfo.billDtos.get(i));
             }
-
-            @Override
-            public void changeUI(boolean done) {
-            }
+            updateCard();
         }).request();
         if (getInstance().getApplicationComponent().SharedPreferenceModel().getBoolData(CHANGES.getValue(), true)) {
             showFragmentDialogOnce(this, CHANGE_LOG.getValue(),
@@ -382,11 +373,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     @Override
     public String getCurrentId(int position) {
         return cardPagerAdapter.getCurrentId(position);
-    }
-
-    @Override
-    public void setPosition(int position) {
-        this.position = position;
     }
 
     @Override

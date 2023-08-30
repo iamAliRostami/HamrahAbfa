@@ -128,7 +128,7 @@ public class DashboardSummaryFragment extends Fragment {
         yAxisRight.setDrawLimitLinesBehindData(true);
 
         LimitLine limitLine = new LimitLine(callback.getBillSummary().maxValue, getString(R.string.chart_rate_avg_max));
-        limitLine.setLineColor(R.color.dark_gray);
+        limitLine.setLineColor(ContextCompat.getColor(requireContext(),R.color.dark_gray));
         limitLine.setLineWidth(2f);
         limitLine.enableDashedLine(10f, 10f, 0f);
         limitLine.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);

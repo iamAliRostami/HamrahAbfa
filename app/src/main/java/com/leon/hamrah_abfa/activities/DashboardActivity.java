@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.activities;
 
-import static com.leon.hamrah_abfa.enums.BundleEnum.BILL_ID;
 import static com.leon.hamrah_abfa.enums.BundleEnum.UUID;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
 import static com.leon.hamrah_abfa.helpers.Constants.FONT_NAME;
@@ -26,6 +25,8 @@ import com.leon.hamrah_abfa.fragments.dialog.WaitingFragment;
 import com.leon.hamrah_abfa.requests.dashboard.GetBillSummaryRequest;
 import com.leon.hamrah_abfa.requests.dashboard.GetCounterStatRequest;
 import com.leon.hamrah_abfa.requests.dashboard.GetPaymentStatRequest;
+
+import java.util.Collections;
 
 public class DashboardActivity extends BaseActivity implements DashboardSummaryFragment.ICallback,
         DashboardCounterFragment.ICallback, DashboardPaymentFragment.ICallback {
@@ -101,6 +102,8 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
             @Override
             public void succeed(PaymentStats paymentStats) {
                 DashboardActivity.this.paymentStats = paymentStats;
+                Collections.reverse(DashboardActivity.this.paymentStats.payDeadlineValues);
+                Collections.reverse(DashboardActivity.this.paymentStats.payDeadlineKeys);
                 showPaymentStat(true);
             }
 

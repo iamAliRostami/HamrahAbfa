@@ -1,10 +1,8 @@
 package com.leon.hamrah_abfa.requests.bill;
 
-import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
-import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
@@ -30,18 +28,15 @@ public class GetBillsRequest {
     }
 
     public boolean request() {
-        callback.changeUI(true);
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<BillsSummary> call = iAbfaService.getBills();
         return HttpClientWrapper.callHttpAsyncCancelable(context, call, new GetBillsSuccessful(callback),
-                new GetBillsIncomplete(context, callback), new GetBillsFailed(context, callback));
+                new GetBillsIncomplete(context), new GetBillsFailed());
     }
 
     public interface ICallback {
         void succeed(BillsSummary bills);
-
-        void changeUI(boolean show);
     }
 }
 
@@ -54,9 +49,7 @@ class GetBillsSuccessful implements ICallbackSucceed<BillsSummary> {
 
     @Override
     public void executeCompleted(Response<BillsSummary> response) {
-        callback.changeUI(false);
         if (response.body() != null) {
-            callback.changeUI(true);
             if (response.body().billDtos != null)
                 callback.succeed(response.body());
         }
@@ -65,35 +58,27 @@ class GetBillsSuccessful implements ICallbackSucceed<BillsSummary> {
 
 class GetBillsIncomplete implements ICallbackIncomplete<BillsSummary> {
     private final Context context;
-    private final GetBillsRequest.ICallback callback;
 
-    public GetBillsIncomplete(Context context, GetBillsRequest.ICallback callback) {
+    public GetBillsIncomplete(Context context) {
         this.context = context;
-        this.callback = callback;
     }
 
     @Override
     public void executeDismissed(Response<BillsSummary> response) {
-        callback.changeUI(false);
         APIError error = parseError(response);
         if (error.status() == 401) {
             expiredToken(context);
-        } else {
-            //TODO
-            warning(context, "dismissed").show();
         }
     }
 }
 
 class GetBillsFailed implements ICallbackFailure {
-    private final GetBillsRequest.ICallback callback;
 
-    public GetBillsFailed(Context context, GetBillsRequest.ICallback callback) {
-        this.callback = callback;
+    public GetBillsFailed() {
     }
 
     @Override
     public void executeFailed(Throwable t) {
-        callback.changeUI(false);
+
     }
 }

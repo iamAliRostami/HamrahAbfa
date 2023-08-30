@@ -87,7 +87,6 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
     }
 
     private void initializeRecyclerView() {
-
         adapter = new BranchAdapter(requireContext(), branch.zoneInfoDtos);
         binding.recyclerViewBranch.setAdapter(adapter);
         binding.recyclerViewBranch.setLayoutManager(new LinearLayoutManager(requireContext()));

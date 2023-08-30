@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.ChangeMobileActivity;
@@ -83,8 +82,10 @@ public class HomeFragment extends Fragment {
             public void onItemClick(View view, int position) {
                 if (position == 8) {
                     startActivity(new Intent(requireContext(), ContactUsActivity.class));
+                    return;
                 } else if (position == 3) {
                     startActivity(new Intent(requireContext(), CitizenActivity.class));
+                    return;
                 }
                 if (callback.isEmpty())
                     return;
@@ -114,18 +115,6 @@ public class HomeFragment extends Fragment {
 
     private void initializeViewPager() {
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
-        binding.viewPagerCard.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                callback.setPosition(position);
-            }
-        });
         binding.viewPagerCard.setOffscreenPageLimit(1);
         final CompositePageTransformer cpt = new CompositePageTransformer();
         cpt.addTransformer(new MarginPageTransformer(20));
@@ -158,8 +147,6 @@ public class HomeFragment extends Fragment {
         String getCurrentId(int position);
 
         CardPagerAdapter getCardPagerAdapter();
-
-        void setPosition(int position);
 
         boolean isEmpty();
     }

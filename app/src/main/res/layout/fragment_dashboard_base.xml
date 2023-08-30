@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/large_dp"
+    android:paddingTop="@dimen/large_dp"
+    android:paddingBottom="@dimen/large_dp"
     tools:context=".fragments.ui.dashboard.DashboardBaseFragment">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -28,7 +29,9 @@
         android:id="@+id/text_view_dashboard"
         style="@style/Title"
         android:layout_above="@id/button_start"
+        android:layout_marginStart="@dimen/large_dp"
         android:layout_marginTop="@dimen/xlarge_dp"
+        android:layout_marginEnd="@dimen/large_dp"
         android:layout_marginBottom="@dimen/xlarge_dp"
         android:text="@string/help_content_dashboard" />
 
@@ -36,5 +39,7 @@
         android:id="@+id/button_start"
         style="@style/ButtonSubmit"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/large_dp"
+        android:layout_marginEnd="@dimen/large_dp"
         android:text="@string/start" />
 </RelativeLayout>

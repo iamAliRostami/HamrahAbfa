@@ -8,6 +8,7 @@ import static com.leon.hamrah_abfa.utils.ErrorUtils.showFailedMessage;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.leon.hamrah_abfa.fragments.contact_us.BranchViewModel;
 import com.leon.hamrah_abfa.fragments.contact_us.ContactBranch;

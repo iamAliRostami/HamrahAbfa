@@ -50,28 +50,12 @@ import java.util.ArrayList;
 public class ContactSuggestionFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private final FeedbackViewModel viewModel = new FeedbackViewModel();
     private final ArrayList<FeedbackType> feedbackType = new ArrayList<>();
-    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
-                }
-            });
+
     private FragmentContactSuggestionBinding binding;
     private ImageViewAdapter adapter;
     private long lastClickTime = 0;
     private File fileImage = null;
-    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    try {
-                        adapter.addItem(prepareImage(fileImage));
-                    } catch (IOException e) {
-                        error(requireContext(), e.getMessage()).show();
-                    }
-                }
-            });
+
     private DialogFragment fragment;
 
     public ContactSuggestionFragment() {
@@ -102,8 +86,14 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
         binding.buttonSubmit.setOnClickListener(this);
     }
 
+    private void initializeGridView() {
+        adapter = new ImageViewAdapter(requireContext());
+        binding.gridViewImages.setAdapter(adapter);
+        binding.gridViewImages.setOnItemClickListener(this);
+    }
+
     private void requestSuggestionsTypes() {
-        boolean isOnline = new GetSuggestionsTypes(requireContext(), new GetSuggestionsTypes.ICallback() {
+        progressStatus(new GetSuggestionsTypes(requireContext(), new GetSuggestionsTypes.ICallback() {
             @Override
             public void succeed(ArrayList<FeedbackType> feedbackType) {
                 ContactSuggestionFragment.this.feedbackType.addAll(feedbackType);
@@ -114,45 +104,12 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
                 progressStatus(done);
             }
 
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
-    private void progressStatus(boolean show) {
-        if (show) {
-            if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
-                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
-            }
-        } else {
-            if (fragment != null) {
-                fragment.dismiss();
-                fragment = null;
-            }
-        }
-    }
-
-    private void initializeGridView() {
-        adapter = new ImageViewAdapter(requireContext());
-        binding.gridViewImages.setAdapter(adapter);
-        binding.gridViewImages.setOnItemClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.edit_text_suggestion_type) {
-            showMenu(binding.editTextSuggestionType);
-        } else if (id == R.id.button_submit) {
-            if (checkInput()) {
-                requestRegisterFeedback();
-            }
-        }
-
-    }
 
     private void requestRegisterFeedback() {
-        boolean isOnline = new RegisterFeedbackRequest(requireContext(), new RegisterFeedbackRequest.ICallback() {
+        progressStatus(new RegisterFeedbackRequest(requireContext(), new RegisterFeedbackRequest.ICallback() {
 
             @Override
             public void succeed(FeedbackViewModel viewModel) {
@@ -169,8 +126,33 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, viewModel).request();
-        progressStatus(isOnline);
+        }, viewModel).request());
+    }
+
+    private void progressStatus(boolean show) {
+        if (show) {
+            if (fragment == null) {
+                fragment = WaitingFragment.newInstance();
+                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
+            }
+        } else {
+            if (fragment != null) {
+                fragment.dismiss();
+                fragment = null;
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.edit_text_suggestion_type) {
+            showMenu(binding.editTextSuggestionType);
+        } else if (id == R.id.button_submit) {
+            if (checkInput()) {
+                requestRegisterFeedback();
+            }
+        }
     }
 
     private boolean checkInput() {
@@ -246,4 +228,22 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
         }
     }
 
+    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    try {
+                        adapter.addItem(prepareImage(fileImage));
+                    } catch (IOException e) {
+                        error(requireContext(), e.getMessage()).show();
+                    }
+                }
+            });
+    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
+                }
+            });
 }
