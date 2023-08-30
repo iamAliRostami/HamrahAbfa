@@ -91,7 +91,7 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
     }
 
     private void changeMobileRequest() {
-        boolean isOnline = new ChangeMobileRequest(getContext(), callback.getViewModel(),
+        progressStatus(!new ChangeMobileRequest(getContext(), callback.getViewModel(),
                 new ChangeMobileRequest.ICallback() {
                     @Override
                     public void succeed(String message) {
@@ -104,8 +104,7 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
                     public void changeUI(boolean done) {
                         progressStatus(done);
                     }
-                }).request();
-        progressStatus(!isOnline);
+                }).request());
     }
 
     private void progressStatus(boolean hide) {
@@ -167,8 +166,12 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
             else if (s == binding.editText3.getEditableText())
                 binding.editText4.requestFocus();
             else if (s == binding.editText4.getEditableText()) {
-                final InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                try {
+                    InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 binding.buttonSubmit.requestFocus();
             }
     }

@@ -97,7 +97,7 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
     }
 
     private void generateBillRequest() {
-        boolean isOnline = new GenerateBillRequest(getContext(), callback.getViewModel(),
+        progressStatus(!new GenerateBillRequest(getContext(), callback.getViewModel(),
                 new GenerateBillRequest.ICallback() {
                     @Override
                     public void succeed(String message) {
@@ -110,8 +110,7 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
                     public void changeUI(boolean done) {
                         progressStatus(done);
                     }
-                }).request();
-        progressStatus(!isOnline);
+                }).request());
     }
 
     private void progressStatus(boolean hide) {
@@ -174,8 +173,13 @@ public class CounterVerificationCodeFragment extends Fragment implements TextWat
             else if (s == binding.editText3.getEditableText())
                 binding.editText4.requestFocus();
             else if (s == binding.editText4.getEditableText()) {
-                final InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                try {
+                    InputMethodManager inputManager = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputManager.hideSoftInputFromWindow(requireActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 binding.buttonSubmit.requestFocus();
             }
     }

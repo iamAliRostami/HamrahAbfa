@@ -98,7 +98,7 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
     }
 
     private void requestVerifyCode() {
-        boolean isOnline = new VerifyReceivedCodeRequest(getContext(), callback.getViewModel(),
+        progressStatus(!new VerifyReceivedCodeRequest(getContext(), callback.getViewModel(),
                 new VerifyReceivedCodeRequest.ICallback() {
                     @Override
                     public void succeed(String token, String failureMessage, boolean result) {
@@ -116,8 +116,7 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
                         progressStatus(done);
                     }
                 }
-        ).request();
-        progressStatus(!isOnline);
+        ).request());
     }
 
     private void progressStatus(boolean hide) {
