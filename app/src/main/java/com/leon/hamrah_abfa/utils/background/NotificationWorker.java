@@ -28,7 +28,7 @@ import androidx.work.WorkerParameters;
 
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.activities.NotificationsActivity;
-import com.leon.hamrah_abfa.requests.GetNotificationNumberRequest;
+import com.leon.hamrah_abfa.requests.notification.GetNotificationNumberRequest;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;

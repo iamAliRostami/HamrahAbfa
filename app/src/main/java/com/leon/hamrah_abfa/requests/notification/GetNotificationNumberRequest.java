@@ -1,4 +1,4 @@
-package com.leon.hamrah_abfa.requests;
+package com.leon.hamrah_abfa.requests.notification;
 
 import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsyncBackground;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
