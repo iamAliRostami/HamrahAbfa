@@ -53,6 +53,7 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
+        titles.clear();
         if (callback.getForbiddenViewModel().getType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(1))) {
             titles.add("شستشوی معابر");
             titles.add("نشت کولر");

@@ -31,7 +31,6 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         DashboardCounterFragment.ICallback, DashboardPaymentFragment.ICallback {
     private ActivityDashboardBinding binding;
     private DialogFragment fragment;
-    private String billId;
     private String uuid;
     private SummaryStats summaryStats = new SummaryStats();
     private CounterStats counterStats = new CounterStats();
@@ -44,7 +43,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         if (getIntent().getExtras() != null) {
-            billId = getIntent().getExtras().getString(BILL_ID.getValue());
+//            billId = getIntent().getExtras().getString(BILL_ID.getValue());
             uuid = getIntent().getExtras().getString(UUID.getValue());
             getIntent().getExtras().clear();
         }

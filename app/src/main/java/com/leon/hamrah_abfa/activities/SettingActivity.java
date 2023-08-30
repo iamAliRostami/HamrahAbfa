@@ -85,7 +85,7 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     }
 
     private void requestLoginHistory() {
-        boolean isOnline = new GetMobileHistoryRequest(this, new GetMobileHistoryRequest.ICallback() {
+        progressStatus(new GetMobileHistoryRequest(this, new GetMobileHistoryRequest.ICallback() {
 
             @Override
             public void succeed(MobileHistory mobileHistory) {
@@ -96,8 +96,7 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
     private void showMobileHistory(MobileHistory mobileHistory) {
