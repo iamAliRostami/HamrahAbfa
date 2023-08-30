@@ -9,8 +9,6 @@ import android.content.Context;
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.cards.BillsSummary;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
-import com.leon.hamrah_abfa.infrastructure.ICallbackFailure;
-import com.leon.hamrah_abfa.infrastructure.ICallbackIncomplete;
 import com.leon.hamrah_abfa.infrastructure.ICallbackSucceed;
 import com.leon.hamrah_abfa.utils.APIError;
 
@@ -31,8 +29,14 @@ public class GetBillsRequest {
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<BillsSummary> call = iAbfaService.getBills();
-        return HttpClientWrapper.callHttpAsyncCancelable(context, call, new GetBillsSuccessful(callback),
-                new GetBillsIncomplete(context), new GetBillsFailed());
+        return HttpClientWrapper.callHttpAsyncCancelable(context, call,
+                new GetBillsSuccessful(callback), response -> {
+                    APIError error = parseError(response);
+                    if (error.status() == 401) {
+                        expiredToken(context);
+                    }
+                }, t -> {
+                });
     }
 
     public interface ICallback {
@@ -53,32 +57,5 @@ class GetBillsSuccessful implements ICallbackSucceed<BillsSummary> {
             if (response.body().billDtos != null)
                 callback.succeed(response.body());
         }
-    }
-}
-
-class GetBillsIncomplete implements ICallbackIncomplete<BillsSummary> {
-    private final Context context;
-
-    public GetBillsIncomplete(Context context) {
-        this.context = context;
-    }
-
-    @Override
-    public void executeDismissed(Response<BillsSummary> response) {
-        APIError error = parseError(response);
-        if (error.status() == 401) {
-            expiredToken(context);
-        }
-    }
-}
-
-class GetBillsFailed implements ICallbackFailure {
-
-    public GetBillsFailed() {
-    }
-
-    @Override
-    public void executeFailed(Throwable t) {
-
     }
 }
