@@ -53,28 +53,10 @@ import java.util.ArrayList;
 public class ContactComplaintFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private final FeedbackViewModel viewModel = new FeedbackViewModel();
     private final ArrayList<FeedbackType> feedbackType = new ArrayList<>();
-    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
-                } else {
-                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
-                }
-            });
     private FragmentContactComplaintBinding binding;
     private ImageViewAdapter adapter;
     private long lastClickTime = 0;
     private File fileImage = null;
-    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    try {
-                        adapter.addItem(prepareImage(fileImage));
-                    } catch (IOException e) {
-                        error(requireContext(), e.getMessage()).show();
-                    }
-                }
-            });
     private DialogFragment fragment;
 
     public ContactComplaintFragment() {
@@ -106,7 +88,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
     }
 
     private void requestComplaintsTypes() {
-        boolean isOnline = new GetComplaintsTypes(requireContext(), new GetComplaintsTypes.ICallback() {
+        progressStatus(new GetComplaintsTypes(requireContext(), new GetComplaintsTypes.ICallback() {
             @Override
             public void succeed(ArrayList<FeedbackType> feedbackType) {
                 ContactComplaintFragment.this.feedbackType.addAll(feedbackType);
@@ -117,8 +99,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
                 progressStatus(done);
             }
 
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
     private void progressStatus(boolean show) {
@@ -250,4 +231,23 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
             error(requireContext(), e.getMessage()).show();
         }
     }
+
+    private final ActivityResultLauncher<String> requestCameraPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    success(requireContext(), getString(R.string.camera_permission_granted)).show();
+                } else {
+                    error(requireContext(), getString(R.string.camera_permission_unavailable)).show();
+                }
+            });
+    private final ActivityResultLauncher<Intent> cameraResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    try {
+                        adapter.addItem(prepareImage(fileImage));
+                    } catch (IOException e) {
+                        error(requireContext(), e.getMessage()).show();
+                    }
+                }
+            });
 }

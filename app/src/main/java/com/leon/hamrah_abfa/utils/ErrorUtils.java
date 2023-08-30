@@ -50,7 +50,6 @@ public class ErrorUtils {
         if (throwable instanceof SocketTimeoutException) {
             errorMessage = context.getString(R.string.error_connection);
         } else if (throwable instanceof SocketException) {
-            //TODO
             errorMessage = context.getString(R.string.connection_lost);
         } else {
             errorMessage = context.getString(R.string.error_other);

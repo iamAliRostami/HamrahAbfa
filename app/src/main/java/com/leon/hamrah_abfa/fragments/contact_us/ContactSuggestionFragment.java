@@ -50,7 +50,6 @@ import java.util.ArrayList;
 public class ContactSuggestionFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
     private final FeedbackViewModel viewModel = new FeedbackViewModel();
     private final ArrayList<FeedbackType> feedbackType = new ArrayList<>();
-
     private FragmentContactSuggestionBinding binding;
     private ImageViewAdapter adapter;
     private long lastClickTime = 0;

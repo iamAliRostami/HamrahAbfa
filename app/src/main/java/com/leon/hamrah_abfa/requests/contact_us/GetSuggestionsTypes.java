@@ -1,14 +1,16 @@
 package com.leon.hamrah_abfa.requests.contact_us;
 
-import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.showFailedMessage;
 import static com.leon.toast.RTLToast.warning;
 
+import android.app.Activity;
 import android.content.Context;
 
+import com.leon.hamrah_abfa.activities.ContactUsActivity;
+import com.leon.hamrah_abfa.activities.MainActivity;
 import com.leon.hamrah_abfa.di.view_model.HttpClientWrapper;
 import com.leon.hamrah_abfa.fragments.contact_us.FeedbackType;
 import com.leon.hamrah_abfa.infrastructure.IAbfaService;
@@ -82,6 +84,7 @@ class SuggestionTypeIncomplete implements ICallbackIncomplete<ArrayList<Feedback
         } else {
             warning(context, "dismissed").show();
         }
+        ((ContactUsActivity) context).getSupportFragmentManager().popBackStack();
     }
 }
 
@@ -98,5 +101,6 @@ class SuggestionTypeFailed implements ICallbackFailure {
     public void executeFailed(Throwable t) {
         callback.changeUI(false);
         showFailedMessage(t, context);
+        ((ContactUsActivity) context).getSupportFragmentManager().popBackStack();
     }
 }
