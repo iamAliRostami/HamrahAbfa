@@ -74,7 +74,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
 
             @Override
             public void changeUI(boolean done) {
-                progressStatus(done);
+                progressStatus(done, () -> showBillSummary(false));
             }
         }, uuid).request());
         requestCounterStat();
@@ -91,7 +91,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
 
             @Override
             public void changeUI(boolean done) {
-                progressStatus(done);
+                progressStatus(done, () -> showCounterStat(false));
             }
         }, uuid).request());
         requestPaymentStat();
@@ -107,15 +107,15 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
 
             @Override
             public void changeUI(boolean done) {
-                progressStatus(done);
+                progressStatus(done, () -> showPaymentStat(false));
             }
         }, uuid).request());
     }
 
-    private void progressStatus(boolean show) {
+    private void progressStatus(boolean show, WaitingFragment.ICancelListener... cancelListener) {
         if (show) {
             if (fragment == null) {
-                fragment = WaitingFragment.newInstance();
+                fragment = WaitingFragment.newInstance(cancelListener[0]);
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {

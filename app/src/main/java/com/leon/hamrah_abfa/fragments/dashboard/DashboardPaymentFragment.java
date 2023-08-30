@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -55,19 +57,19 @@ public class DashboardPaymentFragment extends Fragment {
 
     private void initializeChart() {
         designHorizontalBarChart();
-//        callback.getPaymentStats().totalBills = 10;
         if (callback.getPaymentStats().payDeadlineKeys != null &&
                 !callback.getPaymentStats().payDeadlineKeys.isEmpty() &&
                 callback.getPaymentStats().payDeadlineValues != null &&
                 !callback.getPaymentStats().payDeadlineValues.isEmpty()) {
             ArrayList<BarEntry> barEntries = new ArrayList<>();
-//            callback.getPaymentStats().payDeadlineKeys.addAll(callback.getPaymentStats().payDeadlineKeys);
-//            callback.getPaymentStats().payDeadlineValues.addAll(callback.getPaymentStats().payDeadlineValues);
             for (int i = 0; i < callback.getPaymentStats().payDeadlineValues.size(); i++) {
                 barEntries.add(new BarEntry(i, callback.getPaymentStats().payDeadlineValues.get(i)));
             }
-//            barEntries.addAll(barEntries);
             setData(barEntries);
+        }else {
+            ViewGroup.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
+            binding.chartHorizontalBar.setLayoutParams(params);
         }
     }
 

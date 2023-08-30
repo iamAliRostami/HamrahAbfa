@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.requests;
 
-import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.parseError;

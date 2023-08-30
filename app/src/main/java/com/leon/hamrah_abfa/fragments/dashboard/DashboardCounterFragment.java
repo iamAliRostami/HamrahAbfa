@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -64,8 +65,8 @@ public class DashboardCounterFragment extends Fragment {
             }
             setPieChartData(entries);
         } else {
-            ViewGroup.LayoutParams params = new LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT,
-                    LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+            ViewGroup.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT);
             binding.chartPie.setLayoutParams(params);
         }
     }
