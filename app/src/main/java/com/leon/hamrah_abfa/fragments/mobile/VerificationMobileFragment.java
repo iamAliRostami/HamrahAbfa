@@ -231,13 +231,12 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
 
     @Override
     public void onOTPReceived(String otp) {
-        otp = otp.substring(otp.lastIndexOf(":") + 1, otp.lastIndexOf("\n"));
-        callback.getViewModel().setVerificationCode(otp);
-        binding.editText1.setText(otp.split("")[0]);
-        binding.editText2.setText(otp.split("")[1]);
-        binding.editText3.setText(otp.split("")[2]);
-        binding.editText4.setText(otp.split("")[3]);
-
+        String numberOnly = otp.replaceAll("[^0-9]", "");
+        callback.getViewModel().setVerificationCode(numberOnly.substring(0, 4));
+        binding.editText1.setText(callback.getViewModel().getVerificationCode().substring(0, 1));
+        binding.editText2.setText(callback.getViewModel().getVerificationCode().substring(1, 2));
+        binding.editText3.setText(callback.getViewModel().getVerificationCode().substring(2, 3));
+        binding.editText4.setText(callback.getViewModel().getVerificationCode().substring(3, 4));
         if (smsReceiver != null) {
             requireActivity().unregisterReceiver(smsReceiver);
             smsReceiver = null;
@@ -270,9 +269,10 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
 
 
     public interface ICallback {
+        PreLoginViewModel getViewModel();
+
         void displayView(int position);
 
-        PreLoginViewModel getViewModel();
 
         void editPreLoginViewModel(String token, String failureMessage, boolean result);
 

@@ -2,11 +2,13 @@ package com.leon.hamrah_abfa.fragments.change_mobile;
 
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.Constants.CHANGE_MOBILE_BASE_FRAGMENT;
+import static com.leon.hamrah_abfa.helpers.Constants.SUBMIT_PHONE_FRAGMENT;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
@@ -21,14 +23,19 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.tasks.Task;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.databinding.FragmentChangeMobileVerificationCodeBinding;
 import com.leon.hamrah_abfa.fragments.dialog.MessageDoneRequestFragment;
 import com.leon.hamrah_abfa.requests.change_mobile.ChangeMobileRequest;
+import com.leon.hamrah_abfa.utils.SMSReceiver;
 
 public class ChangeMobileVerificationCodeFragment extends Fragment implements TextWatcher,
-        View.OnKeyListener, View.OnClickListener {
+        View.OnKeyListener, View.OnClickListener, SMSReceiver.OTPReceiveListener  {
     private FragmentChangeMobileVerificationCodeBinding binding;
+    private SMSReceiver smsReceiver = new SMSReceiver();
     private ICallback callback;
 
     public ChangeMobileVerificationCodeFragment() {
@@ -54,6 +61,7 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
 
     private void initialize() {
         startCounter();
+        startSMSListener();
         binding.textViewMobile.setText(callback.getViewModel().getNewMobile());
         binding.textViewMobile.setSelected(true);
         binding.textViewTryAgain.setOnClickListener(this);
@@ -210,7 +218,58 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
 
         }.start();
     }
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
+    private void startSMSListener() {
+        try {
+            smsReceiver.setOTPListener(this);
 
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION);
+            requireActivity().registerReceiver(smsReceiver, intentFilter);
+
+            SmsRetrieverClient client = SmsRetriever.getClient(requireActivity());
+
+            Task<Void> task = client.startSmsRetriever();
+            task.addOnSuccessListener(aVoid -> {
+            });
+
+            task.addOnFailureListener(Throwable::printStackTrace);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onOTPReceived(String otp) {
+        String numberOnly = otp.replaceAll("[^0-9]", "");
+        callback.getViewModel().setVerificationCode(numberOnly.substring(0, 4));
+        binding.editText1.setText(callback.getViewModel().getVerificationCode().substring(0, 1));
+        binding.editText2.setText(callback.getViewModel().getVerificationCode().substring(1, 2));
+        binding.editText3.setText(callback.getViewModel().getVerificationCode().substring(2, 3));
+        binding.editText4.setText(callback.getViewModel().getVerificationCode().substring(3, 4));
+        if (smsReceiver != null) {
+            requireActivity().unregisterReceiver(smsReceiver);
+            smsReceiver = null;
+        }
+    }
+
+    @Override
+    public void onOTPTimeOut() {
+        callback.displayView(SUBMIT_PHONE_FRAGMENT);
+    }
+
+    @Override
+    public void onOTPReceivedError(String error) {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (smsReceiver != null) {
+            requireActivity().unregisterReceiver(smsReceiver);
+        }
+    }
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

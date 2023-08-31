@@ -24,15 +24,11 @@ public class SMSReceiver extends BroadcastReceiver {
             Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
             switch (status.getStatusCode()) {
                 case CommonStatusCodes.SUCCESS:
-
                     //This is the full message
                     String message = (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE);
-
                     /*<#> Your ExampleApp code is: 123ABC78
                     FA+9qCX9VSu*/
-
                     //Extract the OTP code and send to the listener
-
                     if (otpListener != null) {
                         otpListener.onOTPReceived(message);
                     }
