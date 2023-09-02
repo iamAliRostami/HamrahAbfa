@@ -51,7 +51,7 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
     }
 
     private void requestBills() {
-        boolean isOnline = new GetKardexRequest(this, new GetKardexRequest.ICallback() {
+        progressStatus(new GetKardexRequest(this, new GetKardexRequest.ICallback() {
             @Override
             public void succeed(Kardex kardex) {
                 bills.addAll(kardex.bills);
@@ -62,8 +62,7 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, id).request();
-        progressStatus(isOnline);
+        }, id).request());
     }
 
     private void progressStatus(boolean show) {

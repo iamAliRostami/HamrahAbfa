@@ -73,8 +73,7 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     }
 
     private void requestNewService() {
-
-        boolean isOnline = new ServiceNewRequest(requireContext(), new ServiceNewRequest.ICallback() {
+        progressStatus(new ServiceNewRequest(requireContext(), new ServiceNewRequest.ICallback() {
             @Override
             public void succeed(ServicesViewModel service) {
                 callback.submitInformation(service.getTrackNumber());
@@ -84,8 +83,7 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, callback.getServicesViewModel()).request();
-        progressStatus(isOnline);
+        }, callback.getServicesViewModel()).request());
     }
 
     private void progressStatus(boolean show) {

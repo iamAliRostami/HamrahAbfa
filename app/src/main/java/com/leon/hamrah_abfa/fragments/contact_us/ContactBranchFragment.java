@@ -56,7 +56,7 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
     }
 
     private void requestZone() {
-        boolean isOnline = new GetZoneRequest(requireContext(), new GetZoneRequest.ICallback() {
+        progressStatus(new GetZoneRequest(requireContext(), new GetZoneRequest.ICallback() {
 
             @Override
             public void succeed(ArrayList<BranchViewModel> branches) {
@@ -68,8 +68,7 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
     private void progressStatus(boolean show) {

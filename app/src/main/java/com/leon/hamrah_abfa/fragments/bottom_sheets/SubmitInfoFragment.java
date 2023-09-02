@@ -68,19 +68,18 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     }
 
     private void requestAddBill() {
-        boolean isOnline = new AddBillRequest(requireContext(), viewModel, new AddBillRequest.ICallback() {
-            @Override
-            public void succeed(BillCardViewModel bill) {
-                //TODO
-                insertData(bill);
-            }
+        progressStatus(!new AddBillRequest(requireContext(), viewModel,
+                new AddBillRequest.ICallback() {
+                    @Override
+                    public void succeed(BillCardViewModel bill) {
+                        insertData(bill);
+                    }
 
-            @Override
-            public void changeUI(boolean done) {
-                progressStatus(done);
-            }
-        }).request();
-        progressStatus(!isOnline);
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }).request());
     }
 
     private void progressStatus(boolean hide) {

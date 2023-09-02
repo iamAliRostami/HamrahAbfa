@@ -69,19 +69,18 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
     }
 
     private void requestDetailItemHistory() {
-        boolean isOnline = new GetItemHistoryRequest(requireContext(), new GetItemHistoryRequest.ICallback() {
+        progressStatus(new GetItemHistoryRequest(requireContext(),
+                new GetItemHistoryRequest.ICallback() {
+                    @Override
+                    public void succeed(DetailHistoryItem itemInfo) {
+                        initializeRecyclerView(itemInfo.trackingValueKeys);
+                    }
 
-            @Override
-            public void succeed(DetailHistoryItem itemInfo) {
-                initializeRecyclerView(itemInfo.trackingValueKeys);
-            }
-
-            @Override
-            public void changeUI(boolean done) {
-                progressStatus(done);
-            }
-        }, id).request();
-        progressStatus(isOnline);
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }, id).request());
     }
 
     private void progressStatus(boolean show) {

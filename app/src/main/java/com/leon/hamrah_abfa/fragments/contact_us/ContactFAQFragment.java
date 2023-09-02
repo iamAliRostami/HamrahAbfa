@@ -57,7 +57,7 @@ public class ContactFAQFragment extends Fragment implements TextWatcher {
     }
 
     private void requestFAQ() {
-        boolean isOnline = new GetFAQRequest(requireContext(), new GetFAQRequest.ICallback() {
+        progressStatus(new GetFAQRequest(requireContext(), new GetFAQRequest.ICallback() {
             @Override
             public void succeed(ArrayList<ContactFAQViewModel> faqs) {
                 ContactFAQFragment.this.faqs.addAll(faqs);
@@ -68,8 +68,7 @@ public class ContactFAQFragment extends Fragment implements TextWatcher {
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
     private void progressStatus(boolean show) {

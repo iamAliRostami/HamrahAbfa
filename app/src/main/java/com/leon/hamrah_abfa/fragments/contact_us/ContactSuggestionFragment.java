@@ -108,24 +108,24 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
 
 
     private void requestRegisterFeedback() {
-        progressStatus(new RegisterFeedbackRequest(requireContext(), new RegisterFeedbackRequest.ICallback() {
+        progressStatus(new RegisterFeedbackRequest(requireContext(),
+                new RegisterFeedbackRequest.ICallback() {
+                    @Override
+                    public void succeed(FeedbackViewModel viewModel) {
+                        showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
+                                MessageDoneRequestFragment.newInstance(viewModel.getMessage(),
+                                        getString(R.string.main_page), dialogFragment -> {
+                                            dialogFragment.dismiss();
+                                            requireActivity().getSupportFragmentManager().popBackStack();
+                                        }
+                                ));
+                    }
 
-            @Override
-            public void succeed(FeedbackViewModel viewModel) {
-                showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                        MessageDoneRequestFragment.newInstance(viewModel.getMessage(), getString(R.string.main_page),
-                                dialogFragment -> {
-                                    dialogFragment.dismiss();
-                                    requireActivity().getSupportFragmentManager().popBackStack();
-                                }
-                        ));
-            }
-
-            @Override
-            public void changeUI(boolean done) {
-                progressStatus(done);
-            }
-        }, viewModel).request());
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }, viewModel).request());
     }
 
     private void progressStatus(boolean show) {

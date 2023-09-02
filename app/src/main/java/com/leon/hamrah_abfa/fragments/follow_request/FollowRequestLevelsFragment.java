@@ -89,18 +89,18 @@ public class FollowRequestLevelsFragment extends BottomSheetDialogFragment {
     }
 
     private void requestDetailHistory() {
-        boolean isOnline = new GetDetailHistoryRequest(requireContext(), new GetDetailHistoryRequest.ICallback() {
-            @Override
-            public void succeed(DetailHistory detailHistory) {
-                initializeRecyclerView(detailHistory.trackingOrderedInfos);
-            }
+        progressStatus(new GetDetailHistoryRequest(requireContext(),
+                new GetDetailHistoryRequest.ICallback() {
+                    @Override
+                    public void succeed(DetailHistory detailHistory) {
+                        initializeRecyclerView(detailHistory.trackingOrderedInfos);
+                    }
 
-            @Override
-            public void changeUI(boolean done) {
-                progressStatus(done);
-            }
-        }, trackNumber).request();
-        progressStatus(isOnline);
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }, trackNumber).request());
     }
 
     private void progressStatus(boolean show) {

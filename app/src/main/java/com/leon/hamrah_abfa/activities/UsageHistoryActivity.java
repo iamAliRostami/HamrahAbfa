@@ -22,7 +22,7 @@ import com.leon.hamrah_abfa.fragments.usage_history.Attempt;
 import com.leon.hamrah_abfa.fragments.usage_history.AttemptViewModel;
 import com.leon.hamrah_abfa.fragments.usage_history.UsageHistoryFailedFragment;
 import com.leon.hamrah_abfa.fragments.usage_history.UsageHistorySuccessfulFragment;
-import com.leon.hamrah_abfa.requests.GetUsageHistoryRequest;
+import com.leon.hamrah_abfa.requests.counter.GetUsageHistoryRequest;
 
 import java.util.ArrayList;
 
@@ -49,7 +49,7 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
     }
 
     private void requestAttempts() {
-        boolean isOnline = new GetUsageHistoryRequest(this, new GetUsageHistoryRequest.ICallback() {
+        progressStatus(new GetUsageHistoryRequest(this, new GetUsageHistoryRequest.ICallback() {
             @Override
             public void succeed(Attempt attempt) {
                 successAttempts.addAll(attempt.successBills);
@@ -61,8 +61,7 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, id).request();
-        progressStatus(isOnline);
+        }, id).request());
     }
 
     private void progressStatus(boolean show) {

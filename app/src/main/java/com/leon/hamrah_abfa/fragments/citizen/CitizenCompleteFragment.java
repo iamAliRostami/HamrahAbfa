@@ -136,10 +136,9 @@ public class CitizenCompleteFragment extends Fragment implements View.OnClickLis
     }
 
     private void requestForbidden() {
-        boolean isOnline = new ForbiddenRequest(requireContext(), new ForbiddenRequest.ICallback() {
+        progressStatus(new ForbiddenRequest(requireContext(), new ForbiddenRequest.ICallback() {
             @Override
             public void succeed(ForbiddenViewModel service) {
-                //TODO
                 callback.confirm(service.getMessage());
             }
 
@@ -147,8 +146,7 @@ public class CitizenCompleteFragment extends Fragment implements View.OnClickLis
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, callback.getForbiddenViewModel()).request();
-        progressStatus(isOnline);
+        }, callback.getForbiddenViewModel()).request());
     }
 
     private void progressStatus(boolean show) {

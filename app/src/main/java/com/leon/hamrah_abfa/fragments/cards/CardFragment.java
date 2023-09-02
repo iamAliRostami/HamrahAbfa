@@ -141,7 +141,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     }
 
     private void requestRemoveBill() {
-        boolean isOnline = new RemoveBillRequest(requireContext(), new RemoveBillRequest.ICallback() {
+        progressStatus(new RemoveBillRequest(requireContext(), new RemoveBillRequest.ICallback() {
             @Override
             public void succeed(PaymentStats paymentStats) {
                 removeData();
@@ -151,8 +151,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
             public void changeUI(boolean show) {
                 progressStatus(show);
             }
-        }, viewModel.getId()).request();
-        progressStatus(isOnline);
+        }, viewModel.getId()).request());
     }
 
     private void progressStatus(boolean show) {

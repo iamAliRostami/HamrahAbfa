@@ -66,7 +66,8 @@ public class NotificationWorker extends Worker {
     @SuppressLint("DefaultLocale")
     private boolean requestNotificationNumber() {
         return new GetNotificationNumberRequest(context, messageNumber ->
-                showNotification(String.format("شما %d پیام جدید دارید", messageNumber))).request();
+                showNotification(String.format(context.getString(R.string.new_message_number),
+                        messageNumber))).request();
     }
 
     private void rescheduleWithDelay() {

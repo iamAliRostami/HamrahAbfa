@@ -76,7 +76,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     }
 
     private void requestTel() {
-        boolean isOnline = new GetTelRequest(requireContext(), new GetTelRequest.ICallback() {
+        progressStatus(new GetTelRequest(requireContext(), new GetTelRequest.ICallback() {
 
             @Override
             public void succeed(ArrayList<PhonebookViewModel> phonebook) {
@@ -88,8 +88,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
     private void progressStatus(boolean show) {

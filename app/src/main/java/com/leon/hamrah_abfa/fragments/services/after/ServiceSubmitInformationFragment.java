@@ -82,11 +82,10 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
     }
 
     private void requestASService() {
-
-        boolean isOnline = new ServiceASRequest(requireContext(), new ServiceASRequest.ICallback() {
+        progressStatus(new ServiceASRequest(requireContext(), new ServiceASRequest.ICallback() {
             @Override
             public void succeed(ServicesViewModel service) {
-//TODO
+                //TODO
                 callback.submitInformation(service.getTrackNumber());
             }
 
@@ -94,16 +93,14 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, callback.getServicesViewModel()).request();
-        progressStatus(isOnline);
+        }, callback.getServicesViewModel()).request());
     }
 
     private void requestAbService() {
-
-        boolean isOnline = new ServiceAbRequest(requireContext(), new ServiceAbRequest.ICallback() {
+        progressStatus(new ServiceAbRequest(requireContext(), new ServiceAbRequest.ICallback() {
             @Override
             public void succeed(ServicesViewModel service) {
-//TODO
+                //TODO
                 callback.submitInformation(service.getTrackNumber());
             }
 
@@ -111,8 +108,7 @@ public class ServiceSubmitInformationFragment extends Fragment implements View.O
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, callback.getServicesViewModel()).request();
-        progressStatus(isOnline);
+        }, callback.getServicesViewModel()).request());
     }
 
     private void progressStatus(boolean show) {

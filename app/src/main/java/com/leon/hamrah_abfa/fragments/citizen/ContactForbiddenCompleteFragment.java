@@ -135,10 +135,9 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
     }
 
     private void requestForbidden() {
-        boolean isOnline = new ForbiddenRequest(requireContext(), new ForbiddenRequest.ICallback() {
+        progressStatus(new ForbiddenRequest(requireContext(), new ForbiddenRequest.ICallback() {
             @Override
             public void succeed(ForbiddenViewModel service) {
-                //TODO
                 callback.confirm(service.getMessage());
             }
 
@@ -146,8 +145,7 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, callback.getForbiddenViewModel()).request();
-        progressStatus(isOnline);
+        }, callback.getForbiddenViewModel()).request());
     }
 
     private void progressStatus(boolean show) {

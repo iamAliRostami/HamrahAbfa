@@ -84,7 +84,7 @@ public class EditInfoFragment extends BaseBottomSheetFragment implements View.On
     }
 
     private void requestEditBill() {
-        boolean isOnline = new EditBillRequest(requireContext(), new EditBillRequest.ICallback() {
+        progressStatus(!new EditBillRequest(requireContext(), new EditBillRequest.ICallback() {
             @Override
             public void succeed(PaymentStats paymentStats) {
                 editData();
@@ -94,8 +94,7 @@ public class EditInfoFragment extends BaseBottomSheetFragment implements View.On
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, viewModel).request();
-        progressStatus(!isOnline);
+        }, viewModel).request());
     }
 
 

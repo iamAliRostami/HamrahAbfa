@@ -326,5 +326,6 @@
         \n
         بخش اعلان
     </string>
+    <string name="new_message_number">شما %d پیام جدید دارید</string>
 
 </resources>

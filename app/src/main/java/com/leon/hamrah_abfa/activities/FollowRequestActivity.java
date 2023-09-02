@@ -57,7 +57,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void requestMasterHistory() {
-        boolean isOnline = new GetMasterHistoryRequest(this, new GetMasterHistoryRequest.ICallback() {
+        progressStatus(new GetMasterHistoryRequest(this, new GetMasterHistoryRequest.ICallback() {
             @Override
             public void succeed(MasterHistory requestInfoAll) {
                 requestInfo = requestInfoAll;
@@ -67,8 +67,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }, uuid).request();
-        progressStatus(isOnline);
+        }, uuid).request());
     }
 
     private void progressStatus(boolean show) {

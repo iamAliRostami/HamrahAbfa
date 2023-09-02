@@ -141,25 +141,24 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
     }
 
     private void requestRegisterFeedback() {
-        boolean isOnline = new RegisterFeedbackRequest(requireContext(), new RegisterFeedbackRequest.ICallback() {
+        progressStatus(new RegisterFeedbackRequest(requireContext(),
+                new RegisterFeedbackRequest.ICallback() {
+                    @Override
+                    public void succeed(FeedbackViewModel viewModel) {
+                        showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
+                                MessageDoneRequestFragment.newInstance(viewModel.getMessage(),
+                                        getString(R.string.main_page), dialogFragment -> {
+                                            dialogFragment.dismiss();
+                                            requireActivity().getSupportFragmentManager().popBackStack();
+                                        }
+                                ));
+                    }
 
-            @Override
-            public void succeed(FeedbackViewModel viewModel) {
-                showFragmentDialogOnce(requireContext(), REQUEST_DONE.getValue(),
-                        MessageDoneRequestFragment.newInstance(viewModel.getMessage(), getString(R.string.main_page),
-                                dialogFragment -> {
-                                    dialogFragment.dismiss();
-                                    requireActivity().getSupportFragmentManager().popBackStack();
-                                }
-                        ));
-            }
-
-            @Override
-            public void changeUI(boolean done) {
-                progressStatus(done);
-            }
-        }, viewModel).request();
-        progressStatus(isOnline);
+                    @Override
+                    public void changeUI(boolean done) {
+                        progressStatus(done);
+                    }
+                }, viewModel).request());
     }
 
     private boolean checkInput() {

@@ -27,7 +27,6 @@ import com.leon.hamrah_abfa.fragments.notifications.Notifications;
 import com.leon.hamrah_abfa.fragments.notifications.NotificationsViewModel;
 import com.leon.hamrah_abfa.requests.notification.GetNotificationRequest;
 import com.leon.hamrah_abfa.requests.notification.SetNotificationSeenRequest;
-import com.leon.hamrah_abfa.utils.ShowFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,7 +38,6 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     private ActivityNotificationsBinding binding;
     private DialogFragment fragment;
     private final ArrayList<NotificationsViewModel> notifications = new ArrayList<>();
-    private int unseenNotification;
     private int unseenNews;
 
     @Override
@@ -60,7 +58,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void requestNotifications() {
-        boolean isOnline = new GetNotificationRequest(this, new GetNotificationRequest.ICallback() {
+        progressStatus(new GetNotificationRequest(this, new GetNotificationRequest.ICallback() {
             @Override
             public void succeed(Notifications notifications) {
                 NotificationsActivity.this.notifications.addAll(notifications.customerNotifications);
@@ -72,8 +70,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
             public void changeUI(boolean done) {
                 progressStatus(done);
             }
-        }).request();
-        progressStatus(isOnline);
+        }).request());
     }
 
     private void progressStatus(boolean show) {
@@ -119,7 +116,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     public void setUnseenNotificationNumber() {
-        unseenNotification = 0;
+        int unseenNotification = 0;
         for (int i = 0; i < notifications.size(); i++) {
             if (notifications.get(i).getSeenDateTime() == null)
                 unseenNotification++;
@@ -143,7 +140,6 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         binding.viewPager.setCurrentItem(tab.getPosition());
-//        tab.removeBadge();
     }
 
     @Override
@@ -181,13 +177,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     private void requestSeenNotification(String id) {
-        new SetNotificationSeenRequest(this, new SetNotificationSeenRequest.ICallback() {
-
-            @Override
-            public void succeed(Notifications notifications) {
-                setUnseenNotificationNumber();
-            }
-        }, id).request();
+        new SetNotificationSeenRequest(this, notifications -> setUnseenNotificationNumber(), id).request();
     }
 
     @Override

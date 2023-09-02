@@ -65,7 +65,7 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
     }
 
     private void requestVerificationCode() {
-        boolean isOnline = new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
+        progressStatus(!new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
                 new AskVerificationCodeRequest.ICallback() {
                     @Override
                     public void succeed(String id, long remainedSeconds) {
@@ -77,8 +77,7 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
                     public void changeUI(boolean done) {
                         progressStatus(done);
                     }
-                }).request();
-        progressStatus(!isOnline);
+                }).request());
     }
 
     private void progressStatus(boolean hide) {
