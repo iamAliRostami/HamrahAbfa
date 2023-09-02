@@ -101,9 +101,11 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
         progressStatus(new GetPaymentStatRequest(this, new GetPaymentStatRequest.ICallback() {
             @Override
             public void succeed(PaymentStats paymentStats) {
-                DashboardActivity.this.paymentStats = paymentStats;
-                Collections.reverse(DashboardActivity.this.paymentStats.payDeadlineValues);
-                Collections.reverse(DashboardActivity.this.paymentStats.payDeadlineKeys);
+                if (paymentStats.payDeadlineValues != null && paymentStats.payDeadlineKeys != null) {
+                    Collections.reverse(DashboardActivity.this.paymentStats.payDeadlineValues);
+                    Collections.reverse(DashboardActivity.this.paymentStats.payDeadlineKeys);
+                    DashboardActivity.this.paymentStats = paymentStats;
+                }
                 showPaymentStat(true);
             }
 
