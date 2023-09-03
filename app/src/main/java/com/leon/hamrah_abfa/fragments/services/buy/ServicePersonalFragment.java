@@ -53,11 +53,9 @@ public class ServicePersonalFragment extends Fragment implements View.OnClickLis
     public void onClick(View view) {
         final int id = view.getId();
         if (id == R.id.button_next) {
-            //TODO
             if (checkInputs())
                 callback.displayView(SERVICE_LOCATION_FRAGMENT);
         } else if (id == R.id.button_previous) {
-            //TODO
             callback.displayView(SERVICE_INTRODUCTION_FRAGMENT);
         }
     }

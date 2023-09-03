@@ -147,13 +147,13 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.button_submit) {
-            if (checkInput()) {
+            if (checkInputs()) {
                 requestRegisterFeedback();
             }
         }
     }
 
-    private boolean checkInput() {
+    private boolean checkInputs() {
         if (viewModel.getFeedbackTypeId() == null) {
             binding.editTextSuggestionType.setError(getString(R.string.choose_complaint_type));
             binding.editTextSuggestionType.requestFocus();

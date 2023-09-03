@@ -127,13 +127,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.button_submit) {
-            if (checkInput()) {
-                viewModel.file.clear();
-                for (Bitmap bitmap : adapter.getBitmaps()) {
-                    viewModel.file.add(bitmapToFile(bitmap, requireContext()));
-                }
-                viewModel.setInComplaint(true);
-                viewModel.setSolution("");
+            if (checkInputs()) {
                 requestRegisterFeedback();
             }
         }
@@ -160,7 +154,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
                 }, viewModel).request());
     }
 
-    private boolean checkInput() {
+    private boolean checkInputs() {
         if (viewModel.getFeedbackTypeId() == null) {
             binding.editTextComplaintType.setError(getString(R.string.choose_complaint_type));
             binding.editTextComplaintType.requestFocus();
@@ -172,6 +166,12 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
             warning(requireContext(), R.string.field_complaint_description).show();
             return false;
         }
+        viewModel.file.clear();
+        for (Bitmap bitmap : adapter.getBitmaps()) {
+            viewModel.file.add(bitmapToFile(bitmap, requireContext()));
+        }
+        viewModel.setInComplaint(true);
+        viewModel.setSolution("");
         return true;
     }
 

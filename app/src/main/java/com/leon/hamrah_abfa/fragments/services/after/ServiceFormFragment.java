@@ -50,7 +50,6 @@ public class ServiceFormFragment extends Fragment implements View.OnClickListene
     }
 
     private void initialize() {
-
         if (callback.getServicesViewModel().getSelectedServices().get(0) ==
                 getResources().getIntArray(R.array.services_ab_baha_id)[4]) {
             binding.textLayoutEmpty.setVisibility(View.VISIBLE);
