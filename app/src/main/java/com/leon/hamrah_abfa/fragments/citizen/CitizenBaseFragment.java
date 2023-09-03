@@ -66,25 +66,25 @@ public class CitizenBaseFragment extends Fragment {
             titles.add("سایر");
         }
         binding.buttonNext.setOnClickListener(v -> {
-            if (checkInput())
+            if (checkInputs())
                 callback.displayView(CITIZEN_ACCOUNT_FRAGMENT);
         });
         binding.editTextType.setOnClickListener(v -> showMenu(binding.editTextType));
         binding.textLayoutType.setEndIconOnClickListener(v -> showMenu(binding.editTextType));
     }
 
-    private boolean checkInput() {
-        if (callback.getForbiddenViewModel().getDescription() == null ||
-                callback.getForbiddenViewModel().getDescription().isEmpty()) {
-            binding.editTextDescription.setError(getString(R.string.enter_description));
-            binding.editTextDescription.requestFocus();
-            warning(requireContext(), R.string.enter_description).show();
-            return false;
-        } else if (callback.getForbiddenViewModel().getType() == null ||
+    private boolean checkInputs() {
+        if (callback.getForbiddenViewModel().getType() == null ||
                 callback.getForbiddenViewModel().getType().isEmpty()) {
+            warning(requireContext(), R.string.enter_status).show();
             binding.editTextType.setError(getString(R.string.enter_status));
             binding.editTextType.requestFocus();
-            warning(requireContext(), R.string.enter_status).show();
+            return false;
+        } else if (callback.getForbiddenViewModel().getDescription() == null ||
+                callback.getForbiddenViewModel().getDescription().isEmpty()) {
+            warning(requireContext(), R.string.enter_description).show();
+            binding.editTextDescription.setError(getString(R.string.enter_description));
+            binding.editTextDescription.requestFocus();
             return false;
         }
         return true;
@@ -109,8 +109,6 @@ public class CitizenBaseFragment extends Fragment {
         }
         popup.setOnMenuItemClickListener(menuItem -> {
             binding.editTextType.setText(menuItem.getTitle());
-//            callback.getForbiddenViewModel().setType(String.format("%s - %s",
-//                    callback.getForbiddenViewModel().getParentType(), menuItem.getTitle()));
             return true;
         });
         popup.show();

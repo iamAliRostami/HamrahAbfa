@@ -33,7 +33,7 @@ import com.leon.hamrah_abfa.requests.change_mobile.ChangeMobileRequest;
 import com.leon.hamrah_abfa.utils.SMSReceiver;
 
 public class ChangeMobileVerificationCodeFragment extends Fragment implements TextWatcher,
-        View.OnKeyListener, View.OnClickListener, SMSReceiver.OTPReceiveListener  {
+        View.OnKeyListener, View.OnClickListener, SMSReceiver.OTPReceiveListener {
     private FragmentChangeMobileVerificationCodeBinding binding;
     private SMSReceiver smsReceiver = new SMSReceiver();
     private ICallback callback;
@@ -83,10 +83,11 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
         final int id = v.getId();
         if (id == R.id.button_submit) {
             if (checkInputs()) {
-                String submitCode = binding.editText1.getEditableText().toString() +
-                        binding.editText2.getEditableText().toString() +
-                        binding.editText3.getEditableText().toString() +
-                        binding.editText4.getEditableText().toString();
+                String submitCode = String.format("%s%s%s%s",
+                        binding.editText1.getEditableText().toString(),
+                        binding.editText2.getEditableText().toString(),
+                        binding.editText3.getEditableText().toString(),
+                        binding.editText4.getEditableText().toString());
                 callback.getViewModel().setSubmitCode(submitCode);
                 changeMobileRequest();
             }
@@ -137,21 +138,20 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
     }
 
     private boolean checkInputs() {
-        boolean cancel = false;
         if (TextUtils.isEmpty(binding.editText1.getText())) {
-            cancel = true;
             binding.editText1.requestFocus();
+            return false;
         } else if (TextUtils.isEmpty(binding.editText2.getText())) {
-            cancel = true;
             binding.editText2.requestFocus();
+            return false;
         } else if (TextUtils.isEmpty(binding.editText3.getText())) {
-            cancel = true;
             binding.editText3.requestFocus();
+            return false;
         } else if (TextUtils.isEmpty(binding.editText4.getText())) {
-            cancel = true;
             binding.editText4.requestFocus();
+            return false;
         }
-        return !cancel;
+        return true;
     }
 
     @Override
@@ -218,6 +218,7 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
 
         }.start();
     }
+
     @SuppressLint("UnspecifiedRegisterReceiverFlag")
     private void startSMSListener() {
         try {
@@ -270,6 +271,7 @@ public class ChangeMobileVerificationCodeFragment extends Fragment implements Te
             requireActivity().unregisterReceiver(smsReceiver);
         }
     }
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

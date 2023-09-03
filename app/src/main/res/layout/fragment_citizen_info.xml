@@ -61,7 +61,7 @@
                     style="@style/TextInputLayout"
                     android:layout_below="@id/text_view_description"
                     android:layout_centerInParent="true"
-                    android:hint="@string/postal_code"
+                    android:hint="@string/optional_postal_code"
                     app:helperText="@string/enter_postal_code">
 
                     <com.google.android.material.textfield.TextInputEditText

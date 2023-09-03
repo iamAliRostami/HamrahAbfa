@@ -51,7 +51,7 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (mobileValidation() && checkInput()) {
+            if (checkInput() && mobileValidation()) {
                 requestVerificationCode();
             }
         }

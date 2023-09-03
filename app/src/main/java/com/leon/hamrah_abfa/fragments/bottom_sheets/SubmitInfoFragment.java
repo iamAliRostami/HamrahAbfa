@@ -96,8 +96,6 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
     }
 
     private void insertData(BillCardViewModel bill) {
-        //TODO
-//        bill.setDebt(String.valueOf(bill.getDebt()));
         String id = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ID.getValue()).concat(bill.getId()).concat(",");
         String billId = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(BILL_ID.getValue()).concat(bill.getBillId()).concat(",");
         String alias = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(ALIAS.getValue()).concat(bill.getAlias()).concat(",");
@@ -105,7 +103,6 @@ public class SubmitInfoFragment extends BaseBottomSheetFragment {
 
         String deadline = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(DEADLINE.getValue())
                 .concat(bill.getDeadline() != null ? bill.getDeadline() : "-").concat(",");
-
 
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(ID.getValue(), id);
         getInstance().getApplicationComponent().SharedPreferenceModel().putData(BILL_ID.getValue(), billId);
