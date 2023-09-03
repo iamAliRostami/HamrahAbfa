@@ -36,15 +36,16 @@
                 style="@style/TextItem"
                 android:layout_gravity="start"
                 android:padding="0dp"
-                android:textColor="@color/dark_gray" />
+                android:textColor="@color/dark_gray"
+                android:textStyle="normal" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_summary"
-        android:layout_below="@id/linear_layout_title"
         style="@style/TextItem"
         android:layout_width="wrap_content"
+        android:layout_below="@id/linear_layout_title"
         android:lines="1"
         android:padding="@dimen/medium_dp"
         android:paddingTop="0dp"

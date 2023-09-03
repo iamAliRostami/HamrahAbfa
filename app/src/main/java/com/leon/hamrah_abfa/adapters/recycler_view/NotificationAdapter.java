@@ -37,9 +37,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
 
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
-        //TODO
         holder.imageView.setImageDrawable(icons.getDrawable(notifications.get(position).getType() - 1));
         holder.textViewDate.setText(notifications.get(position).getInsertDateTime());
+//        holder.textViewDate.setText(notifications.get(position).getInsertDateTime()
+//                .replace("-", "/").replace("T", " - "));
         holder.textViewTitle.setText(notifications.get(position).getTitle());
         holder.textViewSummary.setText(notifications.get(position).getMessage().substring(0,
                 Math.min(40, notifications.get(position).getMessage().length())).concat(inflater.getContext().getString(R.string.dots)));

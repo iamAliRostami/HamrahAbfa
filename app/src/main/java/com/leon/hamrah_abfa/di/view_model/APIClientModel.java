@@ -33,14 +33,14 @@ public final class APIClientModel {
     private final long READ_TIMEOUT = 20;
     private final long WRITE_TIMEOUT = 10;
     private final long CONNECT_TIMEOUT = 10;
-    @Inject
-    OkHttpClient okHttpClient;
-    @Inject
-    Gson gson;
-    @Inject
-    Retrofit retrofit;
-    @Inject
-    HttpLoggingInterceptor interceptor;
+//    @Inject
+    static OkHttpClient okHttpClient;
+//    @Inject
+    static Gson gson;
+//    @Inject
+    static Retrofit retrofit;
+//    @Inject
+    static HttpLoggingInterceptor interceptor;
     private static final Interceptor REWRITE_RESPONSE_INTERCEPTOR = chain -> {
         Response originalResponse = chain.proceed(chain.request());
         String cacheControl = originalResponse.header("Cache-Control");
