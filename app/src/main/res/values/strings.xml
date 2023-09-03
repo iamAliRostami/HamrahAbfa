@@ -327,5 +327,6 @@
         بخش اعلان
     </string>
     <string name="new_message_number">شما %d پیام جدید دارید</string>
+    <string name="enter_alias">عنوان انشعاب را وارد کنید</string>
 
 </resources>

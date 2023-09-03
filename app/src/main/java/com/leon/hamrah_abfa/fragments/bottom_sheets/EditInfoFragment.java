@@ -73,14 +73,20 @@ public class EditInfoFragment extends BaseBottomSheetFragment implements View.On
         super.onClick(v);
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (viewModel.getBillId() == null || viewModel.getBillId().isEmpty()) {
-                warning(requireContext(), getString(R.string.enter_bill_id)).show();
-                binding.editTextBillId.setError(getString(R.string.enter_bill_id));
-                binding.editTextBillId.requestFocus();
-            } else {
+            if (checkInputs()) {
                 requestEditBill();
             }
         }
+    }
+
+    private boolean checkInputs() {
+        if (viewModel.getAlias() == null || viewModel.getAlias().isEmpty()) {
+            warning(requireContext(), getString(R.string.enter_alias)).show();
+            binding.editTextAccountTitle.setError(getString(R.string.enter_alias));
+            binding.editTextAccountTitle.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private void requestEditBill() {
