@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.leon.hamrah_abfa.R;
+import com.leon.hamrah_abfa.activities.IncidentActivity;
 import com.leon.hamrah_abfa.databinding.FragmentIncidentBinding;
 
 public class IncidentFragment extends Fragment implements View.OnClickListener {
@@ -53,7 +54,7 @@ public class IncidentFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_start) {
-//            final Intent intent = new Intent(requireContext(), IncidentActivity.class);
+//            Intent intent = new Intent(requireContext(), IncidentActivity.class);
 //            startActivity(intent);
             warning(requireContext(), R.string.will_be_ok_soon).show();
         } else if (id == R.id.button_call) {

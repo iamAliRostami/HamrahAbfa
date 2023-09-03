@@ -72,7 +72,8 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
     }
 
     private void initialize() {
-        binding.editTextIncidentType.setOnClickListener(this);
+        binding.editTextIncidentType.setOnClickListener(v -> showMenu(binding.editTextIncidentType));
+        binding.textLayoutIncidentType.setEndIconOnClickListener(v -> showMenu(binding.editTextIncidentType));
         binding.lottieAnimationView.setOnClickListener(this);
         binding.imageViewMicPlayPause.setOnClickListener(this);
         binding.imageViewDelete.setOnClickListener(this);
@@ -91,10 +92,8 @@ public class IncidentBaseFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.edit_text_incident_type) {
-            showMenu(binding.editTextIncidentType);
-        } else if (id == R.id.image_view_mic_play_pause) {
+        int id = v.getId();
+        if (id == R.id.image_view_mic_play_pause) {
             if (checkRecorderPermission(requireContext())) {
                 if (ready) {
                     startRecording();

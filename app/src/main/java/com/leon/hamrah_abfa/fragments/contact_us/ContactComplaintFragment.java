@@ -83,7 +83,8 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
     private void initialize() {
         requestComplaintsTypes();
         initializeGridView();
-        binding.editTextIncidentType.setOnClickListener(this);
+        binding.editTextComplaintType.setOnClickListener(v -> showMenu(binding.editTextComplaintType));
+        binding.textLayoutComplaintType.setEndIconOnClickListener(v -> showMenu(binding.editTextComplaintType));
         binding.buttonSubmit.setOnClickListener(this);
     }
 
@@ -124,10 +125,8 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.edit_text_incident_type) {
-            showMenu(binding.editTextIncidentType);
-        } else if (id == R.id.button_submit) {
+        int id = v.getId();
+        if (id == R.id.button_submit) {
             if (checkInput()) {
                 viewModel.file.clear();
                 for (Bitmap bitmap : adapter.getBitmaps()) {
@@ -163,8 +162,8 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
 
     private boolean checkInput() {
         if (viewModel.getFeedbackTypeId() == null) {
-            binding.editTextIncidentType.setError(getString(R.string.choose_complaint_type));
-            binding.editTextIncidentType.requestFocus();
+            binding.editTextComplaintType.setError(getString(R.string.choose_complaint_type));
+            binding.editTextComplaintType.requestFocus();
             warning(requireContext(), R.string.choose_complaint_type).show();
             return false;
         } else if (viewModel.getDescription() == null || viewModel.getDescription().isEmpty()) {

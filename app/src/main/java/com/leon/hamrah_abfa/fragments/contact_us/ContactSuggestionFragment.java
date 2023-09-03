@@ -81,7 +81,8 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
     private void initialize() {
         requestSuggestionsTypes();
         initializeGridView();
-        binding.editTextSuggestionType.setOnClickListener(this);
+        binding.editTextSuggestionType.setOnClickListener(v -> showMenu(binding.editTextSuggestionType));
+        binding.textLayoutSuggestionType.setEndIconOnClickListener(v -> showMenu(binding.editTextSuggestionType));
         binding.buttonSubmit.setOnClickListener(this);
     }
 
@@ -144,10 +145,8 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.edit_text_suggestion_type) {
-            showMenu(binding.editTextSuggestionType);
-        } else if (id == R.id.button_submit) {
+        int id = v.getId();
+        if (id == R.id.button_submit) {
             if (checkInput()) {
                 requestRegisterFeedback();
             }

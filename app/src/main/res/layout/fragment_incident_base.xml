@@ -30,7 +30,7 @@
                 android:padding="@dimen/large_dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/menu"
+                    android:id="@+id/text_layout_incident_type"
                     style="@style/MenuLayout"
                     android:layout_marginTop="@dimen/large_dp"
                     android:layout_marginBottom="@dimen/large_dp"
@@ -48,7 +48,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_description"
                     style="@style/TextInputLayout"
-                    android:layout_below="@id/menu"
+                    android:layout_below="@id/text_layout_incident_type"
                     android:hint="@string/description"
                     app:counterEnabled="true"
                     app:counterMaxLength="1000"
