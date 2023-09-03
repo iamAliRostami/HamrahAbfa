@@ -62,7 +62,8 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
             addFragment(this, binding.fragmentCitizen.getId(), CitizenListFragment.newInstance());
         } else if (position == CITIZEN_BASE_FRAGMENT) {
             imageAdapter = new ImageViewAdapter(this);
-            if (viewModel.getType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(0))) {
+            viewModel.setType("");
+            if (viewModel.getParentType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(0))) {
                 replaceFragment(this, binding.fragmentCitizen.getId(), ContactForbiddenBaseFragment.newInstance());
             } else {
                 replaceFragment(this, binding.fragmentCitizen.getId(), CitizenBaseFragment.newInstance());
@@ -93,7 +94,7 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
 
     @Override
     public void setServices(String selectedTitle) {
-        viewModel.setType(selectedTitle);
+        viewModel.setParentType(selectedTitle);
     }
 
     @Override

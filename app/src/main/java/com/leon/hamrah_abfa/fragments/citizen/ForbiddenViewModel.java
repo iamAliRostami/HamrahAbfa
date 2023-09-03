@@ -18,6 +18,7 @@ public class ForbiddenViewModel extends BaseObservable {
     private String x;
     private String y;
     private String tedadVahed;
+    private transient String parentType;
     private String type;
     private String message;
     private String generationDateTime;
@@ -104,11 +105,21 @@ public class ForbiddenViewModel extends BaseObservable {
         return message;
     }
 
+    public String getParentType() {
+        return parentType;
+    }
+
+    public void setParentType(String parentType) {
+        this.parentType = parentType;
+    }
+
+    @Bindable
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+        notifyPropertyChanged(BR.type);
     }
 }

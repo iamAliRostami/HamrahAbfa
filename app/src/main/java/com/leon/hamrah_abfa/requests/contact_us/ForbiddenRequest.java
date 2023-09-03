@@ -1,6 +1,5 @@
 package com.leon.hamrah_abfa.requests.contact_us;
 
-import static com.leon.hamrah_abfa.di.view_model.HttpClientWrapper.callHttpAsync;
 import static com.leon.hamrah_abfa.enums.FragmentTags.REQUEST_DONE;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ErrorUtils.expiredToken;
@@ -46,7 +45,8 @@ public class ForbiddenRequest {
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<ForbiddenViewModel> call = iAbfaService.forbidden(forbidden.file,
                 RequestBody.create(forbidden.getDescription(), MediaType.parse("text/plain")),
-                RequestBody.create(forbidden.getType(), MediaType.parse("text/plain")),
+                RequestBody.create(String.format("%s - %s", forbidden.getParentType(), forbidden.getType()),
+                        MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPreEshterak(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getNextEshterak(), MediaType.parse("text/plain")),
                 RequestBody.create(forbidden.getPostalCode(), MediaType.parse("text/plain")),

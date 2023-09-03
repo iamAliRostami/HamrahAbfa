@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class CitizenBaseFragment extends Fragment implements View.OnClickListener {
+public class CitizenBaseFragment extends Fragment {
     private FragmentCitizenBaseBinding binding;
     private ICallback callback;
     private final ArrayList<String> titles = new ArrayList<>();
@@ -54,7 +54,7 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
 
     private void initialize() {
         titles.clear();
-        if (callback.getForbiddenViewModel().getType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(1))) {
+        if (callback.getForbiddenViewModel().getParentType().equals(Arrays.asList(getResources().getStringArray(R.array.citizen_menu)).get(1))) {
             titles.add("شستشوی معابر");
             titles.add("نشت کولر");
             titles.add("آبیاری فضای سبز");
@@ -65,19 +65,12 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
             titles.add("پمپ مستقیم به شبکه");
             titles.add("سایر");
         }
-        binding.buttonNext.setOnClickListener(this);
-        binding.editTextType.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        if (id == R.id.edit_text_type) {
-            showMenu(binding.editTextType);
-        } else if (id == R.id.button_next) {
+        binding.buttonNext.setOnClickListener(v -> {
             if (checkInput())
                 callback.displayView(CITIZEN_ACCOUNT_FRAGMENT);
-        }
+        });
+        binding.editTextType.setOnClickListener(v -> showMenu(binding.editTextType));
+        binding.textLayoutType.setEndIconOnClickListener(v -> showMenu(binding.editTextType));
     }
 
     private boolean checkInput() {
@@ -92,8 +85,8 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
             binding.editTextType.setError(getString(R.string.enter_status));
             binding.editTextType.requestFocus();
             warning(requireContext(), R.string.enter_status).show();
+            return false;
         }
-
         return true;
     }
 
@@ -116,7 +109,8 @@ public class CitizenBaseFragment extends Fragment implements View.OnClickListene
         }
         popup.setOnMenuItemClickListener(menuItem -> {
             binding.editTextType.setText(menuItem.getTitle());
-            callback.getForbiddenViewModel().setType(String.valueOf(menuItem.getTitle()));
+//            callback.getForbiddenViewModel().setType(String.format("%s - %s",
+//                    callback.getForbiddenViewModel().getParentType(), menuItem.getTitle()));
             return true;
         });
         popup.show();
