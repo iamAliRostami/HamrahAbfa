@@ -328,5 +328,6 @@
     </string>
     <string name="new_message_number">شما %d پیام جدید دارید</string>
     <string name="enter_alias">عنوان انشعاب را وارد کنید</string>
+    <string name="enter_more_than_zero">رقم کنتور باید بیشتر از صفر باشد</string>
 
 </resources>

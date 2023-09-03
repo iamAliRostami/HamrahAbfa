@@ -51,17 +51,41 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.button_submit) {
-            if (mobileValidation()) {
-                if (callback.getViewModel().getCounterClaim() == null ||
-                        callback.getViewModel().getCounterClaim().isEmpty()) {
-                    warning(requireContext(), getString(R.string.enter_counter_number)).show();
-                    binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
-                    binding.editTextCounterNumber.requestFocus();
-                } else {
-                    requestVerificationCode();
-                }
+            if (mobileValidation() && checkInput()) {
+                requestVerificationCode();
             }
         }
+    }
+
+    private boolean mobileValidation() {
+        if (callback.getViewModel().getMobile() == null || callback.getViewModel().getMobile().isEmpty()) {
+            warning(requireContext(), getString(R.string.enter_mobile)).show();
+            binding.editTextMobile.setError(getString(R.string.enter_mobile));
+            binding.editTextMobile.requestFocus();
+            return false;
+        } else if (!MOBILE_REGEX.matcher(callback.getViewModel().getMobile()).matches()) {
+            warning(requireContext(), getString(R.string.mobile_error)).show();
+            binding.editTextMobile.setError(getString(R.string.mobile_error));
+            binding.editTextMobile.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkInput() {
+        if (callback.getViewModel().getCounterClaim() == null ||
+                callback.getViewModel().getCounterClaim().isEmpty()) {
+            warning(requireContext(), getString(R.string.enter_counter_number)).show();
+            binding.editTextCounterNumber.setError(getString(R.string.enter_counter_number));
+            binding.editTextCounterNumber.requestFocus();
+            return false;
+        } else if (!(Integer.parseInt(callback.getViewModel().getCounterClaim()) > 0)) {
+            warning(requireContext(), getString(R.string.enter_more_than_zero)).show();
+            binding.editTextCounterNumber.setError(getString(R.string.enter_more_than_zero));
+            binding.editTextCounterNumber.requestFocus();
+            return false;
+        }
+        return true;
     }
 
     private void requestVerificationCode() {
@@ -81,7 +105,6 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
     }
 
     private void progressStatus(boolean hide) {
-        //TODO
         if (hide) {
             binding.buttonSubmit.setVisibility(View.VISIBLE);
             binding.lottieAnimationView.setVisibility(View.GONE);
@@ -93,21 +116,6 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    private boolean mobileValidation() {
-        boolean cancel = false;
-        if (callback.getViewModel().getMobile() == null || callback.getViewModel().getMobile().isEmpty()) {
-            warning(requireContext(), getString(R.string.enter_mobile)).show();
-            binding.editTextMobile.setError(getString(R.string.enter_mobile));
-            binding.editTextMobile.requestFocus();
-            cancel = true;
-        } else if (!MOBILE_REGEX.matcher(callback.getViewModel().getMobile()).matches()) {
-            warning(requireContext(), getString(R.string.mobile_error)).show();
-            binding.editTextMobile.setError(getString(R.string.mobile_error));
-            binding.editTextMobile.requestFocus();
-            cancel = true;
-        }
-        return !cancel;
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {
