@@ -6,6 +6,7 @@ import static com.leon.hamrah_abfa.enums.FragmentTags.ACTIVE_SESSION;
 import static com.leon.hamrah_abfa.enums.FragmentTags.CHANGE_THEME;
 import static com.leon.hamrah_abfa.enums.FragmentTags.MY_ACCOUNT;
 import static com.leon.hamrah_abfa.enums.FragmentTags.WAITING;
+import static com.leon.hamrah_abfa.enums.MarketsName.MYKET;
 import static com.leon.hamrah_abfa.enums.SharedReferenceKeys.THEME;
 import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
@@ -13,11 +14,13 @@ import static com.leon.hamrah_abfa.utils.ShowFragment.showFragmentDialogOnce;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.view.View;
 import android.widget.AdapterView;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.leon.hamrah_abfa.BuildConfig;
 import com.leon.hamrah_abfa.R;
 import com.leon.hamrah_abfa.adapters.base_adapter.MenuAdapter;
 import com.leon.hamrah_abfa.base_items.BaseActivity;
@@ -79,6 +82,28 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
             Intent intent = new Intent(this, WelcomeActivity.class);
             intent.putExtra(IS_FIRST.getValue(), false);
             startActivity(intent);
+        } else if (position == 3) {
+            if (BuildConfig.MARKETS_NAME == MYKET) {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("myket://details?id=" + getPackageName())));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://myket.ir/app/" + getPackageName())));
+                }
+            } else {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("bazaar://details?id=" + getPackageName())));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://cafebazaar.ir/app/" + getPackageName())));
+                }
+            }
+        } else if (position == 4) {
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+            String shareBody = BuildConfig.MARKETS_NAME == MYKET ? "https://myket.ir/app/" + getPackageName() :
+                    "https://cafebazaar.ir/app/" + getPackageName();
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(intent, getString(R.string.share)));
         } else if (position == 5) {
             showFragmentDialogOnce(this, MY_ACCOUNT.getValue(), MyAccountFragment.newInstance());
         }
@@ -149,5 +174,4 @@ public class SettingActivity extends BaseActivity implements AdapterView.OnItemC
     protected String getExitMessage() {
         return null;
     }
-
 }
