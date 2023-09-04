@@ -18,4 +18,9 @@
         android:layout_height="400dp"
         android:layout_below="@id/divider" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_view_payment_description"
+        style="@style/TextInput.Stable"
+        android:layout_below="@id/chart_horizontal_bar"
+        android:padding="@dimen/small_dp" />
 </RelativeLayout>

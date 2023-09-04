@@ -331,5 +331,6 @@
     <string name="new_message_number">شما %d پیام جدید دارید</string>
     <string name="enter_alias">عنوان انشعاب را وارد کنید</string>
     <string name="enter_more_than_zero">رقم کنتور باید بیشتر از صفر باشد</string>
+    <string name="payment_description">در بررسی %d قبض صادر شده‌ی اخیر شما، تعداد %d قبض پرداخت شده، تعداد %d قبض پرداخت نشده موجود است.\nاولین پرداخت شما در تاریخ %s و به طور میانگین %d روز پس از صدور قبض، پرداخت انجام شده است.</string>
 
 </resources>
