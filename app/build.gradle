@@ -33,7 +33,6 @@ android {
             multiDexEnabled true
             crunchPngs false
         }
-
         esf {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -44,6 +43,17 @@ android {
                     "com.leon.hamrah_abfa.enums.CompanyNames.ESF"
             resValue("string", "app_name", "همراه آبفا استان اصفهان")
             crunchPngs false
+        }
+    }
+    flavorDimensions += "version"
+    productFlavors {
+        cb {
+            dimension "version"
+            buildConfigField 'String', 'market', "\"cafebazaar\""
+        }
+        mk {
+            dimension "version"
+            buildConfigField 'String', 'market', "\"myket\""
         }
     }
     compileOptions {
