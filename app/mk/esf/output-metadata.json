@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.leon.hamrah_abfa.esf",
+  "variantName": "mkEsf",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 2,
+      "versionName": "2.01.06.21",
+      "outputFile": "app-mk-esf.apk"
+    }
+  ],
+  "elementType": "File"
+}
