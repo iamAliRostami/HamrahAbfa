@@ -38,29 +38,9 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/large_dp">
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottie_animation_view_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/small_dp"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/info" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/text_view_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/small_dp"
-                    android:layout_toEndOf="@id/lottie_animation_view_info"
-                    android:text="@string/forbidden_description_1"
-                    android:textAppearance="@style/TextStyleSmall.Bold" />
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/text_layout_postal"
                     style="@style/TextInputLayout"
-                    android:layout_below="@id/text_view_description"
-                    android:layout_centerInParent="true"
                     android:hint="@string/optional_postal_code"
                     app:helperText="@string/enter_postal_code">
 
@@ -76,7 +56,6 @@
                     android:id="@+id/text_layout_pre"
                     style="@style/TextInputLayout"
                     android:layout_below="@id/text_layout_postal"
-                    android:layout_alignParentEnd="true"
                     android:hint="@string/pre_account"
                     app:counterMaxLength="11"
                     app:helperText="@string/enter_pre">
@@ -93,7 +72,6 @@
                     android:id="@+id/text_layout_next"
                     style="@style/TextInputLayout"
                     android:layout_below="@id/text_layout_pre"
-                    android:layout_alignParentEnd="true"
                     android:hint="@string/next_account"
                     app:counterMaxLength="11"
                     app:helperText="@string/enter_next">
