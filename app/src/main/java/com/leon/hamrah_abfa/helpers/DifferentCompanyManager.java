@@ -1,15 +1,15 @@
 package com.leon.hamrah_abfa.helpers;
 
 import com.leon.hamrah_abfa.BuildConfig;
-import com.leon.hamrah_abfa.enums.CompanyNames;
+import com.leon.hamrah_abfa.enums.CompaniesName;
 
 public class DifferentCompanyManager {
 
-    public static CompanyNames getActiveCompanyName() {
+    public static CompaniesName getActiveCompanyName() {
         return BuildConfig.COMPANY_NAME;
     }
 
-    public static String getCompanyName(CompanyNames companyName) {
+    public static String getCompanyName(CompaniesName companyName) {
         switch (companyName) {
             case ZONE1:
                 return "آبفا منطقه یک";

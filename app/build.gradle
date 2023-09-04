@@ -39,8 +39,8 @@ android {
             debuggable true
             signingConfig signingConfigs.config
             applicationIdSuffix ".esf"
-            buildConfigField 'com.leon.hamrah_abfa.enums.CompanyNames', 'COMPANY_NAME',
-                    "com.leon.hamrah_abfa.enums.CompanyNames.ESF"
+            buildConfigField 'com.leon.hamrah_abfa.enums.CompaniesName', 'COMPANY_NAME',
+                    "com.leon.hamrah_abfa.enums.CompaniesName.ESF"
             resValue("string", "app_name", "همراه آبفا استان اصفهان")
             crunchPngs false
         }
@@ -49,11 +49,13 @@ android {
     productFlavors {
         cb {
             dimension "version"
-            buildConfigField 'String', 'market', "\"cafebazaar\""
+            buildConfigField 'com.leon.hamrah_abfa.enums.MarketsName', 'MARKETS_NAME',
+                    "com.leon.hamrah_abfa.enums.MarketsName.CAFEBAZAAR"
         }
         mk {
             dimension "version"
-            buildConfigField 'String', 'market', "\"myket\""
+            buildConfigField 'com.leon.hamrah_abfa.enums.MarketsName', 'MARKETS_NAME',
+                    "com.leon.hamrah_abfa.enums.MarketsName.MYKET"
         }
     }
     compileOptions {
