@@ -260,6 +260,7 @@
     <string name="ensheab_has_been_deleted">انشعاب با موفقیت حذف شد</string>
 
     <string name="payment_site">https://crm.abfaesfahan.ir/%s/Bill</string>
+    <string name="payment_site_multiple">https://crm.abfaesfahan.ir/Multipayment/Refah/?</string>
     <string name="cache_folder">responses</string>
     <string name="expired_access">دسترسی شما به دلایل امنیتی باطل شده است، مجددا وارد شوید</string>
     <string name="login_again">ورود دوباره</string>

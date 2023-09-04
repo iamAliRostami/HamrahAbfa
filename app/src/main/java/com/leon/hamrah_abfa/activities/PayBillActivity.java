@@ -11,7 +11,7 @@ import com.leon.hamrah_abfa.base_items.BaseActivity;
 import com.leon.hamrah_abfa.databinding.ActivityPayBillBinding;
 import com.leon.hamrah_abfa.fragments.pay_bill.PayBillBaseFragment;
 
-public class PayBillActivity extends BaseActivity implements PayBillBaseFragment.ICallback {
+public class PayBillActivity extends BaseActivity{
     private ActivityPayBillBinding binding;
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -23,7 +23,6 @@ public class PayBillActivity extends BaseActivity implements PayBillBaseFragment
         displayView(PAY_BILL_BASE_FRAGMENT);
     }
 
-    @Override
     public void displayView(int position) {
         if (position == PAY_BILL_BASE_FRAGMENT) {
             getSupportFragmentManager().beginTransaction().replace(binding.fragmentPayBill.getId(),

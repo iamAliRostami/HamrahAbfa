@@ -9,7 +9,6 @@ import static com.leon.hamrah_abfa.helpers.MyApplication.getInstance;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import java.util.Arrays;
 public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> implements View.OnClickListener {
     private final LayoutInflater inflater;
     private final ArrayList<PayBillViewModel> payBills = new ArrayList<>();
+    private final ArrayList<String> selectedBills = new ArrayList<>();
     private int selectedNumber;
     private int selectedPrice;
 
@@ -96,9 +96,11 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         if (payBills.get(position).selected) {
             selectedNumber++;
             selectedPrice += Integer.parseInt(payBills.get(position).debt);
+            selectedBills.add(payBills.get(position).billId);
         } else {
             selectedNumber--;
             selectedPrice -= Integer.parseInt(payBills.get(position).debt);
+            selectedBills.remove(payBills.get(position).billId);
         }
         notifyItemChanged(position);
     }
@@ -113,5 +115,9 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
 
     public boolean isPayed(int position) {
         return payBills.get(position).isPayed;
+    }
+
+    public ArrayList<String> getSelectedBills() {
+        return selectedBills;
     }
 }

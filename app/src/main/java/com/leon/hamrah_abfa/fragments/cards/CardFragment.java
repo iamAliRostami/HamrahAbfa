@@ -46,7 +46,6 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     private FragmentCardBinding binding;
     private BillCardViewModel viewModel;
     private DialogFragment fragment;
-
     private ICallback callback;
 
     public CardFragment() {
