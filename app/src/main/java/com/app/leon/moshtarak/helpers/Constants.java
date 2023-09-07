@@ -34,6 +34,7 @@ public class Constants {
     public static final int CONTACT_FAQ_FRAGMENT = 14;
     public static final int CONTACT_BRANCH_FRAGMENT = 15;
     public static final int CONTACT_FORBIDDEN_FRAGMENT = 16;
+    public static final int CONTACT_DEVELOPER_FRAGMENT = 16;
     public static final int CONTACT_PHONEBOOK_FRAGMENT = 17;
     public static final int CONTACT_FORBIDDEN_COMPLETE_FRAGMENT = 18;
     public static final int CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT = 21;

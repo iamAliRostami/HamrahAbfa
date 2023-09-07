@@ -73,7 +73,7 @@
             android:layout_above="@id/text_view_fax"
             android:layout_below="@id/text_view_financial"
             android:layout_toEndOf="@id/image_view_fax"
-            android:text="@string/phone" />
+            android:text="@string/phone_number" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_phone"
@@ -81,7 +81,7 @@
             android:layout_below="@id/text_view_financial"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@id/text_view_phone_title"
-            android:text="@string/phone" />
+            android:text="@string/phone_number" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_fax"

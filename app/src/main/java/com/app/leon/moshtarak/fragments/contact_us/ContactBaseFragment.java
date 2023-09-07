@@ -17,7 +17,8 @@ import com.app.leon.moshtarak.databinding.FragmentContactBaseBinding;
 import com.app.leon.moshtarak.fragments.citizen.ForbiddenViewModel;
 import com.app.leon.moshtarak.helpers.Constants;
 
-public class ContactBaseFragment extends Fragment implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class ContactBaseFragment extends Fragment implements AdapterView.OnItemClickListener,
+        View.OnClickListener {
     private FragmentContactBaseBinding binding;
     private ICallback callback;
 
@@ -72,9 +73,10 @@ public class ContactBaseFragment extends Fragment implements AdapterView.OnItemC
             callback.displayView(Constants.CONTACT_BRANCH_FRAGMENT);
         } else if (position == 4) {
             callback.getForbiddenViewModel().resetViewModel();
-            callback.displayView(Constants.CONTACT_FORBIDDEN_FRAGMENT);
-        } else if (position == 5) {
             callback.displayView(Constants.CONTACT_PHONEBOOK_FRAGMENT);
+        } else if (position == 5) {
+            //TODO
+            callback.displayView(Constants.CONTACT_DEVELOPER_FRAGMENT);
         }
     }
 

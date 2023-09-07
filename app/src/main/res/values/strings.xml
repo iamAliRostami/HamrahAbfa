@@ -51,7 +51,7 @@
     <string name="requests">درخواست\u200cها</string>
     <string name="last_bills">قبض آخر</string>
     <string name="change_number">تغییر موبایل</string>
-    <string name="contact_us">ارتباط با آبفا</string>
+    <string name="contact_us">ارتباط با ما</string>
     <string name="sign_account">ثبت انشعاب</string>
     <string name="bill_id">شناسه قبض</string>
     <string name="go_continue">ادامه</string>
@@ -159,6 +159,7 @@
     <string name="branches">شعب</string>
     <string name="forbidden">انشعاب غیرمجاز</string>
     <string name="phones">تلفن\u200cها</string>
+    <string name="developers">توسعه\u200cدهندگان</string>
 
 
     <string name="help_services">خدمات غیرحضوری</string>
@@ -171,7 +172,7 @@
     <string name="fax">فکس</string>
     <string name="postal_code">کد پستی</string>
     <string name="optional_postal_code">کد پستی (اختیاری)</string>
-    <string name="phone">تلفن</string>
+    <string name="phone_number">تلفن</string>
     <string name="location">محل</string>
     <string name="road_external">مسیریابی خارجی</string>
     <string name="road_internal">مسیریابی داخلی</string>
@@ -331,5 +332,10 @@
     <string name="enter_alias">عنوان انشعاب را وارد کنید</string>
     <string name="enter_more_than_zero">رقم کنتور باید بیشتر از صفر باشد</string>
     <string name="payment_description">در بررسی %d قبض صادر شده‌ی اخیر شما، تعداد %d قبض پرداخت شده، تعداد %d قبض پرداخت نشده موجود است.\nاولین پرداخت شما در تاریخ %s و به طور میانگین %d روز پس از صدور قبض، پرداخت انجام شده است.</string>
+    <string name="company">شرکت هیواپرداز اطلس</string>
+    <string name="email">ایمیل: info@hiwapardaz.ir</string>
+    <string name="company_email">info@hiwapardaz.ir</string>
+    <string name="phone">شماره تماس: 32121764–031</string>
+    <string name="company_phone">03132121764</string>
 
 </resources>

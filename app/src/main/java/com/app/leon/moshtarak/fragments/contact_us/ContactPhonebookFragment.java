@@ -2,6 +2,7 @@ package com.app.leon.moshtarak.fragments.contact_us;
 
 import static android.Manifest.permission.CALL_PHONE;
 import static android.content.Context.CLIPBOARD_SERVICE;
+import static com.app.leon.moshtarak.utils.PermissionManager.checkCallPhonePermission;
 import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.success;
 import static com.leon.toast.RTLToast.warning;
@@ -30,7 +31,6 @@ import com.app.leon.moshtarak.databinding.FragmentContactPhonebookBinding;
 import com.app.leon.moshtarak.enums.FragmentTags;
 import com.app.leon.moshtarak.fragments.dialog.WaitingFragment;
 import com.app.leon.moshtarak.requests.contact_us.GetTelRequest;
-import com.app.leon.moshtarak.utils.PermissionManager;
 import com.app.leon.moshtarak.utils.ShowFragment;
 
 import java.util.ArrayList;
@@ -114,7 +114,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (PermissionManager.checkCallPhonePermission(requireActivity())) {
+        if (checkCallPhonePermission(requireActivity())) {
             if (phonebook.telInfoDtos.get(position).getNumber().indexOf("-") > 0)
                 call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
                         phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
@@ -128,7 +128,7 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(CLIPBOARD_SERVICE);
-        final ClipData clip = ClipData.newPlainText("phonebook", phonebook.telInfoDtos.get(position).getNumber());
+        final ClipData clip = ClipData.newPlainText("phone", phonebook.telInfoDtos.get(position).getNumber());
         clipboard.setPrimaryClip(clip);
         success(requireContext(), getString(R.string.saved_in_clipboard)).show();
         return true;

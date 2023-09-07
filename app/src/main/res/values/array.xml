@@ -206,8 +206,8 @@
         <item>@string/complaint</item>
         <item>@string/faq</item>
         <item>@string/branches</item>
-        <item>@string/forbidden</item>
         <item>@string/phones</item>
+        <item>@string/developers</item>
     </string-array>
 
     <array name="contact_abfa_icons">
@@ -215,8 +215,8 @@
         <item>@drawable/ic_complaint</item>
         <item>@drawable/ic_faq</item>
         <item>@drawable/ic_branches</item>
-        <item>@drawable/ic_forbidden</item>
         <item>@drawable/ic_contacts</item>
+        <item>@drawable/ic_developer</item>
     </array>
 
     <string-array name="welcome_item_titles">

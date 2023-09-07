@@ -4,10 +4,10 @@ import static com.app.leon.moshtarak.enums.FragmentTags.REQUEST_DONE;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_BASE_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_BRANCH_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_COMPLAINT_FRAGMENT;
+import static com.app.leon.moshtarak.helpers.Constants.CONTACT_DEVELOPER_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_FAQ_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_FORBIDDEN_COMPLETE_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_FORBIDDEN_DESCRIPTION_FRAGMENT;
-import static com.app.leon.moshtarak.helpers.Constants.CONTACT_FORBIDDEN_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_PHONEBOOK_FRAGMENT;
 import static com.app.leon.moshtarak.helpers.Constants.CONTACT_SUGGESTION_FRAGMENT;
 import static com.app.leon.moshtarak.utils.ShowFragment.addFragment;
@@ -20,8 +20,10 @@ import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.adapters.base_adapter.ImageViewAdapter;
 import com.app.leon.moshtarak.base_items.BaseActivity;
+import com.app.leon.moshtarak.databinding.ActivityContactUsBinding;
 import com.app.leon.moshtarak.fragments.citizen.ContactForbiddenBaseFragment;
 import com.app.leon.moshtarak.fragments.citizen.ContactForbiddenCompleteFragment;
 import com.app.leon.moshtarak.fragments.citizen.ContactForbiddenInfoFragment;
@@ -29,13 +31,12 @@ import com.app.leon.moshtarak.fragments.citizen.ForbiddenViewModel;
 import com.app.leon.moshtarak.fragments.contact_us.ContactBaseFragment;
 import com.app.leon.moshtarak.fragments.contact_us.ContactBranchFragment;
 import com.app.leon.moshtarak.fragments.contact_us.ContactComplaintFragment;
+import com.app.leon.moshtarak.fragments.contact_us.ContactDeveloperFragment;
 import com.app.leon.moshtarak.fragments.contact_us.ContactFAQFragment;
 import com.app.leon.moshtarak.fragments.contact_us.ContactPhonebookFragment;
 import com.app.leon.moshtarak.fragments.contact_us.ContactSuggestionFragment;
 import com.app.leon.moshtarak.fragments.dialog.MessageDoneRequestFragment;
-import com.app.leon.moshtarak.R;
 
-import com.app.leon.moshtarak.databinding.ActivityContactUsBinding;
 public class ContactUsActivity extends BaseActivity implements ContactBaseFragment.ICallback,
         ContactForbiddenBaseFragment.ICallback, ContactForbiddenCompleteFragment.ICallback,
         ContactForbiddenInfoFragment.ICallback {
@@ -62,9 +63,9 @@ public class ContactUsActivity extends BaseActivity implements ContactBaseFragme
             replaceFragment(this, binding.fragmentContact.getId(), ContactFAQFragment.newInstance());
         } else if (position == CONTACT_BRANCH_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactBranchFragment.newInstance());
-        } else if (position == CONTACT_FORBIDDEN_FRAGMENT) {
-            imageAdapter = new ImageViewAdapter(this);
-            replaceFragment(this, binding.fragmentContact.getId(), ContactForbiddenBaseFragment.newInstance());
+        } else if (position == CONTACT_DEVELOPER_FRAGMENT) {
+//            imageAdapter = new ImageViewAdapter(this);
+            replaceFragment(this, binding.fragmentContact.getId(), ContactDeveloperFragment.newInstance());
         } else if (position == CONTACT_PHONEBOOK_FRAGMENT) {
             replaceFragment(this, binding.fragmentContact.getId(), ContactPhonebookFragment.newInstance());
         } else if (position == CONTACT_FORBIDDEN_COMPLETE_FRAGMENT) {
