@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.view.View;
 
-import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.base_items.BaseActivity;
 import com.app.leon.moshtarak.databinding.ActivityPayBillBinding;
 import com.app.leon.moshtarak.fragments.pay_bill.PayBillBaseFragment;
@@ -32,7 +31,7 @@ public class PayBillActivity extends BaseActivity {
 
     @Override
     protected String getExitMessage() {
-        return getString(R.string.return_by_press_again);
+        return null;
     }
 
     @Override

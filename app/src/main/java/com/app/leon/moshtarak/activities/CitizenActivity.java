@@ -81,10 +81,11 @@ public class CitizenActivity extends BaseActivity implements CitizenListFragment
 
     @Override
     protected String getExitMessage() {
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        if (fragmentManager.getBackStackEntryCount() == 0)
-            return getString(R.string.return_by_press_again);
-        else return null;
+//        final FragmentManager fragmentManager = getSupportFragmentManager();
+//        if (fragmentManager.getBackStackEntryCount() == 0)
+//            return getString(R.string.return_by_press_again);
+//        else return null;
+        return null;
     }
 
     @Override

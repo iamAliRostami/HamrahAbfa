@@ -120,7 +120,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
 
     @Override
     protected String getExitMessage() {
-        return getString(R.string.return_by_press_again);
+        return null;
     }
 
     @Override

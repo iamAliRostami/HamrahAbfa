@@ -78,7 +78,7 @@ public class ServiceBuyActivity extends BaseActivity implements ServiceIntroduct
 
     @Override
     protected String getExitMessage() {
-        return getString(R.string.return_by_press_again);
+        return null;
     }
 
     @Override
