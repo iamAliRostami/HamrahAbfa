@@ -60,7 +60,6 @@ public class DashboardCounterFragment extends Fragment {
             ArrayList<PieEntry> entries = new ArrayList<>();
             ArrayList<Counter> counters = callback.getCounterStat().counterStatWrapper;
             for (int i = 0; i < counters.size(); i++) {
-//                entries.add(new PieEntry(counters.get(i).count, counters.get(i).title));
                 entries.add(new PieEntry(counters.get(i).count, counters.get(i).title));
             }
             setPieChartData(entries);
