@@ -38,7 +38,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             debuggable true
             signingConfig signingConfigs.config
-            applicationIdSuffix ".esf"
+//            applicationIdSuffix ".esf"
             buildConfigField 'com.app.leon.moshtarak.enums.CompaniesName', 'COMPANY_NAME',
                     "com.app.leon.moshtarak.enums.CompaniesName.ESF"
             resValue("string", "app_name", "همراه آبفا استان اصفهان")
