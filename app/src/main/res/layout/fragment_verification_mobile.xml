@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.mobile.PreLoginViewModel" />
+            type="com.app.leon.moshtarak.fragments.mobile.PreLoginViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.mobile.VerificationMobileFragment">
+        tools:context="com.app.leon.moshtarak.fragments.mobile.VerificationMobileFragment">
 
         <View
             android:layout_width="match_parent"

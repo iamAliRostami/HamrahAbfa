@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.ui.help.HelpViewModel" />
+            type="com.app.leon.moshtarak.fragments.ui.help.HelpViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:background="@color/light_blue"
         android:rotationY="180"
-        tools:context=".fragments.ui.help.HelpViewPagerFragment">
+        tools:context="com.app.leon.moshtarak.fragments.ui.help.HelpViewPagerFragment">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_logo"

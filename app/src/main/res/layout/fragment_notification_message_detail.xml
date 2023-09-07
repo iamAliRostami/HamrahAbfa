@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.notifications.NotificationsViewModel" />
+            type="com.app.leon.moshtarak.fragments.notifications.NotificationsViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:paddingStart="@dimen/large_dp"
         android:paddingEnd="@dimen/large_dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context=".fragments.notifications.NotificationMessageDetailFragment">
+        tools:context="com.app.leon.moshtarak.fragments.notifications.NotificationMessageDetailFragment">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_title"

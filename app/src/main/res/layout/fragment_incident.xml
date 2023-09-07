@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/large_dp"
-    tools:context=".fragments.ui.incident.IncidentFragment">
+    tools:context="com.app.leon.moshtarak.fragments.ui.incident.IncidentFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/image_view_incident"

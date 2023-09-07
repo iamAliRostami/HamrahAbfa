@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.dialog.YesNoViewModel" />
+            type="com.app.leon.moshtarak.fragments.dialog.YesNoViewModel" />
     </data>
 
 
@@ -16,7 +16,7 @@
         style="@style/CardStyle"
         android:layout_margin="@dimen/large_dp"
         android:background="@drawable/background_dialog"
-        tools:context=".fragments.dialog.YesNoFragment">
+        tools:context="com.app.leon.moshtarak.fragments.dialog.YesNoFragment">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

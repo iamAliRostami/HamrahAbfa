@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.services.ServicesViewModel" />
+            type="com.app.leon.moshtarak.fragments.services.ServicesViewModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.services.buy.ServiceLocationFragment">
+        tools:context="com.app.leon.moshtarak.fragments.services.buy.ServiceLocationFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"

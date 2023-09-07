@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_dialog"
-    tools:context=".fragments.dialog.PayBillSucceedFragment">
+    tools:context="com.app.leon.moshtarak.fragments.dialog.PayBillSucceedFragment">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/CardStyle"

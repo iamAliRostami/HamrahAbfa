@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ParentLayout"
-    tools:context=".activities.IncidentActivity">
+    tools:context="com.app.leon.moshtarak.activities.IncidentActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_incident"

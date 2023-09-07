@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.last_bill.BillViewModel" />
+            type="com.app.leon.moshtarak.fragments.last_bill.BillViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:id="@+id/relative_layout_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".fragments.last_bill.LastBillReadingInfoFragment">
+        tools:context="com.app.leon.moshtarak.fragments.last_bill.LastBillReadingInfoFragment">
 
         <View
             android:id="@+id/divider"

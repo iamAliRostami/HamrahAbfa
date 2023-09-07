@@ -6,22 +6,22 @@
     app:startDestination="@+id/navigation_home">
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.leon.hamrah_abfa.fragments.ui.home.HomeFragment"
+        android:name="com.app.leon.moshtarak.fragments.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.leon.hamrah_abfa.fragments.ui.dashboard.DashboardBaseFragment"
+        android:name="com.app.leon.moshtarak.fragments.ui.dashboard.DashboardBaseFragment"
         android:label="@string/dashboard"
         tools:layout="@layout/fragment_dashboard_base" />
     <fragment
         android:id="@+id/navigation_incident"
-        android:name="com.leon.hamrah_abfa.fragments.ui.incident.IncidentFragment"
+        android:name="com.app.leon.moshtarak.fragments.ui.incident.IncidentFragment"
         android:label="@string/incident"
         tools:layout="@layout/fragment_incident" />
     <fragment
         android:id="@+id/navigation_services"
-        android:name="com.leon.hamrah_abfa.fragments.ui.services.ServiceFragment"
+        android:name="com.app.leon.moshtarak.fragments.ui.services.ServiceFragment"
         android:label="@string/services"
         tools:layout="@layout/fragment_service" />
 </navigation>

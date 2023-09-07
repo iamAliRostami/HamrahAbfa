@@ -6,7 +6,7 @@
     android:background="@color/light_blue"
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
-    tools:context=".activities.DashboardActivity">
+    tools:context="com.app.leon.moshtarak.activities.DashboardActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

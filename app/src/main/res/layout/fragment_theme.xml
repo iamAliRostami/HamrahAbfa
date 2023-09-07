@@ -8,7 +8,7 @@
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".fragments.bottom_sheets.ThemeFragment">
+    tools:context="com.app.leon.moshtarak.fragments.bottom_sheets.ThemeFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_arrow_down"

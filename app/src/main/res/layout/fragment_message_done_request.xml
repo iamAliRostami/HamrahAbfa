@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialog"
-    tools:context=".fragments.dialog.MessageDoneRequestFragment">
+    tools:context="com.app.leon.moshtarak.fragments.dialog.MessageDoneRequestFragment">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/CardStyle"

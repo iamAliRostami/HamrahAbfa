@@ -41,7 +41,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".helpers.MyApplication"
+        android:name="com.app.leon.moshtarak.helpers.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -55,79 +55,79 @@
         android:theme="@style/Theme.HamrahAbfa.NoActionBar"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".activities.DashboardActivity"
+            android:name="com.app.leon.moshtarak.activities.DashboardActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.UsageHistoryActivity"
+            android:name="com.app.leon.moshtarak.activities.UsageHistoryActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.CitizenActivity"
+            android:name="com.app.leon.moshtarak.activities.CitizenActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.LastBillActivity"
+            android:name="com.app.leon.moshtarak.activities.LastBillActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.CheckoutActivity"
+            android:name="com.app.leon.moshtarak.activities.CheckoutActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.PayBillActivity"
+            android:name="com.app.leon.moshtarak.activities.PayBillActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ContactUsActivity"
+            android:name="com.app.leon.moshtarak.activities.ContactUsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ChangeMobileActivity"
+            android:name="com.app.leon.moshtarak.activities.ChangeMobileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.NotificationsActivity"
+            android:name="com.app.leon.moshtarak.activities.NotificationsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SetCounterNumberActivity"
+            android:name="com.app.leon.moshtarak.activities.SetCounterNumberActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.FollowRequestActivity"
+            android:name="com.app.leon.moshtarak.activities.FollowRequestActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.IncidentActivity"
+            android:name="com.app.leon.moshtarak.activities.IncidentActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ServiceAfterActivity"
+            android:name="com.app.leon.moshtarak.activities.ServiceAfterActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ServiceBuyActivity"
+            android:name="com.app.leon.moshtarak.activities.ServiceBuyActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ServiceAbActivity"
+            android:name="com.app.leon.moshtarak.activities.ServiceAbActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SettingActivity"
+            android:name="com.app.leon.moshtarak.activities.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SubmitMobileActivity"
+            android:name="com.app.leon.moshtarak.activities.SubmitMobileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.WelcomeActivity"
+            android:name="com.app.leon.moshtarak.activities.WelcomeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.app.leon.moshtarak.activities.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -139,7 +139,7 @@
         </activity>
 
         <receiver
-            android:name=".utils.SMSReceiver"
+            android:name="com.app.leon.moshtarak.utils.SMSReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />

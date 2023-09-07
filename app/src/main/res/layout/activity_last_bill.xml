@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
-    tools:context=".activities.LastBillActivity">
+    tools:context="com.app.leon.moshtarak.activities.LastBillActivity">
 
     <ScrollView
         android:layout_width="match_parent"

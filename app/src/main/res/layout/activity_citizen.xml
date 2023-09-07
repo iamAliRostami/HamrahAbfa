@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ParentLayout"
     android:padding="0dp"
-    tools:context=".activities.CitizenActivity">
+    tools:context="com.app.leon.moshtarak.activities.CitizenActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_citizen"

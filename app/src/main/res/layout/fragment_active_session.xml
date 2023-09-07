@@ -7,7 +7,7 @@
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".fragments.bottom_sheets.ActiveSessionFragment">
+    tools:context="com.app.leon.moshtarak.fragments.bottom_sheets.ActiveSessionFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linear_layout_title"

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ParentLayout"
-    tools:context=".activities.ChangeMobileActivity">
+    tools:context="com.app.leon.moshtarak.activities.ChangeMobileActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_change_number"

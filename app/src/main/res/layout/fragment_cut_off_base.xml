@@ -5,14 +5,14 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.cut_off.CutOffViewModel" />
+            type="com.app.leon.moshtarak.fragments.cut_off.CutOffViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.cut_off.CutOffBaseFragment">
+        tools:context="com.app.leon.moshtarak.fragments.cut_off.CutOffBaseFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_content"

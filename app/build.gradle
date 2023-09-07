@@ -13,7 +13,7 @@ android {
         }
     }
     defaultConfig {
-        applicationId "com.leon.hamrah_abfa"
+        applicationId "com.app.leon.moshtarak"
         minSdk 23
         targetSdk 34
         versionCode 2
@@ -21,8 +21,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resValue("string", "app_name", "همراه آبفا")
-        buildConfigField 'com.leon.hamrah_abfa.enums.CompanyNames', 'COMPANY_NAME',
-                "com.leon.hamrah_abfa.enums.CompanyNames.ESF"
+        buildConfigField 'com.app.leon.moshtarak.enums.CompanyNames', 'COMPANY_NAME',
+                "com.app.leon.moshtarak.enums.CompanyNames.ESF"
     }
     buildTypes {
         release {
@@ -39,8 +39,8 @@ android {
             debuggable true
             signingConfig signingConfigs.config
             applicationIdSuffix ".esf"
-            buildConfigField 'com.leon.hamrah_abfa.enums.CompaniesName', 'COMPANY_NAME',
-                    "com.leon.hamrah_abfa.enums.CompaniesName.ESF"
+            buildConfigField 'com.app.leon.moshtarak.enums.CompaniesName', 'COMPANY_NAME',
+                    "com.app.leon.moshtarak.enums.CompaniesName.ESF"
             resValue("string", "app_name", "همراه آبفا استان اصفهان")
             crunchPngs false
         }
@@ -49,13 +49,13 @@ android {
     productFlavors {
         cb {
             dimension "version"
-            buildConfigField 'com.leon.hamrah_abfa.enums.MarketsName', 'MARKETS_NAME',
-                    "com.leon.hamrah_abfa.enums.MarketsName.CAFEBAZAAR"
+            buildConfigField 'com.app.leon.moshtarak.enums.MarketsName', 'MARKETS_NAME',
+                    "com.app.leon.moshtarak.enums.MarketsName.CAFEBAZAAR"
         }
         mk {
             dimension "version"
-            buildConfigField 'com.leon.hamrah_abfa.enums.MarketsName', 'MARKETS_NAME',
-                    "com.leon.hamrah_abfa.enums.MarketsName.MYKET"
+            buildConfigField 'com.app.leon.moshtarak.enums.MarketsName', 'MARKETS_NAME',
+                    "com.app.leon.moshtarak.enums.MarketsName.MYKET"
         }
     }
     compileOptions {
@@ -71,7 +71,7 @@ android {
 //        preDexLibraries true
 //        dexInProcess = true
 //    }
-    namespace 'com.leon.hamrah_abfa'
+    namespace 'com.app.leon.moshtarak'
 }
 
 dependencies {

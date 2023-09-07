@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/xlarge_dp"
     android:layout_margin="@dimen/xlarge_dp"
-    tools:context=".fragments.dialog.WaitingFragment">
+    tools:context="com.app.leon.moshtarak.fragments.dialog.WaitingFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_waiting"

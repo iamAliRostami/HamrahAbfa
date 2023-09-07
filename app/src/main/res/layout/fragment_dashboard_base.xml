@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/large_dp"
     android:paddingBottom="@dimen/large_dp"
-    tools:context=".fragments.ui.dashboard.DashboardBaseFragment">
+    tools:context="com.app.leon.moshtarak.fragments.ui.dashboard.DashboardBaseFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_card"

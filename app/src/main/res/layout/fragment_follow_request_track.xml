@@ -7,7 +7,7 @@
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".fragments.follow_request.FollowRequestTrackFragment">
+    tools:context="com.app.leon.moshtarak.fragments.follow_request.FollowRequestTrackFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_icon"

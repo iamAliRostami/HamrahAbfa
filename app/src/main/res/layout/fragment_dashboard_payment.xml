@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/light_gray"
-    tools:context=".fragments.dashboard.DashboardPaymentFragment">
+    tools:context="com.app.leon.moshtarak.fragments.dashboard.DashboardPaymentFragment">
 
     <View
         android:id="@+id/divider"

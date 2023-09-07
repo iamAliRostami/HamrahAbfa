@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.incident.IncidentCompleteFragment">
+    tools:context="com.app.leon.moshtarak.fragments.incident.IncidentCompleteFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_map_title"

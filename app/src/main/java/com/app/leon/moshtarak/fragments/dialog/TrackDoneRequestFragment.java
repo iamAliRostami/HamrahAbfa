@@ -1,0 +1,103 @@
+package com.app.leon.moshtarak.fragments.dialog;
+
+import static com.leon.toast.RTLToast.success;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+
+import com.app.leon.moshtarak.R;
+import com.app.leon.moshtarak.databinding.FragmentTrackDoneRequestBinding;
+import com.app.leon.moshtarak.enums.BundleEnum;
+
+public class TrackDoneRequestFragment extends DialogFragment implements View.OnClickListener {
+    private FragmentTrackDoneRequestBinding binding;
+    private String trackNumber;
+    private String textButton;
+    private IClickListener listener;
+
+    public TrackDoneRequestFragment() {
+    }
+
+    public TrackDoneRequestFragment(IClickListener listener) {
+        this.listener = listener;
+    }
+
+    public static TrackDoneRequestFragment newInstance(String trackNumber, String textButton,
+                                                       IClickListener listener) {
+        Bundle args = new Bundle();
+        args.putString(BundleEnum.TRACK_NUMBER.getValue(), trackNumber);
+        args.putString(BundleEnum.TEXT_BUTTON.getValue(), textButton);
+        TrackDoneRequestFragment fragment = new TrackDoneRequestFragment(listener);
+        fragment.setArguments(args);
+        fragment.setCancelable(false);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            trackNumber = getArguments().getString(BundleEnum.TRACK_NUMBER.getValue());
+            textButton = getArguments().getString(BundleEnum.TEXT_BUTTON.getValue());
+            getArguments().clear();
+        }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentTrackDoneRequestBinding.inflate(inflater, container, false);
+        initialize();
+        return binding.getRoot();
+    }
+
+    private void initialize() {
+        binding.textViewTrackNumber.setText(trackNumber);
+        binding.buttonReturn.setText(textButton);
+        binding.buttonReturn.setOnClickListener(this);
+        binding.linearLayoutCopy.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int id = v.getId();
+        if (id == R.id.button_return) {
+            listener.yes(this);
+        } else if (id == R.id.linear_layout_copy) {
+            final ClipboardManager clipboard = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            final ClipData clip = ClipData.newPlainText(getString(R.string.track_number), trackNumber);
+            clipboard.setPrimaryClip(clip);
+            success(requireContext(), R.string.track_number_is_copied).show();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        if (getDialog() != null) {
+            final WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
+            params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            getDialog().getWindow().setAttributes(params);
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        super.onResume();
+    }
+
+
+    public interface IClickListener {
+        void yes(DialogFragment dialogFragment);
+
+        void no(DialogFragment dialogFragment);
+    }
+}

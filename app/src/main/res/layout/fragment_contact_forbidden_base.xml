@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.leon.hamrah_abfa.fragments.citizen.ForbiddenViewModel" />
+            type="com.app.leon.moshtarak.fragments.citizen.ForbiddenViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/large_dp"
-        tools:context=".fragments.citizen.ContactForbiddenBaseFragment">
+        tools:context="com.app.leon.moshtarak.fragments.citizen.ContactForbiddenBaseFragment">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_animation_view_complaint"

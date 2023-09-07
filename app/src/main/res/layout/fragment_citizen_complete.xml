@@ -8,7 +8,7 @@
     android:layout_marginEnd="@dimen/large_dp"
     android:layout_marginBottom="@dimen/medium_dp"
     android:orientation="vertical"
-    tools:context=".fragments.citizen.CitizenCompleteFragment">
+    tools:context="com.app.leon.moshtarak.fragments.citizen.CitizenCompleteFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_animation_view_complaint"

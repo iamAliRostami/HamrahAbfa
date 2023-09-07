@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ParentLayout"
     android:padding="0dp"
-    tools:context=".fragments.ui.home.HomeFragment">
+    tools:context="com.app.leon.moshtarak.fragments.ui.home.HomeFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_card"
