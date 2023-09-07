@@ -21,8 +21,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resValue("string", "app_name", "همراه آبفا")
-        buildConfigField 'com.app.leon.moshtarak.enums.CompanyNames', 'COMPANY_NAME',
-                "com.app.leon.moshtarak.enums.CompanyNames.ESF"
+        buildConfigField 'com.app.leon.moshtarak.enums.CompaniesName', 'COMPANY_NAME',
+                "com.app.leon.moshtarak.enums.CompaniesName.ESF"
     }
     buildTypes {
         release {

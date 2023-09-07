@@ -19,11 +19,9 @@ import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentDashboardCounterBinding;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 
@@ -119,10 +117,11 @@ public class DashboardCounterFragment extends Fragment {
 
         Legend l = binding.chartPie.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
         l.setEnabled(true);
+        l.setWordWrapEnabled(true);
         l.setTypeface(callback.getTypeface());
     }
 
