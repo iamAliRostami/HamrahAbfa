@@ -89,12 +89,12 @@ public class DashboardPaymentFragment extends Fragment {
         binding.chartHorizontalBar.setNoDataTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
         binding.chartHorizontalBar.setNoDataTextTypeface(callback.getTypeface());
 
-        binding.chartHorizontalBar.getDescription().setText(getString(R.string.chart_payment_description));
-        binding.chartHorizontalBar.getDescription().setXOffset(10f);
-        binding.chartHorizontalBar.getDescription().setYOffset(10f);
-        binding.chartHorizontalBar.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
-        binding.chartHorizontalBar.getDescription().setTextSize(12f);
-        binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
+        binding.chartHorizontalBar.getDescription().setEnabled(false);
+//        binding.chartHorizontalBar.getDescription().setXOffset(10f);
+//        binding.chartHorizontalBar.getDescription().setYOffset(10f);
+//        binding.chartHorizontalBar.getDescription().setTextSize(12f);
+//        binding.chartHorizontalBar.getDescription().setTypeface(callback.getTypeface());
+//        binding.chartHorizontalBar.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
 
         binding.chartHorizontalBar.setExtraOffsets(5f, 0f, 5f, 10f);
 
@@ -159,7 +159,7 @@ public class DashboardPaymentFragment extends Fragment {
             binding.chartHorizontalBar.getData().notifyDataChanged();
             binding.chartHorizontalBar.notifyDataSetChanged();
         } else {
-            dataSet = new BarDataSet(values, getString(R.string.chart_payment));
+            dataSet = new BarDataSet(values, getString(R.string.chart_payment_description));
             dataSet.setColors(R.color.purple_7001, R.color.dark_gray, R.color.purple_7002, R.color.dark);
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();

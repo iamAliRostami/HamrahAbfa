@@ -19,9 +19,11 @@ import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentDashboardCounterBinding;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 
@@ -60,6 +62,7 @@ public class DashboardCounterFragment extends Fragment {
             ArrayList<PieEntry> entries = new ArrayList<>();
             ArrayList<Counter> counters = callback.getCounterStat().counterStatWrapper;
             for (int i = 0; i < counters.size(); i++) {
+//                entries.add(new PieEntry(counters.get(i).count, counters.get(i).title));
                 entries.add(new PieEntry(counters.get(i).count, counters.get(i).title));
             }
             setPieChartData(entries);
@@ -77,12 +80,13 @@ public class DashboardCounterFragment extends Fragment {
 
         binding.chartPie.setUsePercentValues(true);
 
-        binding.chartPie.getDescription().setText(getString(R.string.counter_state_description));
-        binding.chartPie.getDescription().setXOffset(10f);
-        binding.chartPie.getDescription().setYOffset(10f);
-        binding.chartPie.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
-        binding.chartPie.getDescription().setTextSize(15f);
-        binding.chartPie.getDescription().setTypeface(callback.getTypeface());
+        binding.chartPie.getDescription().setEnabled(false);
+//        binding.chartPie.getDescription().setText(getString(R.string.counter_state_description));
+//        binding.chartPie.getDescription().setXOffset(10f);
+//        binding.chartPie.getDescription().setYOffset(10f);
+//        binding.chartPie.getDescription().setTextSize(15f);
+//        binding.chartPie.getDescription().setTypeface(callback.getTypeface());
+//        binding.chartPie.getDescription().setTextColor(ContextCompat.getColor(requireContext(), R.color.dark_gray));
 
 //        binding.chartPie.setExtraOffsets(10f, 0f, 10f, 0f);
 
@@ -106,9 +110,10 @@ public class DashboardCounterFragment extends Fragment {
         binding.chartPie.setRotationEnabled(true);
         binding.chartPie.setHighlightPerTapEnabled(true);
 
-        binding.chartPie.setEntryLabelTextSize(12f);
-        binding.chartPie.setEntryLabelColor(R.color.dark_gray);
-        binding.chartPie.setEntryLabelTypeface(callback.getTypeface());
+        binding.chartPie.setDrawEntryLabels(false);
+//        binding.chartPie.setEntryLabelTextSize(12f);
+//        binding.chartPie.setEntryLabelColor(R.color.dark_gray);
+//        binding.chartPie.setEntryLabelTypeface(callback.getTypeface());
 
         binding.chartPie.animateY(1400, Easing.EaseInOutQuad);
 
@@ -122,7 +127,7 @@ public class DashboardCounterFragment extends Fragment {
     }
 
     private void setPieChartData(ArrayList<PieEntry> entries) {
-        PieDataSet dataSet = new PieDataSet(entries, getString(R.string.counter_state));
+        PieDataSet dataSet = new PieDataSet(entries, getString(R.string.counter_state_description));
         dataSet.setSliceSpace(3f);
         dataSet.setSelectionShift(5f);
         int[] colors = new int[entries.size()];

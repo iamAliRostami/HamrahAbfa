@@ -279,7 +279,7 @@
     <string name="enter_tedad_vahed">تعداد واحد را وارد کنید</string>
     <string name="incorrect_esherak">فرمت اشتراک صحیح نیست</string>
     <string name="choose_a_option">یکی از گزینه ها را انتخاب کنید</string>
-    <string name="citizen_description_1">"توضیح شهروند "</string>
+    <string name="citizen_description_1">توضیح شهروند </string>
     <string name="report_type">نوع گزارش</string>
     <string name="enter_report_type">نوع گزارش را وارد کنید</string>
     <string name="enter_status">وضعیت را وارد کنید</string>
