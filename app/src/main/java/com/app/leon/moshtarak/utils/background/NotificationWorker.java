@@ -26,9 +26,9 @@ import androidx.work.WorkManager;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.activities.NotificationsActivity;
 import com.app.leon.moshtarak.requests.notification.GetNotificationNumberRequest;
-import com.app.leon.moshtarak.R;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -108,7 +108,8 @@ public class NotificationWorker extends Worker {
             notificationManager.createNotificationChannel(channel);
         }
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0,
+                notificationIntent, PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), channelId)
                 .setSmallIcon(R.drawable.app_logo)
                 .setContentTitle(title)

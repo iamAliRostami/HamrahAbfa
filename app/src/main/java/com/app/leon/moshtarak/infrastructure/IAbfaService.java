@@ -109,11 +109,8 @@ public interface IAbfaService {
 
     @POST("KontoriNew/V1/MobileRequest/AbBaha")
     Call<ServicesViewModel> requestAb(@Body ServicesViewModel service);
-
-
     @GET("KontoriNew/V1/MobileFeedbackType/Complaints")
     Call<ArrayList<FeedbackType>> getComplaintsTypes();
-
 
     @GET("KontoriNew/V1/MobileFeedbackType/Suggestions")
     Call<ArrayList<FeedbackType>> getSuggestionsTypes();
