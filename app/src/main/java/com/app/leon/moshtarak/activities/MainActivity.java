@@ -15,6 +15,8 @@ import static com.app.leon.moshtarak.enums.SharedReferenceKeys.IS_PAYED;
 import static com.app.leon.moshtarak.enums.SharedReferenceKeys.MOBILE;
 import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
 import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
+import static com.app.leon.moshtarak.utils.background.Scheduler.backgroundTaskInTime;
+import static com.app.leon.moshtarak.utils.background.Scheduler.scheduleBackgroundTask;
 import static com.leon.toast.RTLToast.warning;
 
 import android.Manifest;
@@ -82,7 +84,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         //TODO
         // This code requires one time to get Hash keys do comment and share key
 //        Log.i("HashKey: ", new AppSignatureHashHelper(this).getAppSignatures().get(0));
-        startScheduledBackgroundTask();
         initializeSplash();
         // TODO
         initializeBottomSheet();
@@ -97,12 +98,12 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
                     PackageManager.PERMISSION_GRANTED) {
-                Scheduler.scheduleBackgroundTask(this);
+                scheduleBackgroundTask(this);
             } else {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
             }
         } else {
-            Scheduler.scheduleBackgroundTask(this);
+            scheduleBackgroundTask(this);
         }
     }
 
@@ -110,12 +111,12 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
                     PackageManager.PERMISSION_GRANTED) {
-                Scheduler.backgroundTaskInTime(this);
+                backgroundTaskInTime(this);
             } else {
                 requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
             }
         } else {
-            Scheduler.backgroundTaskInTime(this);
+            backgroundTaskInTime(this);
         }
     }
 
@@ -163,6 +164,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 welcomeActivityResultLauncher.launch(intent);
             } else if (!getInstance().getApplicationComponent().SharedPreferenceModel().checkIsNotEmpty(MOBILE.getValue())) {
                 //TODO
+                startScheduledBackgroundTask();
                 Fragment prev = getSupportFragmentManager().findFragmentByTag(ASK_YES_NO.getValue());
                 if (prev == null) {
                     Intent intent = new Intent(MainActivity.this, SubmitMobileActivity.class);
@@ -186,7 +188,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
         public void onAnimationEnd(@NonNull Animator animation) {
             binding.relativeLayoutSplash.setVisibility(View.GONE);
             binding.imageViewLogo.setVisibility(View.VISIBLE);
-            final Animation animationFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
+            Animation animationFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_out);
             animationFadeOut.setAnimationListener(animationTypoListener);
             binding.imageViewLogo.startAnimation(animationFadeOut);
         }
@@ -355,8 +357,8 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    Scheduler.backgroundTaskInTime(this);
-                    Scheduler.scheduleBackgroundTask(this);
+                    backgroundTaskInTime(this);
+                    scheduleBackgroundTask(this);
                 } else {
                     warning(this, R.string.notification_won_t_send).show();
                 }
