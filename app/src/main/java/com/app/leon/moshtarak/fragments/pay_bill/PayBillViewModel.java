@@ -9,7 +9,7 @@ public class PayBillViewModel {
     public final String deadline;
     public final String billId;
     public boolean selected;
-    public boolean isPayed;
+    public final boolean isPayed;
 
     public PayBillViewModel(String nickName, String debt, String deadline, String billId) {
         this.nickName = nickName;

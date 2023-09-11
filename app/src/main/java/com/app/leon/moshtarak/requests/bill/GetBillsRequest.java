@@ -25,11 +25,11 @@ public class GetBillsRequest {
         this.callback = callback;
     }
 
-    public boolean request() {
+    public void request() {
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<BillsSummary> call = iAbfaService.getBills();
-        return HttpClientWrapper.callHttpAsyncCancelable(context, call,
+        HttpClientWrapper.callHttpAsyncCancelable(context, call,
                 new GetBillsSuccessful(callback), response -> {
                     APIError error = parseError(response);
                     if (error.status() == 401) {

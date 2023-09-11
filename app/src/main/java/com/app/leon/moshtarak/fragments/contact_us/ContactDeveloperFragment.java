@@ -24,7 +24,6 @@ import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentContactDeveloperBinding;
 
 public class ContactDeveloperFragment extends Fragment implements View.OnClickListener, View.OnLongClickListener {
-    private FragmentContactDeveloperBinding binding;
 
     public ContactDeveloperFragment() {
     }
@@ -41,7 +40,7 @@ public class ContactDeveloperFragment extends Fragment implements View.OnClickLi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentContactDeveloperBinding.inflate(inflater, container, false);
+        FragmentContactDeveloperBinding binding = FragmentContactDeveloperBinding.inflate(inflater, container, false);
         binding.textViewEmail.setOnClickListener(this);
         binding.textViewPhone.setOnClickListener(this);
         binding.textViewPhone.setOnLongClickListener(this);
