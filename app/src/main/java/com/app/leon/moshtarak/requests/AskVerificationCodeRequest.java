@@ -32,7 +32,7 @@ public class AskVerificationCodeRequest {
     }
 
     public boolean request() {
-        callback.changeUI(false);
+        callback.changeUI(true);
         Retrofit retrofit = getInstance().getApplicationComponent().Retrofit();
         IAbfaService iAbfaService = retrofit.create(IAbfaService.class);
         Call<VerificationViewModel> call = iAbfaService.askVerificationCode(verificationViewModel);
@@ -43,7 +43,7 @@ public class AskVerificationCodeRequest {
     public interface ICallback {
         void succeed(String id, long remainedSeconds);
 
-        void changeUI(boolean done);
+        void changeUI(boolean visible);
     }
 }
 
@@ -58,7 +58,6 @@ class VerificationCodeSuccessful implements ICallbackSucceed<VerificationViewMod
     public void executeCompleted(Response<VerificationViewModel> response) {
         callback.changeUI(false);
         if (response.body() != null) {
-            callback.changeUI(true);
             callback.succeed(response.body().getVerificationId(), response.body().getRemainedSeconds());
         }
 
@@ -76,7 +75,7 @@ class VerificationCodeIncomplete implements ICallbackIncomplete<VerificationView
 
     @Override
     public void executeDismissed(Response<VerificationViewModel> response) {
-        callback.changeUI(true);
+        callback.changeUI(false);
         APIError error = parseError(response);
         if (error.status() == 401) {
             expiredToken(context);
@@ -98,7 +97,7 @@ class VerificationCodeFailed implements ICallbackFailure {
 
     @Override
     public void executeFailed(Throwable t) {
-        callback.changeUI(true);
+        callback.changeUI(false);
         showFailedMessage(t, context);
     }
 }

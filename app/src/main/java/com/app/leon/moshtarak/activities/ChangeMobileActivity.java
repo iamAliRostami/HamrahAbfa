@@ -10,7 +10,6 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.view.View;
 
-import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.base_items.BaseActivity;
 import com.app.leon.moshtarak.databinding.ActivityChangeMobileBinding;
 import com.app.leon.moshtarak.fragments.change_mobile.ChangeMobileBaseFragment;

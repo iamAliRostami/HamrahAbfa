@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentChangeMobileBaseBinding;
 import com.app.leon.moshtarak.helpers.Constants;
 import com.app.leon.moshtarak.requests.AskVerificationCodeRequest;
-import com.app.leon.moshtarak.R;
 
 public class ChangeMobileBaseFragment extends Fragment implements View.OnClickListener {
     private FragmentChangeMobileBaseBinding binding;
@@ -57,7 +57,7 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
     }
 
     private void requestVerificationCode() {
-        progressStatus(!new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
+        progressStatus(new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
                 new AskVerificationCodeRequest.ICallback() {
                     @Override
                     public void succeed(String id, long remainedSeconds) {
@@ -66,21 +66,21 @@ public class ChangeMobileBaseFragment extends Fragment implements View.OnClickLi
                     }
 
                     @Override
-                    public void changeUI(boolean done) {
-                        progressStatus(done);
+                    public void changeUI(boolean visible) {
+                        progressStatus(visible);
                     }
                 }).request());
     }
 
-    private void progressStatus(boolean hide) {
-        if (hide) {
-            binding.buttonSubmit.setVisibility(View.VISIBLE);
-            binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.lottieAnimationView.pauseAnimation();
-        } else {
+    private void progressStatus(boolean visible) {
+        if (visible) {
             binding.buttonSubmit.setVisibility(View.GONE);
             binding.lottieAnimationView.playAnimation();
             binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        } else {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
         }
     }
 

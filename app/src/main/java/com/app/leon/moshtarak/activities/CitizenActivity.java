@@ -16,7 +16,6 @@ import android.content.pm.ActivityInfo;
 import android.view.View;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.app.leon.moshtarak.adapters.base_adapter.ImageViewAdapter;
 import com.app.leon.moshtarak.adapters.recycler_view.CitizenAdapter;

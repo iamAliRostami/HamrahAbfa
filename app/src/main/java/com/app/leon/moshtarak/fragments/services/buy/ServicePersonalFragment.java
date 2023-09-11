@@ -14,10 +14,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentServicePersonalBinding;
 import com.app.leon.moshtarak.fragments.services.ServicesViewModel;
-import com.app.leon.moshtarak.helpers.Constants;
-import com.app.leon.moshtarak.R;
 
 public class ServicePersonalFragment extends Fragment implements View.OnClickListener {
     private ICallback callback;

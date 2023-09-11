@@ -1,5 +1,6 @@
 package com.app.leon.moshtarak.fragments.counter;
 
+import static com.app.leon.moshtarak.helpers.Constants.COUNTER_VERIFICATION_CODE_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -88,30 +89,30 @@ public class CounterBaseFragment extends Fragment implements View.OnClickListene
     }
 
     private void requestVerificationCode() {
-        progressStatus(!new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
+        progressStatus(new AskVerificationCodeRequest(getContext(), callback.getViewModel(),
                 new AskVerificationCodeRequest.ICallback() {
                     @Override
                     public void succeed(String id, long remainedSeconds) {
                         callback.editViewModel(id, remainedSeconds);
-                        callback.displayView(Constants.COUNTER_VERIFICATION_CODE_FRAGMENT);
+                        callback.displayView(COUNTER_VERIFICATION_CODE_FRAGMENT);
                     }
 
                     @Override
-                    public void changeUI(boolean done) {
-                        progressStatus(done);
+                    public void changeUI(boolean visible) {
+                        progressStatus(visible);
                     }
                 }).request());
     }
 
-    private void progressStatus(boolean hide) {
-        if (hide) {
-            binding.buttonSubmit.setVisibility(View.VISIBLE);
-            binding.lottieAnimationView.setVisibility(View.GONE);
-            binding.lottieAnimationView.pauseAnimation();
-        } else {
+    private void progressStatus(boolean visible) {
+        if (visible) {
             binding.buttonSubmit.setVisibility(View.GONE);
             binding.lottieAnimationView.playAnimation();
             binding.lottieAnimationView.setVisibility(View.VISIBLE);
+        } else {
+            binding.buttonSubmit.setVisibility(View.VISIBLE);
+            binding.lottieAnimationView.setVisibility(View.GONE);
+            binding.lottieAnimationView.pauseAnimation();
         }
     }
 
