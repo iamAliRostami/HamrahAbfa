@@ -48,10 +48,10 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/TextItem.SingleLine"
                     android:layout_margin="@dimen/small_dp"
                     android:layout_toEndOf="@id/lottie_animation_view_info"
+                    android:padding="0dp"
                     android:text="@string/suggestion_description"
                     android:textAppearance="@style/TextStyleSmall.Bold" />
 

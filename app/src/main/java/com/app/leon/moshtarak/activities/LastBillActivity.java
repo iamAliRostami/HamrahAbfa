@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.base_items.BaseActivity;
 import com.app.leon.moshtarak.databinding.ActivityLastBillBinding;
+import com.app.leon.moshtarak.fragments.citizen.NotFoundFragment;
 import com.app.leon.moshtarak.fragments.dialog.WaitingFragment;
 import com.app.leon.moshtarak.fragments.last_bill.BillViewModel;
 import com.app.leon.moshtarak.fragments.last_bill.LastBillEnsheabInfoFragment;
@@ -95,16 +96,29 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
     }
 
     private void initializeFrameLayouts() {
-        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutSummary.getId(),
-                LastBillSummaryFragment.newInstance()).commitNow();
-        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsingInfo.getId(),
-                LastBillUsingInfoFragment.newInstance()).commitNow();
-        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutItems.getId(),
-                LastBillItemsFragment.newInstance()).commitNow();
-        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutReadingInfo.getId(),
-                LastBillReadingInfoFragment.newInstance()).commitNow();
-        getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutEnsheabInfo.getId(),
-                LastBillEnsheabInfoFragment.newInstance()).commitNow();
+        if (bill != null) {
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutSummary.getId(),
+                    LastBillSummaryFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsingInfo.getId(),
+                    LastBillUsingInfoFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutItems.getId(),
+                    LastBillItemsFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutReadingInfo.getId(),
+                    LastBillReadingInfoFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutEnsheabInfo.getId(),
+                    LastBillEnsheabInfoFragment.newInstance()).commitNow();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutSummary.getId(),
+                    NotFoundFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutUsingInfo.getId(),
+                    NotFoundFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutItems.getId(),
+                    NotFoundFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutReadingInfo.getId(),
+                    NotFoundFragment.newInstance()).commitNow();
+            getSupportFragmentManager().beginTransaction().replace(binding.frameLayoutEnsheabInfo.getId(),
+                    NotFoundFragment.newInstance()).commitNow();
+        }
     }
 
     @Override

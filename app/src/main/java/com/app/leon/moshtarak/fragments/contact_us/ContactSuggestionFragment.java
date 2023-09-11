@@ -94,6 +94,7 @@ public class ContactSuggestionFragment extends Fragment implements View.OnClickL
     }
 
     private void initialize() {
+        binding.textViewDescription.setSelected(true);
         requestSuggestionsTypes();
         initializeGridView();
         binding.editTextSuggestionType.setOnClickListener(v -> showMenu(binding.editTextSuggestionType));

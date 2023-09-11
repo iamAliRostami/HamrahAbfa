@@ -2,6 +2,8 @@ package com.app.leon.moshtarak.helpers;
 
 import static com.app.leon.moshtarak.enums.SharedReferenceKeys.THEME_MODE;
 import static com.app.leon.moshtarak.enums.SharedReferenceNames.ACCOUNT;
+import static com.app.leon.moshtarak.helpers.Constants.HOST_CHECK_CONNECTION;
+import static com.app.leon.moshtarak.helpers.Constants.HOST_P_CHECK_CONNECTION;
 import static com.app.leon.moshtarak.utils.PermissionManager.isNetworkAvailable;
 import static com.leon.toast.RTLToast.Config;
 
@@ -13,16 +15,19 @@ import android.os.StrictMode;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
 
+import com.app.leon.moshtarak.BuildConfig;
 import com.app.leon.moshtarak.di.component.ApplicationComponent;
+import com.app.leon.moshtarak.di.component.DaggerApplicationComponent;
 import com.app.leon.moshtarak.di.module.MyDatabaseModule;
 import com.app.leon.moshtarak.di.module.NetworkModule;
 import com.app.leon.moshtarak.di.module.SharedPreferenceModule;
-import com.app.leon.moshtarak.BuildConfig;
-import com.app.leon.moshtarak.di.component.DaggerApplicationComponent;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.net.URL;
 
 public class MyApplication extends Application {
     private static ApplicationComponent applicationComponent;
@@ -35,7 +40,7 @@ public class MyApplication extends Application {
         int timeout = 1000;
         InetAddress[] addresses;
         try {
-            addresses = InetAddress.getAllByName(Constants.HOST_CHECK_CONNECTION);
+            addresses = InetAddress.getAllByName(HOST_CHECK_CONNECTION);
             for (InetAddress address : addresses) {
                 if (address.isReachable(timeout)) {
                     return true;
@@ -44,7 +49,17 @@ public class MyApplication extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+//        return false;
+        try {
+            URL url = new URL(HOST_P_CHECK_CONNECTION);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setConnectTimeout(1000);
+            httpURLConnection.connect();
+            return httpURLConnection.getResponseCode() == 200;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public static MyApplication getInstance() {

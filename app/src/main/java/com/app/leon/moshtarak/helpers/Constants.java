@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class Constants {
     public static final String DB_NAME = "Database_6";
     public static final String FONT_NAME = "fonts/iranian_sans_b.ttf";
+    public static final String HOST_P_CHECK_CONNECTION = "https://iran.ir";
     public static final String HOST_CHECK_CONNECTION = "iran.ir";
     public static final int CHECK_INTERVAL = 24 * 60 * 60 * 1000;
     public static final int DELAY = 60 * 60 * 1000;

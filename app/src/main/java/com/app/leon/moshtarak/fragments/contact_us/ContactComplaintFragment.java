@@ -96,6 +96,7 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
     }
 
     private void initialize() {
+        binding.textViewDescription.setSelected(true);
         requestComplaintsTypes();
         initializeGridView();
         binding.editTextComplaintType.setOnClickListener(v -> showMenu(binding.editTextComplaintType));

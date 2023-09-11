@@ -1,5 +1,7 @@
 package com.app.leon.moshtarak.fragments.services.buy;
 
+import static com.app.leon.moshtarak.helpers.Constants.SERVICE_INTRODUCTION_FRAGMENT;
+import static com.app.leon.moshtarak.helpers.Constants.SERVICE_LOCATION_FRAGMENT;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -53,9 +55,9 @@ public class ServicePersonalFragment extends Fragment implements View.OnClickLis
         final int id = view.getId();
         if (id == R.id.button_next) {
             if (checkInputs())
-                callback.displayView(Constants.SERVICE_LOCATION_FRAGMENT);
+                callback.displayView(SERVICE_LOCATION_FRAGMENT);
         } else if (id == R.id.button_previous) {
-            callback.displayView(Constants.SERVICE_INTRODUCTION_FRAGMENT);
+            callback.displayView(SERVICE_INTRODUCTION_FRAGMENT);
         }
     }
 
@@ -72,6 +74,7 @@ public class ServicePersonalFragment extends Fragment implements View.OnClickLis
             warning(requireContext(), R.string.fill_in_all).show();
             binding.editTextSureName.setError(getString(R.string.fill_in_sure_name));
             binding.editTextSureName.requestFocus();
+            return false;
         }
         if (callback.getServicesViewModel().getNationalId() == null ||
                 callback.getServicesViewModel().getNationalId().isEmpty() ||
