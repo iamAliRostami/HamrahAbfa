@@ -63,14 +63,14 @@ public class ServicePersonalFragment extends Fragment implements View.OnClickLis
 
     private boolean checkInputs() {
         if (callback.getServicesViewModel().getFirstName() == null ||
-                callback.getServicesViewModel().getFirstName().isEmpty()) {
+                callback.getServicesViewModel().getFirstName().trim().isEmpty()) {
             warning(requireContext(), R.string.fill_in_all).show();
             binding.editTextFirstName.setError(getString(R.string.fill_in_first_name));
             binding.editTextFirstName.requestFocus();
             return false;
         }
         if (callback.getServicesViewModel().getSureName() == null ||
-                callback.getServicesViewModel().getSureName().isEmpty()) {
+                callback.getServicesViewModel().getSureName().trim().isEmpty()) {
             warning(requireContext(), R.string.fill_in_all).show();
             binding.editTextSureName.setError(getString(R.string.fill_in_sure_name));
             binding.editTextSureName.requestFocus();

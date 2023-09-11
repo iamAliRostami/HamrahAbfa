@@ -50,7 +50,7 @@ public class ContactForbiddenBaseFragment extends Fragment implements View.OnCli
         final int id = v.getId();
         if (id == R.id.button_next) {
             if (callback.getForbiddenViewModel().getDescription() == null ||
-                    callback.getForbiddenViewModel().getDescription().isEmpty()) {
+                    callback.getForbiddenViewModel().getDescription().trim().isEmpty()) {
                 binding.editTextDescription.setError(getString(R.string.enter_forbidden_description));
                 binding.editTextDescription.requestFocus();
                 warning(requireContext(), R.string.enter_forbidden_description).show();

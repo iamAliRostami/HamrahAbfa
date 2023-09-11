@@ -56,7 +56,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
             @Override
             public void succeed(BillViewModel bill) {
                 LastBillActivity.this.bill = bill;
-                initializeFrameLayouts();
+//                initializeFrameLayouts();
             }
 
             @Override
@@ -80,6 +80,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
+            initializeFrameLayouts();
             if (fragment != null) {
                 fragment.dismiss();
                 fragment = null;

@@ -28,14 +28,14 @@
         android:paddingEnd="@dimen/medium_dp">
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/TitleBill"
+            style="@style/TitleBill.singleLine"
             android:layout_weight="1"
             android:text="@string/track_number"
             android:textAppearance="@style/TextStyleLarge.Bold" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_track"
-            style="@style/TextItem.LastBill"
+            style="@style/TextItem.LastBill.singleLine"
             android:textAppearance="@style/TextStyleLarge.Bold" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

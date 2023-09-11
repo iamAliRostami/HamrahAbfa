@@ -81,6 +81,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initialize() {
+        binding.textViewTitle.setSelected(true);
         binding.textViewPay.setOnClickListener(this);
         binding.imageViewEdit.setOnClickListener(this);
         binding.imageViewDelete.setOnClickListener(this);

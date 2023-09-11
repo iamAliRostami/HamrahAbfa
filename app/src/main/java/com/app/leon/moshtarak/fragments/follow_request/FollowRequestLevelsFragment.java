@@ -67,6 +67,7 @@ public class FollowRequestLevelsFragment extends BottomSheetDialogFragment {
 
     private void initialize() {
         requestDetailHistory();
+        binding.textViewTrack.setSelected(true);
         binding.textViewTrack.setText(String.valueOf(trackNumber));
         final LinearLayoutCompat.LayoutParams params = new LinearLayoutCompat.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,

@@ -9,6 +9,6 @@
     <dimen name="font_small_value">14sp</dimen>
     <dimen name="font_medium_value">16sp</dimen>
     <dimen name="font_large_value">20sp</dimen>
-    <dimen name="font_xlarge_value">35sp</dimen>
-    <dimen name="font_huge_value">40sp</dimen>
+    <dimen name="font_xlarge_value">25sp</dimen>
+    <dimen name="font_huge_value">35sp</dimen>
 </resources>

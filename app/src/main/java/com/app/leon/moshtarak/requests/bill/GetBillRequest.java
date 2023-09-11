@@ -69,11 +69,11 @@ class GetBillSuccessful implements ICallbackSucceed<BillViewModel> {
 
     @Override
     public void executeCompleted(Response<BillViewModel> response) {
-        callback.changeUI(false);
         if (response.body() != null) {
             callback.changeUI(true);
             callback.succeed(response.body());
         }
+        callback.changeUI(false);
     }
 }
 

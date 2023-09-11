@@ -38,6 +38,7 @@ public class RequestHistoryAdapter extends RecyclerView.Adapter<RequestViewHolde
         holder.textViewDate.setText(requests.get(position).jalaliDay);
         holder.textViewTrackNumber.setText(String.valueOf(requests.get(position).trackNumber));
         holder.textViewRequestType.setText(requests.get(position).requestTitle);
+        holder.textViewRequestType.setSelected(true);
         holder.imageViewRequest.setImageDrawable(icons.getDrawable((int)
                 (Math.log(requests.get(position).requestType) / Math.log(2))));
     }

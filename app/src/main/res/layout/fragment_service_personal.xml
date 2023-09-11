@@ -21,112 +21,117 @@
             android:layout_above="@id/linear_layout_buttons"
             android:layout_alignParentTop="true">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/image_view_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/medium_dp"
-                        app:imageResource="@{viewModel.srcIcon}" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/Title"
-                        android:layout_gravity="center"
-                        android:text="@{viewModel.title}"
-                        android:textAppearance="@style/TextStyleMedium" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/tiny_dp"
-                    android:layout_below="@id/image_view_icon"
-                    android:background="@color/light_gray" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/medium_dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_first_name"
-                        style="@style/TextInputLayout"
-                        android:hint="@string/first_name">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_first_name"
-                            style="@style/TextInput"
-                            android:inputType="textPersonName"
-                            android:text="@={viewModel.firstName}" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/image_view_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/medium_dp"
+                            app:imageResource="@{viewModel.srcIcon}" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_sure_name"
-                        style="@style/TextInputLayout"
-                        android:hint="@string/sure_name">
+                        <com.google.android.material.textview.MaterialTextView
+                            style="@style/Title"
+                            android:layout_gravity="center"
+                            android:text="@{viewModel.title}"
+                            android:textAppearance="@style/TextStyleMedium" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_sure_name"
-                            style="@style/TextInput"
-                            android:inputType="textPersonName"
-                            android:text="@={viewModel.sureName}" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/tiny_dp"
+                        android:layout_below="@id/image_view_icon"
+                        android:background="@color/light_gray" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_nation_code"
-                        style="@style/TextInputLayout"
-                        android:hint="@string/nation_code"
-                        app:counterMaxLength="10">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/medium_dp"
+                        android:orientation="vertical">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_nation_code"
-                            style="@style/TextInput"
-                            android:inputType="number"
-                            android:maxLength="10"
-                            android:text="@={viewModel.nationalId}" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_first_name"
+                            style="@style/TextInputLayout"
+                            android:hint="@string/first_name">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_mobile"
-                        style="@style/TextInputLayout"
-                        android:hint="@string/mobile"
-                        app:counterMaxLength="11"
-                        app:placeholderText="@string/mobile_hint">
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_first_name"
+                                style="@style/TextInput"
+                                android:inputType="textPersonName"
+                                android:text="@={viewModel.firstName}" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_mobile"
-                            style="@style/TextInput"
-                            android:inputType="phone"
-                            android:maxLength="11"
-                            android:text="@={viewModel.mobile}" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_sure_name"
+                            style="@style/TextInputLayout"
+                            android:hint="@string/sure_name">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/text_layout_bill_id"
-                        style="@style/TextInputLayout"
-                        android:layout_marginTop="@dimen/small_dp"
-                        android:hint="@string/neighbour_bill_id"
-                        app:counterMaxLength="13">
-                        <!--                        android:text="@={viewModel.billId}"-->
-                        <!--min 5-->
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edit_text_bill_id"
-                            style="@style/TextInput"
-                            android:inputType="number"
-                            android:maxLength="13"
-                            android:text="@={viewModel.neighbourBillId}" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_sure_name"
+                                style="@style/TextInput"
+                                android:inputType="textPersonName"
+                                android:text="@={viewModel.sureName}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_nation_code"
+                            style="@style/TextInputLayout"
+                            android:hint="@string/nation_code"
+                            app:counterMaxLength="10">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_nation_code"
+                                style="@style/TextInput"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:text="@={viewModel.nationalId}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_mobile"
+                            style="@style/TextInputLayout"
+                            android:hint="@string/mobile"
+                            app:counterMaxLength="11"
+                            app:placeholderText="@string/mobile_hint">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_mobile"
+                                style="@style/TextInput"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:text="@={viewModel.mobile}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/text_layout_bill_id"
+                            style="@style/TextInputLayout"
+                            android:layout_marginTop="@dimen/small_dp"
+                            android:hint="@string/neighbour_bill_id"
+                            app:counterMaxLength="13">
+                            <!--                        android:text="@={viewModel.billId}"-->
+                            <!--min 5-->
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/edit_text_bill_id"
+                                style="@style/TextInput"
+                                android:inputType="number"
+                                android:maxLength="13"
+                                android:text="@={viewModel.neighbourBillId}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </ScrollView>
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.LinearLayoutCompat

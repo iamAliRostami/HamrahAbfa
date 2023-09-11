@@ -81,7 +81,7 @@ public class ServiceLocationFragment extends Fragment implements View.OnClickLis
             return false;
         }
         if (callback.getServicesViewModel().getAddress() == null ||
-                callback.getServicesViewModel().getAddress().isEmpty()) {
+                callback.getServicesViewModel().getAddress().trim().isEmpty()) {
             warning(requireContext(), R.string.fill_in_address).show();
             binding.editTextAddress.setError(getString(R.string.fill_in_address));
             binding.editTextAddress.requestFocus();

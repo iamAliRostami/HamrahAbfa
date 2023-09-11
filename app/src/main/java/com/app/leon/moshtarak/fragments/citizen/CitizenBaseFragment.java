@@ -81,7 +81,7 @@ public class CitizenBaseFragment extends Fragment {
             binding.editTextType.requestFocus();
             return false;
         } else if (callback.getForbiddenViewModel().getDescription() == null ||
-                callback.getForbiddenViewModel().getDescription().isEmpty()) {
+                callback.getForbiddenViewModel().getDescription().trim().isEmpty()) {
             warning(requireContext(), R.string.enter_description).show();
             binding.editTextDescription.setError(getString(R.string.enter_description));
             binding.editTextDescription.requestFocus();
