@@ -7,7 +7,7 @@ public class PaymentStats {
     public int totalBills;
     public int totalPayments;
     public int unpayedBills;
-    public int payAverageTime;
-    public final ArrayList<Integer> payDeadlineValues = new ArrayList<>();
-    public final ArrayList<String> payDeadlineKeys = new ArrayList<>();
+    public double payAverageTime;
+    public ArrayList<Integer> payDeadlineValues = new ArrayList<>();
+    public ArrayList<String> payDeadlineKeys = new ArrayList<>();
 }

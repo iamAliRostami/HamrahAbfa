@@ -7,6 +7,7 @@ import static com.app.leon.moshtarak.utils.ErrorUtils.showFailedMessage;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.fragments.dashboard.PaymentStats;
@@ -21,7 +22,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class GetPaymentStatRequest {
-
     private final Context context;
     private final ICallback callback;
     private final String id;
@@ -98,6 +98,7 @@ class BillPaymentFailed implements ICallbackFailure {
     @Override
     public void executeFailed(Throwable t) {
         callback.changeUI(false);
+        Log.e("error", t.toString());
         showFailedMessage(t, context);
     }
 }

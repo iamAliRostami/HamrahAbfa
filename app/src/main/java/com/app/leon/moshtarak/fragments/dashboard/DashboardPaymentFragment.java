@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,12 +76,16 @@ public class DashboardPaymentFragment extends Fragment {
     }
 
     private void initializeDescription() {
+        Log.e("avg", String.valueOf((int) callback.getPaymentStats().payAverageTime));
         @SuppressLint("DefaultLocale")
-        String description = String.format(getString(R.string.payment_description),
-                callback.getPaymentStats().totalBills, callback.getPaymentStats().totalPayments,
-                callback.getPaymentStats().unpayedBills, callback.getPaymentStats().firstBillDate,
-                callback.getPaymentStats().payAverageTime
-        );
+        String description = callback.getPaymentStats().payAverageTime < 1 ?
+                String.format(getString(R.string.payment_description_1),
+                        callback.getPaymentStats().totalBills, callback.getPaymentStats().totalPayments,
+                        callback.getPaymentStats().unpayedBills, callback.getPaymentStats().firstBillDate) :
+                String.format(getString(R.string.payment_description),
+                        callback.getPaymentStats().totalBills, callback.getPaymentStats().totalPayments,
+                        callback.getPaymentStats().unpayedBills, callback.getPaymentStats().firstBillDate,
+                        (int) callback.getPaymentStats().payAverageTime);
         binding.textViewPaymentDescription.setText(description);
     }
 
