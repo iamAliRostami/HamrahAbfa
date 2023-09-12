@@ -6,6 +6,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.di.view_model.VerificationViewModel;
 import com.app.leon.moshtarak.fragments.mobile.PreLoginViewModel;
@@ -80,15 +81,14 @@ class VerifyCodeIncomplete implements ICallbackIncomplete<PreLoginViewModel> {
     @Override
     public void executeDismissed(Response<PreLoginViewModel> response) {
         callback.changeUI(true);
-        //TODO
         if (response.body() != null) {
             if (response.body().getStatus() == 400) {
                 warning(context, response.body().getMessage()).show();
+            } else if (response.body().getStatus() == 500) {
+                warning(context, R.string.server_error).show();
             }
-            return;
+
         }
-        //TODO
-        warning(context, "dismissed").show();
     }
 }
 

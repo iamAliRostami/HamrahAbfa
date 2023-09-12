@@ -12,6 +12,7 @@ import android.content.Context;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.fragments.dialog.MessageErrorRequestFragment;
 import com.app.leon.moshtarak.fragments.services.ServicesViewModel;
@@ -20,7 +21,6 @@ import com.app.leon.moshtarak.infrastructure.ICallbackFailure;
 import com.app.leon.moshtarak.infrastructure.ICallbackIncomplete;
 import com.app.leon.moshtarak.infrastructure.ICallbackSucceed;
 import com.app.leon.moshtarak.utils.APIError;
-import com.app.leon.moshtarak.R;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -83,16 +83,15 @@ class ServiceAbIncomplete implements ICallbackIncomplete<ServicesViewModel> {
     public void executeDismissed(Response<ServicesViewModel> response) {
         callback.changeUI(false);
         APIError error = parseError(response);
-        if (error.status() == 400) {
+        if (error.status() == 401) {
+            expiredToken(context);
+        } else if (error.status() == 400) {
             showFragmentDialogOnce(context, REQUEST_DONE.getValue(),
                     MessageErrorRequestFragment.newInstance(error.message(), context.getString(R.string.close),
                             DialogFragment::dismiss));
-            return;
-        } else if (error.status() == 401) {
-            expiredToken(context);
-            return;
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
-        warning(context, "dismissed").show();
     }
 }
 

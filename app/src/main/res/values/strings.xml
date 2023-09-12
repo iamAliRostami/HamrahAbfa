@@ -339,5 +339,6 @@
 <!--    <string name="company_email">info@hiwapardaz.ir</string>-->
     <string name="phone">شماره تماس: 32121764–031</string>
     <string name="company_phone">03132121764</string>
+    <string name="server_error">    خظای سرور، لطفا مجدد تلاش کنید و در صورت بر طرف نشدن مشکل با شماره ی 03136693291 تماس بگیرید</string>
 
 </resources>

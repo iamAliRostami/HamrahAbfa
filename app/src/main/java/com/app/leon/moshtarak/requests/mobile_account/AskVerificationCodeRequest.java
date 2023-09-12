@@ -1,13 +1,13 @@
 package com.app.leon.moshtarak.requests.mobile_account;
 
 import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
-import static com.app.leon.moshtarak.utils.ErrorUtils.expiredToken;
 import static com.app.leon.moshtarak.utils.ErrorUtils.parseError;
 import static com.app.leon.moshtarak.utils.ErrorUtils.showFailedMessage;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.di.view_model.VerificationViewModel;
 import com.app.leon.moshtarak.fragments.mobile.PreLoginViewModel;
@@ -79,11 +79,10 @@ class VerificationCodeIncomplete implements ICallbackIncomplete<PreLoginViewMode
     public void executeDismissed(Response<PreLoginViewModel> response) {
         callback.changeUI(true);
         APIError error = parseError(response);
-        if (error.status() == 401) {
-            expiredToken(context);
-        } else {
-            //TODO
-            warning(context, "dismissed").show();
+        if (error.status() == 400) {
+            warning(context, error.message()).show();
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
     }
 }

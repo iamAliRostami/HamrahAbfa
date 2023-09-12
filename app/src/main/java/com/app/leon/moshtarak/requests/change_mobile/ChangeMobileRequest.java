@@ -1,15 +1,21 @@
 package com.app.leon.moshtarak.requests.change_mobile;
 
+import static com.app.leon.moshtarak.enums.FragmentTags.REQUEST_DONE;
 import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
 import static com.app.leon.moshtarak.utils.ErrorUtils.expiredToken;
 import static com.app.leon.moshtarak.utils.ErrorUtils.parseError;
 import static com.app.leon.moshtarak.utils.ErrorUtils.showFailedMessage;
+import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import androidx.fragment.app.DialogFragment;
+
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.fragments.change_mobile.ChangeMobileViewModel;
+import com.app.leon.moshtarak.fragments.dialog.MessageErrorRequestFragment;
 import com.app.leon.moshtarak.infrastructure.IAbfaService;
 import com.app.leon.moshtarak.infrastructure.ICallbackFailure;
 import com.app.leon.moshtarak.infrastructure.ICallbackIncomplete;
@@ -78,13 +84,12 @@ class ChangeMobileIncomplete implements ICallbackIncomplete<ChangeMobileViewMode
     public void executeDismissed(Response<ChangeMobileViewModel> response) {
         callback.changeUI(true);
         APIError error = parseError(response);
-        if (error.status() == 400) {
-            warning(context, error.message()).show();
-        } else if (error.status() == 401) {
+        if (error.status() == 401) {
             expiredToken(context);
-        } else {
-            //TODO
-            warning(context, "dismissed").show();
+        }else if (error.status() == 400) {
+            warning(context,error.message()).show();
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
     }
 }

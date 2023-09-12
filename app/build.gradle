@@ -16,8 +16,8 @@ android {
         applicationId "com.app.leon.moshtarak"
         minSdk 23
         targetSdk 34
-        versionCode 4
-        versionName "2.01.06.21"
+        versionCode 5
+        versionName "2.02.06.21"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resValue("string", "app_name", "همراه آبفا")

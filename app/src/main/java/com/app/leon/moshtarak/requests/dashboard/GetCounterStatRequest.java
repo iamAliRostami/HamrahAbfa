@@ -8,6 +8,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.fragments.dashboard.CounterStats;
 import com.app.leon.moshtarak.infrastructure.IAbfaService;
@@ -80,8 +81,10 @@ class BillCounterStatIncomplete implements ICallbackIncomplete<CounterStats> {
         APIError error = parseError(response);
         if (error.status() == 401) {
             expiredToken(context);
-        } else {
-            warning(context, "dismissed").show();
+        }else if (error.status() == 400) {
+            warning(context,error.message()).show();
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
     }
 }

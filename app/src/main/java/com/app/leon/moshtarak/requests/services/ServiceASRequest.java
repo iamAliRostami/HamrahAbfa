@@ -83,14 +83,14 @@ class ServiceASIncomplete implements ICallbackIncomplete<ServicesViewModel> {
     public void executeDismissed(Response<ServicesViewModel> response) {
         callback.changeUI(false);
         APIError error = parseError(response);
-        if (error.status() == 400) {
+        if (error.status() == 401) {
+            expiredToken(context);
+        } else if (error.status() == 400) {
             showFragmentDialogOnce(context, REQUEST_DONE.getValue(),
                     MessageErrorRequestFragment.newInstance(error.message(), context.getString(R.string.close),
                             DialogFragment::dismiss));
-        } else if (error.status() == 401) {
-            expiredToken(context);
-        } else {
-            warning(context, "dismissed").show();
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
     }
 }

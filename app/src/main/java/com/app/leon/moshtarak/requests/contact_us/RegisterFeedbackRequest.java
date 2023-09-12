@@ -1,15 +1,21 @@
 package com.app.leon.moshtarak.requests.contact_us;
 
 import static com.app.leon.moshtarak.di.view_model.HttpClientWrapper.callHttpAsyncCached;
+import static com.app.leon.moshtarak.enums.FragmentTags.REQUEST_DONE;
 import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
 import static com.app.leon.moshtarak.utils.ErrorUtils.expiredToken;
 import static com.app.leon.moshtarak.utils.ErrorUtils.parseError;
 import static com.app.leon.moshtarak.utils.ErrorUtils.showFailedMessage;
+import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import androidx.fragment.app.DialogFragment;
+
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.fragments.contact_us.FeedbackViewModel;
+import com.app.leon.moshtarak.fragments.dialog.MessageErrorRequestFragment;
 import com.app.leon.moshtarak.infrastructure.IAbfaService;
 import com.app.leon.moshtarak.infrastructure.ICallbackFailure;
 import com.app.leon.moshtarak.infrastructure.ICallbackIncomplete;
@@ -85,8 +91,12 @@ class RegisterFeedbackIncomplete implements ICallbackIncomplete<FeedbackViewMode
         APIError error = parseError(response);
         if (error.status() == 401) {
             expiredToken(context);
-        } else {
-            warning(context, "dismissed").show();
+        }else if (error.status() == 400) {
+            showFragmentDialogOnce(context, REQUEST_DONE.getValue(),
+                    MessageErrorRequestFragment.newInstance(error.message(), context.getString(R.string.close),
+                            DialogFragment::dismiss));
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
     }
 }

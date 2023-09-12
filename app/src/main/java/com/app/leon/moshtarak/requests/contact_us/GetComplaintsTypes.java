@@ -8,6 +8,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.activities.ContactUsActivity;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.fragments.contact_us.FeedbackType;
@@ -79,8 +80,10 @@ class ComplaintTypeIncomplete implements ICallbackIncomplete<ArrayList<FeedbackT
         APIError error = parseError(response);
         if (error.status() == 401) {
             expiredToken(context);
-        } else {
-            warning(context, "dismissed").show();
+        } else if (error.status() == 400) {
+            warning(context, error.message()).show();
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
         ((ContactUsActivity) context).getSupportFragmentManager().popBackStack();
     }

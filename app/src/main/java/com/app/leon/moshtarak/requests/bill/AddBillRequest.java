@@ -8,6 +8,7 @@ import static com.leon.toast.RTLToast.warning;
 
 import android.content.Context;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.di.view_model.HttpClientWrapper;
 import com.app.leon.moshtarak.fragments.cards.BillCardViewModel;
 import com.app.leon.moshtarak.infrastructure.IAbfaService;
@@ -82,9 +83,8 @@ class AddBillIncomplete implements ICallbackIncomplete<BillCardViewModel> {
             warning(context, error.message()).show();
         } else if (error.status() == 401) {
             expiredToken(context);
-        } else {
-            //TODO
-            warning(context, "dismissed").show();
+        } else if (error.status() == 500) {
+            warning(context, R.string.server_error).show();
         }
     }
 }
