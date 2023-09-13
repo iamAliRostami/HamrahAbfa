@@ -334,11 +334,12 @@
     <string name="payment_description">در بررسی %d قبض صادر شده‌ی اخیر شما، تعداد %d قبض پرداخت شده، تعداد %d قبض پرداخت نشده موجود است.\nاولین پرداخت شما در تاریخ %s و به طور میانگین %d روز پس از صدور قبض، پرداخت انجام شده است.</string>
     <string name="payment_description_1">در بررسی %d قبض صادر شده‌ی اخیر شما، تعداد %d قبض پرداخت شده، تعداد %d قبض پرداخت نشده موجود است.\nاولین پرداخت شما در تاریخ %s و معمولا در همان روز صدور قبض، پرداخت انجام شده است.</string>
     <string name="company">شرکت هیوا پرداز اطلس</string>
-    <string name="email">ایمیل: infohivaatlas@gmail.com</string>
-    <string name="company_email">infohivaatlas@gmail.com</string>
-<!--    <string name="company_email">info@hiwapardaz.ir</string>-->
+    <string name="email">ایمیل: info@hiwapardaz.ir</string>
+<!--    <string name="company_email">infohivaatlas@gmail.com</string>-->
+    <string name="company_email">info@hiwapardaz.ir</string>
     <string name="phone">شماره تماس: 32121764–031</string>
     <string name="company_phone">03132121764</string>
     <string name="server_error">    خظای سرور، لطفا مجدد تلاش کنید و در صورت بر طرف نشدن مشکل با شماره ی 03136693291 تماس بگیرید</string>
+    <string name="version">نسخه %s (%d)</string>
 
 </resources>

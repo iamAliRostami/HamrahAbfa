@@ -20,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.app.leon.moshtarak.BuildConfig;
 import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentContactDeveloperBinding;
 
@@ -41,6 +42,7 @@ public class ContactDeveloperFragment extends Fragment implements View.OnClickLi
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FragmentContactDeveloperBinding binding = FragmentContactDeveloperBinding.inflate(inflater, container, false);
+        binding.textViewVersion.setText(String.format(getString(R.string.version), BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE));
         binding.textViewEmail.setOnClickListener(this);
         binding.textViewPhone.setOnClickListener(this);
         binding.textViewPhone.setOnLongClickListener(this);
