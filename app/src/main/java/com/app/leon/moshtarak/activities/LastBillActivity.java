@@ -7,9 +7,12 @@ import static com.app.leon.moshtarak.enums.FragmentTags.WAITING;
 import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.view.View;
 
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.DialogFragment;
 
 import com.app.leon.moshtarak.R;
@@ -89,6 +92,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
     }
 
     private void setOnClickListener() {
+        binding.buttonSave.setOnClickListener(this);
         binding.linearLayoutItems.setOnClickListener(this);
         binding.linearLayoutEnsheab.setOnClickListener(this);
         binding.linearLayoutSummary.setOnClickListener(this);
@@ -130,7 +134,11 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        final int visibility = getVisibility(id);
+        if (id == R.id.button_save) {
+            redirectBillPic();
+            return;
+        }
+        int visibility = getVisibility(id);
         makeViewsGone();
         resetImageViews();
         resetBackground();
@@ -174,6 +182,23 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
             } else {
                 binding.imageViewArrowEnsheabInfo.setImageResource(R.drawable.arrow_down);
             }
+        }
+    }
+
+    private void redirectBillPic() {
+        String url = String.format(getString(R.string.bill_pic_site), bill.getBillId());
+
+        try {
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.intent.setPackage("com.android.chrome");
+            customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            customTabsIntent.launchUrl(this, Uri.parse(url));
+        } catch (Exception e) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+            browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            browserIntent.setData(Uri.parse(url));
+            startActivity(browserIntent);
         }
     }
 

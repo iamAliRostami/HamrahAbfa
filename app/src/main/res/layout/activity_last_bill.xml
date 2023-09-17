@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:paddingStart="@dimen/large_dp"
     android:paddingEnd="@dimen/large_dp"
+    android:paddingBottom="@dimen/large_dp"
     tools:context="com.app.leon.moshtarak.activities.LastBillActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/linear_layout_buttons"
+        android:layout_above="@id/button_save"
         android:layout_alignParentTop="true">
 
         <RelativeLayout
@@ -230,21 +231,26 @@
         </RelativeLayout>
     </ScrollView>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear_layout_buttons"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true">
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_save"
+        android:layout_alignParentBottom="true"
+        style="@style/ButtonSubmit"
+        android:text="@string/bill_pic" />
+<!--    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--        android:id="@+id/linear_layout_buttons"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="visible"-->
+<!--        android:layout_alignParentBottom="true">-->
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_save"
-            style="@style/ButtonSubmit.Dual"
-            android:text="@string/save_bill" />
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/button_save"-->
+<!--            style="@style/ButtonSubmit.Dual"-->
+<!--            android:text="@string/save_bill" />-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_share"
-            style="@style/ButtonCancel.Dual"
-            android:text="@string/share_bill" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/button_share"-->
+<!--            style="@style/ButtonCancel.Dual"-->
+<!--            android:text="@string/share_bill" />-->
+<!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
 </RelativeLayout>

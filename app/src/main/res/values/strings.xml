@@ -234,7 +234,7 @@
     <string name="save_bill">ذخیره قبض</string>
     <string name="share_bill">همرسانی قبض</string>
     <string name="description_payments">پرداخت\u200cهای پیشین</string>
-    <string name="description_bill">قبض\u200cهای آب\u200cبهای پیشین صادر شده</string>
+    <string name="description_bill">قبض\u200cهای آب\u200cبهای صادر شده\u200cی پیشین</string>
     <string name="number_type">تعداد</string>
     <string name="from">از</string>
     <string name="to_date">تا تاریخ</string>
@@ -261,6 +261,7 @@
 
     <string name="payment_site">https://crm.abfaesfahan.ir/%s/Bill</string>
     <string name="payment_site_multiple">https://crm.abfaesfahan.ir/Multipayment/Refah/?</string>
+    <string name="bill_pic_site">https://crm.abfaesfahan.ir/%s/Bill/?print=false</string>
     <string name="cache_folder">responses</string>
     <string name="expired_access">دسترسی شما به دلایل امنیتی باطل شده است، مجددا وارد شوید</string>
     <string name="login_again">ورود دوباره</string>
@@ -341,5 +342,6 @@
     <string name="company_phone">03132121764</string>
     <string name="server_error">    خظای سرور، لطفا مجدد تلاش کنید و در صورت بر طرف نشدن مشکل با شماره ی 03136693291 تماس بگیرید</string>
     <string name="version">نسخه %s (%d)</string>
+    <string name="bill_pic">تصویر قبض</string>
 
 </resources>
