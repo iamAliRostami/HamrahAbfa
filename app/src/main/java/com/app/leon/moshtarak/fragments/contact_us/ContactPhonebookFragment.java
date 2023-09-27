@@ -114,28 +114,34 @@ public class ContactPhonebookFragment extends Fragment implements AdapterView.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (checkCallPhonePermission(requireActivity())) {
-            if (phonebook.telInfoDtos.get(position).getNumber().indexOf("-") > 0)
-                call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
-                        phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
-            else
-                call(phonebook.telInfoDtos.get(position).getNumber());
-        } else {
-            requestCallPhonePermissionLauncher.launch(CALL_PHONE);
-        }
+//        if (checkCallPhonePermission(requireActivity())) {
+//            if (phonebook.telInfoDtos.get(position).getNumber().indexOf("-") > 0)
+//                call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
+//                        phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
+//            else
+//                call(phonebook.telInfoDtos.get(position).getNumber());
+//        } else {
+//            requestCallPhonePermissionLauncher.launch(CALL_PHONE);
+//        }
+
+        if (phonebook.telInfoDtos.get(position).getNumber().indexOf("-") > 0)
+            call(phonebook.telInfoDtos.get(position).getNumber().substring(0,
+                    phonebook.telInfoDtos.get(position).getNumber().indexOf("-")));
+        else
+            call(phonebook.telInfoDtos.get(position).getNumber());
     }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(CLIPBOARD_SERVICE);
-        final ClipData clip = ClipData.newPlainText("phone", phonebook.telInfoDtos.get(position).getNumber());
+        ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("phone", phonebook.telInfoDtos.get(position).getNumber());
         clipboard.setPrimaryClip(clip);
         success(requireContext(), getString(R.string.saved_in_clipboard)).show();
         return true;
     }
 
     private void call(String phoneNumber) {
-        final Intent intent = new Intent(Intent.ACTION_CALL);
+        Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(intent);
     }

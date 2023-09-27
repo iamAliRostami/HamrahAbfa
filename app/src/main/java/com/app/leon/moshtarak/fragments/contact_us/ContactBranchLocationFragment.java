@@ -129,12 +129,13 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         if (!gpsTracker.canGetLocation()) {
             gpsTracker.showSettingsAlert();
         } else if (gpsTracker.getLocation() != null) {
-            final StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
-            final ArrayList<GeoPoint> wayPoints = new ArrayList<>();
+            ArrayList<GeoPoint> wayPoints = new ArrayList<>();
             wayPoints.add(new GeoPoint(gpsTracker.getLatitude(), gpsTracker.getLongitude()));
             wayPoints.add(point);
-            final Polyline roadOverlay = RoadManager.buildRoadOverlay(new OSRMRoadManager(requireContext()).getRoad(wayPoints));
+            Polyline roadOverlay = RoadManager.buildRoadOverlay(new OSRMRoadManager(requireContext(),
+                    Configuration.getInstance().getUserAgentValue()).getRoad(wayPoints));
 //            roadOverlay.setWidth(12);
             roadOverlay.setColor(R.color.purple_7001);
             binding.mapView.getOverlays().add(roadOverlay);
