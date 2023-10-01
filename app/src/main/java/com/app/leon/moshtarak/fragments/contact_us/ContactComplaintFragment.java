@@ -225,11 +225,12 @@ public class ContactComplaintFragment extends Fragment implements View.OnClickLi
         if (SystemClock.elapsedRealtime() - lastClickTime < 1000) return;
         lastClickTime = SystemClock.elapsedRealtime();
         if (position + 1 == adapter.getCount()) {
-            if (PermissionManager.checkCameraPermission(requireContext()))
-                openCameraForResult();
-            else {
-                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
-            }
+            openCameraForResult();
+//            if (PermissionManager.checkCameraPermission(requireContext()))
+//                openCameraForResult();
+//            else {
+//                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+//            }
         }
     }
 

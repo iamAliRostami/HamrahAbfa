@@ -178,11 +178,12 @@ public class ContactForbiddenCompleteFragment extends Fragment implements View.O
         if (SystemClock.elapsedRealtime() - lastClickTime < 1000) return;
         lastClickTime = SystemClock.elapsedRealtime();
         if (position + 1 == callback.getImageViewAdapter().getCount()) {
-            if (PermissionManager.checkCameraPermission(requireContext()))
-                openCameraForResult();
-            else {
-                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
-            }
+            openCameraForResult();
+//            if (PermissionManager.checkCameraPermission(requireContext()))
+//                openCameraForResult();
+//            else {
+//                requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA);
+//            }
         }
     }
 
