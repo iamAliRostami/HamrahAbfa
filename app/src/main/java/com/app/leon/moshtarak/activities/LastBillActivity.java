@@ -59,6 +59,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
             @Override
             public void succeed(BillViewModel bill) {
                 LastBillActivity.this.bill = bill;
+                binding.buttonSave.setVisibility(View.VISIBLE);
 //                initializeFrameLayouts();
             }
 

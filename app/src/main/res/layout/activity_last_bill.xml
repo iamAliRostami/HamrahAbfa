@@ -235,22 +235,6 @@
         android:id="@+id/button_save"
         android:layout_alignParentBottom="true"
         style="@style/ButtonSubmit"
+        android:visibility="gone"
         android:text="@string/bill_pic" />
-<!--    <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--        android:id="@+id/linear_layout_buttons"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="visible"-->
-<!--        android:layout_alignParentBottom="true">-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/button_save"-->
-<!--            style="@style/ButtonSubmit.Dual"-->
-<!--            android:text="@string/save_bill" />-->
-
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/button_share"-->
-<!--            style="@style/ButtonCancel.Dual"-->
-<!--            android:text="@string/share_bill" />-->
-<!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
 </RelativeLayout>

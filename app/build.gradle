@@ -16,7 +16,7 @@ android {
         applicationId "com.app.leon.moshtarak"
         minSdk 23
         targetSdk 34
-        versionCode 42
+        versionCode 45
         versionName "2.02.07.01"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
