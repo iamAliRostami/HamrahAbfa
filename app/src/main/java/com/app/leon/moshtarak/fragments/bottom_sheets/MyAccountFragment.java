@@ -1,5 +1,9 @@
 package com.app.leon.moshtarak.fragments.bottom_sheets;
 
+import static com.app.leon.moshtarak.enums.FragmentTags.WAITING;
+import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
+import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -42,7 +46,7 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
     @Override
     protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
         FragmentMyAccountBinding binding = FragmentMyAccountBinding.inflate(inflater, container, false);
-        mobile = MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(SharedReferenceKeys.MOBILE.getValue());
+        mobile = getInstance().getApplicationComponent().SharedPreferenceModel().getStringData(SharedReferenceKeys.MOBILE.getValue());
         binding.textViewTitle.setText(mobile);
         binding.buttonExit.setOnClickListener(this);
         binding.buttonSync.setOnClickListener(this);
@@ -61,7 +65,7 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
     }
 
     private void showSyncDialog() {
-        ShowFragment.showFragmentDialogOnce(requireContext(), FragmentTags.ASK_YES_NO.getValue(),
+        showFragmentDialogOnce(requireContext(), FragmentTags.ASK_YES_NO.getValue(),
                 YesNoFragment.newInstance(
                         R.drawable.setting_logout, getString(R.string.connected_account), getString(R.string.are_u_sure_sync),
                         getString(R.string.go_continue), getString(R.string.cancel), new YesNoFragment.IClickListener() {
@@ -91,7 +95,7 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
     }
 
     private void showExitDialog() {
-        ShowFragment.showFragmentDialogOnce(requireContext(), FragmentTags.ASK_YES_NO.getValue(),
+        showFragmentDialogOnce(requireContext(), FragmentTags.ASK_YES_NO.getValue(),
                 YesNoFragment.newInstance(R.drawable.setting_logout, getString(R.string.exit_account), getString(R.string.are_u_sure_remove),
                         getString(R.string.go_continue), getString(R.string.cancel), new YesNoFragment.IClickListener() {
                             @Override
@@ -101,13 +105,13 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
                                         new RemoveAccountRequest.ICallback() {
                                             @Override
                                             public void succeed() {
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.ID.getValue(), "");
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.BILL_ID.getValue(), "");
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.ALIAS.getValue(), "");
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.DEBT.getValue(), "");
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.DEBT.getValue(), "");
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.DEADLINE.getValue(), "");
-                                                MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.MOBILE.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.ID.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.BILL_ID.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.ALIAS.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.DEBT.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.DEBT.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.DEADLINE.getValue(), "");
+                                                getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.MOBILE.getValue(), "");
 
                                                 try {
                                                     Thread.sleep(1000);
@@ -136,7 +140,7 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
         if (show) {
             if (fragment == null) {
                 fragment = WaitingFragment.newInstance();
-                ShowFragment.showFragmentDialogOnce(requireContext(), FragmentTags.WAITING.getValue(), fragment);
+                showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
             }
         } else {
             if (fragment != null) {

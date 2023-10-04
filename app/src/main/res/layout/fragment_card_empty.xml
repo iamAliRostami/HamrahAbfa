@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linear_layout_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_card_empty"
+    android:background="@drawable/background_card_empty_6"
     android:gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/large_dp"
+    android:paddingBottom="@dimen/large_dp"
     tools:context="com.app.leon.moshtarak.fragments.cards.CardEmptyFragment">
 
+
+    <!--    android:background="@drawable/background_card_empty"-->
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_view_add"
         android:layout_width="wrap_content"
@@ -21,8 +25,7 @@
     <View
         android:id="@+id/separator"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/large_dp"
-        android:layout_centerInParent="true" />
+        android:layout_height="@dimen/large_dp" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_view_enter_account"

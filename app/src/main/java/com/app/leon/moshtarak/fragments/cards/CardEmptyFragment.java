@@ -3,12 +3,14 @@ package com.app.leon.moshtarak.fragments.cards;
 import static com.app.leon.moshtarak.enums.FragmentTags.SUBMIT_INFO;
 import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.app.leon.moshtarak.R;
@@ -39,14 +41,17 @@ public class CardEmptyFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initialize() {
+//        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.M) {
+////            binding.linearLayoutParent.setBackgroundResource(R.drawable.background_card_empty_6);
+//            binding.linearLayoutParent.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.background_card_empty_6));
+//        } else {
+//            binding.linearLayoutParent.setBackgroundResource(R.drawable.background_card_empty);
+//        }
         binding.linearLayoutParent.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        final int id = v.getId();
-        if (id == R.id.linear_layout_parent) {
-            showFragmentDialogOnce(requireContext(), SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
-        }
+        showFragmentDialogOnce(requireContext(), SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
     }
 }

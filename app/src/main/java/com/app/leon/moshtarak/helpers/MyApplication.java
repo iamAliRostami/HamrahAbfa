@@ -35,6 +35,7 @@ public class MyApplication extends Application {
     private static MyApplication instance = null;
 
     public static boolean checkServerConnection() {
+//        return true;
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         int timeout = 1000;

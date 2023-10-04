@@ -11,6 +11,7 @@ import static com.app.leon.moshtarak.enums.SharedReferenceKeys.DEADLINE;
 import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
 import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 import static com.leon.toast.RTLToast.success;
+import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,7 +35,6 @@ import com.app.leon.moshtarak.fragments.dashboard.PaymentStats;
 import com.app.leon.moshtarak.fragments.dialog.WaitingFragment;
 import com.app.leon.moshtarak.fragments.dialog.YesNoFragment;
 import com.app.leon.moshtarak.requests.bill.RemoveBillRequest;
-import com.leon.toast.RTLToast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -92,7 +92,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
         int id = view.getId();
         if (id == R.id.text_view_pay) {
             if (viewModel.isPayed()) {
-                RTLToast.warning(requireContext(), getString(R.string.no_debt)).show();
+                warning(requireContext(), getString(R.string.no_debt)).show();
             } else {
                 redirectPay();
             }
