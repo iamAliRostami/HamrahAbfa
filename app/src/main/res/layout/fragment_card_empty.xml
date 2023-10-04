@@ -2,7 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relative_layout_parent"
+    android:id="@+id/linear_layout_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="wrap_content"
@@ -14,8 +14,6 @@
         android:id="@+id/image_view_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/separator"
-        android:layout_centerHorizontal="true"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_plus"
         app:tint="@color/light" />
@@ -30,8 +28,6 @@
         android:id="@+id/text_view_enter_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/separator"
-        android:layout_centerHorizontal="true"
         android:text="@string/enter_your_account"
         android:textColor="@color/light" />
 </androidx.appcompat.widget.LinearLayoutCompat>

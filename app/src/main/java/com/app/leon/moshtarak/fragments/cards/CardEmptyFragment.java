@@ -39,13 +39,13 @@ public class CardEmptyFragment extends Fragment implements View.OnClickListener 
     }
 
     private void initialize() {
-        binding.relativeLayoutParent.setOnClickListener(this);
+        binding.linearLayoutParent.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         final int id = v.getId();
-        if (id == R.id.relative_layout_parent) {
+        if (id == R.id.linear_layout_parent) {
             showFragmentDialogOnce(requireContext(), SUBMIT_INFO.getValue(), SubmitInfoFragment.newInstance());
         }
     }
