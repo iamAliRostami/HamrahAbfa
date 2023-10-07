@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.adapters.holders.BranchViewHolder;
 import com.app.leon.moshtarak.fragments.contact_us.BranchViewModel;
 import com.app.leon.moshtarak.fragments.contact_us.ContactBranchLocationFragment;
-import com.app.leon.moshtarak.R;
 
 import java.util.ArrayList;
 
@@ -45,11 +45,16 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchViewHolder> {
         holder.textViewName.setOnClickListener(v -> updateSelectedService(position));
         holder.imageViewArrow.setOnClickListener(v -> updateSelectedService(position));
         if (selectedServices != null && selectedServices == position) {
-            holder.textViewFax.setText(branches.get(position).getFax());
-            holder.textViewPhone.setText(branches.get(position).getPhone());
-            holder.textViewPostal.setText(branches.get(position).getPostalCode());
-            holder.textViewAddress.setText(branches.get(position).getAddress());
-            holder.textViewFinancialCode.setText(branches.get(position).getEconomicalCode());
+            holder.textViewFax.setText(branches.get(position).getFax() != null ?
+                    branches.get(position).getFax() : "-");
+            holder.textViewPhone.setText(branches.get(position).getPhone() != null ?
+                    branches.get(position).getPhone() : "-");
+            holder.textViewPostal.setText(branches.get(position).getPostalCode() != null ?
+                    branches.get(position).getPostalCode() : "-");
+            holder.textViewAddress.setText(branches.get(position).getAddress() != null ?
+                    branches.get(position).getAddress() : "-");
+            holder.textViewFinancialCode.setText(branches.get(position).getEconomicalCode() != null ?
+                    branches.get(position).getEconomicalCode() : "-");
             holder.animationView.setOnClickListener(v -> showFragmentDialogOnce(inflater.getContext(), BRANCH_LOCATION.getValue(),
                     ContactBranchLocationFragment.newInstance(branches.get(position).getX(), branches.get(position).getY())));
         }
