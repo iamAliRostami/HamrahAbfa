@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.adapters.holders.PayBillViewHolder;
 import com.app.leon.moshtarak.fragments.pay_bill.PayBillViewModel;
-import com.app.leon.moshtarak.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
     private final ArrayList<PayBillViewModel> payBills = new ArrayList<>();
     private final ArrayList<String> selectedBills = new ArrayList<>();
     private int selectedNumber;
-    private int selectedPrice;
+    private long selectedPrice;
 
     public PayBillAdapter(Context context) {
         ArrayList<String> billIds = new ArrayList<>();
@@ -95,11 +95,11 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         payBills.get(position).selected = !payBills.get(position).selected;
         if (payBills.get(position).selected) {
             selectedNumber++;
-            selectedPrice += Integer.parseInt(payBills.get(position).debt);
+            selectedPrice += Long.parseLong(payBills.get(position).debt);
             selectedBills.add(payBills.get(position).billId);
         } else {
             selectedNumber--;
-            selectedPrice -= Integer.parseInt(payBills.get(position).debt);
+            selectedPrice -= Long.parseLong(payBills.get(position).debt);
             selectedBills.remove(payBills.get(position).billId);
         }
         notifyItemChanged(position);
@@ -109,7 +109,7 @@ public class PayBillAdapter extends RecyclerView.Adapter<PayBillViewHolder> impl
         return selectedNumber;
     }
 
-    public int getSelectedPrice() {
+    public long getSelectedPrice() {
         return selectedPrice;
     }
 

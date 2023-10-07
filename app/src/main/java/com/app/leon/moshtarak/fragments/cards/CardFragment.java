@@ -160,7 +160,7 @@ public class CardFragment extends Fragment implements View.OnClickListener {
                 showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

@@ -78,7 +78,7 @@ public class FollowRequestActivity extends BaseActivity implements TabLayout.OnT
             }
         } else {
             initializeViewPager();
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

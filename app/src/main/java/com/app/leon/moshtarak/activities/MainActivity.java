@@ -303,7 +303,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.ICallback
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

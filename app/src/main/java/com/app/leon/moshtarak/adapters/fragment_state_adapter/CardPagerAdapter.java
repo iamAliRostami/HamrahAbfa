@@ -45,7 +45,6 @@ public class CardPagerAdapter extends FragmentStateAdapter {
             addFragment(CardFragment.newInstance(bills.get(i)));
         }
         addFragment(CardEmptyFragment.newInstance());
-//        addFragment(BlankFragment.newInstance());
     }
 
     @NonNull

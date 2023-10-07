@@ -71,7 +71,7 @@ public class UsageHistoryActivity extends BaseActivity implements TabLayout.OnTa
             }
         } else {
             initializeViewPager();
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

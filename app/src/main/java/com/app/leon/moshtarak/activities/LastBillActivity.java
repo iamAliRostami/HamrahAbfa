@@ -85,7 +85,7 @@ public class LastBillActivity extends BaseActivity implements LastBillSummaryFra
             }
         } else {
             initializeFrameLayouts();
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

@@ -88,7 +88,7 @@ public class FollowRequestItemsFragment extends BaseBottomSheetFragment {
                 ShowFragment.showFragmentDialogOnce(requireContext(), FragmentTags.WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

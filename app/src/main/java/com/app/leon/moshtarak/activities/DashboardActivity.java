@@ -123,7 +123,7 @@ public class DashboardActivity extends BaseActivity implements DashboardSummaryF
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

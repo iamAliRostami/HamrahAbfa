@@ -78,7 +78,7 @@ public class ContactBranchFragment extends Fragment implements TextWatcher {
                 ShowFragment.showFragmentDialogOnce(requireContext(), FragmentTags.WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

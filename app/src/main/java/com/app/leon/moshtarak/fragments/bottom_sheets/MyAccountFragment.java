@@ -143,7 +143,7 @@ public class MyAccountFragment extends BaseBottomSheetFragment implements View.O
                 showFragmentDialogOnce(requireContext(), WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

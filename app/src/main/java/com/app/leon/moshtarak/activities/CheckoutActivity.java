@@ -73,7 +73,7 @@ public class CheckoutActivity extends BaseActivity implements TabLayout.OnTabSel
             }
         } else {
             initializeViewPager();
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }

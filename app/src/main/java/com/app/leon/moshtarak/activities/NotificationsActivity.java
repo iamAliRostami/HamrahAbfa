@@ -80,7 +80,7 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
                 showFragmentDialogOnce(this, WAITING.getValue(), fragment);
             }
         } else {
-            if (fragment != null) {
+            if (fragment != null && fragment.getShowsDialog()) {
                 fragment.dismiss();
                 fragment = null;
             }
