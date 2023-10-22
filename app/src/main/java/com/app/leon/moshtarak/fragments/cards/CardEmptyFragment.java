@@ -3,17 +3,14 @@ package com.app.leon.moshtarak.fragments.cards;
 import static com.app.leon.moshtarak.enums.FragmentTags.SUBMIT_INFO;
 import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.databinding.FragmentCardEmptyBinding;
 import com.app.leon.moshtarak.fragments.bottom_sheets.SubmitInfoFragment;
 
