@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.app.leon.moshtarak.fragments.notifications.NewsViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/large_dp"
+        android:paddingEnd="@dimen/large_dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        tools:context="com.app.leon.moshtarak.fragments.notifications.NewsDetailFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/text_view_title"
+                style="@style/Title.Bottom"
+                android:layout_weight="1"
+                android:text="@{viewModel.title}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view_arrow_down"
+                style="@style/ImageArrowStyle"
+                android:layout_gravity="center"
+                android:src="@drawable/arrow_down" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text_view_message"
+            style="@style/TextHelper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout_title"
+            android:background="@drawable/background_last_bill_light"
+            android:padding="@dimen/medium_dp"
+            android:text="@{viewModel.description}"
+            android:textSize="@dimen/font_large_value"
+            android:textStyle="bold" />
+
+        <WebView
+            android:id="@+id/web_view_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/text_view_message"
+            android:layout_marginTop="@dimen/medium_dp"
+            android:layout_marginBottom="@dimen/medium_dp" />
+        <!--        <com.google.android.material.button.MaterialButton-->
+        <!--            android:id="@+id/button_seen"-->
+        <!--            style="@style/ButtonSubmit"-->
+        <!--            android:layout_below="@id/text_view_message"-->
+        <!--            android:layout_marginTop="@dimen/large_dp"-->
+        <!--            android:layout_marginBottom="@dimen/large_dp"-->
+        <!--            android:text="@string/seen_message" />-->
+    </RelativeLayout>
+</layout>

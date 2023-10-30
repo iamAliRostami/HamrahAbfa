@@ -10,21 +10,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.app.leon.moshtarak.base_items.BaseBottomSheetFragment;
-import com.app.leon.moshtarak.databinding.FragmentNotificationMessageDetailBinding;
+import com.app.leon.moshtarak.databinding.FragmentNotificationDetailBinding;
 import com.app.leon.moshtarak.enums.BundleEnum;
 
 import org.jetbrains.annotations.NotNull;
 
-public class NotificationMessageDetailFragment extends BaseBottomSheetFragment implements View.OnClickListener {
-    private FragmentNotificationMessageDetailBinding binding;
+public class NotificationDetailFragment extends BaseBottomSheetFragment implements View.OnClickListener {
+    private FragmentNotificationDetailBinding binding;
     private ICallback callback;
     private int position;
 
-    public NotificationMessageDetailFragment() {
+    public NotificationDetailFragment() {
     }
 
-    public static NotificationMessageDetailFragment newInstance(int position) {
-        NotificationMessageDetailFragment fragment = new NotificationMessageDetailFragment();
+    public static NotificationDetailFragment newInstance(int position) {
+        NotificationDetailFragment fragment = new NotificationDetailFragment();
         Bundle args = new Bundle();
         args.putInt(BundleEnum.POSITION.getValue(), position);
         fragment.setArguments(args);
@@ -42,7 +42,7 @@ public class NotificationMessageDetailFragment extends BaseBottomSheetFragment i
 
     @Override
     protected View initializeBase(LayoutInflater inflater, ViewGroup container) {
-        binding = FragmentNotificationMessageDetailBinding.inflate(inflater, container, false);
+        binding = FragmentNotificationDetailBinding.inflate(inflater, container, false);
         binding.setViewModel(callback.getNotification(position));
         initialize();
         return binding.getRoot();
@@ -56,10 +56,8 @@ public class NotificationMessageDetailFragment extends BaseBottomSheetFragment i
     public void onClick(View v) {
         super.onClick(v);
         int id = v.getId();
-        if (id == v.getId()) {
-            callback.setNotificationSeen(position);
-            dismiss();
-        }
+        callback.setNotificationSeen(position);
+        dismiss();
     }
 
     @Override

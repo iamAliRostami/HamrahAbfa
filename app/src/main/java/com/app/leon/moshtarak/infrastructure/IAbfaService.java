@@ -21,6 +21,7 @@ import com.app.leon.moshtarak.fragments.follow_request.DetailHistoryItem;
 import com.app.leon.moshtarak.fragments.follow_request.MasterHistory;
 import com.app.leon.moshtarak.fragments.last_bill.BillViewModel;
 import com.app.leon.moshtarak.fragments.mobile.PreLoginViewModel;
+import com.app.leon.moshtarak.fragments.notifications.News;
 import com.app.leon.moshtarak.fragments.notifications.Notifications;
 import com.app.leon.moshtarak.fragments.services.ServicesViewModel;
 import com.app.leon.moshtarak.fragments.usage_history.Attempt;
@@ -83,6 +84,9 @@ public interface IAbfaService {
     @GET("KontoriNew/V1/ContactAbfa/Tel")
     Call<ContactPhoneBook> getTel();
 
+    @GET("KontoriNew/V1/ContactAbfa/News")
+    Call<News> getNews();
+
     @GET("KontoriNew/V1/MobileRequest/MasterHistory/{id}")
     Call<MasterHistory> getMasterHistory(@Path("id") String id);
 
@@ -109,6 +113,7 @@ public interface IAbfaService {
 
     @POST("KontoriNew/V1/MobileRequest/AbBaha")
     Call<ServicesViewModel> requestAb(@Body ServicesViewModel service);
+
     @GET("KontoriNew/V1/MobileFeedbackType/Complaints")
     Call<ArrayList<FeedbackType>> getComplaintsTypes();
 

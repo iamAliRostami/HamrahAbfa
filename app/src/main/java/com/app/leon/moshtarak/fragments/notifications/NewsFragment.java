@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.app.leon.moshtarak.adapters.recycler_view.NewsAdapter;
 import com.app.leon.moshtarak.adapters.recycler_view.RecyclerItemClickListener;
 import com.app.leon.moshtarak.databinding.FragmentNewsBinding;
-import com.app.leon.moshtarak.helpers.MyApplication;
+
+import java.util.ArrayList;
 
 public class NewsFragment extends Fragment {
     private FragmentNewsBinding binding;
@@ -45,10 +47,10 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-//        adapter = new NewsAdapter(requireContext(), callback.getId());
-//        binding.recyclerViewNews.setAdapter(adapter);
-//        binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
-//        setRecyclerViewListener();
+        adapter = new NewsAdapter(requireContext(), callback.getNews());
+        binding.recyclerViewNews.setAdapter(adapter);
+        binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
+        setRecyclerViewListener();
     }
 
     private void setRecyclerViewListener() {
@@ -56,10 +58,11 @@ public class NewsFragment extends Fragment {
                 binding.recyclerViewNews, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                MyApplication.getInstance().getApplicationComponent().MyDatabase().newsDao().updateNewsSeen(
-                        adapter.getNews(position).customId, true);
-                callback.setUnseenNewsNumber();
-                adapter.updateNews(position);
+//                MyApplication.getInstance().getApplicationComponent().MyDatabase().newsDao().updateNewsSeen(
+//                        adapter.getNews(position).customId, true);
+//                callback.setUnseenNewsNumber();
+//                adapter.updateNews(position);
+                callback.showNewsDialog(position);
             }
 
             @Override
@@ -84,6 +87,8 @@ public class NewsFragment extends Fragment {
 
     public interface ICallback {
 
-        void setUnseenNewsNumber();
+        void showNewsDialog(int position);
+
+        ArrayList<NewsViewModel> getNews();
     }
 }

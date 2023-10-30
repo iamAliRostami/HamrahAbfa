@@ -1,6 +1,7 @@
 package com.app.leon.moshtarak.activities;
 
 import static com.app.leon.moshtarak.enums.FragmentTags.MESSAGE_DETAIL;
+import static com.app.leon.moshtarak.enums.FragmentTags.NEWS_DETAIL;
 import static com.app.leon.moshtarak.enums.FragmentTags.WAITING;
 import static com.app.leon.moshtarak.utils.ShowFragment.showFragmentDialogOnce;
 
@@ -18,11 +19,15 @@ import com.app.leon.moshtarak.base_items.BaseActivity;
 import com.app.leon.moshtarak.databinding.ActivityNotificationsBinding;
 import com.app.leon.moshtarak.fragments.citizen.NotFoundFragment;
 import com.app.leon.moshtarak.fragments.dialog.WaitingFragment;
+import com.app.leon.moshtarak.fragments.notifications.News;
+import com.app.leon.moshtarak.fragments.notifications.NewsDetailFragment;
 import com.app.leon.moshtarak.fragments.notifications.NewsFragment;
+import com.app.leon.moshtarak.fragments.notifications.NewsViewModel;
+import com.app.leon.moshtarak.fragments.notifications.NotificationDetailFragment;
 import com.app.leon.moshtarak.fragments.notifications.NotificationFragment;
-import com.app.leon.moshtarak.fragments.notifications.NotificationMessageDetailFragment;
 import com.app.leon.moshtarak.fragments.notifications.Notifications;
 import com.app.leon.moshtarak.fragments.notifications.NotificationsViewModel;
+import com.app.leon.moshtarak.requests.notification.GetNewsRequest;
 import com.app.leon.moshtarak.requests.notification.GetNotificationRequest;
 import com.app.leon.moshtarak.requests.notification.SetNotificationSeenRequest;
 import com.google.android.material.badge.BadgeDrawable;
@@ -34,8 +39,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class NotificationsActivity extends BaseActivity implements TabLayout.OnTabSelectedListener,
-        NotificationFragment.ICallback, NewsFragment.ICallback, NotificationMessageDetailFragment.ICallback {
+        NotificationFragment.ICallback, NewsFragment.ICallback, NotificationDetailFragment.ICallback,
+        NewsDetailFragment.ICallback {
     private final ArrayList<NotificationsViewModel> notifications = new ArrayList<>();
+    private final ArrayList<NewsViewModel> news = new ArrayList<>();
     private ActivityNotificationsBinding binding;
     private DialogFragment fragment;
     private int unseenNews;
@@ -59,10 +66,30 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
 
     private void requestNotifications() {
         progressStatus(new GetNotificationRequest(this, new GetNotificationRequest.ICallback() {
+
             @Override
             public void succeed(Notifications notifications) {
                 NotificationsActivity.this.notifications.addAll(notifications.customerNotifications);
                 setUnseenNotificationNumber();
+                initializeViewPager();
+                requestNews();
+            }
+
+            @Override
+            public void changeUI(boolean done) {
+                progressStatus(done);
+            }
+        }).request());
+    }
+
+
+    private void requestNews() {
+        progressStatus(new GetNewsRequest(this, new GetNewsRequest.ICallback() {
+
+            @Override
+            public void succeed(News news) {
+                NotificationsActivity.this.news.addAll(news.news);
+                setUnseenNewsNumber();
                 initializeViewPager();
             }
 
@@ -94,7 +121,11 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         } else {
             adapter.addFragment(NotificationFragment.newInstance());
         }
-        adapter.addFragment(NewsFragment.newInstance());
+        if (news.isEmpty()) {
+            adapter.addFragment(NotFoundFragment.newInstance());
+        } else {
+            adapter.addFragment(NewsFragment.newInstance());
+        }
         binding.viewPager.setAdapter(adapter);
     }
 
@@ -128,8 +159,9 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
         }
     }
 
-    @Override
-    public void setUnseenNewsNumber() {
+    //    @Override
+    private void setUnseenNewsNumber() {
+        unseenNews = news.size();
         BadgeDrawable badgeDrawable = binding.tabLayout.getTabAt(1).getOrCreateBadge();
         if (unseenNews > 0) {
             badgeDrawable.setVisible(true);
@@ -151,9 +183,16 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     @Override
+    public ArrayList<NewsViewModel> getNews() {
+        return news;
+    }
+
+    @Override
     public ArrayList<NotificationsViewModel> getNotifications() {
         return notifications;
     }
+
+
 
     @Override
     public void setNotificationSeen(int position) {
@@ -171,9 +210,19 @@ public class NotificationsActivity extends BaseActivity implements TabLayout.OnT
     }
 
     @Override
+    public NewsViewModel getNews(int position) {
+        return news.get(position);
+    }
+    @Override
     public void showMessageDialog(int position) {
         showFragmentDialogOnce(this, MESSAGE_DETAIL.getValue(),
-                NotificationMessageDetailFragment.newInstance(position));
+                NotificationDetailFragment.newInstance(position));
+    }
+
+    @Override
+    public void showNewsDialog(int position) {
+        showFragmentDialogOnce(this, NEWS_DETAIL.getValue(),
+                NewsDetailFragment.newInstance(position));
     }
 
     private void requestSeenNotification(String id) {

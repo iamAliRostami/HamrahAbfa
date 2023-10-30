@@ -15,7 +15,7 @@
         android:paddingStart="@dimen/large_dp"
         android:paddingEnd="@dimen/large_dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-        tools:context="com.app.leon.moshtarak.fragments.notifications.NotificationMessageDetailFragment">
+        tools:context="com.app.leon.moshtarak.fragments.notifications.NotificationDetailFragment">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linear_layout_title"
