@@ -91,7 +91,7 @@ public class ServiceFragment extends Fragment implements RecyclerItemClickListen
         binding.viewPagerCard.setAdapter(callback.getCardPagerAdapter());
         binding.viewPagerCard.setOffscreenPageLimit(1);
         final CompositePageTransformer cpt = new CompositePageTransformer();
-        cpt.addTransformer(new MarginPageTransformer(20));
+        cpt.addTransformer(new MarginPageTransformer(15));
         cpt.addTransformer((page, position) -> page.setScaleY(0.80f + (1 - Math.abs(position)) * 0.20f));
         binding.viewPagerCard.setPageTransformer(cpt);
     }

@@ -1,5 +1,7 @@
 package com.app.leon.moshtarak.fragments.services;
 
+import static com.app.leon.moshtarak.enums.BundleEnum.LATITUDE;
+import static com.app.leon.moshtarak.enums.BundleEnum.LONGITUDE;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -23,7 +25,6 @@ import androidx.core.content.ContextCompat;
 import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.base_items.BaseBottomSheetFragment;
 import com.app.leon.moshtarak.databinding.FragmentServicesMapBinding;
-import com.app.leon.moshtarak.enums.BundleEnum;
 import com.app.leon.moshtarak.utils.GpsTracker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -31,7 +32,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.events.MapEventsReceiver;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.util.MapTileIndex;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.osmdroid.views.overlay.Marker;
@@ -51,8 +54,8 @@ public class ServicesMapFragment extends BaseBottomSheetFragment implements MapE
     public static ServicesMapFragment newInstance(GeoPoint point) {
         final ServicesMapFragment fragment = new ServicesMapFragment();
         final Bundle bundle = new Bundle();
-        bundle.putDouble(BundleEnum.LATITUDE.getValue(), point.getLatitude());
-        bundle.putDouble(BundleEnum.LONGITUDE.getValue(), point.getLongitude());
+        bundle.putDouble(LATITUDE.getValue(), point.getLatitude());
+        bundle.putDouble(LONGITUDE.getValue(), point.getLongitude());
         fragment.setCancelable(false);
         fragment.setArguments(bundle);
         return fragment;
@@ -62,7 +65,8 @@ public class ServicesMapFragment extends BaseBottomSheetFragment implements MapE
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            point = new GeoPoint(getArguments().getDouble(BundleEnum.LATITUDE.getValue()), getArguments().getDouble(BundleEnum.LONGITUDE.getValue()));
+            point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()),
+                    getArguments().getDouble(LONGITUDE.getValue()));
             getArguments().clear();
         }
     }
@@ -89,11 +93,29 @@ public class ServicesMapFragment extends BaseBottomSheetFragment implements MapE
 
     private void initializeMap() {
         Configuration.getInstance().load(requireContext(), PreferenceManager.getDefaultSharedPreferences(requireContext()));
+        OnlineTileSourceBase onlineTileSourceBase = new OnlineTileSourceBase("USGS Topo", 2, 22, 256, "png",
+                new String[]{
+                        "https://a.tile.opentopomap.org/",
+                        "https://b.tile.opentopomap.org/",
+                        "https://c.tile.opentopomap.org/"
+                }) {
+
+            @Override
+            public String getTileURLString(long pMapTileIndex) {
+                return getBaseUrl()
+                        + MapTileIndex.getZoom(pMapTileIndex)
+                        + "/" + MapTileIndex.getX(pMapTileIndex)
+                        + "/" + MapTileIndex.getY(pMapTileIndex)
+                        + "." + mImageFilenameEnding;
+            }
+        };
+        binding.mapView.setTileSource(onlineTileSourceBase);
         binding.mapView.getZoomController().
                 setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
         binding.mapView.setMultiTouchControls(true);
         final IMapController mapController = binding.mapView.getController();
-        mapController.setZoom(19.0);
+//        mapController.setZoom(19.0);
+        mapController.setZoom(16.5);
         mapController.setCenter(point);
         binding.mapView.getOverlays().add(new MapEventsOverlay(this));
     }
