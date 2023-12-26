@@ -78,13 +78,11 @@ public class VerificationMobileFragment extends Fragment implements View.OnClick
     public void onClick(View v) {
         final int id = v.getId();
         if (id == R.id.text_view_try_again) {
-            //TODO
             callback.displayView(Constants.SUBMIT_PHONE_FRAGMENT);
         } else if (id == R.id.image_view_edit) {
             callback.displayView(Constants.SUBMIT_PHONE_FRAGMENT);
         } else if (id == R.id.button_submit) {
             if (checkInputs()) {
-                //TODO call new api
                 String verificationCode = binding.editText1.getEditableText().toString() +
                         binding.editText2.getEditableText().toString() +
                         binding.editText3.getEditableText().toString() +

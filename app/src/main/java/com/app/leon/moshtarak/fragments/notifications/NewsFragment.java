@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class NewsFragment extends Fragment {
     private FragmentNewsBinding binding;
-    private NewsAdapter adapter;
     private ICallback callback;
 
     public NewsFragment() {
@@ -47,7 +46,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void initializeRecyclerView() {
-        adapter = new NewsAdapter(requireContext(), callback.getNews());
+        NewsAdapter adapter = new NewsAdapter(requireContext(), callback.getNews());
         binding.recyclerViewNews.setAdapter(adapter);
         binding.recyclerViewNews.setLayoutManager(new LinearLayoutManager(requireContext()));
         setRecyclerViewListener();
@@ -58,10 +57,6 @@ public class NewsFragment extends Fragment {
                 binding.recyclerViewNews, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                MyApplication.getInstance().getApplicationComponent().MyDatabase().newsDao().updateNewsSeen(
-//                        adapter.getNews(position).customId, true);
-//                callback.setUnseenNewsNumber();
-//                adapter.updateNews(position);
                 callback.showNewsDialog(position);
             }
 

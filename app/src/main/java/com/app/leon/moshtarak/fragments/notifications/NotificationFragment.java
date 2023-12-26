@@ -53,7 +53,6 @@ public class NotificationFragment extends Fragment {
                 binding.recyclerViewNotifications, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                callback.setNotificationSeen(position);
                 callback.showMessageDialog(position);
                 adapter.updateNotificationSeen(position);
             }
@@ -79,8 +78,6 @@ public class NotificationFragment extends Fragment {
     }
 
     public interface ICallback {
-        void setNotificationSeen(int position);
-
         ArrayList<NotificationsViewModel> getNotifications();
 
         void showMessageDialog(int position);

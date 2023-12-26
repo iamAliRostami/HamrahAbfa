@@ -1,5 +1,11 @@
 package com.app.leon.moshtarak.fragments.bottom_sheets;
 
+import static com.app.leon.moshtarak.enums.SharedReferenceKeys.THEME_MODE;
+import static com.app.leon.moshtarak.helpers.Constants.THEME_DARK;
+import static com.app.leon.moshtarak.helpers.Constants.THEME_DEFAULT;
+import static com.app.leon.moshtarak.helpers.Constants.THEME_LIGHT;
+import static com.app.leon.moshtarak.helpers.MyApplication.getInstance;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -15,8 +21,6 @@ import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.base_items.BaseBottomSheetFragment;
 import com.app.leon.moshtarak.databinding.FragmentThemeBinding;
 import com.app.leon.moshtarak.enums.SharedReferenceKeys;
-import com.app.leon.moshtarak.helpers.Constants;
-import com.app.leon.moshtarak.helpers.MyApplication;
 import com.google.android.material.slider.Slider;
 
 import org.jetbrains.annotations.NotNull;
@@ -53,7 +57,7 @@ public class ThemeFragment extends BaseBottomSheetFragment {
     }
 
     private void initializeSlider() {
-        binding.sliderSize.setValue(MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(SharedReferenceKeys.THEME.getValue()));
+        binding.sliderSize.setValue(getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(SharedReferenceKeys.THEME.getValue()));
 //        binding.sliderSize.addOnChangeListener((slider, value, fromUser) -> settingActivity.changeTheme((int) value));
         binding.sliderSize.addOnSliderTouchListener(new Slider.OnSliderTouchListener() {
             @Override
@@ -71,13 +75,13 @@ public class ThemeFragment extends BaseBottomSheetFragment {
 
     private void initializeViews() {
         resetTextViews();
-        if (MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(SharedReferenceKeys.THEME_MODE.getValue()) == Constants.THEME_DEFAULT) {
+        if (getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_DEFAULT) {
             binding.linearLayoutBasedOnDevice.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeBasedOnDevice.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
-        } else if (MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(SharedReferenceKeys.THEME_MODE.getValue()) == Constants.THEME_LIGHT) {
+        } else if (getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_LIGHT) {
             binding.linearLayoutLight.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeLight.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
-        } else if (MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(SharedReferenceKeys.THEME_MODE.getValue()) == Constants.THEME_DARK) {
+        } else if (getInstance().getApplicationComponent().SharedPreferenceModel().getIntNullData(THEME_MODE.getValue()) == THEME_DARK) {
             binding.linearLayoutDark.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.background_white_blue));
             binding.textViewThemeDark.setTextColor(ContextCompat.getColor(requireContext(), R.color.purple_7001));
         }
@@ -101,23 +105,23 @@ public class ThemeFragment extends BaseBottomSheetFragment {
         super.onClick(v);
         final int id = v.getId();
         if (id == R.id.linear_layout_dark) {
-            setThemeMode(Constants.THEME_DARK);
+            setThemeMode(THEME_DARK);
         } else if (id == R.id.linear_layout_light) {
-            setThemeMode(Constants.THEME_LIGHT);
+            setThemeMode(THEME_LIGHT);
         } else if (id == R.id.linear_layout_based_on_device) {
-            setThemeMode(Constants.THEME_DEFAULT);
+            setThemeMode(THEME_DEFAULT);
         }
     }
 
     private void setThemeMode(int theme) {
-        if (theme == Constants.THEME_DARK) {
+        if (theme == THEME_DARK) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else if (theme == Constants.THEME_LIGHT) {
+        } else if (theme == THEME_LIGHT) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
-        MyApplication.getInstance().getApplicationComponent().SharedPreferenceModel().putData(SharedReferenceKeys.THEME_MODE.getValue(), theme);
+        getInstance().getApplicationComponent().SharedPreferenceModel().putData(THEME_MODE.getValue(), theme);
         initializeViews();
     }
 
