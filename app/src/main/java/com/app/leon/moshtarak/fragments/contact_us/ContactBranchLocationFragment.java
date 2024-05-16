@@ -1,5 +1,7 @@
 package com.app.leon.moshtarak.fragments.contact_us;
 
+import static com.app.leon.moshtarak.enums.BundleEnum.LATITUDE;
+import static com.app.leon.moshtarak.enums.BundleEnum.LONGITUDE;
 import static com.leon.toast.RTLToast.warning;
 
 import android.annotation.SuppressLint;
@@ -24,7 +26,6 @@ import androidx.core.content.ContextCompat;
 import com.app.leon.moshtarak.R;
 import com.app.leon.moshtarak.base_items.BaseBottomSheetFragment;
 import com.app.leon.moshtarak.databinding.FragmentContactBranchLocationBinding;
-import com.app.leon.moshtarak.enums.BundleEnum;
 import com.app.leon.moshtarak.utils.GpsTracker;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -38,6 +39,7 @@ import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Polyline;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ContactBranchLocationFragment extends BaseBottomSheetFragment implements View.OnClickListener {
     private FragmentContactBranchLocationBinding binding;
@@ -49,8 +51,8 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
     public static ContactBranchLocationFragment newInstance(double x, double y) {
         final ContactBranchLocationFragment fragment = new ContactBranchLocationFragment();
         final Bundle args = new Bundle();
-        args.putDouble(BundleEnum.LONGITUDE.getValue(), x);
-        args.putDouble(BundleEnum.LATITUDE.getValue(), y);
+        args.putDouble(LONGITUDE.getValue(), x);
+        args.putDouble(LATITUDE.getValue(), y);
         fragment.setArguments(args);
         fragment.setCancelable(false);
         return fragment;
@@ -60,8 +62,8 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            point = new GeoPoint(getArguments().getDouble(BundleEnum.LATITUDE.getValue()),
-                    getArguments().getDouble(BundleEnum.LONGITUDE.getValue()));
+            point = new GeoPoint(getArguments().getDouble(LATITUDE.getValue()),
+                    getArguments().getDouble(LONGITUDE.getValue()));
             getArguments().clear();
         }
     }
@@ -89,7 +91,6 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
         final IMapController mapController = binding.mapView.getController();
         mapController.setZoom(19.0);
         mapController.setCenter(point);
-
         addPlace();
     }
 
@@ -114,8 +115,9 @@ public class ContactBranchLocationFragment extends BaseBottomSheetFragment imple
 
     private void externalRouting() {
         try {
-            final String uriString = "geo:" + point.getLatitude() + "," + point.getLongitude() + "?q=" +
-                    Uri.encode(point.getLatitude() + "," + point.getLongitude() + "(label)") + "&z=19";
+            String uriString = String.format(Locale.US, "geo:%f,%f?q=%s&z=19", point.getLatitude(),
+                    point.getLongitude(), Uri.encode(String.format(Locale.US, "%f,%f(label)",
+                            point.getLatitude(), point.getLongitude())));
             final Uri uri = Uri.parse(uriString);
             final Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
