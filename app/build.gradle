@@ -2,8 +2,7 @@ plugins {
     id 'com.android.application'
 }
 android {
-    compileSdk 34
-    buildToolsVersion '34.0.0'
+    compileSdk 35
     signingConfigs {
         config {
             storeFile file('D:/keys/MyFourthKey.jks')
@@ -15,9 +14,9 @@ android {
     defaultConfig {
         applicationId "com.app.leon.moshtarak"
         minSdk 23
-        targetSdk 34
-        versionCode 47
-        versionName "2.02.08.08"
+        targetSdk 35
+        versionCode 48
+        versionName "2.03.03.22"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         resValue("string", "app_name", "همراه آبفا")
@@ -88,7 +87,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -118,9 +117,9 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.google.code.gson:gson:2.11.0'
     implementation 'com.google.android.material:material:1.12.0'
-    implementation 'com.google.android.gms:play-services-location:21.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.3.0'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
@@ -137,7 +136,7 @@ dependencies {
     implementation 'org.osmdroid:osmdroid-android:6.1.18'
     implementation 'com.github.MKergall:osmbonuspack:6.9.0'
 
-    implementation 'com.airbnb.android:lottie:6.4.0'
+    implementation 'com.airbnb.android:lottie:6.4.1'
     implementation 'com.github.shuhart:stepview:1.5.1'
     implementation 'com.yandex.android:mobmetricalib:5.3.0'
     implementation 'com.github.Armen101:AudioRecordView:1.0.4'
@@ -145,10 +144,10 @@ dependencies {
 //    implementation 'com.aseem.versatileprogressbar:MultiProgressBar:1.1.1'
 //    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
-    implementation 'com.google.android.gms:play-services-base:18.4.0'
-    implementation 'com.google.android.gms:play-services-identity:18.0.1'
-    implementation 'com.google.android.gms:play-services-auth:21.1.1'
-    implementation 'com.google.android.gms:play-services-auth-api-phone:18.0.2'
+    implementation 'com.google.android.gms:play-services-base:18.5.0'
+    implementation 'com.google.android.gms:play-services-identity:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:21.2.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:18.1.0'
 
 //    implementation "com.google.android.gms:play-services-base:$play_services_version"
 //    implementation "com.google.android.gms:play-services-identity:$play_services_version"

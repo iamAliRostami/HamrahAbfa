@@ -2,14 +2,10 @@ package com.app.leon.moshtarak.di.view_model;
 
 
 import static com.app.leon.moshtarak.enums.FragmentTags.WAITING;
-import static com.app.leon.moshtarak.helpers.MyApplication.checkServerConnection;
-import static com.app.leon.moshtarak.helpers.MyApplication.hasServerPing;
-import static com.app.leon.moshtarak.helpers.MyApplication.setServerPing;
 import static com.app.leon.moshtarak.utils.ErrorUtils.expiredToken;
 import static com.app.leon.moshtarak.utils.ErrorUtils.parseError;
 import static com.app.leon.moshtarak.utils.PermissionManager.isNetworkAvailable;
 import static com.app.leon.moshtarak.utils.ShowFragment.dismissDialog;
-import static com.leon.toast.RTLToast.error;
 import static com.leon.toast.RTLToast.warning;
 
 import android.app.Activity;
@@ -38,34 +34,34 @@ public class HttpClientWrapper {
         HttpClientWrapper.call = call;
         cancel = false;
         if (isOnline) {
-            if (hasServerPing()) {
-                call.enqueue(new Callback<>() {
-                    @Override
-                    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
-                        if (!cancel) {
-                            if (response.isSuccessful()) {
-                                ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
-                            } else {
-                                ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
-                        if (cancel) {
-                            warning(context, R.string.request_canceled).show();
+//            if (hasServerPing()) {
+            call.enqueue(new Callback<>() {
+                @Override
+                public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
+                    if (!cancel) {
+                        if (response.isSuccessful()) {
+                            ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
                         } else {
-                            call.cancel();
-                            ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
+                            ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
                         }
                     }
-                });
-            } else {
-                isOnline = false;
-                setServerPing(checkServerConnection());
-                error(context, R.string.error_ping).show();
-            }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
+                    if (cancel) {
+                        warning(context, R.string.request_canceled).show();
+                    } else {
+                        call.cancel();
+                        ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
+                    }
+                }
+            });
+//            } else {
+//                isOnline = false;
+//                setServerPing(checkServerConnection(context));
+//                error(context, R.string.error_ping).show();
+//            }
         } else {
             warning(context, R.string.turn_internet_on).show();
         }
@@ -100,11 +96,11 @@ public class HttpClientWrapper {
             warning(context, R.string.turn_internet_on).show();
             return false;
         }
-        if (!hasServerPing()) {
-            setServerPing(checkServerConnection());
-            error(context, R.string.error_ping).show();
-            return false;
-        }
+//        if (!hasServerPing()) {
+//            setServerPing(checkServerConnection(context));
+//            error(context, R.string.error_ping).show();
+//            return false;
+//        }
         return true;
     }
 
@@ -112,28 +108,28 @@ public class HttpClientWrapper {
                                             ICallbackIncomplete<T> incomplete, ICallbackFailure failure) {
         boolean isOnline = isNetworkAvailable(context);
         if (isOnline) {
-            if (hasServerPing()) {
-                call.enqueue(new Callback<>() {
-                    @Override
-                    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
-                        if (response.isSuccessful()) {
-                            ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
-                        } else {
-                            ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
-                        }
+//            if (hasServerPing()) {
+            call.enqueue(new Callback<>() {
+                @Override
+                public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
+                    if (response.isSuccessful()) {
+                        ((Activity) context).runOnUiThread(() -> succeed.executeCompleted(response));
+                    } else {
+                        ((Activity) context).runOnUiThread(() -> incomplete.executeDismissed(response));
                     }
+                }
 
-                    @Override
-                    public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
-                        call.cancel();
-                        ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
-                    }
-                });
-            } else {
-                isOnline = false;
-                setServerPing(checkServerConnection());
-                error(context, R.string.error_ping).show();
-            }
+                @Override
+                public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
+                    call.cancel();
+                    ((Activity) context).runOnUiThread(() -> failure.executeFailed(t));
+                }
+            });
+//            } else {
+//                isOnline = false;
+//                setServerPing(checkServerConnection(context));
+//                error(context, R.string.error_ping).show();
+//            }
         } else {
             warning(context, R.string.turn_internet_on).show();
         }
@@ -143,24 +139,24 @@ public class HttpClientWrapper {
     public static <T> boolean callHttpAsyncBackground(Context context, Call<T> call, ICallbackSucceed<T> succeed) {
         boolean isOnline = isNetworkAvailable(context);
         if (isOnline) {
-            if (hasServerPing()) {
-                call.enqueue(new Callback<>() {
-                    @Override
-                    public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
-                        if (response.isSuccessful()) {
-                            succeed.executeCompleted(response);
-                        }
+//            if (hasServerPing()) {
+            call.enqueue(new Callback<>() {
+                @Override
+                public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
+                    if (response.isSuccessful()) {
+                        succeed.executeCompleted(response);
                     }
+                }
 
-                    @Override
-                    public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
-                        call.cancel();
-                    }
-                });
-            } else {
-                isOnline = false;
-                setServerPing(checkServerConnection());
-            }
+                @Override
+                public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
+                    call.cancel();
+                }
+            });
+//            } else {
+//                isOnline = false;
+//                setServerPing(checkServerConnection(context));
+//            }
         }
         return isOnline;
     }

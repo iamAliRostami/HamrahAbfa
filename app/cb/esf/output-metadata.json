@@ -11,10 +11,11 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 47,
-      "versionName": "2.02.08.08",
+      "versionCode": 48,
+      "versionName": "2.03.03.22",
       "outputFile": "app-cb-esf.apk"
     }
   ],
-  "elementType": "File"
+  "elementType": "File",
+  "minSdkVersionForDexing": 23
 }

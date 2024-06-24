@@ -2,15 +2,15 @@ package com.app.leon.moshtarak.helpers;
 
 import static com.app.leon.moshtarak.enums.SharedReferenceKeys.THEME_MODE;
 import static com.app.leon.moshtarak.enums.SharedReferenceNames.ACCOUNT;
-import static com.app.leon.moshtarak.helpers.Constants.HOST_CHECK_CONNECTION;
-import static com.app.leon.moshtarak.helpers.Constants.HOST_P_CHECK_CONNECTION;
 import static com.app.leon.moshtarak.utils.PermissionManager.isNetworkAvailable;
 import static com.leon.toast.RTLToast.Config;
 
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
-import android.os.StrictMode;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;
@@ -24,18 +24,13 @@ import com.app.leon.moshtarak.di.module.SharedPreferenceModule;
 import com.yandex.metrica.YandexMetrica;
 import com.yandex.metrica.YandexMetricaConfig;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.InetAddress;
-import java.net.URL;
-
 public class MyApplication extends Application {
     private static ApplicationComponent applicationComponent;
-    private static boolean serverPing = true;
+//    private static boolean serverPing = true;
     private static MyApplication instance = null;
 
-    public static boolean checkServerConnection() {
-//        return true;
+    public static boolean checkServerConnection(Context context) {
+/*        return true;
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         int timeout = 1000;
@@ -61,6 +56,14 @@ public class MyApplication extends Application {
             e.printStackTrace();
             return false;
         }
+
+ */
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network activeNetwork = connectivityManager.getActiveNetwork();
+        NetworkCapabilities caps = connectivityManager.getNetworkCapabilities(activeNetwork);
+        if (caps != null)
+            return caps.hasTransport(NetworkCapabilities.TRANSPORT_VPN);
+        return false;
     }
 
     public static MyApplication getInstance() {
@@ -70,13 +73,13 @@ public class MyApplication extends Application {
         return instance;
     }
 
-    public static boolean hasServerPing() {
-        return serverPing;
-    }
-
-    public static void setServerPing(boolean serverPing) {
-        MyApplication.serverPing = serverPing;
-    }
+//    public static boolean hasServerPing() {
+//        return serverPing;
+//    }
+//
+//    public static void setServerPing(boolean serverPing) {
+//        MyApplication.serverPing = serverPing;
+//    }
 
     @Override
     public void onCreate() {
@@ -85,8 +88,8 @@ public class MyApplication extends Application {
         setDefaultNightMode();
         Config.getInstance().setToastTypeface(Typeface.createFromAsset(getAssets(), Constants.FONT_NAME))
                 .setTextSize(Constants.TOAST_TEXT_SIZE).apply();
-        if (isNetworkAvailable(this))
-            setServerPing(checkServerConnection());
+//        if (isNetworkAvailable(this))
+//            setServerPing(checkServerConnection(this));
         if (!BuildConfig.BUILD_TYPE.equals("release")) setupYandex();
     }
 
